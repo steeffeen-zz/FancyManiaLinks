@@ -3,9 +3,9 @@
 namespace FML;
 
 /**
- * Type indicating media attributes
+ * Interface for elements with media attributes
  *
- * @author Steff
+ * @author steeffeen
  */
 interface Playable {
 	/**

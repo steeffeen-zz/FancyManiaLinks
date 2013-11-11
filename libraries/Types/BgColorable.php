@@ -2,6 +2,11 @@
 
 namespace FML;
 
+/**
+ * Interface for elements with background color attribute
+ * 
+ * @author steeffeen
+ */
 interface BgColorable {
 	/**
 	 * Protected properties

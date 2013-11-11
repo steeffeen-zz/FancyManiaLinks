@@ -3,9 +3,9 @@
 namespace FML;
 
 /**
- * Type with substyle attribute
+ * Interface for elements with substyle attribute
  *
- * @author Steff
+ * @author steeffeen
  */
 interface SubStyleable {
 	/**

@@ -3,9 +3,9 @@
 namespace FML;
 
 /**
- * Class indicating autonewline attribute
+ * Interface for elements with autonewline attribute
  *
- * @author Steff
+ * @author steeffeen
  */
 interface NewLineable {
 	/**

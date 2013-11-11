@@ -3,9 +3,9 @@
 namespace FML;
 
 /**
- * Type with scriptevents attribute
+ * Interface for elements with scriptevents attribute
  *
- * @author Steff
+ * @author steeffeen
  */
 interface Scriptable {
 	/**

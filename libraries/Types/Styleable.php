@@ -3,9 +3,9 @@
 namespace FML;
 
 /**
- * Type with style attribute
+ * Interface for elements with style attribute
  *
- * @author Steff
+ * @author steeffeen
  */
 interface Styleable {
 	/**

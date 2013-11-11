@@ -2,12 +2,14 @@
 
 namespace FML;
 
+require_once __DIR__ . '/../Types/Renderable.php';
+
 /**
  * Class representing CMlControl
  *
  * @author Steff
  */
-abstract class Control implements Addable {
+abstract class Control implements Renderable {
 	/**
 	 * Constants
 	 */
@@ -21,6 +23,7 @@ abstract class Control implements Addable {
 	/**
 	 * Protected properties
 	 */
+	protected $name = 'control';
 	protected $id = '';
 	protected $x = 0.;
 	protected $y = 0.;
@@ -30,7 +33,7 @@ abstract class Control implements Addable {
 	protected $hAlign = 'center';
 	protected $vAlign = 'center2';
 	protected $scale = 1.;
-	protected $visible = 1;
+	protected $hidden = 0;
 
 	/**
 	 * Set it
@@ -108,7 +111,24 @@ abstract class Control implements Addable {
 	 * @param bool $visible        	
 	 */
 	public function setVisible($visible) {
-		$this->visible = ($visible ? 1 : 0);
+		$this->hidden = ($visible ? 0 : 1);
+	}
+
+	/**
+	 * Render the xml element
+	 *
+	 * @return \DOMElement
+	 */
+	public function render() {
+		$xml = new \DOMElement($this->name);
+		$xml->setAttribute('id', $this->id);
+		$xml->setAttribute('posn', "{$this->x} {$this->y} {$this->z}");
+		$xml->setAttribute('sizen', "{$this->width} {$this->height}");
+		$xml->setAttribute('halign', $this->hAlign);
+		$xml->setAttribute('valign', $this->vAlign);
+		$xml->setAttribute('scale', $this->scale);
+		$xml->setAttribute('hidden', $this->hidden);
+		return $xml;
 	}
 }
 

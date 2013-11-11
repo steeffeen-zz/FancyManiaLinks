@@ -3,9 +3,9 @@
 namespace FML;
 
 /**
- * Type indicating formatable text
+ * Interface for elements with formatable text
  *
- * @author Steff
+ * @author steeffeen
  */
 interface TextFormatable {
 	/**

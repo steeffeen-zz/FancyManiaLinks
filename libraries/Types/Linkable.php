@@ -3,9 +3,9 @@
 namespace FML;
 
 /**
- * Type with url attributes
+ * Interface for elements with url attributes
  *
- * @author Steff
+ * @author steeffeen
  */
 interface Linkable {
 	/**

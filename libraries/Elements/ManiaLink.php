@@ -2,6 +2,8 @@
 
 namespace FML;
 
+require_once __DIR__ . '/../Types/Renderable.php';
+
 /**
  * Class representing a manialink
  *
@@ -11,6 +13,7 @@ class ManiaLink {
 	/**
 	 * Private properties
 	 */
+	private $name = 'manialink';
 	private $id = '';
 	private $version = 1;
 	private $background = '';
@@ -20,7 +23,7 @@ class ManiaLink {
 
 	/**
 	 * Set id
-	 * 
+	 *
 	 * @param string $id        	
 	 */
 	public function setId($id) {
@@ -59,8 +62,24 @@ class ManiaLink {
 	 *
 	 * @param mixed $child        	
 	 */
-	public function add(Addable $child) {
+	public function add(Renderable $child) {
 		array_push($this->children, $child);
+	}
+
+	/**
+	 * Render the xml document
+	 *
+	 * @return \DOMDocument
+	 */
+	public function render() {
+		$xml = new \DOMDocument();
+		$manialink = new \DOMElement($this->name);
+		foreach ($this->children as $child) {
+			$childXml = $child->render();
+			$manialink->appendChild($childXml);
+		}
+		$xml->appendChild($manialink);
+		return $xml;
 	}
 }
 
