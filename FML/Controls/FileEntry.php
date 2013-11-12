@@ -14,28 +14,32 @@ class FileEntry extends Entry {
 	protected $folder = '';
 
 	/**
-	 * Construct fileentry control
+	 * Construct a new fileentry control
+	 *
+	 * @param string $id        	
 	 */
-	public function __construct() {
-		$this->name = 'fileentry';
+	public function __construct($id = null) {
+		parent::__construct($id);
+		$this->tagName = 'fileentry';
 	}
 
 	/**
 	 * Set folder
 	 *
 	 * @param string $folder        	
+	 * @return \FML\Controls\FileEntry
 	 */
 	public function setFolder($folder) {
 		$this->folder = $folder;
+		return $this;
 	}
 
 	/**
-	 * (non-PHPdoc)
 	 *
 	 * @see \FML\Entry::render()
 	 */
-	public function render() {
-		$xml = parent::render();
+	public function render(\DOMDocument $domDocument) {
+		$xml = parent::render($domDocument);
 		$xml->setAttribute('folder', $this->folder);
 		return $xml;
 	}

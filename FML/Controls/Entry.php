@@ -15,37 +15,43 @@ class Entry extends Control implements NewLineable, Scriptable, Styleable, TextF
 	protected $default = '';
 
 	/**
-	 * Construct entry control
+	 * Construct a new entry control
+	 *
+	 * @param string $id        	
 	 */
-	public function __construct() {
-		$this->name = 'entry';
+	public function __construct($id = null) {
+		parent::__construct($id);
+		$this->tagName = 'entry';
 	}
 
 	/**
 	 * Set name
 	 *
 	 * @param string $name        	
+	 * @return \FML\Controls\Entry
 	 */
 	public function setName($name) {
 		$this->name = $name;
+		return $this;
 	}
 
 	/**
 	 * Set default
 	 *
 	 * @param string $default        	
+	 * @return \FML\Controls\Entry
 	 */
 	public function setDefault($default) {
 		$this->default = $default;
+		return $this;
 	}
 
 	/**
-	 * (non-PHPdoc)
 	 *
 	 * @see \FML\Control::render()
 	 */
-	public function render() {
-		$xml = parent::render();
+	public function render(\DOMDocument $domDocument) {
+		$xml = parent::render($domDocument);
 		$xml->setAttribute('name', $this->name);
 		$xml->setAttribute('default', $this->default);
 		return $xml;

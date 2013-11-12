@@ -27,10 +27,13 @@ class Quad extends Control implements BgColorable, Linkable, Scriptable, Styleab
 	protected $style = '';
 
 	/**
-	 * Construct quad control
+	 * Construct a new quad control
+	 *
+	 * @param string $id        	
 	 */
-	public function __construct() {
-		$this->name = 'quad';
+	public function __construct($id = null) {
+		parent::__construct($id);
+		$this->tagName = 'quad';
 	}
 
 	/**
@@ -121,8 +124,8 @@ class Quad extends Control implements BgColorable, Linkable, Scriptable, Styleab
 	 *
 	 * @see \FML\Control::render()
 	 */
-	public function render() {
-		$xml = parent::render();
+	public function render(\DOMDocument $domDocument) {
+		$xml = parent::render($domDocument);
 		$xml->setAttribute('image', $this->image);
 		$xml->setAttribute('imagefocus', $this->imageFocus);
 		$xml->setAttribute('colorize', $this->colorize);

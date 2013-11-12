@@ -12,13 +12,7 @@ class Including implements Renderable {
 	 * Protected properties
 	 */
 	protected $url = '';
-
-	/**
-	 * Construct include element
-	 */
-	public function __construct() {
-		$this->name = 'include';
-	}
+	protected $tagName = 'include';
 
 	/**
 	 * Set url
@@ -30,12 +24,11 @@ class Including implements Renderable {
 	}
 
 	/**
-	 * (non-PHPdoc)
 	 *
 	 * @see \FML\Renderable::render()
 	 */
-	public function render() {
-		$xml = new \DOMElement($this->name);
+	public function render(\DOMDocument $domDocument) {
+		$xml = $domDocument->createElement($this->tagName);
 		$xml->setAttribute('url', $this->url);
 		return $xml;
 	}

@@ -12,31 +12,28 @@ class Music implements Renderable {
 	 * Protected properties
 	 */
 	protected $data = '';
-
-	/**
-	 * Construct music element
-	 */
-	public function __construct() {
-		$this->name = 'music';
-	}
+	protected $tagName = 'music';
 
 	/**
 	 * Set data
 	 *
 	 * @param string $data        	
+	 * @return \FML\Elements\Music
 	 */
 	public function setData($data) {
 		$this->data = $data;
+		return $this;
 	}
 
 	/**
-	 * (non-PHPdoc)
 	 *
 	 * @see \FML\Renderable::render()
 	 */
-	public function render() {
-		$xml = new \DOMElement($this->name);
-		$xml->setAttribute('data', $this->data);
+	public function render(\DOMDocument $domDocument) {
+		$xml = $domDocument->createElement($this->tagName);
+		if ($this->data) {
+			$xml->setAttribute('data', $this->data);
+		}
 		return $xml;
 	}
 }

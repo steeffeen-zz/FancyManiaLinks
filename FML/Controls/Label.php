@@ -33,9 +33,12 @@ class Label extends Control implements Linkable, NewLineable, Scriptable, Stylea
 
 	/**
 	 * Construct label control
+	 *
+	 * @param string $id        	
 	 */
-	public function __construct() {
-		$this->name = 'label';
+	public function __construct($id = null) {
+		parent::__construct($id);
+		$this->tagName = 'label';
 	}
 
 	/**

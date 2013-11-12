@@ -10,19 +10,19 @@ namespace FML\Controls;
 class Video extends Control implements Playable, Scriptable {
 
 	/**
-	 * Construct video control
+	 * Construct a new video control
 	 */
-	public function __construct() {
-		$this->name = 'video';
+	public function __construct($id = null) {
+		parent::__construct($id);
+		$this->tagName = 'video';
 	}
 
 	/**
-	 * (non-PHPdoc)
 	 *
 	 * @see \FML\Control::render()
 	 */
-	public function render() {
-		$xml = parent::render();
+	public function render(\DOMDocument $domDocument) {
+		$xml = parent::render($domDocument);
 		return $xml;
 	}
 }

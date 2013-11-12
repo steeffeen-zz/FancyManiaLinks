@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace FML\Controls;
 
@@ -10,19 +10,21 @@ namespace FML\Controls;
 class Audio extends Control implements Playable, Scriptable {
 
 	/**
-	 * Construct audio control
+	 * Construct a new audio control
+	 *
+	 * @param string $id        	
 	 */
-	public function __construct() {
-		$this->name = 'audio';
+	public function __construct($id = null) {
+		parent::__construct($id);
+		$this->tagName = 'audio';
 	}
 
 	/**
-	 * (non-PHPdoc)
 	 *
 	 * @see \FML\Control::render()
 	 */
-	public function render() {
-		$xml = parent::render();
+	public function render(\DOMDocument $domDocument) {
+		$xml = parent::render($domDocument);
 		return $xml;
 	}
 }

@@ -19,6 +19,14 @@ interface SubStyleable {
 	 * @param string $subStyle        	
 	 */
 	public function setSubStyle($subStyle);
+
+	/**
+	 * Set style and substyle
+	 * 
+	 * @param string $style        	
+	 * @param string $subStyle        	
+	 */
+	public function setStyles($style, $subStyle);
 }
 
 ?>

@@ -2,6 +2,7 @@
 
 namespace FML\Controls;
 
+use FML\Types\Container;
 use FML\Types\Renderable;
 
 /**
@@ -9,27 +10,39 @@ use FML\Types\Renderable;
  *
  * @author steeffeen
  */
-class Frame extends Control {
+class Frame extends Control implements Container {
 	/**
 	 * Private properties
 	 */
 	private $children = array();
 
 	/**
-	 * Construct frame control
+	 * Construct a new frame control
+	 *
+	 * @param string $id        	
 	 */
-	public function __construct() {
-		$this->name = 'frame';
+	public function __construct($id = null) {
+		parent::__construct($id);
+		$this->tagName = 'frame';
 	}
 
 	/**
-	 * Add a new child
 	 *
-	 * @param mixed $child        	
+	 * @see \FML\Types\Container::add()
 	 * @return \FML\Controls\Frame
 	 */
 	public function add(Renderable $child) {
 		array_push($this->children, $child);
+		return $this;
+	}
+
+	/**
+	 *
+	 * @see \FML\Types\Container::removeChildren()
+	 * @return \FML\Controls\Frame
+	 */
+	public function removeChildren() {
+		$this->children = array();
 		return $this;
 	}
 

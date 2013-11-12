@@ -23,20 +23,32 @@ abstract class Control implements Renderable {
 	/**
 	 * Protected properties
 	 */
-	protected $name = 'control';
+	protected $tagName = 'control';
 	protected $id = '';
 	protected $x = 0.;
 	protected $y = 0.;
 	protected $z = 0.;
 	protected $height = 0.;
 	protected $width = 0.;
-	protected $hAlign = 'center';
-	protected $vAlign = 'center2';
+	protected $hAlign = self::CENTER;
+	protected $vAlign = self::CENTER2;
 	protected $scale = 1.;
 	protected $hidden = 0;
+	protected $classes = array();
 
 	/**
-	 * Set it
+	 * Construct a new control
+	 *
+	 * @param string $id        	
+	 */
+	public function __construct($id = null) {
+		if ($id !== null) {
+			$this->setId($id);
+		}
+	}
+
+	/**
+	 * Set id
 	 *
 	 * @param string $id        	
 	 * @return \FML\Controls\Control
@@ -142,11 +154,22 @@ abstract class Control implements Renderable {
 	}
 
 	/**
+	 * Add class name
+	 *
+	 * @param string $class        	
+	 * @return \FML\Controls\Control
+	 */
+	public function addClass($class) {
+		array_push($this->classes, $class);
+		return $this;
+	}
+
+	/**
 	 *
 	 * @see \FML\Types\Renderable::render()
 	 */
 	public function render(\DOMDocument $domDocument) {
-		$xml = $domDocument->createElement($this->name);
+		$xml = $domDocument->createElement($this->tagName);
 		if ($this->id) {
 			$xml->setAttribute('id', $this->id);
 		}
@@ -167,6 +190,13 @@ abstract class Control implements Renderable {
 		}
 		if ($this->hidden) {
 			$xml->setAttribute('hidden', $this->hidden);
+		}
+		$classes = '';
+		foreach ($this->classes as $class) {
+			$classes .= $class . ' ';
+		}
+		if ($classes) {
+			$xml->setAttribute('class', $classes);
 		}
 		return $xml;
 	}

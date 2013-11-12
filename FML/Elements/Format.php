@@ -8,21 +8,17 @@ namespace FML\Elements;
  * @author steeffeen
  */
 class Format implements BgColorable, Renderable, Styleable, TextFormatable {
-
 	/**
-	 * Construct format element
+	 * Protected properties
 	 */
-	public function __construct() {
-		$this->name = 'format';
-	}
+	protected $tagName = 'format';
 
 	/**
-	 * (non-PHPdoc)
 	 *
 	 * @see \FML\Renderable::render()
 	 */
-	public function render() {
-		$xml = new \DOMElement($this->name);
+	public function render(\DOMDocument $domDocument) {
+		$xml = $domDocument->createElement($this->tagName);
 		return $xml;
 	}
 }

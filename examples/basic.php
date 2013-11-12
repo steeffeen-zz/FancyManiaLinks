@@ -25,7 +25,6 @@ for ($i = 0; $i < 10; $i++) {
 }
 
 // Print xml
-$xml = $manialink->render();
-echo $xml->saveXML();
+$manialink->render(true);
 
 ?>

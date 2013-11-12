@@ -4,6 +4,7 @@ namespace FML;
 
 require_once __DIR__ . '/autoload.php';
 
+use FML\Types\Container;
 use FML\Types\Renderable;
 
 /**
@@ -11,7 +12,7 @@ use FML\Types\Renderable;
  *
  * @author steeffeen
  */
-class ManiaLink {
+class ManiaLink implements Container {
 	/**
 	 * Private properties
 	 */
@@ -23,6 +24,15 @@ class ManiaLink {
 	private $timeout = 0;
 	private $children = array();
 	private $encoding = 'utf-8';
+
+	/**
+	 * Construct a new manialink
+	 */
+	public function __construct($id = null) {
+		if ($id !== null) {
+			$this->setId($id);
+		}
+	}
 
 	/**
 	 * Set xml encoding
@@ -80,9 +90,8 @@ class ManiaLink {
 	}
 
 	/**
-	 * Add a new child
 	 *
-	 * @param mixed $child        	
+	 * @see \FML\Types\Container::add()
 	 * @return \FML\ManiaLink
 	 */
 	public function add(Renderable $child) {
@@ -91,13 +100,26 @@ class ManiaLink {
 	}
 
 	/**
+	 *
+	 * @see \FML\Types\Container::removeChildren()
+	 * @return \FML\ManiaLink
+	 */
+	public function removeChildren() {
+		$this->children = array();
+		return $this;
+	}
+
+	/**
 	 * Render the xml document
 	 *
+	 * @param bool $echo
+	 *        	If the xml should be echoed and the content-type header should be set
 	 * @return \DOMDocument
 	 */
-	public function render() {
+	public function render($echo = false) {
 		$domDocument = new \DOMDocument('1.0', $this->encoding);
 		$manialink = $domDocument->createElement($this->name);
+		$domDocument->appendChild($manialink);
 		if ($this->id) {
 			$manialink->setAttribute('id', $this->id);
 		}
@@ -118,7 +140,10 @@ class ManiaLink {
 			$childXml = $child->render($domDocument);
 			$manialink->appendChild($childXml);
 		}
-		$domDocument->appendChild($manialink);
+		if ($echo) {
+			header('Content-Type: application/xml');
+			echo $domDocument->saveXML();
+		}
 		return $domDocument;
 	}
 }

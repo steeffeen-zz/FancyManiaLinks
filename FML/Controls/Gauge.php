@@ -20,9 +20,12 @@ class Gauge extends Control implements Styleable {
 	protected $drawBlockBg = 1;
 
 	/**
-	 * Construct gauge control
+	 * Construct a new gauge control
+	 *
+	 * @param string $id        	
 	 */
-	public function __construct() {
+	public function __construct($id = null) {
+		parent::__construct($id);
 		$this->name = 'gauge';
 	}
 
@@ -90,12 +93,11 @@ class Gauge extends Control implements Styleable {
 	}
 
 	/**
-	 * (non-PHPdoc)
 	 *
 	 * @see \FML\Control::render()
 	 */
-	public function render() {
-		$xml = parent::render();
+	public function render(\DOMDocument $domDocument) {
+		$xml = parent::render($domDocument);
 		$xml->setAttribute('ratio', $this->ratio);
 		$xml->setAttribute('grading', $this->grading);
 		$xml->setAttribute('rotation', $this->rotation);
