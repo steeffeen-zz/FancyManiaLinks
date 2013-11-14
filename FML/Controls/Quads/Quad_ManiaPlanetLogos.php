@@ -14,6 +14,13 @@ class Quad_ManiaPlanetLogos extends Quad {
 	 * Constants
 	 */
 	const STYLE = 'ManiaPlanetLogos';
+	const SUBSTYLE_IconPlanets = 'IconPlanets';
+	const SUBSTYLE_IconPlanetsPerspective = 'IconPlanetsPerspective';
+	const SUBSTYLE_IconPlanetsSmall = 'IconPlanetsSmall';
+	const SUBSTYLE_ManiaPlanetLogoBlack = 'ManiaPlanetLogoBlack';
+	const SUBSTYLE_ManiaPlanetLogoBlackSmall = 'ManiaPlanetLogoBlackSmall';
+	const SUBSTYLE_ManiaPlanetLogoWhite = 'ManiaPlanetLogoWhite';
+	const SUBSTYLE_ManiaPlanetLogoWhiteSmall = 'ManiaPlanetLogoWhiteSmall';
 
 	/**
 	 * Construct ManiaPlanetLogos quad
@@ -21,8 +28,6 @@ class Quad_ManiaPlanetLogos extends Quad {
 	public function __construct() {
 		parent::__construct();
 		$this->setStyle(self::STYLE);
-		array("IconPlanets", "IconPlanetsPerspective", "IconPlanetsSmall", "ManiaPlanetLogoBlack", "ManiaPlanetLogoBlackSmall", 
-			"ManiaPlanetLogoWhite", "ManiaPlanetLogoWhiteSmall");
 	}
 }
 

@@ -8,10 +8,6 @@ namespace FML\Types;
  * @author steeffeen
  */
 interface SubStyleable {
-	/**
-	 * Protected properties
-	 */
-	protected $subStyle = '';
 
 	/**
 	 * Set substyle

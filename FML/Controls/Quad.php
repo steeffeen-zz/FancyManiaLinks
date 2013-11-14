@@ -24,7 +24,9 @@ class Quad extends Control implements BgColorable, Linkable, Scriptable, Styleab
 	protected $bgColor = '';
 	protected $url = '';
 	protected $manialink = '';
+	protected $scriptEvents = 0;
 	protected $style = '';
+	protected $subStyle = '';
 
 	/**
 	 * Construct a new quad control
@@ -34,6 +36,7 @@ class Quad extends Control implements BgColorable, Linkable, Scriptable, Styleab
 	public function __construct($id = null) {
 		parent::__construct($id);
 		$this->tagName = 'quad';
+		$this->setZ(-1);
 	}
 
 	/**
@@ -112,6 +115,16 @@ class Quad extends Control implements BgColorable, Linkable, Scriptable, Styleab
 
 	/**
 	 *
+	 * @see \FML\Types\Scriptable::setScriptEvents()
+	 * @return \FML\Controls\Quad
+	 */
+	public function setScriptEvents($scriptEvents) {
+		$this->scriptEvents = ($scriptEvents ? 1 : 0);
+		return $this;
+	}
+
+	/**
+	 *
 	 * @see \FML\Types\Styleable::setStyle()
 	 * @return \FML\Controls\Quad
 	 */
@@ -122,14 +135,61 @@ class Quad extends Control implements BgColorable, Linkable, Scriptable, Styleab
 
 	/**
 	 *
+	 * @see \FML\Types\SubStyleable::setSubStyle()
+	 * @return \FML\Controls\Quad
+	 */
+	public function setSubStyle($subStyle) {
+		$this->subStyle = $subStyle;
+		return $this;
+	}
+
+	/**
+	 *
+	 * @see \FML\Types\SubStyleable::setStyles()
+	 * @return \FML\Controls\Quad
+	 */
+	public function setStyles($style, $subStyle) {
+		$this->setStyle($style);
+		$this->setSubStyle($subStyle);
+		return $this;
+	}
+
+	/**
+	 *
 	 * @see \FML\Control::render()
 	 */
 	public function render(\DOMDocument $domDocument) {
 		$xml = parent::render($domDocument);
-		$xml->setAttribute('image', $this->image);
-		$xml->setAttribute('imagefocus', $this->imageFocus);
-		$xml->setAttribute('colorize', $this->colorize);
-		$xml->setAttribute('modulizecolor', $this->modulizeColor);
+		if ($this->image) {
+			$xml->setAttribute('image', $this->image);
+		}
+		if ($this->imageFocus) {
+			$xml->setAttribute('imagefocus', $this->imageFocus);
+		}
+		if ($this->colorize) {
+			$xml->setAttribute('colorize', $this->colorize);
+		}
+		if ($this->modulizeColor) {
+			$xml->setAttribute('modulizecolor', $this->modulizeColor);
+		}
+		if ($this->bgColor) {
+			$xml->setAttribute('bgcolor', $this->bgColor);
+		}
+		if ($this->url) {
+			$xml->setAttribute('url', $this->url);
+		}
+		if ($this->manialink) {
+			$xml->setAttribute('manialink', $this->manialink);
+		}
+		if ($this->scriptEvents) {
+			$xml->setAttribute('scriptevents', $this->scriptEvents);
+		}
+		if ($this->style) {
+			$xml->setAttribute('style', $this->style);
+		}
+		if ($this->subStyle) {
+			$xml->setAttribute('substyle', $this->subStyle);
+		}
 		return $xml;
 	}
 }

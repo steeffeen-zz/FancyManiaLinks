@@ -26,7 +26,7 @@ class Label extends Control implements Linkable, NewLineable, Scriptable, Stylea
 	protected $autoNewLine = 0;
 	protected $scriptEvents = 0;
 	protected $style = '';
-	protected $textSize = 3;
+	protected $textSize = -1;
 	protected $textColor = '';
 	protected $areaColor = '';
 	protected $areaFocusColor = '';
@@ -39,6 +39,7 @@ class Label extends Control implements Linkable, NewLineable, Scriptable, Stylea
 	public function __construct($id = null) {
 		parent::__construct($id);
 		$this->tagName = 'label';
+		$this->setZ(1);
 	}
 
 	/**
@@ -208,7 +209,7 @@ class Label extends Control implements Linkable, NewLineable, Scriptable, Stylea
 		if ($this->style) {
 			$xml->setAttribute('style', $this->style);
 		}
-		if ($this->textSize) {
+		if ($this->textSize >= 0) {
 			$xml->setAttribute('textsize', $this->textSize);
 		}
 		if ($this->textColor) {

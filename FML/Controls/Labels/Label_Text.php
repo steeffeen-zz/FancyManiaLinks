@@ -52,7 +52,6 @@ class Label_Text extends Label {
 	const STYLE_TextInfoSmall = 'TextInfoSmall';
 	const STYLE_TextPlayerCardName = 'TextPlayerCardName';
 	const STYLE_TextPlayerCardScore = 'TextPlayerCardScore';
-	const STYLE_TextPlayerCardScore = 'TextPlayerCardScore';
 	const STYLE_TextRaceChat = 'TextRaceChat';
 	const STYLE_TextRaceChrono = 'TextRaceChrono';
 	const STYLE_TextRaceChronoError = 'TextRaceChronoError';

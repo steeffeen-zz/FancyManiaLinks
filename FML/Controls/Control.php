@@ -28,8 +28,8 @@ abstract class Control implements Renderable {
 	protected $x = 0.;
 	protected $y = 0.;
 	protected $z = 0.;
-	protected $height = 0.;
-	protected $width = 0.;
+	protected $width = -1.;
+	protected $height = -1.;
 	protected $hAlign = self::CENTER;
 	protected $vAlign = self::CENTER2;
 	protected $scale = 1.;
@@ -59,6 +59,39 @@ abstract class Control implements Renderable {
 	}
 
 	/**
+	 * Set x position
+	 *
+	 * @param real $x        	
+	 * @return \FML\Controls\Control
+	 */
+	public function setX($x) {
+		$this->x = $x;
+		return $this;
+	}
+
+	/**
+	 * Set y position
+	 *
+	 * @param real $y        	
+	 * @return \FML\Controls\Control
+	 */
+	public function setY($y) {
+		$this->y = $y;
+		return $this;
+	}
+
+	/**
+	 * Set z position
+	 *
+	 * @param real $z        	
+	 * @return \FML\Controls\Control
+	 */
+	public function setZ($z) {
+		$this->z = $z;
+		return $this;
+	}
+
+	/**
 	 * Set position
 	 *
 	 * @param real $x        	
@@ -68,13 +101,13 @@ abstract class Control implements Renderable {
 	 */
 	public function setPosition($x = null, $y = null, $z = null) {
 		if ($x !== null) {
-			$this->x = $x;
+			$this->setX($x);
 		}
 		if ($y !== null) {
-			$this->y = $y;
+			$this->setY($y);
 		}
 		if ($z !== null) {
-			$this->z = $z;
+			$this->setZ($z);
 		}
 		return $this;
 	}
@@ -82,16 +115,16 @@ abstract class Control implements Renderable {
 	/**
 	 * Set size
 	 *
-	 * @param real $height        	
 	 * @param real $width        	
+	 * @param real $height        	
 	 * @return \FML\Controls\Control
 	 */
-	public function setSize($height = null, $width = null) {
-		if ($height !== null) {
-			$this->height = $height;
-		}
+	public function setSize($width = null, $height = null) {
 		if ($width !== null) {
 			$this->width = $width;
+		}
+		if ($height !== null) {
+			$this->height = $height;
 		}
 		return $this;
 	}
@@ -173,17 +206,19 @@ abstract class Control implements Renderable {
 		if ($this->id) {
 			$xml->setAttribute('id', $this->id);
 		}
-		if ($this->x || $this->y || $this->z) {
+		if ($this->x !== 0. || $this->y !== 0. || $this->z !== 0.) {
 			$xml->setAttribute('posn', "{$this->x} {$this->y} {$this->z}");
 		}
-		if ($this->width || $this->height) {
+		if ($this->width >= 0. || $this->height >= 0.) {
 			$xml->setAttribute('sizen', "{$this->width} {$this->height}");
 		}
-		if ($this->hAlign) {
-			$xml->setAttribute('halign', $this->hAlign);
-		}
-		if ($this->vAlign) {
-			$xml->setAttribute('valign', $this->vAlign);
+		if (get_class($this) !== Frame::getClass()) {
+			if ($this->hAlign) {
+				$xml->setAttribute('halign', $this->hAlign);
+			}
+			if ($this->vAlign) {
+				$xml->setAttribute('valign', $this->vAlign);
+			}
 		}
 		if ($this->scale !== 1.) {
 			$xml->setAttribute('scale', $this->scale);

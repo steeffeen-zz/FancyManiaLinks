@@ -10,15 +10,21 @@ $manialink = new FML\ManiaLink();
 $frame = new FML\Controls\Frame();
 $manialink->add($frame);
 
-// Create elements
-$x = 0;
+// Create some lines with several elements
 $y = 50;
-for ($i = 0; $i < 10; $i++) {
-	$label = new FML\Controls\Label();
-	$frame->add($label);
+for ($i = 1; $i <= 10; $i++) {
+	// Line background
+	$backgroundQuad = new FML\Controls\Quads\Quad_ManiaplanetSystem();
+	$frame->add($backgroundQuad);
+	$backgroundQuad->setY($y);
+	$backgroundQuad->setSize(70, 8);
+	$backgroundQuad->setSubStyle(FML\Controls\Quads\Quad_ManiaplanetSystem::SUBSTYLE_BgDialog);
 	
-	// Set properties
-	$label->setPosition($x, $y);
+	// Text label
+	$label = new FML\Controls\Labels\Label_Text();
+	$frame->add($label);
+	$label->setY($y);
+	$label->setStyle(FML\Controls\Labels\Label_Text::STYLE_TextTitle1);
 	$label->setText("Label #{$i}");
 	
 	$y -= 10.;

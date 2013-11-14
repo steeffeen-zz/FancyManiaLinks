@@ -58,6 +58,15 @@ class Frame extends Control implements Container {
 		}
 		return $xml;
 	}
+
+	/**
+	 * Return class name
+	 * 
+	 * @return string
+	 */
+	public static function getClass() {
+		return __CLASS__;
+	}
 }
 
 ?>

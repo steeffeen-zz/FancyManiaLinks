@@ -8,10 +8,6 @@ namespace FML\Types;
  * @author steeffeen
  */
 interface BgColorable {
-	/**
-	 * Protected properties
-	 */
-	protected $bgColor = '';
 
 	/**
 	 * Set background color
