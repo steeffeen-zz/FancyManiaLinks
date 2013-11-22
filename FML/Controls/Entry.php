@@ -12,7 +12,7 @@ class Entry extends Control implements NewLineable, Scriptable, Styleable, TextF
 	 * Protected properties
 	 */
 	protected $name = '';
-	protected $default = '';
+	protected $default = null;
 
 	/**
 	 * Construct a new entry control
@@ -52,8 +52,12 @@ class Entry extends Control implements NewLineable, Scriptable, Styleable, TextF
 	 */
 	public function render(\DOMDocument $domDocument) {
 		$xml = parent::render($domDocument);
-		$xml->setAttribute('name', $this->name);
-		$xml->setAttribute('default', $this->default);
+		if ($this->name) {
+			$xml->setAttribute('name', $this->name);
+		}
+		if ($this->default !== null) {
+			$xml->setAttribute('default', $this->default);
+		}
 		return $xml;
 	}
 }

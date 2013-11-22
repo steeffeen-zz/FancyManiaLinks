@@ -48,13 +48,35 @@ abstract class Control implements Renderable {
 	}
 
 	/**
-	 * Set id
+	 * Get control id
+	 *
+	 * @return string
+	 */
+	public function getId() {
+		return $this->id;
+	}
+
+	/**
+	 * Set control id
 	 *
 	 * @param string $id        	
 	 * @return \FML\Controls\Control
 	 */
 	public function setId($id) {
 		$this->id = $id;
+		return $this;
+	}
+
+	/**
+	 * Assign an unique id if necessary
+	 *
+	 * @return \FML\Controls\Control
+	 */
+	public function assignId() {
+		if ($this->getId()) {
+			return $this;
+		}
+		$this->setId(uniqid());
 		return $this;
 	}
 

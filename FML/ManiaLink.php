@@ -6,6 +6,7 @@ require_once __DIR__ . '/autoload.php';
 
 use FML\Types\Container;
 use FML\Types\Renderable;
+use FML\Script\Script;
 
 /**
  * Class representing a manialink
@@ -14,16 +15,17 @@ use FML\Types\Renderable;
  */
 class ManiaLink implements Container {
 	/**
-	 * Private properties
+	 * Protected properties
 	 */
-	private $name = 'manialink';
-	private $id = '';
-	private $version = 1;
-	private $background = '';
-	private $navigable3d = 0;
-	private $timeout = 0;
-	private $children = array();
-	private $encoding = 'utf-8';
+	protected $encoding = 'utf-8';
+	protected $tagName = 'manialink';
+	protected $id = '';
+	protected $version = 1;
+	protected $background = '';
+	protected $navigable3d = 0;
+	protected $timeout = 0;
+	protected $children = array();
+	protected $script = null;
 
 	/**
 	 * Construct a new manialink
@@ -110,6 +112,17 @@ class ManiaLink implements Container {
 	}
 
 	/**
+	 * Set the script object of the manalink
+	 *
+	 * @param Script $script        	
+	 * @return \FML\ManiaLink
+	 */
+	public function setScript(Script $script) {
+		$this->script = $script;
+		return $this;
+	}
+
+	/**
 	 * Render the xml document
 	 *
 	 * @param bool $echo
@@ -118,7 +131,7 @@ class ManiaLink implements Container {
 	 */
 	public function render($echo = false) {
 		$domDocument = new \DOMDocument('1.0', $this->encoding);
-		$manialink = $domDocument->createElement($this->name);
+		$manialink = $domDocument->createElement($this->tagName);
 		$domDocument->appendChild($manialink);
 		if ($this->id) {
 			$manialink->setAttribute('id', $this->id);
@@ -139,6 +152,10 @@ class ManiaLink implements Container {
 		foreach ($this->children as $child) {
 			$childXml = $child->render($domDocument);
 			$manialink->appendChild($childXml);
+		}
+		if ($this->script) {
+			$scriptXml = $this->script->render($domDocument);
+			$manialink->appendChild($scriptXml);
 		}
 		if ($echo) {
 			header('Content-Type: application/xml');

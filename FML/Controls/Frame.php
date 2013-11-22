@@ -12,9 +12,9 @@ use FML\Types\Renderable;
  */
 class Frame extends Control implements Container {
 	/**
-	 * Private properties
+	 * Protected properties
 	 */
-	private $children = array();
+	protected $children = array();
 
 	/**
 	 * Construct a new frame control
