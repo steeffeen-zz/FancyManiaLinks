@@ -24,5 +24,3 @@ class Quad_MedalsBig extends Quad {
 		array("MedalBronze", "MedalGold", "MedalGoldPerspective", "MedalNadeo", "MedalNadeoPerspective", "MedalSilver", "MedalSlot");
 	}
 }
-
-?>

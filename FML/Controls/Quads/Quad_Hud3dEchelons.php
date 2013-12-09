@@ -25,5 +25,3 @@ class Quad_Hud3dEchelons extends Quad {
 			"EchelonSilver2", "EchelonSilver3");
 	}
 }
-
-?>

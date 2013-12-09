@@ -26,7 +26,7 @@ $menuItem2->setPosition(-50, -30);
 $menuItem2->setSize(20, 20);
 $menuItem2->setSubStyle(Quad_Emblems::SUBSTYLE_2);
 
-// Create submenus
+// Create subMenus
 $subMenu0 = new Quad_Emblems();
 $manialink->add($subMenu0);
 $subMenu0->setPosition(10, 0);
@@ -61,5 +61,3 @@ $menus->add($menuRelationships);
 
 // Print xml
 $manialink->render(true);
-
-?>

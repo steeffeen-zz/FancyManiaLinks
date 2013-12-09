@@ -24,5 +24,3 @@ class Quad_TitleLogos extends Quad {
 		array("Author", "Collection", "Icon", "Title");
 	}
 }
-
-?>

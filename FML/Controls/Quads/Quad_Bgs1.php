@@ -31,5 +31,3 @@ class Quad_Bgs1 extends Quad {
 			"NavButton", "NavButtonBlink", "NavButtonQuit", "ProgressBar", "ProgressBarSmall", "Shadow");
 	}
 }
-
-?>

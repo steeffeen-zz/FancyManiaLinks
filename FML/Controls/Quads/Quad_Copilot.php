@@ -25,5 +25,3 @@ class Quad_Copilot extends Quad {
 			"UpWrong");
 	}
 }
-
-?>

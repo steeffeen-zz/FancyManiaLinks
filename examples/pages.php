@@ -56,5 +56,3 @@ $pages->add($pageButtons, $pagesControls, $counterLabel);
 
 // Print xml
 $manialink->render(true);
-
-?>

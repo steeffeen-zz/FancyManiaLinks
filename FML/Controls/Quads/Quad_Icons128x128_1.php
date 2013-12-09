@@ -30,5 +30,3 @@ class Quad_Icons128x128_1 extends Quad {
 			"Stunts", "United", "Upload", "Vehicles");
 	}
 }
-
-?>

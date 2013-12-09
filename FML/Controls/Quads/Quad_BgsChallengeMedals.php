@@ -24,5 +24,3 @@ class Quad_BgsChallengeMedals extends Quad {
 		array("BgBronze", "BgGold", "BgNadeo", "BgNotPlayed", "BgPlayed", "BgSilver");
 	}
 }
-
-?>

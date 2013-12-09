@@ -30,5 +30,3 @@ class Quad_Icons128x128_Blink extends Quad {
 			"Stunts", "United", "Upload", "Vehicles");
 	}
 }
-
-?>

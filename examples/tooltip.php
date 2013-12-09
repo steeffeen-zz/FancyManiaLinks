@@ -30,5 +30,3 @@ $tooltips->add($quad, $tooltipQuad);
 
 // Print xml
 $manialink->render(true);
-
-?>

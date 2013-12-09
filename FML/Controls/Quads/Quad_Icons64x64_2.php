@@ -25,5 +25,3 @@ class Quad_Icons64x64_2 extends Quad {
 			"NucleusElimination", "NucleusHit", "RocketElimination", "RocketHit", "ServerNotice", "UnknownElimination", "UnknownHit");
 	}
 }
-
-?>

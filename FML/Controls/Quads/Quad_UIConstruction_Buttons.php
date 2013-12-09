@@ -29,5 +29,3 @@ class Quad_UIConstruction_Buttons extends Quad {
 			"Validate", "Validate_Step1", "Validate_Step2", "Validate_Step3");
 	}
 }
-
-?>

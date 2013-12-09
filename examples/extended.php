@@ -17,7 +17,7 @@ $backgroundQuad->setZ(-3);
 $backgroundQuad->setSize(400, 200);
 $backgroundQuad->setBgColor('222');
 
-// Create maniaplanet icon in top right corner
+// Create ManiaPlanet icon in top right corner
 $mpIconQuad = new FML\Controls\Quads\Quad_ManiaPlanetLogos();
 $frame->add($mpIconQuad);
 $mpIconQuad->setPosition(120, 70);
@@ -48,7 +48,7 @@ $backgroundQuad->setSubStyle(FML\Controls\quads\Quad_UiSMSpectatorScoreBig::SUBS
 // Create some lines with several elements
 $y = 50;
 for ($i = 1; $i <= 10; $i++) {
-	// Create subframe for the line
+	// Create subFrame for the line
 	$lineFrame = new FML\Controls\Frame();
 	$frame->add($lineFrame);
 	$lineFrame->setY($y);
@@ -77,5 +77,3 @@ for ($i = 1; $i <= 10; $i++) {
 
 // Print xml
 $manialink->render(true);
-
-?>

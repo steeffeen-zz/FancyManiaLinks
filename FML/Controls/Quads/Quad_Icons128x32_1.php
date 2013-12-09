@@ -26,5 +26,3 @@ class Quad_Icons128x32_1 extends Quad {
 			"RT_Stunts", "Settings", "SliderBar", "SliderBar2", "SliderCursor", "Sound", "UrlBg", "Windowed");
 	}
 }
-
-?>
