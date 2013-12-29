@@ -2,11 +2,11 @@
 
 namespace FML\Script;
 
-use FML\Script\Sections\Constants;
-use FML\Script\Sections\Functions;
-use FML\Script\Sections\Globals;
-use FML\Script\Sections\Includes;
-use FML\Script\Sections\Labels;
+use FML\Script\Constructs\Constants;
+use FML\Script\Constructs\Functions;
+use FML\Script\Constructs\Globals;
+use FML\Script\Constructs\Includes;
+use FML\Script\Constructs\Labels;
 
 /**
  * Class representing the Manialink Script

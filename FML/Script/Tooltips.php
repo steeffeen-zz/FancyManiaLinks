@@ -3,8 +3,8 @@
 namespace FML\Script;
 
 use FML\Controls\Control;
-use FML\Script\Sections\Constants;
-use FML\Script\Sections\Labels;
+use FML\Script\Constructs\Constants;
+use FML\Script\Constructs\Labels;
 use FML\Types\Scriptable;
 
 /**

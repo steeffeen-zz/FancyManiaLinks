@@ -1,6 +1,6 @@
 <?php
 
-namespace FML\Script\Sections;
+namespace FML\Script\Constructs;
 
 /**
  * Script feature using labels

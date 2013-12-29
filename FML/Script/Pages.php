@@ -3,12 +3,12 @@
 namespace FML\Script;
 
 use FML\Controls\Control;
-use FML\Script\Sections\Constants;
-use FML\Script\Sections\Globals;
-use FML\Script\Sections\Includes;
-use FML\Script\Sections\Labels;
-use FML\Types\Scriptable;
 use FML\Controls\Label;
+use FML\Script\Constructs\Constants;
+use FML\Script\Constructs\Globals;
+use FML\Script\Constructs\Includes;
+use FML\Script\Constructs\Labels;
+use FML\Types\Scriptable;
 
 /**
  * ScriptFeature class offering paging
