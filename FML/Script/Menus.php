@@ -93,7 +93,7 @@ class Menus implements Constants, Labels, ScriptFeature {
 	 */
 	public function getLabels() {
 		$labels = array();
-		$labelMouseClick = file_get_contents(__DIR__ . '/Templates/MenuMouseClick.txt');
+		$labelMouseClick = file_get_contents(__DIR__ . '/Parts/MenuMouseClick.txt');
 		$labels[Labels::MOUSECLICK] = $labelMouseClick;
 		return $labels;
 	}

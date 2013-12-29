@@ -138,9 +138,9 @@ class Pages implements Constants, Globals, Includes, Labels, ScriptFeature {
 	 */
 	public function getLabels() {
 		$labels = array();
-		$labelOnInit = file_get_contents(__DIR__ . '/Templates/PageOnInit.txt');
+		$labelOnInit = file_get_contents(__DIR__ . '/Parts/PageOnInit.txt');
 		$labels[Labels::ONINIT] = $labelOnInit;
-		$labelMouseClick = file_get_contents(__DIR__ . '/Templates/PageMouseClick.txt');
+		$labelMouseClick = file_get_contents(__DIR__ . '/Parts/PageMouseClick.txt');
 		$labels[Labels::MOUSECLICK] = $labelMouseClick;
 		return $labels;
 	}

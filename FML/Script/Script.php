@@ -78,7 +78,7 @@ class Script {
 	 * @return string
 	 */
 	private function addHeaderPart($scriptText) {
-		$headerPart = file_get_contents(__DIR__ . '/Templates/Header.txt');
+		$headerPart = file_get_contents(__DIR__ . '/Parts/Header.txt');
 		return $scriptText . $headerPart;
 	}
 
@@ -210,7 +210,7 @@ class Script {
 	 * @return string
 	 */
 	private function addMainPart($scriptText) {
-		$mainPart = file_get_contents(__DIR__ . '/Templates/Main.txt');
+		$mainPart = file_get_contents(__DIR__ . '/Parts/Main.txt');
 		return $scriptText . $mainPart;
 	}
 }

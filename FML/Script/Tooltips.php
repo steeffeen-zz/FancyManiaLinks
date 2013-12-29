@@ -72,9 +72,9 @@ class Tooltips implements Constants, Labels, ScriptFeature {
 	 */
 	public function getLabels() {
 		$labels = array();
-		$labelMouseOut = file_get_contents(__DIR__ . '/Templates/TooltipMouseOut.txt');
+		$labelMouseOut = file_get_contents(__DIR__ . '/Parts/TooltipMouseOut.txt');
 		$labels[Labels::MOUSEOUT] = $labelMouseOut;
-		$labelMouseOver = file_get_contents(__DIR__ . '/Templates/TooltipMouseOver.txt');
+		$labelMouseOver = file_get_contents(__DIR__ . '/Parts/TooltipMouseOver.txt');
 		$labels[Labels::MOUSEOVER] = $labelMouseOver;
 		return $labels;
 	}
