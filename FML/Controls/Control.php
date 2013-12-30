@@ -39,8 +39,7 @@ abstract class Control implements Renderable {
 	/**
 	 * Construct a new Control
 	 *
-	 * @param string $id
-	 *        	Control Id
+	 * @param string $id Control Id
 	 */
 	public function __construct($id = null) {
 		if ($id !== null) {
@@ -60,8 +59,7 @@ abstract class Control implements Renderable {
 	/**
 	 * Set Control Id
 	 *
-	 * @param string $id
-	 *        	Control Id
+	 * @param string $id Control Id
 	 * @return \FML\Controls\Control
 	 */
 	public function setId($id) {
@@ -70,23 +68,35 @@ abstract class Control implements Renderable {
 	}
 
 	/**
-	 * Assign an unique Id if necessary
+	 * Check Id for dangerous Characters and assign an unique Id if necessary
 	 *
 	 * @return \FML\Controls\Control
 	 */
-	public function assignId() {
-		if ($this->getId()) {
+	public function checkId() {
+		if (!$this->getId()) {
+			$this->setId(uniqid());
 			return $this;
 		}
-		$this->setId(uniqid());
+		$dangerousCharacters = array(' ', '	', '.', '|', '-', PHP_EOL);
+		$idCharacters = str_split($this->getId());
+		$danger = false;
+		foreach ($idCharacters as $character) {
+			if (!in_array($character, $dangerousCharacters)) continue;
+			$danger = true;
+			break;
+		}
+		if ($danger) {
+			trigger_error("Please don't use special Characters in Ids, they might cause Problems! (I stripped them for You.)");
+			$id = str_ireplace($dangerousCharacters, '', $this->getId());
+			$this->setId($id);
+		}
 		return $this;
 	}
 
 	/**
 	 * Set X Position
 	 *
-	 * @param float $x
-	 *        	Horizontal Position
+	 * @param float $x Horizontal Position
 	 * @return \FML\Controls\Control
 	 */
 	public function setX($x) {
@@ -97,8 +107,7 @@ abstract class Control implements Renderable {
 	/**
 	 * Set Y Position
 	 *
-	 * @param float $y
-	 *        	Vertical Position
+	 * @param float $y Vertical Position
 	 * @return \FML\Controls\Control
 	 */
 	public function setY($y) {
@@ -109,8 +118,7 @@ abstract class Control implements Renderable {
 	/**
 	 * Set Z Position
 	 *
-	 * @param float $z
-	 *        	Depth
+	 * @param float $z Depth
 	 * @return \FML\Controls\Control
 	 */
 	public function setZ($z) {
@@ -121,12 +129,9 @@ abstract class Control implements Renderable {
 	/**
 	 * Set Control Position
 	 *
-	 * @param float $x
-	 *        	Horizontal Position
-	 * @param float $y
-	 *        	Vertical Position
-	 * @param float $z
-	 *        	Depth
+	 * @param float $x Horizontal Position
+	 * @param float $y Vertical Position
+	 * @param float $z Depth
 	 * @return \FML\Controls\Control
 	 */
 	public function setPosition($x, $y, $z = null) {
@@ -141,8 +146,7 @@ abstract class Control implements Renderable {
 	/**
 	 * Set Control Width
 	 *
-	 * @param float $width
-	 *        	Control Width
+	 * @param float $width Control Width
 	 * @return \FML\Controls\Control
 	 */
 	public function setWidth($width) {
@@ -153,8 +157,7 @@ abstract class Control implements Renderable {
 	/**
 	 * Set Control Height
 	 *
-	 * @param float $height
-	 *        	Control Height
+	 * @param float $height Control Height
 	 * @return \FML\Controls\Control
 	 */
 	public function setHeight($height) {
@@ -165,10 +168,8 @@ abstract class Control implements Renderable {
 	/**
 	 * Set Control Size
 	 *
-	 * @param float $width
-	 *        	Control Width
-	 * @param float $height
-	 *        	Control Height
+	 * @param float $width Control Width
+	 * @param float $height Control Height
 	 * @return \FML\Controls\Control
 	 */
 	public function setSize($width, $height) {
@@ -180,8 +181,7 @@ abstract class Control implements Renderable {
 	/**
 	 * Set Horizontal Alignment
 	 *
-	 * @param string $hAlign
-	 *        	Horizontal Alignment
+	 * @param string $hAlign Horizontal Alignment
 	 * @return \FML\Controls\Control
 	 */
 	public function setHAlign($hAlign) {
@@ -192,8 +192,7 @@ abstract class Control implements Renderable {
 	/**
 	 * Set Vertical Alignment
 	 *
-	 * @param string $vAlign
-	 *        	Vertical Alignment
+	 * @param string $vAlign Vertical Alignment
 	 * @return \FML\Controls\Control
 	 */
 	public function setVAlign($vAlign) {
@@ -204,10 +203,8 @@ abstract class Control implements Renderable {
 	/**
 	 * Set Horizontal and Vertical Alignment
 	 *
-	 * @param string $hAlign
-	 *        	Horizontal Alignment
-	 * @param string $vAlign
-	 *        	Vertical Alignment
+	 * @param string $hAlign Horizontal Alignment
+	 * @param string $vAlign Vertical Alignment
 	 * @return \FML\Controls\Control
 	 */
 	public function setAlign($hAlign, $vAlign) {
@@ -219,8 +216,7 @@ abstract class Control implements Renderable {
 	/**
 	 * Set Control Scale
 	 *
-	 * @param float $scale
-	 *        	Control Scale
+	 * @param float $scale Control Scale
 	 * @return \FML\Controls\Control
 	 */
 	public function setScale($scale) {
@@ -231,8 +227,7 @@ abstract class Control implements Renderable {
 	/**
 	 * Set Visibility
 	 *
-	 * @param bool $visible
-	 *        	If Control should be visible
+	 * @param bool $visible If Control should be visible
 	 * @return \FML\Controls\Control
 	 */
 	public function setVisible($visible) {
@@ -243,8 +238,7 @@ abstract class Control implements Renderable {
 	/**
 	 * Add new Class Name
 	 *
-	 * @param string $class
-	 *        	Class Name
+	 * @param string $class Class Name
 	 * @return \FML\Controls\Control
 	 */
 	public function addClass($class) {
