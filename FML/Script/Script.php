@@ -186,8 +186,6 @@ if (Event.Control.HasClass(\"" . self::CLASS_TOOLTIPS . "\")) {
 		$menuLabels = PHP_EOL;
 		$mouseClickScript = "
 if (Event.Control.HasClass(\"" . self::CLASS_MENUS . "\")) {
-		log(Now);
-		log(Event.Control.ControlClasses);
 	declare Text MenuIdClass;
 	declare Text MenuControlId;
 	foreach (ControlClass in Event.Control.ControlClasses) {
