@@ -40,7 +40,7 @@ class Pages implements Constants, Globals, Includes, Labels, ScriptFeature {
 			if (!($pageButton instanceof Control)) {
 				trigger_error('No Control instance given.', E_USER_ERROR);
 			}
-			$pageButton->assignId();
+			$pageButton->checkId();
 			if (!($pageButton instanceof Scriptable)) {
 				trigger_error('No Scriptable instance given.', E_USER_ERROR);
 			}
@@ -54,7 +54,7 @@ class Pages implements Constants, Globals, Includes, Labels, ScriptFeature {
 			if (!($page instanceof Control)) {
 				trigger_error('No Control instance given.', E_USER_ERROR);
 			}
-			$page->assignId();
+			$page->checkId();
 			if (!empty($pageIds)) {
 				$page->setVisible(false);
 			}
@@ -62,7 +62,7 @@ class Pages implements Constants, Globals, Includes, Labels, ScriptFeature {
 		}
 		
 		if ($counterLabel) {
-			$counterLabel->assignId();
+			$counterLabel->checkId();
 			$counterId = $counterLabel->getId();
 		}
 		else {
