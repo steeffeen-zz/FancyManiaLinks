@@ -2,11 +2,13 @@
 
 namespace FML\Script;
 
+use FML\Controls\Control;
 use FML\Script\Constructs\Constants;
 use FML\Script\Constructs\Functions;
 use FML\Script\Constructs\Globals;
 use FML\Script\Constructs\Includes;
 use FML\Script\Constructs\Labels;
+use FML\Types\Scriptable;
 
 /**
  * Class representing the Manialink Script
@@ -17,7 +19,44 @@ class Script {
 	/**
 	 * Protected properties
 	 */
+	protected $tagName = 'script';
+	protected $tooltips = array();
 	protected $features = array();
+
+	/**
+	 * Add a Tooltip Behavior
+	 *
+	 * @param Control $hoverControl        	
+	 * @param Control $tooltipControl        	
+	 * @return \FML\Script\Script
+	 */
+	public function addTooltip(Control $hoverControl, Control $tooltipControl) {
+		if (!($hoverControl instanceof Scriptable)) {
+			trigger_error('Scriptable Control needed as HoverControl for Tooltips!');
+			return $this;
+		}
+		$hoverControl->assignId();
+		$hoverControl->setScriptEvents(true);
+		$tooltipControl->assignId();
+		$tooltipControl->setVisible(false);
+		$hoverId = $hoverControl->getId();
+		$tooltipId = $tooltipControl->getId();
+		if (!isset($this->tooltips[$hoverId])) {
+			$this->tooltips[$hoverId] = array();
+		}
+		$this->tooltips[$hoverId][$tooltipId] = array();
+		return $this;
+	}
+
+	/**
+	 * Remove all Tooltips
+	 *
+	 * @return \FML\Script\Script
+	 */
+	public function removeTooltips() {
+		$this->tooltips = array();
+		return $this;
+	}
 
 	/**
 	 * Add a script feature
@@ -47,7 +86,7 @@ class Script {
 	 * @return \DOMElement
 	 */
 	public function render(\DOMDocument $domDocument) {
-		$scriptXml = $domDocument->createElement('script');
+		$scriptXml = $domDocument->createElement($this->tagName);
 		$scriptText = $this->buildScriptText();
 		$scriptComment = $domDocument->createComment($scriptText);
 		$scriptXml->appendChild($scriptComment);
@@ -61,34 +100,32 @@ class Script {
 	 */
 	private function buildScriptText() {
 		$scriptText = "";
-		$scriptText = $this->addHeaderPart($scriptText);
-		$scriptText = $this->addIncludesPart($scriptText);
-		$scriptText = $this->addConstantsPart($scriptText);
-		$scriptText = $this->addGlobalsPart($scriptText);
-		$scriptText = $this->addLabelsPart($scriptText);
-		$scriptText = $this->addFunctionsPart($scriptText);
-		$scriptText = $this->addMainPart($scriptText);
+		$scriptText .= $this->getHeaderPart();
+		$scriptText .= $this->getIncludesPart();
+		$scriptText .= $this->getConstantsPart();
+		$scriptText .= $this->getGlobalsPart();
+		$scriptText .= $this->getLabelsPart();
+		$scriptText .= $this->getFunctionsPart();
+		$scriptText .= $this->getMainPart();
 		return $scriptText;
 	}
 
 	/**
-	 * Add the header comment to the script
-	 * 
-	 * @param string $scriptText
+	 * Get the Header Comment
+	 *
 	 * @return string
 	 */
-	private function addHeaderPart($scriptText) {
+	private function getHeaderPart() {
 		$headerPart = file_get_contents(__DIR__ . '/Parts/Header.txt');
-		return $scriptText . $headerPart;
+		return $headerPart;
 	}
 
 	/**
-	 * Add the includes to the script
+	 * Get Includes of the Script
 	 *
-	 * @param string $scriptText        	
 	 * @return string
 	 */
-	private function addIncludesPart($scriptText) {
+	private function getIncludesPart() {
 		$includes = array();
 		foreach ($this->features as $feature) {
 			if (!($feature instanceof Includes)) {
@@ -103,16 +140,15 @@ class Script {
 		foreach ($includes as $namespace => $fileName) {
 			$includesPart .= "#Include \"{$fileName}\" as {$namespace}" . PHP_EOL;
 		}
-		return $scriptText . $includesPart;
+		return $includesPart;
 	}
 
 	/**
-	 * Add the declared constants to the script
+	 * Get declared Constants of the Script
 	 *
-	 * @param string $scriptText        	
 	 * @return string
 	 */
-	private function addConstantsPart($scriptText) {
+	private function getConstantsPart() {
 		$constants = array();
 		foreach ($this->features as $feature) {
 			if (!($feature instanceof Constants)) {
@@ -127,16 +163,15 @@ class Script {
 		foreach ($constants as $name => $value) {
 			$constantsPart .= "#Const {$name} {$value}" . PHP_EOL;
 		}
-		return $scriptText . $constantsPart;
+		return $constantsPart;
 	}
 
 	/**
-	 * Add the declared global variables to the script
+	 * Get declared Global Variables of the Script
 	 *
-	 * @param string $scriptText        	
 	 * @return string
 	 */
-	private function addGlobalsPart($scriptText) {
+	private function getGlobalsPart() {
 		$globals = array();
 		foreach ($this->features as $feature) {
 			if (!($feature instanceof Globals)) {
@@ -151,16 +186,15 @@ class Script {
 		foreach ($globals as $name => $type) {
 			$globalsPart .= "declare {$type} {$name};" . PHP_EOL;
 		}
-		return $scriptText . $globalsPart;
+		return $globalsPart;
 	}
 
 	/**
-	 * Add the implemented labels to the script
+	 * Get implemented Labels of the Script
 	 *
-	 * @param string $scriptText        	
 	 * @return string
 	 */
-	private function addLabelsPart($scriptText) {
+	private function getLabelsPart() {
 		$labels = array();
 		foreach ($this->features as $feature) {
 			if (!($feature instanceof Labels)) {
@@ -176,16 +210,15 @@ class Script {
 		foreach ($labels as $label) {
 			$labelsPart .= '***' . $label[0] . '***' . PHP_EOL . '***' . PHP_EOL . $label[1] . PHP_EOL . '***' . PHP_EOL;
 		}
-		return $scriptText . $labelsPart;
+		return $labelsPart;
 	}
 
 	/**
-	 * Add the declared functions to the script
+	 * Get declared Functions of the Script
 	 *
-	 * @param string $scriptText        	
 	 * @return string
 	 */
-	private function addFunctionsPart($scriptText) {
+	private function getFunctionsPart() {
 		$functions = array();
 		foreach ($this->features as $feature) {
 			if (!($feature instanceof Functions)) {
@@ -200,17 +233,16 @@ class Script {
 		foreach ($functions as $signature => $implementation) {
 			$functionsPart .= $signature . '{' . PHP_EOL . $implementation . PHP_EOL . '}' . PHP_EOL;
 		}
-		return $scriptText . $functionsPart;
+		return $functionsPart;
 	}
 
 	/**
-	 * Add the main function to the script
+	 * Get the Main Function
 	 *
-	 * @param string $scriptText        	
 	 * @return string
 	 */
-	private function addMainPart($scriptText) {
+	private function getMainPart() {
 		$mainPart = file_get_contents(__DIR__ . '/Parts/Main.txt');
-		return $scriptText . $mainPart;
+		return $mainPart;
 	}
 }
