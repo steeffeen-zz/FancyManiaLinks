@@ -38,26 +38,23 @@ $manialink->add($subMenu1);
 $subMenu1->setPosition(10, 0);
 $subMenu1->setSize(50, 50);
 $subMenu1->setSubStyle(Quad_Emblems::SUBSTYLE_1);
+$subMenu1->setVisible(false);
 
 $subMenu2 = new Quad_Emblems();
 $manialink->add($subMenu2);
 $subMenu2->setPosition(10, 0);
 $subMenu2->setSize(50, 50);
 $subMenu2->setSubStyle(Quad_Emblems::SUBSTYLE_2);
+$subMenu2->setVisible(false);
 
 // Create script
 $script = new FML\Script\Script();
 $manialink->setScript($script);
 
-// Create menu
-$menus = new FML\Script\Menus();
-$script->addFeature($menus);
-
-$menuRelationships = array();
-array_push($menuRelationships, array($menuItem0, $subMenu0));
-array_push($menuRelationships, array($menuItem1, $subMenu1));
-array_push($menuRelationships, array($menuItem2, $subMenu2));
-$menus->add($menuRelationships);
+// Set menu
+$script->addMenu($menuItem0, $subMenu0);
+$script->addMenu($menuItem1, $subMenu1);
+$script->addMenu($menuItem2, $subMenu2);
 
 // Print xml
 $manialink->render(true);
