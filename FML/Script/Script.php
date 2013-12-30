@@ -3,11 +3,6 @@
 namespace FML\Script;
 
 use FML\Controls\Control;
-use FML\Script\Constructs\Constants;
-use FML\Script\Constructs\Functions;
-use FML\Script\Constructs\Globals;
-use FML\Script\Constructs\Includes;
-use FML\Script\Constructs\Labels;
 use FML\Types\Scriptable;
 
 /**
