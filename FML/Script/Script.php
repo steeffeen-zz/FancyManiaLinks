@@ -11,17 +11,17 @@ use FML\Script\Constructs\Labels;
 use FML\Types\Scriptable;
 
 /**
- * Class representing the Manialink Script
+ * Class representing the ManiaLink Script
  *
  * @author steeffeen
  */
 class Script {
+	
 	/**
-	 * Protected properties
+	 * Protected Properties
 	 */
 	protected $tagName = 'script';
 	protected $tooltips = array();
-	protected $features = array();
 
 	/**
 	 * Add a Tooltip Behavior
@@ -49,38 +49,7 @@ class Script {
 	}
 
 	/**
-	 * Remove all Tooltips
-	 *
-	 * @return \FML\Script\Script
-	 */
-	public function removeTooltips() {
-		$this->tooltips = array();
-		return $this;
-	}
-
-	/**
-	 * Add a script feature
-	 *
-	 * @param ScriptFeature $scriptFeature        	
-	 * @return \FML\Script\Script
-	 */
-	public function addFeature(ScriptFeature $scriptFeature) {
-		array_push($this->features, $scriptFeature);
-		return $this;
-	}
-
-	/**
-	 * Remove all script features
-	 *
-	 * @return \FML\Script\Script
-	 */
-	public function removeFeatures() {
-		$this->features = array();
-		return $this;
-	}
-
-	/**
-	 * Create the script xml tag
+	 * Create the Script XML Tag
 	 *
 	 * @param \DOMDocument $domDocument        	
 	 * @return \DOMElement
@@ -94,19 +63,15 @@ class Script {
 	}
 
 	/**
-	 * Build the complete script text based on all script items
+	 * Build the complete Script Text
 	 *
 	 * @return string
 	 */
 	private function buildScriptText() {
 		$scriptText = "";
-		$scriptText .= $this->getHeaderPart();
-		$scriptText .= $this->getIncludesPart();
-		$scriptText .= $this->getConstantsPart();
-		$scriptText .= $this->getGlobalsPart();
-		$scriptText .= $this->getLabelsPart();
-		$scriptText .= $this->getFunctionsPart();
-		$scriptText .= $this->getMainPart();
+		$scriptText .= $this->getHeaderComment();
+		$scriptText .= $this->getTooltips();
+		$scriptText .= $this->getMainFunction();
 		return $scriptText;
 	}
 
@@ -115,125 +80,35 @@ class Script {
 	 *
 	 * @return string
 	 */
-	private function getHeaderPart() {
-		$headerPart = file_get_contents(__DIR__ . '/Parts/Header.txt');
-		return $headerPart;
+	private function getHeaderComment() {
+		$headerComment = file_get_contents(__DIR__ . '/Parts/Header.txt');
+		return $headerComment;
 	}
 
 	/**
-	 * Get Includes of the Script
+	 * Get the Tooltips Labels
 	 *
 	 * @return string
 	 */
-	private function getIncludesPart() {
-		$includes = array();
-		foreach ($this->features as $feature) {
-			if (!($feature instanceof Includes)) {
-				continue;
-			}
-			$featureIncludes = $feature->getIncludes();
-			foreach ($featureIncludes as $namespace => $fileName) {
-				$includes[$namespace] = $fileName;
-			}
-		}
-		$includesPart = PHP_EOL;
-		foreach ($includes as $namespace => $fileName) {
-			$includesPart .= "#Include \"{$fileName}\" as {$namespace}" . PHP_EOL;
-		}
-		return $includesPart;
-	}
-
-	/**
-	 * Get declared Constants of the Script
-	 *
-	 * @return string
-	 */
-	private function getConstantsPart() {
-		$constants = array();
-		foreach ($this->features as $feature) {
-			if (!($feature instanceof Constants)) {
-				continue;
-			}
-			$featureConstants = $feature->getConstants();
-			foreach ($featureConstants as $name => $value) {
-				$constants[$name] = $value;
+	private function getTooltips() {
+		$tooltipsLabels = PHP_EOL;
+		foreach ($this->tooltips as $hoverId => $tooltips) {
+			foreach ($tooltips as $tooltipId => $tooltipOptions) {
+				$mouseOverScript = "
+if (Event.ControlId == \"{$hoverId}\") {
+	declare TooltipControl <=> Page.GetFirstChild(\"{$tooltipId}\");
+	if (TooltipControl != Null) TooltipControl.Show();
+}";
+				$tooltipsLabels .= Builder::getLabelImplementationBlock("MouseOver", $mouseOverScript);
+				$mouseOutScript = "
+if (Event.ControlId == \"{$hoverId}\") {
+	declare TooltipControl <=> Page.GetFirstChild(\"{$tooltipId}\");
+	if (TooltipControl != Null) TooltipControl.Hide();
+}";
+				$tooltipsLabels .= Builder::getLabelImplementationBlock("MouseOut", $mouseOutScript);
 			}
 		}
-		$constantsPart = PHP_EOL;
-		foreach ($constants as $name => $value) {
-			$constantsPart .= "#Const {$name} {$value}" . PHP_EOL;
-		}
-		return $constantsPart;
-	}
-
-	/**
-	 * Get declared Global Variables of the Script
-	 *
-	 * @return string
-	 */
-	private function getGlobalsPart() {
-		$globals = array();
-		foreach ($this->features as $feature) {
-			if (!($feature instanceof Globals)) {
-				continue;
-			}
-			$featureGlobals = $feature->getGlobals();
-			foreach ($featureGlobals as $name => $type) {
-				$globals[$name] = $type;
-			}
-		}
-		$globalsPart = PHP_EOL;
-		foreach ($globals as $name => $type) {
-			$globalsPart .= "declare {$type} {$name};" . PHP_EOL;
-		}
-		return $globalsPart;
-	}
-
-	/**
-	 * Get implemented Labels of the Script
-	 *
-	 * @return string
-	 */
-	private function getLabelsPart() {
-		$labels = array();
-		foreach ($this->features as $feature) {
-			if (!($feature instanceof Labels)) {
-				continue;
-			}
-			$featureLabels = $feature->getLabels();
-			foreach ($featureLabels as $name => $implementation) {
-				$label = array($name, $implementation);
-				array_push($labels, $label);
-			}
-		}
-		$labelsPart = PHP_EOL;
-		foreach ($labels as $label) {
-			$labelsPart .= '***' . $label[0] . '***' . PHP_EOL . '***' . PHP_EOL . $label[1] . PHP_EOL . '***' . PHP_EOL;
-		}
-		return $labelsPart;
-	}
-
-	/**
-	 * Get declared Functions of the Script
-	 *
-	 * @return string
-	 */
-	private function getFunctionsPart() {
-		$functions = array();
-		foreach ($this->features as $feature) {
-			if (!($feature instanceof Functions)) {
-				continue;
-			}
-			$featureFunctions = $feature->getFunctions();
-			foreach ($featureFunctions as $signature => $implementation) {
-				$functions[$signature] = $implementation;
-			}
-		}
-		$functionsPart = PHP_EOL;
-		foreach ($functions as $signature => $implementation) {
-			$functionsPart .= $signature . '{' . PHP_EOL . $implementation . PHP_EOL . '}' . PHP_EOL;
-		}
-		return $functionsPart;
+		return $tooltipsLabels;
 	}
 
 	/**
@@ -241,8 +116,8 @@ class Script {
 	 *
 	 * @return string
 	 */
-	private function getMainPart() {
-		$mainPart = file_get_contents(__DIR__ . '/Parts/Main.txt');
-		return $mainPart;
+	private function getMainFunction() {
+		$mainFunction = file_get_contents(__DIR__ . '/Parts/Main.txt');
+		return $mainFunction;
 	}
 }

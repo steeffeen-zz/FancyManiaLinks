@@ -23,10 +23,8 @@ $tooltipQuad->setSubStyle($tooltipQuad::SUBSTYLE_2);
 $script = new FML\Script\Script();
 $manialink->setScript($script);
 
-// Create tooltip
-$tooltips = new FML\Script\Tooltips();
-$script->addFeature($tooltips);
-$tooltips->add($quad, $tooltipQuad);
+// Add tooltip
+$script->addTooltip($quad, $tooltipQuad);
 
 // Print xml
 $manialink->render(true);
