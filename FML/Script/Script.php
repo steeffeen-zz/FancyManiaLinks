@@ -11,12 +11,16 @@ use FML\Types\Scriptable;
  * @author steeffeen
  */
 class Script {
+	/**
+	 * Constants
+	 */
+	const CLASS_TOOLTIPS = "FML_Tooltips";
 	
 	/**
 	 * Protected Properties
 	 */
 	protected $tagName = 'script';
-	protected $tooltips = array();
+	protected $tooltips = false;
 
 	/**
 	 * Add a Tooltip Behavior
@@ -30,16 +34,12 @@ class Script {
 			trigger_error('Scriptable Control needed as HoverControl for Tooltips!');
 			return $this;
 		}
-		$hoverControl->assignId();
-		$hoverControl->setScriptEvents(true);
 		$tooltipControl->assignId();
 		$tooltipControl->setVisible(false);
-		$hoverId = $hoverControl->getId();
-		$tooltipId = $tooltipControl->getId();
-		if (!isset($this->tooltips[$hoverId])) {
-			$this->tooltips[$hoverId] = array();
-		}
-		$this->tooltips[$hoverId][$tooltipId] = array();
+		$hoverControl->setScriptEvents(true);
+		$hoverControl->addClass(self::CLASS_TOOLTIPS);
+		$hoverControl->addClass($tooltipControl->getId());
+		$this->tooltips = true;
 		return $this;
 	}
 
@@ -65,7 +65,9 @@ class Script {
 	private function buildScriptText() {
 		$scriptText = "";
 		$scriptText .= $this->getHeaderComment();
-		$scriptText .= $this->getTooltips();
+		if ($this->tooltips) {
+			$scriptText .= $this->getTooltipLabels();
+		}
 		$scriptText .= $this->getMainFunction();
 		return $scriptText;
 	}
@@ -85,24 +87,26 @@ class Script {
 	 *
 	 * @return string
 	 */
-	private function getTooltips() {
+	private function getTooltipLabels() {
 		$tooltipsLabels = PHP_EOL;
-		foreach ($this->tooltips as $hoverId => $tooltips) {
-			foreach ($tooltips as $tooltipId => $tooltipOptions) {
-				$mouseOverScript = "
-if (Event.ControlId == \"{$hoverId}\") {
-	declare TooltipControl <=> Page.GetFirstChild(\"{$tooltipId}\");
-	if (TooltipControl != Null) TooltipControl.Show();
+		$mouseOverScript = "
+if (Event.Control.ControlClasses.exists(\"" . self::CLASS_TOOLTIPS . "\")) {
+	foreach (ControlId in Event.Control.ControlClasses) {
+		declare TooltipControl <=> Page.GetFirstChild(ControlId);
+		if (TooltipControl == Null) continue;
+		TooltipControl.Show();
+	}
 }";
-				$tooltipsLabels .= Builder::getLabelImplementationBlock("MouseOver", $mouseOverScript);
-				$mouseOutScript = "
-if (Event.ControlId == \"{$hoverId}\") {
-	declare TooltipControl <=> Page.GetFirstChild(\"{$tooltipId}\");
-	if (TooltipControl != Null) TooltipControl.Hide();
+		$tooltipsLabels .= Builder::getLabelImplementationBlock("MouseOver", $mouseOverScript);
+		$mouseOutScript = "
+if (Event.Control.ControlClasses.exists(\"" . self::CLASS_TOOLTIPS . "\")) {
+	foreach (ControlId in Event.Control.ControlClasses) {
+		declare TooltipControl <=> Page.GetFirstChild(ControlId);
+		if (TooltipControl == Null) continue;
+		TooltipControl.Hide();
+	}
 }";
-				$tooltipsLabels .= Builder::getLabelImplementationBlock("MouseOut", $mouseOutScript);
-			}
-		}
+		$tooltipsLabels .= Builder::getLabelImplementationBlock("MouseOut", $mouseOutScript);
 		return $tooltipsLabels;
 	}
 
