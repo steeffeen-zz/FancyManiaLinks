@@ -46,13 +46,17 @@ $counterLabel->setY(-30);
 $script = new FML\Script\Script();
 $manialink->setScript($script);
 
-// Create paging
-$pages = new FML\Script\Pages();
-$script->addFeature($pages);
+// Set pagers
+$script->addPager($leftPagerQuad, -1);
+$script->addPager($rightPagerQuad, 1);
 
-$pageButtons = array(-1 => $leftPagerQuad, 1 => $rightPagerQuad);
-$pagesControls = array($page0, $page1, $page2);
-$pages->add($pageButtons, $pagesControls, $counterLabel);
+// Set pages
+$script->addPage($page0, 0);
+$script->addPage($page1, 1);
+$script->addPage($page2, 2);
+
+// Set page label
+$script->addPageLabel($counterLabel);
 
 // Print xml
 $manialink->render(true);
