@@ -305,7 +305,7 @@ if (Event.Control.HasClass(\"" . self::CLASS_MENUBUTTON . "\")) {
 	Page.GetClassChildren(MenuIdClass, Page.MainFrame, True);
 	foreach (MenuControl in Page.GetClassChildren_Result) {
 		if (!MenuControl.HasClass(\"" . self::CLASS_MENU . "\")) continue;
-		if (MenuControlId != MenuControl.Id) {
+		if (MenuControlId != MenuControl.ControlId) {
 			MenuControl.Hide();
 		} else {
 			MenuControl.Show();
