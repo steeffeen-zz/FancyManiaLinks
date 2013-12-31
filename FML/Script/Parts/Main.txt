@@ -1,5 +1,4 @@
 Void Dummy() {}
-
 main() {
 	+++OnInit+++
 	while (True) {
