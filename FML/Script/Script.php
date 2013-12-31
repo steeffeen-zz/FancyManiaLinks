@@ -14,9 +14,13 @@ class Script {
 	/**
 	 * Constants
 	 */
-	const CLASS_MENUS = "FML_Menus";
-	const CLASS_MENUCHILD = "FML_MenuChild";
 	const CLASS_TOOLTIPS = "FML_Tooltips";
+	const CLASS_MENU = "FML_Menu";
+	const CLASS_MENUBUTTON = "FML_MenuButton";
+	const CLASS_PAGE = "FML_Page";
+	const CLASS_PAGER = "FML_Pager";
+	const CLASS_PROFILE = "FML_Profile";
+	const CLASS_MAPINFO = "FML_MapInfo";
 	const LABEL_ONINIT = "OnInit";
 	const LABEL_LOOP = "Loop";
 	const LABEL_ENTRYSUBMIT = "EntrySubmit";
@@ -32,6 +36,9 @@ class Script {
 	protected $includes = array();
 	protected $tooltips = false;
 	protected $menus = false;
+	protected $pages = false;
+	protected $profile = false;
+	protected $mapInfo = false;
 
 	/**
 	 * Add an Include to the Script
@@ -83,13 +90,61 @@ class Script {
 			$menuId = '_';
 		}
 		$menuControl->checkId();
-		$menuControl->addClass(self::CLASS_MENUCHILD);
+		$menuControl->addClass(self::CLASS_MENU);
 		$menuControl->addClass($menuId);
 		$clickControl->setScriptEvents(true);
-		$clickControl->addClass(self::CLASS_MENUS);
+		$clickControl->addClass(self::CLASS_MENUBUTTON);
 		$clickControl->addClass("{$menuId}-{$menuControl->getId()}");
 		$this->addInclude('TextLib', 'TextLib');
 		$this->menus = true;
+		return $this;
+	}
+
+	public function addPage(Control $pageControl, $pageNumber, $pagesId = null) {
+		if (!$pagesId) {
+			$pagesId = '_';
+		}
+		$pageControl->addClass(self::CLASS_PAGE);
+		$pageNumber = (int) $pageNumber;
+		$pageControl->addClass("FML_PageNr_{$pageNumber}");
+		return $this;
+	}
+
+	/**
+	 * Add a Button Behavior that will open the Built-In Player Profile
+	 *
+	 * @param Control $profileControl
+	 * @param string $playerLogin
+	 * @return \FML\Script\Script
+	 */
+	public function addProfileButton(Control $profileControl, $playerLogin) {
+		if (!($clickControl instanceof Scriptable)) {
+			trigger_error('Scriptable Control needed as ClickControl for Profiles!');
+			return $this;
+		}
+		$profileControl->setScriptEvents(true);
+		$profileControl->addClass(self::CLASS_PROFILE);
+		if ($playerLogin) {
+			$profilControl->addClass(self::CLASS_PROFILE . '-' . $playerLogin);
+		}
+		$this->profile = true;
+		return $this;
+	}
+
+	/**
+	 * Add a Button Behavior that will open the Built-In Map Info
+	 *
+	 * @param Control $mapInfoControl
+	 * @return \FML\Script\Script
+	 */
+	public function addMapInfoButton(Control $mapInfoControl) {
+		if (!($clickControl instanceof Scriptable)) {
+			trigger_error('Scriptable Control needed as ClickControl for Map Info!');
+			return $this;
+		}
+		$mapInfoControl->setScriptEvents(true);
+		$mapInfoControl->addClass(self::CLASS_MAPINFO);
+		$this->mapInfo = true;
 		return $this;
 	}
 
@@ -122,6 +177,12 @@ class Script {
 		if ($this->menus) {
 			$scriptText .= $this->getMenuLabels();
 		}
+		if ($this->profile) {
+			$scriptText .= $this->getProfileLabels();
+		}
+		if ($this->mapInfo) {
+			$scriptText .= $this->getMapInfoLabels();
+		}
 		$scriptText .= $this->getMainFunction();
 		return $scriptText;
 	}
@@ -142,11 +203,11 @@ class Script {
 	 * @return string
 	 */
 	private function getIncludes() {
-		$includesScript = PHP_EOL;
+		$includesText = PHP_EOL;
 		foreach ($this->includes as $namespace => $file) {
-			$includesScript .= "#Include \"{$file}\" as {$namespace}" . PHP_EOL;
+			$includesText .= "#Include \"{$file}\" as {$namespace}" . PHP_EOL;
 		}
-		return $includesScript;
+		return $includesText;
 	}
 
 	/**
@@ -155,7 +216,6 @@ class Script {
 	 * @return string
 	 */
 	private function getTooltipLabels() {
-		$tooltipsLabels = PHP_EOL;
 		$mouseOverScript = "
 if (Event.Control.HasClass(\"" . self::CLASS_TOOLTIPS . "\")) {
 	foreach (ControlClass in Event.Control.ControlClasses) {
@@ -172,7 +232,7 @@ if (Event.Control.HasClass(\"" . self::CLASS_TOOLTIPS . "\")) {
 		TooltipControl.Hide();
 	}
 }";
-		$tooltipsLabels .= Builder::getLabelImplementationBlock(self::LABEL_MOUSEOVER, $mouseOverScript);
+		$tooltipsLabels = Builder::getLabelImplementationBlock(self::LABEL_MOUSEOVER, $mouseOverScript);
 		$tooltipsLabels .= Builder::getLabelImplementationBlock(self::LABEL_MOUSEOUT, $mouseOutScript);
 		return $tooltipsLabels;
 	}
@@ -183,9 +243,8 @@ if (Event.Control.HasClass(\"" . self::CLASS_TOOLTIPS . "\")) {
 	 * @return string
 	 */
 	private function getMenuLabels() {
-		$menuLabels = PHP_EOL;
 		$mouseClickScript = "
-if (Event.Control.HasClass(\"" . self::CLASS_MENUS . "\")) {
+if (Event.Control.HasClass(\"" . self::CLASS_MENUBUTTON . "\")) {
 	declare Text MenuIdClass;
 	declare Text MenuControlId;
 	foreach (ControlClass in Event.Control.ControlClasses) {
@@ -197,14 +256,50 @@ if (Event.Control.HasClass(\"" . self::CLASS_MENUS . "\")) {
 	}
 	Page.GetClassChildren(MenuIdClass, Page.MainFrame, True);
 	foreach (MenuControl in Page.GetClassChildren_Result) {
-		if (!MenuControl.HasClass(\"" . self::CLASS_MENUCHILD . "\")) continue;
+		if (!MenuControl.HasClass(\"" . self::CLASS_MENU . "\")) continue;
 		MenuControl.Hide();
 	}
 	declare MenuControl <=> Page.GetFirstChild(MenuControlId);
 	if (MenuControl != Null) MenuControl.Show();
 }";
-		$menuLabels .= Builder::getLabelImplementationBlock(self::LABEL_MOUSECLICK, $mouseClickScript);
+		$menuLabels = Builder::getLabelImplementationBlock(self::LABEL_MOUSECLICK, $mouseClickScript);
 		return $menuLabels;
+	}
+
+	/**
+	 * Get the Profile Labels
+	 *
+	 * @return string
+	 */
+	private function getProfileLabels() {
+		$profileScript = "
+if (Event.Control.HasClass(\"" . self::CLASS_PROFILE . "\") {
+	declare Login = LocalUser.Login;
+	foreach (ControlClass in Event.Control.ControlClasses) {
+		declare ClassParts = TextLib::Split(\"-\", ControlClass);
+		if (ClassParts.count <= 1) continue;
+		if (ClassParts[0] != \"" . self::CLASS_PROFILE . "\") continue;
+		Login = ClassParts[1];
+		break;
+	}
+	ShowProfile(Login);
+}";
+		$profileLabels = Builder::getLabelImplementationBlock(self::LABEL_MOUSECLICK, $profileScript);
+		return $profileLabels;
+	}
+
+	/**
+	 * Get the Map Info Labels
+	 *
+	 * @return string
+	 */
+	private function getMapInfoLabels() {
+		$mapInfoScript = "
+if (Event.Control.HasClass(\"" . self::CLASS_MAPINFO . "\") {
+	ShowCurChallengeCard();
+}";
+		$mapInfoLabels = Builder::getLabelImplementationBlock(self::LABEL_MOUSECLICK, $mapInfoScript);
+		return $mapInfoLabels;
 	}
 
 	/**
