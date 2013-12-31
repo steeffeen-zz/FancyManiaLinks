@@ -100,13 +100,48 @@ class Script {
 		return $this;
 	}
 
+	/**
+	 * Add a Page for a Paging Behavior
+	 *
+	 * @param Control $pageControl
+	 * @param int $pageNumber
+	 * @param string $pagesId
+	 * @return \FML\Script\Script
+	 */
 	public function addPage(Control $pageControl, $pageNumber, $pagesId = null) {
+		$pageNumber = (int) $pageNumber;
 		if (!$pagesId) {
 			$pagesId = '_';
 		}
 		$pageControl->addClass(self::CLASS_PAGE);
-		$pageNumber = (int) $pageNumber;
-		$pageControl->addClass("FML_PageNr_{$pageNumber}");
+		$pageControl->addClass(self::CLASS_PAGE . '-' . $pagesId);
+		$pageControl->addClass(self::CLASS_PAGE . '-P-' . $pageNumber);
+		return $this;
+	}
+
+	/**
+	 * Add a Pager Button for a Paging Behavior
+	 *
+	 * @param Control $pagerControl
+	 * @param int $pagingAction
+	 * @param string $pagesId
+	 * @return \FML\Script\Script
+	 */
+	public function addPager(Control $pagerControl, $pagingAction, $pagesId = null) {
+		if (!($pagerControl instanceof Scriptable)) {
+			trigger_error('Scriptable Control needed as PagerControl for Pages!');
+			return $this;
+		}
+		$pagingAction = (int) $pagingAction;
+		if (!$pagesId) {
+			$pagesId = '_';
+		}
+		$pagerControl->setScriptEvents(true);
+		$pagerControl->addClass(self::CLASS_PAGER);
+		$pagerControl->addClass(self::CLASS_PAGER . '-' . $pagesId);
+		$pagerControl->addClass(self::CLASS_PAGER . '-A-' . $pagingAction);
+		$this->addInclude('TextLib', 'TextLib');
+		$this->pages = true;
 		return $this;
 	}
 
@@ -118,7 +153,7 @@ class Script {
 	 * @return \FML\Script\Script
 	 */
 	public function addProfileButton(Control $profileControl, $playerLogin) {
-		if (!($clickControl instanceof Scriptable)) {
+		if (!($profileControl instanceof Scriptable)) {
 			trigger_error('Scriptable Control needed as ClickControl for Profiles!');
 			return $this;
 		}
@@ -138,7 +173,7 @@ class Script {
 	 * @return \FML\Script\Script
 	 */
 	public function addMapInfoButton(Control $mapInfoControl) {
-		if (!($clickControl instanceof Scriptable)) {
+		if (!($mapInfoControl instanceof Scriptable)) {
 			trigger_error('Scriptable Control needed as ClickControl for Map Info!');
 			return $this;
 		}
@@ -176,6 +211,9 @@ class Script {
 		}
 		if ($this->menus) {
 			$scriptText .= $this->getMenuLabels();
+		}
+		if ($this->pages) {
+			$scriptText .= $this->getPagesLabels();
 		}
 		if ($this->profile) {
 			$scriptText .= $this->getProfileLabels();
@@ -264,6 +302,17 @@ if (Event.Control.HasClass(\"" . self::CLASS_MENUBUTTON . "\")) {
 }";
 		$menuLabels = Builder::getLabelImplementationBlock(self::LABEL_MOUSECLICK, $mouseClickScript);
 		return $menuLabels;
+	}
+
+	/**
+	 * Get the Pages Labels
+	 *
+	 * @return string
+	 */
+	private function getPagesLabels() {
+		$pagesScript = "";
+		$pagesLabels = Builder::getLabelImplementationBlock(self::LABEL_MOUSECLICK, $pagesScript);
+		return $pagesLabels;
 	}
 
 	/**
