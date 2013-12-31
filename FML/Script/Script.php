@@ -86,15 +86,13 @@ class Script {
 			trigger_error('Scriptable Control needed as ClickControl for Menus!');
 			return $this;
 		}
-		if (!$menuId) {
-			$menuId = '_';
-		}
+		if (!$menuId) $menuId = '_';
 		$menuControl->checkId();
 		$menuControl->addClass(self::CLASS_MENU);
 		$menuControl->addClass($menuId);
 		$clickControl->setScriptEvents(true);
 		$clickControl->addClass(self::CLASS_MENUBUTTON);
-		$clickControl->addClass("{$menuId}-{$menuControl->getId()}");
+		$clickControl->addClass($menuId . '-' . $menuControl->getId());
 		$this->addInclude('TextLib', 'TextLib');
 		$this->menus = true;
 		return $this;
@@ -110,11 +108,9 @@ class Script {
 	 */
 	public function addPage(Control $pageControl, $pageNumber, $pagesId = null) {
 		$pageNumber = (int) $pageNumber;
-		if (!$pagesId) {
-			$pagesId = '_';
-		}
+		if (!$pagesId) $pagesId = '_';
 		$pageControl->addClass(self::CLASS_PAGE);
-		$pageControl->addClass(self::CLASS_PAGE . '-' . $pagesId);
+		$pageControl->addClass($pagesId);
 		$pageControl->addClass(self::CLASS_PAGE . '-P-' . $pageNumber);
 		return $this;
 	}
@@ -133,12 +129,10 @@ class Script {
 			return $this;
 		}
 		$pagingAction = (int) $pagingAction;
-		if (!$pagesId) {
-			$pagesId = '_';
-		}
+		if (!$pagesId) $pagesId = '_';
 		$pagerControl->setScriptEvents(true);
 		$pagerControl->addClass(self::CLASS_PAGER);
-		$pagerControl->addClass(self::CLASS_PAGER . '-' . $pagesId);
+		$pagerControl->addClass(self::CLASS_PAGER . '-I-' . $pagesId);
 		$pagerControl->addClass(self::CLASS_PAGER . '-A-' . $pagingAction);
 		$this->addInclude('TextLib', 'TextLib');
 		$this->pages = true;
@@ -295,10 +289,12 @@ if (Event.Control.HasClass(\"" . self::CLASS_MENUBUTTON . "\")) {
 	Page.GetClassChildren(MenuIdClass, Page.MainFrame, True);
 	foreach (MenuControl in Page.GetClassChildren_Result) {
 		if (!MenuControl.HasClass(\"" . self::CLASS_MENU . "\")) continue;
-		MenuControl.Hide();
+		if (MenuControlId != MenuControl.Id) {
+			MenuControl.Hide();
+		} else {
+			MenuControl.Show();
+		}
 	}
-	declare MenuControl <=> Page.GetFirstChild(MenuControlId);
-	if (MenuControl != Null) MenuControl.Show();
 }";
 		$menuLabels = Builder::getLabelImplementationBlock(self::LABEL_MOUSECLICK, $mouseClickScript);
 		return $menuLabels;
@@ -310,7 +306,46 @@ if (Event.Control.HasClass(\"" . self::CLASS_MENUBUTTON . "\")) {
 	 * @return string
 	 */
 	private function getPagesLabels() {
-		$pagesScript = "";
+		$pagesNumberPrefix = self::CLASS_PAGE . '-P-';
+		$pagesNumberPrefixLength = strlen($pagesNumberPrefix);
+		$pagesScript = "
+if (Event.Control.HasClass(\"" . self::CLASS_PAGER . "\")) {
+	declare Text PagesId;
+	declare Integer PagingAction;
+	foreach (ControlClass in Event.Control.ControlClasses) {
+		declare ClassParts = TextLib::Split(\"-\", ControlClass);
+		if (ClassParts.count <= 2) continue;
+		if (ClassParts[0] != \"" . self::CLASS_PAGER . "\") continue;
+		switch (ClassParts[1]) {
+			case \"I\": {
+				PagesId = ClassParts[1];
+			}
+			case \"A\": {
+				PagingAction = TextLib::ToInteger(ClassParts[2]);
+			}
+		}
+	}
+	declare FML_PageNumber for This = Integer[Text];
+	if (!FML_PageNumber.existskey(PagesId)) {
+		FML_PageNumber[PagesId] = 0;
+	}
+	FML_PageNumber[PagesId] += PagingAction;
+	Page.GetClassChildren(PagesId, Page.MainFrame, True);
+	foreach (PageControl in Page.GetClassChildren_Result) {
+		if (!PageControl.HasClass(\"" . self::CLASS_PAGE . "\")) continue;
+		declare PageNumber = -1;
+		foreach (ControlClass in Event.Control.ControlClasses) {
+			if (TextLib::SubText(ControlClass, 0, {$pagesNumberPrefixLength}) != \"{$pagesNumberPrefix}\") continue;
+			PageNumber = TextLib::ToInteger(TextLib::SubText(ControlClass, {$pagesNumberPrefixLength}, 99));
+			break;
+		}
+		if (PageNumber != FML_PageNumber[PagesId]) {
+			PageControl.Hide();
+		} else {
+			PageControl.Show();
+		}
+	}
+}";
 		$pagesLabels = Builder::getLabelImplementationBlock(self::LABEL_MOUSECLICK, $pagesScript);
 		return $pagesLabels;
 	}
