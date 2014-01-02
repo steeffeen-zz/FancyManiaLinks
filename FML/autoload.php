@@ -9,6 +9,9 @@
 if (!defined('FML_PATH')) {
 	define('FML_PATH', __DIR__ . '/../');
 }
+if (!defined('FML_VERSION')) {
+	define('FML_VERSION', 1.0);
+}
 
 spl_autoload_register(
 		function ($className) {
