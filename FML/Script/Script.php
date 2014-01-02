@@ -45,8 +45,8 @@ class Script {
 	/**
 	 * Add an Include to the Script
 	 *
-	 * @param string $namespace        	
-	 * @param string $file        	
+	 * @param string $namespace
+	 * @param string $file
 	 * @return \FML\Script\Script
 	 */
 	public function addInclude($namespace, $file) {
@@ -57,8 +57,8 @@ class Script {
 	/**
 	 * Add a Tooltip Behavior
 	 *
-	 * @param Control $hoverControl        	
-	 * @param Control $tooltipControl        	
+	 * @param Control $hoverControl
+	 * @param Control $tooltipControl
 	 * @return \FML\Script\Script
 	 */
 	public function addTooltip(Control $hoverControl, Control $tooltipControl) {
@@ -78,9 +78,9 @@ class Script {
 	/**
 	 * Add a Menu Behavior
 	 *
-	 * @param Control $clickControl        	
-	 * @param Control $menuControl        	
-	 * @param string $menuId        	
+	 * @param Control $clickControl
+	 * @param Control $menuControl
+	 * @param string $menuId
 	 * @return \FML\Script\Script
 	 */
 	public function addMenu(Control $clickControl, Control $menuControl, $menuId = null) {
@@ -103,9 +103,9 @@ class Script {
 	/**
 	 * Add a Page for a Paging Behavior
 	 *
-	 * @param Control $pageControl        	
-	 * @param int $pageNumber        	
-	 * @param string $pagesId        	
+	 * @param Control $pageControl
+	 * @param int $pageNumber
+	 * @param string $pagesId
 	 * @return \FML\Script\Script
 	 */
 	public function addPage(Control $pageControl, $pageNumber, $pagesId = null) {
@@ -120,9 +120,9 @@ class Script {
 	/**
 	 * Add a Pager Button for a Paging Behavior
 	 *
-	 * @param Control $pagerControl        	
-	 * @param int $pagingAction        	
-	 * @param string $pagesId        	
+	 * @param Control $pagerControl
+	 * @param int $pagingAction
+	 * @param string $pagesId
 	 * @return \FML\Script\Script
 	 */
 	public function addPager(Control $pagerControl, $pagingAction, $pagesId = null) {
@@ -144,8 +144,8 @@ class Script {
 	/**
 	 * Add a Label that shows the current Page Number
 	 *
-	 * @param Label $pageLabel        	
-	 * @param string $pagesId        	
+	 * @param Label $pageLabel
+	 * @param string $pagesId
 	 * @return \FML\Script\Script
 	 */
 	public function addPageLabel(Label $pageLabel, $pagesId = null) {
@@ -158,8 +158,8 @@ class Script {
 	/**
 	 * Add a Button Behavior that will open the Built-In Player Profile
 	 *
-	 * @param Control $profileControl        	
-	 * @param string $playerLogin        	
+	 * @param Control $profileControl
+	 * @param string $playerLogin
 	 * @return \FML\Script\Script
 	 */
 	public function addProfileButton(Control $profileControl, $playerLogin) {
@@ -172,6 +172,7 @@ class Script {
 		if ($playerLogin) {
 			$profileControl->addClass(self::CLASS_PROFILE . '-' . $playerLogin);
 		}
+		$this->addInclude('TextLib', 'TextLib');
 		$this->profile = true;
 		return $this;
 	}
@@ -179,7 +180,7 @@ class Script {
 	/**
 	 * Add a Button Behavior that will open the Built-In Map Info
 	 *
-	 * @param Control $mapInfoControl        	
+	 * @param Control $mapInfoControl
 	 * @return \FML\Script\Script
 	 */
 	public function addMapInfoButton(Control $mapInfoControl) {
@@ -196,7 +197,7 @@ class Script {
 	/**
 	 * Create the Script XML Tag
 	 *
-	 * @param \DOMDocument $domDocument        	
+	 * @param \DOMDocument $domDocument
 	 * @return \DOMElement
 	 */
 	public function render(\DOMDocument $domDocument) {
@@ -390,7 +391,7 @@ if (Event.Control.HasClass(\"" . self::CLASS_PAGER . "\")) {
 	foreach (PageControl in Page.GetClassChildren_Result) {
 		if (!PageControl.HasClass(PagesId)) continue;
 		declare PageLabel <=> (PageControl as CMlLabel);
-		PageLabel.Value = (FML_PageNumber[PagesId]+1)^\"/\"^(FML_MaxPageNumber[PagesId]+1);
+		PageLabel.Value = FML_PageNumber[PagesId]^\"/\"^FML_MaxPageNumber[PagesId];
 	}
 }";
 		$pagesLabels = Builder::getLabelImplementationBlock(self::LABEL_MOUSECLICK, $pagesScript);
@@ -404,7 +405,7 @@ if (Event.Control.HasClass(\"" . self::CLASS_PAGER . "\")) {
 	 */
 	private function getProfileLabels() {
 		$profileScript = "
-if (Event.Control.HasClass(\"" . self::CLASS_PROFILE . "\") {
+if (Event.Control.HasClass(\"" . self::CLASS_PROFILE . "\")) {
 	declare Login = LocalUser.Login;
 	foreach (ControlClass in Event.Control.ControlClasses) {
 		declare ClassParts = TextLib::Split(\"-\", ControlClass);
@@ -426,7 +427,7 @@ if (Event.Control.HasClass(\"" . self::CLASS_PROFILE . "\") {
 	 */
 	private function getMapInfoLabels() {
 		$mapInfoScript = "
-if (Event.Control.HasClass(\"" . self::CLASS_MAPINFO . "\") {
+if (Event.Control.HasClass(\"" . self::CLASS_MAPINFO . "\")) {
 	ShowCurChallengeCard();
 }";
 		$mapInfoLabels = Builder::getLabelImplementationBlock(self::LABEL_MOUSECLICK, $mapInfoScript);
