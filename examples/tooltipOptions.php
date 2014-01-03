@@ -32,7 +32,7 @@ $manialink->setScript($script);
 
 // Add tooltip label with different texts per quad
 $script->addTooltip($firstQuad, $tooltipLabel, array(Script::OPTION_TOOLTIP_TEXT => "First Quad"));
-$script->addTooltip($secondQuad, $tooltipLabel, array(Script::OPTION_TOOLTIP_TEXT => "Second Quad"));
+$script->addTooltip($secondQuad, $tooltipLabel, array(Script::OPTION_TOOLTIP_TEXT => "Second Quad"), Script::OPTION_TOOLTIP_STAYONCLICK);
 
 // Print xml
 $manialink->render(true);
