@@ -105,6 +105,7 @@ class Script {
 		$hoverControl->checkId();
 		$hoverControl->setScriptEvents(true);
 		$hoverControl->addClass(self::CLASS_TOOLTIPS);
+		$hoverControl->addClass($tooltipControl->getId());
 		$options = $this->spliceParameters(func_get_args(), 2);
 		foreach ($options as $option => $value) {
 			if ($option == self::OPTION_TOOLTIP_TEXT) {
@@ -118,6 +119,10 @@ class Script {
 					$this->tooltipTexts[$tooltipId] = array();
 				}
 				$this->tooltipTexts[$tooltipId][$hoverId] = $value;
+				continue;
+			}
+			if ($option == self::OPTION_TOOLTIP_INVERT) {
+				$tooltipControl->setVisible(true);
 			}
 			$hoverControl->addClass($option);
 		}
@@ -361,13 +366,13 @@ class Script {
 		if (!$this->tooltips) return;
 		$setFunctionText = "
 Void " . self::FUNCTION_SETTOOLTIPTEXT . "(CMlControl _TooltipControl, CMlControl _HoverControl) {
-	if (!_TooltipControl.Visible) continue;
+	if (!_TooltipControl.Visible) return;
 	declare TooltipId = _TooltipControl.ControlId;
 	declare HoverId = _HoverControl.ControlId;
 	if (!" . self::CONSTANT_TOOLTIPTEXTS . ".existskey(TooltipId)) return;
 	if (!" . self::CONSTANT_TOOLTIPTEXTS . "[TooltipId].existskey(HoverId)) return;
 	declare Label = (_TooltipControl as CMlLabel);
-	Label.Value = " . self::CONSTANT_TOOLTIPTEXTS . "[_TooltipId][_TooltipId];
+	Label.Value = " . self::CONSTANT_TOOLTIPTEXTS . "[TooltipId][HoverId];
 }";
 		$this->setFunction(self::FUNCTION_SETTOOLTIPTEXT, $setFunctionText);
 	}
