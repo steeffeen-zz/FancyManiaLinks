@@ -13,6 +13,7 @@ if (!defined('FML_VERSION')) {
 	define('FML_VERSION', 1.0);
 }
 
+// Register Autoload Function that loads FML Class Files on Demand
 spl_autoload_register(
 		function ($className) {
 			$classPath = str_replace('\\', DIRECTORY_SEPARATOR, $className);
