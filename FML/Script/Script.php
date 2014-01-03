@@ -107,8 +107,11 @@ class Script {
 		$hoverControl->addClass(self::CLASS_TOOLTIPS);
 		$options = $this->spliceParameters(func_get_args(), 2);
 		foreach ($options as $option => $value) {
-			$hoverControl->addClass($option);
 			if ($option == self::OPTION_TOOLTIP_TEXT) {
+				if (!($tooltipControl instanceof Label)) {
+					trigger_error('Label needed for Tooltip Text Option!');
+					continue;
+				}
 				$hoverId = $hoverControl->getId();
 				$tooltipId = $tooltipControl->getId();
 				if (!isset($this->tooltipTexts[$tooltipId])) {
@@ -116,6 +119,7 @@ class Script {
 				}
 				$this->tooltipTexts[$tooltipId][$hoverId] = $value;
 			}
+			$hoverControl->addClass($option);
 		}
 		$this->tooltips = true;
 		return $this;
@@ -356,7 +360,7 @@ class Script {
 	private function buildTooltipFunctions() {
 		if (!$this->tooltips) return;
 		$setFunctionText = "
-Void " . self::FUNCTION_SETTOOLTIPTEXT . "(CMlControl _TooltipControl, _HoverControl) {
+Void " . self::FUNCTION_SETTOOLTIPTEXT . "(CMlControl _TooltipControl, CMlControl _HoverControl) {
 	if (!_TooltipControl.Visible) continue;
 	declare TooltipId = _TooltipControl.ControlId;
 	declare HoverId = _HoverControl.ControlId;
