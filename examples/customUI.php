@@ -12,6 +12,4 @@ $customUI->setCheckpointListVisible(false);
 $customUI->setRoundScoresVisible(false);
 
 // Print xml
-$domDocument = $customUI->render();
-$xmlText = $domDocument->saveXML();
-echo $xmlText;
+echo $customUI;

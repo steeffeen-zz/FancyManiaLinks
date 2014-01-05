@@ -76,4 +76,4 @@ for ($i = 1; $i <= 10; $i++) {
 }
 
 // Print xml
-$manialink->render(true);
+echo $manialink;
