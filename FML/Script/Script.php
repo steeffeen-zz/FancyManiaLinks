@@ -259,11 +259,13 @@ class Script {
 	 * Add a Sound Playing for the Control
 	 *
 	 * @param Control $control
-	 * @param UISound $sound
+	 * @param string $soundName
+	 * @param int $soundVariant
+	 * @param float $soundVolume
 	 * @param string $eventLabel
 	 * @return \FML\Script\Script
 	 */
-	public function addSound(Control $control, UISound $sound, $eventLabel = self::LABEL_MOUSECLICK) {
+	public function addSound(Control $control, $soundName, $soundVariant = 0, $soundVolume = 1., $eventLabel = self::LABEL_MOUSECLICK) {
 		if (!($control instanceof Scriptable)) {
 			trigger_error('Scriptable Control needed as ClickControl for Sounds!');
 			return $this;
@@ -272,9 +274,11 @@ class Script {
 		$control->checkId();
 		$control->addClass(self::CLASS_SOUND);
 		$soundData = array();
-		$soundData['sound'] = $sound;
-		$soundData['id'] = $control->getId();
-		$soundData['label'] = $eventLabel;
+		$soundData['soundName'] = $soundName;
+		$soundData['soundVariant'] = $soundVariant;
+		$soundData['soundVolume'] = $soundVolume;
+		$soundData['controlId'] = $control->getId();
+		$soundData['eventLabel'] = $eventLabel;
 		array_push($this->sounds, $soundData);
 		return $this;
 	}
@@ -657,18 +661,15 @@ if (Event.Control.HasClass(\"" . self::CLASS_MAPINFO . "\")) {
 		if (!$this->sounds) return '';
 		$labelScripts = array();
 		foreach ($this->sounds as $soundData) {
-			$controlId = $soundData['id'];
-			$label = $soundData['label'];
-			$sound = $soundData['sound'];
-			$volume = Builder::getReal($sound->volume);
+			$volume = Builder::getReal($soundData['soundVolume']);
 			$labelScript = "
-		case \"{$controlId}\": {
-			PlayUiSound(CMlScriptIngame::EUISound::{$sound->name}, {$sound->variant}, {$volume});
+		case \"{$soundData['controlId']}\": {
+			PlayUiSound(CMlScriptIngame::EUISound::{$soundData['soundName']}, {$soundData['soundVariant']}, {$volume});
 		}";
-			if (!isset($labelScripts[$label])) {
-				$labelScripts[$label] = '';
+			if (!isset($labelScripts[$soundData['eventLabel']])) {
+				$labelScripts[$soundData['eventLabel']] = '';
 			}
-			$labelScripts[$label] .= $labelScript;
+			$labelScripts[$soundData['eventLabel']] .= $labelScript;
 		}
 		
 		$soundScript = '';
