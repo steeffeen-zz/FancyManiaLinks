@@ -7,7 +7,7 @@ use FML\Types\Renderable;
 use FML\Script\Script;
 
 /**
- * Class representing a Manialink
+ * Class representing a ManiaLink
  *
  * @author steeffeen
  */
@@ -26,14 +26,12 @@ class ManiaLink implements Container {
 	protected $script = null;
 
 	/**
-	 * Construct a new Manialink
+	 * Create a new ManiaLink
 	 *
 	 * @param string $id Manialink Id
 	 */
 	public function __construct($id = null) {
-		if ($id !== null) {
-			$this->setId($id);
-		}
+		$this->setId($id);
 	}
 
 	/**
@@ -43,7 +41,7 @@ class ManiaLink implements Container {
 	 * @return \FML\ManiaLink
 	 */
 	public function setXmlEncoding($encoding) {
-		$this->encoding = $encoding;
+		$this->encoding = (string) $encoding;
 		return $this;
 	}
 
@@ -54,7 +52,7 @@ class ManiaLink implements Container {
 	 * @return \FML\ManiaLink
 	 */
 	public function setId($id) {
-		$this->id = $id;
+		$this->id = (string) $id;
 		return $this;
 	}
 
@@ -65,14 +63,14 @@ class ManiaLink implements Container {
 	 * @return \FML\ManiaLink
 	 */
 	public function setBackground($background) {
-		$this->background = $background;
+		$this->background = (string) $background;
 		return $this;
 	}
 
 	/**
 	 * Set Navigable3d
 	 *
-	 * @param bool $navigable3d If the manialink is 3d navigable
+	 * @param bool $navigable3d Whether the manialink should be 3d navigable
 	 * @return \FML\ManiaLink
 	 */
 	public function setNavigable3d($navigable3d) {
@@ -87,7 +85,7 @@ class ManiaLink implements Container {
 	 * @return \FML\ManiaLink
 	 */
 	public function setTimeout($timeout) {
-		$this->timeout = $timeout;
+		$this->timeout = (int) $timeout;
 		return $this;
 	}
 
@@ -114,7 +112,7 @@ class ManiaLink implements Container {
 	/**
 	 * Set the Script of the ManiaLink
 	 *
-	 * @param Script $script
+	 * @param Script $script The Script for the ManiaLink
 	 * @return \FML\ManiaLink
 	 */
 	public function setScript(Script $script) {
@@ -125,7 +123,7 @@ class ManiaLink implements Container {
 	/**
 	 * Get the current Script of the ManiaLink
 	 *
-	 * @param string $createIfEmpty
+	 * @param string $createIfEmpty (optional) Whether the Script Object should be created if it's not set yet
 	 * @return \FML\Script\Script
 	 */
 	public function getScript($createIfEmpty = true) {
@@ -138,15 +136,12 @@ class ManiaLink implements Container {
 	/**
 	 * Render the XML Document
 	 *
-	 * @param bool $echo If the xml should be echoed and the content-type header should be set
-	 * @param \DOMDocument $domDocument
+	 * @param bool (optional) $echo If the XML Text should be echoed and the Content-Type Header should be set
+	 * @param \DOMDocument $domDocument (optional) DOMDocument for which the XML Element should be created
 	 * @return \DOMDocument
 	 */
 	public function render($echo = false, $domDocument = null) {
-		$isChild = false;
-		if ($domDocument) {
-			$isChild = true;
-		}
+		$isChild = (bool) $domDocument;
 		if (!$isChild) {
 			$domDocument = new \DOMDocument('1.0', $this->encoding);
 		}
@@ -154,19 +149,19 @@ class ManiaLink implements Container {
 		if (!$isChild) {
 			$domDocument->appendChild($manialink);
 		}
-		if ($this->id) {
+		if ($this->id !== null) {
 			$manialink->setAttribute('id', $this->id);
 		}
-		if ($this->version) {
+		if ($this->version !== null) {
 			$manialink->setAttribute('version', $this->version);
 		}
-		if ($this->background) {
+		if ($this->background !== null) {
 			$manialink->setAttribute('background', $this->background);
 		}
-		if ($this->navigable3d) {
+		if ($this->navigable3d !== null) {
 			$manialink->setAttribute('navigable3d', $this->navigable3d);
 		}
-		if ($this->timeout) {
+		if ($this->timeout !== null) {
 			$timeoutXml = $domDocument->createElement('timeout', $this->timeout);
 			$manialink->appendChild($timeoutXml);
 		}
