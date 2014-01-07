@@ -3,7 +3,7 @@
 namespace FML;
 
 /**
- * Class holding several Manialinks at once
+ * Class holding several ManiaLinks at once
  *
  * @author steeffeen
  */
@@ -23,7 +23,7 @@ class ManiaLinks {
 	 * @return \FML\ManiaLinks
 	 */
 	public function setXmlEncoding($encoding) {
-		$this->encoding = $encoding;
+		$this->encoding = (string) $encoding;
 		return $this;
 	}
 
@@ -64,7 +64,7 @@ class ManiaLinks {
 	/**
 	 * Render the XML Document
 	 *
-	 * @param bool $echo If the XML should be echoed and the Content-Type Header should be set
+	 * @param bool (optional) $echo Whether the XML Text should be echoed and the Content-Type Header should be set
 	 * @return \DOMDocument
 	 */
 	public function render($echo = false) {
