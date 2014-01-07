@@ -7,6 +7,7 @@ namespace FML\Elements;
  *
  * @author steeffeen
  */
+// TODO: example
 class Including implements Renderable {
 	/**
 	 * Protected Properties
@@ -28,10 +29,10 @@ class Including implements Renderable {
 	 * @see \FML\Renderable::render()
 	 */
 	public function render(\DOMDocument $domDocument) {
-		$xml = $domDocument->createElement($this->tagName);
+		$xmlElement = $domDocument->createElement($this->tagName);
 		if ($this->url) {
-			$xml->setAttribute('url', $this->url);
+			$xmlElement->setAttribute('url', $this->url);
 		}
-		return $xml;
+		return $xmlElement;
 	}
 }
