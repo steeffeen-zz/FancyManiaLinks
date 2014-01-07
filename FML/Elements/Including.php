@@ -3,7 +3,7 @@
 namespace FML\Elements;
 
 /**
- * Class representing include
+ * Include Element
  *
  * @author steeffeen
  */
@@ -11,17 +11,16 @@ class Including implements Renderable {
 	/**
 	 * Protected Properties
 	 */
-	protected $url = '';
 	protected $tagName = 'include';
+	protected $url = '';
 
 	/**
 	 * Set Url
 	 *
-	 * @param string $url
-	 *        	Include Url
+	 * @param string $url Include Url
 	 */
 	public function setUrl($url) {
-		$this->url = $url;
+		$this->url = (string) $url;
 	}
 
 	/**
