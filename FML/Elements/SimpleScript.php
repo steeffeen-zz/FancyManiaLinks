@@ -9,6 +9,7 @@ use FML\Types\Renderable;
  *
  * @author steeffeen
  */
+// TODO: example
 class SimpleScript implements Renderable {
 	/**
 	 * Protected Properties
@@ -32,9 +33,9 @@ class SimpleScript implements Renderable {
 	 * @see \FML\Types\Renderable::render()
 	 */
 	public function render(\DOMDocument $domDocument) {
-		$xml = $domDocument->createElement($this->tagName);
+		$xmlElement = $domDocument->createElement($this->tagName);
 		$scriptComment = $domDocument->createComment($this->text);
-		$xml->appendChild($scriptComment);
-		return $xml;
+		$xmlElement->appendChild($scriptComment);
+		return $xmlElement;
 	}
 }
