@@ -5,7 +5,7 @@ namespace FML\Elements;
 use FML\Types\Renderable;
 
 /**
- * Class representing a manialink script tag with a simple script text
+ * Class representing a ManiaLink Script Tag with a simple Script Text
  *
  * @author steeffeen
  */
@@ -19,7 +19,7 @@ class SimpleScript implements Renderable {
 	/**
 	 * Set Script Text
 	 *
-	 * @param string $text        	
+	 * @param string $text The Complete Script Text
 	 * @return \FML\Script\Script
 	 */
 	public function setText($text) {

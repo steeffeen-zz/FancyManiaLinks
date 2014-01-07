@@ -3,7 +3,7 @@
 namespace FML\Types;
 
 /**
- * Interface for elements that support the action attribute
+ * Interface for Elements that support the Action Attribute
  *
  * @author steeffeen
  */
@@ -12,8 +12,7 @@ interface Actionable {
 	/**
 	 * Set action
 	 *
-	 * @param string $action
-	 *        	Action Name
+	 * @param string $action Action Name
 	 */
 	public function setAction($action);
 }

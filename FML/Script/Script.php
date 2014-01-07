@@ -60,8 +60,8 @@ class Script {
 	/**
 	 * Set an Include of the Script
 	 *
-	 * @param string $namespace
-	 * @param string $file
+	 * @param string $namespace Namespace used for the Include
+	 * @param string $file Included File Url
 	 * @return \FML\Script\Script
 	 */
 	public function setInclude($namespace, $file) {
@@ -72,8 +72,8 @@ class Script {
 	/**
 	 * Set a Constant of the Script
 	 *
-	 * @param string $name
-	 * @param string $value
+	 * @param string $name Variable Name of the Constant
+	 * @param string $value Constant Value
 	 * @return \FML\Script\Script
 	 */
 	public function setConstant($name, $value) {
@@ -84,8 +84,8 @@ class Script {
 	/**
 	 * Set a Function of the Script
 	 *
-	 * @param string $name
-	 * @param string $coding
+	 * @param string $name Function Name
+	 * @param string $coding Complete Function Implementation including Declaration
 	 * @return \FML\Script\Script
 	 */
 	public function setFunction($name, $coding) {
@@ -139,9 +139,9 @@ class Script {
 	/**
 	 * Add a Menu Behavior
 	 *
-	 * @param Control $clickControl
-	 * @param Control $menuControl
-	 * @param string $menuId
+	 * @param Control $clickControl The Control showing the Menu
+	 * @param Control $menuControl The Menu to show
+	 * @param string $menuId (optional) An identifier to specify the Menu Group
 	 * @return \FML\Script\Script
 	 */
 	public function addMenu(Control $clickControl, Control $menuControl, $menuId = null) {
@@ -164,9 +164,9 @@ class Script {
 	/**
 	 * Add a Page for a Paging Behavior
 	 *
-	 * @param Control $pageControl
-	 * @param int $pageNumber
-	 * @param string $pagesId
+	 * @param Control $pageControl The Page to display
+	 * @param int $pageNumber The Number of the Page
+	 * @param string $pagesId (optional) An identifier to specify the Pages Group
 	 * @return \FML\Script\Script
 	 */
 	public function addPage(Control $pageControl, $pageNumber, $pagesId = null) {
@@ -181,9 +181,9 @@ class Script {
 	/**
 	 * Add a Pager Button for a Paging Behavior
 	 *
-	 * @param Control $pagerControl
-	 * @param int $pagingAction
-	 * @param string $pagesId
+	 * @param Control $pagerControl The Control to leaf through the Pages
+	 * @param int $pagingAction The Number of Pages the Pager leafs
+	 * @param string $pagesId (optional) An identifier to specify the Pages Group
 	 * @return \FML\Script\Script
 	 */
 	public function addPager(Control $pagerControl, $pagingAction, $pagesId = null) {
@@ -205,7 +205,7 @@ class Script {
 	/**
 	 * Add a Label that shows the current Page Number
 	 *
-	 * @param Label $pageLabel
+	 * @param Label $pageLabel The Label showing the Number of the currently displayed Page
 	 * @param string $pagesId
 	 * @return \FML\Script\Script
 	 */
@@ -219,8 +219,8 @@ class Script {
 	/**
 	 * Add a Button Behavior that will open the Built-In Player Profile
 	 *
-	 * @param Control $profileControl
-	 * @param string $playerLogin
+	 * @param Control $profileControl The Control opening the Profile
+	 * @param string $playerLogin The Player Login
 	 * @return \FML\Script\Script
 	 */
 	public function addProfileButton(Control $profileControl, $playerLogin) {
@@ -241,7 +241,7 @@ class Script {
 	/**
 	 * Add a Button Behavior that will open the Built-In Map Info
 	 *
-	 * @param Control $mapInfoControl
+	 * @param Control $mapInfoControl The Control opening the Map Info
 	 * @return \FML\Script\Script
 	 */
 	public function addMapInfoButton(Control $mapInfoControl) {
@@ -258,11 +258,11 @@ class Script {
 	/**
 	 * Add a Sound Playing for the Control
 	 *
-	 * @param Control $control
-	 * @param string $soundName
-	 * @param int $soundVariant
-	 * @param float $soundVolume
-	 * @param string $eventLabel
+	 * @param Control $control The Control playing a Sound
+	 * @param string $soundName The Sound to play
+	 * @param int $soundVariant (optional) Sound variant
+	 * @param float $soundVolume (optional) Sound Volume
+	 * @param string $eventLabel (optional) The Event Label on which the Sound should be played
 	 * @return \FML\Script\Script
 	 */
 	public function addSound(Control $control, $soundName, $soundVariant = 0, $soundVolume = 1., $eventLabel = self::LABEL_MOUSECLICK) {
@@ -286,9 +286,9 @@ class Script {
 	/**
 	 * Add a Toggling Behavior
 	 *
-	 * @param Control $clickControl
-	 * @param Control $toggleControl
-	 * @param string $mode
+	 * @param Control $clickControl The Control that toggles another Control on Click
+	 * @param Control $toggleControl The Control to toggle
+	 * @param string $mode (optional) Whether the Visibility should be toggled or only en-/disabled
 	 * @return \FML\Script\Script
 	 */
 	public function addToggle(Control $clickControl, Control $toggleControl, $mode = self::CLASS_TOGGLE) {
@@ -314,7 +314,7 @@ class Script {
 	/**
 	 * Create the Script XML Tag
 	 *
-	 * @param \DOMDocument $domDocument
+	 * @param \DOMDocument $domDocument DOMDocument for which the XML Element should be created
 	 * @return \DOMElement
 	 */
 	public function render(\DOMDocument $domDocument) {
@@ -735,8 +735,8 @@ if (Event.Control.HasClass(\"" . self::CLASS_TOGGLE . "\")) {
 	/**
 	 * Return the Array of additional optional Parameters
 	 *
-	 * @param array $args
-	 * @param int $offset
+	 * @param array $args The Array of Function Parameters
+	 * @param int $offset The Number of obligatory Parameters
 	 * @return array
 	 */
 	private function spliceParameters(array $params, $offset) {
