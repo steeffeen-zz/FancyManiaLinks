@@ -11,7 +11,7 @@ use FML\Types\Scriptable;
  *
  * @author steeffeen
  */
-// TODO:example
+// TODO: example
 class Video extends Control implements Playable, Scriptable {
 	/**
 	 * Protected Properties
@@ -26,7 +26,7 @@ class Video extends Control implements Playable, Scriptable {
 	/**
 	 * Construct a new Video Control
 	 *
-	 * @param string $id Control Id
+	 * @param string $id (optional) Control Id
 	 */
 	public function __construct($id = null) {
 		parent::__construct($id);
