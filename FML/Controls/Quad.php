@@ -10,7 +10,8 @@ use FML\Types\Styleable;
 use FML\Types\SubStyleable;
 
 /**
- * Class representing CMlQuad
+ * Quad Element
+ * (CMlQuad)
  *
  * @author steeffeen
  */
@@ -33,8 +34,7 @@ class Quad extends Control implements Actionable, BgColorable, Linkable, Scripta
 	/**
 	 * Construct a new Quad Control
 	 *
-	 * @param string $id
-	 *        	Control Id
+	 * @param string $id (optional) Control Id
 	 */
 	public function __construct($id = null) {
 		parent::__construct($id);
@@ -45,48 +45,44 @@ class Quad extends Control implements Actionable, BgColorable, Linkable, Scripta
 	/**
 	 * Set Image Url
 	 *
-	 * @param string $image
-	 *        	Image Url
+	 * @param string $image Image Url
 	 * @return \FML\Controls\Quad
 	 */
 	public function setImage($image) {
-		$this->image = $image;
+		$this->image = (string) $image;
 		return $this;
 	}
 
 	/**
 	 * Set Focus Image Url
 	 *
-	 * @param string $imageFocus
-	 *        	Focus Image Url
+	 * @param string $imageFocus Focus Image Url
 	 * @return \FML\Controls\Quad
 	 */
 	public function setImageFocus($imageFocus) {
-		$this->imageFocus = $imageFocus;
+		$this->imageFocus = (string) $imageFocus;
 		return $this;
 	}
 
 	/**
 	 * Set Colorization
 	 *
-	 * @param string $colorize
-	 *        	Colorize Value
+	 * @param string $colorize Colorize Value
 	 * @return \FML\Controls\Quad
 	 */
 	public function setColorize($colorize) {
-		$this->colorize = $colorize;
+		$this->colorize = (string) $colorize;
 		return $this;
 	}
 
 	/**
 	 * Set Modulization
 	 *
-	 * @param string $modulizeColor
-	 *        	Modulize Value
+	 * @param string $modulizeColor Modulize Value
 	 * @return \FML\Controls\Quad
 	 */
 	public function setModulizeColor($modulizeColor) {
-		$this->modulizeColor = $modulizeColor;
+		$this->modulizeColor = (string) $modulizeColor;
 		return $this;
 	}
 
@@ -96,7 +92,7 @@ class Quad extends Control implements Actionable, BgColorable, Linkable, Scripta
 	 * @return \FML\Controls\Quad
 	 */
 	public function setAction($action) {
-		$this->action = $action;
+		$this->action = (string) $action;
 		return $this;
 	}
 
@@ -106,7 +102,7 @@ class Quad extends Control implements Actionable, BgColorable, Linkable, Scripta
 	 * @return \FML\Controls\Quad
 	 */
 	public function setBgColor($bgColor) {
-		$this->bgColor = $bgColor;
+		$this->bgColor = (string) $bgColor;
 		return $this;
 	}
 
@@ -116,7 +112,7 @@ class Quad extends Control implements Actionable, BgColorable, Linkable, Scripta
 	 * @return \FML\Controls\Quad
 	 */
 	public function setUrl($url) {
-		$this->url = $url;
+		$this->url = (string) $url;
 		return $this;
 	}
 
@@ -126,7 +122,7 @@ class Quad extends Control implements Actionable, BgColorable, Linkable, Scripta
 	 * @return \FML\Controls\Quad
 	 */
 	public function setManialink($manialink) {
-		$this->manialink = $manialink;
+		$this->manialink = (string) $manialink;
 		return $this;
 	}
 
@@ -146,7 +142,7 @@ class Quad extends Control implements Actionable, BgColorable, Linkable, Scripta
 	 * @return \FML\Controls\Quad
 	 */
 	public function setStyle($style) {
-		$this->style = $style;
+		$this->style = (string) $style;
 		return $this;
 	}
 
@@ -156,7 +152,7 @@ class Quad extends Control implements Actionable, BgColorable, Linkable, Scripta
 	 * @return \FML\Controls\Quad
 	 */
 	public function setSubStyle($subStyle) {
-		$this->subStyle = $subStyle;
+		$this->subStyle = (string) $subStyle;
 		return $this;
 	}
 
