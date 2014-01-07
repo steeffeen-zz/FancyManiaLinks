@@ -7,6 +7,7 @@ namespace FML\Elements;
  *
  * @author steeffeen
  */
+// TODO: example
 class Music implements Renderable {
 	/**
 	 * Protected Properties
@@ -30,10 +31,10 @@ class Music implements Renderable {
 	 * @see \FML\Renderable::render()
 	 */
 	public function render(\DOMDocument $domDocument) {
-		$xml = $domDocument->createElement($this->tagName);
+		$xmlElement = $domDocument->createElement($this->tagName);
 		if ($this->data) {
-			$xml->setAttribute('data', $this->data);
+			$xmlElement->setAttribute('data', $this->data);
 		}
-		return $xml;
+		return $xmlElement;
 	}
 }
