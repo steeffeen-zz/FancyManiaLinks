@@ -172,40 +172,40 @@ class Quad extends Control implements Actionable, BgColorable, Linkable, Scripta
 	 * @see \FML\Control::render()
 	 */
 	public function render(\DOMDocument $domDocument) {
-		$xml = parent::render($domDocument);
+		$xmlElement = parent::render($domDocument);
 		if ($this->image) {
-			$xml->setAttribute('image', $this->image);
+			$xmlElement->setAttribute('image', $this->image);
 		}
 		if ($this->imageFocus) {
-			$xml->setAttribute('imagefocus', $this->imageFocus);
+			$xmlElement->setAttribute('imagefocus', $this->imageFocus);
 		}
 		if ($this->colorize) {
-			$xml->setAttribute('colorize', $this->colorize);
+			$xmlElement->setAttribute('colorize', $this->colorize);
 		}
 		if ($this->modulizeColor) {
-			$xml->setAttribute('modulizecolor', $this->modulizeColor);
+			$xmlElement->setAttribute('modulizecolor', $this->modulizeColor);
 		}
 		if ($this->action) {
-			$xml->setAttribute('action', $this->action);
+			$xmlElement->setAttribute('action', $this->action);
 		}
 		if ($this->bgColor) {
-			$xml->setAttribute('bgcolor', $this->bgColor);
+			$xmlElement->setAttribute('bgcolor', $this->bgColor);
 		}
 		if ($this->url) {
-			$xml->setAttribute('url', $this->url);
+			$xmlElement->setAttribute('url', $this->url);
 		}
 		if ($this->manialink) {
-			$xml->setAttribute('manialink', $this->manialink);
+			$xmlElement->setAttribute('manialink', $this->manialink);
 		}
 		if ($this->scriptEvents) {
-			$xml->setAttribute('scriptevents', $this->scriptEvents);
+			$xmlElement->setAttribute('scriptevents', $this->scriptEvents);
 		}
 		if ($this->style) {
-			$xml->setAttribute('style', $this->style);
+			$xmlElement->setAttribute('style', $this->style);
 		}
 		if ($this->subStyle) {
-			$xml->setAttribute('substyle', $this->subStyle);
+			$xmlElement->setAttribute('substyle', $this->subStyle);
 		}
-		return $xml;
+		return $xmlElement;
 	}
 }
