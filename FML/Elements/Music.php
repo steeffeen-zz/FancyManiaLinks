@@ -3,7 +3,7 @@
 namespace FML\Elements;
 
 /**
- * Class representing music
+ * Music Element
  *
  * @author steeffeen
  */
@@ -11,18 +11,17 @@ class Music implements Renderable {
 	/**
 	 * Protected Properties
 	 */
-	protected $data = '';
 	protected $tagName = 'music';
+	protected $data = '';
 
 	/**
 	 * Set Data Url
 	 *
-	 * @param string $data
-	 *        	Media Url
+	 * @param string $data Media Url
 	 * @return \FML\Elements\Music
 	 */
 	public function setData($data) {
-		$this->data = $data;
+		$this->data = (string) $data;
 		return $this;
 	}
 
