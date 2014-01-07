@@ -7,6 +7,7 @@ namespace FML\Controls;
  *
  * @author steeffeen
  */
+// TODO: example
 class FileEntry extends Entry {
 	/**
 	 * Protected Properties
@@ -16,8 +17,7 @@ class FileEntry extends Entry {
 	/**
 	 * Construct a new FileEntry Control
 	 *
-	 * @param string $id
-	 *        	Control Id
+	 * @param string $id (optional) Control Id
 	 */
 	public function __construct($id = null) {
 		parent::__construct($id);
@@ -27,12 +27,11 @@ class FileEntry extends Entry {
 	/**
 	 * Set Folder
 	 *
-	 * @param string $folder
-	 *        	Base Folder
+	 * @param string $folder Base Folder
 	 * @return \FML\Controls\FileEntry
 	 */
 	public function setFolder($folder) {
-		$this->folder = $folder;
+		$this->folder = (string) $folder;
 		return $this;
 	}
 
@@ -41,8 +40,10 @@ class FileEntry extends Entry {
 	 * @see \FML\Entry::render()
 	 */
 	public function render(\DOMDocument $domDocument) {
-		$xml = parent::render($domDocument);
-		$xml->setAttribute('folder', $this->folder);
-		return $xml;
+		$xmlElement = parent::render($domDocument);
+		if ($this->folder) {
+			$xmlElement->setAttribute('folder', $this->folder);
+		}
+		return $xmlElement;
 	}
 }
