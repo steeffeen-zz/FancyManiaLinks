@@ -7,7 +7,6 @@ namespace FML\Controls;
  *
  * @author steeffeen
  */
-// TODO: example
 class FileEntry extends Entry {
 	/**
 	 * Protected Properties

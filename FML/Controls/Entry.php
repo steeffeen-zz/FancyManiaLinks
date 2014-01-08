@@ -13,7 +13,6 @@ use FML\Types\TextFormatable;
  *
  * @author steeffeen
  */
-// TODO: example
 class Entry extends Control implements NewLineable, Scriptable, Styleable, TextFormatable {
 	/**
 	 * Protected Properties

@@ -9,7 +9,6 @@ use FML\Types\Renderable;
  *
  * @author steeffeen
  */
-// TODO: example
 class SimpleScript implements Renderable {
 	/**
 	 * Protected Properties

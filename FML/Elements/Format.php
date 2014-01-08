@@ -7,7 +7,6 @@ namespace FML\Elements;
  *
  * @author steeffeen
  */
-// TODO: example
 class Format implements BgColorable, Renderable, Styleable, TextFormatable {
 	/**
 	 * Protected Properties

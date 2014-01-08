@@ -10,12 +10,12 @@ use FML\Types\Styleable;
  *
  * @author steeffeen
  */
-// TODO: example
 class Gauge extends Control implements Styleable {
 	/**
 	 * Protected Properties
 	 */
 	protected $ratio = 1.;
+	// TODO: validate grading
 	protected $grading = 1.;
 	protected $color = '';
 	protected $rotation = 0.;

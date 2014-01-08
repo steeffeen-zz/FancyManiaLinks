@@ -7,7 +7,6 @@ namespace FML\Elements;
  *
  * @author steeffeen
  */
-// TODO: example
 class Including implements Renderable {
 	/**
 	 * Protected Properties

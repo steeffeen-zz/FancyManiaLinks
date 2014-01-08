@@ -11,7 +11,6 @@ use FML\Types\Scriptable;
  *
  * @author steeffeen
  */
-// TODO: example
 class Video extends Control implements Playable, Scriptable {
 	/**
 	 * Protected Properties
