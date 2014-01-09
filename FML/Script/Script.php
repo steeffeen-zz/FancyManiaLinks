@@ -218,8 +218,9 @@ class Script {
 
 	/**
 	 * Add a Button Behavior that will open the Built-In Player Profile
+	 * (Works only for Server ManiaLinks)
 	 *
-	 * @param Control $profileControl The Control opening the Profile
+	 * @param Control $profileControl The Control opening a Profile
 	 * @param string $playerLogin The Player Login
 	 * @return \FML\Script\Script
 	 */
@@ -240,6 +241,7 @@ class Script {
 
 	/**
 	 * Add a Button Behavior that will open the Built-In Map Info
+	 * (Works only on a Server)
 	 *
 	 * @param Control $mapInfoControl The Control opening the Map Info
 	 * @return \FML\Script\Script
@@ -257,10 +259,11 @@ class Script {
 
 	/**
 	 * Add a Sound Playing for the Control
+	 * (Works only for Server ManiaLinks)
 	 *
 	 * @param Control $control The Control playing a Sound
 	 * @param string $soundName The Sound to play
-	 * @param int $soundVariant (optional) Sound variant
+	 * @param int $soundVariant (optional) Sound Variant
 	 * @param float $soundVolume (optional) Sound Volume
 	 * @param string $eventLabel (optional) The Event Label on which the Sound should be played
 	 * @return \FML\Script\Script
