@@ -23,12 +23,16 @@ $submitButton->setSubStyle($submitButton::SUBSTYLE_Outbox);
 $submitButton->setUrl('http://fml.steeffeen.com/examples/fileEntry.php');
 
 // Display information about uploaded file
-if (!empty($_GET['input'])) {
+if (isset($_FILES['inputFile'])) {
+	// Get file size and delete file
+	$inputFile = $_FILES['inputFile'];
+	$fileSize = filesize($inputFile);
+	unlink($inputFile);
+	
+	// Build output label
 	$outputLabel = new \FML\Controls\Label();
 	$manialink->add($outputLabel);
 	$outputLabel->setY(-30);
-	$fileSize = -1;
-	// TODO: print information about uploaded file
 	$outputLabel->setText("Size of Your uploaded File: {$fileSize} KB");
 }
 
