@@ -2,6 +2,8 @@
 
 namespace FML\Elements;
 
+use FML\Types\Renderable;
+
 /**
  * Music Element
  *

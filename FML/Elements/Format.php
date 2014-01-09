@@ -2,6 +2,11 @@
 
 namespace FML\Elements;
 
+use FML\Types\BgColorable;
+use FML\Types\Renderable;
+use FML\Types\Styleable;
+use FML\Types\TextFormatable;
+
 /**
  * Format Element
  *
