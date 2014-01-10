@@ -38,6 +38,7 @@ class Script {
 	const LABEL_MOUSEOUT = 'MouseOut';
 	const LABEL_MOUSEOVER = 'MouseOver';
 	const CONSTANT_TOOLTIPTEXTS = 'C_FML_TooltipTexts';
+	const FUNCTION_GETTOOLTIPCONTROLID = 'FML_GetTooltipControlId';
 	const FUNCTION_SETTOOLTIPTEXT = 'FML_SetTooltipText';
 	const FUNCTION_TOGGLE = 'FML_Toggle';
 	
@@ -111,7 +112,7 @@ class Script {
 		$hoverControl->checkId();
 		$hoverControl->setScriptEvents(true);
 		$hoverControl->addClass(self::CLASS_TOOLTIPS);
-		$hoverControl->addClass($tooltipControl->getId());
+		$hoverControl->addClass(self::CLASS_TOOLTIPS . '-' . $tooltipControl->getId());
 		$options = $this->spliceParameters(func_get_args(), 2);
 		foreach ($options as $option => $value) {
 			if ($option == self::OPTION_TOOLTIP_TEXT) {
@@ -156,7 +157,6 @@ class Script {
 		$clickControl->setScriptEvents(true);
 		$clickControl->addClass(self::CLASS_MENUBUTTON);
 		$clickControl->addClass($menuId . '-' . $menuControl->getId());
-		$this->setInclude('TextLib', 'TextLib');
 		$this->menus = true;
 		return $this;
 	}
@@ -197,7 +197,6 @@ class Script {
 		$pagerControl->addClass(self::CLASS_PAGER);
 		$pagerControl->addClass(self::CLASS_PAGER . '-I' . $pagesId);
 		$pagerControl->addClass(self::CLASS_PAGER . '-A' . $pagingAction);
-		$this->setInclude('TextLib', 'TextLib');
 		$this->pages = true;
 		return $this;
 	}
@@ -234,7 +233,6 @@ class Script {
 		if ($playerLogin) {
 			$profileControl->addClass(self::CLASS_PROFILE . '-' . $playerLogin);
 		}
-		$this->setInclude('TextLib', 'TextLib');
 		$this->profile = true;
 		return $this;
 	}
@@ -309,7 +307,7 @@ class Script {
 		$clickControl->setScriptEvents(true);
 		$clickControl->addClass(self::CLASS_TOGGLE);
 		$clickControl->addClass($mode);
-		$clickControl->addClass($toggleControl->getId());
+		$clickControl->addClass(self::CLASS_TOGGLE . '-' . $toggleControl->getId());
 		$this->toggles = true;
 		return $this;
 	}
@@ -441,6 +439,7 @@ class Script {
 	 */
 	private function buildTooltipFunctions() {
 		if (!$this->tooltips) return;
+		$this->setInclude('TextLib', 'TextLib');
 		$setFunctionText = "
 Void " . self::FUNCTION_SETTOOLTIPTEXT . "(CMlControl _TooltipControl, CMlControl _HoverControl) {
 	if (!_TooltipControl.Visible) return;
@@ -450,6 +449,13 @@ Void " . self::FUNCTION_SETTOOLTIPTEXT . "(CMlControl _TooltipControl, CMlContro
 	if (!" . self::CONSTANT_TOOLTIPTEXTS . "[TooltipId].existskey(HoverId)) return;
 	declare Label = (_TooltipControl as CMlLabel);
 	Label.Value = " . self::CONSTANT_TOOLTIPTEXTS . "[TooltipId][HoverId];
+}
+
+Text " . self::FUNCTION_GETTOOLTIPCONTROLID . "(Text _ControlClass) {
+	declare ClassParts = TextLib::Split(\"-\", _ControlClass);
+	if (ClassParts.count < 2) return \"\”;
+	if (ClassParts[0] != \"" . self::CLASS_TOOLTIPS . "\") return \"\";
+	return ClassParts[1];
 }";
 		$this->setFunction(self::FUNCTION_SETTOOLTIPTEXT, $setFunctionText);
 	}
@@ -460,12 +466,14 @@ Void " . self::FUNCTION_SETTOOLTIPTEXT . "(CMlControl _TooltipControl, CMlContro
 	 * @return string
 	 */
 	private function getTooltipLabels() {
-		if (!$this->tooltips) return "";
+		if (!$this->tooltips) return '';
 		$mouseOverScript = "
 if (Event.Control.HasClass(\"" . self::CLASS_TOOLTIPS . "\")) {
 	declare Invert = Event.Control.HasClass(\"" . self::OPTION_TOOLTIP_INVERT . "\");
 	foreach (ControlClass in Event.Control.ControlClasses) {
-		declare TooltipControl <=> Page.GetFirstChild(ControlClass);
+		declare ControlId = " . self::FUNCTION_GETTOOLTIPCONTROLID . "(ControlClass);
+		if (ControlId == \"\") continue;
+		declare TooltipControl <=> Page.GetFirstChild(ControlId);
 		if (TooltipControl == Null) continue;
 		TooltipControl.Visible = !Invert;
 		" . self::FUNCTION_SETTOOLTIPTEXT . "(TooltipControl, Event.Control);
@@ -478,7 +486,9 @@ if (Event.Control.HasClass(\"" . self::CLASS_TOOLTIPS . "\")) {
 	if (!StayOnClick || !FML_Clicked) {
 		declare Invert = Event.Control.HasClass(\"" . self::OPTION_TOOLTIP_INVERT . "\");
 		foreach (ControlClass in Event.Control.ControlClasses) {
-			declare TooltipControl <=> Page.GetFirstChild(ControlClass);
+			declare ControlId = " . self::FUNCTION_GETTOOLTIPCONTROLID . "(ControlClass);
+			if (ControlId == \"\") continue;
+			declare TooltipControl <=> Page.GetFirstChild(ControlId);
 			if (TooltipControl == Null) continue;
 			TooltipControl.Visible = Invert;
 			" . self::FUNCTION_SETTOOLTIPTEXT . "(TooltipControl, Event.Control);
@@ -504,7 +514,9 @@ if (Event.Control.HasClass(\"" . self::CLASS_TOOLTIPS . "\")) {
 	if (Handle) {
 		declare Invert = Event.Control.HasClass(\"" . self::OPTION_TOOLTIP_INVERT . "\");
 		foreach (ControlClass in Event.Control.ControlClasses) {
-			declare TooltipControl <=> Page.GetFirstChild(ControlClass);
+			declare ControlId = " . self::FUNCTION_GETTOOLTIPCONTROLID . "(ControlClass);
+			if (ControlId == \"\") continue;
+			declare TooltipControl <=> Page.GetFirstChild(ControlId);
 			if (TooltipControl == Null) continue;
 			TooltipControl.Visible = Show && !Invert;
 			" . self::FUNCTION_SETTOOLTIPTEXT . "(TooltipControl, Event.Control);
@@ -523,14 +535,15 @@ if (Event.Control.HasClass(\"" . self::CLASS_TOOLTIPS . "\")) {
 	 * @return string
 	 */
 	private function getMenuLabels() {
-		if (!$this->menus) return "";
+		if (!$this->menus) return '';
+		$this->setInclude('TextLib', 'TextLib');
 		$mouseClickScript = "
 if (Event.Control.HasClass(\"" . self::CLASS_MENUBUTTON . "\")) {
 	declare Text MenuIdClass;
 	declare Text MenuControlId;
 	foreach (ControlClass in Event.Control.ControlClasses) {
 		declare ClassParts = TextLib::Split(\"-\", ControlClass);
-		if (ClassParts.count <= 1) continue;
+		if (ClassParts.count < 2) continue;
 		MenuIdClass = ClassParts[0];
 		MenuControlId = ClassParts[1];
 		break;
@@ -552,6 +565,7 @@ if (Event.Control.HasClass(\"" . self::CLASS_MENUBUTTON . "\")) {
 	 */
 	private function getPagesLabels() {
 		if (!$this->pages) return "";
+		$this->setInclude('TextLib', 'TextLib');
 		$pagesNumberPrefix = self::CLASS_PAGE . '-P';
 		$pagesNumberPrefixLength = strlen($pagesNumberPrefix);
 		$pagesScript = "
@@ -560,7 +574,7 @@ if (Event.Control.HasClass(\"" . self::CLASS_PAGER . "\")) {
 	declare Integer PagingAction;
 	foreach (ControlClass in Event.Control.ControlClasses) {
 		declare ClassParts = TextLib::Split(\"-\", ControlClass);
-		if (ClassParts.count <= 1) continue;
+		if (ClassParts.count < 2) continue;
 		if (ClassParts[0] != \"" . self::CLASS_PAGER . "\") continue;
 		switch (TextLib::SubText(ClassParts[1], 0, 1)) {
 			case \"I\": {
@@ -630,12 +644,13 @@ if (Event.Control.HasClass(\"" . self::CLASS_PAGER . "\")) {
 	 */
 	private function getProfileLabels() {
 		if (!$this->profile) return "";
+		$this->setInclude('TextLib', 'TextLib');
 		$profileScript = "
 if (Event.Control.HasClass(\"" . self::CLASS_PROFILE . "\")) {
 	declare Login = LocalUser.Login;
 	foreach (ControlClass in Event.Control.ControlClasses) {
 		declare ClassParts = TextLib::Split(\"-\", ControlClass);
-		if (ClassParts.count <= 1) continue;
+		if (ClassParts.count < 2) continue;
 		if (ClassParts[0] != \"" . self::CLASS_PROFILE . "\") continue;
 		Login = ClassParts[1];
 		break;
@@ -701,6 +716,7 @@ if (Event.Control.HasClass(\"" . self::CLASS_SOUND . "\")) {
 	 */
 	private function getToggleLabels() {
 		if (!$this->toggles) return '';
+		$this->setInclude('TextLib', 'TextLib');
 		$toggleScript = "
 if (Event.Control.HasClass(\"" . self::CLASS_TOGGLE . "\")) {
 	declare HasShow = Event.Control.HasClass(\"" . self::CLASS_SHOW . "\");
@@ -711,8 +727,12 @@ if (Event.Control.HasClass(\"" . self::CLASS_TOGGLE . "\")) {
 		Toggle = False;
 		Show = HasShow;
 	}
+	declare PrefixLength = TextLib::Length(\"" . self::CLASS_TOGGLE . "\");
 	foreach (ControlClass in Event.Control.ControlClasses) {
-		declare ToggleControl <=> Page.GetFirstChild(ControlClass);
+		declare ClassParts = TextLib::Split(\"-\", ControlClass);
+		if (ClassParts.count < 2) continue;
+		if (ClassParts[0] != \"" . self::CLASS_TOGGLE . "\") continue;
+		declare ToggleControl <=> Page.GetFirstChild(ClassParts[1]);
 		if (ToggleControl == Null) continue;
 		if (Toggle) {
 			ToggleControl.Visible = !ToggleControl.Visible;
