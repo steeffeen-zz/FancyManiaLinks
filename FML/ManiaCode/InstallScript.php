@@ -19,9 +19,9 @@ class InstallScript implements Element {
 	/**
 	 * Construct a new InstallScript Element
 	 *
-	 * @param string $name Script Name
-	 * @param string $file Script File
-	 * @param string $url Script Url
+	 * @param string $name (optional) Script Name
+	 * @param string $file (optional) Script File
+	 * @param string $url (optional) Script Url
 	 */
 	public function __construct($name = null, $file = null, $url = null) {
 		if ($name !== null) {

@@ -17,7 +17,7 @@ class Go_To implements Element {
 	/**
 	 * Construct a new Go_To Element
 	 *
-	 * @param string $link Goto Link
+	 * @param string $link (optional) Goto Link
 	 */
 	public function __construct($link = null) {
 		if ($link !== null) {

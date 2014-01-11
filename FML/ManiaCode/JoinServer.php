@@ -19,7 +19,7 @@ class JoinServer implements Element {
 	/**
 	 * Construct a new JoinServer Element
 	 *
-	 * @param string $login Server Login
+	 * @param string $login (optional) Server Login
 	 */
 	public function __construct($login = null) {
 		if ($login !== null) {

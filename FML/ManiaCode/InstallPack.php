@@ -19,9 +19,9 @@ class InstallPack implements Element {
 	/**
 	 * Construct a new InstallPack Element
 	 *
-	 * @param string $name Pack Name
-	 * @param string $file Pack File
-	 * @param string $url Pack Url
+	 * @param string $name (optional) Pack Name
+	 * @param string $file (optional) Pack File
+	 * @param string $url (optional) Pack Url
 	 */
 	public function __construct($name = null, $file = null, $url = null) {
 		if ($name !== null) {

@@ -18,8 +18,8 @@ class PlayMap implements Element {
 	/**
 	 * Construct a new PlayMap Element
 	 *
-	 * @param string $name Map Name
-	 * @param string $url Map Url
+	 * @param string $name (optional) Map Name
+	 * @param string $url (optional) Map Url
 	 */
 	public function __construct($name = null, $url = null) {
 		if ($name !== null) {

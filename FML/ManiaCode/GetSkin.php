@@ -19,9 +19,9 @@ class GetSkin implements Element {
 	/**
 	 * Construct a new GetSkin Element
 	 *
-	 * @param string $name Skin Name
-	 * @param string $file Skin File
-	 * @param string $url Skin Url
+	 * @param string $name (optional) Skin Name
+	 * @param string $file (optional) Skin File
+	 * @param string $url (optional) Skin Url
 	 */
 	public function __construct($name = null, $file = null, $url = null) {
 		if ($name !== null) {

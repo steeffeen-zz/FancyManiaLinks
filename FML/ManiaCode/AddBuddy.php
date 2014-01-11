@@ -17,7 +17,7 @@ class AddBuddy implements Element {
 	/**
 	 * Construct a new AddBuddy Element
 	 *
-	 * @param string $login Buddy Login
+	 * @param string $login (optional) Buddy Login
 	 */
 	public function __construct($login = null) {
 		if ($login !== null) {

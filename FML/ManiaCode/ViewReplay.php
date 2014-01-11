@@ -18,8 +18,8 @@ class ViewReplay implements Element {
 	/**
 	 * Construct a new ViewReplay Element
 	 *
-	 * @param string $name Replay Name
-	 * @param string $url Replay Url
+	 * @param string $name (optional) Replay Name
+	 * @param string $url (optional) Replay Url
 	 */
 	public function __construct($name = null, $url = null) {
 		if ($name !== null) {

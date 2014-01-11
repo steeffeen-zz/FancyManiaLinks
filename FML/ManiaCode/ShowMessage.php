@@ -17,7 +17,7 @@ class ShowMessage implements Element {
 	/**
 	 * Construct a new ShowMessage Element
 	 *
-	 * @param string $message Message Text
+	 * @param string $message (optional) Message Text
 	 */
 	public function __construct($message = null) {
 		if ($message !== null) {
