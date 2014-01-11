@@ -15,7 +15,7 @@ class Script {
 	/**
 	 * Constants
 	 */
-	const CLASS_TOOLTIPS = 'FML_Tooltips';
+	const CLASS_TOOLTIP = 'FML_Tooltip';
 	const CLASS_MENU = 'FML_Menu';
 	const CLASS_MENUBUTTON = 'FML_MenuButton';
 	const CLASS_PAGE = 'FML_Page';
@@ -25,11 +25,12 @@ class Script {
 	const CLASS_MAPINFO = 'FML_MapInfo';
 	const CLASS_SOUND = 'FML_Sound';
 	const CLASS_TOGGLE = 'FML_Toggle';
-	const CLASS_SHOW = 'FML_Show';
-	const CLASS_HIDE = 'FML_Hide';
-	const OPTION_TOOLTIP_STAYONCLICK = 'FML_Tooltip_StayOnClick';
-	const OPTION_TOOLTIP_INVERT = 'FML_Tooltip_Invert';
-	const OPTION_TOOLTIP_TEXT = 'FML_Tooltip_Text';
+	const CLASS_SPECTATE = 'FML_Spectate';
+	const OPTION_TOOLTIP_STAYONCLICK = 'FML_StayOnClick_Tooltip';
+	const OPTION_TOOLTIP_INVERT = 'FML_Invert_Tooltip';
+	const OPTION_TOOLTIP_TEXT = 'FML_Text_Tooltip';
+	const OPTION_TOGGLE_SHOW = 'FML_Show_Toggle';
+	const OPTION_TOGGLE_HIDE = 'FML_Hide_Toggle';
 	const LABEL_ONINIT = 'OnInit';
 	const LABEL_LOOP = 'Loop';
 	const LABEL_ENTRYSUBMIT = 'EntrySubmit';
@@ -57,6 +58,7 @@ class Script {
 	protected $mapInfo = false;
 	protected $sounds = array();
 	protected $toggles = false;
+	protected $spectate = false;
 
 	/**
 	 * Set an Include of the Script
@@ -111,8 +113,8 @@ class Script {
 		$tooltipControl->setVisible(false);
 		$hoverControl->checkId();
 		$hoverControl->setScriptEvents(true);
-		$hoverControl->addClass(self::CLASS_TOOLTIPS);
-		$hoverControl->addClass(self::CLASS_TOOLTIPS . '-' . $tooltipControl->getId());
+		$hoverControl->addClass(self::CLASS_TOOLTIP);
+		$hoverControl->addClass(self::CLASS_TOOLTIP . '-' . $tooltipControl->getId());
 		$options = $this->spliceParameters(func_get_args(), 2);
 		foreach ($options as $option => $value) {
 			if ($option == self::OPTION_TOOLTIP_TEXT) {
@@ -230,9 +232,8 @@ class Script {
 		}
 		$profileControl->setScriptEvents(true);
 		$profileControl->addClass(self::CLASS_PROFILE);
-		if ($playerLogin) {
-			$profileControl->addClass(self::CLASS_PROFILE . '-' . $playerLogin);
-		}
+		$playerLogin = (string) $playerLogin;
+		$profileControl->addClass(self::CLASS_PROFILE . '-' . $playerLogin);
 		$this->profile = true;
 		return $this;
 	}
@@ -292,23 +293,44 @@ class Script {
 	 * @param string $mode (optional) Whether the Visibility should be toggled or only en-/disabled
 	 * @return \FML\Script\Script
 	 */
-	public function addToggle(Control $clickControl, Control $toggleControl, $mode = self::CLASS_TOGGLE) {
+	public function addToggle(Control $clickControl, Control $toggleControl, $option = null) {
 		if (!($clickControl instanceof Scriptable)) {
 			trigger_error('Scriptable Control needed as ClickControl for Toggles!');
 			return $this;
 		}
 		$toggleControl->checkId();
-		if ($mode == self::CLASS_HIDE) {
+		if ($option == self::OPTION_TOGGLE_HIDE) {
 			$toggleControl->setVisible(true);
+			$clickControl->addClass($option);
 		}
-		else {
+		else if ($option == self::OPTION_TOGGLE_SHOW) {
 			$toggleControl->setVisible(false);
+			$clickControl->addClass($option);
 		}
 		$clickControl->setScriptEvents(true);
 		$clickControl->addClass(self::CLASS_TOGGLE);
-		$clickControl->addClass($mode);
 		$clickControl->addClass(self::CLASS_TOGGLE . '-' . $toggleControl->getId());
 		$this->toggles = true;
+		return $this;
+	}
+
+	/**
+	 * Add a Spectate Button Behavior
+	 *
+	 * @param Control $clickControl The Control that works as Spectate Button
+	 * @param string $spectateTargetLogin The Login of the Player to Spectate
+	 * @return \FML\Script\Script
+	 */
+	public function addSpectateButton(Control $clickControl, $spectateTargetLogin) {
+		if (!($clickControl instanceof Scriptable)) {
+			trigger_error('Scriptable Control needed as ClickControl for Spectating!');
+			return $this;
+		}
+		$clickControl->setScriptEvents(true);
+		$clickControl->addClass(self::CLASS_SPECTATE);
+		$spectateTargetLogin = (string) $spectateTargetLogin;
+		$clickControl->addClass(self::CLASS_SPECTATE . '-' . $spectateTargetLogin);
+		$this->spectate = true;
 		return $this;
 	}
 
@@ -344,6 +366,7 @@ class Script {
 		$scriptText .= $this->getMapInfoLabels();
 		$scriptText .= $this->getSoundLabels();
 		$scriptText .= $this->getToggleLabels();
+		$scriptText .= $this->getSpectateLabels();
 		$scriptText .= $this->getMainFunction();
 		return $scriptText;
 	}
@@ -454,7 +477,7 @@ Void " . self::FUNCTION_SETTOOLTIPTEXT . "(CMlControl _TooltipControl, CMlContro
 Text " . self::FUNCTION_GETTOOLTIPCONTROLID . "(Text _ControlClass) {
 	declare ClassParts = TextLib::Split(\"-\", _ControlClass);
 	if (ClassParts.count < 2) return \"\”;
-	if (ClassParts[0] != \"" . self::CLASS_TOOLTIPS . "\") return \"\";
+	if (ClassParts[0] != \"" . self::CLASS_TOOLTIP . "\") return \"\";
 	return ClassParts[1];
 }";
 		$this->setFunction(self::FUNCTION_SETTOOLTIPTEXT, $setFunctionText);
@@ -468,7 +491,7 @@ Text " . self::FUNCTION_GETTOOLTIPCONTROLID . "(Text _ControlClass) {
 	private function getTooltipLabels() {
 		if (!$this->tooltips) return '';
 		$mouseOverScript = "
-if (Event.Control.HasClass(\"" . self::CLASS_TOOLTIPS . "\")) {
+if (Event.Control.HasClass(\"" . self::CLASS_TOOLTIP . "\")) {
 	declare Invert = Event.Control.HasClass(\"" . self::OPTION_TOOLTIP_INVERT . "\");
 	foreach (ControlClass in Event.Control.ControlClasses) {
 		declare ControlId = " . self::FUNCTION_GETTOOLTIPCONTROLID . "(ControlClass);
@@ -480,7 +503,7 @@ if (Event.Control.HasClass(\"" . self::CLASS_TOOLTIPS . "\")) {
 	}
 }";
 		$mouseOutScript = "
-if (Event.Control.HasClass(\"" . self::CLASS_TOOLTIPS . "\")) {
+if (Event.Control.HasClass(\"" . self::CLASS_TOOLTIP . "\")) {
 	declare FML_Clicked for Event.Control = False;
 	declare StayOnClick = Event.Control.HasClass(\"" . self::OPTION_TOOLTIP_STAYONCLICK . "\");
 	if (!StayOnClick || !FML_Clicked) {
@@ -496,7 +519,7 @@ if (Event.Control.HasClass(\"" . self::CLASS_TOOLTIPS . "\")) {
 	}
 }";
 		$mouseClickScript = "
-if (Event.Control.HasClass(\"" . self::CLASS_TOOLTIPS . "\")) {
+if (Event.Control.HasClass(\"" . self::CLASS_TOOLTIP . "\")) {
 	declare Handle = True;
 	declare Show = False;
 	declare StayOnClick = Event.Control.HasClass(\"" . self::OPTION_TOOLTIP_STAYONCLICK . "\");
@@ -652,7 +675,11 @@ if (Event.Control.HasClass(\"" . self::CLASS_PROFILE . "\")) {
 		declare ClassParts = TextLib::Split(\"-\", ControlClass);
 		if (ClassParts.count < 2) continue;
 		if (ClassParts[0] != \"" . self::CLASS_PROFILE . "\") continue;
-		Login = ClassParts[1];
+		Login = \"\";
+		for (Index, 1, ClassParts.count - 1) {
+			Login ^= ClassParts[Index];
+			if (Index < ClassParts.count - 1) Login ^= \"-\";
+		}
 		break;
 	}
 	ShowProfile(Login);
@@ -719,8 +746,8 @@ if (Event.Control.HasClass(\"" . self::CLASS_SOUND . "\")) {
 		$this->setInclude('TextLib', 'TextLib');
 		$toggleScript = "
 if (Event.Control.HasClass(\"" . self::CLASS_TOGGLE . "\")) {
-	declare HasShow = Event.Control.HasClass(\"" . self::CLASS_SHOW . "\");
-	declare HasHide = Event.Control.HasClass(\"" . self::CLASS_HIDE . "\");
+	declare HasShow = Event.Control.HasClass(\"" . self::OPTION_TOGGLE_SHOW . "\");
+	declare HasHide = Event.Control.HasClass(\"" . self::OPTION_TOGGLE_HIDE . "\");
 	declare Toggle = True;
 	declare Show = True;
 	if (HasShow || HasHide) {
@@ -743,6 +770,33 @@ if (Event.Control.HasClass(\"" . self::CLASS_TOGGLE . "\")) {
 }";
 		$toggleScript = Builder::getLabelImplementationBlock(self::LABEL_MOUSECLICK, $toggleScript);
 		return $toggleScript;
+	}
+
+	/**
+	 * Get the Spectate labels
+	 *
+	 * @return string
+	 */
+	private function getSpectateLabels() {
+		if (!$this->spectate) return '';
+		$spectateScript = "
+if (Event.Control.HasClass(\"" . self::CLASS_SPECTATE . "\")) {
+	declare Login = \"\";
+	foreach (ControlClass in Event.Control.ControlClass) {
+		declare ClassParts = TextLib::Split(\"-\", ControlClass);
+		if (ClassParts.count < 2) continue;
+		if (ClassParts[0] != \"" . self::CLASS_SPECTATE . "\") continue;
+		for (Index, 1, ClassParts.count - 1) {
+			Login ^= ClassParts[Index];
+			if (Index < ClassParts.count - 1) Login ^= \"-\";
+		}
+	}
+	if (Login != \"\") {
+		SetSpectateTarget(Login);
+	}
+}";
+		$spectateScript = Builder::getLabelImplementationBlock(self::LABEL_MOUSECLICK, $spectateScript);
+		return $spectateScript;
 	}
 
 	/**
