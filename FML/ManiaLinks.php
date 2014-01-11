@@ -69,15 +69,15 @@ class ManiaLinks {
 	 */
 	public function render($echo = false) {
 		$domDocument = new \DOMDocument('1.0', $this->encoding);
-		$manialinks = $domDocument->createElement($this->tagName);
-		$domDocument->appendChild($manialinks);
+		$maniaLinks = $domDocument->createElement($this->tagName);
+		$domDocument->appendChild($maniaLinks);
 		foreach ($this->children as $child) {
 			$childXml = $child->render(false, $domDocument);
-			$manialinks->appendChild($childXml);
+			$maniaLinks->appendChild($childXml);
 		}
 		if ($this->customUI) {
 			$customUIXml = $this->customUI->render($domDocument);
-			$manialinks->appendChild($customUIXml);
+			$maniaLinks->appendChild($customUIXml);
 		}
 		if ($echo) {
 			header('Content-Type: application/xml');

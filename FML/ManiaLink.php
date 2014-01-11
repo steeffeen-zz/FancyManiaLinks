@@ -145,36 +145,36 @@ class ManiaLink implements Container {
 		if (!$isChild) {
 			$domDocument = new \DOMDocument('1.0', $this->encoding);
 		}
-		$manialink = $domDocument->createElement($this->tagName);
+		$maniaLink = $domDocument->createElement($this->tagName);
 		if (!$isChild) {
-			$domDocument->appendChild($manialink);
+			$domDocument->appendChild($maniaLink);
 		}
 		if ($this->id !== null) {
-			$manialink->setAttribute('id', $this->id);
+			$maniaLink->setAttribute('id', $this->id);
 		}
 		if ($this->version !== null) {
-			$manialink->setAttribute('version', $this->version);
+			$maniaLink->setAttribute('version', $this->version);
 		}
 		if ($this->background !== null) {
-			$manialink->setAttribute('background', $this->background);
+			$maniaLink->setAttribute('background', $this->background);
 		}
 		if ($this->navigable3d !== null) {
-			$manialink->setAttribute('navigable3d', $this->navigable3d);
+			$maniaLink->setAttribute('navigable3d', $this->navigable3d);
 		}
 		if ($this->timeout !== null) {
 			$timeoutXml = $domDocument->createElement('timeout', $this->timeout);
-			$manialink->appendChild($timeoutXml);
+			$maniaLink->appendChild($timeoutXml);
 		}
 		foreach ($this->children as $child) {
 			$childXml = $child->render($domDocument);
-			$manialink->appendChild($childXml);
+			$maniaLink->appendChild($childXml);
 		}
 		if ($this->script) {
 			$scriptXml = $this->script->render($domDocument);
-			$manialink->appendChild($scriptXml);
+			$maniaLink->appendChild($scriptXml);
 		}
 		if ($isChild) {
-			return $manialink;
+			return $maniaLink;
 		}
 		if ($echo) {
 			header('Content-Type: application/xml');
