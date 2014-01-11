@@ -23,6 +23,7 @@ class Quad extends Control implements Actionable, BgColorable, Linkable, Scripta
 	protected $imageFocus = '';
 	protected $colorize = '';
 	protected $modulizeColor = '';
+	protected $autoScale = 1;
 	protected $action = '';
 	protected $bgColor = '';
 	protected $url = '';
@@ -83,6 +84,17 @@ class Quad extends Control implements Actionable, BgColorable, Linkable, Scripta
 	 */
 	public function setModulizeColor($modulizeColor) {
 		$this->modulizeColor = (string) $modulizeColor;
+		return $this;
+	}
+
+	/**
+	 * Enable or disable the automatic Image Scaling
+	 *
+	 * @param bool $autoScale Whether the Image should scale automatically
+	 * @return \FML\Controls\Quad
+	 */
+	public function setAutoScale($autoScale) {
+		$this->autoScale = ($autoScale ? 1 : 0);
 		return $this;
 	}
 
@@ -184,6 +196,9 @@ class Quad extends Control implements Actionable, BgColorable, Linkable, Scripta
 		}
 		if ($this->modulizeColor) {
 			$xmlElement->setAttribute('modulizecolor', $this->modulizeColor);
+		}
+		if (!$this->autoScale) {
+			$xmlElement->setAttribute('autoscale', $this->autoScale);
 		}
 		if ($this->action) {
 			$xmlElement->setAttribute('action', $this->action);
