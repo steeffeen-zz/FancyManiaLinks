@@ -25,6 +25,7 @@ class Label extends Control implements Actionable, Linkable, NewLineable, Script
 	protected $translate = 0;
 	protected $maxLines = -1;
 	protected $action = '';
+	protected $actionKey = -1;
 	protected $url = '';
 	protected $manialink = '';
 	protected $autoNewLine = 0;
@@ -108,6 +109,16 @@ class Label extends Control implements Actionable, Linkable, NewLineable, Script
 	 */
 	public function setAction($action) {
 		$this->action = (string) $action;
+		return $this;
+	}
+
+	/**
+	 *
+	 * @see \FML\Types\Actionable::setActionKey()
+	 * @return \FML\Controls\Label
+	 */
+	public function setActionKey($actionKey) {
+		$this->actionKey = (int) $actionKey;
 		return $this;
 	}
 
@@ -224,6 +235,9 @@ class Label extends Control implements Actionable, Linkable, NewLineable, Script
 		}
 		if ($this->action) {
 			$xmlElement->setAttribute('action', $this->action);
+		}
+		if ($this->actionKey >= 0) {
+			$xmlElement->setAttribute('actionkey', $this->actionKey);
 		}
 		if ($this->url) {
 			$xmlElement->setAttribute('url', $this->url);
