@@ -11,7 +11,7 @@ $script = $manialink->getScript();
 $mapInfoQuad = new \FML\Controls\Quads\Quad_Icons128x128_1();
 $manialink->add($mapInfoQuad);
 $mapInfoQuad->setSize(30, 30);
-$mapInfoQuad->setSubStyle($profileQuad::SUBSTYLE_Editor);
+$mapInfoQuad->setSubStyle($mapInfoQuad::SUBSTYLE_Editor);
 
 // Set map info link
 $script->addMapInfoButton($mapInfoQuad);
