@@ -8,11 +8,25 @@ namespace FML\Types;
  * @author steeffeen
  */
 interface Actionable {
+	/**
+	 * Constants
+	 */
+	const ACTIONKEY_F5 = 1;
+	const ACTIONKEY_F6 = 2;
+	const ACTIONKEY_F7 = 3;
+	const ACTIONKEY_F8 = 4;
 
 	/**
-	 * Set action
+	 * Set Action
 	 *
 	 * @param string $action Action Name
 	 */
 	public function setAction($action);
+
+	/**
+	 * Set Action Key
+	 *
+	 * @param int $actionKey Action Key Number
+	 */
+	public function setActionKey($actionKey);
 }
