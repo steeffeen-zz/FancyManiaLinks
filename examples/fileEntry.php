@@ -4,18 +4,18 @@
 require_once __DIR__ . '/../FML/autoload.php';
 
 // Create manialink
-$manialink = new \FML\ManiaLink();
+$maniaLink = new \FML\ManiaLink();
 
 // Create file entry element to allow uploading a file
 $fileEntry = new \FML\Controls\FileEntry();
-$manialink->add($fileEntry);
+$maniaLink->add($fileEntry);
 $fileEntry->setName('inputFile');
 // TODO: folder
 $fileEntry->setFolder('');
 
 // Add submit button
 $submitButton = new \FML\Controls\Quads\Quad_Icons64x64_1();
-$manialink->add($submitButton);
+$maniaLink->add($submitButton);
 $submitButton->setSize(10, 10);
 $submitButton->setX(40);
 $submitButton->setSubStyle($submitButton::SUBSTYLE_Outbox);
@@ -31,10 +31,10 @@ if (isset($_FILES['inputFile'])) {
 	
 	// Build output label
 	$outputLabel = new \FML\Controls\Label();
-	$manialink->add($outputLabel);
+	$maniaLink->add($outputLabel);
 	$outputLabel->setY(-30);
 	$outputLabel->setText("Size of Your uploaded File: {$fileSize} KB");
 }
 
 // Print xml
-$manialink->render(true);
+$maniaLink->render(true);

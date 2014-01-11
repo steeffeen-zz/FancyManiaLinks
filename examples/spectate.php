@@ -4,12 +4,12 @@
 require_once __DIR__ . '/../FML/autoload.php';
 
 // Create manialink
-$manialink = new \FML\ManiaLink();
-$script = $manialink->getScript();
+$maniaLink = new \FML\ManiaLink();
+$script = $maniaLink->getScript();
 
 // Create spectate button
 $spectateQuad = new \FML\Controls\Quads\Quad_Icons128x128_1();
-$manialink->add($spectateQuad);
+$maniaLink->add($spectateQuad);
 $spectateQuad->setSize(30, 30);
 $spectateQuad->setSubStyle($spectateQuad::SUBSTYLE_Profile);
 
@@ -17,4 +17,4 @@ $spectateQuad->setSubStyle($spectateQuad::SUBSTYLE_Profile);
 $script->addSpectateButton($spectateQuad, 'login');
 
 // Print xml
-$manialink->render(true);
+$maniaLink->render(true);

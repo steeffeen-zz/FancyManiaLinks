@@ -4,11 +4,11 @@
 require_once __DIR__ . '/../FML/autoload.php';
 
 // Create manialink
-$manialink = new FML\ManiaLink();
+$maniaLink = new FML\ManiaLink();
 
 // Create content frame
 $frame = new FML\Controls\Frame();
-$manialink->add($frame);
+$maniaLink->add($frame);
 
 // Create first label with various styling attributes
 $firstLabel = new FML\Controls\Labels\Label_Text();
@@ -25,4 +25,4 @@ $secondLabel->setX(20);
 $secondLabel->setText('Label 2');
 
 // Print xml
-$manialink->render(true);
+$maniaLink->render(true);

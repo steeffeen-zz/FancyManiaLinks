@@ -4,11 +4,11 @@
 require_once __DIR__ . '/../FML/autoload.php';
 
 // Create manialink
-$manialink = new FML\ManiaLink();
+$maniaLink = new FML\ManiaLink();
 
 // Create frame containing some elements
 $frame = new FML\Controls\Frame();
-$manialink->add($frame);
+$maniaLink->add($frame);
 
 // Add dark background for complete window
 $backgroundQuad = new FML\Controls\Quad();
@@ -76,4 +76,4 @@ for ($i = 1; $i <= 10; $i++) {
 }
 
 // Print xml
-echo $manialink;
+echo $maniaLink;

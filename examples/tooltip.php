@@ -4,27 +4,27 @@
 require_once __DIR__ . '/../FML/autoload.php';
 
 // Create manialink
-$manialink = new FML\ManiaLink();
+$maniaLink = new FML\ManiaLink();
 
 // Create quad for which a tooltip will be shown
 $quad = new FML\Controls\Quads\Quad_Emblems();
-$manialink->add($quad);
+$maniaLink->add($quad);
 $quad->setSize(50, 50);
 $quad->setSubStyle($quad::SUBSTYLE_1);
 
 // Create the tooltip quad
 $tooltipQuad = new FML\Controls\Quads\Quad_Emblems();
-$manialink->add($tooltipQuad);
+$maniaLink->add($tooltipQuad);
 $tooltipQuad->setPosition(50, 50);
 $tooltipQuad->setSize(50, 50);
 $tooltipQuad->setSubStyle($tooltipQuad::SUBSTYLE_2);
 
 // Create script
 $script = new FML\Script\Script();
-$manialink->setScript($script);
+$maniaLink->setScript($script);
 
 // Add tooltip
 $script->addTooltip($quad, $tooltipQuad);
 
 // Print xml
-$manialink->render(true);
+$maniaLink->render(true);

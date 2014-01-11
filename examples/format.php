@@ -4,11 +4,11 @@
 require_once __DIR__ . '/../FML/autoload.php';
 
 // Create manialink
-$manialink = new \FML\ManiaLink();
+$maniaLink = new \FML\ManiaLink();
 
 // Create frame containing some elements
 $frame = new \FML\Controls\Frame();
-$manialink->add($frame);
+$maniaLink->add($frame);
 
 // Create format element modifying the following labels
 $format = new \FML\Elements\Format();
@@ -30,4 +30,4 @@ for ($i = 1; $i <= 10; $i++) {
 }
 
 // Print xml
-$manialink->render(true);
+$maniaLink->render(true);
