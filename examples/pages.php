@@ -1,50 +1,47 @@
 <?php
-use FML\Controls\Quads\Quad_Emblems;
-use FML\Controls\Quads\Quad_Icons64x64_1;
 
 // Include FML
 require_once __DIR__ . '/../FML/autoload.php';
 
 // Create manialink
-$maniaLink = new FML\ManiaLink();
+$maniaLink = new \FML\ManiaLink();
 
 // Create paging buttons
-$leftPagerQuad = new Quad_Icons64x64_1();
+$leftPagerQuad = new \FML\Controls\Quads\Quad_Icons64x64_1();
 $maniaLink->add($leftPagerQuad);
 $leftPagerQuad->setPosition(-20, -30);
 $leftPagerQuad->setSize(10, 10);
-$leftPagerQuad->setSubStyle(Quad_Icons64x64_1::SUBSTYLE_ArrowPrev);
+$leftPagerQuad->setSubStyle($leftPagerQuad::SUBSTYLE_ArrowPrev);
 
-$rightPagerQuad = new Quad_Icons64x64_1();
+$rightPagerQuad = new \FML\Controls\Quads\Quad_Icons64x64_1();
 $maniaLink->add($rightPagerQuad);
 $rightPagerQuad->setPosition(20, -30);
 $rightPagerQuad->setSize(10, 10);
-$rightPagerQuad->setSubStyle(Quad_Icons64x64_1::SUBSTYLE_ArrowNext);
+$rightPagerQuad->setSubStyle($rightPagerQuad::SUBSTYLE_ArrowNext);
 
 // Create pages
-$page0 = new Quad_Emblems();
+$page0 = new \FML\Controls\Quads\Quad_Emblems();
 $maniaLink->add($page0);
 $page0->setSize(50, 50);
-$page0->setSubStyle(Quad_Emblems::SUBSTYLE_0);
+$page0->setSubStyle($page0::SUBSTYLE_0);
 
-$page1 = new Quad_Emblems();
+$page1 = new \FML\Controls\Quads\Quad_Emblems();
 $maniaLink->add($page1);
 $page1->setSize(50, 50);
-$page1->setSubStyle(Quad_Emblems::SUBSTYLE_1);
+$page1->setSubStyle($page1::SUBSTYLE_1);
 
-$page2 = new Quad_Emblems();
+$page2 = new \FML\Controls\Quads\Quad_Emblems();
 $maniaLink->add($page2);
 $page2->setSize(50, 50);
-$page2->setSubStyle(Quad_Emblems::SUBSTYLE_2);
+$page2->setSubStyle($page2::SUBSTYLE_2);
 
 // Create counter label (optional)
-$counterLabel = new FML\Controls\Label();
+$counterLabel = new \FML\Controls\Label();
 $maniaLink->add($counterLabel);
 $counterLabel->setY(-30);
 
 // Create script
-$script = new FML\Script\Script();
-$maniaLink->setScript($script);
+$script = $maniaLink->getScript();
 
 // Set pagers
 $script->addPager($leftPagerQuad, -1);

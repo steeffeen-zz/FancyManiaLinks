@@ -4,7 +4,7 @@
 require_once __DIR__ . '/../FML/autoload.php';
 
 // Create manialink
-$maniaLink = new FML\ManiaLink();
+$maniaLink = new \FML\ManiaLink();
 
 // Create video element to play a short animation
 $video = new \FML\Controls\Video();

@@ -4,7 +4,7 @@
 require_once __DIR__ . '/../FML/autoload.php';
 
 // Create customUI
-$customUI = new FML\CustomUI();
+$customUI = new \FML\CustomUI();
 
 // Disable various display settings
 $customUI->setChallengeInfoVisible(false);
