@@ -62,6 +62,19 @@ class ManiaLinks {
 	}
 
 	/**
+	 * Get the current CustomUI
+	 * 
+	 * @param bool $createIfEmpty (optional) Whether the CustomUI Object should be created if it's not set yet
+	 * @return \FML\CustomUI
+	 */
+	public function getCustomUI($createIfEmpty = true) {
+		if (!$this->customUI && $createIfEmpty) {
+			$this->customUI = new CustomUI();
+		}
+		return $this->customUI;
+	}
+
+	/**
 	 * Render the XML Document
 	 *
 	 * @param bool (optional) $echo Whether the XML Text should be echoed and the Content-Type Header should be set
@@ -80,7 +93,7 @@ class ManiaLinks {
 			$maniaLinks->appendChild($customUIXml);
 		}
 		if ($echo) {
-			header('Content-Type: application/xml');
+			header('Content-Type: application/xml; charset=utf-8;');
 			echo $domDocument->saveXML();
 		}
 		return $domDocument;

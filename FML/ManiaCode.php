@@ -275,7 +275,7 @@ class ManiaCode {
 			$maniaCode->appendChild($xmlElement);
 		}
 		if ($echo) {
-			header('Content-Type: application/xml');
+			header('Content-Type: application/xml; charset=utf-8;');
 			echo $domDocument->saveXML();
 		}
 		return $domDocument;

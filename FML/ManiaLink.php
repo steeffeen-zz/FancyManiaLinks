@@ -5,6 +5,7 @@ namespace FML;
 use FML\Types\Container;
 use FML\Types\Renderable;
 use FML\Script\Script;
+use FML\Elements\Dico;
 
 /**
  * Class representing a ManiaLink
@@ -23,6 +24,7 @@ class ManiaLink implements Container {
 	protected $navigable3d = 0;
 	protected $timeout = 0;
 	protected $children = array();
+	protected $dico = null;
 	protected $script = null;
 
 	/**
@@ -112,6 +114,30 @@ class ManiaLink implements Container {
 	}
 
 	/**
+	 * Set the Dictionary of the ManiaLink
+	 *
+	 * @param Dico $dico The Dictionary to use
+	 * @return \FML\ManiaLink
+	 */
+	public function setDico(Dico $dico) {
+		$this->dico = $dico;
+		return $this;
+	}
+
+	/**
+	 * Get the current Dictionary of the ManiaLink
+	 *
+	 * @param bool $createIfEmpty (optional) Whether the Dico Object should be created if it's not set yet
+	 * @return \FML\Elements\Dico
+	 */
+	public function getDico($createIfEmpty = true) {
+		if (!$this->dico && $createIfEmpty) {
+			$this->dico = new Dico();
+		}
+		return $this->dico;
+	}
+
+	/**
 	 * Set the Script of the ManiaLink
 	 *
 	 * @param Script $script The Script for the ManiaLink
@@ -125,7 +151,7 @@ class ManiaLink implements Container {
 	/**
 	 * Get the current Script of the ManiaLink
 	 *
-	 * @param string $createIfEmpty (optional) Whether the Script Object should be created if it's not set yet
+	 * @param bool $createIfEmpty (optional) Whether the Script Object should be created if it's not set yet
 	 * @return \FML\Script\Script
 	 */
 	public function getScript($createIfEmpty = true) {
@@ -171,6 +197,10 @@ class ManiaLink implements Container {
 			$childXml = $child->render($domDocument);
 			$maniaLink->appendChild($childXml);
 		}
+		if ($this->dico) {
+			$dicoXml = $this->dico->render($domDocument);
+			$maniaLink->appendChild($dicoXml);
+		}
 		if ($this->script) {
 			$scriptXml = $this->script->render($domDocument);
 			$maniaLink->appendChild($scriptXml);
@@ -179,7 +209,7 @@ class ManiaLink implements Container {
 			return $maniaLink;
 		}
 		if ($echo) {
-			header('Content-Type: application/xml');
+			header('Content-Type: application/xml; charset=utf-8;');
 			echo $domDocument->saveXML();
 		}
 		return $domDocument;
