@@ -177,19 +177,19 @@ class ManiaLink implements Container {
 		if (!$isChild) {
 			$domDocument->appendChild($maniaLink);
 		}
-		if ($this->id !== null) {
+		if ($this->id) {
 			$maniaLink->setAttribute('id', $this->id);
 		}
-		if ($this->version !== null) {
+		if ($this->version) {
 			$maniaLink->setAttribute('version', $this->version);
 		}
-		if ($this->background !== null) {
+		if ($this->background) {
 			$maniaLink->setAttribute('background', $this->background);
 		}
-		if ($this->navigable3d !== null) {
+		if ($this->navigable3d) {
 			$maniaLink->setAttribute('navigable3d', $this->navigable3d);
 		}
-		if ($this->timeout !== null) {
+		if ($this->timeout) {
 			$timeoutXml = $domDocument->createElement('timeout', $this->timeout);
 			$maniaLink->appendChild($timeoutXml);
 		}
