@@ -20,7 +20,9 @@ class Quad extends Control implements Actionable, BgColorable, Linkable, Scripta
 	 * Protected Properties
 	 */
 	protected $image = '';
+	protected $imageId = '';
 	protected $imageFocus = '';
+	protected $imageFocusId = '';
 	protected $colorize = '';
 	protected $modulizeColor = '';
 	protected $autoScale = 1;
@@ -56,6 +58,17 @@ class Quad extends Control implements Actionable, BgColorable, Linkable, Scripta
 	}
 
 	/**
+	 * Set Image Id to use from the Dico
+	 *
+	 * @param string $imageId Image Id
+	 * @return \FML\Controls\Quad
+	 */
+	public function setImageId($imageId) {
+		$this->imageId = (string) $imageId;
+		return $this;
+	}
+
+	/**
 	 * Set Focus Image Url
 	 *
 	 * @param string $imageFocus Focus Image Url
@@ -63,6 +76,17 @@ class Quad extends Control implements Actionable, BgColorable, Linkable, Scripta
 	 */
 	public function setImageFocus($imageFocus) {
 		$this->imageFocus = (string) $imageFocus;
+		return $this;
+	}
+
+	/**
+	 * Set Focus Image Id to use from the Dico
+	 *
+	 * @param string $imageFocusId Focus Image Id
+	 * @return \FML\Controls\Quad
+	 */
+	public function setImageFocusId($imageFocusId) {
+		$this->imageFocusId = (string) $imageFocusId;
 		return $this;
 	}
 
@@ -199,8 +223,14 @@ class Quad extends Control implements Actionable, BgColorable, Linkable, Scripta
 		if ($this->image) {
 			$xmlElement->setAttribute('image', $this->image);
 		}
+		if ($this->imageId) {
+			$xmlElement->setAttribute('imageid', $this->imageId);
+		}
 		if ($this->imageFocus) {
 			$xmlElement->setAttribute('imagefocus', $this->imageFocus);
+		}
+		if ($this->imageFocusId) {
+			$xmlElement->setAttribute('imagefocusid', $this->imageFocusId);
 		}
 		if ($this->colorize) {
 			$xmlElement->setAttribute('colorize', $this->colorize);

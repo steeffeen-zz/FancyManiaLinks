@@ -20,6 +20,7 @@ class Label extends Control implements Actionable, Linkable, NewLineable, Script
 	 * Protected Properties
 	 */
 	protected $text = '';
+	protected $textId = '';
 	protected $textPrefix = '';
 	protected $textEmboss = 0;
 	protected $translate = 0;
@@ -58,6 +59,15 @@ class Label extends Control implements Actionable, Linkable, NewLineable, Script
 		return $this;
 	}
 
+	/**
+	 * Set Text Id to use from the Dico
+	 * @param string $textId Text Id
+	 * @return \FML\Controls\Label
+	 */
+	public function setTextId($textId) {
+		$this->textId = (string) $textId;
+		return $this;
+	}
 	/**
 	 * Set Text Prefix
 	 *
@@ -220,6 +230,9 @@ class Label extends Control implements Actionable, Linkable, NewLineable, Script
 		$xmlElement = parent::render($domDocument);
 		if ($this->text) {
 			$xmlElement->setAttribute('text', $this->text);
+		}
+		if ($this->textId) {
+			$xmlElement->setAttribute('textid', $this->textId);
 		}
 		if ($this->textPrefix) {
 			$xmlElement->setAttribute('textprefix', $this->textPrefix);

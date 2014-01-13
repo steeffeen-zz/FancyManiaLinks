@@ -21,6 +21,7 @@ class Format implements BgColorable, Renderable, Styleable, TextFormatable {
 	protected $style = '';
 	protected $textSize = -1;
 	protected $textColor = '';
+	// TODO: validate attribute names, check if focusareacolor1 and focusareacolor2 apply
 	protected $areaColor = '';
 	protected $areaFocusColor = '';
 
