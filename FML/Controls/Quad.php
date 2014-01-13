@@ -30,7 +30,9 @@ class Quad extends Control implements Actionable, BgColorable, Linkable, Scripta
 	protected $actionKey = -1;
 	protected $bgColor = '';
 	protected $url = '';
+	protected $urlId = '';
 	protected $manialink = '';
+	protected $manialinkId = '';
 	protected $scriptEvents = 0;
 	protected $style = '';
 	protected $subStyle = '';
@@ -165,11 +167,31 @@ class Quad extends Control implements Actionable, BgColorable, Linkable, Scripta
 
 	/**
 	 *
+	 * @see \FML\Types\Linkable::setUrlId()
+	 * @return \FML\Controls\Quad
+	 */
+	public function setUrlId($urlId) {
+		$this->urlId = (string) $urlId;
+		return $this;
+	}
+
+	/**
+	 *
 	 * @see \FML\Types\Linkable::setManialink()
 	 * @return \FML\Controls\Quad
 	 */
 	public function setManialink($manialink) {
 		$this->manialink = (string) $manialink;
+		return $this;
+	}
+
+	/**
+	 *
+	 * @see \FML\Types\Linkable::setManialinkId()
+	 * @return \FML\Controls\Quad
+	 */
+	public function setManialinkId($manialinkId) {
+		$this->manialinkId = (string) $manialinkId;
 		return $this;
 	}
 

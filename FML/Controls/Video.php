@@ -16,6 +16,7 @@ class Video extends Control implements Playable, Scriptable {
 	 * Protected Properties
 	 */
 	protected $data = '';
+	protected $dataId = '';
 	protected $play = 0;
 	protected $looping = 0;
 	protected $music = 0;
@@ -39,6 +40,16 @@ class Video extends Control implements Playable, Scriptable {
 	 */
 	public function setData($data) {
 		$this->data = (string) $data;
+		return $this;
+	}
+
+	/**
+	 *
+	 * @see \FML\Types\Playable::setDataId()
+	 * @return \FML\Controls\Video
+	 */
+	public function setDataId($dataId) {
+		$this->dataId = (string) $dataId;
 		return $this;
 	}
 

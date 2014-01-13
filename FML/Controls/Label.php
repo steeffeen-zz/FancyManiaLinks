@@ -28,7 +28,9 @@ class Label extends Control implements Actionable, Linkable, NewLineable, Script
 	protected $action = '';
 	protected $actionKey = -1;
 	protected $url = '';
+	protected $urlId = '';
 	protected $manialink = '';
+	protected $manialinkId = '';
 	protected $autoNewLine = 0;
 	protected $scriptEvents = 0;
 	protected $style = '';
@@ -61,6 +63,7 @@ class Label extends Control implements Actionable, Linkable, NewLineable, Script
 
 	/**
 	 * Set Text Id to use from the Dico
+	 *
 	 * @param string $textId Text Id
 	 * @return \FML\Controls\Label
 	 */
@@ -68,6 +71,7 @@ class Label extends Control implements Actionable, Linkable, NewLineable, Script
 		$this->textId = (string) $textId;
 		return $this;
 	}
+
 	/**
 	 * Set Text Prefix
 	 *
@@ -144,11 +148,31 @@ class Label extends Control implements Actionable, Linkable, NewLineable, Script
 
 	/**
 	 *
+	 * @see \FML\Types\Linkable::setUrlId()
+	 * @return \FML\Controls\Label
+	 */
+	public function setUrlId($urlId) {
+		$this->urlId = (string) $urlId;
+		return $this;
+	}
+
+	/**
+	 *
 	 * @see \FML\Types\Linkable::setManialink()
 	 * @return \FML\Controls\Label
 	 */
 	public function setManialink($manialink) {
 		$this->manialink = (string) $manialink;
+		return $this;
+	}
+
+	/**
+	 *
+	 * @see \FML\Types\Linkable::setManialinkId()
+	 * @return \FML\Controls\Label
+	 */
+	public function setManialinkId($manialinkId) {
+		$this->manialinkId = (string) $manialinkId;
 		return $this;
 	}
 
