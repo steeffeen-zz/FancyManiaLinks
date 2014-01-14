@@ -17,6 +17,22 @@ class ManiaLinks {
 	protected $customUI = null;
 
 	/**
+	 * Create a new ManiaLinks Object
+	 *
+	 * @return \FML\ManiaLinks
+	 */
+	public static function create() {
+		$maniaLinks = new ManiaLinks();
+		return $maniaLinks;
+	}
+
+	/**
+	 * Construct a new ManiaLinks Object
+	 */
+	public function __construct() {
+	}
+
+	/**
 	 * Set XML Encoding
 	 *
 	 * @param string $encoding XML Encoding
@@ -63,7 +79,7 @@ class ManiaLinks {
 
 	/**
 	 * Get the current CustomUI
-	 * 
+	 *
 	 * @param bool $createIfEmpty (optional) Whether the CustomUI Object should be created if it's not set yet
 	 * @return \FML\CustomUI
 	 */

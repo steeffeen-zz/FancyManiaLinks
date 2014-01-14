@@ -5,7 +5,7 @@ namespace FML\Controls;
 use FML\Types\Scriptable;
 
 /**
- * Frame3d Element
+ * Frame3d Control
  * (CMlFrame)
  *
  * @author steeffeen
@@ -16,6 +16,17 @@ class Frame3d extends Frame implements Scriptable {
 	 */
 	protected $style3d = '';
 	protected $scriptEvents = 0;
+
+	/**
+	 * Create a new Frame3d Control
+	 *
+	 * @param string $id (optional) Control Id
+	 * @return \FML\Controls\Frame3d
+	 */
+	public static function create($id = null) {
+		$frame3d = new Frame3d($id);
+		return $frame3d;
+	}
 
 	/**
 	 * Construct a new Frame3d Control

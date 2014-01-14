@@ -5,7 +5,7 @@ namespace FML\Controls;
 use FML\Types\Styleable;
 
 /**
- * Gauge Element
+ * Gauge Control
  * (CMlGauge)
  *
  * @author steeffeen
@@ -24,6 +24,17 @@ class Gauge extends Control implements Styleable {
 	protected $drawBg = 1;
 	protected $drawBlockBg = 1;
 	protected $style = '';
+
+	/**
+	 * Create a new Gauge Control
+	 *
+	 * @param string $id (optional) Control Id
+	 * @return \FML\Controls\Gauge
+	 */
+	public static function create($id = null) {
+		$gauge = new Gauge($id);
+		return $gauge;
+	}
 
 	/**
 	 * Construct a new Gauge Control

@@ -6,7 +6,7 @@ use FML\Types\Playable;
 use FML\Types\Scriptable;
 
 /**
- * Video Element
+ * Video Control
  * (CMlMediaPlayer)
  *
  * @author steeffeen
@@ -22,6 +22,17 @@ class Video extends Control implements Playable, Scriptable {
 	protected $music = 0;
 	protected $volume = 1.;
 	protected $scriptEvents = 0;
+
+	/**
+	 * Create a new Video Control
+	 *
+	 * @param string $id (optional) Control Id
+	 * @return \FML\Controls\Video
+	 */
+	public static function create($id = null) {
+		$video = new Video($id);
+		return $video;
+	}
 
 	/**
 	 * Construct a new Video Control

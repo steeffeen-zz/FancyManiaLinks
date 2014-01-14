@@ -6,7 +6,7 @@ use FML\Types\Playable;
 use FML\Types\Scriptable;
 
 /**
- * Audio Element
+ * Audio Control
  * (CMlMediaPlayer)
  *
  * @author steeffeen
@@ -22,6 +22,17 @@ class Audio extends Control implements Playable, Scriptable {
 	protected $music = 0;
 	protected $volume = 1.;
 	protected $scriptEvents = 0;
+
+	/**
+	 * Create a new Audio Control
+	 *
+	 * @param string $id (optional) Control Id
+	 * @return \FML\Controls\Audio
+	 */
+	public static function create($id = null) {
+		$audio = new Audio($id);
+		return $audio;
+	}
 
 	/**
 	 * Construct a new Audio Control

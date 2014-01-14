@@ -8,7 +8,7 @@ use FML\Types\Styleable;
 use FML\Types\TextFormatable;
 
 /**
- * Entry Element
+ * Entry Control
  * (CMlEntry)
  *
  * @author steeffeen
@@ -26,6 +26,17 @@ class Entry extends Control implements NewLineable, Scriptable, Styleable, TextF
 	protected $textSize = -1;
 	protected $areaColor = '';
 	protected $areaFocusColor = '';
+
+	/**
+	 * Create a new Entry Control
+	 *
+	 * @param string $id (optional) Control Id
+	 * @return \FML\Controls\Entry
+	 */
+	public static function create($id = null) {
+		$entry = new Entry($id);
+		return $entry;
+	}
 
 	/**
 	 * Construct a new Entry Control

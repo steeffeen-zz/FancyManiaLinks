@@ -6,7 +6,7 @@ use FML\Types\Container;
 use FML\Types\Renderable;
 
 /**
- * Frame Element
+ * Frame Control
  * (CMlFrame)
  *
  * @author steeffeen
@@ -16,6 +16,17 @@ class Frame extends Control implements Container {
 	 * Protected Properties
 	 */
 	protected $children = array();
+
+	/**
+	 * Create a new Frame Control
+	 *
+	 * @param string $id (optional) Control Id
+	 * @return \FML\Controls\Frame
+	 */
+	public static function create($id = null) {
+		$frame = new Frame($id);
+		return $frame;
+	}
 
 	/**
 	 * Construct a new Frame Control

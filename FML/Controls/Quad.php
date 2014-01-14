@@ -10,7 +10,7 @@ use FML\Types\Styleable;
 use FML\Types\SubStyleable;
 
 /**
- * Quad Element
+ * Quad Control
  * (CMlQuad)
  *
  * @author steeffeen
@@ -36,6 +36,17 @@ class Quad extends Control implements Actionable, BgColorable, Linkable, Scripta
 	protected $scriptEvents = 0;
 	protected $style = '';
 	protected $subStyle = '';
+
+	/**
+	 * Create a new Quad Control
+	 *
+	 * @param string $id (optional) Control Id
+	 * @return \FML\Controls\Quad
+	 */
+	public static function create($id = null) {
+		$quad = new Quad($id);
+		return $quad;
+	}
 
 	/**
 	 * Construct a new Quad Control

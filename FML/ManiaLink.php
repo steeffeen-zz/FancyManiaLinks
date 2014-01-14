@@ -28,12 +28,25 @@ class ManiaLink implements Container {
 	protected $script = null;
 
 	/**
-	 * Create a new ManiaLink
+	 * Create a new ManiaLink Object
 	 *
-	 * @param string $id Manialink Id
+	 * @param string $id (optional) Manialink Id
+	 * @return \FML\ManiaLink
+	 */
+	public static function create($id = null) {
+		$maniaLink = new ManiaLink($id);
+		return $maniaLink;
+	}
+
+	/**
+	 * Construct a new ManiaLink Object
+	 *
+	 * @param string $id (optional) Manialink Id
 	 */
 	public function __construct($id = null) {
-		$this->setId($id);
+		if ($id !== null) {
+			$this->setId($id);
+		}
 	}
 
 	/**

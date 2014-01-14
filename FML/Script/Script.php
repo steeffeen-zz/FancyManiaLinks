@@ -3,8 +3,8 @@
 namespace FML\Script;
 
 use FML\Controls\Control;
-use FML\Types\Scriptable;
 use FML\Controls\Label;
+use FML\Types\Scriptable;
 
 /**
  * Class representing the ManiaLink Script
@@ -59,6 +59,22 @@ class Script {
 	protected $sounds = array();
 	protected $toggles = false;
 	protected $spectate = false;
+
+	/**
+	 * Create a new Script Object
+	 *
+	 * @return \FML\Script\Script
+	 */
+	public static function create() {
+		$script = new Script();
+		return $script;
+	}
+
+	/**
+	 * Construct a new Script Object
+	 */
+	public function __construct() {
+	}
 
 	/**
 	 * Set an Include of the Script

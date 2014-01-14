@@ -23,6 +23,22 @@ class CustomUI {
 	protected $globalVisible = null;
 
 	/**
+	 * Create a new CustomUI Object
+	 *
+	 * @return \FML\CustomUI
+	 */
+	public static function create() {
+		$customUI = new CustomUI();
+		return $customUI;
+	}
+
+	/**
+	 * Construct a new CustomUI Object
+	 */
+	public function __construct() {
+	}
+
+	/**
 	 * Set XML Encoding
 	 *
 	 * @param string $encoding XML Encoding

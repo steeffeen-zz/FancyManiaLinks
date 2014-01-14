@@ -24,6 +24,22 @@ class Format implements BgColorable, Renderable, Styleable, TextFormatable {
 	// TODO: validate attribute names, check if focusareacolor1 and focusareacolor2 apply
 	protected $areaColor = '';
 	protected $areaFocusColor = '';
+	
+	/**
+	 * Create a new Format Element
+	 * 
+	 * @return \FML\Elements\Format
+	 */
+	public static function create(){
+		$format = new Format();
+		return $format;
+	}
+
+	/**
+	 * Construct a new Format Element
+	 */
+	public function __construct() {
+	}
 
 	/**
 	 *

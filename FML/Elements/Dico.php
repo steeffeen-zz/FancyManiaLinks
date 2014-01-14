@@ -40,6 +40,22 @@ class Dico {
 	protected $entries = array();
 
 	/**
+	 * Create a new Dictionary Object
+	 *
+	 * @return \FML\Elements\Dico
+	 */
+	public static function create() {
+		$dico = new Dico();
+		return $dico;
+	}
+
+	/**
+	 * Construct a new Dictionary Object
+	 */
+	public function __construct() {
+	}
+
+	/**
 	 * Set the translatable Entry for the specific Language
 	 *
 	 * @param string $language Language Id

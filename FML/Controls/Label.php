@@ -10,7 +10,7 @@ use FML\Types\Styleable;
 use FML\Types\TextFormatable;
 
 /**
- * Label Element
+ * Label Control
  * (CMlLabel)
  *
  * @author steeffeen
@@ -38,6 +38,17 @@ class Label extends Control implements Actionable, Linkable, NewLineable, Script
 	protected $textColor = '';
 	protected $areaColor = '';
 	protected $areaFocusColor = '';
+
+	/**
+	 * Create a new Label Control
+	 *
+	 * @param string $id (optional) Control Id
+	 * @return \FML\Controls\Label
+	 */
+	public static function create($id = null) {
+		$label = new Label($id);
+		return $label;
+	}
 
 	/**
 	 * Construct a new Label Control
