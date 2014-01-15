@@ -43,7 +43,7 @@ class Frame extends Control implements Container {
 	 * @see \FML\Types\Container::add()
 	 * @return \FML\Controls\Frame
 	 */
-	public function add(Renderable $child) {
+	public function add(Control $child) {
 		if (!in_array($child, $this->children, true)) {
 			array_push($this->children, $child);
 		}

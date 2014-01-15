@@ -2,19 +2,21 @@
 
 namespace FML\Types;
 
+use FML\Controls\Control;
+
 /**
- * Interface for Elements being able to contain other Elements
+ * Interface for Element being able to contain other Controls
  *
  * @author steeffeen
  */
 interface Container {
 
 	/**
-	 * Add a new Child
+	 * Add a new Child Control
 	 *
-	 * @param Renderable $child The Child Element to add
+	 * @param Control $child The Child Control to add
 	 */
-	public function add(Renderable $child);
+	public function add(Control $child);
 
 	/**
 	 * Remove all Children

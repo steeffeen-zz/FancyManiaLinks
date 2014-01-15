@@ -2,7 +2,6 @@
 
 namespace FML;
 
-use FML\Types\Container;
 use FML\Types\Renderable;
 use FML\Script\Script;
 use FML\Elements\Dico;
@@ -12,7 +11,7 @@ use FML\Elements\Dico;
  *
  * @author steeffeen
  */
-class ManiaLink implements Container {
+class ManiaLink {
 	/**
 	 * Protected Properties
 	 */
@@ -105,8 +104,8 @@ class ManiaLink implements Container {
 	}
 
 	/**
+	 * Add an Element to the ManiaLink
 	 *
-	 * @see \FML\Types\Container::add()
 	 * @return \FML\ManiaLink
 	 */
 	public function add(Renderable $child) {
@@ -117,8 +116,8 @@ class ManiaLink implements Container {
 	}
 
 	/**
-	 *
-	 * @see \FML\Types\Container::removeChildren()
+	 * Remove all Elements from the ManiaLinks
+	 * 
 	 * @return \FML\ManiaLink
 	 */
 	public function removeChildren() {
