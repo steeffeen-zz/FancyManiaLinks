@@ -435,12 +435,12 @@ class Script {
 		$count = count($this->tooltipTexts);
 		if ($count > 0) {
 			foreach ($this->tooltipTexts as $tooltipId => $tooltipTexts) {
-				$constantText .= '"' . $tooltipId . '" => [';
+				$constantText .= '"' . Builder::escapeText($tooltipId) . '" => [';
 				$subIndex = 0;
 				$subCount = count($tooltipTexts);
 				if ($subCount > 0) {
 					foreach ($tooltipTexts as $hoverId => $text) {
-						$constantText .= '"' . $hoverId . '" => "' . $text . '"';
+						$constantText .= '"' . Builder::escapeText($hoverId) . '" => "' . Builder::escapeText($text) . '"';
 						if ($subIndex < $subCount - 1) $constantText .= ', ';
 						$subIndex++;
 					}
