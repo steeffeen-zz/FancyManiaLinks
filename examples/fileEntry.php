@@ -19,8 +19,8 @@ $maniaLink->add($submitButton);
 $submitButton->setSize(10, 10);
 $submitButton->setX(40);
 $submitButton->setSubStyle($submitButton::SUBSTYLE_Outbox);
-// TODO: $_SERVER variable for url?
-$submitButton->setUrl('http://fml.steeffeen.com/examples/fileEntry.php');
+$submitUrl = $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+$submitButton->setUrl($submitUrl);
 
 // Display information about uploaded file
 if (isset($_FILES['inputFile'])) {
