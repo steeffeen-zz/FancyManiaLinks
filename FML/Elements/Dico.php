@@ -9,29 +9,144 @@ namespace FML\Elements;
  */
 class Dico {
 	/**
-	 * Constants
+	 * Czech Language
+	 *
+	 * @var string
 	 */
-	// TODO: constants with full language names
-	const LANG_CZ = 'cz';
-	const LANG_DA = 'da';
-	const LANG_DE = 'de';
-	const LANG_EN = 'en';
-	const LANG_ES = 'es';
-	const LANG_FR = 'fr';
-	const LANG_HU = 'hu';
-	const LANG_IT = 'it';
-	const LANG_JP = 'jp';
-	const LANG_KR = 'kr';
-	const LANG_NB = 'nb';
-	const LANG_NL = 'nl';
-	const LANG_PL = 'pl';
-	const LANG_PT = 'pt';
-	const LANG_PT_BR = 'pt_BR';
-	const LANG_RO = 'ro';
-	const LANG_RU = 'ru';
-	const LANG_SK = 'sk';
-	const LANG_TR = 'tr';
-	const LANG_ZH = 'zh';
+	const LANG_CZECH = 'cz';
+	
+	/**
+	 * Danish Language
+	 *
+	 * @var string
+	 */
+	const LANG_DANISH = 'da';
+	
+	/**
+	 * German Language
+	 *
+	 * @var string
+	 */
+	const LANG_GERMAN = 'de';
+	
+	/**
+	 * English Language
+	 *
+	 * @var string
+	 */
+	const LANG_ENGLISH = 'en';
+	
+	/**
+	 * Spanish Language
+	 *
+	 * @var string
+	 */
+	const LANG_SPANISH = 'es';
+	
+	/**
+	 * French Language
+	 *
+	 * @var string
+	 */
+	const LANG_FRENCH = 'fr';
+	
+	/**
+	 * Hungarian Language
+	 *
+	 * @var string
+	 */
+	const LANG_HUNGARIAN = 'hu';
+	
+	/**
+	 * Italian Language
+	 *
+	 * @var string
+	 */
+	const LANG_ITALIAN = 'it';
+	
+	/**
+	 * Japanese Language
+	 *
+	 * @var string
+	 */
+	const LANG_JAPANESE = 'jp';
+	
+	/**
+	 * Korean Language
+	 *
+	 * @var string
+	 */
+	const LANG_KOREAN = 'kr';
+	
+	/**
+	 * Norwegian Language
+	 *
+	 * @var string
+	 */
+	const LANG_NORWEGIAN = 'nb';
+	
+	/**
+	 * Dutch Language
+	 *
+	 * @var string
+	 */
+	const LANG_DUTCH = 'nl';
+	
+	/**
+	 * Polish Language
+	 *
+	 * @var string
+	 */
+	const LANG_POLISH = 'pl';
+	
+	/**
+	 * Portuguese Language
+	 *
+	 * @var string
+	 */
+	const LANG_PORTUGUESE = 'pt';
+	
+	/**
+	 * Brazilian Portuguese Language
+	 *
+	 * @var string
+	 */
+	const LANG_BRAZILIAN_PORTUGUESE = 'pt_BR';
+	
+	/**
+	 * Romanian Language
+	 *
+	 * @var string
+	 */
+	const LANG_ROMANIAN = 'ro';
+	
+	/**
+	 * Russian Language
+	 *
+	 * @var string
+	 */
+	const LANG_RUSSIAN = 'ru';
+	
+	/**
+	 * Slovak Language
+	 *
+	 * @var string
+	 */
+	const LANG_SLOVAK = 'sk';
+	
+	/**
+	 * Turkish Language
+	 *
+	 * @var string
+	 */
+	const LANG_TURKISH = 'tr';
+	
+	/**
+	 * Chinese Language
+	 *
+	 * @var string
+	 */
+	const LANG_CHINESE = 'zh';
 	
 	/**
 	 * Protected Properties
