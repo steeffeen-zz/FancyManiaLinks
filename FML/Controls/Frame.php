@@ -4,6 +4,8 @@ namespace FML\Controls;
 
 use FML\Types\Container;
 use FML\Types\Renderable;
+use FML\Elements\Format;
+use FML\Elements\FrameModel;
 
 /**
  * Frame Control
@@ -16,6 +18,7 @@ class Frame extends Control implements Container {
 	 * Protected Properties
 	 */
 	protected $children = array();
+	protected $format = null;
 
 	/**
 	 * Create a new Frame Control
@@ -62,10 +65,35 @@ class Frame extends Control implements Container {
 
 	/**
 	 *
+	 * @see \FML\Types\Container::setFormat()
+	 * @return \FML\Controls\Frame
+	 */
+	public function setFormat(Format $format) {
+		$this->format = $format;
+		return $this;
+	}
+
+	/**
+	 *
+	 * @see \FML\Types\Container::getFormat()
+	 */
+	public function getFormat($createIfEmpty = true) {
+		if (!$this->format && $createIfEmpty) {
+			$this->format = new Format();
+		}
+		return $this->format;
+	}
+
+	/**
+	 *
 	 * @see \FML\Renderable::render()
 	 */
 	public function render(\DOMDocument $domDocument) {
 		$xmlElement = parent::render($domDocument);
+		if ($this->format) {
+			$formatXml = $this->format->render($domDocument);
+			$xmlElement->appendChild($formatXml);
+		}
 		foreach ($this->children as $child) {
 			$childXmlElement = $child->render($domDocument);
 			$xmlElement->appendChild($childXmlElement);

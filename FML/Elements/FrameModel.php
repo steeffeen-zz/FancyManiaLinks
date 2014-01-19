@@ -2,21 +2,23 @@
 
 namespace FML\Elements;
 
-use FML\Types\Renderable;
 use FML\Controls\Control;
+use FML\Types\Container;
+use FML\Types\Renderable;
 
 /**
  * Class representing a Frame Model
  *
  * @author steeffeen
  */
-class FrameModel implements Renderable {
+class FrameModel implements Container, Renderable {
 	/**
 	 * Protected Properties
 	 */
 	protected $tagName = 'framemodel';
 	protected $id = '';
 	protected $children = array();
+	protected $format = null;
 
 	/**
 	 * Set Model Id
@@ -51,12 +53,11 @@ class FrameModel implements Renderable {
 	}
 
 	/**
-	 * Add a Control to the Model
 	 *
-	 * @param Control $childControl New Child Control to add
+	 * @see \FML\Types\Container::add()
 	 * @return \FML\Elements\FrameModel
 	 */
-	public function addChild(Control $childControl) {
+	public function add(Control $childControl) {
 		if (!in_array($childControl, $this->children, true)) {
 			array_push($this->children, $childControl);
 		}
@@ -64,13 +65,34 @@ class FrameModel implements Renderable {
 	}
 
 	/**
-	 * Remove all Controls from the Model
 	 *
+	 * @see \FML\Types\Container::removeChildren()
 	 * @return \FML\Elements\FrameModel
 	 */
 	public function removeChildren() {
 		$this->children = array();
 		return $this;
+	}
+
+	/**
+	 *
+	 * @see \FML\Types\Container::setFormat()
+	 * @return \FML\Elements\FrameModel
+	 */
+	public function setFormat(Format $format) {
+		$this->format = $format;
+		return $this;
+	}
+
+	/**
+	 *
+	 * @see \FML\Types\Container::getFormat()
+	 */
+	public function getFormat($createIfEmpty = true) {
+		if (!$this->format && $createIfEmpty) {
+			$this->format = new Format();
+		}
+		return $this->format;
 	}
 
 	/**
@@ -81,6 +103,10 @@ class FrameModel implements Renderable {
 		$xmlElement = $domDocument->createElement($this->tagName);
 		$this->checkId();
 		$xmlElement->setAttribute('id', $this->getId());
+		if ($this->format) {
+			$formatXml = $this->format->render($domDocument);
+			$xmlElement->appendChild($formatXml);
+		}
 		foreach ($this->children as $child) {
 			$childElement = $child->render($domDocument);
 			$xmlElement->appendChild($childElement);
