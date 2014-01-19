@@ -10,12 +10,12 @@ use FML\Types\Styleable;
  *
  * @author steeffeen
  */
+// TODO: gauge styles
 class Gauge extends Control implements Styleable {
 	/**
 	 * Protected Properties
 	 */
-	protected $ratio = 1.;
-	// TODO: validate grading
+	protected $ratio = 0.;
 	protected $grading = 1.;
 	protected $color = '';
 	protected $rotation = 0.;
@@ -150,9 +150,12 @@ class Gauge extends Control implements Styleable {
 	 */
 	public function render(\DOMDocument $domDocument) {
 		$xmlElement = parent::render($domDocument);
-		// TODO: validate default values
-		$xmlElement->setAttribute('ratio', $this->ratio);
-		$xmlElement->setAttribute('grading', $this->grading);
+		if ($this->ratio) {
+			$xmlElement->setAttribute('ratio', $this->ratio);
+		}
+		if ($this->grading != 1.) {
+			$xmlElement->setAttribute('grading', $this->grading);
+		}
 		if ($this->color) {
 			$xmlElement->setAttribute('color', $this->color);
 		}
@@ -165,8 +168,12 @@ class Gauge extends Control implements Styleable {
 		if ($this->clan) {
 			$xmlElement->setAttribute('clan', $this->clan);
 		}
-		$xmlElement->setAttribute('drawbg', $this->drawBg);
-		$xmlElement->setAttribute('drawblockbg', $this->drawBlockBg);
+		if (!$this->drawBg) {
+			$xmlElement->setAttribute('drawbg', $this->drawBg);
+		}
+		if (!$this->drawBlockBg) {
+			$xmlElement->setAttribute('drawblockbg', $this->drawBlockBg);
+		}
 		if ($this->style) {
 			$xmlElement->setAttribute('style', $this->style);
 		}
