@@ -15,7 +15,7 @@ class Frame3d extends Frame implements Scriptable {
 	/**
 	 * Protected Properties
 	 */
-	protected $style = '';
+	protected $style3dId = '';
 	protected $style3d = null;
 	protected $scriptEvents = 0;
 
@@ -41,13 +41,13 @@ class Frame3d extends Frame implements Scriptable {
 	}
 
 	/**
-	 * Set Style Id
+	 * Set Style3d Id
 	 *
-	 * @param string $style Style3d Id
+	 * @param string $style3dId Style3d Id
 	 * @return \FML\Controls\Frame3d
 	 */
-	public function setStyle($style3d) {
-		$this->style = (string) $style3d;
+	public function setStyle3dId($style3dId) {
+		$this->style3dId = (string) $style3dId;
 		$this->style3d = null;
 		return $this;
 	}
@@ -84,10 +84,8 @@ class Frame3d extends Frame implements Scriptable {
 			$this->style3d->checkId();
 			$xmlElement->setAttribute('style3d', $this->style3d->getId());
 		}
-		else {
-			if ($this->style) {
-				$xmlElement->setAttribute('style3d', $this->style);
-			}
+		else if ($this->style3dId) {
+			$xmlElement->setAttribute('style3d', $this->style3dId);
 		}
 		if ($this->scriptEvents) {
 			$xmlElement->setAttribute('scriptevents', $this->scriptEvents);
