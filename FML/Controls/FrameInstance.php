@@ -11,7 +11,6 @@ use FML\Types\Renderable;
  *
  * @author steeffeen
  */
-// TODO: check if control id will be modelid or own id
 class FrameInstance extends Control {
 	/**
 	 * Protected Properties
@@ -23,21 +22,22 @@ class FrameInstance extends Control {
 	 * Create a new Frame Instance
 	 *
 	 * @param string $modelId (optional) Frame Model Id
+	 * @param string $controlId (optional) Control Id
 	 * @return \FML\Controls\Frame
 	 */
-	public static function create($modelId = null) {
-		$frameInstance = new FrameInstance($modelId);
+	public static function create($modelId = null, $controlId = null) {
+		$frameInstance = new FrameInstance($modelId, $controlId);
 		return $frameInstance;
 	}
 
 	/**
 	 * Construct a new Frame Instance
 	 *
-	 * @param string $id (optional) Control Id
 	 * @param string $modelId (optional) Frame Model Id
+	 * @param string $controlId (optional) Control Id
 	 */
-	public function __construct($modelId = null) {
-		parent::__construct(null);
+	public function __construct($modelId = null, $controlId = null) {
+		parent::__construct($controlId);
 		$this->tagName = 'frameinstance';
 		if ($modelId !== null) {
 			$this->setModelId($modelId);
