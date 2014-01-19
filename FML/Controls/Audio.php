@@ -126,7 +126,7 @@ class Audio extends Control implements Playable, Scriptable {
 		if ($this->play) {
 			$xmlElement->setAttribute('play', $this->play);
 		}
-		if ($this->looping) {
+		if (!$this->looping) {
 			$xmlElement->setAttribute('looping', $this->looping);
 		}
 		if ($this->music) {

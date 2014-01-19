@@ -22,14 +22,14 @@ class Style3d {
 	 */
 	protected $tagName = 'style3d';
 	protected $id = '';
-	protected $model = '';
-	// TODO: check what happens for negative values + rendering
+	protected $model = self::MODEL_Box;
+	// TODO: check what happens for negative thickness values + adapt rendering
 	protected $thickness = null;
 	protected $color = '';
 	protected $focusColor = '';
 	protected $lightColor = '';
 	protected $focusLightColor = '';
-	// TODO: check offset value ranges + rendering
+	// TODO: check offset value ranges + apapt rendering
 	protected $yOffset = 0.;
 	protected $focusYOffset = 0.;
 	protected $zOffset = 0.;
