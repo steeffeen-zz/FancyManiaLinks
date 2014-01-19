@@ -281,6 +281,7 @@ class ManiaCode {
 	 */
 	public function render($echo = false) {
 		$domDocument = new \DOMDocument('1.0', $this->encoding);
+		$domDocument->xmlStandalone = true;
 		$maniaCode = $domDocument->createElement($this->tagName);
 		$domDocument->appendChild($maniaCode);
 		if ($this->noConfirmation) {

@@ -16,7 +16,6 @@ class ManiaLink {
 	/**
 	 * Constants
 	 */
-	// TODO: validate backgrounds
 	const BACKGROUND_0 = '0';
 	const BACKGROUND_STARS = 'stars';
 	const BACKGROUND_STATIONS = 'stations';
@@ -173,7 +172,7 @@ class ManiaLink {
 
 	/**
 	 * Get the Stylesheet of the ManiaLink
-	 * 
+	 *
 	 * @param bool $createIfEmpty (optional) Whether the Script Object should be created if it's not set yet
 	 * @return \FML\Stylesheet\Stylesheet
 	 */
@@ -219,6 +218,7 @@ class ManiaLink {
 		$isChild = (bool) $domDocument;
 		if (!$isChild) {
 			$domDocument = new \DOMDocument('1.0', $this->encoding);
+			$domDocument->xmlStandalone = true;
 		}
 		$maniaLink = $domDocument->createElement($this->tagName);
 		if (!$isChild) {
@@ -233,7 +233,7 @@ class ManiaLink {
 		if ($this->background) {
 			$maniaLink->setAttribute('background', $this->background);
 		}
-		if ($this->navigable3d) {
+		if (!$this->navigable3d) {
 			$maniaLink->setAttribute('navigable3d', $this->navigable3d);
 		}
 		if ($this->timeout) {

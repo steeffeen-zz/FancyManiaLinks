@@ -147,6 +147,7 @@ class CustomUI {
 		$isChild = (bool) $domDocument;
 		if (!$isChild) {
 			$domDocument = new \DOMDocument('1.0', $this->encoding);
+			$domDocument->xmlStandalone = true;
 		}
 		$xmlElement = $domDocument->createElement($this->tagName);
 		if (!$isChild) {

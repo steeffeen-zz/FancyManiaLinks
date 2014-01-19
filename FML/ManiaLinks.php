@@ -98,6 +98,7 @@ class ManiaLinks {
 	 */
 	public function render($echo = false) {
 		$domDocument = new \DOMDocument('1.0', $this->encoding);
+		$domDocument->xmlStandalone = true;
 		$maniaLinks = $domDocument->createElement($this->tagName);
 		$domDocument->appendChild($maniaLinks);
 		foreach ($this->children as $child) {
