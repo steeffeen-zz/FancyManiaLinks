@@ -1,5 +1,5 @@
 <?php
-// TODO: validate example
+
 // Include FML
 require_once __DIR__ . '/../FML/autoload.php';
 
@@ -9,8 +9,8 @@ $maniaLink = new \FML\ManiaLink();
 // Create entry element to allow input
 $entry = new \FML\Controls\Entry();
 $maniaLink->add($entry);
+$entry->setSize(50, 7);
 $entry->setName('input');
-$entry->setDefault('This is fun!');
 
 // Add submit button
 $submitButton = new \FML\Controls\Quads\Quad_Icons64x64_1();
@@ -18,7 +18,7 @@ $maniaLink->add($submitButton);
 $submitButton->setSize(10, 10);
 $submitButton->setX(40);
 $submitButton->setSubStyle($submitButton::SUBSTYLE_Outbox);
-$submitButton->setUrl('http://fml.steeffeen.com/examples/entry.php');
+$submitButton->setManialink($_SERVER['SCRIPT_URI'] . '?input=input');
 
 // Display input if any is given
 if (!empty($_GET['input'])) {

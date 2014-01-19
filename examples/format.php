@@ -1,5 +1,5 @@
 <?php
-// TODO: validate example
+
 // Include FML
 require_once __DIR__ . '/../FML/autoload.php';
 
@@ -10,21 +10,23 @@ $maniaLink = new \FML\ManiaLink();
 $frame = new \FML\Controls\Frame();
 $maniaLink->add($frame);
 
-// Create format element modifying the following labels
+// Create format element modifying all the children of the frame
 $format = new \FML\Elements\Format();
-$frame->add($format);
-$format->setBgColor('f00');
+$frame->setFormat($format);
 $format->setTextSize(5);
+$format->setTextColor('f00');
 $format->setAreaColor('0f0');
-$format->setStyle(\FML\Controls\Labels\Label_Text::STYLE_TextTitle2Blink);
+$format->setAreaFocusColor('00f');
 
-// Create some lines without styling
+// Create some lines without the need of styling them
 $y = 50;
 for ($i = 1; $i <= 10; $i++) {
 	$label = new \FML\Controls\Label();
 	$frame->add($label);
 	$label->setY($y);
+	$label->setSize(45, 7);
 	$label->setText("Label #{$i}");
+	$label->setScriptEvents(true);
 	
 	$y -= 10.;
 }

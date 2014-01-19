@@ -1,5 +1,5 @@
 <?php
-// TODO: validate example
+
 // Include FML
 require_once __DIR__ . '/../FML/autoload.php';
 

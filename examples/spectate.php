@@ -1,5 +1,5 @@
 <?php
-// TODO: validate example
+
 // Include FML
 require_once __DIR__ . '/../FML/autoload.php';
 
@@ -14,7 +14,7 @@ $spectateQuad->setSize(30, 30);
 $spectateQuad->setSubStyle($spectateQuad::SUBSTYLE_Profile);
 
 // Set spectate link
-$script->addSpectateButton($spectateQuad, 'login');
+$script->addSpectateButton($spectateQuad, 'PlayerLogin');
 
 // Print xml
 $maniaLink->render(true);

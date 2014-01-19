@@ -1,5 +1,5 @@
 <?php
-// TODO: validate example
+
 // Include FML
 require_once __DIR__ . '/../FML/autoload.php';
 
@@ -12,19 +12,29 @@ $maniaLink->add($frameModel);
 $frameModel->setId('MyFrameModel');
 
 $label = new \FML\Controls\Label();
-$frameModel->addChild($label);
+$frameModel->add($label);
 $label->setText('Neat!');
 
-// Create frame instances at various positions
-$frameInstance = new \FML\Controls\FrameInstance();
-$maniaLink->add($frameInstance);
-$frameInstance->setModel($frameModel);
-$frameInstance->setX(10);
+$quad = new \FML\Controls\Quads\Quad_Copilot();
+$frameModel->add($quad);
+$quad->setY(-10);
+$quad->setSize(10, 10);
+$quad->setSubStyle($quad::SUBSTYLE_UpGood);
 
-$frameInstance = new \FML\Controls\FrameInstance();
-$maniaLink->add($frameInstance);
-$frameInstance->setModelId($frameModel->getId());
-$frameInstance->setX(-10);
+$quad = new \FML\Controls\Quads\Quad_Copilot();
+$frameModel->add($quad);
+$quad->setY(10);
+$quad->setSize(10, 10);
+$quad->setSubStyle($quad::SUBSTYLE_Down);
+
+// Create frame instances at various positions
+for ($i = -5; $i <= 5; $i++) {
+	$frameInstance = new \FML\Controls\FrameInstance();
+	$maniaLink->add($frameInstance);
+	$frameInstance->setId('a' . $i);
+	$frameInstance->setModel($frameModel);
+	$frameInstance->setX($i * 13);
+}
 
 // Print xml
 $maniaLink->render(true);

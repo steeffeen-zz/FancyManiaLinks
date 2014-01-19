@@ -7,7 +7,6 @@ namespace FML\Stylesheet;
  *
  * @author steeffeen
  */
-// TODO: example
 class Stylesheet {
 	/**
 	 * Protected Properties

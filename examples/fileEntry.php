@@ -1,17 +1,17 @@
 <?php
-// TODO: validate example
+
 // Include FML
 require_once __DIR__ . '/../FML/autoload.php';
 
 // Create manialink
 $maniaLink = new \FML\ManiaLink();
 
-// Create file entry element to allow uploading a file
+// Create file entry element to allow uploading a screenshot file
 $fileEntry = new \FML\Controls\FileEntry();
 $maniaLink->add($fileEntry);
+$fileEntry->setSize(50, 7);
 $fileEntry->setName('inputFile');
-// TODO: folder
-$fileEntry->setFolder('');
+$fileEntry->setFolder('ScreenShots');
 
 // Add submit button
 $submitButton = new \FML\Controls\Quads\Quad_Icons64x64_1();
@@ -19,21 +19,32 @@ $maniaLink->add($submitButton);
 $submitButton->setSize(10, 10);
 $submitButton->setX(40);
 $submitButton->setSubStyle($submitButton::SUBSTYLE_Outbox);
-$submitUrl = $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
-$submitButton->setUrl($submitUrl);
+$submitButton->setManialink('POST(' . $_SERVER['SCRIPT_URI'] . '?filename=inputFile,inputFile)');
 
 // Display information about uploaded file
-if (isset($_FILES['inputFile'])) {
-	// Get file size and delete file
-	$inputFile = $_FILES['inputFile'];
-	$fileSize = filesize($inputFile);
-	unlink($inputFile);
-	
-	// Build output label
-	$outputLabel = new \FML\Controls\Label();
-	$maniaLink->add($outputLabel);
-	$outputLabel->setY(-30);
-	$outputLabel->setText("Size of Your uploaded File: {$fileSize} KB");
+if (!empty($_GET['filename'])) {
+	// Get content of uploaded file
+	$inputFile = file_get_contents('php://input');
+	if ($inputFile) {
+		// Temporarily save file, determine size and delete it
+		$fileUrl = 'temp_inputFile';
+		file_put_contents($fileUrl, $inputFile);
+		$fileSize = round(filesize($fileUrl) / 1024., 2);
+		unlink($fileUrl);
+		
+		// Build output labels showing file name and size
+		$nameLabel = new \FML\Controls\Label();
+		$maniaLink->add($nameLabel);
+		$nameLabel->setPosition(-20, -22);
+		$nameLabel->setHAlign('left');
+		$nameLabel->setText('File Name: ' . $_GET['filename']);
+		
+		$sizeLabel = new \FML\Controls\Label();
+		$maniaLink->add($sizeLabel);
+		$sizeLabel->setPosition(-20, -30);
+		$sizeLabel->setHAlign('left');
+		$sizeLabel->setText("File Size: {$fileSize} KB");
+	}
 }
 
 // Print xml

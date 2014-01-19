@@ -1,5 +1,5 @@
 <?php
-// TODO: validate example
+
 // Include FML
 require_once __DIR__ . '/../FML/autoload.php';
 
@@ -9,9 +9,9 @@ $maniaLink = new \FML\ManiaLink();
 // Create audio element to play a sound
 $audio = new \FML\Controls\Audio();
 $maniaLink->add($audio);
-$audio->setSize(40, 40);
-// TODO: audio url
-$audio->setData('');
+$audio->setSize(20, 20);
+$audio->setVolume(30);
+$audio->setData('http://fml.steeffeen.com/media/shoopdawhoop.ogg');
 
 // Print xml
 $maniaLink->render(true);

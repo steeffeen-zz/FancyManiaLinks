@@ -1,5 +1,5 @@
 <?php
-// TODO: validate example
+
 // Include FML
 require_once __DIR__ . '/../FML/autoload.php';
 
@@ -10,8 +10,7 @@ $maniaLink = new \FML\ManiaLink();
 $video = new \FML\Controls\Video();
 $maniaLink->add($video);
 $video->setSize(100, 60);
-// TODO: video url
-$video->setData('');
+$video->setData('http://fml.steeffeen.com/media/stylewalker.bik');
 
 // Print xml
 $maniaLink->render(true);
