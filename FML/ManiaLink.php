@@ -5,6 +5,7 @@ namespace FML;
 use FML\Types\Renderable;
 use FML\Script\Script;
 use FML\Elements\Dico;
+use FML\Stylesheet\Stylesheet;
 
 /**
  * Class representing a ManiaLink
@@ -12,6 +13,15 @@ use FML\Elements\Dico;
  * @author steeffeen
  */
 class ManiaLink {
+	/**
+	 * Constants
+	 */
+	// TODO: validate backgrounds
+	const BACKGROUND_0 = '0';
+	const BACKGROUND_STARS = 'stars';
+	const BACKGROUND_STATIONS = 'stations';
+	const BACKGROUND_TITLE = 'title';
+	
 	/**
 	 * Protected Properties
 	 */
@@ -24,6 +34,7 @@ class ManiaLink {
 	protected $timeout = 0;
 	protected $children = array();
 	protected $dico = null;
+	protected $stylesheet = null;
 	protected $script = null;
 
 	/**
@@ -117,7 +128,7 @@ class ManiaLink {
 
 	/**
 	 * Remove all Elements from the ManiaLinks
-	 * 
+	 *
 	 * @return \FML\ManiaLink
 	 */
 	public function removeChildren() {
@@ -147,6 +158,30 @@ class ManiaLink {
 			$this->dico = new Dico();
 		}
 		return $this->dico;
+	}
+
+	/**
+	 * Set the Stylesheet of the ManiaLink
+	 *
+	 * @param Stylesheet $stylesheet Stylesheet Object
+	 * @return \FML\ManiaLink
+	 */
+	public function setStylesheet(Stylesheet $stylesheet) {
+		$this->stylesheet = $stylesheet;
+		return $this;
+	}
+
+	/**
+	 * Get the Stylesheet of the ManiaLink
+	 * 
+	 * @param bool $createIfEmpty (optional) Whether the Script Object should be created if it's not set yet
+	 * @return \FML\Stylesheet\Stylesheet
+	 */
+	public function getStylesheet($createIfEmpty = true) {
+		if (!$this->stylesheet && $createIfEmpty) {
+			$this->stylesheet = new Stylesheet();
+		}
+		return $this->stylesheet;
 	}
 
 	/**
@@ -212,6 +247,10 @@ class ManiaLink {
 		if ($this->dico) {
 			$dicoXml = $this->dico->render($domDocument);
 			$maniaLink->appendChild($dicoXml);
+		}
+		if ($this->stylesheet) {
+			$stylesheetXml = $this->stylesheet->render($domDocument);
+			$maniaLink->appendChild($stylesheetXml);
 		}
 		if ($this->script) {
 			$scriptXml = $this->script->render($domDocument);
