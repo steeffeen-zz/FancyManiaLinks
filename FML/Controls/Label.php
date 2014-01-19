@@ -36,8 +36,8 @@ class Label extends Control implements Actionable, Linkable, NewLineable, Script
 	protected $style = '';
 	protected $textSize = -1;
 	protected $textColor = '';
-	protected $areaColor = '';
-	protected $areaFocusColor = '';
+	protected $focusAreaColor1 = '';
+	protected $focusAreaColor2 = '';
 
 	/**
 	 * Create a new Label Control
@@ -243,7 +243,7 @@ class Label extends Control implements Actionable, Linkable, NewLineable, Script
 	 * @return \FML\Controls\Label
 	 */
 	public function setAreaColor($areaColor) {
-		$this->areaColor = (string) $areaColor;
+		$this->focusAreaColor1 = (string) $areaColor;
 		return $this;
 	}
 
@@ -253,7 +253,7 @@ class Label extends Control implements Actionable, Linkable, NewLineable, Script
 	 * @return \FML\Controls\Label
 	 */
 	public function setAreaFocusColor($areaFocusColor) {
-		$this->areaFocusColor = (string) $areaFocusColor;
+		$this->focusAreaColor2 = (string) $areaFocusColor;
 		return $this;
 	}
 
@@ -308,11 +308,11 @@ class Label extends Control implements Actionable, Linkable, NewLineable, Script
 		if ($this->textColor) {
 			$xmlElement->setAttribute('textcolor', $this->textColor);
 		}
-		if ($this->areaColor) {
-			$xmlElement->setAttribute('areacolor', $this->areaColor);
+		if ($this->focusAreaColor1) {
+			$xmlElement->setAttribute('focusareacolor1', $this->focusAreaColor1);
 		}
-		if ($this->areaFocusColor) {
-			$xmlElement->setAttribute('areafocuscolor', $this->areaFocusColor);
+		if ($this->focusAreaColor2) {
+			$xmlElement->setAttribute('focusareacolor2', $this->focusAreaColor2);
 		}
 		return $xmlElement;
 	}
