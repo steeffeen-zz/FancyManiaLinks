@@ -271,7 +271,7 @@ class Label extends Control implements Actionable, Linkable, NewLineable, Script
 	 */
 	public function render(\DOMDocument $domDocument) {
 		$xmlElement = parent::render($domDocument);
-		if ($this->text) {
+		if (strlen($this->text) > 0) {
 			$xmlElement->setAttribute('text', $this->text);
 		}
 		if ($this->textId) {
@@ -289,7 +289,7 @@ class Label extends Control implements Actionable, Linkable, NewLineable, Script
 		if ($this->maxLines >= 0) {
 			$xmlElement->setAttribute('maxlines', $this->maxLines);
 		}
-		if ($this->action) {
+		if (strlen($this->action) > 0) {
 			$xmlElement->setAttribute('action', $this->action);
 		}
 		if ($this->actionKey >= 0) {

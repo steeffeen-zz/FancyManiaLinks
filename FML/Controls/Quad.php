@@ -282,7 +282,7 @@ class Quad extends Control implements Actionable, BgColorable, Linkable, Scripta
 		if (!$this->autoScale) {
 			$xmlElement->setAttribute('autoscale', $this->autoScale);
 		}
-		if ($this->action) {
+		if (strlen($this->action) > 0) {
 			$xmlElement->setAttribute('action', $this->action);
 		}
 		if ($this->actionKey >= 0) {
