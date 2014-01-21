@@ -148,6 +148,14 @@ class Quad extends Control implements Actionable, BgColorable, Linkable, Scripta
 
 	/**
 	 *
+	 * @see \FML\Types\Actionable::getAction()
+	 */
+	public function getAction() {
+		return $this->action;
+	}
+
+	/**
+	 *
 	 * @see \FML\Types\Actionable::setActionKey()
 	 * @return \FML\Controls\Quad
 	 */

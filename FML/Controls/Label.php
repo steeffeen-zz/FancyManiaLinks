@@ -139,6 +139,14 @@ class Label extends Control implements Actionable, Linkable, NewLineable, Script
 
 	/**
 	 *
+	 * @see \FML\Types\Actionable::getAction()
+	 */
+	public function getAction() {
+		return $this->action;
+	}
+
+	/**
+	 *
 	 * @see \FML\Types\Actionable::setActionKey()
 	 * @return \FML\Controls\Label
 	 */
