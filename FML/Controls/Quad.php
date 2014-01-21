@@ -16,7 +16,7 @@ use FML\Types\SubStyleable;
  * @author steeffeen
  */
 class Quad extends Control implements Actionable, BgColorable, Linkable, Scriptable, Styleable, SubStyleable {
-	/**
+	/*
 	 * Protected Properties
 	 */
 	protected $image = '';

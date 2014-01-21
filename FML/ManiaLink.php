@@ -13,7 +13,7 @@ use FML\Stylesheet\Stylesheet;
  * @author steeffeen
  */
 class ManiaLink {
-	/**
+	/*
 	 * Constants
 	 */
 	const BACKGROUND_0 = '0';
@@ -21,7 +21,7 @@ class ManiaLink {
 	const BACKGROUND_STATIONS = 'stations';
 	const BACKGROUND_TITLE = 'title';
 	
-	/**
+	/*
 	 * Protected Properties
 	 */
 	protected $encoding = 'utf-8';

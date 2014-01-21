@@ -16,7 +16,7 @@ use FML\Types\TextFormatable;
  * @author steeffeen
  */
 class Label extends Control implements Actionable, Linkable, NewLineable, Scriptable, Styleable, TextFormatable {
-	/**
+	/*
 	 * Protected Properties
 	 */
 	protected $text = '';
