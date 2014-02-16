@@ -7,17 +7,22 @@ require_once __DIR__ . '/../FML/autoload.php';
 $maniaLink = new \FML\ManiaLink();
 $script = $maniaLink->getScript();
 
-// Create time label
+// Create default time label
 $label = new \FML\Controls\Label();
 $maniaLink->add($label);
 $label->setY(5);
 $script->addTimeLabel($label);
 
+// Create time label without seconds
+$label = new \FML\Controls\Label();
+$maniaLink->add($label);
+$script->addTimeLabel($label, true);
+
 // Create full date label
 $label = new \FML\Controls\Label();
 $maniaLink->add($label);
 $label->setY(-5);
-$script->addTimeLabel($label, true);
+$script->addTimeLabel($label, false, true);
 
 // Print xml
 $maniaLink->render(true);
