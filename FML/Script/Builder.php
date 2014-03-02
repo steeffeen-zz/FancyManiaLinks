@@ -29,8 +29,8 @@ abstract class Builder {
 	 */
 	public static function escapeText($text) {
 		$escapedText = $text;
-		$dangers = array('\\', '"');
-		$replacements = array('\\\\', '\\"');
+		$dangers = array('\\', '"', "\n");
+		$replacements = array('\\\\', '\\"', '\n');
 		$escapedText = str_ireplace($dangers, $replacements, $escapedText);
 		return $escapedText;
 	}

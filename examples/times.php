@@ -10,7 +10,7 @@ $script = $maniaLink->getScript();
 // Create default time label
 $label = new \FML\Controls\Label();
 $maniaLink->add($label);
-$label->setY(5);
+$label->setY(10);
 $script->addTimeLabel($label);
 
 // Create time label without seconds
@@ -21,7 +21,7 @@ $script->addTimeLabel($label, true);
 // Create full date label
 $label = new \FML\Controls\Label();
 $maniaLink->add($label);
-$label->setY(-5);
+$label->setY(-10);
 $script->addTimeLabel($label, false, true);
 
 // Print xml

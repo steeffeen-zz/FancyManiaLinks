@@ -85,7 +85,7 @@ class ManiaLinks {
 	 */
 	public function getCustomUI($createIfEmpty = true) {
 		if (!$this->customUI && $createIfEmpty) {
-			$this->customUI = new CustomUI();
+			$this->setCustomUI(new CustomUI());
 		}
 		return $this->customUI;
 	}

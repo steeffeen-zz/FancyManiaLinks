@@ -73,7 +73,7 @@ class Stylesheet {
 	 */
 	public function getMood($createIfEmpty = true) {
 		if (!$this->mood && $createIfEmpty) {
-			$this->mood = new Mood();
+			$this->setMood(new Mood());
 		}
 		return $this->mood;
 	}

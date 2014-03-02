@@ -163,7 +163,7 @@ class ManiaLink {
 	 */
 	public function getDico($createIfEmpty = true) {
 		if (!$this->dico && $createIfEmpty) {
-			$this->dico = new Dico();
+			$this->setDico(new Dico());
 		}
 		return $this->dico;
 	}
@@ -187,7 +187,7 @@ class ManiaLink {
 	 */
 	public function getStylesheet($createIfEmpty = true) {
 		if (!$this->stylesheet && $createIfEmpty) {
-			$this->stylesheet = new Stylesheet();
+			$this->setStylesheet(new Stylesheet());
 		}
 		return $this->stylesheet;
 	}
@@ -211,7 +211,7 @@ class ManiaLink {
 	 */
 	public function getScript($createIfEmpty = true) {
 		if (!$this->script && $createIfEmpty) {
-			$this->script = new Script();
+			$this->setScript(new Script());
 		}
 		return $this->script;
 	}
