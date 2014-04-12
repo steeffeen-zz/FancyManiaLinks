@@ -11,6 +11,8 @@ use FML\Types\Renderable;
  * Class representing a ManiaLink
  *
  * @author steeffeen
+ * @copyright FancyManiaLinks Copyright © 2014 Steffen Schröder
+ * @license http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
 class ManiaLink {
 	/*
