@@ -19,6 +19,7 @@ class ManiaLink {
 	 * Constants
 	 */
 	const BACKGROUND_0 = '0';
+	const BACKGROUND_1 = '1';
 	const BACKGROUND_STARS = 'stars';
 	const BACKGROUND_STATIONS = 'stations';
 	const BACKGROUND_TITLE = 'title';
