@@ -24,6 +24,11 @@ abstract class Control implements Renderable {
 	const LEFT = 'left';
 	
 	/*
+	 * Static Properties
+	 */
+	private static $currentIndex = 0;
+	
+	/*
 	 * Protected Properties
 	 */
 	protected $tagName = 'control';
@@ -71,13 +76,14 @@ abstract class Control implements Renderable {
 	}
 
 	/**
-	 * Check Id for dangerous Characters and assign an unique Id if necessary
+	 * Check Id for dangerous Characters and assign a unique Id if necessary
 	 *
 	 * @return \FML\Controls\Control
 	 */
 	public function checkId() {
 		if (!$this->getId()) {
-			$this->setId(uniqid());
+			$this->setId('FML_ID_' . self::$currentIndex);
+			self::$currentIndex++;
 			return $this;
 		}
 		$dangerousCharacters = array(' ', '	', '.', '|', '-', PHP_EOL);
