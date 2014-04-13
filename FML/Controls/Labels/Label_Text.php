@@ -37,6 +37,7 @@ class Label_Text extends Label {
 	const STYLE_TextCardInfoSmall = 'TextCardInfoSmall';
 	const STYLE_TextCardInfoVerySmall = 'TextCardInfoVerySmall';
 	const STYLE_TextCardMedium = 'TextCardMedium';
+	const STYLE_TextCardMediumWhite = 'TextCardMediumWhite';
 	const STYLE_TextCardRaceRank = 'TextCardRaceRank';
 	const STYLE_TextCardScores2 = 'TextCardScores2';
 	const STYLE_TextCardSmall = 'TextCardSmall';
@@ -79,8 +80,11 @@ class Label_Text extends Label {
 	const STYLE_TextTitle3 = 'TextTitle3';
 	const STYLE_TextTitle3Header = 'TextTitle3Header';
 	const STYLE_TextTitleError = 'TextTitleError';
+	const STYLE_TextToolTipAM = 'TextToolTipAM';
+	const STYLE_TextToolTipAMBig = 'TextToolTipAMBig';
 	const STYLE_TextValueBig = 'TextValueBig';
 	const STYLE_TextValueMedium = 'TextValueMedium';
+	const STYLE_TextValueMediumSm = 'TextValueMediumSm';
 	const STYLE_TextValueSmall = 'TextValueSmall';
 	const STYLE_TextValueSmallSm = 'TextValueSmallSm';
 	const STYLE_TrackerText = 'TrackerText';

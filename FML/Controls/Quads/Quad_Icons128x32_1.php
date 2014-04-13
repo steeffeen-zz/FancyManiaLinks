@@ -20,6 +20,7 @@ class Quad_Icons128x32_1 extends Quad {
 	const SUBSTYLE_ManiaLinkHome = 'ManiaLinkHome';
 	const SUBSTYLE_ManiaLinkSwitch = 'ManiaLinkSwitch';
 	const SUBSTYLE_ManiaPlanet = 'ManiaPlanet';
+	const SUBSTYLE_Minimize = 'Minimize';
 	const SUBSTYLE_Music = 'Music';
 	const SUBSTYLE_PainterBrush = 'PainterBrush';
 	const SUBSTYLE_PainterFill = 'PainterFill';

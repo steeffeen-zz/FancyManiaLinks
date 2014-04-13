@@ -38,6 +38,7 @@ class Quad_Bgs1 extends Quad {
 	const SUBSTYLE_BgCardList = 'BgCardList';
 	const SUBSTYLE_BgCardOnline = 'BgCardOnline';
 	const SUBSTYLE_BgCardPlayer = 'BgCardPlayer';
+	const SUBSTYLE_BgCardProperty = 'BgCardProperty';
 	const SUBSTYLE_BgCardSystem = 'BgCardSystem';
 	const SUBSTYLE_BgCardZone = 'BgCardZone';
 	const SUBSTYLE_BgColorContour = 'BgColorContour';
@@ -70,6 +71,7 @@ class Quad_Bgs1 extends Quad {
 	const SUBSTYLE_BgWindow1 = 'BgWindow1';
 	const SUBSTYLE_BgWindow2 = 'BgWindow2';
 	const SUBSTYLE_BgWindow3 = 'BgWindow3';
+	const SUBSTYLE_BgWindow4 = 'BgWindow4';
 	const SUBSTYLE_EnergyBar = 'EnergyBar';
 	const SUBSTYLE_EnergyTeam2 = 'EnergyTeam2';
 	const SUBSTYLE_Glow = 'Glow';

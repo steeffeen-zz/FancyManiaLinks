@@ -27,6 +27,7 @@ class Quad_Icons64x64_2 extends Quad {
 	const SUBSTYLE_RocketElimination = 'RocketElimination';
 	const SUBSTYLE_RocketHit = 'RocketHit';
 	const SUBSTYLE_ServerNotice = 'ServerNotice';
+	const SUBSTYLE_SortBy = 'SortBy';
 	const SUBSTYLE_UnknownElimination = 'UnknownElimination';
 	const SUBSTYLE_UnknownHit = 'UnknownHit';
 
