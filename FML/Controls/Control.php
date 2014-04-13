@@ -26,7 +26,7 @@ abstract class Control implements Renderable {
 	/*
 	 * Static Properties
 	 */
-	private static $currentIndex = 0;
+	protected static $currentIndex = 0;
 	
 	/*
 	 * Protected Properties
