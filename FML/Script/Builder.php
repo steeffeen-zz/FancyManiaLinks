@@ -49,10 +49,10 @@ abstract class Builder {
 		if (!fmod($value, 1)) $stringVal .= '.';
 		return $stringVal;
 	}
-	
+
 	/**
 	 * Get the Boolean String-Representation of the given Value
-	 * 
+	 *
 	 * @param bool $value The Value to convert to a ManiaScript Boolean
 	 * @return string
 	 */
@@ -62,5 +62,32 @@ abstract class Builder {
 			return "True";
 		}
 		return "False";
+	}
+
+	/**
+	 * Get the Include Command for the given File and Namespace
+	 *
+	 * @param string $file Include File
+	 * @param string $namespace Include Namespace
+	 * @return string
+	 */
+	public static function getInclude($file, $namespace) {
+		$includeText = "#Include \"{$file}\" as {$namespace}" . PHP_EOL;
+		return $includeText;
+	}
+
+	/**
+	 * Get the Constant Command for the given Name and Value
+	 *
+	 * @param string $name Constant Name
+	 * @param string $value Constant Value
+	 * @return string
+	 */
+	public static function getConstant($name, $value) {
+		if (is_string($value)) {
+			$value = '"' . $value . '"';
+		}
+		$constantText = "#Const	{$name}	{$value}" . PHP_EOL;
+		return $constantText;
 	}
 }
