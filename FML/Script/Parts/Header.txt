@@ -1,4 +1,4 @@
 /*********************************
-*  FancyManiaLinks by steeffeen	 *
-*    http://fml.steeffeen.com	 *
+*	FancyManiaLinks by steeffeen	 *
+*	http://github.com/steeffeen/FancyManiaLinks	 *
 *********************************/
