@@ -19,12 +19,12 @@ class ScriptInclude {
 	/*
 	 * Public Properties
 	 */
-	public $file = null;
-	public $namespace = null;
+	protected $file = null;
+	protected $namespace = null;
 
 	/**
 	 * Construct a new Script Include
-	 * 
+	 *
 	 * @param string $file (optional) Include File
 	 * @param string $namespace (optional) Include Namespace
 	 */
@@ -54,10 +54,10 @@ class ScriptInclude {
 		$this->namespace = $namespace;
 		return $this;
 	}
-	
+
 	/**
 	 * Build the Script Include Text
-	 * 
+	 *
 	 * @return string
 	 */
 	public function __toString() {

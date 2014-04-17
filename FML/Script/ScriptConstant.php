@@ -13,8 +13,8 @@ class ScriptConstant {
 	/*
 	 * Public Properties
 	 */
-	public $name = null;
-	public $value = null;
+	protected $name = null;
+	protected $value = null;
 
 	/**
 	 * Construct a new Script Constant

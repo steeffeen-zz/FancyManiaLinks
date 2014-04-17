@@ -25,8 +25,8 @@ class ScriptLabel {
 	/*
 	 * Public Properties
 	 */
-	public $name = null;
-	public $text = null;
+	protected $name = null;
+	protected $text = null;
 
 	/**
 	 * Construct a new ScriptLabel
