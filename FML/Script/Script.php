@@ -450,7 +450,7 @@ class Script {
 	 *
 	 * @return string
 	 */
-	private function buildScriptText() {
+	protected function buildScriptText() {
 		$mainFunction = $this->getMainFunction();
 		$labels = $this->getLabels();
 		$functions = $this->getFunctions();
@@ -474,7 +474,7 @@ class Script {
 	 *
 	 * @return string
 	 */
-	private function getHeaderComment() {
+	protected function getHeaderComment() {
 		$headerComment = file_get_contents(__DIR__ . '/Parts/Header.txt');
 		return $headerComment;
 	}
@@ -484,7 +484,7 @@ class Script {
 	 *
 	 * @return string
 	 */
-	private function getIncludes() {
+	protected function getIncludes() {
 		$includesText = PHP_EOL;
 		foreach ($this->includes as $namespace => $file) {
 			$includesText .= "#Include \"{$file}\" as {$namespace}" . PHP_EOL;
@@ -497,7 +497,7 @@ class Script {
 	 *
 	 * @return string
 	 */
-	private function getConstants() {
+	protected function getConstants() {
 		$this->buildTooltipConstants();
 		$constantsText = PHP_EOL;
 		foreach ($this->constants as $name => $value) {
@@ -509,7 +509,7 @@ class Script {
 	/**
 	 * Build the Constants needed for tooltips
 	 */
-	private function buildTooltipConstants() {
+	protected function buildTooltipConstants() {
 		if (!$this->tooltips) return;
 		$constantText = '[';
 		$index = 0;
@@ -546,7 +546,7 @@ class Script {
 	 *
 	 * @return string
 	 */
-	private function getFunctions() {
+	protected function getFunctions() {
 		$this->buildTooltipFunctions();
 		$functionsText = PHP_EOL;
 		foreach ($this->functions as $name => $coding) {
@@ -558,7 +558,7 @@ class Script {
 	/**
 	 * Build the Functions needed for Tooltips
 	 */
-	private function buildTooltipFunctions() {
+	protected function buildTooltipFunctions() {
 		if (!$this->tooltips) return;
 		$this->setInclude('TextLib', 'TextLib');
 		$setFunctionText = "
@@ -587,7 +587,7 @@ Text " . self::FUNCTION_GETTOOLTIPCONTROLID . "(Text _ControlClass) {
 	 *
 	 * @return string
 	 */
-	private function getLabels() {
+	protected function getLabels() {
 		$labelsText = PHP_EOL;
 		$labelsText .= $this->getCustomLabels();
 		$labelsText .= $this->getTooltipLabels();
@@ -607,7 +607,7 @@ Text " . self::FUNCTION_GETTOOLTIPCONTROLID . "(Text _ControlClass) {
 	 *
 	 * @return string
 	 */
-	private function getCustomLabels() {
+	protected function getCustomLabels() {
 		$scriptText = '';
 		foreach ($this->customLabels as $label => $customScripts) {
 			foreach ($customScripts as $customScript) {
@@ -623,7 +623,7 @@ Text " . self::FUNCTION_GETTOOLTIPCONTROLID . "(Text _ControlClass) {
 	 *
 	 * @return string
 	 */
-	private function getTooltipLabels() {
+	protected function getTooltipLabels() {
 		if (!$this->tooltips) return '';
 		$mouseOverScript = "
 if (Event.Control.HasClass(\"" . self::CLASS_TOOLTIP . "\")) {
@@ -692,7 +692,7 @@ if (Event.Control.HasClass(\"" . self::CLASS_TOOLTIP . "\")) {
 	 *
 	 * @return string
 	 */
-	private function getMenuLabels() {
+	protected function getMenuLabels() {
 		if (!$this->menus) return '';
 		$this->setInclude('TextLib', 'TextLib');
 		$mouseClickScript = "
@@ -721,7 +721,7 @@ if (Event.Control.HasClass(\"" . self::CLASS_MENUBUTTON . "\")) {
 	 *
 	 * @return string
 	 */
-	private function getPagesLabels() {
+	protected function getPagesLabels() {
 		if (!$this->pages) return "";
 		$this->setInclude('TextLib', 'TextLib');
 		$pagesNumberPrefix = self::CLASS_PAGE . '-P';
@@ -818,7 +818,7 @@ if (Event.Control.HasClass(\"" . self::CLASS_PAGER . "\")) {
 	 *
 	 * @return string
 	 */
-	private function getProfileLabels() {
+	protected function getProfileLabels() {
 		if (!$this->profile) return "";
 		$this->setInclude('TextLib', 'TextLib');
 		$prefixLength = strlen(self::CLASS_PROFILE) + 1;
@@ -845,7 +845,7 @@ if (Event.Control.HasClass(\"" . self::CLASS_PROFILE . "\")) {
 	 *
 	 * @return string
 	 */
-	private function getMapInfoLabels() {
+	protected function getMapInfoLabels() {
 		if (!$this->mapInfo) return "";
 		$mapInfoScript = "
 if (Event.Control.HasClass(\"" . self::CLASS_MAPINFO . "\")) {
@@ -860,7 +860,7 @@ if (Event.Control.HasClass(\"" . self::CLASS_MAPINFO . "\")) {
 	 *
 	 * @return string
 	 */
-	private function getSoundLabels() {
+	protected function getSoundLabels() {
 		if (!$this->sounds) return '';
 		$labelScripts = array();
 		foreach ($this->sounds as $soundData) {
@@ -893,7 +893,7 @@ if (Event.Control.HasClass(\"" . self::CLASS_SOUND . "\")) {
 	 *
 	 * @return string
 	 */
-	private function getToggleLabels() {
+	protected function getToggleLabels() {
 		if (!$this->toggles) return '';
 		$this->setInclude('TextLib', 'TextLib');
 		$toggleScript = "
@@ -929,7 +929,7 @@ if (Event.Control.HasClass(\"" . self::CLASS_TOGGLE . "\")) {
 	 *
 	 * @return string
 	 */
-	private function getSpectateLabels() {
+	protected function getSpectateLabels() {
 		if (!$this->spectate) return '';
 		$this->setInclude('TextLib', 'TextLib');
 		$prefixLength = strlen(self::CLASS_SPECTATE) + 1;
@@ -956,7 +956,7 @@ if (Event.Control.HasClass(\"" . self::CLASS_SPECTATE . "\")) {
 	 *
 	 * @return string
 	 */
-	private function getPageActionLabels() {
+	protected function getPageActionLabels() {
 		if (!$this->pageActions) return '';
 		$this->setInclude('TextLib', 'TextLib');
 		$prefixLength = strlen(self::CLASS_PAGEACTION) + 1;
@@ -983,7 +983,7 @@ if (Event.Control.HasClass(\"" . self::CLASS_PAGEACTION . "\")) {
 	 *
 	 * @return string
 	 */
-	private function getTimeLabels() {
+	protected function getTimeLabels() {
 		if (!$this->times) return '';
 		$this->setInclude('TextLib', 'TextLib');
 		$timesScript = "
@@ -1010,7 +1010,7 @@ foreach (TimeLabelControl in Page.GetClassChildren_Result) {
 	 *
 	 * @return string
 	 */
-	private function getMainFunction() {
+	protected function getMainFunction() {
 		$mainFunction = file_get_contents(__DIR__ . '/Parts/Main.txt');
 		return $mainFunction;
 	}
@@ -1022,7 +1022,7 @@ foreach (TimeLabelControl in Page.GetClassChildren_Result) {
 	 * @param int $offset The Number of obligatory Parameters
 	 * @return array
 	 */
-	private function spliceParameters(array $params, $offset) {
+	protected function spliceParameters(array $params, $offset) {
 		$args = array_splice($params, $offset);
 		if (!$args) return $args;
 		$parameters = array();
