@@ -59,6 +59,7 @@ class Script {
 	protected $includes = array();
 	protected $constants = array();
 	protected $functions = array();
+	protected $customLabels = array();
 	protected $tooltips = false;
 	protected $tooltipTexts = array();
 	protected $menus = false;
@@ -120,6 +121,21 @@ class Script {
 	 */
 	public function setFunction($name, $coding) {
 		$this->functions[$name] = $coding;
+		return $this;
+	}
+
+	/**
+	 * Add a custom Part to the Script
+	 *
+	 * @param string $maniaScriptText
+	 * @param string $label
+	 * @return \FML\Script\Script
+	 */
+	public function addCustomScriptText($maniaScriptText, $label = self::LABEL_LOOP) {
+		if (!isset($this->customLabels[$label])) {
+			$this->customLabels[$label] = array();
+		}
+		array_push($this->customLabels[$label], $maniaScriptText);
 		return $this;
 	}
 
@@ -573,6 +589,7 @@ Text " . self::FUNCTION_GETTOOLTIPCONTROLID . "(Text _ControlClass) {
 	 */
 	private function getLabels() {
 		$labelsText = PHP_EOL;
+		$labelsText .= $this->getCustomLabels();
 		$labelsText .= $this->getTooltipLabels();
 		$labelsText .= $this->getMenuLabels();
 		$labelsText .= $this->getPagesLabels();
@@ -583,6 +600,22 @@ Text " . self::FUNCTION_GETTOOLTIPCONTROLID . "(Text _ControlClass) {
 		$labelsText .= $this->getSpectateLabels();
 		$labelsText .= $this->getTimeLabels();
 		return $labelsText;
+	}
+
+	/**
+	 * Get the custom Script Texts
+	 *
+	 * @return string
+	 */
+	private function getCustomLabels() {
+		$scriptText = '';
+		foreach ($this->customLabels as $label => $customScripts) {
+			foreach ($customScripts as $customScript) {
+				$scriptBlock = Builder::getLabelImplementationBlock($label, $customScript);
+				$scriptText .= $scriptBlock;
+			}
+		}
+		return $scriptText;
 	}
 
 	/**
