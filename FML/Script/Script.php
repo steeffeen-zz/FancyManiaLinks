@@ -130,6 +130,29 @@ class Script {
 	}
 
 	/**
+	 * Load the given Script Feature
+	 *
+	 * @param ScriptFeature $scriptFeature Script Feature to load
+	 * @return \FML\Script\Script
+	 */
+	public function loadFeature(ScriptFeature $scriptFeature) {
+		$scriptFeature->prepare($this);
+		return $this;
+	}
+
+	/**
+	 * Check if the Script has Stuff so that it needs to be rendered
+	 *
+	 * @return bool
+	 */
+	public function needsRendering() {
+		if ($this->customLabels || $this->genericLabels) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
 	 * Build the complete Script Text
 	 *
 	 * @return string
@@ -143,17 +166,6 @@ class Script {
 		$scriptText .= $this->getLabels();
 		$scriptText .= $this->getMainFunction();
 		return $scriptText;
-	}
-
-	/**
-	 * Load the given Script Feature
-	 *
-	 * @param ScriptFeature $scriptFeature Script Feature to load
-	 * @return \FML\Script\Script
-	 */
-	public function loadFeature(ScriptFeature $scriptFeature) {
-		$scriptFeature->prepare($this);
-		return $this;
 	}
 
 	/**

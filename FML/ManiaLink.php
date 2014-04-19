@@ -262,6 +262,10 @@ class ManiaLink {
 				$scriptFeatures = array_merge($scriptFeatures, $child->getScriptFeatures());
 			}
 		}
+		if ($scriptFeatures) {
+			$this->getScript()
+				->loadFeatures($scriptFeatures);
+		}
 		if ($this->dico) {
 			$dicoXml = $this->dico->render($domDocument);
 			$maniaLink->appendChild($dicoXml);
@@ -270,13 +274,11 @@ class ManiaLink {
 			$stylesheetXml = $this->stylesheet->render($domDocument);
 			$maniaLink->appendChild($stylesheetXml);
 		}
-		if ($this->script || $scriptFeatures) {
-			$this->getScript()
-				->loadFeatures($scriptFeatures);
+		if ($this->script->needsRendering()) {
 			$scriptXml = $this->script->render($domDocument);
 			$maniaLink->appendChild($scriptXml);
-			$this->script->resetGenericScriptLabels();
 		}
+		$this->script->resetGenericScriptLabels();
 		if ($isChild) {
 			return $maniaLink;
 		}
