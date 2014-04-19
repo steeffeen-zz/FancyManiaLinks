@@ -8,6 +8,7 @@ use FML\Script\ScriptLabel;
 use FML\Script\Script;
 use FML\Types\ScriptFeatureable;
 use FML\Script\Features\MapInfo;
+use FML\Script\Features\PlayerProfile;
 
 /**
  * Base Control
@@ -280,12 +281,25 @@ abstract class Control implements Renderable, ScriptFeatureable {
 	/**
 	 * Add a dynamic Feature opening the current Map Info
 	 *
-	 * @param string $eventLabel (optional) Event on which the Action is triggered
+	 * @param string $eventLabel (optional) Event on which the Map Info will be opened
 	 * @return \FML\Controls\Control
 	 */
 	public function addMapInfoFeature($eventLabel = ScriptLabel::MOUSECLICK) {
 		$mapInfo = new MapInfo($this, $eventLabel);
 		array_push($this->scriptFeatures, $mapInfo);
+		return $this;
+	}
+
+	/**
+	 * Add a dynamic Feature to open a specific Player Profile
+	 * 
+	 * @param string $login The Login of the Player
+	 * @param string $eventLabel (optional) Event on which the Player Profile will be opened
+	 * @return \FML\Controls\Control
+	 */
+	public function addPlayerProfileFeature($login, $eventLabel = ScriptLabel::MOUSECLICK) {
+		$playerProfile = new PlayerProfile($login, $this, $eventLabel);
+		array_push($this->scriptFeatures, $playerProfile);
 		return $this;
 	}
 
