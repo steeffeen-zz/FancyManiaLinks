@@ -39,6 +39,9 @@ class Tooltip extends ScriptFeature {
 	public function __construct(Control $hoverControl = null, Control $tooltipControl = null, $stayOnClick = false, $invert = false, $text = null) {
 		$this->setHoverControl($hoverControl);
 		$this->setTooltipControl($tooltipControl);
+		$this->setStayOnClick($stayOnClick);
+		$this->setInvert($invert);
+		$this->setText($text);
 	}
 
 	/**
@@ -142,7 +145,6 @@ if (Event.Control.ControlId == \"{$hoverControlId}\") {
 		if ($this->stayOnClick) {
 			$scriptText = "
 if (Event.Control.ControlId == \"{$hoverControlId}\") {
-	declare TooltipControl = Page.GetFirstChild(\"{$tooltipControlId}\");
 	declare FML_Clicked for Event.Control = False;
 	FML_Clicked = !FML_Clicked;
 }";
