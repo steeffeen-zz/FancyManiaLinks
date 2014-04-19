@@ -2,6 +2,8 @@
 
 namespace FML\Script;
 
+use FML\Script\Features\ScriptFeature;
+
 /**
  * Class representing the ManiaLink Script
  *
@@ -10,6 +12,13 @@ namespace FML\Script;
  * @license http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
 class Script {
+	/*
+	 * Constants
+	 */
+	const VAR_ScriptStart = 'FML_ScriptStart';
+	const VAR_LoopCounter = 'FML_LoopCounter';
+	const VAR_LastTick = 'FML_LastTick';
+	
 	/*
 	 * Protected Properties
 	 */
@@ -34,7 +43,7 @@ class Script {
 		else {
 			$scriptInclude = new ScriptInclude($file, $namespace);
 		}
-		array_push($this->includes, $scriptInclude);
+		$this->includes[$scriptInclude->getNamespace()] = $scriptInclude;
 		return $this;
 	}
 
@@ -137,6 +146,30 @@ class Script {
 	}
 
 	/**
+	 * Load the given Script Feature
+	 *
+	 * @param ScriptFeature $scriptFeature Script Feature to load
+	 * @return \FML\Script\Script
+	 */
+	public function loadFeature(ScriptFeature $scriptFeature) {
+		$scriptFeature->prepare($this);
+		return $this;
+	}
+
+	/**
+	 * Load the given Script Features
+	 *
+	 * @param array $scriptFeatures Script Features to load
+	 * @return \FML\Script\Script
+	 */
+	public function loadFeatures(array $scriptFeatures) {
+		foreach ($scriptFeatures as $scriptFeature) {
+			$this->loadFeature($scriptFeature);
+		}
+		return $this;
+	}
+
+	/**
 	 * Create the Script XML Tag
 	 *
 	 * @param \DOMDocument $domDocument DOMDocument for which the XML Element should be created
@@ -147,7 +180,6 @@ class Script {
 		$scriptText = $this->buildScriptText();
 		$scriptComment = $domDocument->createComment($scriptText);
 		$scriptXml->appendChild($scriptComment);
-		$this->removeGenericScriptLabels();
 		return $scriptXml;
 	}
 
@@ -213,12 +245,12 @@ class Script {
 	 */
 	protected function getMainFunction() {
 		$mainFunction = '
-Void Dummy() {}
+Void FML_Dummy() {}
 main() {
-	declare FML_ScriptStart = Now;
+	declare ' . self::VAR_ScriptStart . ' = Now;
 	+++' . ScriptLabel::ONINIT . '+++
-	declare FML_LoopCounter = 0;
-	declare FML_LastTick = 0;
+	declare ' . self::VAR_LoopCounter . ' = 0;
+	declare ' . self::VAR_LastTick . ' = 0;
 	while (True) {
 		yield;
 		foreach (Event in PendingEvents) {
@@ -241,10 +273,10 @@ main() {
 			}
 		}
 		+++' . ScriptLabel::LOOP . '+++
-		FML_LoopCounter += 1;
-		if (FML_LastTick + 250 > Now) continue;
+		' . self::VAR_LoopCounter . ' += 1;
+		if (' . self::VAR_LastTick . ' + 250 > Now) continue;
 		+++' . ScriptLabel::TICK . '+++ 
-		FML_LastTick = Now;
+		' . self::VAR_LastTick . ' = Now;
 	}
 }';
 		return $mainFunction;
