@@ -90,7 +90,6 @@ class ActionTrigger extends ScriptFeature {
 		$actionName = Builder::escapeText($this->actionName);
 		if ($this->control) {
 			// Control event
-			$this->control->checkId();
 			$controlId = Builder::escapeText($this->control->getId());
 			$scriptText = "
 if (Event.Control.ControlId == \"{$controlId}\") {

@@ -90,7 +90,6 @@ class PlayerProfile extends ScriptFeature {
 		$login = Builder::escapeText($this->login);
 		if ($this->control) {
 			// Control event
-			$this->control->checkId();
 			$controlId = Builder::escapeText($this->control->getId());
 			$scriptText = "
 if (Event.Control.ControlId == \"{$controlId}\") {

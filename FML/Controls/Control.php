@@ -9,6 +9,7 @@ use FML\Script\Script;
 use FML\Types\ScriptFeatureable;
 use FML\Script\Features\MapInfo;
 use FML\Script\Features\PlayerProfile;
+use FML\Script\Features\UISound;
 
 /**
  * Base Control
@@ -303,6 +304,18 @@ abstract class Control implements Renderable, ScriptFeatureable {
 		return $this;
 	}
 
+	/**
+	 * Add a dynamic Feature playing an UISound
+	 * 
+	 * @param string $soundName UISound Name
+	 * @param string $variant (optional) Sound Variant
+	 * @param string $eventLabel (optional) Event on which the Sound will be played
+	 */
+	public function addUISoundFeature($soundName, $variant = 0, $eventLabel = ScriptLabel::MOUSECLICK) {
+		$uiSound = new UISound($soundName, $this, $variant, $eventLabel);
+		array_push($this->scriptFeatures, $uiSound);
+		return $this;
+	}
 	/**
 	 *
 	 * @see \FML\Types\ScriptFeatureable::getScriptFeatures()
