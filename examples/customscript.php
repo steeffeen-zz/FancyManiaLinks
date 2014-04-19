@@ -5,32 +5,30 @@ require_once __DIR__ . '/../FML/autoload.php';
 
 // Create manialink
 $maniaLink = new \FML\ManiaLink();
+$script = $maniaLink->getScript();
 
 // Label element showing the current time
 $timeLabel = new \FML\Controls\Label();
 $maniaLink->add($timeLabel);
 $timeLabel->setId('Label_Time');
 
-// Create script
-$script = $maniaLink->getScript();
-
-// Add custom part to show the local date time
+// Add custom script label to show the local date time
 $scriptText = '
 declare Label_Time <=> (Page.GetFirstChild("Label_Time") as CMlLabel);
 Label_Time.Value = CurrentLocalDateText;
 ';
-$script->addCustomScriptText($scriptText);
+$script->addCustomScriptLabel(\FML\Script\ScriptLabel::LOOP, $scriptText);
 
 // Add another custom part for fun
 $timeLabel->setScriptEvents(true);
 $scriptText = '
 Event.Control.Scale *= 1.3;
 ';
-$script->addCustomScriptText($scriptText, $script::LABEL_MOUSECLICK);
+$script->addCustomScriptLabel(\FML\Script\ScriptLabel::MOUSECLICK, $scriptText);
 $scriptText = '
 Event.Control.Scale = 1.;
 ';
-$script->addCustomScriptText($scriptText, $script::LABEL_MOUSEOUT);
+$script->addCustomScriptLabel(\FML\Script\ScriptLabel::MOUSEOUT, $scriptText);
 
 // Print xml
 $maniaLink->render(true);
