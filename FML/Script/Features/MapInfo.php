@@ -39,7 +39,8 @@ class MapInfo extends ScriptFeature {
 	 * @param Scriptable $control Action Control
 	 * @return \FML\Script\Features\ActionTrigger
 	 */
-	public function setControl(Scriptable $control) {
+	public function setControl(Control $control) {
+		$control->checkId();
 		$control->setScriptEvents(true);
 		$this->control = $control;
 		return $this;
