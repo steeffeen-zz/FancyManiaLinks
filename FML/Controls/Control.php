@@ -12,6 +12,7 @@ use FML\Script\Features\PlayerProfile;
 use FML\Script\Features\UISound;
 use FML\Script\Builder;
 use FML\Script\Features\Toggle;
+use FML\Script\Features\Tooltip;
 
 /**
  * Base Control
@@ -326,7 +327,8 @@ abstract class Control implements Renderable, ScriptFeatureable {
 
 	/**
 	 * Add a dynamic Feature toggling another Control
-	 * @param Control $toggledControl Toggled Control 
+	 *
+	 * @param Control $toggledControl Toggled Control
 	 * @param string $labelName (optional) Script Label Name
 	 * @param bool $onlyShow (optional) Whether it should only Show the Control but not toggle
 	 * @param bool $onlyHide (optional) Whether it should only Hide the Control but not toggle
@@ -335,6 +337,35 @@ abstract class Control implements Renderable, ScriptFeatureable {
 	public function addToggleFeature(Control $toggledControl, $labelName = Scriptlabel::MOUSECLICK, $onlyShow = false, $onlyHide = false) {
 		$toggle = new Toggle($this, $toggledControl, $labelName, $onlyShow, $onlyHide);
 		array_push($this->scriptFeatures, $toggle);
+		return $this;
+	}
+
+	/**
+	 * Add a dynamic Feature showing a Tooltip on hovering
+	 *
+	 * @param Control $tooltipControl Tooltip Control
+	 * @param bool $stayOnClick (optional) Whether the Tooltip should stay on Click
+	 * @param bool $invert (optional) Whether the Visibility Toggling should be inverted
+	 * @return \FML\Controls\Control
+	 */
+	public function addTooltipFeature(Control $tooltipControl, $stayOnClick = false, $invert = false) {
+		$tooltip = new Tooltip($this, $tooltipControl, $stayOnClick, $invert);
+		array_push($this->scriptFeatures, $tooltip);
+		return $this;
+	}
+
+	/**
+	 * Add a dynamic Feature showing a Tooltip on hovering
+	 *
+	 * @param Label $tooltipControl Tooltip Control
+	 * @param string $text The Text to display on the Tooltip Label
+	 * @param bool $stayOnClick (optional) Whether the Tooltip should stay on Click
+	 * @param bool $invert (optional) Whether the Visibility Toggling should be inverted
+	 * @return \FML\Controls\Control
+	 */
+	public function addTooltipLabelFeature(Label $tooltipControl, $text, $stayOnClick = false, $invert = false) {
+		$tooltip = new Tooltip($this, $tooltipControl, $stayOnClick, $invert, $text);
+		array_push($this->scriptFeatures, $tooltip);
 		return $this;
 	}
 
