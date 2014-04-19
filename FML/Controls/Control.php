@@ -3,6 +3,10 @@
 namespace FML\Controls;
 
 use FML\Types\Renderable;
+use FML\Script\Features\ActionTrigger;
+use FML\Script\ScriptLabel;
+use FML\Script\Script;
+use FML\Types\ScriptFeatureable;
 
 /**
  * Base Control
@@ -12,7 +16,7 @@ use FML\Types\Renderable;
  * @copyright FancyManiaLinks Copyright © 2014 Steffen Schröder
  * @license http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
-abstract class Control implements Renderable {
+abstract class Control implements Renderable, ScriptFeatureable {
 	/*
 	 * Constants
 	 */
@@ -43,6 +47,7 @@ abstract class Control implements Renderable {
 	protected $scale = 1.;
 	protected $hidden = 0;
 	protected $classes = array();
+	protected $scriptFeatures = array();
 
 	/**
 	 * Construct a new Control
@@ -259,6 +264,27 @@ abstract class Control implements Renderable {
 	}
 
 	/**
+	 * Add a dynamic Action Trigger on Events
+	 *
+	 * @param string $actionName Action to trigger
+	 * @param string $eventLabel (optional) Event on which the Action is triggered
+	 * @return \FML\Controls\Control
+	 */
+	public function addActionTrigger($actionName, $eventLabel = ScriptLabel::MOUSECLICK) {
+		$actionTrigger = new ActionTrigger($actionName, $eventLabel, $this);
+		array_push($this->scriptFeatures, $actionTrigger);
+		return $this;
+	}
+
+	/**
+	 *
+	 * @see \FML\Types\ScriptFeatureable::getScriptFeatures()
+	 */
+	public function getScriptFeatures() {
+		return $this->scriptFeatures;
+	}
+
+	/**
 	 *
 	 * @see \FML\Types\Renderable::render()
 	 */
@@ -286,10 +312,7 @@ abstract class Control implements Renderable {
 			$xmlElement->setAttribute('hidden', $this->hidden);
 		}
 		if (!empty($this->classes)) {
-			$classes = '';
-			foreach ($this->classes as $class) {
-				$classes .= $class . ' ';
-			}
+			$classes = implode(' ', $this->classes);
 			$xmlElement->setAttribute('class', $classes);
 		}
 		return $xmlElement;

@@ -6,6 +6,7 @@ use FML\Types\Container;
 use FML\Types\Renderable;
 use FML\Elements\Format;
 use FML\Elements\FrameModel;
+use FML\Types\ScriptFeatureable;
 
 /**
  * Frame Control
@@ -84,6 +85,20 @@ class Frame extends Control implements Container {
 			$this->setFormat(new Format());
 		}
 		return $this->format;
+	}
+
+	/**
+	 *
+	 * @see \FML\Controls\Control::getScriptFeatures()
+	 */
+	public function getScriptFeatures() {
+		$scriptFeatures = $this->scriptFeatures;
+		foreach ($this->children as $child) {
+			if ($child instanceof ScriptFeatureable) {
+				$scriptFeatures = array_merge($scriptFeatures, $child->getScriptFeatures());
+			}
+		}
+		return $scriptFeatures;
 	}
 
 	/**
