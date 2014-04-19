@@ -17,7 +17,7 @@ class ScriptInclude {
 	const TEXTLIB = 'TextLib';
 	
 	/*
-	 * Public Properties
+	 * Protected Properties
 	 */
 	protected $file = null;
 	protected $namespace = null;
@@ -53,6 +53,15 @@ class ScriptInclude {
 	public function setNamespace($namespace) {
 		$this->namespace = $namespace;
 		return $this;
+	}
+
+	/**
+	 * Get the Namespace
+	 *
+	 * @return string
+	 */
+	public function getNamespace() {
+		return $this->namespace;
 	}
 
 	/**
