@@ -11,6 +11,7 @@ use FML\Script\Features\MapInfo;
 use FML\Script\Features\PlayerProfile;
 use FML\Script\Features\UISound;
 use FML\Script\Builder;
+use FML\Script\Features\Toggle;
 
 /**
  * Base Control
@@ -315,10 +316,25 @@ abstract class Control implements Renderable, ScriptFeatureable {
 	 * @param string $soundName UISound Name
 	 * @param string $variant (optional) Sound Variant
 	 * @param string $eventLabel (optional) Event on which the Sound will be played
+	 * @return \FML\Controls\Control
 	 */
 	public function addUISoundFeature($soundName, $variant = 0, $eventLabel = ScriptLabel::MOUSECLICK) {
 		$uiSound = new UISound($soundName, $this, $variant, $eventLabel);
 		array_push($this->scriptFeatures, $uiSound);
+		return $this;
+	}
+
+	/**
+	 * Add a dynamic Feature toggling another Control
+	 * @param Control $toggledControl Toggled Control 
+	 * @param string $labelName (optional) Script Label Name
+	 * @param bool $onlyShow (optional) Whether it should only Show the Control but not toggle
+	 * @param bool $onlyHide (optional) Whether it should only Hide the Control but not toggle
+	 * @return \FML\Controls\Control
+	 */
+	public function addToggleFeature(Control $toggledControl, $labelName = Scriptlabel::MOUSECLICK, $onlyShow = false, $onlyHide = false) {
+		$toggle = new Toggle($this, $toggledControl, $labelName, $onlyShow, $onlyHide);
+		array_push($this->scriptFeatures, $toggle);
 		return $this;
 	}
 

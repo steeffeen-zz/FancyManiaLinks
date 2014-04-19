@@ -205,7 +205,8 @@ class Script {
 /*********************************
 *	FancyManiaLinks by steeffeen	 *
 *	http://github.com/steeffeen/FancyManiaLinks	 *
-*********************************/';
+*********************************/
+';
 		return $headerComment;
 	}
 
