@@ -10,6 +10,7 @@ use FML\Types\ScriptFeatureable;
 use FML\Script\Features\MapInfo;
 use FML\Script\Features\PlayerProfile;
 use FML\Script\Features\UISound;
+use FML\Script\Builder;
 
 /**
  * Base Control
@@ -66,9 +67,13 @@ abstract class Control implements Renderable, ScriptFeatureable {
 	/**
 	 * Get Control Id
 	 *
+	 * @param bool $escaped (optional) Whether the Id should be escaped for ManiaScript
 	 * @return string
 	 */
-	public function getId() {
+	public function getId($escaped = false) {
+		if ($escaped) {
+			return Builder::escapeText($this->id);
+		}
 		return $this->id;
 	}
 
@@ -293,7 +298,7 @@ abstract class Control implements Renderable, ScriptFeatureable {
 
 	/**
 	 * Add a dynamic Feature to open a specific Player Profile
-	 * 
+	 *
 	 * @param string $login The Login of the Player
 	 * @param string $eventLabel (optional) Event on which the Player Profile will be opened
 	 * @return \FML\Controls\Control
@@ -306,7 +311,7 @@ abstract class Control implements Renderable, ScriptFeatureable {
 
 	/**
 	 * Add a dynamic Feature playing an UISound
-	 * 
+	 *
 	 * @param string $soundName UISound Name
 	 * @param string $variant (optional) Sound Variant
 	 * @param string $eventLabel (optional) Event on which the Sound will be played
@@ -316,6 +321,7 @@ abstract class Control implements Renderable, ScriptFeatureable {
 		array_push($this->scriptFeatures, $uiSound);
 		return $this;
 	}
+
 	/**
 	 *
 	 * @see \FML\Types\ScriptFeatureable::getScriptFeatures()

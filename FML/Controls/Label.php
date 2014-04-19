@@ -8,6 +8,7 @@ use FML\Types\NewLineable;
 use FML\Types\Scriptable;
 use FML\Types\Styleable;
 use FML\Types\TextFormatable;
+use FML\Script\Features\Clock;
 
 /**
  * Label Control
@@ -264,6 +265,19 @@ class Label extends Control implements Actionable, Linkable, NewLineable, Script
 	 */
 	public function setAreaFocusColor($areaFocusColor) {
 		$this->focusAreaColor2 = (string) $areaFocusColor;
+		return $this;
+	}
+
+	/**
+	 * Add a dynamic Feature showing the current Time
+	 *
+	 * @param bool $showSeconds (optional) Whether the Seconds should be shown
+	 * @param bool $showFullDate (optional) Whether the Date should be shown
+	 * @return \FML\Controls\Label
+	 */
+	public function addClockFeature($showSeconds = true, $showFullDate = false) {
+		$clock = new Clock($this, $showSeconds, $showFullDate);
+		array_push($this->scriptFeatures, $clock);
 		return $this;
 	}
 
