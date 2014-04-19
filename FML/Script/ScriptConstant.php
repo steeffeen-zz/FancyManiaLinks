@@ -11,7 +11,7 @@ namespace FML\Script;
  */
 class ScriptConstant {
 	/*
-	 * Public Properties
+	 * Protected Properties
 	 */
 	protected $name = null;
 	protected $value = null;

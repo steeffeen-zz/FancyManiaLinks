@@ -11,7 +11,7 @@ namespace FML\Script;
  */
 class ScriptFunction {
 	/*
-	 * Public Properties
+	 * Protected Properties
 	 */
 	protected $name = null;
 	protected $text = null;

@@ -23,14 +23,14 @@ class ScriptLabel {
 	const MOUSEOVER = 'FML_MouseOver';
 	
 	/*
-	 * Public Properties
+	 * Protected Properties
 	 */
 	protected $name = null;
 	protected $text = null;
 
 	/**
 	 * Construct a new ScriptLabel
-	 * 
+	 *
 	 * @param string $name (optional) Label Name
 	 * @param string $text (optional) Script Text
 	 */
@@ -60,10 +60,10 @@ class ScriptLabel {
 		$this->text = $text;
 		return $this;
 	}
-	
+
 	/**
 	 * Build the full Script Label Text
-	 * 
+	 *
 	 * @return string
 	 */
 	public function __toString() {
