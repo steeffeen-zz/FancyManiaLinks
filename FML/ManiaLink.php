@@ -6,6 +6,7 @@ use FML\Elements\Dico;
 use FML\Script\Script;
 use FML\Stylesheet\Stylesheet;
 use FML\Types\Renderable;
+use FML\Types\ScriptFeatureable;
 
 /**
  * Class representing a ManiaLink
@@ -85,7 +86,7 @@ class ManiaLink {
 
 	/**
 	 * Get ManiaLink Id
-	 * 
+	 *
 	 * @return string
 	 */
 	public function getId() {
@@ -253,9 +254,13 @@ class ManiaLink {
 			$timeoutXml = $domDocument->createElement('timeout', $this->timeout);
 			$maniaLink->appendChild($timeoutXml);
 		}
+		$scriptFeatures = array();
 		foreach ($this->children as $child) {
-			$childXml = $child->render($domDocument);
+			$childXml = $child->render($domDocument, $this->getScript());
 			$maniaLink->appendChild($childXml);
+			if ($child instanceof ScriptFeatureable) {
+				$scriptFeatures = array_merge($scriptFeatures, $child->getScriptFeatures());
+			}
 		}
 		if ($this->dico) {
 			$dicoXml = $this->dico->render($domDocument);
@@ -265,9 +270,12 @@ class ManiaLink {
 			$stylesheetXml = $this->stylesheet->render($domDocument);
 			$maniaLink->appendChild($stylesheetXml);
 		}
-		if ($this->script) {
+		if ($this->script || $scriptFeatures) {
+			$this->getScript()
+				->loadFeatures($scriptFeatures);
 			$scriptXml = $this->script->render($domDocument);
 			$maniaLink->appendChild($scriptXml);
+			$this->script->resetGenericScriptLabels();
 		}
 		if ($isChild) {
 			return $maniaLink;
