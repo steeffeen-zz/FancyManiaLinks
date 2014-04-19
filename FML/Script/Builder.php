@@ -30,10 +30,9 @@ abstract class Builder {
 	 * @return string
 	 */
 	public static function escapeText($text) {
-		$escapedText = $text;
 		$dangers = array('\\', '"', "\n");
-		$replacements = array('\\\\', '\\"', '\n');
-		$escapedText = str_ireplace($dangers, $replacements, $escapedText);
+		$replacements = array('\\\\', '\\"', '\\n');
+		$escapedText = str_ireplace($dangers, $replacements, $text);
 		return $escapedText;
 	}
 
