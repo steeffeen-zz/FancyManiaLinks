@@ -7,6 +7,7 @@ use FML\Script\Features\ActionTrigger;
 use FML\Script\ScriptLabel;
 use FML\Script\Script;
 use FML\Types\ScriptFeatureable;
+use FML\Script\Features\MapInfo;
 
 /**
  * Base Control
@@ -264,15 +265,27 @@ abstract class Control implements Renderable, ScriptFeatureable {
 	}
 
 	/**
-	 * Add a dynamic Action Trigger on Events
+	 * Add a dynamic Action Trigger
 	 *
 	 * @param string $actionName Action to trigger
 	 * @param string $eventLabel (optional) Event on which the Action is triggered
 	 * @return \FML\Controls\Control
 	 */
-	public function addActionTrigger($actionName, $eventLabel = ScriptLabel::MOUSECLICK) {
-		$actionTrigger = new ActionTrigger($actionName, $eventLabel, $this);
+	public function addActionTriggerFeature($actionName, $eventLabel = ScriptLabel::MOUSECLICK) {
+		$actionTrigger = new ActionTrigger($actionName, $this, $eventLabel);
 		array_push($this->scriptFeatures, $actionTrigger);
+		return $this;
+	}
+
+	/**
+	 * Add a dynamic Feature opening the current Map Info
+	 *
+	 * @param string $eventLabel (optional) Event on which the Action is triggered
+	 * @return \FML\Controls\Control
+	 */
+	public function addMapInfoFeature($eventLabel = ScriptLabel::MOUSECLICK) {
+		$mapInfo = new MapInfo($this, $eventLabel);
+		array_push($this->scriptFeatures, $mapInfo);
 		return $this;
 	}
 
