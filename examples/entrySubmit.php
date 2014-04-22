@@ -11,6 +11,7 @@ $entry = new \FML\Controls\Entry();
 $maniaLink->add($entry);
 $entry->setSize(50, 7);
 $entry->setName('input');
+$entry->setAutoComplete(true);
 
 // Add submit feature
 $entry->addSubmitFeature('fancyml?entrysubmit');

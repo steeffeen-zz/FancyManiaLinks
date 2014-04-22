@@ -29,6 +29,7 @@ class Entry extends Control implements NewLineable, Scriptable, Styleable, TextF
 	protected $textSize = -1;
 	protected $focusAreaColor1 = '';
 	protected $focusAreaColor2 = '';
+	protected $autoComplete = null;
 
 	/**
 	 * Create a new Entry Control
@@ -153,6 +154,17 @@ class Entry extends Control implements NewLineable, Scriptable, Styleable, TextF
 	}
 
 	/**
+	 * Set Auto Completion
+	 *
+	 * @param bool $autoComplete Whether the Default Value should be automatically completed based on the current Request Parameters
+	 * @return \FML\Controls\Entry
+	 */
+	public function setAutoComplete($autoComplete) {
+		$this->autoComplete = (bool) $autoComplete;
+		return $this;
+	}
+
+	/**
 	 * Add a dynamic Feature submitting the Entry
 	 *
 	 * @param string $url Submit Url
@@ -175,6 +187,18 @@ class Entry extends Control implements NewLineable, Scriptable, Styleable, TextF
 		}
 		if ($this->default !== null) {
 			$xmlElement->setAttribute('default', $this->default);
+		}
+		else if ($this->autoComplete) {
+			$value = null;
+			if (array_key_exists($this->name, $_GET)) {
+				$value = $_GET[$this->name];
+			}
+			else if (array_key_exists($this->name, $_POST)) {
+				$value = $_POST[$this->name];
+			}
+			if ($value) {
+				$xmlElement->setAttribute('default', $value);
+			}
 		}
 		if ($this->autoNewLine) {
 			$xmlElement->setAttribute('autonewline', $this->autoNewLine);
