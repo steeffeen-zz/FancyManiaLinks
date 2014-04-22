@@ -254,6 +254,10 @@ class ManiaLink {
 			$timeoutXml = $domDocument->createElement('timeout', $this->timeout);
 			$maniaLink->appendChild($timeoutXml);
 		}
+		if ($this->dico) {
+			$dicoXml = $this->dico->render($domDocument);
+			$maniaLink->appendChild($dicoXml);
+		}
 		$scriptFeatures = array();
 		foreach ($this->children as $child) {
 			$childXml = $child->render($domDocument, $this->getScript());
@@ -265,10 +269,6 @@ class ManiaLink {
 		if ($scriptFeatures) {
 			$this->getScript()
 				->loadFeatures($scriptFeatures);
-		}
-		if ($this->dico) {
-			$dicoXml = $this->dico->render($domDocument);
-			$maniaLink->appendChild($dicoXml);
 		}
 		if ($this->stylesheet) {
 			$stylesheetXml = $this->stylesheet->render($domDocument);
