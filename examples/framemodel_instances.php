@@ -31,7 +31,6 @@ $quad->setSubStyle($quad::SUBSTYLE_Down);
 for ($i = -5; $i <= 5; $i++) {
 	$frameInstance = new \FML\Controls\FrameInstance();
 	$maniaLink->add($frameInstance);
-	$frameInstance->setId('a' . $i);
 	$frameInstance->setModel($frameModel);
 	$frameInstance->setX($i * 13);
 }
