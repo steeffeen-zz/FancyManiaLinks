@@ -8,6 +8,7 @@ use FML\Script\ScriptLabel;
 use FML\Script\Builder;
 use FML\Types\Scriptable;
 use FML\Controls\Label;
+use FML\Script\ScriptInclude;
 
 /**
  * Script Feature showing the current Time on a Label
@@ -76,7 +77,8 @@ class Clock extends ScriptFeature {
 	 * @see \FML\Script\Features\ScriptFeature::prepare()
 	 */
 	public function prepare(Script $script) {
-		$script->appendGenericScriptLabel(ScriptLabel::TICK, $this->getScriptText());
+		$script->addScriptInclude(ScriptInclude::TEXTLIB);
+		$script->appendGenericScriptLabel(ScriptLabel::TICK, $this->getScriptText(), true);
 		return $this;
 	}
 
@@ -99,7 +101,7 @@ TimeText = TextLib::SubText(TimeText, 0, 16);";
 TimeText = TextLib::SubText(TimeText, 11, 9);";
 		}
 		$scriptText .= "
-TimeLabel.Value = TimeText;";
+ClockLabel.Value = TimeText;";
 		return $scriptText;
 	}
 }
