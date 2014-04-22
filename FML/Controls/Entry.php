@@ -6,6 +6,7 @@ use FML\Types\NewLineable;
 use FML\Types\Scriptable;
 use FML\Types\Styleable;
 use FML\Types\TextFormatable;
+use FML\Script\Features\EntrySubmit;
 
 /**
  * Entry Control
@@ -59,6 +60,15 @@ class Entry extends Control implements NewLineable, Scriptable, Styleable, TextF
 	public function setName($name) {
 		$this->name = (string) $name;
 		return $this;
+	}
+
+	/**
+	 * Get the Entry Name
+	 *
+	 * @return string
+	 */
+	public function getName() {
+		return $this->name;
 	}
 
 	/**
@@ -139,6 +149,18 @@ class Entry extends Control implements NewLineable, Scriptable, Styleable, TextF
 	 */
 	public function setAreaFocusColor($areaFocusColor) {
 		$this->focusAreaColor2 = (string) $areaFocusColor;
+		return $this;
+	}
+
+	/**
+	 * Add a dynamic Feature submitting the Entry
+	 *
+	 * @param string $url Submit Url
+	 * @return \FML\Controls\Entry
+	 */
+	public function addSubmitFeature($url) {
+		$entrySubmit = new EntrySubmit($this, $url);
+		array_push($this->scriptFeatures, $entrySubmit);
 		return $this;
 	}
 

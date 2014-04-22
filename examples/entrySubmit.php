@@ -12,13 +12,8 @@ $maniaLink->add($entry);
 $entry->setSize(50, 7);
 $entry->setName('input');
 
-// Add submit button
-$submitButton = new \FML\Controls\Quads\Quad_Icons64x64_1();
-$maniaLink->add($submitButton);
-$submitButton->setSize(10, 10);
-$submitButton->setX(40);
-$submitButton->setSubStyle($submitButton::SUBSTYLE_Outbox);
-$submitButton->setManialink('fancyml?entry&input=input');
+// Add submit feature
+$entry->addSubmitFeature('fancyml?entrysubmit');
 
 // Display input if any is given
 if (!empty($_GET['input'])) {
