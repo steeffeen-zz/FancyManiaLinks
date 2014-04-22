@@ -27,6 +27,7 @@ class ScriptLabel {
 	 */
 	protected $name = null;
 	protected $text = null;
+	protected $isolated = null;
 
 	/**
 	 * Construct a new ScriptLabel
@@ -34,9 +35,10 @@ class ScriptLabel {
 	 * @param string $name (optional) Label Name
 	 * @param string $text (optional) Script Text
 	 */
-	public function __construct($name = self::LOOP, $text = '') {
-		$this->name = $name;
-		$this->text = $text;
+	public function __construct($name = self::LOOP, $text = '', $isolated = false) {
+		$this->setName($name);
+		$this->setText($text);
+		$this->setIsolated($isolated);
 	}
 
 	/**
@@ -46,7 +48,7 @@ class ScriptLabel {
 	 * @return \FML\Script\ScriptLabel
 	 */
 	public function setName($name) {
-		$this->name = $name;
+		$this->name = (string) $name;
 		return $this;
 	}
 
@@ -57,7 +59,18 @@ class ScriptLabel {
 	 * @return \FML\Script\ScriptLabel
 	 */
 	public function setText($text) {
-		$this->text = $text;
+		$this->text = (string) $text;
+		return $this;
+	}
+
+	/**
+	 * Set Isolation
+	 * 
+	 * @param bool $isolate Whether the Code should be isolated in an own Block
+	 * @return \FML\Script\ScriptLabel
+	 */
+	public function setIsolated($isolated) {
+		$this->isolated = (bool) $isolated;
 		return $this;
 	}
 
@@ -67,7 +80,7 @@ class ScriptLabel {
 	 * @return string
 	 */
 	public function __toString() {
-		$scriptText = Builder::getLabelImplementationBlock($this->name, $this->text);
+		$scriptText = Builder::getLabelImplementationBlock($this->name, $this->text, $this->isolated);
 		return $scriptText;
 	}
 }

@@ -16,9 +16,13 @@ abstract class Builder {
 	 *
 	 * @param string $labelName Name of the Label
 	 * @param string $implementationCode Label Implementation Coding (without declaration)
+	 * @param bool $isolate Whether the Code should be isolated in an own Block
 	 * @return string
 	 */
-	public static function getLabelImplementationBlock($labelName, $implementationCode) {
+	public static function getLabelImplementationBlock($labelName, $implementationCode, $isolate = true) {
+		if ($isolate) {
+			$implementationCode = 'while(False)break;{' . $implementationCode . '}';
+		}
 		$labelText = PHP_EOL . "***{$labelName}***" . PHP_EOL . "***{$implementationCode}***" . PHP_EOL;
 		return $labelText;
 	}

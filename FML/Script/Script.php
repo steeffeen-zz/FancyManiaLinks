@@ -108,12 +108,12 @@ class Script {
 	 * @param string $text Script Text
 	 * @return \FML\Script\Script
 	 */
-	public function appendGenericScriptLabel($name, $text = null) {
+	public function appendGenericScriptLabel($name, $text = null, $isolated = false) {
 		if (is_object($name) && ($name instanceof ScriptLabel)) {
 			$scriptLabel = $name;
 		}
 		else {
-			$scriptLabel = new ScriptLabel($name, $text);
+			$scriptLabel = new ScriptLabel($name, $text, $isolated);
 		}
 		array_push($this->genericLabels, $scriptLabel);
 		return $this;
@@ -201,8 +201,7 @@ class Script {
 	 * @return string
 	 */
 	protected function getHeaderComment() {
-		$headerComment = '
-/*********************************
+		$headerComment = '/*********************************
 *	FancyManiaLinks by steeffeen	 *
 *	http://github.com/steeffeen/FancyManiaLinks	 *
 *********************************/
