@@ -121,7 +121,7 @@ if (Event.Control.ControlId == \"{$hoverControlId}\") {
 			$tooltipText = Builder::escapeText($this->text);
 			$scriptText .= "
 	declare TooltipLabel = (TooltipControl as CMlLabel);
-	TooltipControl.Value = \"{$tooltipText}\";";
+	TooltipLabel.Value = \"{$tooltipText}\";";
 		}
 		$scriptText .= "
 }";
