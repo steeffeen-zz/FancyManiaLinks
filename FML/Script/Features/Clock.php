@@ -77,7 +77,7 @@ class Clock extends ScriptFeature {
 	 * @see \FML\Script\Features\ScriptFeature::prepare()
 	 */
 	public function prepare(Script $script) {
-		$script->addScriptInclude(ScriptInclude::TEXTLIB);
+		$script->setScriptInclude(ScriptInclude::TEXTLIB);
 		$script->appendGenericScriptLabel(ScriptLabel::TICK, $this->getScriptText(), true);
 		return $this;
 	}

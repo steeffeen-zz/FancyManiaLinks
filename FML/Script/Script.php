@@ -30,13 +30,13 @@ class Script {
 	protected $genericLabels = array();
 
 	/**
-	 * Add a Script Include
+	 * Set a Script Include
 	 *
 	 * @param string $file Include File
 	 * @param string $namespace Include Namespace
 	 * @return \FML\Script\Script
 	 */
-	public function addScriptInclude($file, $namespace = null) {
+	public function setScriptInclude($file, $namespace = null) {
 		if (is_object($file) && ($file instanceof ScriptInclude)) {
 			$scriptInclude = $file;
 		}
