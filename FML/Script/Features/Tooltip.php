@@ -65,6 +65,7 @@ class Tooltip extends ScriptFeature {
 	 */
 	public function setTooltipControl(Control $tooltipControl) {
 		$tooltipControl->checkId();
+		$tooltipControl->setVisible(false);
 		$this->tooltipControl = $tooltipControl;
 		return $this;
 	}

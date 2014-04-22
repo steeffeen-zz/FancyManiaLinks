@@ -5,7 +5,7 @@ require_once __DIR__ . '/../FML/autoload.php';
 
 // Create manialink
 $maniaLink = new \FML\ManiaLink();
-$maniaLink->setBackground($maniaLink::BACKGROUND_TITLE);
+$maniaLink->setBackground($maniaLink::BACKGROUND_STARS);
 
 // Create dummy label
 $label = new \FML\Controls\Label();
