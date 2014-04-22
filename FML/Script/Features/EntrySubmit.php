@@ -9,6 +9,7 @@ use FML\Script\Builder;
 use FML\Types\Actionable;
 use FML\Types\Scriptable;
 use FML\Controls\Entry;
+use FML\Script\ScriptInclude;
 
 /**
  * Script Feature for submitting an Entry
@@ -64,6 +65,7 @@ class EntrySubmit extends ScriptFeature {
 	 * @see \FML\Script\Features\ScriptFeature::prepare()
 	 */
 	public function prepare(Script $script) {
+		$script->setScriptInclude(ScriptInclude::TEXTLIB);
 		$script->appendGenericScriptLabel(ScriptLabel::ENTRYSUBMIT, $this->getScriptText());
 		return $this;
 	}
@@ -75,20 +77,23 @@ class EntrySubmit extends ScriptFeature {
 	 */
 	protected function getScriptText() {
 		$controlId = $this->entry->getId(true);
-		$url = $this->buildFullUrl();
+		$url = $this->buildCompatibleUrl();
+		$entryName = Builder::escapeText($this->entry->getName());
 		$scriptText = "
 if (Event.Control.ControlId == \"{$controlId}\") {
-	OpenLink(\"{$url}\", CMlScript::LinkType::Goto);
+	declare Entry <=> (Event.Control as CMlEntry);
+	declare Value = TextLib::URLEncode(Entry.Value);
+	OpenLink(\"{$url}{$entryName}=\"^Value, CMlScript::LinkType::Goto);
 }";
 		return $scriptText;
 	}
 
 	/**
-	 * Build the full Submit Url with the Entry Name Parameter
+	 * Build the Submit Url compatible for the Entry Parameter
 	 *
 	 * @return string
 	 */
-	protected function buildFullUrl() {
+	protected function buildCompatibleUrl() {
 		$url = $this->url;
 		$paramsBegin = stripos($url, '?');
 		if (!is_int($paramsBegin) || $paramsBegin < 0) {
@@ -97,8 +102,6 @@ if (Event.Control.ControlId == \"{$controlId}\") {
 		else {
 			$url .= '&';
 		}
-		$entryName = Builder::escapeText($this->entry->getName());
-		$url .= "{$entryName}={$entryName}";
 		return $url;
 	}
 }
