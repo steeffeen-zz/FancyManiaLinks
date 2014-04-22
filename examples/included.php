@@ -14,4 +14,3 @@ $label->setText("I'm included!");
 $labelXmlElement = $label->render($domDocument);
 $domDocument->appendChild($labelXmlElement);
 echo $domDocument->saveXML();
-

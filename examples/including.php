@@ -9,8 +9,7 @@ $maniaLink = new \FML\ManiaLink();
 // Include another url
 $include = new \FML\Elements\Including();
 $maniaLink->add($include);
-$includeUrl = dirname($_SERVER['SCRIPT_URI']) . '/included.php';
-$include->setUrl($includeUrl);
+$include->setUrl('http://fml.steeffeen.com/examples/included.php');
 
 // Print xml
 $maniaLink->render(true);
