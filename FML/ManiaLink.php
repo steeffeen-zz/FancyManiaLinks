@@ -33,7 +33,7 @@ class ManiaLink {
 	protected $id = '';
 	protected $version = 1;
 	protected $background = '';
-	protected $navigable3d = 0;
+	protected $navigable3d = 1;
 	protected $timeout = 0;
 	protected $children = array();
 	protected $dico = null;
@@ -246,8 +246,7 @@ class ManiaLink {
 		if (strlen($this->background) > 0) {
 			$maniaLink->setAttribute('background', $this->background);
 		}
-		if ($this->navigable3d) {
-			// TODO: check default value
+		if (!$this->navigable3d) {
 			$maniaLink->setAttribute('navigable3d', $this->navigable3d);
 		}
 		if ($this->timeout) {
