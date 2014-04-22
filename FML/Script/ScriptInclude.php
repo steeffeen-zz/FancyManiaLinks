@@ -30,7 +30,15 @@ class ScriptInclude {
 	 */
 	public function __construct($file = null, $namespace = null) {
 		$this->setFile($file);
-		$this->setNamespace($namespace);
+		if ($namespace) {
+			$this->setNamespace($namespace);
+		}
+		else {
+			$fileParts = explode('.', $file);
+			if (count($fileParts) === 1) {
+				$this->setNamespace($file);
+			}
+		}
 	}
 
 	/**
