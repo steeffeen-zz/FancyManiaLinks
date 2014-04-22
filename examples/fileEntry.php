@@ -19,7 +19,7 @@ $maniaLink->add($submitButton);
 $submitButton->setSize(10, 10);
 $submitButton->setX(40);
 $submitButton->setSubStyle($submitButton::SUBSTYLE_Outbox);
-$submitButton->setManialink('POST(' . $_SERVER['SCRIPT_URI'] . '?filename=inputFile,inputFile)');
+$submitButton->setManialink('POST(fancyml?fileentry&filename=inputFile,inputFile)');
 
 // Display information about uploaded file
 if (!empty($_GET['filename'])) {
