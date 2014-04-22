@@ -15,6 +15,7 @@ class Script {
 	/*
 	 * Constants
 	 */
+	const TICKINTERVAL = 250;
 	const VAR_ScriptStart = 'FML_ScriptStart';
 	const VAR_LoopCounter = 'FML_LoopCounter';
 	const VAR_LastTick = 'FML_LastTick';
@@ -201,10 +202,10 @@ class Script {
 	 * @return string
 	 */
 	protected function getHeaderComment() {
-		$headerComment = '/*********************************
-*	FancyManiaLinks by steeffeen	 *
-*	http://github.com/steeffeen/FancyManiaLinks	 *
-*********************************/
+		$headerComment = '/****************************************************
+*			FancyManiaLinks by steeffeen	 		*
+*	http://github.com/steeffeen/FancyManiaLinks		*
+****************************************************/
 ';
 		return $headerComment;
 	}
@@ -286,7 +287,7 @@ main() {
 		}
 		+++' . ScriptLabel::LOOP . '+++
 		' . self::VAR_LoopCounter . ' += 1;
-		if (' . self::VAR_LastTick . ' + 250 > Now) continue;
+		if (' . self::VAR_LastTick . ' + ' . self::TICKINTERVAL . ' > Now) continue;
 		+++' . ScriptLabel::TICK . '+++ 
 		' . self::VAR_LastTick . ' = Now;
 	}
