@@ -1,5 +1,5 @@
 <?php
-// FIXME: frame3dstyles suck
+
 // Include FML
 require_once __DIR__ . '/../FML/autoload.php';
 
@@ -14,8 +14,9 @@ $stylesheet = $maniaLink->getStylesheet();
 $style3d = new \FML\Stylesheet\Style3d();
 $stylesheet->addStyle3d($style3d);
 $style3d->setId('MyStyle');
-$style3d->setColor('ff0000');
-$style3d->setLightColor('00ff00');
+$style3d->setColor('aa0000');
+$style3d->setLightColor('00aa00');
+$style3d->setThickness(-5);
 
 // Create frame3d using the style
 $frame3d = new \FML\Controls\Frame3d();
