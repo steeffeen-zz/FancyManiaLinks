@@ -17,8 +17,8 @@ $homeLabel->setAction(\FML\Types\Actionable::ACTION_HOME);
 $enterLabel = new \FML\Controls\Label();
 $maniaLink->add($enterLabel);
 $enterLabel->setX(10);
-$enterLabel->setText('Enter');
-$enterLabel->addActionTriggerFeature(\FML\Types\Actionable::ACTION_ENTER);
+$enterLabel->setText('Quit');
+$enterLabel->addActionTriggerFeature(\FML\Types\Actionable::ACTION_QUIT);
 
 // Print xml
 $maniaLink->render(true);
