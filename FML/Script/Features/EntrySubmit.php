@@ -26,7 +26,7 @@ class EntrySubmit extends ScriptFeature {
 	protected $url = null;
 
 	/**
-	 * Construct a new Entry Submit Trigger Feature
+	 * Construct a new Entry Submit Feature
 	 *
 	 * @param Entry $entry (optional) Entry Control
 	 * @param string $url (optional) Submit Url

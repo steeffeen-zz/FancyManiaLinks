@@ -1,5 +1,5 @@
 <?php
-// FIXME: mood doesn't work
+// FIXME: mood seems not to work
 // Include FML
 require_once __DIR__ . '/../FML/autoload.php';
 
