@@ -217,7 +217,7 @@ class Script {
 	 */
 	protected function getHeaderComment() {
 		$headerComment = '/****************************************************
-*			FancyManiaLinks by steeffeen	 		*
+*		FancyManiaLinks v' . FML_VERSION . ' by steeffeen	 		*
 *	http://github.com/steeffeen/FancyManiaLinks		*
 ****************************************************/
 ';
