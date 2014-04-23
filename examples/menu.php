@@ -7,23 +7,23 @@ require_once __DIR__ . '/../FML/autoload.php';
 $maniaLink = new \FML\ManiaLink();
 
 // Create menu item list
-$menuItem0 = new \FML\Controls\Quads\Quad_Emblems();
+$menuItem0 = new \FML\Controls\Labels\Label_Button();
 $maniaLink->add($menuItem0);
-$menuItem0->setPosition(-50, 30);
-$menuItem0->setSize(20, 20);
-$menuItem0->setSubStyle($menuItem0::SUBSTYLE_0);
+$menuItem0->setPosition(-50, 10);
+$menuItem0->setStyle($menuItem0::STYLE_CardButtonSmall);
+$menuItem0->setText('Neutral');
 
-$menuItem1 = new \FML\Controls\Quads\Quad_Emblems();
+$menuItem1 = new \FML\Controls\Labels\Label_Button();
 $maniaLink->add($menuItem1);
 $menuItem1->setPosition(-50, 0);
-$menuItem1->setSize(20, 20);
-$menuItem1->setSubStyle($menuItem1::SUBSTYLE_1);
+$menuItem1->setStyle($menuItem1::STYLE_CardButtonSmall);
+$menuItem1->setText('Blue Team');
 
-$menuItem2 = new \FML\Controls\Quads\Quad_Emblems();
+$menuItem2 = new \FML\Controls\Labels\Label_Button();
 $maniaLink->add($menuItem2);
-$menuItem2->setPosition(-50, -30);
-$menuItem2->setSize(20, 20);
-$menuItem2->setSubStyle($menuItem2::SUBSTYLE_2);
+$menuItem2->setPosition(-50, -10);
+$menuItem2->setStyle($menuItem2::STYLE_CardButtonSmall);
+$menuItem2->setText('Red Team');
 
 // Create subMenus
 $subMenu0 = new \FML\Controls\Quads\Quad_Emblems();

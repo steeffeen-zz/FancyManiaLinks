@@ -43,6 +43,7 @@ class MenuElement {
 	 */
 	public function setItem(Control $item) {
 		$item->checkId();
+		$item->setScriptEvents(true);
 		$this->item = $item;
 		return $this;
 	}
