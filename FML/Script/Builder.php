@@ -31,12 +31,16 @@ abstract class Builder {
 	 * Escape dangerous Characters in the given Text
 	 *
 	 * @param string $text Text to escape
+	 * @param bool $addApostrophes (optional) Whether to add Apostrophes before and after the Text
 	 * @return string
 	 */
-	public static function escapeText($text) {
+	public static function escapeText($text, $addApostrophes = false) {
 		$dangers = array('\\', '"', "\n");
 		$replacements = array('\\\\', '\\"', '\\n');
 		$escapedText = str_ireplace($dangers, $replacements, $text);
+		if ($addApostrophes) {
+			$escapedText = '"' . $escapedText . '"';
+		}
 		return $escapedText;
 	}
 
@@ -49,7 +53,9 @@ abstract class Builder {
 	public static function getReal($value) {
 		$value = (float) $value;
 		$stringVal = (string) $value;
-		if (!fmod($value, 1)) $stringVal .= '.';
+		if (!fmod($value, 1)) {
+			$stringVal .= '.';
+		}
 		return $stringVal;
 	}
 
@@ -111,7 +117,7 @@ abstract class Builder {
 	 * @return string
 	 */
 	public static function getInclude($file, $namespace) {
-		$includeText = "#Include \"{$file}\" as {$namespace}" . PHP_EOL;
+		$includeText = "#Include	\"{$file}\"	as {$namespace}" . PHP_EOL;
 		return $includeText;
 	}
 

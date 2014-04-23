@@ -228,7 +228,7 @@ class Script {
 	 * @return string
 	 */
 	protected function getIncludes() {
-		$includesText = implode('', $this->includes);
+		$includesText = implode(PHP_EOL, $this->includes);
 		return $includesText;
 	}
 
@@ -238,7 +238,7 @@ class Script {
 	 * @return string
 	 */
 	protected function getConstants() {
-		$constantsText = implode('', $this->constants);
+		$constantsText = implode(PHP_EOL, $this->constants);
 		return $constantsText;
 	}
 
@@ -248,7 +248,7 @@ class Script {
 	 * @return string
 	 */
 	protected function getFunctions() {
-		$functionsText = implode('', $this->functions);
+		$functionsText = implode(PHP_EOL, $this->functions);
 		return $functionsText;
 	}
 
@@ -258,8 +258,8 @@ class Script {
 	 * @return string
 	 */
 	protected function getLabels() {
-		$customLabelsText = implode('', $this->customLabels);
-		$genericLabelsText = implode('', $this->genericLabels);
+		$customLabelsText = implode(PHP_EOL, $this->customLabels);
+		$genericLabelsText = implode(PHP_EOL, $this->genericLabels);
 		return $customLabelsText . $genericLabelsText;
 	}
 
