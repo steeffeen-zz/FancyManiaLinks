@@ -68,6 +68,42 @@ abstract class Builder {
 	}
 
 	/**
+	 * Get the String-Representation of the given Array
+	 *
+	 * @param array $array Array to convert to a ManiaScript Array
+	 * @param bool $associative (optional) Whether the Array should be associative
+	 * @return string
+	 */
+	public static function getArray(array $array, $associative = false) {
+		$arrayText = '[';
+		$index = 0;
+		$count = count($array);
+		foreach ($array as $key => $value) {
+			if ($associative) {
+				if (is_string($key)) {
+					$arrayText .= '"' . self::escapeText($key) . '"';
+				}
+				else {
+					$arrayText .= $key;
+				}
+				$arrayText .= ' => ';
+			}
+			if (is_string($value)) {
+				$arrayText .= '"' . self::escapeText($value) . '"';
+			}
+			else {
+				$arrayText .= $key;
+			}
+			if ($index < $count - 1) {
+				$arrayText .= ', ';
+				$index++;
+			}
+		}
+		$arrayText .= ']';
+		return $arrayText;
+	}
+
+	/**
 	 * Get the Include Command for the given File and Namespace
 	 *
 	 * @param string $file Include File
