@@ -6,19 +6,6 @@ require_once __DIR__ . '/../FML/autoload.php';
 // Create manialink
 $maniaLink = new \FML\ManiaLink();
 
-// Create paging buttons
-$leftPagerQuad = new \FML\Controls\Quads\Quad_Icons64x64_1();
-$maniaLink->add($leftPagerQuad);
-$leftPagerQuad->setPosition(-20, -30);
-$leftPagerQuad->setSize(10, 10);
-$leftPagerQuad->setSubStyle($leftPagerQuad::SUBSTYLE_ArrowPrev);
-
-$rightPagerQuad = new \FML\Controls\Quads\Quad_Icons64x64_1();
-$maniaLink->add($rightPagerQuad);
-$rightPagerQuad->setPosition(20, -30);
-$rightPagerQuad->setSize(10, 10);
-$rightPagerQuad->setSubStyle($rightPagerQuad::SUBSTYLE_ArrowNext);
-
 // Create pages
 $page0 = new \FML\Controls\Quads\Quad_Emblems();
 $maniaLink->add($page0);
@@ -35,25 +22,39 @@ $maniaLink->add($page2);
 $page2->setSize(50, 50);
 $page2->setSubStyle($page2::SUBSTYLE_2);
 
+// Create paging buttons
+$leftPagerQuad = new \FML\Controls\Quads\Quad_Icons64x64_1();
+$maniaLink->add($leftPagerQuad);
+$leftPagerQuad->setPosition(-20, -30);
+$leftPagerQuad->setSize(10, 10);
+$leftPagerQuad->setSubStyle($leftPagerQuad::SUBSTYLE_ArrowPrev);
+
+$rightPagerQuad = new \FML\Controls\Quads\Quad_Icons64x64_1();
+$maniaLink->add($rightPagerQuad);
+$rightPagerQuad->setPosition(20, -30);
+$rightPagerQuad->setSize(10, 10);
+$rightPagerQuad->setSubStyle($rightPagerQuad::SUBSTYLE_ArrowNext);
+
 // Create counter label (optional)
 $counterLabel = new \FML\Controls\Label();
 $maniaLink->add($counterLabel);
 $counterLabel->setY(-30);
 
-// Create script
-$script = $maniaLink->getScript();
+// Create paging
+$paging = new \FML\Script\Features\Paging();
+$maniaLink->getScript()->addFeature($paging);
 
 // Set pagers
-$script->addPager($leftPagerQuad, -1);
-$script->addPager($rightPagerQuad, 1);
+$paging->addButton($rightPagerQuad);
+$paging->addButton($leftPagerQuad);
 
 // Set pages
-$script->addPage($page0, 0);
-$script->addPage($page1, 1);
-$script->addPage($page2, 2);
+$paging->addPage($page0);
+$paging->addPage($page1);
+$paging->addPage($page2);
 
 // Set page label
-$script->addPageLabel($counterLabel);
+$paging->setLabel($counterLabel);
 
 // Print xml
 $maniaLink->render(true);
