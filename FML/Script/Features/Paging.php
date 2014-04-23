@@ -30,6 +30,11 @@ class Paging extends ScriptFeature {
 	protected $pages = array();
 	protected $buttons = array();
 	protected $label = null;
+	protected $customMinPageNumber = null;
+	protected $customMaxPageNumber = null;
+	protected $previousChunkAction = null;
+	protected $nextChunkAction = null;
+	protected $chunkActionAppendsPageNumber = null;
 
 	/**
 	 * Construct a new Paging Script Feature
@@ -115,6 +120,62 @@ class Paging extends ScriptFeature {
 	}
 
 	/**
+	 * Set a custom Minimum Page Number for using Chunks
+	 *
+	 * @param int $minPageNumber Custom Minimum Page Number
+	 * @return \FML\Script\Features\Paging
+	 */
+	public function setCustomMinPageNumber($minPageNumber) {
+		$this->customMinPageNumber = (int) $minPageNumber;
+		return $this;
+	}
+
+	/**
+	 * Set a custom Maximum Page Number for using Chunks
+	 *
+	 * @param int $maxPageNumber Custom Maximum Page Number
+	 * @return \FML\Script\Features\Paging
+	 */
+	public function setCustomMaxPageNumber($maxPageNumber) {
+		$this->customMaxPageNumber = (int) $maxPageNumber;
+		return $this;
+	}
+
+	/**
+	 * Set the Action triggered when the previous Chunk is needed
+	 *
+	 * @param string $previousChunkAction Triggered Action
+	 * @return \FML\Script\Features\Paging
+	 */
+	public function setPreviousChunkAction($previousChunkAction) {
+		$this->previousChunkAction = (string) $previousChunkAction;
+		return $this;
+	}
+
+	/**
+	 * Set the Action triggered when the next Chunk is needed
+	 *
+	 * @param string $nextChunkAction Triggered Action
+	 * @return \FML\Script\Features\Paging
+	 */
+	public function setNextChunkAction($nextChunkAction) {
+		$this->nextChunkAction = (string) $nextChunkAction;
+		return $this;
+	}
+
+	/**
+	 * Set if the Chunk Action should get the needed Page Number appended
+	 *
+	 * @param bool $appendPageNumber Whether to append the needed Page Number
+	 * @return \FML\Script\Features\Paging
+	 *
+	 */
+	public function setChunkActionAppendsPageNumber($appendPageNumber) {
+		$this->chunkActionAppendsPageNumber = (bool) $appendPageNumber;
+		return $this;
+	}
+
+	/**
 	 *
 	 * @see \FML\Script\Features\ScriptFeature::prepare()
 	 */
@@ -125,20 +186,31 @@ class Paging extends ScriptFeature {
 		$updatePageFunction = self::FUNCTION_UPDATE_CURRENT_PAGE;
 		
 		$minPage = $this->getMinPage();
-		$minPageNumber = $minPage->getPageNumber();
+		$startPageNumber = $minPage->getPageNumber();
+		$minPageNumber = $startPageNumber;
+		if (is_int($this->customMinPageNumber)) {
+			$minPageNumber = $this->customMinPageNumber;
+		}
 		$maxPage = $this->getMaxPage();
 		$maxPageNumber = $maxPage->getPageNumber();
+		if (is_int($this->customMaxPageNumber)) {
+			$maxPageNumber = $this->customMaxPageNumber;
+		}
 		
 		$pagingId = $minPage->getControl()->getId(true);
 		$pageLabelId = $this->label->getId(true);
 		$pagesArrayText = $this->getPagesArrayText();
 		$pageButtonsArrayText = $this->getPageButtonsArrayText();
 		
+		$previousChunkAction = Builder::escapeText($this->previousChunkAction);
+		$nextChunkAction = Builder::escapeText($this->nextChunkAction);
+		$chunkActionAppendsPageNumber = Builder::getBoolean($this->chunkActionAppendsPageNumber);
+		
 		// Init
 		$initScriptText = "
 declare {$currentPageVariable} for This = Integer[Text];
-{$currentPageVariable}[\"{$pagingId}\"] = {$minPageNumber};
-{$updatePageFunction}(\"{$pagingId}\", \"{$pageLabelId}\", 0, {$minPageNumber}, {$maxPageNumber}, {$pagesArrayText});";
+{$currentPageVariable}[\"{$pagingId}\"] = {$startPageNumber};
+{$updatePageFunction}(\"{$pagingId}\", \"{$pageLabelId}\", 0, {$minPageNumber}, {$maxPageNumber}, {$pagesArrayText}, \"{$previousChunkAction}\", \"{$nextChunkAction}\", {$chunkActionAppendsPageNumber});";
 		$script->appendGenericScriptLabel(ScriptLabel::ONINIT, $initScriptText, true);
 		
 		// MouseClick
@@ -146,13 +218,13 @@ declare {$currentPageVariable} for This = Integer[Text];
 declare PageButtons = {$pageButtonsArrayText};
 if (PageButtons.existskey(Event.Control.ControlId)) {
 	declare BrowseAction = PageButtons[Event.Control.ControlId];
-	{$updatePageFunction}(\"{$pagingId}\", \"{$pageLabelId}\", BrowseAction, {$minPageNumber}, {$maxPageNumber}, {$pagesArrayText});
+	{$updatePageFunction}(\"{$pagingId}\", \"{$pageLabelId}\", BrowseAction, {$minPageNumber}, {$maxPageNumber}, {$pagesArrayText}, \"{$previousChunkAction}\", \"{$nextChunkAction}\", {$chunkActionAppendsPageNumber});
 }";
 		$script->appendGenericScriptLabel(ScriptLabel::MOUSECLICK, $clickScriptText, true);
 		
 		// Update function
 		$functionText = "
-Void {$updatePageFunction}(Text _PagingId, Text _PageLabelId, Integer _BrowseAction, Integer _MinPageNumber, Integer _MaxPageNumber, Text[Integer] _Pages) {
+Void {$updatePageFunction}(Text _PagingId, Text _PageLabelId, Integer _BrowseAction, Integer _MinPageNumber, Integer _MaxPageNumber, Text[Integer] _Pages, Text _PreviousChunkAction, Text _NextChunkAction, Boolean _ChunkActionAppendPageNumber) {
 	declare {$currentPageVariable} for This = Integer[Text];
 	if (!{$currentPageVariable}.existskey(_PagingId)) return;
 	declare CurrentPage = {$currentPageVariable}[_PagingId] + _BrowseAction;
@@ -162,13 +234,29 @@ Void {$updatePageFunction}(Text _PagingId, Text _PageLabelId, Integer _BrowseAct
 		CurrentPage = _MaxPageNumber;
 	}
 	{$currentPageVariable}[_PagingId] = CurrentPage;
+	declare PageFound = False;
 	foreach (PageNumber => PageId in _Pages) {
 		declare PageControl <=> Page.GetFirstChild(PageId);
-		PageControl.Visible = ({$currentPageVariable}[_PagingId] == PageNumber);
+		PageControl.Visible = (CurrentPage == PageNumber);
+		if (PageControl.Visible) {
+			PageFound = True;
+		}
+	}
+	if (!PageFound && _BrowseAction != 0) {
+		declare Text ChunkAction;
+		if (_BrowseAction < 0) {
+			ChunkAction = _PreviousChunkAction;
+		} else {
+			ChunkAction = _NextChunkAction;
+		}
+		if (_ChunkActionAppendPageNumber) {
+			ChunkAction ^= CurrentPage;
+		}
+		TriggerPageAction(ChunkAction);
 	}
 	declare PageLabel <=> (Page.GetFirstChild(_PageLabelId) as CMlLabel);
 	if (PageLabel == Null) return;
-	PageLabel.Value = {$currentPageVariable}[_PagingId]^\"/\"^_MaxPageNumber;
+	PageLabel.Value = CurrentPage^\"/\"^_MaxPageNumber;
 }";
 		$script->addScriptFunction($updatePageFunction, $functionText);
 		return $this;
@@ -222,14 +310,14 @@ Void {$updatePageFunction}(Text _PagingId, Text _PageLabelId, Integer _BrowseAct
 		}
 		return Builder::getArray($pages, true);
 	}
-	
+
 	/**
 	 * Build the Array Text for the Page Buttons
-	 * 
+	 *
 	 * @return string
 	 */
 	protected function getPageButtonsArrayText() {
-		$pageButtons=array();
+		$pageButtons = array();
 		foreach ($this->buttons as $pageButton) {
 			$pageButtons[$pageButton->getControl()->getId()] = $pageButton->getBrowseAction();
 		}
