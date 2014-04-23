@@ -50,7 +50,7 @@ $subMenu2->setVisible(false);
 $menu = new \FML\Script\Features\Menu();
 $maniaLink->getScript()->addFeature($menu);
 $menu->addElement($menuItem0, $subMenu0);
-$menu->addElement($menuItem1, $subMenu1);
+$menu->addElement($menuItem1, $subMenu1, true);
 $menu->addElement($menuItem2, $subMenu2);
 
 // Print xml
