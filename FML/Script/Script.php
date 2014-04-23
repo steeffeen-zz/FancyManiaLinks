@@ -24,6 +24,7 @@ class Script {
 	 * Protected Properties
 	 */
 	protected $tagName = 'script';
+	protected $features = array();
 	protected $includes = array();
 	protected $constants = array();
 	protected $functions = array();
@@ -131,6 +132,16 @@ class Script {
 	}
 
 	/**
+	 * Add an own Script Feature
+	 *
+	 * @param ScriptFeature $feature Script Feature
+	 */
+	public function addFeature(ScriptFeature $feature) {
+		array_push($this->features, $feature);
+		return $this;
+	}
+
+	/**
 	 * Load the given Script Feature
 	 *
 	 * @param ScriptFeature $scriptFeature Script Feature to load
@@ -142,12 +153,25 @@ class Script {
 	}
 
 	/**
+	 * Load the given Script Features
+	 *
+	 * @param array $scriptFeatures Script Features to load
+	 * @return \FML\Script\Script
+	 */
+	public function loadFeatures(array $scriptFeatures) {
+		foreach ($scriptFeatures as $scriptFeature) {
+			$this->loadFeature($scriptFeature);
+		}
+		return $this;
+	}
+
+	/**
 	 * Check if the Script has Stuff so that it needs to be rendered
 	 *
 	 * @return bool
 	 */
 	public function needsRendering() {
-		if ($this->customLabels || $this->genericLabels) {
+		if ($this->features || $this->customLabels || $this->genericLabels) {
 			return true;
 		}
 		return false;
@@ -170,25 +194,13 @@ class Script {
 	}
 
 	/**
-	 * Load the given Script Features
-	 *
-	 * @param array $scriptFeatures Script Features to load
-	 * @return \FML\Script\Script
-	 */
-	public function loadFeatures(array $scriptFeatures) {
-		foreach ($scriptFeatures as $scriptFeature) {
-			$this->loadFeature($scriptFeature);
-		}
-		return $this;
-	}
-
-	/**
 	 * Create the Script XML Tag
 	 *
 	 * @param \DOMDocument $domDocument DOMDocument for which the XML Element should be created
 	 * @return \DOMElement
 	 */
 	public function render(\DOMDocument $domDocument) {
+		$this->loadFeatures($this->features);
 		$scriptXml = $domDocument->createElement($this->tagName);
 		$scriptText = $this->buildScriptText();
 		$scriptComment = $domDocument->createComment($scriptText);
