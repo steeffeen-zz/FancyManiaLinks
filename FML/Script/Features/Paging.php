@@ -85,7 +85,6 @@ class Paging extends ScriptFeature {
 			else {
 				$browseAction = $buttonCount / -2 - 1;
 			}
-			var_dump($browseAction);
 		}
 		$button = new PagingButton($buttonControl, $browseAction);
 		$this->appendButton($button);
@@ -133,29 +132,36 @@ class Paging extends ScriptFeature {
 		$pagingId = $minPage->getControl()->getId(true);
 		$pageLabelId = $this->label->getId(true);
 		$pagesArrayText = $this->getPagesArrayText();
+		$pageButtonsArrayText = $this->getPageButtonsArrayText();
 		
 		// Init
 		$initScriptText = "
 declare {$currentPageVariable} for This = Integer[Text];
 {$currentPageVariable}[\"{$pagingId}\"] = {$minPageNumber};
-{$updatePageFunction}(\"{$pagingId}\", \"{$pageLabelId}\", 0, {$maxPageNumber}, {$pagesArrayText});";
+{$updatePageFunction}(\"{$pagingId}\", \"{$pageLabelId}\", 0, {$minPageNumber}, {$maxPageNumber}, {$pagesArrayText});";
 		$script->appendGenericScriptLabel(ScriptLabel::ONINIT, $initScriptText, true);
 		
 		// MouseClick
 		$clickScriptText = "
-declare Pages = {$pagesArrayText};
-if (Pages.exists(Event.Control.ControlId)) {
-	declare BrowseAction = Pages.keyof(Event.Control.ControlId);
-	{$updatePageFunction}(\"{$pagingId}\", \"{$pageLabelId}\", BrowseAction, {$maxPageNumber}, Pages);
+declare PageButtons = {$pageButtonsArrayText};
+if (PageButtons.existskey(Event.Control.ControlId)) {
+	declare BrowseAction = PageButtons[Event.Control.ControlId];
+	{$updatePageFunction}(\"{$pagingId}\", \"{$pageLabelId}\", BrowseAction, {$minPageNumber}, {$maxPageNumber}, {$pagesArrayText});
 }";
 		$script->appendGenericScriptLabel(ScriptLabel::MOUSECLICK, $clickScriptText, true);
 		
 		// Update function
 		$functionText = "
-Void {$updatePageFunction}(Text _PagingId, Text _PageLabelId, Integer _BrowseAction, Integer _MaxPageNumber, Integer[Text] _Pages) {
+Void {$updatePageFunction}(Text _PagingId, Text _PageLabelId, Integer _BrowseAction, Integer _MinPageNumber, Integer _MaxPageNumber, Text[Integer] _Pages) {
 	declare {$currentPageVariable} for This = Integer[Text];
 	if (!{$currentPageVariable}.existskey(_PagingId)) return;
-	{$currentPageVariable}[_PagingId] += _BrowseAction;
+	declare CurrentPage = {$currentPageVariable}[_PagingId] + _BrowseAction;
+	if (CurrentPage < _MinPageNumber) {
+		CurrentPage = _MinPageNumber;
+	} else if (CurrentPage > _MaxPageNumber) {
+		CurrentPage = _MaxPageNumber;
+	}
+	{$currentPageVariable}[_PagingId] = CurrentPage;
 	foreach (PageNumber => PageId in _Pages) {
 		declare PageControl <=> Page.GetFirstChild(PageId);
 		PageControl.Visible = ({$currentPageVariable}[_PagingId] == PageNumber);
@@ -215,5 +221,18 @@ Void {$updatePageFunction}(Text _PagingId, Text _PageLabelId, Integer _BrowseAct
 			$pages[$page->getPageNumber()] = $page->getControl()->getId();
 		}
 		return Builder::getArray($pages, true);
+	}
+	
+	/**
+	 * Build the Array Text for the Page Buttons
+	 * 
+	 * @return string
+	 */
+	protected function getPageButtonsArrayText() {
+		$pageButtons=array();
+		foreach ($this->buttons as $pageButton) {
+			$pageButtons[$pageButton->getControl()->getId()] = $pageButton->getBrowseAction();
+		}
+		return Builder::getArray($pageButtons, true);
 	}
 }

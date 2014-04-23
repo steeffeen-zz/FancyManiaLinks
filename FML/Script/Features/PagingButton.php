@@ -21,29 +21,30 @@ class PagingButton {
 	/*
 	 * Protected Properties
 	 */
-	protected $button = null;
+	protected $control = null;
 	protected $browseAction = null;
 
 	/**
 	 * Construct a new Paging Button
 	 *
-	 * @param Control $button (optional) Browse Button
+	 * @param Control $control (optional) Browse Control
 	 * @param int $browseAction (optional) Number of browsed Pages per Click
 	 */
-	public function __construct(Control $button = null, $browseAction = null) {
-		$this->setButton($button);
+	public function __construct(Control $control = null, $browseAction = null) {
+		$this->setControl($control);
 		$this->setBrowseAction($browseAction);
 	}
 
 	/**
 	 * Set the Button Control
 	 *
-	 * @param Control $button Browse Button
+	 * @param Control $control Browse Control
 	 * @return \FML\Script\Features\PagingButton
 	 */
-	public function setButton(Control $button) {
-		$button->checkId();
-		$this->button = $button;
+	public function setControl(Control $control) {
+		$control->checkId();
+		$control->setScriptEvents(true);
+		$this->control = $control;
 		return $this;
 	}
 
@@ -52,8 +53,8 @@ class PagingButton {
 	 *
 	 * @return \FML\Controls\Control
 	 */
-	public function getButton() {
-		return $this->button;
+	public function getControl() {
+		return $this->control;
 	}
 
 	/**

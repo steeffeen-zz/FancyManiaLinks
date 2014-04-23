@@ -92,7 +92,7 @@ abstract class Builder {
 				$arrayText .= '"' . self::escapeText($value) . '"';
 			}
 			else {
-				$arrayText .= $key;
+				$arrayText .= $value;
 			}
 			if ($index < $count - 1) {
 				$arrayText .= ', ';
