@@ -6,8 +6,7 @@ use FML\Controls\Control;
 use FML\Script\Script;
 use FML\Script\ScriptLabel;
 use FML\Script\Builder;
-use FML\Types\Actionable;
-use FML\Types\Scriptable;
+
 
 /**
  * Script Feature for triggering a Page Action
@@ -28,10 +27,10 @@ class ActionTrigger extends ScriptFeature {
 	 * Construct a new Action Trigger Feature
 	 *
 	 * @param string $actionName (optional) Triggered Action
-	 * @param Scriptable $control (optional) Action Control
+	 * @param Control $control (optional) Action Control
 	 * @param string $labelName (optional) Script Label Name
 	 */
-	public function __construct($actionName = null, Scriptable $control = null, $labelName = ScriptLabel::MOUSECLICK) {
+	public function __construct($actionName = null, Control $control = null, $labelName = ScriptLabel::MOUSECLICK) {
 		$this->setActionName($actionName);
 		$this->setControl($control);
 		$this->setLabelName($labelName);
@@ -51,7 +50,7 @@ class ActionTrigger extends ScriptFeature {
 	/**
 	 * Set the Control
 	 * 
-	 * @param Scriptable $control Action Control
+	 * @param Control $control Action Control
 	 * @return \FML\Script\Features\ActionTrigger
 	 */
 	public function setControl(Control $control) {

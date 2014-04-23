@@ -5,7 +5,7 @@ namespace FML\Controls;
 use FML\Types\Renderable;
 use FML\Script\Features\ActionTrigger;
 use FML\Script\ScriptLabel;
-use FML\Script\Script;
+
 use FML\Types\ScriptFeatureable;
 use FML\Script\Features\MapInfo;
 use FML\Script\Features\PlayerProfile;
@@ -315,7 +315,7 @@ abstract class Control implements Renderable, ScriptFeatureable {
 	 * Add a dynamic Feature playing an UISound
 	 *
 	 * @param string $soundName UISound Name
-	 * @param string $variant (optional) Sound Variant
+	 * @param int $variant (optional) Sound Variant
 	 * @param string $eventLabel (optional) Event on which the Sound will be played
 	 * @return \FML\Controls\Control
 	 */

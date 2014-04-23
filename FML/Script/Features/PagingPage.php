@@ -3,12 +3,6 @@
 namespace FML\Script\Features;
 
 use FML\Controls\Control;
-use FML\Script\Script;
-use FML\Script\ScriptLabel;
-use FML\Script\Builder;
-use FML\Types\Scriptable;
-use FML\Controls\Label;
-use FML\Script\ScriptInclude;
 
 /**
  * A Page Control
@@ -30,20 +24,20 @@ class PagingPage {
 	 * @param Control $control (optional) Page Control
 	 * @param int $pageNumber (optional) Number of the Page
 	 */
-	public function __construct(Control $page = null, $pageNumber = 1) {
-		$this->setControl($page);
+	public function __construct(Control $control = null, $pageNumber = 1) {
+		$this->setControl($control);
 		$this->setPageNumber($pageNumber);
 	}
 
 	/**
 	 * Set the Page Control
 	 *
-	 * @param Control $page Page Control
+	 * @param Control $control Page Control
 	 * @return \FML\Script\Features\PagingPage
 	 */
-	public function setControl(Control $page) {
-		$page->checkId();
-		$this->control = $page;
+	public function setControl(Control $control) {
+		$control->checkId();
+		$this->control = $control;
 		return $this;
 	}
 

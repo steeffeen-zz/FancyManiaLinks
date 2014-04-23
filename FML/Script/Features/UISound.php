@@ -6,8 +6,6 @@ use FML\Controls\Control;
 use FML\Script\Script;
 use FML\Script\ScriptLabel;
 use FML\Script\Builder;
-use FML\Types\Actionable;
-use FML\Types\Scriptable;
 
 /**
  * Script Feature for playing an UI Sound
@@ -63,11 +61,11 @@ class UISound extends ScriptFeature {
 	 * Construct a new UISound Feature
 	 *
 	 * @param string $soundName (optional) Played Sound
-	 * @param Scriptable $control (optional) Action Control
+	 * @param Control $control (optional) Action Control
 	 * @param int $variant (optional) Sound Variant
 	 * @param string $labelName (optional) Script Label Name
 	 */
-	public function __construct($soundName = null, Scriptable $control = null, $variant = 0, $labelName = ScriptLabel::MOUSECLICK) {
+	public function __construct($soundName = null, Control $control = null, $variant = 0, $labelName = ScriptLabel::MOUSECLICK) {
 		$this->setSoundName($soundName);
 		$this->setControl($control);
 		$this->setVariant($variant);
@@ -88,7 +86,7 @@ class UISound extends ScriptFeature {
 	/**
 	 * Set the Control
 	 *
-	 * @param Scriptable $control Action Control
+	 * @param Control $control Action Control
 	 * @return \FML\Script\Features\UISound
 	 */
 	public function setControl(Control $control) {

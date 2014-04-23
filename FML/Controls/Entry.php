@@ -86,7 +86,6 @@ class Entry extends Control implements NewLineable, Scriptable, Styleable, TextF
 	/**
 	 *
 	 * @see \FML\Types\NewLineable::setAutoNewLine()
-	 * @return \FML\Controls\Entry
 	 */
 	public function setAutoNewLine($autoNewLine) {
 		$this->autoNewLine = ($autoNewLine ? 1 : 0);
@@ -96,7 +95,6 @@ class Entry extends Control implements NewLineable, Scriptable, Styleable, TextF
 	/**
 	 *
 	 * @see \FML\Types\Scriptable::setScriptEvents()
-	 * @return \FML\Controls\Entry
 	 */
 	public function setScriptEvents($scriptEvents) {
 		$this->scriptEvents = ($scriptEvents ? 1 : 0);
@@ -106,7 +104,6 @@ class Entry extends Control implements NewLineable, Scriptable, Styleable, TextF
 	/**
 	 *
 	 * @see \FML\Types\Styleable::setStyle()
-	 * @return \FML\Controls\Entry
 	 */
 	public function setStyle($style) {
 		$this->style = (string) $style;
@@ -116,7 +113,6 @@ class Entry extends Control implements NewLineable, Scriptable, Styleable, TextF
 	/**
 	 *
 	 * @see \FML\Types\TextFormatable::setTextColor()
-	 * @return \FML\Controls\Entry
 	 */
 	public function setTextColor($textColor) {
 		$this->textColor = (string) $textColor;
@@ -126,7 +122,6 @@ class Entry extends Control implements NewLineable, Scriptable, Styleable, TextF
 	/**
 	 *
 	 * @see \FML\Types\TextFormatable::setTextSize()
-	 * @return \FML\Controls\Entry
 	 */
 	public function setTextSize($textSize) {
 		$this->textSize = (int) $textSize;
@@ -136,7 +131,6 @@ class Entry extends Control implements NewLineable, Scriptable, Styleable, TextF
 	/**
 	 *
 	 * @see \FML\Types\TextFormatable::setAreaColor()
-	 * @return \FML\Controls\Entry
 	 */
 	public function setAreaColor($areaColor) {
 		$this->focusAreaColor1 = (string) $areaColor;
@@ -146,7 +140,6 @@ class Entry extends Control implements NewLineable, Scriptable, Styleable, TextF
 	/**
 	 *
 	 * @see \FML\Types\TextFormatable::setAreaFocusColor()
-	 * @return \FML\Controls\Entry
 	 */
 	public function setAreaFocusColor($areaFocusColor) {
 		$this->focusAreaColor2 = (string) $areaFocusColor;

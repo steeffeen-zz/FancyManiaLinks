@@ -41,7 +41,7 @@ class ScriptConstant {
 	/**
 	 * Set the Value
 	 *
-	 * @param string $text Constant Value
+	 * @param string $value Constant Value
 	 * @return \FML\Script\ScriptConstant
 	 */
 	public function setValue($value) {

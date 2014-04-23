@@ -129,6 +129,7 @@ class ManiaLink {
 	/**
 	 * Add an Element to the ManiaLink
 	 *
+	 * @param Renderable $child Child Element to add
 	 * @return \FML\ManiaLink
 	 */
 	public function add(Renderable $child) {
@@ -266,8 +267,7 @@ class ManiaLink {
 			}
 		}
 		if ($scriptFeatures) {
-			$this->getScript()
-				->loadFeatures($scriptFeatures);
+			$this->getScript()->loadFeatures($scriptFeatures);
 		}
 		if ($this->stylesheet) {
 			$stylesheetXml = $this->stylesheet->render($domDocument);

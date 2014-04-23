@@ -3,12 +3,6 @@
 namespace FML\Script\Features;
 
 use FML\Controls\Control;
-use FML\Script\Script;
-use FML\Script\ScriptLabel;
-use FML\Script\Builder;
-use FML\Types\Scriptable;
-use FML\Controls\Label;
-use FML\Script\ScriptInclude;
 
 /**
  * An Element for the Menu Feature

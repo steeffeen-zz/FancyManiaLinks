@@ -35,6 +35,15 @@ if (!defined('FML_AUTOLOAD_DEFINED')) {
 			// Load as simple class name
 			if (!function_exists('loadSimpleClass')) {
 
+				/**
+				 * Load FML Class Files from the given Directory
+				 * 
+				 * @param string $className Class to load
+				 * @param string $directory Directory to open
+				 * @param array $excludes File Names to ignore
+				 * @param string $baseNamespace Base Namespace
+				 * @return bool
+				 */
 				function loadSimpleClass($className, $directory, $excludes, $baseNamespace) {
 					if ($dirHandle = opendir($directory)) {
 						$classParts = explode('\\', $className);

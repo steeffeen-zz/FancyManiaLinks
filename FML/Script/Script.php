@@ -108,6 +108,7 @@ class Script {
 	 *
 	 * @param string $name Label Name
 	 * @param string $text Script Text
+	 * @param bool $isolated (optional) Whether to isolate the Label Script
 	 * @return \FML\Script\Script
 	 */
 	public function appendGenericScriptLabel($name, $text = null, $isolated = false) {
@@ -135,6 +136,7 @@ class Script {
 	 * Add an own Script Feature
 	 *
 	 * @param ScriptFeature $feature Script Feature
+	 * @return \FML\Script\Script
 	 */
 	public function addFeature(ScriptFeature $feature) {
 		array_push($this->features, $feature);

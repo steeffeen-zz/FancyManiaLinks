@@ -6,8 +6,6 @@ use FML\Controls\Control;
 use FML\Script\Script;
 use FML\Script\ScriptLabel;
 use FML\Script\Builder;
-use FML\Types\Actionable;
-use FML\Types\Scriptable;
 
 /**
  * Script Feature for opening a Player Profile
@@ -27,12 +25,12 @@ class PlayerProfile extends ScriptFeature {
 	/**
 	 * Construct a new Player Profile Feature
 	 *
-	 * @param string $actionName (optional) Triggered Action
-	 * @param Scriptable $control (optional) Action Control
+	 * @param string $login (optional) Player Login
+	 * @param Control $control (optional) Action Control
 	 * @param string $labelName (optional) Script Label Name
 	 */
-	public function __construct($login = null, Scriptable $control = null, $labelName = ScriptLabel::MOUSECLICK) {
-		$this->setLogin($actionName);
+	public function __construct($login = null, Control $control = null, $labelName = ScriptLabel::MOUSECLICK) {
+		$this->setLogin($login);
 		$this->setControl($control);
 		$this->setLabelName($labelName);
 	}
@@ -51,7 +49,7 @@ class PlayerProfile extends ScriptFeature {
 	/**
 	 * Set the Control
 	 *
-	 * @param Scriptable $control Profile Control
+	 * @param Control $control Profile Control
 	 * @return \FML\Script\Features\PlayerProfile
 	 */
 	public function setControl(Control $control) {

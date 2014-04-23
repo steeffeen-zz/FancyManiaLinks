@@ -55,7 +55,7 @@ class ScriptInclude {
 	/**
 	 * Set the Namespace
 	 *
-	 * @param string $text Include Namespace
+	 * @param string $namespace Include Namespace
 	 * @return \FML\Script\ScriptInclude
 	 */
 	public function setNamespace($namespace) {

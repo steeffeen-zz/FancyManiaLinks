@@ -6,7 +6,7 @@ use FML\Controls\Control;
 use FML\Script\Script;
 use FML\Script\ScriptLabel;
 use FML\Script\Builder;
-use FML\Types\Scriptable;
+
 
 /**
  * Script Feature for opening the Map Info
@@ -25,10 +25,10 @@ class MapInfo extends ScriptFeature {
 	/**
 	 * Construct a new Map Info Feature
 	 *
-	 * @param Scriptable $control (optional) Map Info Control
+	 * @param Control $control (optional) Map Info Control
 	 * @param string $labelName (optional) Script Label Name
 	 */
-	public function __construct(Scriptable $control, $labelName = ScriptLabel::MOUSECLICK) {
+	public function __construct(Control $control, $labelName = ScriptLabel::MOUSECLICK) {
 		$this->setControl($control);
 		$this->setLabelName($labelName);
 	}
@@ -36,7 +36,7 @@ class MapInfo extends ScriptFeature {
 	/**
 	 * Set the Control
 	 *
-	 * @param Scriptable $control Action Control
+	 * @param Control $control Action Control
 	 * @return \FML\Script\Features\ActionTrigger
 	 */
 	public function setControl(Control $control) {

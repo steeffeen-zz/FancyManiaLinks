@@ -34,6 +34,7 @@ class ScriptLabel {
 	 *
 	 * @param string $name (optional) Label Name
 	 * @param string $text (optional) Script Text
+	 * @param bool $isolated (optional) Isolate the Label Script
 	 */
 	public function __construct($name = self::LOOP, $text = '', $isolated = false) {
 		$this->setName($name);
@@ -65,8 +66,8 @@ class ScriptLabel {
 
 	/**
 	 * Set Isolation
-	 * 
-	 * @param bool $isolate Whether the Code should be isolated in an own Block
+	 *
+	 * @param bool $isolated Whether the Code should be isolated in an own Block
 	 * @return \FML\Script\ScriptLabel
 	 */
 	public function setIsolated($isolated) {

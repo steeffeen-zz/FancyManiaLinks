@@ -39,7 +39,7 @@ class Style3d {
 	 * Create a new Style3d Object
 	 *
 	 * @param string $id (optional) Style Id
-	 * @return \FML\Elements\Style3d
+	 * @return \FML\Stylesheet\Style3d
 	 */
 	public static function create($id = null) {
 		$style3d = new Style3d($id);
@@ -158,7 +158,7 @@ class Style3d {
 	/**
 	 * Set Y-Offset
 	 *
-	 * @param flaot $yOffset Y-Offset
+	 * @param float $yOffset Y-Offset
 	 * @return \FML\Stylesheet\Style3d
 	 */
 	public function setYOffset($yOffset) {
