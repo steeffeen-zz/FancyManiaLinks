@@ -79,7 +79,7 @@ class Script {
 			$scriptFunction = $name;
 		}
 		else {
-			$scriptFunction = new ScriptFunction($name, $value);
+			$scriptFunction = new ScriptFunction($name, $text);
 		}
 		array_push($this->functions, $scriptFunction);
 		return $this;
