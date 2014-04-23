@@ -6,10 +6,6 @@ require_once __DIR__ . '/../FML/autoload.php';
 // Create manialink
 $maniaLink = new \FML\ManiaLink();
 
-// Create menu
-$menu = new \FML\Script\Features\Menu();
-$maniaLink->getScript()->addFeature($menu);
-
 // Create menu item list
 $menuItem0 = new \FML\Controls\Quads\Quad_Emblems();
 $maniaLink->add($menuItem0);
@@ -50,10 +46,12 @@ $subMenu2->setSize(50, 50);
 $subMenu2->setSubStyle($subMenu2::SUBSTYLE_2);
 $subMenu2->setVisible(false);
 
-// Set menu
-$menu->addNewElement($menuItem0, $subMenu0);
-$menu->addNewElement($menuItem1, $subMenu1);
-$menu->addNewElement($menuItem2, $subMenu2);
+// Create menu
+$menu = new \FML\Script\Features\Menu();
+$maniaLink->getScript()->addFeature($menu);
+$menu->addElement($menuItem0, $subMenu0);
+$menu->addElement($menuItem1, $subMenu1);
+$menu->addElement($menuItem2, $subMenu2);
 
 // Print xml
 $maniaLink->render(true);

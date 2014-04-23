@@ -42,7 +42,7 @@ class Menu extends ScriptFeature {
 	 * @param Control $control Toggled Menu Control
 	 * @return \FML\Script\Features\Menu
 	 */
-	public function addNewElement(Control $item, Control $control) {
+	public function addElement(Control $item, Control $control) {
 		$menuElement = new MenuElement($item, $control);
 		$this->appendElement($menuElement);
 		return $this;
@@ -64,7 +64,6 @@ class Menu extends ScriptFeature {
 	 * @see \FML\Script\Features\ScriptFeature::prepare()
 	 */
 	public function prepare(Script $script) {
-		$script->setScriptInclude(ScriptInclude::TEXTLIB);
 		$script->appendGenericScriptLabel(ScriptLabel::MOUSECLICK, $this->getScriptText(), true);
 		return $this;
 	}
@@ -78,8 +77,8 @@ class Menu extends ScriptFeature {
 		$elementsArrayText = $this->getElementsArrayText();
 		$scriptText = "
 declare MenuElements = {$elementsArrayText};
-if (MenuElements.existskey(Event.Control.Id)) {
-	declare ShownControlId = MenuElements[Event.Control.Id];
+if (MenuElements.existskey(Event.Control.ControlId)) {
+	declare ShownControlId = MenuElements[Event.Control.ControlId];
 	foreach (ItemId => ControlId in MenuElements) {
 		declare Control <=> (Page.GetFirstChild(ControlId));
 		Control.Visible = (ControlId == ShownControlId);
