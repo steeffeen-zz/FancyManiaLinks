@@ -21,7 +21,7 @@ abstract class Builder {
 	 */
 	public static function getLabelImplementationBlock($labelName, $implementationCode, $isolate = true) {
 		if ($isolate) {
-			$implementationCode = 'while(False)break;{' . $implementationCode . '}';
+			$implementationCode = 'if(True){' . $implementationCode . '}';
 		}
 		$labelText = PHP_EOL . "***{$labelName}***" . PHP_EOL . "***{$implementationCode}***" . PHP_EOL;
 		return $labelText;
