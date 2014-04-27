@@ -323,6 +323,9 @@ Void {$updatePageFunction}(Text _PagingId, Text _PageLabelId, Integer _BrowseAct
 	 * @return string
 	 */
 	protected function getPageButtonsArrayText() {
+		if (!$this->buttons) {
+			return Builder::getArray(array("" => 0), true);
+		}
 		$pageButtons = array();
 		foreach ($this->buttons as $pageButton) {
 			$pageButtons[$pageButton->getControl()->getId()] = $pageButton->getBrowseAction();

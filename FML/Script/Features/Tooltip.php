@@ -6,8 +6,6 @@ use FML\Controls\Control;
 use FML\Script\Script;
 use FML\Script\ScriptLabel;
 use FML\Script\Builder;
-
-
 use FML\Controls\Label;
 
 /**
