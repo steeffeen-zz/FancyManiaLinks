@@ -92,10 +92,11 @@ abstract class Control implements Renderable, ScriptFeatureable {
 	/**
 	 * Check Id for dangerous Characters and assign a unique Id if necessary
 	 *
+	 * @param bool $forceNewId Whether to force setting a newly generated Id
 	 * @return \FML\Controls\Control
 	 */
-	public function checkId() {
-		if (!$this->getId()) {
+	public function checkId($forceNewId = false) {
+		if ($forceNewId || !$this->getId()) {
 			$this->setId('FML_ID_' . self::$currentIndex);
 			self::$currentIndex++;
 			return $this;
