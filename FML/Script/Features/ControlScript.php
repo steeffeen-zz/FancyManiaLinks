@@ -8,14 +8,13 @@ use FML\Script\ScriptLabel;
 use FML\Types\Scriptable;
 
 /**
- * Script Feature for a Custom Script Text
+ * Script Feature for a Control-related Script
  *
  * @author    steeffeen
  * @copyright FancyManiaLinks Copyright © 2014 Steffen Schröder
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
-// TODO: rename to control script
-class CustomText extends ScriptFeature {
+class ControlScript extends ScriptFeature {
 	/*
 	 * Protected Properties
 	 */
@@ -23,6 +22,7 @@ class CustomText extends ScriptFeature {
 	protected $control = null;
 	protected $labelName = null;
 	protected $text = null;
+	protected $isolated = null;
 
 	/**
 	 * Construct a new Custom Script Text
@@ -30,18 +30,20 @@ class CustomText extends ScriptFeature {
 	 * @param Control $control   Event Control
 	 * @param string  $text      Script Text
 	 * @param string  $labelName (optional) Script Label Name
+	 * @param bool    $isolated  (optional) Whether to isolate the Script Text
 	 */
-	public function __construct(Control $control, $text, $labelName = ScriptLabel::MOUSECLICK) {
+	public function __construct(Control $control, $text, $labelName = ScriptLabel::MOUSECLICK, $isolated = true) {
 		$this->setControl($control);
 		$this->setText($text);
 		$this->setLabelName($labelName);
+		$this->setIsolated($isolated);
 	}
 
 	/**
 	 * Set the Control
 	 *
 	 * @param Control $control Custom Control
-	 * @return \FML\Script\Features\CustomText
+	 * @return \FML\Script\Features\ControlScript
 	 */
 	public function setControl(Control $control) {
 		$control->checkId();
@@ -56,7 +58,7 @@ class CustomText extends ScriptFeature {
 	 * Set the Script Text
 	 *
 	 * @param string $text Script Text
-	 * @return \FML\Script\Features\CustomText
+	 * @return \FML\Script\Features\ControlScript
 	 */
 	public function setText($text) {
 		$this->text = (string)$text;
@@ -67,7 +69,7 @@ class CustomText extends ScriptFeature {
 	 * Set the Label Name
 	 *
 	 * @param string $labelName Script Label Name
-	 * @return \FML\Script\Features\CustomText
+	 * @return \FML\Script\Features\ControlScript
 	 */
 	public function setLabelName($labelName) {
 		$this->labelName = $labelName;
@@ -75,13 +77,29 @@ class CustomText extends ScriptFeature {
 	}
 
 	/**
-	 * @see \FML\Script\Features\ScriptFeature::prepare()
+	 * Set whether the Script should be isolated
+	 *
+	 * @param bool $isolated Whether to isolate the Script Text
+	 * @return \FML\Script\Features\ControlScript
 	 */
-	public function prepare(Script $script) {
-		$script->appendGenericScriptLabel($this->labelName, $this->getEncapsulatedText());
+	public function setIsolated($isolated = true) {
+		$this->isolated = (bool)$isolated;
 		return $this;
 	}
 
+	/**
+	 * @see \FML\Script\Features\ScriptFeature::prepare()
+	 */
+	public function prepare(Script $script) {
+		$script->appendGenericScriptLabel($this->labelName, $this->getEncapsulatedText(), $this->isolated);
+		return $this;
+	}
+
+	/**
+	 * Get the Script Text encapsulated for the Control Event
+	 *
+	 * @return string
+	 */
 	protected function getEncapsulatedText() {
 		$controlId  = $this->control->getId(true);
 		$scriptText = "

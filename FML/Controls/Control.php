@@ -4,7 +4,7 @@ namespace FML\Controls;
 
 use FML\Script\Builder;
 use FML\Script\Features\ActionTrigger;
-use FML\Script\Features\CustomText;
+use FML\Script\Features\ControlScript;
 use FML\Script\Features\MapInfo;
 use FML\Script\Features\PlayerProfile;
 use FML\Script\Features\ScriptFeature;
@@ -394,14 +394,15 @@ abstract class Control implements Renderable, ScriptFeatureable {
 	}
 
 	/**
-	 * Add a Custom Script Text Part
+	 * Add a Custom Control Script Text Part
 	 *
 	 * @param string $scriptText Script Text
 	 * @param string $label      (optional) Script Label Name
+	 * @param bool   $isolated   (optional) Whether to isolate the Script Text
 	 * @return \FML\Controls\Control
 	 */
-	public function addCustomScriptText($scriptText, $label = ScriptLabel::MOUSECLICK) {
-		$customText = new CustomText($this, $scriptText, $label);
+	public function addScriptText($scriptText, $label = ScriptLabel::MOUSECLICK, $isolated = true) {
+		$customText = new ControlScript($this, $scriptText, $label, $isolated);
 		$this->addScriptFeature($customText);
 		return $this;
 	}
