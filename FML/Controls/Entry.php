@@ -166,7 +166,7 @@ class Entry extends Control implements NewLineable, Scriptable, Styleable, TextF
 	 */
 	public function addSubmitFeature($url) {
 		$entrySubmit = new EntrySubmit($this, $url);
-		array_push($this->scriptFeatures, $entrySubmit);
+		$this->addScriptFeature($entrySubmit);
 		return $this;
 	}
 
