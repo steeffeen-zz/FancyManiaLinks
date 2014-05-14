@@ -5,7 +5,7 @@ namespace FML\Script\Features;
 use FML\Controls\Control;
 use FML\Script\Script;
 use FML\Script\ScriptLabel;
-
+use FML\Types\Scriptable;
 
 /**
  * Script Feature for a Custom Script Text
@@ -14,10 +14,12 @@ use FML\Script\ScriptLabel;
  * @copyright FancyManiaLinks Copyright © 2014 Steffen Schröder
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
+// TODO: rename to control script
 class CustomText extends ScriptFeature {
 	/*
 	 * Protected Properties
 	 */
+	/** @var Control $control */
 	protected $control = null;
 	protected $labelName = null;
 	protected $text = null;
@@ -43,7 +45,9 @@ class CustomText extends ScriptFeature {
 	 */
 	public function setControl(Control $control) {
 		$control->checkId();
-		$control->setScriptEvents(true);
+		if ($control instanceof Scriptable) {
+			$control->setScriptEvents(true);
+		}
 		$this->control = $control;
 		return $this;
 	}
@@ -74,7 +78,16 @@ class CustomText extends ScriptFeature {
 	 * @see \FML\Script\Features\ScriptFeature::prepare()
 	 */
 	public function prepare(Script $script) {
-		$script->appendGenericScriptLabel($this->labelName, $this->text);
+		$script->appendGenericScriptLabel($this->labelName, $this->getEncapsulatedText());
 		return $this;
+	}
+
+	protected function getEncapsulatedText() {
+		$controlId  = $this->control->getId(true);
+		$scriptText = "
+if (Event.ControlId == \"{$controlId}\") {
+	{$this->text}
+}";
+		return $scriptText;
 	}
 }

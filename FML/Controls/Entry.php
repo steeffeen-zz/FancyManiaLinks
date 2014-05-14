@@ -3,19 +3,19 @@
 
 namespace FML\Controls;
 
+use FML\Script\Features\EntrySubmit;
 use FML\Types\NewLineable;
 use FML\Types\Scriptable;
 use FML\Types\Styleable;
 use FML\Types\TextFormatable;
-use FML\Script\Features\EntrySubmit;
 
 /**
  * Entry Control
  * (CMlEntry)
  *
- * @author steeffeen
+ * @author    steeffeen
  * @copyright FancyManiaLinks Copyright © 2014 Steffen Schröder
- * @license http://www.gnu.org/licenses/ GNU General Public License, Version 3
+ * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
 class Entry extends Control implements NewLineable, Scriptable, Styleable, TextFormatable {
 	/*
@@ -60,7 +60,7 @@ class Entry extends Control implements NewLineable, Scriptable, Styleable, TextF
 	 * @return \FML\Controls\Entry
 	 */
 	public function setName($name) {
-		$this->name = (string) $name;
+		$this->name = (string)$name;
 		return $this;
 	}
 
@@ -85,7 +85,15 @@ class Entry extends Control implements NewLineable, Scriptable, Styleable, TextF
 	}
 
 	/**
+	 * Get the Default Value
 	 *
+	 * @return mixed
+	 */
+	public function getDefault() {
+		return $this->default;
+	}
+
+	/**
 	 * @see \FML\Types\NewLineable::setAutoNewLine()
 	 */
 	public function setAutoNewLine($autoNewLine) {
@@ -94,7 +102,6 @@ class Entry extends Control implements NewLineable, Scriptable, Styleable, TextF
 	}
 
 	/**
-	 *
 	 * @see \FML\Types\Scriptable::setScriptEvents()
 	 */
 	public function setScriptEvents($scriptEvents) {
@@ -103,47 +110,42 @@ class Entry extends Control implements NewLineable, Scriptable, Styleable, TextF
 	}
 
 	/**
-	 *
 	 * @see \FML\Types\Styleable::setStyle()
 	 */
 	public function setStyle($style) {
-		$this->style = (string) $style;
+		$this->style = (string)$style;
 		return $this;
 	}
 
 	/**
-	 *
 	 * @see \FML\Types\TextFormatable::setTextColor()
 	 */
 	public function setTextColor($textColor) {
-		$this->textColor = (string) $textColor;
+		$this->textColor = (string)$textColor;
 		return $this;
 	}
 
 	/**
-	 *
 	 * @see \FML\Types\TextFormatable::setTextSize()
 	 */
 	public function setTextSize($textSize) {
-		$this->textSize = (int) $textSize;
+		$this->textSize = (int)$textSize;
 		return $this;
 	}
 
 	/**
-	 *
 	 * @see \FML\Types\TextFormatable::setAreaColor()
 	 */
 	public function setAreaColor($areaColor) {
-		$this->focusAreaColor1 = (string) $areaColor;
+		$this->focusAreaColor1 = (string)$areaColor;
 		return $this;
 	}
 
 	/**
-	 *
 	 * @see \FML\Types\TextFormatable::setAreaFocusColor()
 	 */
 	public function setAreaFocusColor($areaFocusColor) {
-		$this->focusAreaColor2 = (string) $areaFocusColor;
+		$this->focusAreaColor2 = (string)$areaFocusColor;
 		return $this;
 	}
 
@@ -154,7 +156,7 @@ class Entry extends Control implements NewLineable, Scriptable, Styleable, TextF
 	 * @return \FML\Controls\Entry
 	 */
 	public function setAutoComplete($autoComplete) {
-		$this->autoComplete = (bool) $autoComplete;
+		$this->autoComplete = (bool)$autoComplete;
 		return $this;
 	}
 
@@ -171,7 +173,6 @@ class Entry extends Control implements NewLineable, Scriptable, Styleable, TextF
 	}
 
 	/**
-	 *
 	 * @see \FML\Control::render()
 	 */
 	public function render(\DOMDocument $domDocument) {
@@ -181,13 +182,11 @@ class Entry extends Control implements NewLineable, Scriptable, Styleable, TextF
 		}
 		if ($this->default !== null) {
 			$xmlElement->setAttribute('default', $this->default);
-		}
-		else if ($this->autoComplete) {
+		} else if ($this->autoComplete) {
 			$value = null;
 			if (array_key_exists($this->name, $_GET)) {
 				$value = $_GET[$this->name];
-			}
-			else if (array_key_exists($this->name, $_POST)) {
+			} else if (array_key_exists($this->name, $_POST)) {
 				$value = $_POST[$this->name];
 			}
 			if ($value) {
