@@ -242,6 +242,26 @@ abstract class Control implements Renderable, ScriptFeatureable {
 	}
 
 	/**
+	 * Center Alignment
+	 *
+	 * @return \FML\Controls\Control
+	 */
+	public function centerAlign() {
+		$this->setAlign(self::CENTER, self::CENTER2);
+		return $this;
+	}
+
+	/**
+	 * Reset Alignment
+	 *
+	 * @return \FML\Controls\Control
+	 */
+	public function resetAlign() {
+		$this->setAlign(null, null);
+		return $this;
+	}
+
+	/**
 	 * Set Control Scale
 	 *
 	 * @param float $scale Control Scale
@@ -258,7 +278,7 @@ abstract class Control implements Renderable, ScriptFeatureable {
 	 * @param bool $visible Whether Control should be visible
 	 * @return \FML\Controls\Control
 	 */
-	public function setVisible($visible) {
+	public function setVisible($visible = true) {
 		$this->hidden = ($visible ? 0 : 1);
 		return $this;
 	}
