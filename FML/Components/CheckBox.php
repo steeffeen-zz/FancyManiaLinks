@@ -108,7 +108,7 @@ class CheckBox implements Renderable, ScriptFeatureable {
 	public function getQuad($createIfEmpty = true) {
 		if (!$this->feature->getQuad() && $createIfEmpty) {
 			$quad = new Quad();
-			// TODO: set standard values
+			$quad->setSize(10, 10);
 			$quad->setScriptEvents(true);
 			$this->feature->setQuad($quad);
 		}
