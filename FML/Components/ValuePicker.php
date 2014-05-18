@@ -22,8 +22,6 @@ class ValuePicker implements Renderable, ScriptFeatureable {
 	 * Protected Properties
 	 */
 	protected $name = null;
-	protected $values = null;
-	protected $default = null;
 	protected $feature = null;
 
 	/**
@@ -35,10 +33,10 @@ class ValuePicker implements Renderable, ScriptFeatureable {
 	 * @param Label  $label   (optional) ValuePicker Label
 	 */
 	public function __construct($name = null, array $values = array(), $default = null, Label $label = null) {
+		$this->feature = new ValuePickerFeature();
 		$this->setName($name);
 		$this->setValues($values);
 		$this->setDefault($default);
-		$this->feature = new ValuePickerFeature();
 		$this->setLabel($label);
 	}
 
@@ -60,7 +58,7 @@ class ValuePicker implements Renderable, ScriptFeatureable {
 	 * @return \FML\Components\ValuePicker
 	 */
 	public function setValues(array $values) {
-		$this->values = $values;
+		$this->feature->setValues($values);
 		return $this;
 	}
 
@@ -71,7 +69,7 @@ class ValuePicker implements Renderable, ScriptFeatureable {
 	 * @return \FML\Components\ValuePicker
 	 */
 	public function setDefault($default) {
-		$this->default = (string)$default;
+		$this->feature->setDefault($default);
 		return $this;
 	}
 

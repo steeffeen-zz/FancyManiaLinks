@@ -23,7 +23,6 @@ class CheckBox implements Renderable, ScriptFeatureable {
 	 * Protected Properties
 	 */
 	protected $name = null;
-	protected $default = null;
 	protected $feature = null;
 
 	/**
@@ -34,9 +33,9 @@ class CheckBox implements Renderable, ScriptFeatureable {
 	 * @param Quad   $quad    (optional) CheckBox Quad
 	 */
 	public function __construct($name = null, $default = null, Quad $quad = null) {
+		$this->feature = new CheckBoxFeature();
 		$this->setName($name);
 		$this->setDefault($default);
-		$this->feature = new CheckBoxFeature();
 		$this->setQuad($quad);
 	}
 
@@ -58,7 +57,7 @@ class CheckBox implements Renderable, ScriptFeatureable {
 	 * @return \FML\Components\CheckBox
 	 */
 	public function setDefault($default) {
-		$this->default = ($default ? 1 : 0);
+		$this->feature->setDefault($default);
 		return $this;
 	}
 

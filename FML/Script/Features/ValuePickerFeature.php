@@ -30,6 +30,7 @@ class ValuePickerFeature extends ScriptFeature {
 	 */
 	/** @var Label $label */
 	protected $label = null;
+	/** @var Entry $entry */
 	protected $entry = null;
 	protected $values = null;
 	protected $default = null;
@@ -143,7 +144,7 @@ class ValuePickerFeature extends ScriptFeature {
 			$script->setScriptInclude(ScriptInclude::TEXTLIB);
 			$script->addScriptFunction(self::FUNCTION_UPDATE_PICKER_VALUE, $this->buildUpdatePickerValueFunction());
 			$script->appendGenericScriptLabel(ScriptLabel::ONINIT, $this->buildInitScriptText(), true);
-			$script->appendGenericScriptLabel(ScriptLabel::ONINIT, $this->buildClickScriptText(), true);
+			$script->appendGenericScriptLabel(ScriptLabel::ONINIT, $this->buildClickScriptText());
 		}
 		return $this;
 	}
@@ -209,7 +210,7 @@ EntryId = \"{$entryId}\";
 	}
 
 	/**
-	 * Build the Script Text for Quad Clicks
+	 * Build the Script Text for Label Clicks
 	 *
 	 * @return string
 	 */
