@@ -126,7 +126,7 @@ class CheckBoxFeature extends ScriptFeature {
 	public function prepare(Script $script) {
 		if ($this->getQuad()) {
 			$script->setScriptInclude(ScriptInclude::TEXTLIB);
-			$script->addScriptFunction(self::FUNCTION_UPDATE_QUAD_DESIGN, $this->buildSetQuadDesignFunction());
+			$script->addScriptFunction(self::FUNCTION_UPDATE_QUAD_DESIGN, $this->buildUpdateQuadDesignFunction());
 			$script->appendGenericScriptLabel(ScriptLabel::ONINIT, $this->buildInitScriptText(), true);
 			$script->appendGenericScriptLabel(ScriptLabel::MOUSECLICK, $this->buildClickScriptText());
 		}
@@ -138,7 +138,7 @@ class CheckBoxFeature extends ScriptFeature {
 	 *
 	 * @return string
 	 */
-	protected function buildSetQuadDesignFunction() {
+	protected function buildUpdateQuadDesignFunction() {
 		$functionText = "
 Void " . self::FUNCTION_UPDATE_QUAD_DESIGN . "(CMlQuad _Quad) {
 	declare " . self::VAR_CHECKBOX_ENABLED . " as Enabled for _Quad = True;
