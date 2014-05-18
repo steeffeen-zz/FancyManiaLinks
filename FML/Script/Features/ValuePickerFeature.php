@@ -144,7 +144,7 @@ class ValuePickerFeature extends ScriptFeature {
 			$script->setScriptInclude(ScriptInclude::TEXTLIB);
 			$script->addScriptFunction(self::FUNCTION_UPDATE_PICKER_VALUE, $this->buildUpdatePickerValueFunction());
 			$script->appendGenericScriptLabel(ScriptLabel::ONINIT, $this->buildInitScriptText(), true);
-			$script->appendGenericScriptLabel(ScriptLabel::ONINIT, $this->buildClickScriptText());
+			$script->appendGenericScriptLabel(ScriptLabel::MOUSECLICK, $this->buildClickScriptText());
 		}
 		return $this;
 	}
@@ -158,12 +158,14 @@ class ValuePickerFeature extends ScriptFeature {
 		$functionText = "
 Void " . self::FUNCTION_UPDATE_PICKER_VALUE . "(CMlLabel _Label) {
 	declare " . self::VAR_PICKER_VALUES . " as Values for _Label = Text[];
-	declare NewValueIndex = 0;
-	if (Values.exists(_Label.Value) {
-		declare ValueIndex = _Label.keyof(_Label.Value);
+	declare NewValueIndex = -1;
+	if (Values.exists(_Label.Value)) {
+		declare ValueIndex = Values.keyof(_Label.Value);
 		ValueIndex += 1;
 		if (Values.existskey(ValueIndex)) {
 			NewValueIndex = ValueIndex;
+		} else {
+			NewValueIndex = 0;
 		}
 	}
 	declare NewValue = \"\";
