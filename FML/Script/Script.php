@@ -11,7 +11,6 @@ use FML\Script\Features\ScriptFeature;
  * @copyright FancyManiaLinks Copyright © 2014 Steffen Schröder
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
-// TODO: only render needed parts of the main script
 class Script {
 	/*
 	 * Constants

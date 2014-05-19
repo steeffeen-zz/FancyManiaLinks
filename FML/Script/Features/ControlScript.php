@@ -75,7 +75,7 @@ class ControlScript extends ScriptFeature {
 	/**
 	 * Enable Script Events on the Control if needed
 	 */
-	private function updateScriptEvents() {
+	protected function updateScriptEvents() {
 		if (!$this->control) {
 			return;
 		}
