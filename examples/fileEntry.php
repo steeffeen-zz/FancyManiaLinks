@@ -22,23 +22,23 @@ $submitButton->setSubStyle($submitButton::SUBSTYLE_Outbox);
 $submitButton->setManialink('POST(fancyml?fileentry&filename=inputFile,inputFile)');
 
 // Display information about uploaded file
-if (!empty($_GET['filename'])) {
+if (isset($_GET['filename'])) {
 	// Get content of uploaded file
 	$inputFile = file_get_contents('php://input');
 	if ($inputFile) {
-		// Temporarily save file, determine size and delete it
-		$fileUrl = 'temp_inputFile';
+		// Temporarily save the file, determine size and delete it
+		$fileUrl = tempnam(null, 'fml_');
 		file_put_contents($fileUrl, $inputFile);
 		$fileSize = round(filesize($fileUrl) / 1024., 2);
 		unlink($fileUrl);
-		
+
 		// Build output labels showing file name and size
 		$nameLabel = new \FML\Controls\Label();
 		$maniaLink->add($nameLabel);
 		$nameLabel->setPosition(-20, -22);
 		$nameLabel->setHAlign('left');
 		$nameLabel->setText('File Name: ' . $_GET['filename']);
-		
+
 		$sizeLabel = new \FML\Controls\Label();
 		$maniaLink->add($sizeLabel);
 		$sizeLabel->setPosition(-20, -30);
