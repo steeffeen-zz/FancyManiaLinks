@@ -13,7 +13,6 @@ $testLabel->setText('Click Me!');
 
 // Add custom script label to show a click counter
 $scriptText = '
-declare Label <=> (Event.Control as CMlLabel);
 declare Counter for Label = 0;
 Counter += 1;
 Label.Value = Counter^"x! Click Me Again!";
