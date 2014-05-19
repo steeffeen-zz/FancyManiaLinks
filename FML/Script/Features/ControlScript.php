@@ -91,7 +91,8 @@ class ControlScript extends ScriptFeature {
 	 * @see \FML\Script\Features\ScriptFeature::prepare()
 	 */
 	public function prepare(Script $script) {
-		$script->appendGenericScriptLabel($this->labelName, $this->buildScriptText(), true);
+		$isolated = !ScriptLabel::isEventLabel($this->labelName);
+		$script->appendGenericScriptLabel($this->labelName, $this->buildScriptText(), $isolated);
 		return $this;
 	}
 
