@@ -29,7 +29,7 @@ class CheckBoxDesign implements Styleable, SubStyleable {
 	 * @return \FML\Models\CheckBoxDesign
 	 */
 	public static function defaultEnabledDesign() {
-		$checkBoxDesign = new CheckBoxDesign(Quad_Icons64x64_1::STYLE, Quad_Icons64x64_1::SUBSTYLE_LvlGreen);
+		$checkBoxDesign = new CheckBoxDesign(Quad_Icons64x64_1::STYLE, Quad_Icons64x64_1::SUBSTYLE_Check);
 		return $checkBoxDesign;
 	}
 
@@ -39,7 +39,7 @@ class CheckBoxDesign implements Styleable, SubStyleable {
 	 * @return \FML\Models\CheckBoxDesign
 	 */
 	public static function defaultDisabledDesign() {
-		$checkBoxDesign = new CheckBoxDesign(Quad_Icons64x64_1::STYLE, Quad_Icons64x64_1::SUBSTYLE_LvlRed);
+		$checkBoxDesign = new CheckBoxDesign(Quad_Icons64x64_1::STYLE, Quad_Icons64x64_1::SUBSTYLE_Check);
 		return $checkBoxDesign;
 	}
 
