@@ -8,11 +8,15 @@
         {
             "name": "Steffen Schröder",
             "email": "mail@steeffeen.com",
-            "homepage": "http://www.steeffeen.com",
-            "role": "Developer"
+            "homepage": "http://www.steeffeen.com"
         }
     ],
     "require": {
         "php": ">=5.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "FML\\": "FML"
+        }
     }
 }
