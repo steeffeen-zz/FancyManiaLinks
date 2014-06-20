@@ -11,6 +11,11 @@ namespace FML;
  */
 class UniqueID {
 	/*
+	 * Constants
+	 */
+	const PREFIX = 'FML_ID_';
+
+	/*
 	 * Static properties
 	 */
 	protected static $currentIndex = 0;
@@ -61,6 +66,6 @@ class UniqueID {
 	 * @return string
 	 */
 	public function __toString() {
-		return 'FML_ID_' . $this->index;
+		return self::PREFIX . $this->index;
 	}
 }
