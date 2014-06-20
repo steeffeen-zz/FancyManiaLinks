@@ -14,6 +14,7 @@ use FML\Script\Features\UISound;
 use FML\Script\ScriptLabel;
 use FML\Types\Renderable;
 use FML\Types\ScriptFeatureable;
+use FML\UniqueID;
 
 /**
  * Base Control
@@ -33,11 +34,6 @@ abstract class Control implements Renderable, ScriptFeatureable {
 	const RIGHT   = 'right';
 	const BOTTOM  = 'bottom';
 	const LEFT    = 'left';
-
-	/*
-	 * Static properties
-	 */
-	protected static $currentIndex = 0;
 
 	/*
 	 * Protected properties
@@ -76,8 +72,7 @@ abstract class Control implements Renderable, ScriptFeatureable {
 	 */
 	public function checkId($forceNewId = false) {
 		if ($forceNewId || !$this->getId()) {
-			$this->setId('FML_ID_' . self::$currentIndex);
-			self::$currentIndex++;
+			$this->setId(new UniqueID());
 			return $this;
 		}
 		$dangerousCharacters = array(' ', '	', '.', '|', '-', PHP_EOL);

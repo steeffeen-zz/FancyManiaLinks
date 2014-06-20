@@ -2,6 +2,8 @@
 
 namespace FML\Stylesheet;
 
+use FML\UniqueID;
+
 /**
  * Class representing a Style3d
  *
@@ -74,8 +76,7 @@ class Style3d {
 	 */
 	public function checkId() {
 		if (!$this->id) {
-			// TODO: use id like in control class (for windows)
-			$this->id = uniqid();
+			$this->setId(new UniqueID());
 		}
 		return $this;
 	}

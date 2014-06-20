@@ -4,6 +4,7 @@ namespace FML\Elements;
 
 use FML\Types\Container;
 use FML\Types\Renderable;
+use FML\UniqueID;
 
 /**
  * Class representing a Frame Model
@@ -50,8 +51,7 @@ class FrameModel implements Container, Renderable {
 	 */
 	public function checkId() {
 		if (!$this->id) {
-			// TODO: improve id like in control class
-			$this->id = uniqid();
+			$this->setId(new UniqueID());
 		}
 		return $this;
 	}
