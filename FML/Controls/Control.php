@@ -307,9 +307,12 @@ abstract class Control implements Renderable, ScriptFeatureable {
 	 * @return \FML\Controls\Control|static
 	 */
 	public function addActionTriggerFeature($actionName, $eventLabel = ScriptLabel::MOUSECLICK) {
-		// TODO: accept first parameter to be action trigger object
-		$actionTrigger = new ActionTrigger($actionName, $this, $eventLabel);
-		$this->addScriptFeature($actionTrigger);
+		if (is_object($actionName) && ($actionName instanceof ActionTrigger)) {
+			$this->addScriptFeature($actionName);
+		} else {
+			$actionTrigger = new ActionTrigger($actionName, $this, $eventLabel);
+			$this->addScriptFeature($actionTrigger);
+		}
 		return $this;
 	}
 
