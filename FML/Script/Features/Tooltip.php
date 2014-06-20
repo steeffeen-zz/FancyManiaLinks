@@ -114,20 +114,20 @@ class Tooltip extends ScriptFeature {
 	 * @see \FML\Script\Features\ScriptFeature::prepare()
 	 */
 	public function prepare(Script $script) {
-		$hoverControlId   = $this->hoverControl->getId(true);
-		$tooltipControlId = $this->tooltipControl->getId(true);
+		$hoverControlId   = $this->hoverControl->getId(true, true);
+		$tooltipControlId = $this->tooltipControl->getId(true, true);
 
 		// MouseOver
 		$visibility = ($this->invert ? 'False' : 'True');
 		$scriptText = "
-if (Event.Control.ControlId == \"{$hoverControlId}\") {
-	declare TooltipControl = Page.GetFirstChild(\"{$tooltipControlId}\");
+if (Event.Control.ControlId == {$hoverControlId}) {
+	declare TooltipControl = Page.GetFirstChild({$tooltipControlId});
 	TooltipControl.Visible = {$visibility};";
 		if (is_string($this->text) && ($this->tooltipControl instanceof Label)) {
-			$tooltipText = Builder::escapeText($this->text);
+			$tooltipText = Builder::escapeText($this->text, true);
 			$scriptText .= "
 	declare TooltipLabel = (TooltipControl as CMlLabel);
-	TooltipLabel.Value = \"{$tooltipText}\";";
+	TooltipLabel.Value = {$tooltipText};";
 		}
 		$scriptText .= "
 }";
@@ -136,8 +136,8 @@ if (Event.Control.ControlId == \"{$hoverControlId}\") {
 		// MouseOut
 		$visibility = ($this->invert ? 'True' : 'False');
 		$scriptText = "
-if (Event.Control.ControlId == \"{$hoverControlId}\") {
-	declare TooltipControl = Page.GetFirstChild(\"{$tooltipControlId}\");";
+if (Event.Control.ControlId == {$hoverControlId}) {
+	declare TooltipControl = Page.GetFirstChild({$tooltipControlId});";
 		if ($this->stayOnClick) {
 			$scriptText .= "
 	declare FML_Clicked for Event.Control = False;
@@ -151,7 +151,7 @@ if (Event.Control.ControlId == \"{$hoverControlId}\") {
 		// MouseClick
 		if ($this->stayOnClick) {
 			$scriptText = "
-if (Event.Control.ControlId == \"{$hoverControlId}\") {
+if (Event.Control.ControlId == {$hoverControlId}) {
 	declare FML_Clicked for Event.Control = False;
 	FML_Clicked = !FML_Clicked;
 }";

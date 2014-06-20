@@ -75,10 +75,11 @@ class EntrySubmit extends ScriptFeature {
 	 */
 	protected function getScriptText() {
 		$url       = $this->buildCompatibleUrl();
-		$entryName = Builder::escapeText($this->entry->getName());
+		$entryName = $this->entry->getName();
+		$link      = Builder::escapeText($entryName . $url . '=', true);
 		return "
 declare Value = TextLib::URLEncode(Entry.Value);
-OpenLink(\"{$url}{$entryName}=\"^Value, CMlScript::LinkType::Goto);
+OpenLink({$link}^Value, CMlScript::LinkType::Goto);
 ";
 	}
 

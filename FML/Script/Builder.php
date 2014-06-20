@@ -10,6 +10,11 @@ namespace FML\Script;
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
 abstract class Builder {
+	/*
+	 * Constants
+	 */
+	const EMPTY_STRING = '""';
+
 	/**
 	 * Build a label implementation block
 	 *

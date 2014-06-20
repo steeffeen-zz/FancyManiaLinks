@@ -209,23 +209,23 @@ class Paging extends ScriptFeature {
 			$maxPageNumber = $maxPage->getPageNumber();
 		}
 
-		$pagingId    = $maxPage->getControl()->getId(true);
-		$pageLabelId = '';
+		$pagingId    = $maxPage->getControl()->getId(true, true);
+		$pageLabelId = '""';
 		if ($this->label) {
-			$pageLabelId = $this->label->getId(true);
+			$pageLabelId = $this->label->getId(true, true);
 		}
 		$pagesArrayText       = $this->getPagesArrayText();
 		$pageButtonsArrayText = $this->getPageButtonsArrayText();
 
-		$previousChunkAction          = Builder::escapeText($this->previousChunkAction);
-		$nextChunkAction              = Builder::escapeText($this->nextChunkAction);
+		$previousChunkAction          = Builder::escapeText($this->previousChunkAction, true);
+		$nextChunkAction              = Builder::escapeText($this->nextChunkAction, true);
 		$chunkActionAppendsPageNumber = Builder::getBoolean($this->chunkActionAppendsPageNumber);
 
 		// Init
 		$initScriptText = "
 declare {$currentPageVariable} for This = Integer[Text];
-{$currentPageVariable}[\"{$pagingId}\"] = {$startPageNumber};
-{$updatePageFunction}(\"{$pagingId}\", \"{$pageLabelId}\", 0, {$minPageNumber}, {$maxPageNumber}, {$pagesArrayText}, \"{$previousChunkAction}\", \"{$nextChunkAction}\", {$chunkActionAppendsPageNumber});";
+{$currentPageVariable}[{$pagingId}] = {$startPageNumber};
+{$updatePageFunction}({$pagingId}, {$pageLabelId}, 0, {$minPageNumber}, {$maxPageNumber}, {$pagesArrayText}, {$previousChunkAction}, {$nextChunkAction}, {$chunkActionAppendsPageNumber});";
 		$script->appendGenericScriptLabel(ScriptLabel::ONINIT, $initScriptText, true);
 
 		// MouseClick
@@ -233,7 +233,7 @@ declare {$currentPageVariable} for This = Integer[Text];
 declare PageButtons = {$pageButtonsArrayText};
 if (PageButtons.existskey(Event.Control.ControlId)) {
 	declare BrowseAction = PageButtons[Event.Control.ControlId];
-	{$updatePageFunction}(\"{$pagingId}\", \"{$pageLabelId}\", BrowseAction, {$minPageNumber}, {$maxPageNumber}, {$pagesArrayText}, \"{$previousChunkAction}\", \"{$nextChunkAction}\", {$chunkActionAppendsPageNumber});
+	{$updatePageFunction}({$pagingId}, {$pageLabelId}, BrowseAction, {$minPageNumber}, {$maxPageNumber}, {$pagesArrayText}, {$previousChunkAction}, {$nextChunkAction}, {$chunkActionAppendsPageNumber});
 }";
 		$script->appendGenericScriptLabel(ScriptLabel::MOUSECLICK, $clickScriptText, true);
 
@@ -269,7 +269,7 @@ Void {$updatePageFunction}(Text _PagingId, Text _PageLabelId, Integer _BrowseAct
 		}
 		TriggerPageAction(ChunkAction);
 	}
-	if (_PageLabelId == \"\") return;
+	if (_PageLabelId == " . Builder::EMPTY_STRING . ") return;
 	declare PageLabel <=> (Page.GetFirstChild(_PageLabelId) as CMlLabel);
 	if (PageLabel == Null) return;
 	PageLabel.Value = CurrentPage^\"/\"^_MaxPageNumber;

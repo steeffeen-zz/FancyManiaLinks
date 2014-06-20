@@ -166,8 +166,8 @@ Void " . self::FUNCTION_UPDATE_QUAD_DESIGN . "(CMlQuad _Quad) {
 	} else {
 		_Quad.ImageUrl = Design;
 	}
-	declare " . self::VAR_CHECKBOX_ENTRY_ID . " as EntryId for _Quad = \"\";
-	if (EntryId != \"\") {
+	declare " . self::VAR_CHECKBOX_ENTRY_ID . " as EntryId for _Quad = " . Builder::EMPTY_STRING . ";
+	if (EntryId != " . Builder::EMPTY_STRING . ") {
 		declare Value = \"0\";
 		if (Enabled) {
 			Value = \"1\";
@@ -184,23 +184,23 @@ Void " . self::FUNCTION_UPDATE_QUAD_DESIGN . "(CMlQuad _Quad) {
 	 * @return string
 	 */
 	protected function buildInitScriptText() {
-		$quadId  = $this->getQuad()->getId(true);
-		$entryId = '';
+		$quadId  = $this->getQuad()->getId(true, true);
+		$entryId = '""';
 		if ($this->entry) {
-			$entryId = $this->entry->getId(true);
+			$entryId = $this->entry->getId(true, true);
 		}
 		$default              = Builder::getBoolean($this->default);
 		$enabledDesignString  = $this->enabledDesign->getDesignString();
 		$disabledDesignString = $this->disabledDesign->getDesignString();
 		return "
-declare Quad_CheckBox <=> (Page.GetFirstChild(\"{$quadId}\") as CMlQuad);
+declare Quad_CheckBox <=> (Page.GetFirstChild({$quadId}) as CMlQuad);
 declare Text[Boolean] " . self::VAR_CHECKBOX_DESIGNS . " as Designs for Quad_CheckBox;
-Designs[True] = \"{$enabledDesignString}\";
-Designs[False] = \"{$disabledDesignString}\";
+Designs[True] = {$enabledDesignString};
+Designs[False] = {$disabledDesignString};
 declare Boolean " . self::VAR_CHECKBOX_ENABLED . " as Enabled for Quad_CheckBox;
 Enabled = !{$default};
 declare Text " . self::VAR_CHECKBOX_ENTRY_ID . " as EntryId for Quad_CheckBox;
-EntryId = \"{$entryId}\";
+EntryId = {$entryId};
 " . self::FUNCTION_UPDATE_QUAD_DESIGN . "(Quad_CheckBox);
 ";
 	}
@@ -211,9 +211,9 @@ EntryId = \"{$entryId}\";
 	 * @return string
 	 */
 	protected function buildClickScriptText() {
-		$quadId = $this->getQuad()->getId(true);
+		$quadId = $this->getQuad()->getId(true, true);
 		return "
-if (Event.ControlId == \"{$quadId}\") {
+if (Event.ControlId == {$quadId}) {
 	declare Quad_CheckBox <=> (Event.Control as CMlQuad);
 	" . self::FUNCTION_UPDATE_QUAD_DESIGN . "(Quad_CheckBox);
 }";

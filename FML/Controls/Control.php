@@ -101,12 +101,13 @@ abstract class Control implements Renderable, ScriptFeatureable {
 	/**
 	 * Get the Control id
 	 *
-	 * @param bool $escaped (optional) Whether the id should be escaped for ManiaScript
+	 * @param bool $escaped        (optional) Whether the id should be escaped for ManiaScript
+	 * @param bool $addApostrophes (optional) Whether to add apostrophes before and after the text
 	 * @return string
 	 */
-	public function getId($escaped = false) {
+	public function getId($escaped = false, $addApostrophes = false) {
 		if ($escaped) {
-			return Builder::escapeText($this->id);
+			return Builder::escapeText($this->id, $addApostrophes);
 		}
 		return $this->id;
 	}

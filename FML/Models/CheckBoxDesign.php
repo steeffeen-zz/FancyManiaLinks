@@ -111,17 +111,18 @@ class CheckBoxDesign implements Styleable, SubStyleable {
 	/**
 	 * Get the CheckBox Design string
 	 *
-	 * @param bool $escaped (optional) Whether the string should be escaped for the Script
+	 * @param bool $escaped        (optional) Whether the string should be escaped for the Script
+	 * @param bool $addApostrophes (optional) Whether to add apostrophes before and after the text
 	 * @return string
 	 */
-	public function getDesignString($escaped = true) {
+	public function getDesignString($escaped = true, $addApostrophes = true) {
 		if (!is_null($this->url)) {
 			$string = $this->url;
 		} else {
 			$string = $this->style . '|' . $this->subStyle;;
 		}
 		if ($escaped) {
-			return Builder::escapeText($string);
+			return Builder::escapeText($string, $addApostrophes);
 		}
 		return $string;
 	}

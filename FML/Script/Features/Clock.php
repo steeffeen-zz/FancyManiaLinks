@@ -86,9 +86,9 @@ class Clock extends ScriptFeature {
 	 * @return string
 	 */
 	protected function getScriptText() {
-		$controlId  = $this->label->getId(true);
+		$controlId  = $this->label->getId(true, true);
 		$scriptText = "
-declare ClockLabel <=> (Page.GetFirstChild(\"{$controlId}\") as CMlLabel);
+declare ClockLabel <=> (Page.GetFirstChild({$controlId}) as CMlLabel);
 declare TimeText = CurrentLocalDateText;";
 		if (!$this->showSeconds) {
 			$scriptText .= "

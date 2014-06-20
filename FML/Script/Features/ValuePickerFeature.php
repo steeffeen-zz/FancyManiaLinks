@@ -169,16 +169,16 @@ Void " . self::FUNCTION_UPDATE_PICKER_VALUE . "(CMlLabel _Label) {
 			NewValueIndex = 0;
 		}
 	}
-	declare NewValue = \"\";
+	declare NewValue = " . Builder::EMPTY_STRING . ";
 	if (Values.existskey(NewValueIndex)) {
 		NewValue = Values[NewValueIndex];
 	} else {
-		declare " . self::VAR_PICKER_DEFAULT_VALUE . " as Default for _Label = \"\";
+		declare " . self::VAR_PICKER_DEFAULT_VALUE . " as Default for _Label = " . Builder::EMPTY_STRING . ";
 		NewValue = Default;
 	}
 	_Label.Value = NewValue;
-	declare " . self::VAR_PICKER_ENTRY_ID . " as EntryId for _Label = \"\";
-	if (EntryId != \"\") {
+	declare " . self::VAR_PICKER_ENTRY_ID . " as EntryId for _Label = " . Builder::EMPTY_STRING . ";
+	if (EntryId != " . Builder::EMPTY_STRING . ") {
 		declare Entry <=> (Page.GetFirstChild(EntryId) as CMlEntry);
 		Entry.Value = NewValue;
 	}
@@ -191,21 +191,21 @@ Void " . self::FUNCTION_UPDATE_PICKER_VALUE . "(CMlLabel _Label) {
 	 * @return string
 	 */
 	protected function buildInitScriptText() {
-		$labelId = $this->label->getId(true);
-		$entryId = '';
+		$labelId = $this->label->getId(true, true);
+		$entryId = '""';
 		if ($this->entry) {
-			$entryId = $this->entry->getId(true);
+			$entryId = $this->entry->getId(true, true);
 		}
 		$values  = Builder::getArray($this->values);
-		$default = $this->getDefault();
+		$default = Builder::escapeText($this->getDefault(), true);
 		return "
-declare Label_Picker <=> (Page.GetFirstChild(\"{$labelId}\") as CMlLabel);
+declare Label_Picker <=> (Page.GetFirstChild({$labelId}) as CMlLabel);
 declare Text[] " . self::VAR_PICKER_VALUES . " as Values for Label_Picker;
 Values = {$values};
 declare Text " . self::VAR_PICKER_DEFAULT_VALUE . " as Default for Label_Picker;
-Default = \"{$default}\";
+Default = {$default};
 declare Text " . self::VAR_PICKER_ENTRY_ID . " as EntryId for Label_Picker;
-EntryId = \"{$entryId}\";
+EntryId = {$entryId};
 " . self::FUNCTION_UPDATE_PICKER_VALUE . "(Label_Picker);
 ";
 	}
@@ -216,9 +216,9 @@ EntryId = \"{$entryId}\";
 	 * @return string
 	 */
 	protected function buildClickScriptText() {
-		$labelId = $this->label->getId(true);
+		$labelId = $this->label->getId(true, true);
 		return "
-if (Event.ControlId == \"{$labelId}\") {
+if (Event.ControlId == {$labelId}) {
 	declare Label_Picker <=> (Event.Control as CMlLabel);
 	" . self::FUNCTION_UPDATE_PICKER_VALUE . "(Label_Picker);
 }";

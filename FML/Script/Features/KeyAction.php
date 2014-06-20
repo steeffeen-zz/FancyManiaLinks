@@ -115,8 +115,9 @@ class KeyAction extends ScriptFeature {
 			$key   = 'CharPressed';
 			$value = $this->charPressed;
 		}
+		$value = Builder::escapeText($value, true);
 		return "
-if (Event.{$key} == \"{$value}\") {
+if (Event.{$key} == {$value}) {
 	TriggerPageAction({$actionName});
 }";
 	}

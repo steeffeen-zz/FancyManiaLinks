@@ -121,8 +121,8 @@ class Toggle extends ScriptFeature {
 	 * @return string
 	 */
 	protected function getScriptText() {
-		$togglingControlId = $this->togglingControl->getId(true);
-		$toggledControlId  = $this->toggledControl->getId(true);
+		$togglingControlId = $this->togglingControl->getId(true, true);
+		$toggledControlId  = $this->toggledControl->getId(true, true);
 		$visibility        = '!ToggleControl.Visible';
 		if ($this->onlyShow) {
 			$visibility = 'True';
@@ -130,8 +130,8 @@ class Toggle extends ScriptFeature {
 			$visibility = 'False';
 		}
 		return "
-if (Event.Control.ControlId == \"{$togglingControlId}\") {
-	declare ToggleControl = Page.GetFirstChild(\"{$toggledControlId}\");
+if (Event.Control.ControlId == {$togglingControlId}) {
+	declare ToggleControl = Page.GetFirstChild({$toggledControlId});
 	ToggleControl.Visible = {$visibility};
 }";
 	}
