@@ -57,7 +57,7 @@ class UniqueID {
 	 * @return string
 	 */
 	public function getValue() {
-		return (string)$this;
+		return self::PREFIX . $this->index;
 	}
 
 	/**
@@ -66,6 +66,6 @@ class UniqueID {
 	 * @return string
 	 */
 	public function __toString() {
-		return self::PREFIX . $this->index;
+		return $this->getValue();
 	}
 }
