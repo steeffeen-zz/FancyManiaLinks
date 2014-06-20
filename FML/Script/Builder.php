@@ -91,14 +91,14 @@ abstract class Builder {
 		foreach ($array as $key => $value) {
 			if ($associative) {
 				if (is_string($key)) {
-					$arrayText .= '"' . self::escapeText($key) . '"';
+					$arrayText .= '"' . static::escapeText($key) . '"';
 				} else {
 					$arrayText .= $key;
 				}
 				$arrayText .= ' => ';
 			}
 			if (is_string($value)) {
-				$arrayText .= '"' . self::escapeText($value) . '"';
+				$arrayText .= '"' . static::escapeText($value) . '"';
 			} else {
 				$arrayText .= $value;
 			}
@@ -122,7 +122,7 @@ abstract class Builder {
 		if (!$namespace && stripos($file, '.') === false) {
 			$namespace = $file;
 		}
-		$file        = self::escapeText($file, true);
+		$file        = static::escapeText($file, true);
 		$includeText = "#Include	{$file}";
 		if ($namespace) {
 			$includeText .= "	as {$namespace}";
@@ -140,9 +140,9 @@ abstract class Builder {
 	 */
 	public static function getConstant($name, $value) {
 		if (is_string($value)) {
-			$value = self::escapeText($value, true);
+			$value = static::escapeText($value, true);
 		} else if (is_bool($value)) {
-			$value = self::getBoolean($value);
+			$value = static::getBoolean($value);
 		}
 		$constantText = "#Const	{$name}	{$value}" . PHP_EOL;
 		return $constantText;

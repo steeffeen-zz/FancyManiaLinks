@@ -82,7 +82,7 @@ class ScriptLabel {
 	 * @return bool
 	 */
 	public static function isEventLabel($label) {
-		if (in_array($label, self::getEventLabels())) {
+		if (in_array($label, static::getEventLabels())) {
 			return true;
 		}
 		return false;
