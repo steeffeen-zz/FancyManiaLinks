@@ -22,7 +22,7 @@ class Gauge extends Control implements Styleable {
 	const STYLE_ProgressBarSmall = 'ProgressBarSmall';
 
 	/*
-	 * Protected Properties
+	 * Protected properties
 	 */
 	protected $ratio = 0.;
 	protected $grading = 1.;
@@ -37,7 +37,7 @@ class Gauge extends Control implements Styleable {
 	/**
 	 * Construct a new Gauge Control
 	 *
-	 * @param string $id (optional) Control Id
+	 * @param string $id (optional) Gauge id
 	 */
 	public function __construct($id = null) {
 		parent::__construct($id);
@@ -47,12 +47,11 @@ class Gauge extends Control implements Styleable {
 	/**
 	 * Create a new Gauge Control
 	 *
-	 * @param string $id (optional) Control Id
-	 * @return \FML\Controls\Gauge
+	 * @param string $id (optional) Gauge id
+	 * @return \FML\Controls\Gauge|static
 	 */
 	public static function create($id = null) {
-		$gauge = new Gauge($id);
-		return $gauge;
+		return new static($id);
 	}
 
 	/**
@@ -63,10 +62,10 @@ class Gauge extends Control implements Styleable {
 	}
 
 	/**
-	 * Set Ratio
+	 * Set ratio
 	 *
-	 * @param float $ratio Ratio Value
-	 * @return \FML\Controls\Gauge
+	 * @param float $ratio Ratio value
+	 * @return \FML\Controls\Gauge|static
 	 */
 	public function setRatio($ratio) {
 		$this->ratio = (float)$ratio;
@@ -74,10 +73,10 @@ class Gauge extends Control implements Styleable {
 	}
 
 	/**
-	 * Set Grading
+	 * Set grading
 	 *
-	 * @param float $grading Grading Value
-	 * @return \FML\Controls\Gauge
+	 * @param float $grading Grading value
+	 * @return \FML\Controls\Gauge|static
 	 */
 	public function setGrading($grading) {
 		$this->grading = (float)$grading;
@@ -85,10 +84,10 @@ class Gauge extends Control implements Styleable {
 	}
 
 	/**
-	 * Set Color
+	 * Set color
 	 *
-	 * @param string $color Gauge Color
-	 * @return \FML\Controls\Gauge
+	 * @param string $color Gauge color
+	 * @return \FML\Controls\Gauge|static
 	 */
 	public function setColor($color) {
 		$this->color = (string)$color;
@@ -96,10 +95,10 @@ class Gauge extends Control implements Styleable {
 	}
 
 	/**
-	 * Set Rotation
+	 * Set rotation
 	 *
-	 * @param float $rotation Gauge Rotation
-	 * @return \FML\Controls\Gauge
+	 * @param float $rotation Gauge rotation
+	 * @return \FML\Controls\Gauge|static
 	 */
 	public function setRotation($rotation) {
 		$this->rotation = (float)$rotation;
@@ -107,10 +106,10 @@ class Gauge extends Control implements Styleable {
 	}
 
 	/**
-	 * Set Centered
+	 * Set centered
 	 *
-	 * @param bool $centered Whether Gauge is centered
-	 * @return \FML\Controls\Gauge
+	 * @param bool $centered Whether the Gauge is centered
+	 * @return \FML\Controls\Gauge|static
 	 */
 	public function setCentered($centered) {
 		$this->centered = ($centered ? 1 : 0);
@@ -118,10 +117,10 @@ class Gauge extends Control implements Styleable {
 	}
 
 	/**
-	 * Set Clan
+	 * Set clan
 	 *
 	 * @param int $clan Clan number
-	 * @return \FML\Controls\Gauge
+	 * @return \FML\Controls\Gauge|static
 	 */
 	public function setClan($clan) {
 		$this->clan = (int)$clan;
@@ -129,10 +128,10 @@ class Gauge extends Control implements Styleable {
 	}
 
 	/**
-	 * Set Draw Background
+	 * Set draw background
 	 *
-	 * @param bool $drawBg Whether Gauge Background should be drawn
-	 * @return \FML\Controls\Gauge
+	 * @param bool $drawBg Whether the Gauges background should be drawn
+	 * @return \FML\Controls\Gauge|static
 	 */
 	public function setDrawBg($drawBg) {
 		$this->drawBg = ($drawBg ? 1 : 0);
@@ -140,10 +139,10 @@ class Gauge extends Control implements Styleable {
 	}
 
 	/**
-	 * Set Draw Block Background
+	 * Set draw block background
 	 *
-	 * @param bool $drawBlockBg Whether Gauge Block Background should be drawn
-	 * @return \FML\Controls\Gauge
+	 * @param bool $drawBlockBg Whether the Gauges block background should be drawn
+	 * @return \FML\Controls\Gauge|static
 	 */
 	public function setDrawBlockBg($drawBlockBg) {
 		$this->drawBlockBg = ($drawBlockBg ? 1 : 0);

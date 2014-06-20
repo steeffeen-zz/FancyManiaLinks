@@ -16,7 +16,7 @@ use FML\Types\TextFormatable;
  */
 class Format implements BgColorable, Renderable, Styleable, TextFormatable {
 	/*
-	 * Protected Properties
+	 * Protected properties
 	 */
 	protected $tagName = 'format';
 	protected $bgColor = '';
@@ -29,17 +29,10 @@ class Format implements BgColorable, Renderable, Styleable, TextFormatable {
 	/**
 	 * Create a new Format Element
 	 *
-	 * @return \FML\Elements\Format
+	 * @return \FML\Elements\Format|static
 	 */
 	public static function create() {
-		$format = new Format();
-		return $format;
-	}
-
-	/**
-	 * Construct a new Format Element
-	 */
-	public function __construct() {
+		return new static();
 	}
 
 	/**

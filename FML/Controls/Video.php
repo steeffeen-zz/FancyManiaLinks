@@ -15,7 +15,7 @@ use FML\Types\Scriptable;
  */
 class Video extends Control implements Playable, Scriptable {
 	/*
-	 * Protected Properties
+	 * Protected properties
 	 */
 	protected $data = '';
 	protected $dataId = '';
@@ -28,7 +28,7 @@ class Video extends Control implements Playable, Scriptable {
 	/**
 	 * Construct a new Video Control
 	 *
-	 * @param string $id (optional) Control Id
+	 * @param string $id (optional) Video Id
 	 */
 	public function __construct($id = null) {
 		parent::__construct($id);
@@ -38,12 +38,11 @@ class Video extends Control implements Playable, Scriptable {
 	/**
 	 * Create a new Video Control
 	 *
-	 * @param string $id (optional) Control Id
-	 * @return \FML\Controls\Video
+	 * @param string $id (optional) Video Id
+	 * @return \FML\Controls\Video|static
 	 */
 	public static function create($id = null) {
-		$video = new Video($id);
-		return $video;
+		return new static($id);
 	}
 
 	/**
@@ -110,7 +109,7 @@ class Video extends Control implements Playable, Scriptable {
 	}
 
 	/**
-	 * @see \FML\Control::render()
+	 * @see \FML\Types\Renderable::render()
 	 */
 	public function render(\DOMDocument $domDocument) {
 		$xmlElement = parent::render($domDocument);

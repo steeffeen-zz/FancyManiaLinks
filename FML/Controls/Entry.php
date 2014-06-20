@@ -18,7 +18,7 @@ use FML\Types\TextFormatable;
  */
 class Entry extends Control implements NewLineable, Scriptable, Styleable, TextFormatable {
 	/*
-	 * Protected Properties
+	 * Protected properties
 	 */
 	protected $name = '';
 	protected $default = null;
@@ -32,24 +32,23 @@ class Entry extends Control implements NewLineable, Scriptable, Styleable, TextF
 	protected $autoComplete = null;
 
 	/**
+	 * Create a new Entry Control
+	 *
+	 * @param string $id (optional) Entry id
+	 * @return \FML\Controls\Entry|static
+	 */
+	public static function create($id = null) {
+		return new static($id);
+	}
+
+	/**
 	 * Construct a new Entry Control
 	 *
-	 * @param string $id (optional) Control Id
+	 * @param string $id (optional) Entry id
 	 */
 	public function __construct($id = null) {
 		parent::__construct($id);
 		$this->tagName = 'entry';
-	}
-
-	/**
-	 * Create a new Entry Control
-	 *
-	 * @param string $id (optional) Control Id
-	 * @return \FML\Controls\Entry
-	 */
-	public static function create($id = null) {
-		$entry = new Entry($id);
-		return $entry;
 	}
 
 	/**
@@ -60,7 +59,7 @@ class Entry extends Control implements NewLineable, Scriptable, Styleable, TextF
 	}
 
 	/**
-	 * Get the Entry Name
+	 * Get the Entry name
 	 *
 	 * @return string
 	 */
@@ -69,9 +68,9 @@ class Entry extends Control implements NewLineable, Scriptable, Styleable, TextF
 	}
 
 	/**
-	 * Set Entry Name
+	 * Set Entry name
 	 *
-	 * @param string $name Entry Name
+	 * @param string $name Entry name
 	 * @return \FML\Controls\Entry
 	 */
 	public function setName($name) {
@@ -80,7 +79,7 @@ class Entry extends Control implements NewLineable, Scriptable, Styleable, TextF
 	}
 
 	/**
-	 * Get the Default Value
+	 * Get the default value
 	 *
 	 * @return mixed
 	 */
@@ -89,10 +88,10 @@ class Entry extends Control implements NewLineable, Scriptable, Styleable, TextF
 	}
 
 	/**
-	 * Set Default Value
+	 * Set default value
 	 *
-	 * @param string $default Default Value
-	 * @return \FML\Controls\Entry
+	 * @param string $default Default value
+	 * @return \FML\Controls\Entry|static
 	 */
 	public function setDefault($default) {
 		$this->default = $default;
@@ -156,10 +155,10 @@ class Entry extends Control implements NewLineable, Scriptable, Styleable, TextF
 	}
 
 	/**
-	 * Set Auto Completion
+	 * Set auto completion
 	 *
-	 * @param bool $autoComplete Whether the Default Value should be automatically completed based on the current Request Parameters
-	 * @return \FML\Controls\Entry
+	 * @param bool $autoComplete Whether the default value should be automatically completed based on the current request parameters
+	 * @return \FML\Controls\Entry|static
 	 */
 	public function setAutoComplete($autoComplete) {
 		$this->autoComplete = (bool)$autoComplete;
@@ -169,8 +168,8 @@ class Entry extends Control implements NewLineable, Scriptable, Styleable, TextF
 	/**
 	 * Add a dynamic Feature submitting the Entry
 	 *
-	 * @param string $url Submit Url
-	 * @return \FML\Controls\Entry
+	 * @param string $url Submit url
+	 * @return \FML\Controls\Entry|static
 	 */
 	public function addSubmitFeature($url) {
 		$entrySubmit = new EntrySubmit($this, $url);

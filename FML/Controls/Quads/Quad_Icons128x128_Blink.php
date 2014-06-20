@@ -5,7 +5,7 @@ namespace FML\Controls\Quads;
 use FML\Controls\Quad;
 
 /**
- * Quad Class for 'Icons128x128_Blink' Style
+ * Quad class for 'Icons128x128_Blink' styles
  *
  * @author    steeffeen <mail@steeffeen.com>
  * @copyright FancyManiaLinks Copyright © 2014 Steffen Schröder
@@ -82,20 +82,9 @@ class Quad_Icons128x128_Blink extends Quad {
 	const SUBSTYLE_Vehicles         = 'Vehicles';
 
 	/**
-	 * Create a new Quad_Icons128x128_Blink Control
-	 *
-	 * @param string $id (optional) Control Id
-	 * @return \FML\Controls\Quads\Quad_Icons128x128_Blink
-	 */
-	public static function create($id = null) {
-		$quadIcons128x128_Blink = new Quad_Icons128x128_Blink($id);
-		return $quadIcons128x128_Blink;
-	}
-
-	/**
 	 * Construct a new Quad_Icons128x128_Blink Control
 	 *
-	 * @param string $id (optional) Control Id
+	 * @param string $id (optional) Quad id
 	 */
 	public function __construct($id = null) {
 		parent::__construct($id);

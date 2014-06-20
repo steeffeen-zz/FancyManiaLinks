@@ -5,39 +5,28 @@ namespace FML\Controls\Quads;
 use FML\Controls\Quad;
 
 /**
- * Quad Class for 'BgsChallengeMedals' Style
+ * Quad class for 'BgsChallengeMedals' styles
  *
- * @author steeffeen
+ * @author    steeffeen
  * @copyright FancyManiaLinks Copyright © 2014 Steffen Schröder
- * @license http://www.gnu.org/licenses/ GNU General Public License, Version 3
+ * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
 class Quad_BgsChallengeMedals extends Quad {
 	/*
 	 * Constants
 	 */
-	const STYLE = 'BgsChallengeMedals';
-	const SUBSTYLE_BgBronze = 'BgBronze';
-	const SUBSTYLE_BgGold = 'BgGold';
-	const SUBSTYLE_BgNadeo = 'BgNadeo';
+	const STYLE                = 'BgsChallengeMedals';
+	const SUBSTYLE_BgBronze    = 'BgBronze';
+	const SUBSTYLE_BgGold      = 'BgGold';
+	const SUBSTYLE_BgNadeo     = 'BgNadeo';
 	const SUBSTYLE_BgNotPlayed = 'BgNotPlayed';
-	const SUBSTYLE_BgPlayed = 'BgPlayed';
-	const SUBSTYLE_BgSilver = 'BgSilver';
-
-	/**
-	 * Create a new Quad_BgsChallengeMedals Control
-	 *
-	 * @param string $id (optional) Control Id
-	 * @return \FML\Controls\Quads\Quad_BgsChallengeMedals
-	 */
-	public static function create($id = null) {
-		$quadBgsChallengeMedals = new Quad_BgsChallengeMedals($id);
-		return $quadBgsChallengeMedals;
-	}
+	const SUBSTYLE_BgPlayed    = 'BgPlayed';
+	const SUBSTYLE_BgSilver    = 'BgSilver';
 
 	/**
 	 * Construct a new Quad_BgsChallengeMedals Control
 	 *
-	 * @param string $id (optional) Control Id
+	 * @param string $id (optional) Quad id
 	 */
 	public function __construct($id = null) {
 		parent::__construct($id);

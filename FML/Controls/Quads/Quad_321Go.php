@@ -5,39 +5,29 @@ namespace FML\Controls\Quads;
 use FML\Controls\Quad;
 
 /**
- * Quad Class for '321Go' Style
+ * Quad class for '321Go' styles
  *
- * @author steeffeen
+ * @author    steeffeen
  * @copyright FancyManiaLinks Copyright © 2014 Steffen Schröder
- * @license http://www.gnu.org/licenses/ GNU General Public License, Version 3
+ * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
 class Quad_321Go extends Quad {
 	/*
 	 * Constants
 	 */
-	const STYLE = '321Go';
-	const SUBSTYLE_3 = '3';
-	const SUBSTYLE_2 = '2';
-	const SUBSTYLE_1 = '1';
+	const STYLE       = '321Go';
+	const SUBSTYLE_3  = '3';
+	const SUBSTYLE_2  = '2';
+	const SUBSTYLE_1  = '1';
 	const SUBSTYLE_Go = 'Go!';
-
-	/**
-	 * Create a new Quad_321Go Control
-	 *
-	 * @param string $id (optional) Control Id
-	 * @return \FML\Controls\Quads\Quad_321Go
-	 */
-	public static function create($id = null) {
-		$quad321Go = new Quad_321Go($id);
-		return $quad321Go;
-	}
 
 	/**
 	 * Construct a new Quad_321Go Control
 	 *
-	 * @param string $id (optional) Control Id
+	 * @param string $id (optional) Quad id
 	 */
 	public function __construct($id = null) {
+		// TODO: validate if the $style could simply be overwritten
 		parent::__construct($id);
 		$this->setStyle(self::STYLE);
 	}

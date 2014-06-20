@@ -3,20 +3,19 @@
 namespace FML\Script;
 
 /**
- * Builder Class offering Methods to build ManiaScript
+ * ManiaScript Builder class
  *
  * @author    steeffeen <mail@steeffeen.com>
  * @copyright FancyManiaLinks Copyright © 2014 Steffen Schröder
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
 abstract class Builder {
-
 	/**
-	 * Build a Label Implementation Block
+	 * Build a label implementation block
 	 *
-	 * @param string $labelName          Name of the Label
-	 * @param string $implementationCode Label Implementation Coding (without declaration)
-	 * @param bool   $isolate            Whether the Code should be isolated in an own Block
+	 * @param string $labelName          Name of the label
+	 * @param string $implementationCode Label implementation coding (without declaration)
+	 * @param bool   $isolate            Whether the code should be isolated in an own block
 	 * @return string
 	 */
 	public static function getLabelImplementationBlock($labelName, $implementationCode, $isolate = true) {
@@ -28,10 +27,10 @@ abstract class Builder {
 	}
 
 	/**
-	 * Escape dangerous Characters in the given Text
+	 * Escape dangerous characters in the given text
 	 *
 	 * @param string $text           Text to escape
-	 * @param bool   $addApostrophes (optional) Whether to add Apostrophes before and after the Text
+	 * @param bool   $addApostrophes (optional) Whether to add apostrophes before and after the text
 	 * @return string
 	 */
 	public static function escapeText($text, $addApostrophes = false) {
@@ -45,9 +44,9 @@ abstract class Builder {
 	}
 
 	/**
-	 * Get the Real String-Representation of the given Value
+	 * Get the 'Real' string representation of the given value
 	 *
-	 * @param float $value The Float Value to convert to a ManiaScript Real
+	 * @param float $value Float value to convert to a ManiaScript 'Real'
 	 * @return string
 	 */
 	public static function getReal($value) {
@@ -60,24 +59,24 @@ abstract class Builder {
 	}
 
 	/**
-	 * Get the Boolean String-Representation of the given Value
+	 * Get the 'Boolean' string representation of the given value
 	 *
-	 * @param bool $value The Value to convert to a ManiaScript Boolean
+	 * @param bool $value Value to convert to a ManiaScript 'Boolean'
 	 * @return string
 	 */
 	public static function getBoolean($value) {
 		$bool = (bool)$value;
 		if ($bool) {
-			return "True";
+			return 'True';
 		}
-		return "False";
+		return 'False';
 	}
 
 	/**
-	 * Get the String-Representation of the given Array
+	 * Get the string representation of the given array
 	 *
-	 * @param array $array       Array to convert to a ManiaScript Array
-	 * @param bool  $associative (optional) Whether the Array should be associative
+	 * @param array $array       Array to convert to a ManiaScript array
+	 * @param bool  $associative (optional) Whether the array should be associative
 	 * @return string
 	 */
 	public static function getArray(array $array, $associative = false) {
@@ -108,10 +107,10 @@ abstract class Builder {
 	}
 
 	/**
-	 * Get the Include Command for the given File and Namespace
+	 * Get the include command for the given file and namespace
 	 *
-	 * @param string $file      Include File
-	 * @param string $namespace (optional) Include Namespace
+	 * @param string $file      Include file
+	 * @param string $namespace (optional) Include namespace
 	 * @return string
 	 */
 	public static function getInclude($file, $namespace = null) {
@@ -127,15 +126,17 @@ abstract class Builder {
 	}
 
 	/**
-	 * Get the Constant Command for the given Name and Value
+	 * Get the constant command for the given name and value
 	 *
-	 * @param string $name  Constant Name
-	 * @param string $value Constant Value
+	 * @param string $name  Constant name
+	 * @param string $value Constant value
 	 * @return string
 	 */
 	public static function getConstant($name, $value) {
 		if (is_string($value)) {
-			$value = '"' . $value . '"';
+			$value = self::escapeText($value, true);
+		} else if (is_bool($value)) {
+			$value = self::getBoolean($value);
 		}
 		$constantText = "#Const	{$name}	{$value}" . PHP_EOL;
 		return $constantText;

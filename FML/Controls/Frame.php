@@ -17,31 +17,31 @@ use FML\Types\ScriptFeatureable;
  */
 class Frame extends Control implements Container {
 	/*
-	 * Protected Properties
+	 * Protected properties
 	 */
+	/** @var Renderable[] $children */
 	protected $children = array();
 	/** @var Format $format */
 	protected $format = null;
 
 	/**
+	 * Create a new Frame Control
+	 *
+	 * @param string $id (optional) Frame id
+	 * @return \FML\Controls\Frame|static
+	 */
+	public static function create($id = null) {
+		return new static($id);
+	}
+
+	/**
 	 * Construct a new Frame Control
 	 *
-	 * @param string $id (optional) Control Id
+	 * @param string $id (optional) Frame id
 	 */
 	public function __construct($id = null) {
 		parent::__construct($id);
 		$this->tagName = 'frame';
-	}
-
-	/**
-	 * Create a new Frame Control
-	 *
-	 * @param string $id (optional) Control Id
-	 * @return \FML\Controls\Frame
-	 */
-	public static function create($id = null) {
-		$frame = new Frame($id);
-		return $frame;
 	}
 
 	/**
@@ -110,7 +110,6 @@ class Frame extends Control implements Container {
 			$xmlElement->appendChild($formatXml);
 		}
 		foreach ($this->children as $child) {
-			/** @var Renderable $child */
 			$childXmlElement = $child->render($domDocument);
 			$xmlElement->appendChild($childXmlElement);
 		}

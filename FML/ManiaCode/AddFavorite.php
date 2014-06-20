@@ -3,36 +3,35 @@
 namespace FML\ManiaCode;
 
 /**
- * ManiaCode Element adding a Server as Favorite
+ * ManiaCode Element adding a server as favorite
  *
- * @author steeffeen
+ * @author    steeffeen
  * @copyright FancyManiaLinks Copyright © 2014 Steffen Schröder
- * @license http://www.gnu.org/licenses/ GNU General Public License, Version 3
+ * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
 class AddFavorite implements Element {
 	/*
-	 * Protected Properties
+	 * Protected properties
 	 */
 	protected $tagName = 'add_favourite';
-	protected $login = '';
+	protected $login = null;
 	protected $ip = null;
 	protected $port = null;
 
 	/**
-	 * Construct a new AddFavorite Element
+	 * Create a new AddFavorite object
 	 *
-	 * @param string $login (optional) Server Login
-	 * @return \FML\ManiaCode\AddFavorite
+	 * @param string $login (optional) Server login
+	 * @return \FML\ManiaCode\AddFavorite|static
 	 */
 	public static function create($login = null) {
-		$addFavorite = new AddFavorite($login);
-		return $addFavorite;
+		return new static($login);
 	}
 
 	/**
-	 * Construct a new AddFavorite Element
+	 * Construct a new AddFavorite object
 	 *
-	 * @param string $login (optional) Server Login
+	 * @param string $login (optional) Server login
 	 */
 	public function __construct($login = null) {
 		if ($login !== null) {
@@ -41,34 +40,33 @@ class AddFavorite implements Element {
 	}
 
 	/**
-	 * Set the Server Login
+	 * Set the server login
 	 *
-	 * @param string $login Server Login
-	 * @return \FML\ManiaCode\AddFavorite
+	 * @param string $login Server login
+	 * @return \FML\ManiaCode\AddFavorite|static
 	 */
 	public function setLogin($login) {
-		$this->login = (string) $login;
-		$this->ip = null;
-		$this->port = null;
+		$this->login = (string)$login;
+		$this->ip    = null;
+		$this->port  = null;
 		return $this;
 	}
 
 	/**
-	 * Set the Server Ip and Port
+	 * Set the server ip and port
 	 *
-	 * @param string $ip Server Ip
-	 * @param int $port Server Port
-	 * @return \FML\ManiaCode\AddFavorite
+	 * @param string $ip   Server ip
+	 * @param int    $port Server port
+	 * @return \FML\ManiaCode\AddFavorite|static
 	 */
 	public function setIp($ip, $port) {
-		$this->ip = (string) $ip;
-		$this->port = (int) $port;
+		$this->ip    = (string)$ip;
+		$this->port  = (int)$port;
 		$this->login = null;
 		return $this;
 	}
 
 	/**
-	 *
 	 * @see \FML\ManiaCode\Element::render()
 	 */
 	public function render(\DOMDocument $domDocument) {
@@ -76,8 +74,7 @@ class AddFavorite implements Element {
 		if ($this->ip === null) {
 			$loginElement = $domDocument->createElement('login', $this->login);
 			$xmlElement->appendChild($loginElement);
-		}
-		else {
+		} else {
 			$ipElement = $domDocument->createElement('ip', $this->ip . ':' . $this->port);
 			$xmlElement->appendChild($ipElement);
 		}

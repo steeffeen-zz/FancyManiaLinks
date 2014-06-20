@@ -35,12 +35,12 @@ abstract class Control implements Renderable, ScriptFeatureable {
 	const LEFT    = 'left';
 
 	/*
-	 * Static Properties
+	 * Static properties
 	 */
 	protected static $currentIndex = 0;
 
 	/*
-	 * Protected Properties
+	 * Protected properties
 	 */
 	protected $tagName = 'control';
 	protected $id = '';
@@ -54,12 +54,13 @@ abstract class Control implements Renderable, ScriptFeatureable {
 	protected $scale = 1.;
 	protected $hidden = 0;
 	protected $classes = array();
+	/** @var ScriptFeature[] $scriptFeatures */
 	protected $scriptFeatures = array();
 
 	/**
-	 * Construct a new Control
+	 * Construct a new Control object
 	 *
-	 * @param string $id (optional) Control Id
+	 * @param string $id (optional) Control id
 	 */
 	public function __construct($id = null) {
 		if ($id !== null) {
@@ -68,10 +69,10 @@ abstract class Control implements Renderable, ScriptFeatureable {
 	}
 
 	/**
-	 * Check Id for dangerous Characters and assign a unique Id if necessary
+	 * Check Id for dangerous characters and assign a new unique id if necessary
 	 *
-	 * @param bool $forceNewId Whether to force setting a newly generated Id
-	 * @return \FML\Controls\Control
+	 * @param bool $forceNewId (optional) Whether to force setting a newly generated id
+	 * @return \FML\Controls\Control|static
 	 */
 	public function checkId($forceNewId = false) {
 		if ($forceNewId || !$this->getId()) {
@@ -90,7 +91,7 @@ abstract class Control implements Renderable, ScriptFeatureable {
 			break;
 		}
 		if ($danger) {
-			trigger_error("Please don't use special Characters in Ids, they might cause Problems! (I stripped them for You.)");
+			trigger_error("Please don't use special characters in ids, they might cause problems! (I stripped them for you.)");
 			$id = str_ireplace($dangerousCharacters, '', $this->getId());
 			$this->setId($id);
 		}
@@ -98,9 +99,9 @@ abstract class Control implements Renderable, ScriptFeatureable {
 	}
 
 	/**
-	 * Get Control Id
+	 * Get the Control id
 	 *
-	 * @param bool $escaped (optional) Whether the Id should be escaped for ManiaScript
+	 * @param bool $escaped (optional) Whether the id should be escaped for ManiaScript
 	 * @return string
 	 */
 	public function getId($escaped = false) {
@@ -111,10 +112,10 @@ abstract class Control implements Renderable, ScriptFeatureable {
 	}
 
 	/**
-	 * Set Control Id
+	 * Set Control id
 	 *
-	 * @param string $id Control Id
-	 * @return \FML\Controls\Control
+	 * @param string $id Control id
+	 * @return \FML\Controls\Control|static
 	 */
 	public function setId($id) {
 		$this->id = (string)$id;
@@ -122,12 +123,12 @@ abstract class Control implements Renderable, ScriptFeatureable {
 	}
 
 	/**
-	 * Set Control Position
+	 * Set Control position
 	 *
-	 * @param float $x Horizontal Position
-	 * @param float $y Vertical Position
+	 * @param float $x Horizontal position
+	 * @param float $y Vertical position
 	 * @param float $z (optional) Depth
-	 * @return \FML\Controls\Control
+	 * @return \FML\Controls\Control|static
 	 */
 	public function setPosition($x, $y, $z = null) {
 		$this->setX($x);
@@ -139,10 +140,10 @@ abstract class Control implements Renderable, ScriptFeatureable {
 	}
 
 	/**
-	 * Set X Position
+	 * Set X position
 	 *
-	 * @param float $x Horizontal Position
-	 * @return \FML\Controls\Control
+	 * @param float $x Horizontal position
+	 * @return \FML\Controls\Control|static
 	 */
 	public function setX($x) {
 		$this->x = (float)$x;
@@ -150,10 +151,10 @@ abstract class Control implements Renderable, ScriptFeatureable {
 	}
 
 	/**
-	 * Set Y Position
+	 * Set Y position
 	 *
-	 * @param float $y Vertical Position
-	 * @return \FML\Controls\Control
+	 * @param float $y Vertical position
+	 * @return \FML\Controls\Control|static
 	 */
 	public function setY($y) {
 		$this->y = (float)$y;
@@ -161,10 +162,10 @@ abstract class Control implements Renderable, ScriptFeatureable {
 	}
 
 	/**
-	 * Set Z Position
+	 * Set Z position
 	 *
 	 * @param float $z Depth
-	 * @return \FML\Controls\Control
+	 * @return \FML\Controls\Control|static
 	 */
 	public function setZ($z) {
 		$this->z = (float)$z;
@@ -172,11 +173,11 @@ abstract class Control implements Renderable, ScriptFeatureable {
 	}
 
 	/**
-	 * Set Control Size
+	 * Set Control size
 	 *
-	 * @param float $width  Control Width
-	 * @param float $height Control Height
-	 * @return \FML\Controls\Control
+	 * @param float $width  Control width
+	 * @param float $height Control height
+	 * @return \FML\Controls\Control|static
 	 */
 	public function setSize($width, $height) {
 		$this->setWidth($width);
@@ -185,10 +186,10 @@ abstract class Control implements Renderable, ScriptFeatureable {
 	}
 
 	/**
-	 * Set Control Width
+	 * Set Control width
 	 *
-	 * @param float $width Control Width
-	 * @return \FML\Controls\Control
+	 * @param float $width Control width
+	 * @return \FML\Controls\Control|static
 	 */
 	public function setWidth($width) {
 		$this->width = (float)$width;
@@ -196,10 +197,10 @@ abstract class Control implements Renderable, ScriptFeatureable {
 	}
 
 	/**
-	 * Set Control Height
+	 * Set Control height
 	 *
-	 * @param float $height Control Height
-	 * @return \FML\Controls\Control
+	 * @param float $height Control height
+	 * @return \FML\Controls\Control|static
 	 */
 	public function setHeight($height) {
 		$this->height = (float)$height;
@@ -207,9 +208,9 @@ abstract class Control implements Renderable, ScriptFeatureable {
 	}
 
 	/**
-	 * Center Alignment
+	 * Center alignment
 	 *
-	 * @return \FML\Controls\Control
+	 * @return \FML\Controls\Control|static
 	 */
 	public function centerAlign() {
 		$this->setAlign(self::CENTER, self::CENTER2);
@@ -217,11 +218,11 @@ abstract class Control implements Renderable, ScriptFeatureable {
 	}
 
 	/**
-	 * Set Horizontal and Vertical Alignment
+	 * Set horizontal and vertical alignment
 	 *
-	 * @param string $hAlign Horizontal Alignment
-	 * @param string $vAlign Vertical Alignment
-	 * @return \FML\Controls\Control
+	 * @param string $hAlign Horizontal alignment
+	 * @param string $vAlign Vertical alignment
+	 * @return \FML\Controls\Control|static
 	 */
 	public function setAlign($hAlign, $vAlign) {
 		$this->setHAlign($hAlign);
@@ -230,10 +231,10 @@ abstract class Control implements Renderable, ScriptFeatureable {
 	}
 
 	/**
-	 * Set Horizontal Alignment
+	 * Set horizontal alignment
 	 *
-	 * @param string $hAlign Horizontal Alignment
-	 * @return \FML\Controls\Control
+	 * @param string $hAlign Horizontal alignment
+	 * @return \FML\Controls\Control|static
 	 */
 	public function setHAlign($hAlign) {
 		$this->hAlign = (string)$hAlign;
@@ -241,10 +242,10 @@ abstract class Control implements Renderable, ScriptFeatureable {
 	}
 
 	/**
-	 * Set Vertical Alignment
+	 * Set vertical alignment
 	 *
-	 * @param string $vAlign Vertical Alignment
-	 * @return \FML\Controls\Control
+	 * @param string $vAlign Vertical alignment
+	 * @return \FML\Controls\Control|static
 	 */
 	public function setVAlign($vAlign) {
 		$this->vAlign = (string)$vAlign;
@@ -252,9 +253,9 @@ abstract class Control implements Renderable, ScriptFeatureable {
 	}
 
 	/**
-	 * Reset Alignment
+	 * Reset alignment
 	 *
-	 * @return \FML\Controls\Control
+	 * @return \FML\Controls\Control|static
 	 */
 	public function resetAlign() {
 		$this->setAlign(null, null);
@@ -262,10 +263,10 @@ abstract class Control implements Renderable, ScriptFeatureable {
 	}
 
 	/**
-	 * Set Control Scale
+	 * Set Control scale
 	 *
-	 * @param float $scale Control Scale
-	 * @return \FML\Controls\Control
+	 * @param float $scale Control scale
+	 * @return \FML\Controls\Control|static
 	 */
 	public function setScale($scale) {
 		$this->scale = (float)$scale;
@@ -273,10 +274,10 @@ abstract class Control implements Renderable, ScriptFeatureable {
 	}
 
 	/**
-	 * Set Visibility
+	 * Set visibility
 	 *
-	 * @param bool $visible Whether Control should be visible
-	 * @return \FML\Controls\Control
+	 * @param bool $visible Whether the Control should be visible
+	 * @return \FML\Controls\Control|static
 	 */
 	public function setVisible($visible = true) {
 		$this->hidden = ($visible ? 0 : 1);
@@ -284,10 +285,10 @@ abstract class Control implements Renderable, ScriptFeatureable {
 	}
 
 	/**
-	 * Add new Class Name
+	 * Add a new class name
 	 *
-	 * @param string $class Class Name
-	 * @return \FML\Controls\Control
+	 * @param string $class Class name
+	 * @return \FML\Controls\Control|static
 	 */
 	public function addClass($class) {
 		$class = (string)$class;
@@ -301,31 +302,34 @@ abstract class Control implements Renderable, ScriptFeatureable {
 	 * Add a dynamic Action Trigger
 	 *
 	 * @param string $actionName Action to trigger
-	 * @param string $eventLabel (optional) Event on which the Action is triggered
-	 * @return \FML\Controls\Control
+	 * @param string $eventLabel (optional) Event on which the action is triggered
+	 * @return \FML\Controls\Control|static
 	 */
 	public function addActionTriggerFeature($actionName, $eventLabel = ScriptLabel::MOUSECLICK) {
+		// TODO: accept first parameter to be action trigger object
 		$actionTrigger = new ActionTrigger($actionName, $this, $eventLabel);
 		$this->addScriptFeature($actionTrigger);
 		return $this;
 	}
 
 	/**
-	 * Add a Script Feature
+	 * Add a new Script Feature
 	 *
 	 * @param ScriptFeature $scriptFeature Script Feature
-	 * @return \FML\Controls\Control
+	 * @return \FML\Controls\Control|static
 	 */
 	public function addScriptFeature(ScriptFeature $scriptFeature) {
-		array_push($this->scriptFeatures, $scriptFeature);
+		if (!in_array($scriptFeature, $this->scriptFeatures, true)) {
+			array_push($this->scriptFeatures, $scriptFeature);
+		}
 		return $this;
 	}
 
 	/**
-	 * Add a dynamic Feature opening the current Map Info
+	 * Add a dynamic Feature opening the current map info
 	 *
-	 * @param string $eventLabel (optional) Event on which the Map Info will be opened
-	 * @return \FML\Controls\Control
+	 * @param string $eventLabel (optional) Event on which the map info will be opened
+	 * @return \FML\Controls\Control|static
 	 */
 	public function addMapInfoFeature($eventLabel = ScriptLabel::MOUSECLICK) {
 		$mapInfo = new MapInfo($this, $eventLabel);
@@ -334,11 +338,11 @@ abstract class Control implements Renderable, ScriptFeatureable {
 	}
 
 	/**
-	 * Add a dynamic Feature to open a specific Player Profile
+	 * Add a dynamic Feature to open a specific player profile
 	 *
-	 * @param string $login      The Login of the Player
-	 * @param string $eventLabel (optional) Event on which the Player Profile will be opened
-	 * @return \FML\Controls\Control
+	 * @param string $login      Login of the player
+	 * @param string $eventLabel (optional) Event on which the player profile will be opened
+	 * @return \FML\Controls\Control|static
 	 */
 	public function addPlayerProfileFeature($login, $eventLabel = ScriptLabel::MOUSECLICK) {
 		$playerProfile = new PlayerProfile($login, $this, $eventLabel);
@@ -347,12 +351,12 @@ abstract class Control implements Renderable, ScriptFeatureable {
 	}
 
 	/**
-	 * Add a dynamic Feature playing an UISound
+	 * Add a dynamic Feature playing a UISound
 	 *
-	 * @param string $soundName  UISound Name
-	 * @param int    $variant    (optional) Sound Variant
-	 * @param string $eventLabel (optional) Event on which the Sound will be played
-	 * @return \FML\Controls\Control
+	 * @param string $soundName  UISound name
+	 * @param int    $variant    (optional) Sound variant
+	 * @param string $eventLabel (optional) Event on which the sound will be played
+	 * @return \FML\Controls\Control|static
 	 */
 	public function addUISoundFeature($soundName, $variant = 0, $eventLabel = ScriptLabel::MOUSECLICK) {
 		$uiSound = new UISound($soundName, $this, $variant, $eventLabel);
@@ -364,10 +368,10 @@ abstract class Control implements Renderable, ScriptFeatureable {
 	 * Add a dynamic Feature toggling another Control
 	 *
 	 * @param Control $toggledControl Toggled Control
-	 * @param string  $labelName      (optional) Script Label Name
-	 * @param bool    $onlyShow       (optional) Whether it should only Show the Control but not toggle
-	 * @param bool    $onlyHide       (optional) Whether it should only Hide the Control but not toggle
-	 * @return \FML\Controls\Control
+	 * @param string  $labelName      (optional) Script label name
+	 * @param bool    $onlyShow       (optional) Whether it should only show the Control but not toggle
+	 * @param bool    $onlyHide       (optional) Whether it should only hide the Control but not toggle
+	 * @return \FML\Controls\Control|static
 	 */
 	public function addToggleFeature(Control $toggledControl, $labelName = Scriptlabel::MOUSECLICK, $onlyShow = false, $onlyHide = false) {
 		$toggle = new Toggle($this, $toggledControl, $labelName, $onlyShow, $onlyHide);
@@ -379,9 +383,9 @@ abstract class Control implements Renderable, ScriptFeatureable {
 	 * Add a dynamic Feature showing a Tooltip on hovering
 	 *
 	 * @param Control $tooltipControl Tooltip Control
-	 * @param bool    $stayOnClick    (optional) Whether the Tooltip should stay on Click
-	 * @param bool    $invert         (optional) Whether the Visibility Toggling should be inverted
-	 * @return \FML\Controls\Control
+	 * @param bool    $stayOnClick    (optional) Whether the Tooltip should stay on click
+	 * @param bool    $invert         (optional) Whether the visibility toggling should be inverted
+	 * @return \FML\Controls\Control|static
 	 */
 	public function addTooltipFeature(Control $tooltipControl, $stayOnClick = false, $invert = false) {
 		$tooltip = new Tooltip($this, $tooltipControl, $stayOnClick, $invert);
@@ -393,10 +397,10 @@ abstract class Control implements Renderable, ScriptFeatureable {
 	 * Add a dynamic Feature showing a Tooltip on hovering
 	 *
 	 * @param Label  $tooltipControl Tooltip Control
-	 * @param string $text           The Text to display on the Tooltip Label
-	 * @param bool   $stayOnClick    (optional) Whether the Tooltip should stay on Click
-	 * @param bool   $invert         (optional) Whether the Visibility Toggling should be inverted
-	 * @return \FML\Controls\Control
+	 * @param string $text           Text to display on the Tooltip Label
+	 * @param bool   $stayOnClick    (optional) Whether the Tooltip should stay on click
+	 * @param bool   $invert         (optional) Whether the visibility toggling should be inverted
+	 * @return \FML\Controls\Control|static
 	 */
 	public function addTooltipLabelFeature(Label $tooltipControl, $text, $stayOnClick = false, $invert = false) {
 		$tooltip = new Tooltip($this, $tooltipControl, $stayOnClick, $invert, $text);
@@ -405,11 +409,11 @@ abstract class Control implements Renderable, ScriptFeatureable {
 	}
 
 	/**
-	 * Add a Custom Control Script Text Part
+	 * Add a custom Control Script text part
 	 *
-	 * @param string $scriptText Script Text
-	 * @param string $label      (optional) Script Label Name
-	 * @return \FML\Controls\Control
+	 * @param string $scriptText Script text
+	 * @param string $label      (optional) Script label name
+	 * @return \FML\Controls\Control|static
 	 */
 	public function addScriptText($scriptText, $label = ScriptLabel::MOUSECLICK) {
 		$customText = new ControlScript($this, $scriptText, $label);
@@ -420,7 +424,7 @@ abstract class Control implements Renderable, ScriptFeatureable {
 	/**
 	 * Remove all Script Features
 	 *
-	 * @return \FML\Controls\Control
+	 * @return \FML\Controls\Control|static
 	 */
 	public function removeScriptFeatures() {
 		$this->scriptFeatures = array();
@@ -468,7 +472,7 @@ abstract class Control implements Renderable, ScriptFeatureable {
 	}
 
 	/**
-	 * Get the ManiaScript Class of the Control
+	 * Get the ManiaScript class of the Control
 	 *
 	 * @return string
 	 */

@@ -11,26 +11,25 @@ namespace FML\ManiaCode;
  */
 class ShowMessage implements Element {
 	/*
-	 * Protected Properties
+	 * Protected properties
 	 */
 	protected $tagName = 'show_message';
-	protected $message = '';
+	protected $message = null;
 
 	/**
-	 * Create a new ShowMessage Element
+	 * Create a new ShowMessage object
 	 *
-	 * @param string $message (optional) Message Text
-	 * @return \FML\ManiaCode\ShowMessage
+	 * @param string $message (optional) Message text
+	 * @return \FML\ManiaCode\ShowMessage|static
 	 */
 	public static function create($message = null) {
-		$showMessage = new ShowMessage($message);
-		return $showMessage;
+		return new static($message);
 	}
 
 	/**
-	 * Construct a new ShowMessage Element
+	 * Construct a new ShowMessage object
 	 *
-	 * @param string $message (optional) Message Text
+	 * @param string $message (optional) Message text
 	 */
 	public function __construct($message = null) {
 		if ($message !== null) {
@@ -39,10 +38,10 @@ class ShowMessage implements Element {
 	}
 
 	/**
-	 * Set the displayed Message Text
+	 * Set the message text
 	 *
-	 * @param string $message Message Text
-	 * @return \FML\ManiaCode\ShowMessage
+	 * @param string $message Message text
+	 * @return \FML\ManiaCode\ShowMessage|static
 	 */
 	public function setMessage($message) {
 		$this->message = (string)$message;

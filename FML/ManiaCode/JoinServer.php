@@ -3,7 +3,7 @@
 namespace FML\ManiaCode;
 
 /**
- * ManiaCode Element joining a Server
+ * ManiaCode Element for joining a server
  *
  * @author    steeffeen <mail@steeffeen.com>
  * @copyright FancyManiaLinks Copyright © 2014 Steffen Schröder
@@ -11,28 +11,27 @@ namespace FML\ManiaCode;
  */
 class JoinServer implements Element {
 	/*
-	 * Protected Properties
+	 * Protected properties
 	 */
 	protected $tagName = 'join_server';
-	protected $login = '';
+	protected $login = null;
 	protected $ip = null;
 	protected $port = null;
 
 	/**
-	 * Create a new JoinServer Element
+	 * Create a new JoinServer object
 	 *
-	 * @param string $login (optional) Server Login
-	 * @return \FML\ManiaCode\JoinServer
+	 * @param string $login (optional) Server login
+	 * @return \FML\ManiaCode\JoinServer|static
 	 */
 	public static function create($login = null) {
-		$joinServer = new JoinServer($login);
-		return $joinServer;
+		return new static($login);
 	}
 
 	/**
-	 * Construct a new JoinServer Element
+	 * Construct a new JoinServer object
 	 *
-	 * @param string $login (optional) Server Login
+	 * @param string $login (optional) Server login
 	 */
 	public function __construct($login = null) {
 		if ($login !== null) {
@@ -41,10 +40,10 @@ class JoinServer implements Element {
 	}
 
 	/**
-	 * Set the Server Login
+	 * Set the server login
 	 *
-	 * @param string $login Server Login
-	 * @return \FML\ManiaCode\JoinServer
+	 * @param string $login Server login
+	 * @return \FML\ManiaCode\JoinServer|static
 	 */
 	public function setLogin($login) {
 		$this->login = (string)$login;
@@ -54,11 +53,11 @@ class JoinServer implements Element {
 	}
 
 	/**
-	 * Set the Server Ip and Port
+	 * Set the server ip and port
 	 *
-	 * @param string $ip   Server Ip
-	 * @param int    $port Server Port
-	 * @return \FML\ManiaCode\JoinServer
+	 * @param string $ip   Server ip
+	 * @param int    $port Server port
+	 * @return \FML\ManiaCode\JoinServer|static
 	 */
 	public function setIp($ip, $port) {
 		$this->ip    = (string)$ip;

@@ -14,19 +14,20 @@ use FML\Types\Renderable;
  */
 class FrameModel implements Container, Renderable {
 	/*
-	 * Protected Properties
+	 * Protected properties
 	 */
 	protected $tagName = 'framemodel';
-	protected $id = '';
+	protected $id = null;
+	/** @var Renderable[] $children */
 	protected $children = array();
 	/** @var Format $format */
 	protected $format = null;
 
 	/**
-	 * Set Model Id
+	 * Set Model id
 	 *
-	 * @param string $id Model Id
-	 * @return \FML\Elements\FrameModel
+	 * @param string $id Model id
+	 * @return \FML\Elements\FrameModel|static
 	 */
 	public function setId($id) {
 		$this->id = (string)$id;
@@ -34,7 +35,7 @@ class FrameModel implements Container, Renderable {
 	}
 
 	/**
-	 * Get Model Id
+	 * Get Model id
 	 *
 	 * @return string
 	 */
@@ -43,12 +44,13 @@ class FrameModel implements Container, Renderable {
 	}
 
 	/**
-	 * Assign an Id if necessary
+	 * Assign an id if necessary
 	 *
 	 * @return string
 	 */
 	public function checkId() {
 		if (!$this->id) {
+			// TODO: improve id like in control class
 			$this->id = uniqid();
 		}
 		return $this;
@@ -102,7 +104,6 @@ class FrameModel implements Container, Renderable {
 			$xmlElement->appendChild($formatXml);
 		}
 		foreach ($this->children as $child) {
-			/** @var Renderable $child */
 			$childElement = $child->render($domDocument);
 			$xmlElement->appendChild($childElement);
 		}

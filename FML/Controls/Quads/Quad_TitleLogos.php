@@ -5,7 +5,7 @@ namespace FML\Controls\Quads;
 use FML\Controls\Quad;
 
 /**
- * Quad Class for 'TitleLogos' Style
+ * Quad class for 'TitleLogos' styles
  *
  * @author    steeffeen <mail@steeffeen.com>
  * @copyright FancyManiaLinks Copyright © 2014 Steffen Schröder
@@ -22,20 +22,9 @@ class Quad_TitleLogos extends Quad {
 	const SUBSTYLE_Title      = 'Title';
 
 	/**
-	 * Create a new Quad_TitleLogos Control
-	 *
-	 * @param string $id (optional) Control Id
-	 * @return \FML\Controls\Quads\Quad_TitleLogos
-	 */
-	public static function create($id = null) {
-		$quadTitleLogos = new Quad_TitleLogos($id);
-		return $quadTitleLogos;
-	}
-
-	/**
 	 * Construct a new Quad_TitleLogos Control
 	 *
-	 * @param string $id (optional) Control Id
+	 * @param string $id (optional) Quad id
 	 */
 	public function __construct($id = null) {
 		parent::__construct($id);

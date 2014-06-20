@@ -29,7 +29,7 @@ class Frame3d extends Frame implements Scriptable {
 	const STYLE_Window      = 'Window';
 
 	/*
-	 * Protected Properties
+	 * Protected properties
 	 */
 	protected $style3dId = '';
 	/** @var Style3d $style3d */
@@ -39,18 +39,17 @@ class Frame3d extends Frame implements Scriptable {
 	/**
 	 * Create a new Frame3d Control
 	 *
-	 * @param string $id (optional) Control Id
-	 * @return \FML\Controls\Frame3d
+	 * @param string $id (optional) Frame3d id
+	 * @return \FML\Controls\Frame3d|static
 	 */
 	public static function create($id = null) {
-		$frame3d = new Frame3d($id);
-		return $frame3d;
+		return new static($id);
 	}
 
 	/**
 	 * Construct a new Frame3d Control
 	 *
-	 * @param string $id (optional) Control Id
+	 * @param string $id (optional) Frame3d id
 	 */
 	public function __construct($id = null) {
 		parent::__construct($id);
@@ -58,10 +57,10 @@ class Frame3d extends Frame implements Scriptable {
 	}
 
 	/**
-	 * Set Style3d Id
+	 * Set Style3d id
 	 *
-	 * @param string $style3dId Style3d Id
-	 * @return \FML\Controls\Frame3d
+	 * @param string $style3dId Style3d id
+	 * @return \FML\Controls\Frame3d|static
 	 */
 	public function setStyle3dId($style3dId) {
 		$this->style3dId = (string)$style3dId;
@@ -72,11 +71,12 @@ class Frame3d extends Frame implements Scriptable {
 	/**
 	 * Set Style3d
 	 *
-	 * @param Style3d $style3d Style3d Object
-	 * @return \FML\Controls\Frame3d
+	 * @param Style3d $style3d Style3d object
+	 * @return \FML\Controls\Frame3d|static
 	 */
 	public function setStyle3d(Style3d $style3d) {
-		$this->style3d = $style3d;
+		$this->style3d   = $style3d;
+		$this->style3dId = null;
 		return $this;
 	}
 

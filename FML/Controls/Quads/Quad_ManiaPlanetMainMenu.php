@@ -5,7 +5,7 @@ namespace FML\Controls\Quads;
 use FML\Controls\Quad;
 
 /**
- * Quad Class for 'ManiaPlanetMainMenu' Style
+ * Quad class for 'ManiaPlanetMainMenu' styles
  *
  * @author    steeffeen <mail@steeffeen.com>
  * @copyright FancyManiaLinks Copyright © 2014 Steffen Schröder
@@ -29,20 +29,9 @@ class Quad_ManiaPlanetMainMenu extends Quad {
 	const SUBSTYLE_TopBar       = 'TopBar';
 
 	/**
-	 * Create a new Quad_ManiaPlanetMainMenu Control
-	 *
-	 * @param string $id (optional) Control Id
-	 * @return \FML\Controls\Quads\Quad_ManiaPlanetMainMenu
-	 */
-	public static function create($id = null) {
-		$quadManiaPlanetMainMenu = new Quad_ManiaPlanetMainMenu($id);
-		return $quadManiaPlanetMainMenu;
-	}
-
-	/**
 	 * Construct a new Quad_ManiaPlanetMainMenu Control
 	 *
-	 * @param string $id (optional) Control Id
+	 * @param string $id (optional) Quad id
 	 */
 	public function __construct($id = null) {
 		parent::__construct($id);

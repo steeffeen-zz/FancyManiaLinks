@@ -17,7 +17,7 @@ if (!defined('FML_VERSION')) {
 }
 
 /*
- * Autoload Function that loads FML Class Files on Demand
+ * Autoload function that loads FML class files on demand
  */
 if (!defined('FML_AUTOLOAD_DEFINED')) {
 	define('FML_AUTOLOAD_DEFINED', true);

@@ -20,7 +20,7 @@ use FML\Types\TextFormatable;
  */
 class Label extends Control implements Actionable, Linkable, NewLineable, Scriptable, Styleable, TextFormatable {
 	/*
-	 * Protected Properties
+	 * Protected properties
 	 */
 	protected $text = '';
 	protected $textId = '';
@@ -45,7 +45,7 @@ class Label extends Control implements Actionable, Linkable, NewLineable, Script
 	/**
 	 * Construct a new Label Control
 	 *
-	 * @param string $id (optional) Control Id
+	 * @param string $id (optional) Label Id
 	 */
 	public function __construct($id = null) {
 		parent::__construct($id);
@@ -56,12 +56,11 @@ class Label extends Control implements Actionable, Linkable, NewLineable, Script
 	/**
 	 * Create a new Label Control
 	 *
-	 * @param string $id (optional) Control Id
-	 * @return \FML\Controls\Label
+	 * @param string $id (optional) Label Id
+	 * @return \FML\Controls\Label|static
 	 */
 	public static function create($id = null) {
-		$label = new Label($id);
-		return $label;
+		return new static($id);
 	}
 
 	/**
@@ -72,10 +71,10 @@ class Label extends Control implements Actionable, Linkable, NewLineable, Script
 	}
 
 	/**
-	 * Set Text
+	 * Set text
 	 *
-	 * @param string $text Text Value
-	 * @return \FML\Controls\Label
+	 * @param string $text Text value
+	 * @return \FML\Controls\Label|static
 	 */
 	public function setText($text) {
 		$this->text = (string)$text;
@@ -83,10 +82,10 @@ class Label extends Control implements Actionable, Linkable, NewLineable, Script
 	}
 
 	/**
-	 * Set Text Id to use from the Dico
+	 * Set text id to use from Dico
 	 *
-	 * @param string $textId Text Id
-	 * @return \FML\Controls\Label
+	 * @param string $textId Text id
+	 * @return \FML\Controls\Label|static
 	 */
 	public function setTextId($textId) {
 		$this->textId = (string)$textId;
@@ -94,10 +93,10 @@ class Label extends Control implements Actionable, Linkable, NewLineable, Script
 	}
 
 	/**
-	 * Set Text Prefix
+	 * Set text prefix
 	 *
-	 * @param string $textPrefix Text Prefix
-	 * @return \FML\Controls\Label
+	 * @param string $textPrefix Text prefix
+	 * @return \FML\Controls\Label|static
 	 */
 	public function setTextPrefix($textPrefix) {
 		$this->textPrefix = (string)$textPrefix;
@@ -105,10 +104,10 @@ class Label extends Control implements Actionable, Linkable, NewLineable, Script
 	}
 
 	/**
-	 * Set Text Emboss
+	 * Set text emboss
 	 *
-	 * @param bool $textEmboss Whether Text should be embossed
-	 * @return \FML\Controls\Label
+	 * @param bool $textEmboss Whether the text should be embossed
+	 * @return \FML\Controls\Label|static
 	 */
 	public function setTextEmboss($textEmboss) {
 		$this->textEmboss = ($textEmboss ? 1 : 0);
@@ -116,10 +115,10 @@ class Label extends Control implements Actionable, Linkable, NewLineable, Script
 	}
 
 	/**
-	 * Set Translate
+	 * Set translate
 	 *
-	 * @param bool $translate Whether Text should be translated
-	 * @return \FML\Controls\Label
+	 * @param bool $translate Whether the text should be translated
+	 * @return \FML\Controls\Label|static
 	 */
 	public function setTranslate($translate) {
 		$this->translate = ($translate ? 1 : 0);
@@ -127,10 +126,10 @@ class Label extends Control implements Actionable, Linkable, NewLineable, Script
 	}
 
 	/**
-	 * Set Max Lines Count
+	 * Set max lines count
 	 *
-	 * @param int $maxLines Max Lines Count
-	 * @return \FML\Controls\Label
+	 * @param int $maxLines Max lines count
+	 * @return \FML\Controls\Label|static
 	 */
 	public function setMaxLines($maxLines) {
 		$this->maxLines = (int)$maxLines;
@@ -249,11 +248,11 @@ class Label extends Control implements Actionable, Linkable, NewLineable, Script
 	}
 
 	/**
-	 * Add a dynamic Feature showing the current Time
+	 * Add a dynamic Feature showing the current time
 	 *
-	 * @param bool $showSeconds  (optional) Whether the Seconds should be shown
-	 * @param bool $showFullDate (optional) Whether the Date should be shown
-	 * @return \FML\Controls\Label
+	 * @param bool $showSeconds  (optional) Whether the seconds should be shown
+	 * @param bool $showFullDate (optional) Whether the date should be shown
+	 * @return \FML\Controls\Label|static
 	 */
 	public function addClockFeature($showSeconds = true, $showFullDate = false) {
 		$clock = new Clock($this, $showSeconds, $showFullDate);
@@ -262,7 +261,7 @@ class Label extends Control implements Actionable, Linkable, NewLineable, Script
 	}
 
 	/**
-	 * @see \FML\Control::render()
+	 * @see \FML\Types\Renderable::render()
 	 */
 	public function render(\DOMDocument $domDocument) {
 		$xmlElement = parent::render($domDocument);

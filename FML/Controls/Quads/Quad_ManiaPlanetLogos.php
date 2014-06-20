@@ -5,7 +5,7 @@ namespace FML\Controls\Quads;
 use FML\Controls\Quad;
 
 /**
- * Quad Class for 'ManiaPlanetLogos' Style
+ * Quad class for 'ManiaPlanetLogos' styles
  *
  * @author    steeffeen <mail@steeffeen.com>
  * @copyright FancyManiaLinks Copyright © 2014 Steffen Schröder
@@ -25,20 +25,9 @@ class Quad_ManiaPlanetLogos extends Quad {
 	const SUBSTYLE_ManiaPlanetLogoWhiteSmall = 'ManiaPlanetLogoWhiteSmall';
 
 	/**
-	 * Create a new Quad_ManiaPlanetLogos Control
-	 *
-	 * @param string $id (optional) Control Id
-	 * @return \FML\Controls\Quads\Quad_ManiaPlanetLogos
-	 */
-	public static function create($id = null) {
-		$quadManiaPlanetLogos = new Quad_ManiaPlanetLogos($id);
-		return $quadManiaPlanetLogos;
-	}
-
-	/**
 	 * Construct a new Quad_ManiaPlanetLogos Control
 	 *
-	 * @param string $id (optional) Control Id
+	 * @param string $id (optional) Quad id
 	 */
 	public function __construct($id = null) {
 		parent::__construct($id);

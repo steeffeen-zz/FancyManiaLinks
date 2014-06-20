@@ -15,7 +15,7 @@ use FML\Types\Scriptable;
  */
 class Audio extends Control implements Playable, Scriptable {
 	/*
-	 * Protected Properties
+	 * Protected properties
 	 */
 	protected $data = '';
 	protected $dataId = '';
@@ -26,24 +26,24 @@ class Audio extends Control implements Playable, Scriptable {
 	protected $scriptEvents = 0;
 
 	/**
-	 * Construct a new Audio Control
-	 *
-	 * @param string $id (optional) Control Id
-	 */
-	public function __construct($id = null) {
-		parent::__construct($id);
-		$this->tagName = 'audio';
-	}
-
-	/**
 	 * Create a new Audio Control
 	 *
-	 * @param string $id (optional) Control Id
+	 * @param string $id (optional) Audio id
 	 * @return \FML\Controls\Audio
 	 */
 	public static function create($id = null) {
-		$audio = new Audio($id);
-		return $audio;
+		return new static($id);
+	}
+
+	/**
+	 * Construct a new Audio Control
+	 *
+	 * @param string $id (optional) Audio id
+	 */
+	public function __construct($id = null) {
+		// TODO: validate if $tagName could simply be overwritten
+		parent::__construct($id);
+		$this->tagName = 'audio';
 	}
 
 	/**
@@ -110,7 +110,7 @@ class Audio extends Control implements Playable, Scriptable {
 	}
 
 	/**
-	 * @see \FML\Control::render()
+	 * @see \FML\Types\Renderable::render()
 	 */
 	public function render(\DOMDocument $domDocument) {
 		$xmlElement = parent::render($domDocument);

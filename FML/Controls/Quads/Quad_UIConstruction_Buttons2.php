@@ -5,7 +5,7 @@ namespace FML\Controls\Quads;
 use FML\Controls\Quad;
 
 /**
- * Quad Class for 'UIConstruction_Buttons2' Style
+ * Quad class for 'UIConstruction_Buttons2' styles
  *
  * @author    steeffeen <mail@steeffeen.com>
  * @copyright FancyManiaLinks Copyright © 2014 Steffen Schröder
@@ -30,20 +30,9 @@ class Quad_UIConstruction_Buttons2 extends Quad {
 	const SUBSTYLE_Symmetry    = 'Symmetry';
 
 	/**
-	 * Create a new Quad_UIConstruction_Buttons2 Control
-	 *
-	 * @param string $id (optional) Control Id
-	 * @return \FML\Controls\Quads\Quad_UIConstruction_Buttons2
-	 */
-	public static function create($id = null) {
-		$quadUIConstructionButtons2 = new Quad_UIConstruction_Buttons2($id);
-		return $quadUIConstructionButtons2;
-	}
-
-	/**
 	 * Construct a new Quad_UIConstruction_Buttons2 Control
 	 *
-	 * @param string $id (optional) Control Id
+	 * @param string $id (optional) Quad id
 	 */
 	public function __construct($id = null) {
 		parent::__construct($id);
