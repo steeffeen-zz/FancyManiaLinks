@@ -38,13 +38,13 @@ class InstallScript implements Element {
 	 * @param string $url  (optional) Script url
 	 */
 	public function __construct($name = null, $file = null, $url = null) {
-		if ($name !== null) {
+		if (!is_null($name)) {
 			$this->setName($name);
 		}
-		if ($file !== null) {
+		if (!is_null($file)) {
 			$this->setFile($file);
 		}
-		if ($url !== null) {
+		if (!is_null($url)) {
 			$this->setUrl($url);
 		}
 	}

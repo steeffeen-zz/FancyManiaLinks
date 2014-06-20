@@ -34,7 +34,7 @@ class Music implements Renderable {
 	 * @param string $data (optional) Media url
 	 */
 	public function __construct($data = null) {
-		if ($data !== null) {
+		if (!is_null($data)) {
 			$this->setData($data);
 		}
 	}

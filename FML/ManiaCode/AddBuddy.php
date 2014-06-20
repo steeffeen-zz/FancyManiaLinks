@@ -32,7 +32,7 @@ class AddBuddy implements Element {
 	 * @param string $login (optional) Buddy login
 	 */
 	public function __construct($login = null) {
-		if ($login !== null) {
+		if (!is_null($login)) {
 			$this->setLogin($login);
 		}
 	}

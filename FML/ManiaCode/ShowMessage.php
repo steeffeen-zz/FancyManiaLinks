@@ -32,7 +32,7 @@ class ShowMessage implements Element {
 	 * @param string $message (optional) Message text
 	 */
 	public function __construct($message = null) {
-		if ($message !== null) {
+		if (!is_null($message)) {
 			$this->setMessage($message);
 		}
 	}

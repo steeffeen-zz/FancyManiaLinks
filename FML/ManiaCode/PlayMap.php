@@ -35,10 +35,10 @@ class PlayMap implements Element {
 	 * @param string $url  (optional) Map url
 	 */
 	public function __construct($name = null, $url = null) {
-		if ($name !== null) {
+		if (!is_null($name)) {
 			$this->setName($name);
 		}
-		if ($url !== null) {
+		if (!is_null($url)) {
 			$this->setUrl($url);
 		}
 	}

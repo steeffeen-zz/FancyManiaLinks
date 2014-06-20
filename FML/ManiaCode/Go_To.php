@@ -32,7 +32,7 @@ class Go_To implements Element {
 	 * @param string $link (optional) Goto link
 	 */
 	public function __construct($link = null) {
-		if ($link !== null) {
+		if (!is_null($link)) {
 			$this->setLink($link);
 		}
 	}

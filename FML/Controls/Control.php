@@ -63,7 +63,7 @@ abstract class Control implements Renderable, ScriptFeatureable {
 	 * @param string $id (optional) Control id
 	 */
 	public function __construct($id = null) {
-		if ($id !== null) {
+		if (!is_null($id)) {
 			$this->setId($id);
 		}
 	}
@@ -133,7 +133,7 @@ abstract class Control implements Renderable, ScriptFeatureable {
 	public function setPosition($x, $y, $z = null) {
 		$this->setX($x);
 		$this->setY($y);
-		if ($z !== null) {
+		if (!is_null($z)) {
 			$this->setZ($z);
 		}
 		return $this;
