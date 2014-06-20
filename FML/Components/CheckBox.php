@@ -69,9 +69,12 @@ class CheckBox implements Renderable, ScriptFeatureable {
 	 * @return \FML\Components\CheckBox|static
 	 */
 	public function setEnabledDesign($style, $subStyle = null) {
-		// TODO: allow design object as first parameter
-		$checkBoxDesign = new CheckBoxDesign($style, $subStyle);
-		$this->feature->setEnabledDesign($checkBoxDesign);
+		if (is_object($style) && ($style instanceof CheckBoxDesign)) {
+			$this->feature->setEnabledDesign($style);
+		} else {
+			$checkBoxDesign = new CheckBoxDesign($style, $subStyle);
+			$this->feature->setEnabledDesign($checkBoxDesign);
+		}
 		return $this;
 	}
 
@@ -83,9 +86,12 @@ class CheckBox implements Renderable, ScriptFeatureable {
 	 * @return \FML\Components\CheckBox|static
 	 */
 	public function setDisabledDesign($style, $subStyle = null) {
-		// TODO: allow design object as first parameter
-		$checkBoxDesign = new CheckBoxDesign($style, $subStyle);
-		$this->feature->setDisabledDesign($checkBoxDesign);
+		if (is_object($style) && ($style instanceof CheckBoxDesign)) {
+			$this->feature->setDisabledDesign($style);
+		} else {
+			$checkBoxDesign = new CheckBoxDesign($style, $subStyle);
+			$this->feature->setDisabledDesign($checkBoxDesign);
+		}
 		return $this;
 	}
 
