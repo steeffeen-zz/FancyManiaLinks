@@ -43,7 +43,7 @@ abstract class Control implements Renderable, ScriptFeatureable {
 	 * Protected properties
 	 */
 	protected $tagName = 'control';
-	protected $id = '';
+	protected $id = null;
 	protected $x = 0.;
 	protected $y = 0.;
 	protected $z = 0.;

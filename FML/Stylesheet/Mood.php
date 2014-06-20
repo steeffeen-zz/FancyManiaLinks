@@ -17,18 +17,18 @@ class Mood {
 	 * Protected properties
 	 */
 	protected $tagName = 'mood';
-	protected $lAmbient_LinearRgb = '';
-	protected $cloudsRgbMinLinear = '';
-	protected $cloudsRgbMaxLinear = '';
-	protected $lDir0_LinearRgb = '';
+	protected $lAmbient_LinearRgb = null;
+	protected $cloudsRgbMinLinear = null;
+	protected $cloudsRgbMaxLinear = null;
+	protected $lDir0_LinearRgb = null;
 	protected $lDir0_Intens = 1.;
 	protected $lDir0_DirPhi = 0.;
 	protected $lDir0_DirTheta = 0.;
-	protected $lBall_LinearRgb = '';
+	protected $lBall_LinearRgb = null;
 	protected $lBall_Intensity = 1.;
 	protected $lBall_Radius = 0.;
-	protected $fogColorSrgb = '';
-	protected $selfIllumColor = '';
+	protected $fogColorSrgb = null;
+	protected $selfIllumColor = null;
 	protected $skyGradientV_Scale = 1.;
 	protected $skyGradientKeys = array();
 

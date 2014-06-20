@@ -30,9 +30,9 @@ class ManiaLink {
 	 */
 	protected $encoding = 'utf-8';
 	protected $tagName = 'manialink';
-	protected $id = '';
+	protected $id = null;
 	protected $version = 1;
-	protected $background = '';
+	protected $background = null;
 	protected $navigable3d = 1;
 	protected $timeout = 0;
 	/** @var Renderable[] $children */

@@ -19,12 +19,12 @@ class Format implements BgColorable, Renderable, Styleable, TextFormatable {
 	 * Protected properties
 	 */
 	protected $tagName = 'format';
-	protected $bgColor = '';
-	protected $style = '';
+	protected $bgColor = null;
+	protected $style = null;
 	protected $textSize = -1;
-	protected $textColor = '';
-	protected $focusAreaColor1 = '';
-	protected $focusAreaColor2 = '';
+	protected $textColor = null;
+	protected $focusAreaColor1 = null;
+	protected $focusAreaColor2 = null;
 
 	/**
 	 * Create a new Format Element

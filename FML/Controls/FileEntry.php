@@ -14,7 +14,7 @@ class FileEntry extends Entry {
 	/*
 	 * Protected properties
 	 */
-	protected $folder = '';
+	protected $folder = null;
 
 	/**
 	 * Create a new FileEntry Control

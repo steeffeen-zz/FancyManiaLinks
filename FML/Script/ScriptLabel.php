@@ -91,7 +91,7 @@ class ScriptLabel {
 	/**
 	 * Get the possible event label names
 	 *
-	 * @return array
+	 * @return string[]
 	 */
 	public static function getEventLabels() {
 		return array(self::ENTRYSUBMIT, self::KEYPRESS, self::MOUSECLICK, self::MOUSEOUT, self::MOUSEOVER);

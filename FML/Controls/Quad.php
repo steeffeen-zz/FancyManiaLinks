@@ -22,23 +22,23 @@ class Quad extends Control implements Actionable, BgColorable, Linkable, Scripta
 	/*
 	 * Protected properties
 	 */
-	protected $image = '';
-	protected $imageId = '';
-	protected $imageFocus = '';
-	protected $imageFocusId = '';
-	protected $colorize = '';
-	protected $modulizeColor = '';
+	protected $image = null;
+	protected $imageId = null;
+	protected $imageFocus = null;
+	protected $imageFocusId = null;
+	protected $colorize = null;
+	protected $modulizeColor = null;
 	protected $autoScale = 1;
-	protected $action = '';
+	protected $action = null;
 	protected $actionKey = -1;
-	protected $bgColor = '';
-	protected $url = '';
-	protected $urlId = '';
-	protected $manialink = '';
-	protected $manialinkId = '';
+	protected $bgColor = null;
+	protected $url = null;
+	protected $urlId = null;
+	protected $manialink = null;
+	protected $manialinkId = null;
 	protected $scriptEvents = 0;
-	protected $style = '';
-	protected $subStyle = '';
+	protected $style = null;
+	protected $subStyle = null;
 
 	/**
 	 * Construct a new Quad Control

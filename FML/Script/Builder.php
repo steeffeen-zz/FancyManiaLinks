@@ -117,7 +117,8 @@ abstract class Builder {
 		if (!$namespace && stripos($file, '.') === false) {
 			$namespace = $file;
 		}
-		$includeText = "#Include	\"{$file}\"";
+		$file        = self::escapeText($file, true);
+		$includeText = "#Include	{$file}";
 		if ($namespace) {
 			$includeText .= "	as {$namespace}";
 		}

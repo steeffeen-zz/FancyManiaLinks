@@ -22,25 +22,25 @@ class Label extends Control implements Actionable, Linkable, NewLineable, Script
 	/*
 	 * Protected properties
 	 */
-	protected $text = '';
-	protected $textId = '';
-	protected $textPrefix = '';
+	protected $text = null;
+	protected $textId = null;
+	protected $textPrefix = null;
 	protected $textEmboss = 0;
 	protected $translate = 0;
 	protected $maxLines = -1;
-	protected $action = '';
+	protected $action = null;
 	protected $actionKey = -1;
-	protected $url = '';
-	protected $urlId = '';
-	protected $manialink = '';
-	protected $manialinkId = '';
+	protected $url = null;
+	protected $urlId = null;
+	protected $manialink = null;
+	protected $manialinkId = null;
 	protected $autoNewLine = 0;
 	protected $scriptEvents = 0;
-	protected $style = '';
+	protected $style = null;
 	protected $textSize = -1;
-	protected $textColor = '';
-	protected $focusAreaColor1 = '';
-	protected $focusAreaColor2 = '';
+	protected $textColor = null;
+	protected $focusAreaColor1 = null;
+	protected $focusAreaColor2 = null;
 
 	/**
 	 * Construct a new Label Control
