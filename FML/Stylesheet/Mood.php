@@ -201,14 +201,14 @@ class Mood {
 	/**
 	 * Add a sky gradient key
 	 *
-	 * @param float  $x     Scale value
-	 * @param string $color Gradient color
+	 * @param float  $gradientX Scale value
+	 * @param string $color     Gradient color
 	 * @return \FML\Stylesheet\Mood|static
 	 */
-	public function addSkyGradientKey($x, $color) {
-		$x           = (float)$x;
+	public function addSkyGradientKey($gradientX, $color) {
+		$gradientX   = (float)$gradientX;
 		$color       = (string)$color;
-		$gradientKey = array('x' => $x, 'color' => $color);
+		$gradientKey = array('x' => $gradientX, 'color' => $color);
 		array_push($this->skyGradientKeys, $gradientKey);
 		return $this;
 	}
