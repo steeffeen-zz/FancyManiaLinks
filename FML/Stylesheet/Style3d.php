@@ -25,7 +25,7 @@ class Style3d {
 	 * Protected properties
 	 */
 	protected $tagName = 'style3d';
-	protected $id = null;
+	protected $styleId = null;
 	protected $model = self::MODEL_Box;
 	protected $thickness = null;
 	protected $color = null;
@@ -40,32 +40,32 @@ class Style3d {
 	/**
 	 * Create a new Style3d object
 	 *
-	 * @param string $id (optional) Style id
+	 * @param string $styleId (optional) Style id
 	 * @return \FML\Stylesheet\Style3d|static
 	 */
-	public static function create($id = null) {
-		return new static($id);
+	public static function create($styleId = null) {
+		return new static($styleId);
 	}
 
 	/**
 	 * Construct a new Style3d object
 	 *
-	 * @param string $id (optional) Style id
+	 * @param string $styleId (optional) Style id
 	 */
-	public function __construct($id = null) {
-		if (!is_null($id)) {
-			$this->setId($id);
+	public function __construct($styleId = null) {
+		if (!is_null($styleId)) {
+			$this->setId($styleId);
 		}
 	}
 
 	/**
 	 * Set style id
 	 *
-	 * @param string $id Style id
+	 * @param string $styleId Style id
 	 * @return \FML\Stylesheet\Style3d|static
 	 */
-	public function setId($id) {
-		$this->id = (string)$id;
+	public function setId($styleId) {
+		$this->styleId = (string)$styleId;
 		return $this;
 	}
 
@@ -75,7 +75,7 @@ class Style3d {
 	 * @return \FML\Stylesheet\Style3d|static
 	 */
 	public function checkId() {
-		if (!$this->id) {
+		if (!$this->styleId) {
 			$this->setId(new UniqueID());
 		}
 		return $this;
@@ -87,7 +87,7 @@ class Style3d {
 	 * @return string
 	 */
 	public function getId() {
-		return $this->id;
+		return $this->styleId;
 	}
 
 	/**
@@ -209,8 +209,8 @@ class Style3d {
 	public function render(\DOMDocument $domDocument) {
 		$style3dXml = $domDocument->createElement($this->tagName);
 		$this->checkId();
-		if ($this->id) {
-			$style3dXml->setAttribute('id', $this->id);
+		if ($this->styleId) {
+			$style3dXml->setAttribute('id', $this->styleId);
 		}
 		if ($this->model) {
 			$style3dXml->setAttribute('model', $this->model);

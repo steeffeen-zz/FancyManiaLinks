@@ -18,7 +18,7 @@ class FrameModel implements Container, Renderable {
 	 * Protected properties
 	 */
 	protected $tagName = 'framemodel';
-	protected $id = null;
+	protected $modelId = null;
 	/** @var Renderable[] $children */
 	protected $children = array();
 	/** @var Format $format */
@@ -27,11 +27,11 @@ class FrameModel implements Container, Renderable {
 	/**
 	 * Set Model id
 	 *
-	 * @param string $id Model id
+	 * @param string $modelId Model id
 	 * @return \FML\Elements\FrameModel|static
 	 */
-	public function setId($id) {
-		$this->id = (string)$id;
+	public function setId($modelId) {
+		$this->modelId = (string)$modelId;
 		return $this;
 	}
 
@@ -41,7 +41,7 @@ class FrameModel implements Container, Renderable {
 	 * @return string
 	 */
 	public function getId() {
-		return $this->id;
+		return $this->modelId;
 	}
 
 	/**
@@ -50,7 +50,7 @@ class FrameModel implements Container, Renderable {
 	 * @return string
 	 */
 	public function checkId() {
-		if (!$this->id) {
+		if (!$this->modelId) {
 			$this->setId(new UniqueID());
 		}
 		return $this;

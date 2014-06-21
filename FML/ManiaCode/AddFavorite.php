@@ -15,8 +15,8 @@ class AddFavorite implements Element {
 	 */
 	protected $tagName = 'add_favourite';
 	protected $login = null;
-	protected $ip = null;
-	protected $port = null;
+	protected $serverIp = null;
+	protected $serverPort = null;
 
 	/**
 	 * Create a new AddFavorite object
@@ -46,23 +46,23 @@ class AddFavorite implements Element {
 	 * @return \FML\ManiaCode\AddFavorite|static
 	 */
 	public function setLogin($login) {
-		$this->login = (string)$login;
-		$this->ip    = null;
-		$this->port  = null;
+		$this->login      = (string)$login;
+		$this->serverIp   = null;
+		$this->serverPort = null;
 		return $this;
 	}
 
 	/**
 	 * Set the server ip and port
 	 *
-	 * @param string $ip   Server ip
-	 * @param int    $port Server port
+	 * @param string $serverIp   Server ip
+	 * @param int    $serverPort Server port
 	 * @return \FML\ManiaCode\AddFavorite|static
 	 */
-	public function setIp($ip, $port) {
-		$this->ip    = (string)$ip;
-		$this->port  = (int)$port;
-		$this->login = null;
+	public function setIp($serverIp, $serverPort) {
+		$this->serverIp   = (string)$serverIp;
+		$this->serverPort = (int)$serverPort;
+		$this->login      = null;
 		return $this;
 	}
 
@@ -71,11 +71,11 @@ class AddFavorite implements Element {
 	 */
 	public function render(\DOMDocument $domDocument) {
 		$xmlElement = $domDocument->createElement($this->tagName);
-		if (is_null($this->ip)) {
+		if (is_null($this->serverIp)) {
 			$loginElement = $domDocument->createElement('login', $this->login);
 			$xmlElement->appendChild($loginElement);
 		} else {
-			$ipElement = $domDocument->createElement('ip', $this->ip . ':' . $this->port);
+			$ipElement = $domDocument->createElement('ip', $this->serverIp . ':' . $this->serverPort);
 			$xmlElement->appendChild($ipElement);
 		}
 		return $xmlElement;

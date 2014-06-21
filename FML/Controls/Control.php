@@ -39,10 +39,10 @@ abstract class Control implements Renderable, ScriptFeatureable {
 	 * Protected properties
 	 */
 	protected $tagName = 'control';
-	protected $id = null;
-	protected $x = 0.;
-	protected $y = 0.;
-	protected $z = 0.;
+	protected $controlId = null;
+	protected $posX = 0.;
+	protected $posY = 0.;
+	protected $posZ = 0.;
 	protected $width = -1.;
 	protected $height = -1.;
 	protected $hAlign = self::CENTER;
@@ -58,21 +58,21 @@ abstract class Control implements Renderable, ScriptFeatureable {
 	/**
 	 * Create a new Control object
 	 *
-	 * @param string $id (optional) Control id
+	 * @param string $controlId (optional) Control id
 	 * @return \FML\Controls\Control|static
 	 */
-	public static function create($id = null) {
-		return new static($id);
+	public static function create($controlId = null) {
+		return new static($controlId);
 	}
 
 	/**
 	 * Construct a new Control object
 	 *
-	 * @param string $id (optional) Control id
+	 * @param string $controlId (optional) Control id
 	 */
-	public function __construct($id = null) {
-		if (!is_null($id)) {
-			$this->setId($id);
+	public function __construct($controlId = null) {
+		if (!is_null($controlId)) {
+			$this->setId($controlId);
 		}
 	}
 
@@ -99,8 +99,8 @@ abstract class Control implements Renderable, ScriptFeatureable {
 		}
 		if ($danger) {
 			trigger_error("Please don't use special characters in ids, they might cause problems! (I stripped them for you.)");
-			$id = str_ireplace($dangerousCharacters, '', $this->getId());
-			$this->setId($id);
+			$controlId = str_ireplace($dangerousCharacters, '', $this->getId());
+			$this->setId($controlId);
 		}
 		return $this;
 	}
@@ -114,35 +114,35 @@ abstract class Control implements Renderable, ScriptFeatureable {
 	 */
 	public function getId($escaped = false, $addApostrophes = false) {
 		if ($escaped) {
-			return Builder::escapeText($this->id, $addApostrophes);
+			return Builder::escapeText($this->controlId, $addApostrophes);
 		}
-		return $this->id;
+		return $this->controlId;
 	}
 
 	/**
 	 * Set Control id
 	 *
-	 * @param string $id Control id
+	 * @param string $controlId Control id
 	 * @return \FML\Controls\Control|static
 	 */
-	public function setId($id) {
-		$this->id = (string)$id;
+	public function setId($controlId) {
+		$this->controlId = (string)$controlId;
 		return $this;
 	}
 
 	/**
 	 * Set Control position
 	 *
-	 * @param float $x Horizontal position
-	 * @param float $y Vertical position
-	 * @param float $z (optional) Depth
+	 * @param float $posX Horizontal position
+	 * @param float $posY Vertical position
+	 * @param float $posZ (optional) Depth
 	 * @return \FML\Controls\Control|static
 	 */
-	public function setPosition($x, $y, $z = null) {
-		$this->setX($x);
-		$this->setY($y);
-		if (!is_null($z)) {
-			$this->setZ($z);
+	public function setPosition($posX, $posY, $posZ = null) {
+		$this->setX($posX);
+		$this->setY($posY);
+		if (!is_null($posZ)) {
+			$this->setZ($posZ);
 		}
 		return $this;
 	}
@@ -150,33 +150,33 @@ abstract class Control implements Renderable, ScriptFeatureable {
 	/**
 	 * Set X position
 	 *
-	 * @param float $x Horizontal position
+	 * @param float $posX Horizontal position
 	 * @return \FML\Controls\Control|static
 	 */
-	public function setX($x) {
-		$this->x = (float)$x;
+	public function setX($posX) {
+		$this->posX = (float)$posX;
 		return $this;
 	}
 
 	/**
 	 * Set Y position
 	 *
-	 * @param float $y Vertical position
+	 * @param float $posY Vertical position
 	 * @return \FML\Controls\Control|static
 	 */
-	public function setY($y) {
-		$this->y = (float)$y;
+	public function setY($posY) {
+		$this->posY = (float)$posY;
 		return $this;
 	}
 
 	/**
 	 * Set Z position
 	 *
-	 * @param float $z Depth
+	 * @param float $posZ Depth
 	 * @return \FML\Controls\Control|static
 	 */
-	public function setZ($z) {
-		$this->z = (float)$z;
+	public function setZ($posZ) {
+		$this->posZ = (float)$posZ;
 		return $this;
 	}
 
@@ -465,11 +465,11 @@ abstract class Control implements Renderable, ScriptFeatureable {
 	 */
 	public function render(\DOMDocument $domDocument) {
 		$xmlElement = $domDocument->createElement($this->tagName);
-		if ($this->id) {
-			$xmlElement->setAttribute('id', $this->id);
+		if ($this->controlId) {
+			$xmlElement->setAttribute('id', $this->controlId);
 		}
-		if ($this->x || $this->y || $this->z) {
-			$xmlElement->setAttribute('posn', "{$this->x} {$this->y} {$this->z}");
+		if ($this->posX || $this->posY || $this->posZ) {
+			$xmlElement->setAttribute('posn', "{$this->posX} {$this->posY} {$this->posZ}");
 		}
 		if ($this->width >= 0. || $this->height >= 0.) {
 			$xmlElement->setAttribute('sizen', "{$this->width} {$this->height}");

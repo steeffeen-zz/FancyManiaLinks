@@ -30,7 +30,7 @@ class ManiaLink {
 	 */
 	protected $encoding = 'utf-8';
 	protected $tagName = 'manialink';
-	protected $id = null;
+	protected $maniaLinkId = null;
 	protected $version = 1;
 	protected $background = null;
 	protected $navigable3d = 1;
@@ -47,21 +47,21 @@ class ManiaLink {
 	/**
 	 * Create a new ManiaLink object
 	 *
-	 * @param string $id (optional) ManiaLink id
+	 * @param string $maniaLinkId (optional) ManiaLink id
 	 * @return \FML\ManiaLink|static
 	 */
-	public static function create($id = null) {
-		return new static($id);
+	public static function create($maniaLinkId = null) {
+		return new static($maniaLinkId);
 	}
 
 	/**
 	 * Construct a new ManiaLink object
 	 *
-	 * @param string $id (optional) ManiaLink id
+	 * @param string $maniaLinkId (optional) ManiaLink id
 	 */
-	public function __construct($id = null) {
-		if (!is_null($id)) {
-			$this->setId($id);
+	public function __construct($maniaLinkId = null) {
+		if (!is_null($maniaLinkId)) {
+			$this->setId($maniaLinkId);
 		}
 	}
 
@@ -79,11 +79,11 @@ class ManiaLink {
 	/**
 	 * Set ManiaLink id
 	 *
-	 * @param string $id ManiaLink id
+	 * @param string $maniaLinkId ManiaLink id
 	 * @return \FML\ManiaLink|static
 	 */
-	public function setId($id) {
-		$this->id = (string)$id;
+	public function setId($maniaLinkId) {
+		$this->maniaLinkId = (string)$maniaLinkId;
 		return $this;
 	}
 
@@ -93,7 +93,7 @@ class ManiaLink {
 	 * @return string
 	 */
 	public function getId() {
-		return $this->id;
+		return $this->maniaLinkId;
 	}
 
 	/**
@@ -241,8 +241,8 @@ class ManiaLink {
 		if (!$isChild) {
 			$domDocument->appendChild($maniaLink);
 		}
-		if (strlen($this->id) > 0) {
-			$maniaLink->setAttribute('id', $this->id);
+		if (strlen($this->maniaLinkId) > 0) {
+			$maniaLink->setAttribute('id', $this->maniaLinkId);
 		}
 		if ($this->version) {
 			$maniaLink->setAttribute('version', $this->version);

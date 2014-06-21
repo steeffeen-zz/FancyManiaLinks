@@ -16,11 +16,10 @@ abstract class ScriptFeature {
 	/**
 	 * Collect the Script Features of the given objects
 	 *
-	 * @param object $scriptFeatureable ScriptFeatureable object
-	 * @param object $_                 (optional) Various amount of additional objects
+	 * @param ScriptFeatureable $objects (optional) Various amount of ScriptFeatureable objects
 	 * @return ScriptFeature[]
 	 */
-	public static function collect($scriptFeatureable, $_ = null) {
+	public static function collect() {
 		$params         = func_get_args();
 		$scriptFeatures = array();
 		foreach ($params as $object) {
