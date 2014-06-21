@@ -34,7 +34,7 @@ class Frame3d extends Frame implements Scriptable {
 	protected $style3dId = null;
 	/** @var Style3d $style3d */
 	protected $style3d = null;
-	protected $scriptEvents = 0;
+	protected $scriptEvents = null;
 
 	/**
 	 * Create a new Frame3d Control

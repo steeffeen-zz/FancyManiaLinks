@@ -28,8 +28,8 @@ class Gauge extends Control implements Styleable {
 	protected $grading = 1.;
 	protected $color = null;
 	protected $rotation = 0.;
-	protected $centered = 0;
-	protected $clan = 0;
+	protected $centered = null;
+	protected $clan = null;
 	protected $drawBg = 1;
 	protected $drawBlockBg = 1;
 	protected $style = null;

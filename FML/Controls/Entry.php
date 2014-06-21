@@ -22,8 +22,8 @@ class Entry extends Control implements NewLineable, Scriptable, Styleable, TextF
 	 */
 	protected $name = null;
 	protected $default = null;
-	protected $autoNewLine = 0;
-	protected $scriptEvents = 0;
+	protected $autoNewLine = null;
+	protected $scriptEvents = null;
 	protected $style = null;
 	protected $textColor = null;
 	protected $textSize = -1;

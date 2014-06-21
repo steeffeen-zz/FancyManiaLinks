@@ -36,7 +36,7 @@ class Quad extends Control implements Actionable, BgColorable, Linkable, Scripta
 	protected $urlId = null;
 	protected $manialink = null;
 	protected $manialinkId = null;
-	protected $scriptEvents = 0;
+	protected $scriptEvents = null;
 	protected $style = null;
 	protected $subStyle = null;
 

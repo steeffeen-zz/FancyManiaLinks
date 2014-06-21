@@ -48,7 +48,9 @@ abstract class Control implements Renderable, ScriptFeatureable {
 	protected $hAlign = self::CENTER;
 	protected $vAlign = self::CENTER2;
 	protected $scale = 1.;
-	protected $hidden = 0;
+	protected $hidden = null;
+	protected $rotation = 0.;
+	/** @var string[] $classes */
 	protected $classes = array();
 	/** @var ScriptFeature[] $scriptFeatures */
 	protected $scriptFeatures = array();
@@ -281,6 +283,17 @@ abstract class Control implements Renderable, ScriptFeatureable {
 	}
 
 	/**
+	 * Set Control rotation
+	 *
+	 * @param float $rotation
+	 * @return \FML\Controls\Control|static
+	 */
+	public function setRotation($rotation) {
+		$this->rotation = (float)$rotation;
+		return $this;
+	}
+
+	/**
 	 * Add a new class name
 	 *
 	 * @param string $class Class name
@@ -445,16 +458,16 @@ abstract class Control implements Renderable, ScriptFeatureable {
 		if ($this->id) {
 			$xmlElement->setAttribute('id', $this->id);
 		}
-		if ($this->x != 0. || $this->y != 0. || $this->z != 0.) {
+		if ($this->x || $this->y || $this->z) {
 			$xmlElement->setAttribute('posn', "{$this->x} {$this->y} {$this->z}");
 		}
 		if ($this->width >= 0. || $this->height >= 0.) {
 			$xmlElement->setAttribute('sizen', "{$this->width} {$this->height}");
 		}
-		if ($this->hAlign) {
+		if ($this->hAlign !== self::LEFT) {
 			$xmlElement->setAttribute('halign', $this->hAlign);
 		}
-		if ($this->vAlign) {
+		if ($this->vAlign !== self::TOP) {
 			$xmlElement->setAttribute('valign', $this->vAlign);
 		}
 		if ($this->scale != 1.) {
@@ -462,6 +475,9 @@ abstract class Control implements Renderable, ScriptFeatureable {
 		}
 		if ($this->hidden) {
 			$xmlElement->setAttribute('hidden', $this->hidden);
+		}
+		if ($this->rotation) {
+			$xmlElement->setAttribute('rot', $this->rotation);
 		}
 		if (!empty($this->classes)) {
 			$classes = implode(' ', $this->classes);

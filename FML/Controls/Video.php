@@ -19,11 +19,11 @@ class Video extends Control implements Playable, Scriptable {
 	 */
 	protected $data = null;
 	protected $dataId = null;
-	protected $play = 0;
-	protected $looping = 0;
-	protected $music = 0;
+	protected $play = null;
+	protected $looping = true;
+	protected $music = null;
 	protected $volume = 1.;
-	protected $scriptEvents = 0;
+	protected $scriptEvents = null;
 
 	/**
 	 * Construct a new Video Control

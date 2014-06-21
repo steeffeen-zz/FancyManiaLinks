@@ -25,17 +25,18 @@ class Label extends Control implements Actionable, Linkable, NewLineable, Script
 	protected $text = null;
 	protected $textId = null;
 	protected $textPrefix = null;
-	protected $textEmboss = 0;
-	protected $translate = 0;
+	protected $textEmboss = null;
+	protected $translate = null;
 	protected $maxLines = -1;
+	protected $opacity = 1.;
 	protected $action = null;
 	protected $actionKey = -1;
 	protected $url = null;
 	protected $urlId = null;
 	protected $manialink = null;
 	protected $manialinkId = null;
-	protected $autoNewLine = 0;
-	protected $scriptEvents = 0;
+	protected $autoNewLine = null;
+	protected $scriptEvents = null;
 	protected $style = null;
 	protected $textSize = -1;
 	protected $textColor = null;
@@ -282,6 +283,9 @@ class Label extends Control implements Actionable, Linkable, NewLineable, Script
 		}
 		if ($this->maxLines >= 0) {
 			$xmlElement->setAttribute('maxlines', $this->maxLines);
+		}
+		if ($this->opacity != 1.) {
+			$xmlElement->setAttribute('opacity', $this->opacity);
 		}
 		if (strlen($this->action) > 0) {
 			$xmlElement->setAttribute('action', $this->action);
