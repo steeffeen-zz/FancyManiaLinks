@@ -16,6 +16,7 @@ class FrameInstance extends Control {
 	/*
 	 * Protected properties
 	 */
+	protected $tagName = 'frameinstance';
 	protected $modelId = null;
 	/** @var FrameModel $model */
 	protected $model = null;
@@ -39,7 +40,6 @@ class FrameInstance extends Control {
 	 */
 	public function __construct($modelId = null, $controlId = null) {
 		parent::__construct($controlId);
-		$this->tagName = 'frameinstance';
 		if (!is_null($modelId)) {
 			$this->setModelId($modelId);
 		}

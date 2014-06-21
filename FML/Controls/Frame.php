@@ -19,30 +19,11 @@ class Frame extends Control implements Container {
 	/*
 	 * Protected properties
 	 */
+	protected $tagName = 'frame';
 	/** @var Renderable[] $children */
 	protected $children = array();
 	/** @var Format $format */
 	protected $format = null;
-
-	/**
-	 * Create a new Frame Control
-	 *
-	 * @param string $id (optional) Frame id
-	 * @return \FML\Controls\Frame|static
-	 */
-	public static function create($id = null) {
-		return new static($id);
-	}
-
-	/**
-	 * Construct a new Frame Control
-	 *
-	 * @param string $id (optional) Frame id
-	 */
-	public function __construct($id = null) {
-		parent::__construct($id);
-		$this->tagName = 'frame';
-	}
 
 	/**
 	 * @see \FML\Controls\Control::getManiaScriptClass()

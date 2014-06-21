@@ -103,13 +103,8 @@ class Quad_Icons64x64_1 extends Quad {
 	const SUBSTYLE_YellowHigh            = 'YellowHigh';
 	const SUBSTYLE_YellowLow             = 'YellowLow';
 
-	/**
-	 * Construct a new Quad_Icons64x64_1 Control
-	 *
-	 * @param string $id (optional) Quad id
+	/*
+	 * Protected properties
 	 */
-	public function __construct($id = null) {
-		parent::__construct($id);
-		$this->setStyle(self::STYLE);
-	}
+	protected $style = self::STYLE;
 }

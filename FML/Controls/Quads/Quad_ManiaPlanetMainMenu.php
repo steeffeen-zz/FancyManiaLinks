@@ -28,13 +28,8 @@ class Quad_ManiaPlanetMainMenu extends Quad {
 	const SUBSTYLE_TitleBg      = 'TitleBg';
 	const SUBSTYLE_TopBar       = 'TopBar';
 
-	/**
-	 * Construct a new Quad_ManiaPlanetMainMenu Control
-	 *
-	 * @param string $id (optional) Quad id
+	/*
+	 * Protected properties
 	 */
-	public function __construct($id = null) {
-		parent::__construct($id);
-		$this->setStyle(self::STYLE);
-	}
+	protected $style = self::STYLE;
 }

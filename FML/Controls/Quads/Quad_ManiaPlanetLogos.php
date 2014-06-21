@@ -24,13 +24,8 @@ class Quad_ManiaPlanetLogos extends Quad {
 	const SUBSTYLE_ManiaPlanetLogoWhite      = 'ManiaPlanetLogoWhite';
 	const SUBSTYLE_ManiaPlanetLogoWhiteSmall = 'ManiaPlanetLogoWhiteSmall';
 
-	/**
-	 * Construct a new Quad_ManiaPlanetLogos Control
-	 *
-	 * @param string $id (optional) Quad id
+	/*
+	 * Protected properties
 	 */
-	public function __construct($id = null) {
-		parent::__construct($id);
-		$this->setStyle(self::STYLE);
-	}
+	protected $style = self::STYLE;
 }

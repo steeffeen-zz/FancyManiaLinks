@@ -31,13 +31,8 @@ class Quad_BgsPlayerCard extends Quad {
 	const SUBSTYLE_BgRacePlayerName    = 'BgRacePlayerName';
 	const SUBSTYLE_ProgressBar         = 'ProgressBar';
 
-	/**
-	 * Construct a new Quad_BgsPlayerCard Control
-	 *
-	 * @param string $id (optional) Quad id
+	/*
+	 * Protected properties
 	 */
-	public function __construct($id = null) {
-		parent::__construct($id);
-		$this->setStyle(self::STYLE);
-	}
+	protected $style = self::STYLE;
 }

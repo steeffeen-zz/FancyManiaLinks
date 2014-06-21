@@ -24,6 +24,7 @@ class Gauge extends Control implements Styleable {
 	/*
 	 * Protected properties
 	 */
+	protected $tagName = 'gauge';
 	protected $ratio = 0.;
 	protected $grading = 1.;
 	protected $color = null;
@@ -33,26 +34,6 @@ class Gauge extends Control implements Styleable {
 	protected $drawBg = 1;
 	protected $drawBlockBg = 1;
 	protected $style = null;
-
-	/**
-	 * Construct a new Gauge Control
-	 *
-	 * @param string $id (optional) Gauge id
-	 */
-	public function __construct($id = null) {
-		parent::__construct($id);
-		$this->tagName = 'gauge';
-	}
-
-	/**
-	 * Create a new Gauge Control
-	 *
-	 * @param string $id (optional) Gauge id
-	 * @return \FML\Controls\Gauge|static
-	 */
-	public static function create($id = null) {
-		return new static($id);
-	}
 
 	/**
 	 * @see \FML\Controls\Control::getManiaScriptClass()

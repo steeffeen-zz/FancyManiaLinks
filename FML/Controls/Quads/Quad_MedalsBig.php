@@ -24,13 +24,8 @@ class Quad_MedalsBig extends Quad {
 	const SUBSTYLE_MedalSilver           = 'MedalSilver';
 	const SUBSTYLE_MedalSlot             = 'MedalSlot';
 
-	/**
-	 * Construct a new Quad_MedalsBig Control
-	 *
-	 * @param string $id (optional) Quad id
+	/*
+	 * Protected properties
 	 */
-	public function __construct($id = null) {
-		parent::__construct($id);
-		$this->setStyle(self::STYLE);
-	}
+	protected $style = self::STYLE;
 }

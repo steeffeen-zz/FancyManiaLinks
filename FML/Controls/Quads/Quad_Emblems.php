@@ -20,13 +20,8 @@ class Quad_Emblems extends Quad {
 	const SUBSTYLE_1 = '#1';
 	const SUBSTYLE_2 = '#2';
 
-	/**
-	 * Construct a new Quad_Emblems Control
-	 *
-	 * @param string $id (optional) Quad id
+	/*
+	 * Protected properties
 	 */
-	public function __construct($id = null) {
-		parent::__construct($id);
-		$this->setStyle(self::STYLE);
-	}
+	protected $style = self::STYLE;
 }

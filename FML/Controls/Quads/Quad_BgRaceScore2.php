@@ -44,13 +44,8 @@ class Quad_BgRaceScore2 extends Quad {
 	const SUBSTYLE_Tv                   = 'Tv';
 	const SUBSTYLE_Warmup               = 'Warmup';
 
-	/**
-	 * Construct a new Quad_BgRaceScore2 Control
-	 *
-	 * @param string $id (optional) Quad id
+	/*
+	 * Protected properties
 	 */
-	public function __construct($id = null) {
-		parent::__construct($id);
-		$this->setStyle(self::STYLE);
-	}
+	protected $style = self::STYLE;
 }

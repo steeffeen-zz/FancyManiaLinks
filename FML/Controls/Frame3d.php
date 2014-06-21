@@ -31,30 +31,11 @@ class Frame3d extends Frame implements Scriptable {
 	/*
 	 * Protected properties
 	 */
+	protected $tagName = 'frame3d';
 	protected $style3dId = null;
 	/** @var Style3d $style3d */
 	protected $style3d = null;
 	protected $scriptEvents = null;
-
-	/**
-	 * Create a new Frame3d Control
-	 *
-	 * @param string $id (optional) Frame3d id
-	 * @return \FML\Controls\Frame3d|static
-	 */
-	public static function create($id = null) {
-		return new static($id);
-	}
-
-	/**
-	 * Construct a new Frame3d Control
-	 *
-	 * @param string $id (optional) Frame3d id
-	 */
-	public function __construct($id = null) {
-		parent::__construct($id);
-		$this->tagName = 'frame3d';
-	}
 
 	/**
 	 * Set Style3d id

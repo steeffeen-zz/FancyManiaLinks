@@ -22,6 +22,7 @@ class Label extends Control implements Actionable, Linkable, NewLineable, Script
 	/*
 	 * Protected properties
 	 */
+	protected $tagName = 'label';
 	protected $text = null;
 	protected $textId = null;
 	protected $textPrefix = null;
@@ -42,27 +43,6 @@ class Label extends Control implements Actionable, Linkable, NewLineable, Script
 	protected $textColor = null;
 	protected $focusAreaColor1 = null;
 	protected $focusAreaColor2 = null;
-
-	/**
-	 * Construct a new Label Control
-	 *
-	 * @param string $id (optional) Label Id
-	 */
-	public function __construct($id = null) {
-		parent::__construct($id);
-		$this->tagName = 'label';
-		$this->setZ(1);
-	}
-
-	/**
-	 * Create a new Label Control
-	 *
-	 * @param string $id (optional) Label Id
-	 * @return \FML\Controls\Label|static
-	 */
-	public static function create($id = null) {
-		return new static($id);
-	}
 
 	/**
 	 * @see \FML\Controls\Control::getManiaScriptClass()

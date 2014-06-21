@@ -21,13 +21,8 @@ class Quad_TitleLogos extends Quad {
 	const SUBSTYLE_Icon       = 'Icon';
 	const SUBSTYLE_Title      = 'Title';
 
-	/**
-	 * Construct a new Quad_TitleLogos Control
-	 *
-	 * @param string $id (optional) Quad id
+	/*
+	 * Protected properties
 	 */
-	public function __construct($id = null) {
-		parent::__construct($id);
-		$this->setStyle(self::STYLE);
-	}
+	protected $style = self::STYLE;
 }

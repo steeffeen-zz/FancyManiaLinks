@@ -56,6 +56,16 @@ abstract class Control implements Renderable, ScriptFeatureable {
 	protected $scriptFeatures = array();
 
 	/**
+	 * Create a new Control object
+	 *
+	 * @param string $id (optional) Control id
+	 * @return \FML\Controls\Control|static
+	 */
+	public static function create($id = null) {
+		return new static($id);
+	}
+
+	/**
 	 * Construct a new Control object
 	 *
 	 * @param string $id (optional) Control id

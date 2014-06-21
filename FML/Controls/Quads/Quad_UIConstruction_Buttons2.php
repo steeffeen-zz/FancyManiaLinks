@@ -29,13 +29,8 @@ class Quad_UIConstruction_Buttons2 extends Quad {
 	const SUBSTYLE_Open        = 'Open';
 	const SUBSTYLE_Symmetry    = 'Symmetry';
 
-	/**
-	 * Construct a new Quad_UIConstruction_Buttons2 Control
-	 *
-	 * @param string $id (optional) Quad id
+	/*
+	 * Protected properties
 	 */
-	public function __construct($id = null) {
-		parent::__construct($id);
-		$this->setStyle(self::STYLE);
-	}
+	protected $style = self::STYLE;
 }

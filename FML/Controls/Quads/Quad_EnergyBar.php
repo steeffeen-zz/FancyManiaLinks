@@ -23,13 +23,8 @@ class Quad_EnergyBar extends Quad {
 	const SUBSTYLE_HeaderGaugeLeft  = 'HeaderGaugeLeft';
 	const SUBSTYLE_HeaderGaugeRight = 'HeaderGaugeRight';
 
-	/**
-	 * Construct a new Quad_EnergyBar Control
-	 *
-	 * @param string $id (optional) Quad id
+	/*
+	 * Protected properties
 	 */
-	public function __construct($id = null) {
-		parent::__construct($id);
-		$this->setStyle(self::STYLE);
-	}
+	protected $style = self::STYLE;
 }

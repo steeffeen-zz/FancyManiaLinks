@@ -83,13 +83,8 @@ class Quad_Bgs1 extends Quad {
 	const SUBSTYLE_ProgressBarSmall    = 'ProgressBarSmall';
 	const SUBSTYLE_Shadow              = 'Shadow';
 
-	/**
-	 * Construct a new Quad_Bgs1 Control
-	 *
-	 * @param string $id (optional) Quad id
+	/*
+	 * Protected properties
 	 */
-	public function __construct($id = null) {
-		parent::__construct($id);
-		$this->setStyle(self::STYLE);
-	}
+	protected $style = self::STYLE;
 }

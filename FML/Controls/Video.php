@@ -17,6 +17,7 @@ class Video extends Control implements Playable, Scriptable {
 	/*
 	 * Protected properties
 	 */
+	protected $tagName = 'video';
 	protected $data = null;
 	protected $dataId = null;
 	protected $play = null;
@@ -24,26 +25,6 @@ class Video extends Control implements Playable, Scriptable {
 	protected $music = null;
 	protected $volume = 1.;
 	protected $scriptEvents = null;
-
-	/**
-	 * Construct a new Video Control
-	 *
-	 * @param string $id (optional) Video Id
-	 */
-	public function __construct($id = null) {
-		parent::__construct($id);
-		$this->tagName = 'video';
-	}
-
-	/**
-	 * Create a new Video Control
-	 *
-	 * @param string $id (optional) Video Id
-	 * @return \FML\Controls\Video|static
-	 */
-	public static function create($id = null) {
-		return new static($id);
-	}
 
 	/**
 	 * @see \FML\Controls\Control::getManiaScriptClass()

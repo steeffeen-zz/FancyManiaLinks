@@ -22,6 +22,7 @@ class Quad extends Control implements Actionable, BgColorable, Linkable, Scripta
 	/*
 	 * Protected properties
 	 */
+	protected $tagName = 'quad';
 	protected $image = null;
 	protected $imageId = null;
 	protected $imageFocus = null;
@@ -39,27 +40,6 @@ class Quad extends Control implements Actionable, BgColorable, Linkable, Scripta
 	protected $scriptEvents = null;
 	protected $style = null;
 	protected $subStyle = null;
-
-	/**
-	 * Construct a new Quad Control
-	 *
-	 * @param string $id (optional) Quad Id
-	 */
-	public function __construct($id = null) {
-		parent::__construct($id);
-		$this->tagName = 'quad';
-		$this->setZ(-1);
-	}
-
-	/**
-	 * Create a new Quad Control
-	 *
-	 * @param string $id (optional) Quad Id
-	 * @return \FML\Controls\Quad|static
-	 */
-	public static function create($id = null) {
-		return new static($id);
-	}
 
 	/**
 	 * @see \FML\Controls\Control::getManiaScriptClass()

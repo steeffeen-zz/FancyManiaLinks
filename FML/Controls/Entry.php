@@ -20,6 +20,7 @@ class Entry extends Control implements NewLineable, Scriptable, Styleable, TextF
 	/*
 	 * Protected properties
 	 */
+	protected $tagName = 'entry';
 	protected $name = null;
 	protected $default = null;
 	protected $autoNewLine = null;
@@ -30,26 +31,6 @@ class Entry extends Control implements NewLineable, Scriptable, Styleable, TextF
 	protected $focusAreaColor1 = null;
 	protected $focusAreaColor2 = null;
 	protected $autoComplete = null;
-
-	/**
-	 * Create a new Entry Control
-	 *
-	 * @param string $id (optional) Entry id
-	 * @return \FML\Controls\Entry|static
-	 */
-	public static function create($id = null) {
-		return new static($id);
-	}
-
-	/**
-	 * Construct a new Entry Control
-	 *
-	 * @param string $id (optional) Entry id
-	 */
-	public function __construct($id = null) {
-		parent::__construct($id);
-		$this->tagName = 'entry';
-	}
 
 	/**
 	 * @see \FML\Controls\Control::getManiaScriptClass()

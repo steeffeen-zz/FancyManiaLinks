@@ -43,13 +43,8 @@ class Quad_Icons128x32_1 extends Quad {
 	const SUBSTYLE_UrlBg           = 'UrlBg';
 	const SUBSTYLE_Windowed        = 'Windowed';
 
-	/**
-	 * Construct a new Quad_Icons128x32_1 Control
-	 *
-	 * @param string $id (optional) Quad id
+	/*
+	 * Protected properties
 	 */
-	public function __construct($id = null) {
-		parent::__construct($id);
-		$this->setStyle(self::STYLE);
-	}
+	protected $style = self::STYLE;
 }

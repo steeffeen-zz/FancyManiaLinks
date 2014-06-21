@@ -17,6 +17,7 @@ class Audio extends Control implements Playable, Scriptable {
 	/*
 	 * Protected properties
 	 */
+	protected $tagName = 'audio';
 	protected $data = null;
 	protected $dataId = null;
 	protected $play = null;
@@ -24,27 +25,6 @@ class Audio extends Control implements Playable, Scriptable {
 	protected $music = null;
 	protected $volume = 1.;
 	protected $scriptEvents = null;
-
-	/**
-	 * Create a new Audio Control
-	 *
-	 * @param string $id (optional) Audio id
-	 * @return \FML\Controls\Audio
-	 */
-	public static function create($id = null) {
-		return new static($id);
-	}
-
-	/**
-	 * Construct a new Audio Control
-	 *
-	 * @param string $id (optional) Audio id
-	 */
-	public function __construct($id = null) {
-		// TODO: validate if $tagName could simply be overwritten
-		parent::__construct($id);
-		$this->tagName = 'audio';
-	}
 
 	/**
 	 * @see \FML\Controls\Control::getManiaScriptClass()

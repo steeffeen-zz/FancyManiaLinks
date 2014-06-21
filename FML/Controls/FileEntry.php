@@ -14,27 +14,8 @@ class FileEntry extends Entry {
 	/*
 	 * Protected properties
 	 */
+	protected $tagName = 'fileentry';
 	protected $folder = null;
-
-	/**
-	 * Create a new FileEntry Control
-	 *
-	 * @param string $id (optional) FileEntry id
-	 * @return \FML\Controls\FileEntry|static
-	 */
-	public static function create($id = null) {
-		return new static($id);
-	}
-
-	/**
-	 * Construct a new FileEntry Control
-	 *
-	 * @param string $id (optional) FileEntry id
-	 */
-	public function __construct($id = null) {
-		parent::__construct($id);
-		$this->tagName = 'fileentry';
-	}
 
 	/**
 	 * @see \FML\Controls\Control::getManiaScriptClass()

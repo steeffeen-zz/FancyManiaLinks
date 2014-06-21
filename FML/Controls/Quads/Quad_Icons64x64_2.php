@@ -31,13 +31,8 @@ class Quad_Icons64x64_2 extends Quad {
 	const SUBSTYLE_UnknownElimination = 'UnknownElimination';
 	const SUBSTYLE_UnknownHit         = 'UnknownHit';
 
-	/**
-	 * Construct a new Quad_Icons64x64_2 Control
-	 *
-	 * @param string $id (optional) Quad id
+	/*
+	 * Protected properties
 	 */
-	public function __construct($id = null) {
-		parent::__construct($id);
-		$this->setStyle(self::STYLE);
-	}
+	protected $style = self::STYLE;
 }

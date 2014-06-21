@@ -38,13 +38,8 @@ class Quad_UiSMSpectatorScoreBig extends Quad {
 	CONST SUBSTYLE_UIRange1Bg         = 'UIRange1Bg';
 	CONST SUBSTYLE_UIRange2Bg         = 'UIRange2Bg';
 
-	/**
-	 * Construct a new Quad_UiSMSpectatorScoreBig Control
-	 *
-	 * @param string $id (optional) Quad id
+	/*
+	 * Protected properties
 	 */
-	public function __construct($id = null) {
-		parent::__construct($id);
-		$this->setStyle(self::STYLE);
-	}
+	protected $style = self::STYLE;
 }

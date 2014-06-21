@@ -21,14 +21,8 @@ class Quad_321Go extends Quad {
 	const SUBSTYLE_1  = '1';
 	const SUBSTYLE_Go = 'Go!';
 
-	/**
-	 * Construct a new Quad_321Go Control
-	 *
-	 * @param string $id (optional) Quad id
+	/*
+	 * Protected properties
 	 */
-	public function __construct($id = null) {
-		// TODO: validate if the $style could simply be overwritten
-		parent::__construct($id);
-		$this->setStyle(self::STYLE);
-	}
+	protected $style = self::STYLE;
 }

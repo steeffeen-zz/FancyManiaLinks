@@ -23,13 +23,8 @@ class Quad_ManiaplanetSystem extends Quad {
 	const SUBSTYLE_Medals         = 'Medals';
 	const SUBSTYLE_Statistics     = 'Statistics';
 
-	/**
-	 * Construct a new Quad_ManiaplanetSystem Control
-	 *
-	 * @param string $id (optional) Quad id
+	/*
+	 * Protected properties
 	 */
-	public function __construct($id = null) {
-		parent::__construct($id);
-		$this->setStyle(self::STYLE);
-	}
+	protected $style = self::STYLE;
 }
