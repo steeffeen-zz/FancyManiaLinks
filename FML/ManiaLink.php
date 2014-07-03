@@ -34,6 +34,7 @@ class ManiaLink {
 	protected $version = 1;
 	protected $background = null;
 	protected $navigable3d = 1;
+	protected $name = null;
 	protected $timeout = 0;
 	/** @var Renderable[] $children */
 	protected $children = array();
@@ -115,6 +116,17 @@ class ManiaLink {
 	 */
 	public function setNavigable3d($navigable3d) {
 		$this->navigable3d = ($navigable3d ? 1 : 0);
+		return $this;
+	}
+
+	/**
+	 * Set the ManiaLink Name
+	 *
+	 * @param string $name
+	 * @return static
+	 */
+	public function setName($name) {
+		$this->name = (string)$name;
 		return $this;
 	}
 
@@ -252,6 +264,9 @@ class ManiaLink {
 		}
 		if (!$this->navigable3d) {
 			$maniaLink->setAttribute('navigable3d', $this->navigable3d);
+		}
+		if ($this->name) {
+			$maniaLink->setAttribute('name', $this->name);
 		}
 		if ($this->timeout) {
 			$timeoutXml = $domDocument->createElement('timeout', $this->timeout);
