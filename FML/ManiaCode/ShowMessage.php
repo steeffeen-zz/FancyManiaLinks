@@ -9,7 +9,7 @@ namespace FML\ManiaCode;
  * @copyright FancyManiaLinks Copyright © 2014 Steffen Schröder
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
-class ShowMessage implements Element {
+class ShowMessage extends Element {
 	/*
 	 * Protected properties
 	 */
@@ -52,7 +52,7 @@ class ShowMessage implements Element {
 	 * @see \FML\ManiaCode\Element::render()
 	 */
 	public function render(\DOMDocument $domDocument) {
-		$xmlElement     = $domDocument->createElement($this->tagName);
+		$xmlElement     = parent::render($domDocument);
 		$messageElement = $domDocument->createElement('message', $this->message);
 		$xmlElement->appendChild($messageElement);
 		return $xmlElement;

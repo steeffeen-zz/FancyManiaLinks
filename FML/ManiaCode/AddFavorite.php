@@ -9,7 +9,7 @@ namespace FML\ManiaCode;
  * @copyright FancyManiaLinks Copyright © 2014 Steffen Schröder
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
-class AddFavorite implements Element {
+class AddFavorite extends Element {
 	/*
 	 * Protected properties
 	 */
@@ -70,7 +70,7 @@ class AddFavorite implements Element {
 	 * @see \FML\ManiaCode\Element::render()
 	 */
 	public function render(\DOMDocument $domDocument) {
-		$xmlElement = $domDocument->createElement($this->tagName);
+		$xmlElement = parent::render($domDocument);
 		if (is_null($this->serverIp)) {
 			$loginElement = $domDocument->createElement('login', $this->login);
 			$xmlElement->appendChild($loginElement);

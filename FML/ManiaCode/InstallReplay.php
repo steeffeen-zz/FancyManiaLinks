@@ -9,7 +9,7 @@ namespace FML\ManiaCode;
  * @copyright FancyManiaLinks Copyright © 2014 Steffen Schröder
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
-class InstallReplay implements Element {
+class InstallReplay extends Element {
 	/*
 	 * Protected properties
 	 */
@@ -69,7 +69,7 @@ class InstallReplay implements Element {
 	 * @see \FML\ManiaCode\Element::render()
 	 */
 	public function render(\DOMDocument $domDocument) {
-		$xmlElement  = $domDocument->createElement($this->tagName);
+		$xmlElement  = parent::render($domDocument);
 		$nameElement = $domDocument->createElement('name', $this->name);
 		$xmlElement->appendChild($nameElement);
 		$urlElement = $domDocument->createElement('url', $this->url);
