@@ -22,7 +22,7 @@ class JoinServer implements Element {
 	 * Create a new JoinServer object
 	 *
 	 * @param string $login (optional) Server login
-	 * @return \FML\ManiaCode\JoinServer|static
+	 * @return static
 	 */
 	public static function create($login = null) {
 		return new static($login);
@@ -43,7 +43,7 @@ class JoinServer implements Element {
 	 * Set the server login
 	 *
 	 * @param string $login Server login
-	 * @return \FML\ManiaCode\JoinServer|static
+	 * @return static
 	 */
 	public function setLogin($login) {
 		$this->login      = (string)$login;
@@ -57,7 +57,7 @@ class JoinServer implements Element {
 	 *
 	 * @param string $serverIp   Server ip
 	 * @param int    $serverPort Server port
-	 * @return \FML\ManiaCode\JoinServer|static
+	 * @return static
 	 */
 	public function setIp($serverIp, $serverPort) {
 		$this->serverIp   = (string)$serverIp;

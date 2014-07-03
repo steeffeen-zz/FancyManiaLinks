@@ -24,7 +24,7 @@ class InstallScript implements Element {
 	 * @param string $name (optional) Script name
 	 * @param string $file (optional) Script file
 	 * @param string $url  (optional) Script url
-	 * @return \FML\ManiaCode\InstallScript|static
+	 * @return static
 	 */
 	public static function create($name = null, $file = null, $url = null) {
 		return new static($name, $file, $url);
@@ -53,7 +53,7 @@ class InstallScript implements Element {
 	 * Set the name of the script
 	 *
 	 * @param string $name Script name
-	 * @return \FML\ManiaCode\InstallScript|static
+	 * @return static
 	 */
 	public function setName($name) {
 		$this->name = (string)$name;
@@ -64,7 +64,7 @@ class InstallScript implements Element {
 	 * Set the file of the script
 	 *
 	 * @param string $file Script file
-	 * @return \FML\ManiaCode\InstallScript|static
+	 * @return static
 	 */
 	public function setFile($file) {
 		$this->file = (string)$file;
@@ -75,7 +75,7 @@ class InstallScript implements Element {
 	 * Set the url of the script
 	 *
 	 * @param string $url Script url
-	 * @return \FML\ManiaCode\InstallScript|static
+	 * @return static
 	 */
 	public function setUrl($url) {
 		$this->url = (string)$url;

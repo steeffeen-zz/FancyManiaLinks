@@ -20,7 +20,7 @@ class ShowMessage implements Element {
 	 * Create a new ShowMessage object
 	 *
 	 * @param string $message (optional) Message text
-	 * @return \FML\ManiaCode\ShowMessage|static
+	 * @return static
 	 */
 	public static function create($message = null) {
 		return new static($message);
@@ -41,7 +41,7 @@ class ShowMessage implements Element {
 	 * Set the message text
 	 *
 	 * @param string $message Message text
-	 * @return \FML\ManiaCode\ShowMessage|static
+	 * @return static
 	 */
 	public function setMessage($message) {
 		$this->message = (string)$message;

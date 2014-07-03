@@ -24,7 +24,7 @@ class InstallSkin implements Element {
 	 * @param string $name (optional) Skin name
 	 * @param string $file (optional) Skin file
 	 * @param string $url  (optional) Skin url
-	 * @return \FML\ManiaCode\InstallSkin|static
+	 * @return static
 	 */
 	public static function create($name = null, $file = null, $url = null) {
 		return new static($name, $file, $url);
@@ -53,7 +53,7 @@ class InstallSkin implements Element {
 	 * Set the name of the skin
 	 *
 	 * @param string $name Skin name
-	 * @return \FML\ManiaCode\InstallSkin|static
+	 * @return static
 	 */
 	public function setName($name) {
 		$this->name = (string)$name;
@@ -64,7 +64,7 @@ class InstallSkin implements Element {
 	 * Set the file of the skin
 	 *
 	 * @param string $file Skin file
-	 * @return \FML\ManiaCode\InstallSkin|static
+	 * @return static
 	 */
 	public function setFile($file) {
 		$this->file = (string)$file;
@@ -75,7 +75,7 @@ class InstallSkin implements Element {
 	 * Set the url of the skin
 	 *
 	 * @param string $url Skin url
-	 * @return \FML\ManiaCode\InstallSkin|static
+	 * @return static
 	 */
 	public function setUrl($url) {
 		$this->url = (string)$url;

@@ -20,7 +20,7 @@ class AddBuddy implements Element {
 	 * Create a new AddBuddy Element
 	 *
 	 * @param string $login (optional) Buddy login
-	 * @return \FML\ManiaCode\AddBuddy|static
+	 * @return static
 	 */
 	public static function create($login = null) {
 		return new static($login);
@@ -41,7 +41,7 @@ class AddBuddy implements Element {
 	 * Set the buddy login
 	 *
 	 * @param string $login Buddy login
-	 * @return \FML\ManiaCode\AddBuddy|static
+	 * @return static
 	 */
 	public function setLogin($login) {
 		$this->login = (string)$login;

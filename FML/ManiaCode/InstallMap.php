@@ -22,7 +22,7 @@ class InstallMap implements Element {
 	 *
 	 * @param string $name (optional) Map name
 	 * @param string $url  (optional) Map url
-	 * @return \FML\ManiaCode\InstallMap|static
+	 * @return static
 	 */
 	public static function create($name = null, $url = null) {
 		return new static($name, $url);
@@ -47,7 +47,7 @@ class InstallMap implements Element {
 	 * Set the name of the map
 	 *
 	 * @param string $name Map name
-	 * @return \FML\ManiaCode\InstallMap|static
+	 * @return static
 	 */
 	public function setName($name) {
 		$this->name = (string)$name;
@@ -58,7 +58,7 @@ class InstallMap implements Element {
 	 * Set the url of the map
 	 *
 	 * @param string $url Map url
-	 * @return \FML\ManiaCode\InstallMap|static
+	 * @return static
 	 */
 	public function setUrl($url) {
 		$this->url = (string)$url;

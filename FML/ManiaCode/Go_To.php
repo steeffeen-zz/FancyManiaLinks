@@ -20,7 +20,7 @@ class Go_To implements Element {
 	 * Create a new Go_To object
 	 *
 	 * @param string $link (optional) Goto link
-	 * @return \FML\ManiaCode\Go_To|static
+	 * @return static
 	 */
 	public static function create($link = null) {
 		return new static($link);
@@ -41,7 +41,7 @@ class Go_To implements Element {
 	 * Set link
 	 *
 	 * @param string $link Goto link
-	 * @return \FML\ManiaCode\Go_To|static
+	 * @return static
 	 */
 	public function setLink($link) {
 		$this->link = (string)$link;
