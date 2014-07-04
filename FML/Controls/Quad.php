@@ -49,6 +49,7 @@ class Quad extends Control implements Actionable, BgColorable, Linkable, Scripta
 	protected $style = null;
 	protected $subStyle = null;
 	protected $styleSelected = null;
+	protected $opacity = null;
 
 	/**
 	 * @see \FML\Controls\Control::getManiaScriptClass()
@@ -242,13 +243,24 @@ class Quad extends Control implements Actionable, BgColorable, Linkable, Scripta
 	}
 
 	/**
-	 * Set Selected Mode
+	 * Set selected mode
 	 *
 	 * @param bool $styleSelected
 	 * @return static
 	 */
 	public function setStyleSelected($styleSelected) {
 		$this->styleSelected = ($styleSelected ? 1 : 0);
+		return $this;
+	}
+
+	/**
+	 * Set opacity
+	 *
+	 * @param float $opacity
+	 * @return static
+	 */
+	public function setOpacity($opacity) {
+		$this->opacity = (float)$opacity;
 		return $this;
 	}
 
@@ -318,6 +330,9 @@ class Quad extends Control implements Actionable, BgColorable, Linkable, Scripta
 		}
 		if ($this->styleSelected) {
 			$xmlElement->setAttribute('styleselected', $this->styleSelected);
+		}
+		if ($this->opacity !== 1.) {
+			$xmlElement->setAttribute('opacity', $this->opacity);
 		}
 		return $xmlElement;
 	}
