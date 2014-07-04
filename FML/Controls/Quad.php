@@ -48,6 +48,7 @@ class Quad extends Control implements Actionable, BgColorable, Linkable, Scripta
 	protected $scriptEvents = null;
 	protected $style = null;
 	protected $subStyle = null;
+	protected $styleSelected = null;
 
 	/**
 	 * @see \FML\Controls\Control::getManiaScriptClass()
@@ -241,6 +242,17 @@ class Quad extends Control implements Actionable, BgColorable, Linkable, Scripta
 	}
 
 	/**
+	 * Set Selected Mode
+	 *
+	 * @param bool $styleSelected
+	 * @return static
+	 */
+	public function setStyleSelected($styleSelected) {
+		$this->styleSelected = ($styleSelected ? 1 : 0);
+		return $this;
+	}
+
+	/**
 	 * Apply the given CheckBox Design
 	 *
 	 * @param CheckBoxDesign $checkBoxDesign CheckBox Design
@@ -303,6 +315,9 @@ class Quad extends Control implements Actionable, BgColorable, Linkable, Scripta
 		}
 		if ($this->subStyle) {
 			$xmlElement->setAttribute('substyle', $this->subStyle);
+		}
+		if ($this->styleSelected) {
+			$xmlElement->setAttribute('styleselected', $this->styleSelected);
 		}
 		return $xmlElement;
 	}
