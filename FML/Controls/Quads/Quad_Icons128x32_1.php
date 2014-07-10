@@ -16,6 +16,7 @@ class Quad_Icons128x32_1 extends Quad {
 	 * Constants
 	 */
 	const STYLE                    = 'Icons128x32_1';
+	const SUBSTYLE_Close           = 'Close';
 	const SUBSTYLE_Empty           = 'Empty';
 	const SUBSTYLE_ManiaLinkHome   = 'ManiaLinkHome';
 	const SUBSTYLE_ManiaLinkSwitch = 'ManiaLinkSwitch';
