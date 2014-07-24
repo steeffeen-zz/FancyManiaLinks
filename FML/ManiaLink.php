@@ -63,7 +63,7 @@ class ManiaLink {
 	 * @param string $maniaLinkName (optional) ManiaLink Name
 	 */
 	public function __construct($maniaLinkId = null, $maniaLinkName = null) {
-		if (!is_null($maniaLinkId)) {
+		if ($maniaLinkId !== null) {
 			$this->setId($maniaLinkId);
 		}
 		if ($maniaLinkName !== false) {
