@@ -48,21 +48,30 @@ class ManiaLink {
 	/**
 	 * Create a new ManiaLink object
 	 *
-	 * @param string $maniaLinkId (optional) ManiaLink id
+	 * @param string $maniaLinkId   (optional) ManiaLink id
+	 * @param string $maniaLinkName (optional) ManiaLink Name
 	 * @return static
 	 */
-	public static function create($maniaLinkId = null) {
-		return new static($maniaLinkId);
+	public static function create($maniaLinkId = null, $maniaLinkName = null) {
+		return new static($maniaLinkId, $maniaLinkName);
 	}
 
 	/**
 	 * Construct a new ManiaLink object
 	 *
-	 * @param string $maniaLinkId (optional) ManiaLink id
+	 * @param string $maniaLinkId   (optional) ManiaLink id
+	 * @param string $maniaLinkName (optional) ManiaLink Name
 	 */
-	public function __construct($maniaLinkId = null) {
+	public function __construct($maniaLinkId = null, $maniaLinkName = null) {
 		if (!is_null($maniaLinkId)) {
 			$this->setId($maniaLinkId);
+		}
+		if ($maniaLinkName !== false) {
+			if ($maniaLinkName) {
+				$this->setName($maniaLinkName);
+			} else {
+				$this->setName($maniaLinkId);
+			}
 		}
 	}
 
