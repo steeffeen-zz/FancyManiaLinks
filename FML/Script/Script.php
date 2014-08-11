@@ -218,7 +218,11 @@ class Script {
 	 */
 	protected function getHeaderComment() {
 		$headerComment = '/****************************************************
-*		FancyManiaLinks v' . FML_VERSION . ' by steeffeen	 		*
+*		FancyManiaLinks';
+		if (defined('FML_VERSION')) {
+			$headerComment .= ' v' . FML_VERSION;
+		}
+		$headerComment .= ' by steeffeen	 		*
 *	http://github.com/steeffeen/FancyManiaLinks		*
 ****************************************************/
 
