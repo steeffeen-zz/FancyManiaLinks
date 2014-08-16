@@ -314,4 +314,13 @@ main() {
 }';
 		return $mainFunction;
 	}
+
+	/**
+	 * Get the string representation
+	 *
+	 * @return string
+	 */
+	public function __toString() {
+		return $this->buildScriptText();
+	}
 }
