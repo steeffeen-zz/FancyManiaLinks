@@ -1,11 +1,11 @@
 <?php
 
 // Include FML
-require_once __DIR__ . '/../FML/autoload.php';
+require_once __DIR__ . '/../autoload.php';
 
 // Create manialink
 $maniaLink = new \FML\ManiaLink();
-$script = $maniaLink->getScript();
+$script    = $maniaLink->getScript();
 
 // Label element showing the current time
 $timeLabel = new \FML\Controls\Label();

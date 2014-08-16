@@ -1,7 +1,7 @@
 <?php
 
 // Include FML
-require_once __DIR__ . '/../FML/autoload.php';
+require_once __DIR__ . '/../autoload.php';
 
 // Create manialink
 $maniaLink = new \FML\ManiaLink();
@@ -27,7 +27,7 @@ for ($i = 1; $i <= 10; $i++) {
 	$label->setSize(45, 7);
 	$label->setText("Label #{$i}");
 	$label->setScriptEvents(true);
-	
+
 	$y -= 10.;
 }
 

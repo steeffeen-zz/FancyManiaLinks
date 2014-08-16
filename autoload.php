@@ -10,7 +10,7 @@
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
 if (!defined('FML_PATH')) {
-	define('FML_PATH', dirname(__DIR__) . DIRECTORY_SEPARATOR);
+	define('FML_PATH', __DIR__ . DIRECTORY_SEPARATOR);
 }
 if (!defined('FML_VERSION')) {
 	define('FML_VERSION', '1.4');

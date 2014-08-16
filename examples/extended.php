@@ -1,7 +1,7 @@
 <?php
 
 // Include FML
-require_once __DIR__ . '/../FML/autoload.php';
+require_once __DIR__ . '/../autoload.php';
 
 // Create manialink
 $maniaLink = new \FML\ManiaLink();
@@ -52,26 +52,26 @@ for ($i = 1; $i <= 10; $i++) {
 	$lineFrame = new \FML\Controls\Frame();
 	$frame->add($lineFrame);
 	$lineFrame->setY($y);
-	
+
 	// Line background
 	$backgroundQuad = new \FML\Controls\Quads\Quad_ManiaplanetSystem();
 	$lineFrame->add($backgroundQuad);
 	$backgroundQuad->setSize(70, 8);
 	$backgroundQuad->setSubStyle($backgroundQuad::SUBSTYLE_BgDialog);
-	
+
 	// Line icon
 	$iconQuad = new \FML\Controls\Quads\Quad_BgRaceScore2();
 	$lineFrame->add($iconQuad);
 	$iconQuad->setPosition(-29, 0, 0);
 	$iconQuad->setSize(6, 6);
 	$iconQuad->setSubStyle($iconQuad::SUBSTYLE_Fame);
-	
+
 	// Text label
 	$label = new \FML\Controls\Labels\Label_Text();
 	$lineFrame->add($label);
 	$label->setStyle($label::STYLE_TextTitle1);
 	$label->setText("Label #{$i}");
-	
+
 	$y -= 10.;
 }
 

@@ -1,7 +1,7 @@
 <?php
 
 // Include FML
-require_once __DIR__ . '/../FML/autoload.php';
+require_once __DIR__ . '/../autoload.php';
 
 // Create maniacode
 $maniaCode = new \FML\ManiaCode();

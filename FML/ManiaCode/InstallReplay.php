@@ -35,10 +35,10 @@ class InstallReplay extends Element {
 	 * @param string $url  (optional) Replay url
 	 */
 	public function __construct($name = null, $url = null) {
-		if ($name!== null) {
+		if ($name !== null) {
 			$this->setName($name);
 		}
-		if ($url!== null) {
+		if ($url !== null) {
 			$this->setUrl($url);
 		}
 	}

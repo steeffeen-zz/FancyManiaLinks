@@ -1,7 +1,7 @@
 <?php
 
 // Include FML
-require_once __DIR__ . '/../FML/autoload.php';
+require_once __DIR__ . '/../autoload.php';
 
 // Create dom document to render a single control
 $domDocument = new \DOMDocument('1.0', 'utf-8');

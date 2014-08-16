@@ -1,7 +1,7 @@
 <?php
 
 // Include FML
-require_once __DIR__ . '/../FML/autoload.php';
+require_once __DIR__ . '/../autoload.php';
 
 // Create manialink
 $maniaLink = new \FML\ManiaLink();
@@ -19,14 +19,14 @@ for ($i = 1; $i <= 10; $i++) {
 	$backgroundQuad->setY($y);
 	$backgroundQuad->setSize(70, 8);
 	$backgroundQuad->setSubStyle($backgroundQuad::SUBSTYLE_BgDialog);
-	
+
 	// Text label
 	$label = new \FML\Controls\Labels\Label_Text();
 	$frame->add($label);
 	$label->setY($y);
 	$label->setStyle($label::STYLE_TextTitle1);
 	$label->setText("Label #{$i}");
-	
+
 	$y -= 10.;
 }
 
