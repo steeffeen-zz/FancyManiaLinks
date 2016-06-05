@@ -27,6 +27,7 @@ use FML\ManiaCode\ViewReplay;
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
 class ManiaCode {
+	
 	/*
 	 * Protected properties
 	 */
@@ -316,4 +317,5 @@ class ManiaCode {
 	public function __toString() {
 		return $this->render()->saveXML();
 	}
+	
 }

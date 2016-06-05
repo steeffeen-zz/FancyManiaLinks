@@ -16,6 +16,7 @@ use FML\Types\SubStyleable;
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
 class CheckBoxDesign implements Styleable, SubStyleable {
+
 	/*
 	 * Protected properties
 	 */
@@ -42,8 +43,9 @@ class CheckBoxDesign implements Styleable, SubStyleable {
 	}
 
 	/**
-	 * Construct a new CheckBox Design object
+	 * Construct a new CheckBox Design
 	 *
+	 * @api
 	 * @param string $style    Style name or image url
 	 * @param string $subStyle (optional) SubStyle name
 	 */
@@ -59,6 +61,7 @@ class CheckBoxDesign implements Styleable, SubStyleable {
 	/**
 	 * Set the image url
 	 *
+	 * @api
 	 * @param string $url Image url
 	 * @return static
 	 */
@@ -99,6 +102,7 @@ class CheckBoxDesign implements Styleable, SubStyleable {
 	/**
 	 * Apply the Design to the given Quad
 	 *
+	 * @api
 	 * @param Quad $quad CheckBox Quad
 	 * @return static
 	 */
@@ -111,6 +115,7 @@ class CheckBoxDesign implements Styleable, SubStyleable {
 	/**
 	 * Get the CheckBox Design string
 	 *
+	 * @api
 	 * @param bool $escaped        (optional) Whether the string should be escaped for the Script
 	 * @param bool $addApostrophes (optional) Whether to add apostrophes before and after the text
 	 * @return string
@@ -126,4 +131,5 @@ class CheckBoxDesign implements Styleable, SubStyleable {
 		}
 		return $string;
 	}
+
 }

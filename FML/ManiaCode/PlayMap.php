@@ -10,6 +10,7 @@ namespace FML\ManiaCode;
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
 class PlayMap extends Element {
+
 	/*
 	 * Protected properties
 	 */
@@ -18,8 +19,9 @@ class PlayMap extends Element {
 	protected $url = null;
 
 	/**
-	 * Create a new PlayMap object
+	 * Create a new PlayMap Element
 	 *
+	 * @api
 	 * @param string $name (optional) Map name
 	 * @param string $url  (optional) Map url
 	 * @return static
@@ -29,8 +31,9 @@ class PlayMap extends Element {
 	}
 
 	/**
-	 * Construct a new PlayMap object
+	 * Construct a new PlayMap Element
 	 *
+	 * @api
 	 * @param string $name (optional) Map name
 	 * @param string $url  (optional) Map url
 	 */
@@ -46,6 +49,7 @@ class PlayMap extends Element {
 	/**
 	 * Set the name of the map
 	 *
+	 * @api
 	 * @param string $name Map name
 	 * @return static
 	 */
@@ -57,6 +61,7 @@ class PlayMap extends Element {
 	/**
 	 * Set the url of the map
 	 *
+	 * @api
 	 * @param string $url Map url
 	 * @return static
 	 */
@@ -76,4 +81,5 @@ class PlayMap extends Element {
 		$xmlElement->appendChild($urlElement);
 		return $xmlElement;
 	}
+	
 }

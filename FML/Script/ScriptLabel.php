@@ -10,6 +10,7 @@ namespace FML\Script;
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
 class ScriptLabel {
+
 	/*
 	 * Constants
 	 */
@@ -32,6 +33,7 @@ class ScriptLabel {
 	/**
 	 * Construct a new ScriptLabel
 	 *
+	 * @api
 	 * @param string $name     (optional) Label name
 	 * @param string $text     (optional) Script text
 	 * @param bool   $isolated (optional) Isolate the Label Script
@@ -45,6 +47,7 @@ class ScriptLabel {
 	/**
 	 * Set the name
 	 *
+	 * @api
 	 * @param string $name Label name
 	 * @return static
 	 */
@@ -56,6 +59,7 @@ class ScriptLabel {
 	/**
 	 * Set the text
 	 *
+	 * @api
 	 * @param string $text Script text
 	 * @return static
 	 */
@@ -67,7 +71,8 @@ class ScriptLabel {
 	/**
 	 * Set isolation
 	 *
-	 * @param bool $isolated Whether the code should be isolated in an own block
+	 * @api
+	 * @param bool $isolated If the code should be isolated in an own block
 	 * @return static
 	 */
 	public function setIsolated($isolated) {
@@ -76,9 +81,19 @@ class ScriptLabel {
 	}
 
 	/**
-	 * Check if the given label is an event label
+	 * Get the possible event label names
 	 *
-	 * @param string $label Label name
+	 * @api
+	 * @return string[]
+	 */
+	public static function getEventLabels() {
+		return array(self::ENTRYSUBMIT, self::KEYPRESS, self::MOUSECLICK, self::MOUSEOUT, self::MOUSEOVER);
+	}
+
+	/**
+	 * Check if the given script label describes an event label
+	 *
+	 * @param string $label Script label name
 	 * @return bool
 	 */
 	public static function isEventLabel($label) {
@@ -89,15 +104,6 @@ class ScriptLabel {
 	}
 
 	/**
-	 * Get the possible event label names
-	 *
-	 * @return string[]
-	 */
-	public static function getEventLabels() {
-		return array(self::ENTRYSUBMIT, self::KEYPRESS, self::MOUSECLICK, self::MOUSEOUT, self::MOUSEOVER);
-	}
-
-	/**
 	 * Build the full Script Label text
 	 *
 	 * @return string
@@ -105,4 +111,5 @@ class ScriptLabel {
 	public function __toString() {
 		return Builder::getLabelImplementationBlock($this->name, $this->text, $this->isolated);
 	}
+
 }

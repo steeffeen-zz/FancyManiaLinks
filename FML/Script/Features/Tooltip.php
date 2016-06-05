@@ -17,6 +17,7 @@ use FML\Types\Scriptable;
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
 class Tooltip extends ScriptFeature {
+
 	/*
 	 * Protected properties
 	 */
@@ -29,12 +30,13 @@ class Tooltip extends ScriptFeature {
 	protected $text = null;
 
 	/**
-	 * Construct a new Tooltip Feature
+	 * Construct a new Tooltip
 	 *
+	 * @api
 	 * @param Control $hoverControl   (optional) Hover Control
 	 * @param Control $tooltipControl (optional) Tooltip Control
-	 * @param bool    $stayOnClick    (optional) Whether the Tooltip should stay on click
-	 * @param bool    $invert         (optional) Whether the visibility toggling should be inverted
+	 * @param bool    $stayOnClick    (optional) If the Tooltip should stay on click
+	 * @param bool    $invert         (optional) If the visibility toggling should be inverted
 	 * @param string  $text           (optional) Text to display if the TooltipControl is a Label
 	 */
 	public function __construct(Control $hoverControl = null, Control $tooltipControl = null, $stayOnClick = false, $invert = false, $text = null) {
@@ -54,6 +56,7 @@ class Tooltip extends ScriptFeature {
 	/**
 	 * Set the Hover Control
 	 *
+	 * @api
 	 * @param Control $hoverControl Hover Control
 	 * @return static
 	 */
@@ -69,6 +72,7 @@ class Tooltip extends ScriptFeature {
 	/**
 	 * Set the Tooltip Control
 	 *
+	 * @api
 	 * @param Control $tooltipControl Tooltip Control
 	 * @return static
 	 */
@@ -78,9 +82,10 @@ class Tooltip extends ScriptFeature {
 	}
 
 	/**
-	 * Set to only show
+	 * Set to stay on click
 	 *
-	 * @param bool $stayOnClick (optional) Whether the Tooltip should stay on click
+	 * @api
+	 * @param bool $stayOnClick (optional) If the Tooltip should stay on click
 	 * @return static
 	 */
 	public function setStayOnClick($stayOnClick) {
@@ -89,9 +94,10 @@ class Tooltip extends ScriptFeature {
 	}
 
 	/**
-	 * Set to only hide
+	 * Set to invert
 	 *
-	 * @param bool $invert (optional) Whether the visibility toggling should be inverted
+	 * @api
+	 * @param bool $invert (optional) If the visibility toggling should be inverted
 	 * @return static
 	 */
 	public function setInvert($invert) {
@@ -100,8 +106,9 @@ class Tooltip extends ScriptFeature {
 	}
 
 	/**
-	 * Set text
+	 * Set the text
 	 *
+	 * @api
 	 * @param string $text (optional) Text to display if the TooltipControl is a Label
 	 * @return static
 	 */
@@ -159,4 +166,5 @@ if (Event.Control.ControlId == {$hoverControlId}) {
 		}
 		return $this;
 	}
+
 }

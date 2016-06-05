@@ -12,42 +12,48 @@ namespace FML\Types;
 interface TextFormatable {
 
 	/**
-	 * Set text size
+	 * Set the text size
 	 *
+	 * @api
 	 * @param int $textSize Text size
 	 * @return static
 	 */
 	public function setTextSize($textSize);
 
 	/**
-	 * Set text font
+	 * Set the text font
 	 *
+	 * @api
 	 * @param string $textFont
 	 * @return static
 	 */
 	public function setTextFont($textFont);
 
 	/**
-	 * Set text color
+	 * Set the text color
 	 *
+	 * @api
 	 * @param string $textColor Text color
 	 * @return static
 	 */
 	public function setTextColor($textColor);
 
 	/**
-	 * Set area color
+	 * Set the area color
 	 *
+	 * @api
 	 * @param string $areaColor Area color
 	 * @return static
 	 */
 	public function setAreaColor($areaColor);
 
 	/**
-	 * Set area focus color
+	 * Set the area focus color
 	 *
+	 * @api
 	 * @param string $areaFocusColor Area focus color
 	 * @return static
 	 */
 	public function setAreaFocusColor($areaFocusColor);
+	
 }

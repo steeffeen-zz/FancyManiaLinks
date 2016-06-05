@@ -10,6 +10,7 @@ namespace FML\Script;
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
 class ScriptFunction {
+
 	/*
 	 * Protected properties
 	 */
@@ -19,6 +20,7 @@ class ScriptFunction {
 	/**
 	 * Construct a new Script Function
 	 *
+	 * @api
 	 * @param string $name (optional) Function name
 	 * @param string $text (optional) Function text
 	 */
@@ -30,6 +32,7 @@ class ScriptFunction {
 	/**
 	 * Set the name
 	 *
+	 * @api
 	 * @param string $name Function name
 	 * @return static
 	 */
@@ -41,6 +44,7 @@ class ScriptFunction {
 	/**
 	 * Set the text
 	 *
+	 * @api
 	 * @param string $text Function text
 	 * @return static
 	 */
@@ -57,4 +61,5 @@ class ScriptFunction {
 	public function __toString() {
 		return $this->text;
 	}
+	
 }

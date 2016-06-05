@@ -15,6 +15,7 @@ use FML\Types\Scriptable;
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
 class ControlScript extends ScriptFeature {
+
 	/*
 	 * Protected properties
 	 */
@@ -26,6 +27,7 @@ class ControlScript extends ScriptFeature {
 	/**
 	 * Construct a new Control Script
 	 *
+	 * @api
 	 * @param Control $control   Event Control
 	 * @param string  $text      Script text
 	 * @param string  $labelName (optional) Script Label name
@@ -39,6 +41,7 @@ class ControlScript extends ScriptFeature {
 	/**
 	 * Set the Control
 	 *
+	 * @api
 	 * @param Control $control Event Control
 	 * @return static
 	 */
@@ -51,6 +54,7 @@ class ControlScript extends ScriptFeature {
 	/**
 	 * Set the script text
 	 *
+	 * @api
 	 * @param string $text Script text
 	 * @return static
 	 */
@@ -60,8 +64,9 @@ class ControlScript extends ScriptFeature {
 	}
 
 	/**
-	 * Set the label name
+	 * Set the script label name
 	 *
+	 * @api
 	 * @param string $labelName Script Label name
 	 * @return static
 	 */
@@ -122,4 +127,5 @@ declare ' . $name . ' <=> (Control as ' . $class . ');
 		}
 		return $scriptText;
 	}
+	
 }

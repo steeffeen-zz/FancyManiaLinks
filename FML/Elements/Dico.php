@@ -10,6 +10,7 @@ namespace FML\Elements;
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
 class Dico {
+
 	/**
 	 * Czech language
 	 *
@@ -157,8 +158,9 @@ class Dico {
 	protected $entries = array();
 
 	/**
-	 * Create a new Dictionary object
+	 * Create a new Dico
 	 *
+	 * @api
 	 * @return static
 	 */
 	public static function create() {
@@ -168,6 +170,7 @@ class Dico {
 	/**
 	 * Set the translatable entry for the specific language
 	 *
+	 * @api
 	 * @param string $language   Language id
 	 * @param string $entryId    Entry id
 	 * @param string $entryValue Translated entry value
@@ -193,6 +196,7 @@ class Dico {
 	/**
 	 * Remove entries of the given id
 	 *
+	 * @api
 	 * @param string $entryId  Entry id that should be removed
 	 * @param string $language (optional) Only remove entries of the given language
 	 * @return static
@@ -217,6 +221,7 @@ class Dico {
 	/**
 	 * Remove entries of the given language
 	 *
+	 * @api
 	 * @param string $language Language which entries should be removed
 	 * @param string $entryId  (optional) Only remove the given entry id
 	 * @return static
@@ -235,8 +240,9 @@ class Dico {
 	}
 
 	/**
-	 * Remove all entries from the Dictionary
+	 * Remove all entries
 	 *
+	 * @api
 	 * @return static
 	 */
 	public function removeEntries() {
@@ -245,9 +251,9 @@ class Dico {
 	}
 
 	/**
-	 * Render the Dico XML element
+	 * Render the Dico
 	 *
-	 * @param \DOMDocument $domDocument DOMDocument for which the Dico XML element should be rendered
+	 * @param \DOMDocument $domDocument DOMDocument for which the Dico should be rendered
 	 * @return \DOMElement
 	 */
 	public function render(\DOMDocument $domDocument) {
@@ -263,4 +269,5 @@ class Dico {
 		}
 		return $xmlElement;
 	}
+
 }

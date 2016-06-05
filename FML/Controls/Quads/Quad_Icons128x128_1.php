@@ -12,6 +12,7 @@ use FML\Controls\Quad;
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
 class Quad_Icons128x128_1 extends Quad {
+
 	/*
 	 * Constants
 	 */
@@ -85,4 +86,5 @@ class Quad_Icons128x128_1 extends Quad {
 	 * Protected properties
 	 */
 	protected $style = self::STYLE;
+	
 }

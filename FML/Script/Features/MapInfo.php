@@ -16,6 +16,7 @@ use FML\Types\Scriptable;
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
 class MapInfo extends ScriptFeature {
+
 	/*
 	 * Protected properties
 	 */
@@ -24,8 +25,9 @@ class MapInfo extends ScriptFeature {
 	protected $labelName = null;
 
 	/**
-	 * Construct a new Map Info Feature
+	 * Construct a new Map Info
 	 *
+	 * @api
 	 * @param Control $control   (optional) Map Info Control
 	 * @param string  $labelName (optional) Script Label name
 	 */
@@ -37,6 +39,7 @@ class MapInfo extends ScriptFeature {
 	/**
 	 * Set the Control
 	 *
+	 * @api
 	 * @param Control $control Map Info Control
 	 * @return static
 	 */
@@ -52,6 +55,7 @@ class MapInfo extends ScriptFeature {
 	/**
 	 * Set the label name
 	 *
+	 * @api
 	 * @param string $labelName Script Label name
 	 * @return static
 	 */
@@ -88,4 +92,5 @@ ShowCurChallengeCard();";
 		}
 		return $scriptText;
 	}
+	
 }

@@ -14,6 +14,7 @@ use FML\UniqueID;
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
 class FrameModel implements Container, Renderable {
+
 	/*
 	 * Protected properties
 	 */
@@ -25,8 +26,9 @@ class FrameModel implements Container, Renderable {
 	protected $format = null;
 
 	/**
-	 * Set Model id
+	 * Set the Model id
 	 *
+	 * @api
 	 * @param string $modelId Model id
 	 * @return static
 	 */
@@ -36,8 +38,9 @@ class FrameModel implements Container, Renderable {
 	}
 
 	/**
-	 * Get Model id
+	 * Get the Model id
 	 *
+	 * @api
 	 * @return string
 	 */
 	public function getId() {
@@ -109,4 +112,5 @@ class FrameModel implements Container, Renderable {
 		}
 		return $xmlElement;
 	}
+	
 }

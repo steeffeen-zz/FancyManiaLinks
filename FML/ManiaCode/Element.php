@@ -10,6 +10,7 @@ namespace FML\ManiaCode;
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
 abstract class Element {
+
 	/*
 	 * Protected properties
 	 */
@@ -25,4 +26,5 @@ abstract class Element {
 		$xmlElement = $domDocument->createElement($this->tagName);
 		return $xmlElement;
 	}
+	
 }

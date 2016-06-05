@@ -15,6 +15,7 @@ use FML\Script\ScriptLabel;
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
 class KeyAction extends ScriptFeature {
+
 	/*
 	 * Protected properties
 	 */
@@ -24,8 +25,9 @@ class KeyAction extends ScriptFeature {
 	protected $charPressed = null;
 
 	/**
-	 * Construct a new Key Action Feature
+	 * Construct a new Key Action
 	 *
+	 * @api
 	 * @param string $actionName (optional) Triggered action
 	 * @param string $keyName    (optional) Key name
 	 */
@@ -41,6 +43,7 @@ class KeyAction extends ScriptFeature {
 	/**
 	 * Set the action to trigger
 	 *
+	 * @api
 	 * @param string $actionName Triggered action
 	 * @return static
 	 */
@@ -52,6 +55,7 @@ class KeyAction extends ScriptFeature {
 	/**
 	 * Set the key name for triggering the action
 	 *
+	 * @api
 	 * @param string $keyName Key Name
 	 * @return static
 	 */
@@ -65,6 +69,7 @@ class KeyAction extends ScriptFeature {
 	/**
 	 * Set the key code for triggering the action
 	 *
+	 * @api
 	 * @param int $keyCode Key Code
 	 * @return static
 	 */
@@ -78,6 +83,7 @@ class KeyAction extends ScriptFeature {
 	/**
 	 * Set the char to press for triggering the action
 	 *
+	 * @api
 	 * @param string $charPressed Pressed char
 	 * @return static
 	 */
@@ -121,4 +127,5 @@ if (Event.{$key} == {$value}) {
 	TriggerPageAction({$actionName});
 }";
 	}
+	
 }

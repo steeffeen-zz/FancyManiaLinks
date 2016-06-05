@@ -10,6 +10,7 @@ namespace FML\ManiaCode;
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
 class InstallPack extends Element {
+
 	/*
 	 * Protected properties
 	 */
@@ -19,8 +20,9 @@ class InstallPack extends Element {
 	protected $url = null;
 
 	/**
-	 * Create a new InstallPack object
+	 * Create a new InstallPack Element
 	 *
+	 * @api
 	 * @param string $name (optional) Pack name
 	 * @param string $file (optional) Pack file
 	 * @param string $url  (optional) Pack url
@@ -31,8 +33,9 @@ class InstallPack extends Element {
 	}
 
 	/**
-	 * Construct a new InstallPack object
+	 * Construct a new InstallPack Element
 	 *
+	 * @api
 	 * @param string $name (optional) Pack name
 	 * @param string $file (optional) Pack file
 	 * @param string $url  (optional) Pack url
@@ -52,6 +55,7 @@ class InstallPack extends Element {
 	/**
 	 * Set the name of the pack
 	 *
+	 * @api
 	 * @param string $name Pack name
 	 * @return static
 	 */
@@ -63,6 +67,7 @@ class InstallPack extends Element {
 	/**
 	 * Set the file of the pack
 	 *
+	 * @api
 	 * @param string $file Pack file
 	 * @return static
 	 */
@@ -74,6 +79,7 @@ class InstallPack extends Element {
 	/**
 	 * Set the url of the pack
 	 *
+	 * @api
 	 * @param string $url Pack url
 	 * @return static
 	 */
@@ -95,4 +101,5 @@ class InstallPack extends Element {
 		$xmlElement->appendChild($urlElement);
 		return $xmlElement;
 	}
+	
 }

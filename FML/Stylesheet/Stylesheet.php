@@ -10,6 +10,7 @@ namespace FML\Stylesheet;
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
 class Stylesheet {
+
 	/*
 	 * Protected properties
 	 */
@@ -20,8 +21,9 @@ class Stylesheet {
 	protected $mood = null;
 
 	/**
-	 * Create a new Stylesheet object
+	 * Create a new Stylesheet
 	 *
+	 * @api
 	 * @return static
 	 */
 	public static function create() {
@@ -31,7 +33,8 @@ class Stylesheet {
 	/**
 	 * Add a new Style3d
 	 *
-	 * @param Style3d $style3d Style3d object
+	 * @api
+	 * @param Style3d $style3d The Style3d to be added
 	 * @return static
 	 */
 	public function addStyle3d(Style3d $style3d) {
@@ -44,6 +47,7 @@ class Stylesheet {
 	/**
 	 * Remove all Style3ds
 	 *
+	 * @api
 	 * @return static
 	 */
 	public function removeStyles() {
@@ -52,8 +56,9 @@ class Stylesheet {
 	}
 
 	/**
-	 * Set the Mood object of the Stylesheet
+	 * Set the Mood of the Stylesheet
 	 *
+	 * @api
 	 * @param Mood $mood Mood object
 	 * @return static
 	 */
@@ -63,9 +68,10 @@ class Stylesheet {
 	}
 
 	/**
-	 * Get the Mood object
+	 * Get the Mood
 	 *
-	 * @param bool $createIfEmpty (optional) Whether the Mood object should be created if it's not set
+	 * @api
+	 * @param bool $createIfEmpty (optional) If the Mood object should be created if it's not set
 	 * @return \FML\Stylesheet\Mood
 	 */
 	public function getMood($createIfEmpty = true) {
@@ -76,9 +82,9 @@ class Stylesheet {
 	}
 
 	/**
-	 * Render the Stylesheet XML element
+	 * Render the Stylesheet
 	 *
-	 * @param \DOMDocument $domDocument DOMDocument for which the Stylesheet XML element should be rendered
+	 * @param \DOMDocument $domDocument DOMDocument for which the Stylesheet should be rendered
 	 * @return \DOMElement
 	 */
 	public function render(\DOMDocument $domDocument) {
@@ -97,4 +103,5 @@ class Stylesheet {
 		}
 		return $stylesheetXml;
 	}
+
 }

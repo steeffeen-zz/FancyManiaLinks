@@ -18,6 +18,7 @@ use FML\Script\ScriptLabel;
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
 class CheckBoxFeature extends ScriptFeature {
+
 	/*
 	 * Constants
 	 */
@@ -42,6 +43,7 @@ class CheckBoxFeature extends ScriptFeature {
 	/**
 	 * Construct a new CheckBox Feature
 	 *
+	 * @api
 	 * @param Quad  $quad    (optional) CheckBox Quad
 	 * @param Entry $entry   (optional) Hidden Entry
 	 * @param bool  $default (optional) Default value
@@ -61,8 +63,19 @@ class CheckBoxFeature extends ScriptFeature {
 	}
 
 	/**
-	 * Set the CheckBox Quad
+	 * Get the Quad
 	 *
+	 * @api
+	 * @return \FML\Controls\Quad
+	 */
+	public function getQuad() {
+		return $this->quad;
+	}
+
+	/**
+	 * Set the Quad
+	 *
+	 * @api
 	 * @param Quad $quad CheckBox Quad
 	 * @return static
 	 */
@@ -72,17 +85,19 @@ class CheckBoxFeature extends ScriptFeature {
 	}
 
 	/**
-	 * Get the CheckBox Quad
+	 * Get the Entry
 	 *
-	 * @return \FML\Controls\Quad
+	 * @api
+	 * @return \FML\Controls\Entry
 	 */
-	public function getQuad() {
-		return $this->quad;
+	public function getEntry() {
+		return $this->entry;
 	}
 
 	/**
-	 * Set the CheckBox Entry
+	 * Set the Entry
 	 *
+	 * @api
 	 * @param Entry $entry CheckBox Entry
 	 * @return static
 	 */
@@ -92,17 +107,9 @@ class CheckBoxFeature extends ScriptFeature {
 	}
 
 	/**
-	 * Get the managed Entry
-	 *
-	 * @return \FML\Controls\Entry
-	 */
-	public function getEntry() {
-		return $this->entry;
-	}
-
-	/**
 	 * Set the default value
 	 *
+	 * @api
 	 * @param bool $default Default value
 	 * @return static
 	 */
@@ -114,6 +121,7 @@ class CheckBoxFeature extends ScriptFeature {
 	/**
 	 * Set the enabled Design
 	 *
+	 * @api
 	 * @param CheckBoxDesign $checkBoxDesign Enabled CheckBox Design
 	 * @return static
 	 */
@@ -125,6 +133,7 @@ class CheckBoxFeature extends ScriptFeature {
 	/**
 	 * Set the disabled Design
 	 *
+	 * @api
 	 * @param CheckBoxDesign $checkBoxDesign Disabled CheckBox Design
 	 * @return static
 	 */
@@ -218,4 +227,5 @@ if (Event.ControlId == {$quadId}) {
 	" . self::FUNCTION_UPDATE_QUAD_DESIGN . "(Quad_CheckBox);
 }";
 	}
+	
 }

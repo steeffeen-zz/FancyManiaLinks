@@ -12,6 +12,7 @@ use FML\Controls\Label;
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
 class Label_Button extends Label {
+
 	/*
 	 * Constants
 	 */
@@ -35,4 +36,5 @@ class Label_Button extends Label {
 	const STYLE_CardMain_Tool        = 'CardMain_Tool';
 	const STYLE_CardMain_Tool_NoBg   = 'CardMain_Tool_NoBg';
 	const STYLE_CardMain_Tool_NoBg2  = 'CardMain_Tool_NoBg2';
+	
 }

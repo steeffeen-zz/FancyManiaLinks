@@ -16,6 +16,7 @@ use FML\Types\Scriptable;
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
 class ActionTrigger extends ScriptFeature {
+
 	/*
 	 * Protected properties
 	 */
@@ -25,8 +26,9 @@ class ActionTrigger extends ScriptFeature {
 	protected $labelName = null;
 
 	/**
-	 * Construct a new Action Trigger Feature
+	 * Construct a new Action Trigger
 	 *
+	 * @api
 	 * @param string  $actionName (optional) Triggered action
 	 * @param Control $control    (optional) Action Control
 	 * @param string  $labelName  (optional) Script Label name
@@ -46,7 +48,8 @@ class ActionTrigger extends ScriptFeature {
 	/**
 	 * Set the action to trigger
 	 *
-	 * @param string $actionName
+	 * @api
+	 * @param string $actionName Action name
 	 * @return static
 	 */
 	public function setActionName($actionName) {
@@ -55,8 +58,9 @@ class ActionTrigger extends ScriptFeature {
 	}
 
 	/**
-	 * Set the Control
+	 * Set the Control that should trigger the action
 	 *
+	 * @api
 	 * @param Control $control Action Control
 	 * @return static
 	 */
@@ -70,8 +74,9 @@ class ActionTrigger extends ScriptFeature {
 	}
 
 	/**
-	 * Set the label name
+	 * Set the script label name
 	 *
+	 * @api
 	 * @param string $labelName Script Label name
 	 * @return static
 	 */
@@ -109,4 +114,5 @@ TriggerPageAction({$actionName});";
 		}
 		return $scriptText;
 	}
+	
 }

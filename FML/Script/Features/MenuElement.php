@@ -13,6 +13,7 @@ use FML\Types\Scriptable;
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
 class MenuElement {
+
 	/*
 	 * Protected properties
 	 */
@@ -22,6 +23,7 @@ class MenuElement {
 	/**
 	 * Create a new Menu Element
 	 *
+	 * @api
 	 * @param Control $item    (optional) Item Control in the Menu bar
 	 * @param Control $control (optional) Toggled Menu Control
 	 */
@@ -35,8 +37,19 @@ class MenuElement {
 	}
 
 	/**
+	 * Get the Item Control
+	 *
+	 * @api
+	 * @return \FML\Controls\Control
+	 */
+	public function getItem() {
+		return $this->item;
+	}
+
+	/**
 	 * Set the Item Control
 	 *
+	 * @api
 	 * @param Control $item Item Control in the Menu bar
 	 * @return static
 	 */
@@ -50,17 +63,19 @@ class MenuElement {
 	}
 
 	/**
-	 * Get the Item Control
+	 * Get the Menu Control
 	 *
+	 * @api
 	 * @return \FML\Controls\Control
 	 */
-	public function getItem() {
-		return $this->item;
+	public function getControl() {
+		return $this->control;
 	}
-
+	
 	/**
 	 * Set the Menu Control
 	 *
+	 * @api
 	 * @param Control $control Toggled Menu Control
 	 * @return static
 	 */
@@ -68,13 +83,5 @@ class MenuElement {
 		$this->control = $control->checkId();
 		return $this;
 	}
-
-	/**
-	 * Get the Menu Control
-	 *
-	 * @return \FML\Controls\Control
-	 */
-	public function getControl() {
-		return $this->control;
-	}
+	
 }

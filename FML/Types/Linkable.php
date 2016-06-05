@@ -12,34 +12,39 @@ namespace FML\Types;
 interface Linkable {
 
 	/**
-	 * Set url
+	 * Set the url
 	 *
+	 * @api
 	 * @param string $url Link url
 	 * @return static
 	 */
 	public function setUrl($url);
 
 	/**
-	 * Set url id to use from Dico
+	 * Set the url id to use from Dico
 	 *
+	 * @api
 	 * @param string $urlId Url id
 	 * @return static
 	 */
 	public function setUrlId($urlId);
 
 	/**
-	 * Set manialink
+	 * Set the manialink
 	 *
+	 * @api
 	 * @param string $manialink Manialink name
 	 * @return static
 	 */
 	public function setManialink($manialink);
 
 	/**
-	 * Set manialink id to use from Dico
+	 * Set the manialink id to use from Dico
 	 *
+	 * @api
 	 * @param string $manialinkId Manialink id
 	 * @return static
 	 */
 	public function setManialinkId($manialinkId);
+	
 }

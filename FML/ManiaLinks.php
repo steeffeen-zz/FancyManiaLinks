@@ -10,6 +10,7 @@ namespace FML;
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
 class ManiaLinks {
+
 	/*
 	 * Protected Properties
 	 */
@@ -121,4 +122,5 @@ class ManiaLinks {
 	public function __toString() {
 		return $this->render()->saveXML();
 	}
+	
 }

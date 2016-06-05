@@ -17,6 +17,7 @@ use FML\Script\ScriptLabel;
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
 class Paging extends ScriptFeature {
+
 	/*
 	 * Constants
 	 */
@@ -39,8 +40,9 @@ class Paging extends ScriptFeature {
 	protected $chunkActionAppendsPageNumber = null;
 
 	/**
-	 * Construct a new Paging Script Feature
+	 * Construct a new Paging
 	 *
+	 * @api
 	 * @param Label $label (optional) Page number Label
 	 */
 	public function __construct(Label $label = null) {
@@ -49,9 +51,12 @@ class Paging extends ScriptFeature {
 		}
 	}
 
+	// TODO: change methods addPage & appendPage to improve the situation that they are called the same but use different parameters
+
 	/**
-	 * Add a new Page Control
+	 * Add new Page Control
 	 *
+	 * @api
 	 * @param Control $pageControl Page Control
 	 * @param string  $pageNumber  (optional) Page number
 	 * @return static
@@ -68,6 +73,7 @@ class Paging extends ScriptFeature {
 	/**
 	 * Append a Page
 	 *
+	 * @api
 	 * @param PagingPage $page Paging Page
 	 * @return static
 	 */
@@ -78,9 +84,12 @@ class Paging extends ScriptFeature {
 		return $this;
 	}
 
+	// TODO: change methods addButton & appendButton to improve the situation that they are called the same but use different parameters
+
 	/**
 	 * Add a new Button to browse through the Pages
 	 *
+	 * @api
 	 * @param Control $buttonControl Button used for browsing
 	 * @param int     $browseAction  (optional) Number of browsed Pages per click
 	 * @return static
@@ -102,6 +111,7 @@ class Paging extends ScriptFeature {
 	/**
 	 * Append a Button to browse through Pages
 	 *
+	 * @api
 	 * @param PagingButton $button Paging Button
 	 * @return static
 	 */
@@ -115,6 +125,7 @@ class Paging extends ScriptFeature {
 	/**
 	 * Set the Label showing the Page number
 	 *
+	 * @api
 	 * @param Label $label Page number Label
 	 * @return static
 	 */
@@ -126,6 +137,7 @@ class Paging extends ScriptFeature {
 	/**
 	 * Set the Start Page number
 	 *
+	 * @api
 	 * @param int $startPageNumber Page number to start with
 	 * @return static
 	 */
@@ -136,6 +148,7 @@ class Paging extends ScriptFeature {
 	/**
 	 * Set a custom maximum Page number for using chunks
 	 *
+	 * @api
 	 * @param int $maxPageNumber Custom maximum Page number
 	 * @return static
 	 */
@@ -147,6 +160,7 @@ class Paging extends ScriptFeature {
 	/**
 	 * Set the action triggered when the previous chunk is needed
 	 *
+	 * @api
 	 * @param string $previousChunkAction Triggered action
 	 * @return static
 	 */
@@ -158,6 +172,7 @@ class Paging extends ScriptFeature {
 	/**
 	 * Set the action triggered when the next chunk is needed
 	 *
+	 * @api
 	 * @param string $nextChunkAction Triggered action
 	 * @return static
 	 */
@@ -169,6 +184,7 @@ class Paging extends ScriptFeature {
 	/**
 	 * Set the actions triggered when another chunk is needed
 	 *
+	 * @api
 	 * @param string $chunkAction Triggered action
 	 * @return static
 	 */
@@ -181,6 +197,7 @@ class Paging extends ScriptFeature {
 	/**
 	 * Set if the chunk action should get the needed Page number appended
 	 *
+	 * @api
 	 * @param bool $appendPageNumber Whether to append the needed Page number
 	 * @return static
 	 */
@@ -345,4 +362,5 @@ Void {$updatePageFunction}(Text _PagingId, Text _PageLabelId, Integer _BrowseAct
 		}
 		return Builder::getArray($pageButtons, true);
 	}
+	
 }

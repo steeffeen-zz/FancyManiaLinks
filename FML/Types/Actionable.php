@@ -10,6 +10,7 @@ namespace FML\Types;
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
 interface Actionable {
+
 	/*
 	 * Constants
 	 */
@@ -33,25 +34,29 @@ interface Actionable {
 	const ACTIONKEY_F8             = 4;
 
 	/**
-	 * Set action
+	 * Set the action
 	 *
+	 * @api
 	 * @param string $action Action name
 	 * @return static
 	 */
 	public function setAction($action);
 
 	/**
-	 * Get the assigned action
+	 * Get the action
 	 *
+	 * @api
 	 * @return string
 	 */
 	public function getAction();
 
 	/**
-	 * Set action key
+	 * Set the action key
 	 *
+	 * @api
 	 * @param int $actionKey Action key
 	 * @return static
 	 */
 	public function setActionKey($actionKey);
+
 }

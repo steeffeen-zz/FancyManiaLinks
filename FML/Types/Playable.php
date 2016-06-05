@@ -12,16 +12,18 @@ namespace FML\Types;
 interface Playable {
 
 	/**
-	 * Set data
+	 * Set the data
 	 *
+	 * @api
 	 * @param string $data Media url
 	 * @return static
 	 */
 	public function setData($data);
 
 	/**
-	 * Set data id to use from Dico
+	 * Set the data id to use from Dico
 	 *
+	 * @api
 	 * @param string $dataId Data id
 	 * @return static
 	 */
@@ -30,7 +32,8 @@ interface Playable {
 	/**
 	 * Set play
 	 *
-	 * @param bool $play Whether the Control should start playing automatically
+	 * @api
+	 * @param bool $play If the Control should start playing automatically
 	 * @return static
 	 */
 	public function setPlay($play);
@@ -38,7 +41,8 @@ interface Playable {
 	/**
 	 * Set looping
 	 *
-	 * @param bool $looping Whether the Control should play looping
+	 * @api
+	 * @param bool $looping If the Control should play looping
 	 * @return static
 	 */
 	public function setLooping($looping);
@@ -46,16 +50,19 @@ interface Playable {
 	/**
 	 * Set music
 	 *
-	 * @param bool $music Whether the Control represents background music
+	 * @api
+	 * @param bool $music If the Control represents background music
 	 * @return static
 	 */
 	public function setMusic($music);
 
 	/**
-	 * Set volume
+	 * Set the volume
 	 *
+	 * @api
 	 * @param float $volume Media volume
 	 * @return static
 	 */
 	public function setVolume($volume);
+	
 }

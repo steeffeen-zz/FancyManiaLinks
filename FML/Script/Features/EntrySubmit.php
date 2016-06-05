@@ -16,6 +16,7 @@ use FML\Script\ScriptLabel;
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
 class EntrySubmit extends ScriptFeature {
+
 	/*
 	 * Protected properties
 	 */
@@ -24,8 +25,9 @@ class EntrySubmit extends ScriptFeature {
 	protected $url = null;
 
 	/**
-	 * Construct a new Entry Submit Feature
+	 * Construct a new Entry Submit
 	 *
+	 * @api
 	 * @param Entry  $entry (optional) Entry Control
 	 * @param string $url   (optional) Submit url
 	 */
@@ -39,6 +41,7 @@ class EntrySubmit extends ScriptFeature {
 	/**
 	 * Set the Entry
 	 *
+	 * @api
 	 * @param Entry $entry Entry Control
 	 * @return static
 	 */
@@ -50,6 +53,7 @@ class EntrySubmit extends ScriptFeature {
 	/**
 	 * Set the submit url
 	 *
+	 * @api
 	 * @param string $url Submit url
 	 * @return static
 	 */
@@ -98,4 +102,5 @@ OpenLink({$link}^Value, CMlScript::LinkType::Goto);
 		}
 		return $url;
 	}
+	
 }

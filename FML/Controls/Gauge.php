@@ -13,6 +13,7 @@ use FML\Types\Styleable;
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
 class Gauge extends Control implements Styleable {
+
 	/*
 	 * Constants
 	 */
@@ -42,8 +43,9 @@ class Gauge extends Control implements Styleable {
 	}
 
 	/**
-	 * Set ratio
+	 * Set the ratio
 	 *
+	 * @api
 	 * @param float $ratio Ratio value
 	 * @return static
 	 */
@@ -53,8 +55,9 @@ class Gauge extends Control implements Styleable {
 	}
 
 	/**
-	 * Set grading
+	 * Set the grading
 	 *
+	 * @api
 	 * @param float $grading Grading value
 	 * @return static
 	 */
@@ -64,8 +67,9 @@ class Gauge extends Control implements Styleable {
 	}
 
 	/**
-	 * Set color
+	 * Set the color
 	 *
+	 * @api
 	 * @param string $color Gauge color
 	 * @return static
 	 */
@@ -77,7 +81,8 @@ class Gauge extends Control implements Styleable {
 	/**
 	 * Set centered
 	 *
-	 * @param bool $centered Whether the Gauge is centered
+	 * @api
+	 * @param bool $centered If the Gauge should be centered
 	 * @return static
 	 */
 	public function setCentered($centered) {
@@ -86,8 +91,9 @@ class Gauge extends Control implements Styleable {
 	}
 
 	/**
-	 * Set clan
+	 * Set the clan
 	 *
+	 * @api
 	 * @param int $clan Clan number
 	 * @return static
 	 */
@@ -99,7 +105,8 @@ class Gauge extends Control implements Styleable {
 	/**
 	 * Set draw background
 	 *
-	 * @param bool $drawBg Whether the Gauges background should be drawn
+	 * @api
+	 * @param bool $drawBg If the Gauges background should be drawn
 	 * @return static
 	 */
 	public function setDrawBg($drawBg) {
@@ -110,7 +117,8 @@ class Gauge extends Control implements Styleable {
 	/**
 	 * Set draw block background
 	 *
-	 * @param bool $drawBlockBg Whether the Gauges block background should be drawn
+	 * @api
+	 * @param bool $drawBlockBg If the Gauges block background should be drawn
 	 * @return static
 	 */
 	public function setDrawBlockBg($drawBlockBg) {
@@ -157,4 +165,5 @@ class Gauge extends Control implements Styleable {
 		}
 		return $xmlElement;
 	}
+	
 }

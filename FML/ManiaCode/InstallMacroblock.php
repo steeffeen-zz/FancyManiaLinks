@@ -10,6 +10,7 @@ namespace FML\ManiaCode;
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
 class InstallMacroblock extends Element {
+
 	/*
 	 * Protected properties
 	 */
@@ -19,8 +20,9 @@ class InstallMacroblock extends Element {
 	protected $url = null;
 
 	/**
-	 * Create a new InstallMacroblock object
+	 * Create a new InstallMacroblock Element
 	 *
+	 * @api
 	 * @param string $name (optional) Macroblock name
 	 * @param string $url  (optional) Macroblock url
 	 * @return static
@@ -30,8 +32,9 @@ class InstallMacroblock extends Element {
 	}
 
 	/**
-	 * Construct a new InstallMacroblock object
+	 * Construct a new InstallMacroblock Element
 	 *
+	 * @api
 	 * @param string $name (optional) Macroblock name
 	 * @param string $file (optional) Macroblock file
 	 * @param string $url  (optional) Macroblock url
@@ -51,6 +54,7 @@ class InstallMacroblock extends Element {
 	/**
 	 * Set the name of the macroblock
 	 *
+	 * @api
 	 * @param string $name Macroblock name
 	 * @return static
 	 */
@@ -62,6 +66,7 @@ class InstallMacroblock extends Element {
 	/**
 	 * Set the file of the macroblock
 	 *
+	 * @api
 	 * @param string $file Macroblock file
 	 * @return static
 	 */
@@ -73,6 +78,7 @@ class InstallMacroblock extends Element {
 	/**
 	 * Set the url of the macroblock
 	 *
+	 * @api
 	 * @param string $url Macroblock url
 	 * @return static
 	 */
@@ -94,4 +100,5 @@ class InstallMacroblock extends Element {
 		$xmlElement->appendChild($urlElement);
 		return $xmlElement;
 	}
+	
 }

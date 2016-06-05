@@ -12,6 +12,7 @@ use FML\UniqueID;
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
 class Style3d {
+
 	/*
 	 * Constants
 	 */
@@ -38,8 +39,9 @@ class Style3d {
 	protected $focusZOffset = null;
 
 	/**
-	 * Create a new Style3d object
+	 * Create a new Style3d
 	 *
+	 * @api
 	 * @param string $styleId (optional) Style id
 	 * @return static
 	 */
@@ -48,8 +50,9 @@ class Style3d {
 	}
 
 	/**
-	 * Construct a new Style3d object
+	 * Construct a new Style3d
 	 *
+	 * @api
 	 * @param string $styleId (optional) Style id
 	 */
 	public function __construct($styleId = null) {
@@ -59,8 +62,9 @@ class Style3d {
 	}
 
 	/**
-	 * Set style id
+	 * Set the style id
 	 *
+	 * @api
 	 * @param string $styleId Style id
 	 * @return static
 	 */
@@ -82,8 +86,9 @@ class Style3d {
 	}
 
 	/**
-	 * Get style id
+	 * Get the style id
 	 *
+	 * @api
 	 * @return string
 	 */
 	public function getId() {
@@ -91,8 +96,9 @@ class Style3d {
 	}
 
 	/**
-	 * Set model
+	 * Set the model
 	 *
+	 * @api
 	 * @param string $model Style model
 	 * @return static
 	 */
@@ -102,8 +108,9 @@ class Style3d {
 	}
 
 	/**
-	 * Set thickness
+	 * Set the thickness
 	 *
+	 * @api
 	 * @param float $thickness Style thickness
 	 * @return static
 	 */
@@ -113,8 +120,9 @@ class Style3d {
 	}
 
 	/**
-	 * Set color
+	 * Set the color
 	 *
+	 * @api
 	 * @param string $color Style color
 	 * @return static
 	 */
@@ -124,8 +132,9 @@ class Style3d {
 	}
 
 	/**
-	 * Set focus color
+	 * Set the focus color
 	 *
+	 * @api
 	 * @param string $focusColor Style focus color
 	 * @return static
 	 */
@@ -135,8 +144,9 @@ class Style3d {
 	}
 
 	/**
-	 * Set light color
+	 * Set the light color
 	 *
+	 * @api
 	 * @param string $lightColor Light color
 	 * @return static
 	 */
@@ -146,8 +156,9 @@ class Style3d {
 	}
 
 	/**
-	 * Set focus light color
+	 * Set the focus light color
 	 *
+	 * @api
 	 * @param string $focusLightColor Focus light color
 	 * @return static
 	 */
@@ -157,8 +168,9 @@ class Style3d {
 	}
 
 	/**
-	 * Set Y-offset
+	 * Set the Y-offset
 	 *
+	 * @api
 	 * @param float $yOffset Y-offset
 	 * @return static
 	 */
@@ -168,8 +180,9 @@ class Style3d {
 	}
 
 	/**
-	 * Set focus Y-offset
+	 * Set the focus Y-offset
 	 *
+	 * @api
 	 * @param float $focusYOffset Focus Y-offset
 	 * @return static
 	 */
@@ -179,8 +192,9 @@ class Style3d {
 	}
 
 	/**
-	 * Set Z-offset
+	 * Set the Z-offset
 	 *
+	 * @api
 	 * @param float $zOffset Z-offset
 	 * @return static
 	 */
@@ -190,8 +204,9 @@ class Style3d {
 	}
 
 	/**
-	 * Set focus Z-offset
+	 * Set the focus Z-offset
 	 *
+	 * @api
 	 * @param float $focusZOffset Focus Z-offset
 	 * @return static
 	 */
@@ -201,9 +216,9 @@ class Style3d {
 	}
 
 	/**
-	 * Render the Style3d XML element
+	 * Render the Style3d
 	 *
-	 * @param \DOMDocument $domDocument DOMDocument for which the Style3d XML element should be rendered
+	 * @param \DOMDocument $domDocument DOMDocument for which the Style3d should be rendered
 	 * @return \DOMElement
 	 */
 	public function render(\DOMDocument $domDocument) {
@@ -244,4 +259,5 @@ class Style3d {
 		}
 		return $style3dXml;
 	}
+
 }

@@ -16,6 +16,7 @@ use FML\Types\Scriptable;
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
 class UISound extends ScriptFeature {
+
 	/*
 	 * Constants
 	 */
@@ -59,9 +60,12 @@ class UISound extends ScriptFeature {
 	protected $volume = 1.;
 	protected $labelName = null;
 
+	// TODO: check if UISound can work without $soundName - make parameter mandatory
+
 	/**
-	 * Construct a new UISound Feature
+	 * Construct a new UISound
 	 *
+	 * @api
 	 * @param string  $soundName (optional) Played sound
 	 * @param Control $control   (optional) Action Control
 	 * @param int     $variant   (optional) Sound variant
@@ -79,19 +83,9 @@ class UISound extends ScriptFeature {
 	}
 
 	/**
-	 * Set the sound to play
-	 *
-	 * @param string $soundName Sound name
-	 * @return static
-	 */
-	public function setSoundName($soundName) {
-		$this->soundName = (string)$soundName;
-		return $this;
-	}
-
-	/**
 	 * Set the Control
 	 *
+	 * @api
 	 * @param Control $control Action Control
 	 * @return static
 	 */
@@ -105,8 +99,21 @@ class UISound extends ScriptFeature {
 	}
 
 	/**
+	 * Set the sound to play
+	 *
+	 * @api
+	 * @param string $soundName Sound name
+	 * @return static
+	 */
+	public function setSoundName($soundName) {
+		$this->soundName = (string)$soundName;
+		return $this;
+	}
+
+	/**
 	 * Set the sound variant
 	 *
+	 * @api
 	 * @param int $variant Sound variant
 	 * @return static
 	 */
@@ -118,6 +125,7 @@ class UISound extends ScriptFeature {
 	/**
 	 * Set the volume
 	 *
+	 * @api
 	 * @param float $volume Sound volume
 	 * @return static
 	 */
@@ -127,8 +135,9 @@ class UISound extends ScriptFeature {
 	}
 
 	/**
-	 * Set the label name
+	 * Set the script label name
 	 *
+	 * @api
 	 * @param string $labelName Script Label name
 	 * @return static
 	 */
@@ -165,4 +174,5 @@ PlayUiSound(CMlScriptIngame::EUISound::{$this->soundName}, {$this->variant}, {$t
 		}
 		return $scriptText;
 	}
+
 }

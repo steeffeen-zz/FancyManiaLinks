@@ -15,6 +15,7 @@ use FML\Script\ScriptLabel;
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
 class Menu extends ScriptFeature {
+
 	/*
 	 * Constants
 	 */
@@ -29,8 +30,9 @@ class Menu extends ScriptFeature {
 	protected $startElement = null;
 
 	/**
-	 * Construct a new Menu Feature
+	 * Construct a new Menu
 	 *
+	 * @api
 	 * @param Control $item    (optional) Item Control in the Menu bar
 	 * @param Control $control (optional) Toggled Menu Control
 	 */
@@ -40,9 +42,12 @@ class Menu extends ScriptFeature {
 		}
 	}
 
+	// TODO: change methods addElement & appendElement to improve the situation that they are called the same but use different parameters
+
 	/**
-	 * Add a new Element to the Menu
+	 * Add an Element
 	 *
+	 * @api
 	 * @param Control $item           Item Control in the Menu bar
 	 * @param Control $control        Toggled Menu Control
 	 * @param bool    $isStartElement (optional) Whether the Menu should start with this Element
@@ -55,8 +60,9 @@ class Menu extends ScriptFeature {
 	}
 
 	/**
-	 * Append an Element to the Menu
+	 * Append an Element
 	 *
+	 * @api
 	 * @param MenuElement $menuElement    Menu Element
 	 * @param bool        $isStartElement (optional) Whether the Menu should start with this Element
 	 * @return static
@@ -76,6 +82,7 @@ class Menu extends ScriptFeature {
 	/**
 	 * Set the Element to start with
 	 *
+	 * @api
 	 * @param MenuElement $startElement Starting Element
 	 * @return static
 	 */
@@ -137,4 +144,5 @@ Void {$updateFunctionName}(Text[Text] _Elements, Text _ShownControlId) {
 		}
 		return Builder::getArray($elements, true);
 	}
+
 }

@@ -17,6 +17,7 @@ use FML\Types\TextFormatable;
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
 class Entry extends Control implements NewLineable, Scriptable, Styleable, TextFormatable {
+
 	/*
 	 * Protected properties
 	 */
@@ -41,8 +42,9 @@ class Entry extends Control implements NewLineable, Scriptable, Styleable, TextF
 	}
 
 	/**
-	 * Get the Entry name
+	 * Get the name
 	 *
+	 * @api
 	 * @return string
 	 */
 	public function getName() {
@@ -50,8 +52,9 @@ class Entry extends Control implements NewLineable, Scriptable, Styleable, TextF
 	}
 
 	/**
-	 * Set Entry name
+	 * Set the name
 	 *
+	 * @api
 	 * @param string $name Entry name
 	 * @return static
 	 */
@@ -63,6 +66,7 @@ class Entry extends Control implements NewLineable, Scriptable, Styleable, TextF
 	/**
 	 * Get the default value
 	 *
+	 * @api
 	 * @return mixed
 	 */
 	public function getDefault() {
@@ -70,8 +74,9 @@ class Entry extends Control implements NewLineable, Scriptable, Styleable, TextF
 	}
 
 	/**
-	 * Set default value
+	 * Set the default value
 	 *
+	 * @api
 	 * @param string $default Default value
 	 * @return static
 	 */
@@ -147,7 +152,8 @@ class Entry extends Control implements NewLineable, Scriptable, Styleable, TextF
 	/**
 	 * Set auto completion
 	 *
-	 * @param bool $autoComplete Whether the default value should be automatically completed based on the current request parameters
+	 * @api
+	 * @param bool $autoComplete Automatically complete the default value based on the current request parameters
 	 * @return static
 	 */
 	public function setAutoComplete($autoComplete) {
@@ -158,6 +164,7 @@ class Entry extends Control implements NewLineable, Scriptable, Styleable, TextF
 	/**
 	 * Add a dynamic Feature submitting the Entry
 	 *
+	 * @api
 	 * @param string $url Submit url
 	 * @return static
 	 */
@@ -214,4 +221,5 @@ class Entry extends Control implements NewLineable, Scriptable, Styleable, TextF
 		}
 		return $xmlElement;
 	}
+	
 }

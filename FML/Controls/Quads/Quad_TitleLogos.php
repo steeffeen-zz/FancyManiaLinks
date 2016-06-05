@@ -12,6 +12,7 @@ use FML\Controls\Quad;
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
 class Quad_TitleLogos extends Quad {
+
 	/*
 	 * Constants
 	 */
@@ -25,4 +26,5 @@ class Quad_TitleLogos extends Quad {
 	 * Protected properties
 	 */
 	protected $style = self::STYLE;
+	
 }

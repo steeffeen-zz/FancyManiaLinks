@@ -19,6 +19,7 @@ use FML\Types\TextFormatable;
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
 class Label extends Control implements Actionable, Linkable, NewLineable, Scriptable, Styleable, TextFormatable {
+
 	/*
 	 * Protected properties
 	 */
@@ -53,8 +54,9 @@ class Label extends Control implements Actionable, Linkable, NewLineable, Script
 	}
 
 	/**
-	 * Set text
+	 * Set the text
 	 *
+	 * @api
 	 * @param string $text Text value
 	 * @return static
 	 */
@@ -64,8 +66,9 @@ class Label extends Control implements Actionable, Linkable, NewLineable, Script
 	}
 
 	/**
-	 * Set text id to use from Dico
+	 * Set the text id to use from Dico
 	 *
+	 * @api
 	 * @param string $textId Text id
 	 * @return static
 	 */
@@ -75,8 +78,9 @@ class Label extends Control implements Actionable, Linkable, NewLineable, Script
 	}
 
 	/**
-	 * Set text prefix
+	 * Set the text prefix
 	 *
+	 * @api
 	 * @param string $textPrefix Text prefix
 	 * @return static
 	 */
@@ -88,7 +92,8 @@ class Label extends Control implements Actionable, Linkable, NewLineable, Script
 	/**
 	 * Set text emboss
 	 *
-	 * @param bool $textEmboss Whether the text should be embossed
+	 * @api
+	 * @param bool $textEmboss If the text should be embossed
 	 * @return static
 	 */
 	public function setTextEmboss($textEmboss) {
@@ -99,7 +104,8 @@ class Label extends Control implements Actionable, Linkable, NewLineable, Script
 	/**
 	 * Set translate
 	 *
-	 * @param bool $translate Whether the text should be translated
+	 * @api
+	 * @param bool $translate If the text should be translated
 	 * @return static
 	 */
 	public function setTranslate($translate) {
@@ -108,8 +114,9 @@ class Label extends Control implements Actionable, Linkable, NewLineable, Script
 	}
 
 	/**
-	 * Set max lines count
+	 * Set the max lines count
 	 *
+	 * @api
 	 * @param int $maxLines Max lines count
 	 * @return static
 	 */
@@ -240,8 +247,9 @@ class Label extends Control implements Actionable, Linkable, NewLineable, Script
 	/**
 	 * Add a dynamic Feature showing the current time
 	 *
-	 * @param bool $showSeconds  (optional) Whether the seconds should be shown
-	 * @param bool $showFullDate (optional) Whether the date should be shown
+	 * @api
+	 * @param bool $showSeconds  (optional) If the seconds should be shown
+	 * @param bool $showFullDate (optional) If the date should be shown
 	 * @return static
 	 */
 	public function addClockFeature($showSeconds = true, $showFullDate = false) {
@@ -314,4 +322,5 @@ class Label extends Control implements Actionable, Linkable, NewLineable, Script
 		}
 		return $xmlElement;
 	}
+	
 }

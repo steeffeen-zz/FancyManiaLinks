@@ -25,6 +25,7 @@ use FML\UniqueID;
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
 abstract class Control implements Renderable, ScriptFeatureable {
+
 	/*
 	 * Constants
 	 */
@@ -56,8 +57,9 @@ abstract class Control implements Renderable, ScriptFeatureable {
 	protected $scriptFeatures = array();
 
 	/**
-	 * Create a new Control object
+	 * Create a new Control
 	 *
+	 * @api
 	 * @param string $controlId (optional) Control id
 	 * @return static
 	 */
@@ -66,8 +68,9 @@ abstract class Control implements Renderable, ScriptFeatureable {
 	}
 
 	/**
-	 * Construct a new Control object
+	 * Construct a new Control
 	 *
+	 * @api
 	 * @param string $controlId (optional) Control id
 	 */
 	public function __construct($controlId = null) {
@@ -77,9 +80,36 @@ abstract class Control implements Renderable, ScriptFeatureable {
 	}
 
 	/**
+	 * Get the Control id
+	 *
+	 * @api
+	 * @param bool $escaped        (optional) Escape the id for ManiaScript
+	 * @param bool $addApostrophes (optional) Add apostrophes before and after the text
+	 * @return string
+	 */
+	public function getId($escaped = false, $addApostrophes = false) {
+		if ($escaped) {
+			return Builder::escapeText($this->controlId, $addApostrophes);
+		}
+		return $this->controlId;
+	}
+
+	/**
+	 * Set the Control id
+	 *
+	 * @api
+	 * @param string $controlId Control id
+	 * @return static
+	 */
+	public function setId($controlId) {
+		$this->controlId = (string)$controlId;
+		return $this;
+	}
+
+	/**
 	 * Check Id for dangerous characters and assign a new unique id if necessary
 	 *
-	 * @param bool $forceNewId (optional) Whether to force setting a newly generated id
+	 * @param bool $forceNewId (optional) Force the generation of a new id
 	 * @return static
 	 */
 	public function checkId($forceNewId = false) {
@@ -98,7 +128,7 @@ abstract class Control implements Renderable, ScriptFeatureable {
 			break;
 		}
 		if ($danger) {
-			trigger_error("Please don't use special characters in ids, they might cause problems! (I stripped them for you.)");
+			trigger_error("Please don't use special characters in IDs, they might cause problems! (I stripped them for you.)");
 			$controlId = str_ireplace($dangerousCharacters, '', $this->getId());
 			$this->setId($controlId);
 		}
@@ -106,33 +136,9 @@ abstract class Control implements Renderable, ScriptFeatureable {
 	}
 
 	/**
-	 * Get the Control id
+	 * Set the Control position
 	 *
-	 * @param bool $escaped        (optional) Whether the id should be escaped for ManiaScript
-	 * @param bool $addApostrophes (optional) Whether to add apostrophes before and after the text
-	 * @return string
-	 */
-	public function getId($escaped = false, $addApostrophes = false) {
-		if ($escaped) {
-			return Builder::escapeText($this->controlId, $addApostrophes);
-		}
-		return $this->controlId;
-	}
-
-	/**
-	 * Set Control id
-	 *
-	 * @param string $controlId Control id
-	 * @return static
-	 */
-	public function setId($controlId) {
-		$this->controlId = (string)$controlId;
-		return $this;
-	}
-
-	/**
-	 * Set Control position
-	 *
+	 * @api
 	 * @param float $posX Horizontal position
 	 * @param float $posY Vertical position
 	 * @param float $posZ (optional) Depth
@@ -148,8 +154,9 @@ abstract class Control implements Renderable, ScriptFeatureable {
 	}
 
 	/**
-	 * Set X position
+	 * Set the X position
 	 *
+	 * @api
 	 * @param float $posX Horizontal position
 	 * @return static
 	 */
@@ -159,8 +166,9 @@ abstract class Control implements Renderable, ScriptFeatureable {
 	}
 
 	/**
-	 * Set Y position
+	 * Set the Y position
 	 *
+	 * @api
 	 * @param float $posY Vertical position
 	 * @return static
 	 */
@@ -170,8 +178,9 @@ abstract class Control implements Renderable, ScriptFeatureable {
 	}
 
 	/**
-	 * Set Z position
+	 * Set the Z position
 	 *
+	 * @api
 	 * @param float $posZ Depth
 	 * @return static
 	 */
@@ -181,8 +190,9 @@ abstract class Control implements Renderable, ScriptFeatureable {
 	}
 
 	/**
-	 * Set Control size
+	 * Set the size
 	 *
+	 * @api
 	 * @param float $width  Control width
 	 * @param float $height Control height
 	 * @return static
@@ -194,8 +204,9 @@ abstract class Control implements Renderable, ScriptFeatureable {
 	}
 
 	/**
-	 * Set Control width
+	 * Set the width
 	 *
+	 * @api
 	 * @param float $width Control width
 	 * @return static
 	 */
@@ -205,8 +216,9 @@ abstract class Control implements Renderable, ScriptFeatureable {
 	}
 
 	/**
-	 * Set Control height
+	 * Set the height
 	 *
+	 * @api
 	 * @param float $height Control height
 	 * @return static
 	 */
@@ -216,8 +228,9 @@ abstract class Control implements Renderable, ScriptFeatureable {
 	}
 
 	/**
-	 * Center alignment
+	 * Center the alignment
 	 *
+	 * @api
 	 * @return static
 	 */
 	public function centerAlign() {
@@ -226,8 +239,9 @@ abstract class Control implements Renderable, ScriptFeatureable {
 	}
 
 	/**
-	 * Set horizontal and vertical alignment
+	 * Set the horizontal and the vertical alignment
 	 *
+	 * @api
 	 * @param string $hAlign Horizontal alignment
 	 * @param string $vAlign Vertical alignment
 	 * @return static
@@ -239,8 +253,9 @@ abstract class Control implements Renderable, ScriptFeatureable {
 	}
 
 	/**
-	 * Set horizontal alignment
+	 * Set the horizontal alignment
 	 *
+	 * @api
 	 * @param string $hAlign Horizontal alignment
 	 * @return static
 	 */
@@ -250,8 +265,9 @@ abstract class Control implements Renderable, ScriptFeatureable {
 	}
 
 	/**
-	 * Set vertical alignment
+	 * Set the vertical alignment
 	 *
+	 * @api
 	 * @param string $vAlign Vertical alignment
 	 * @return static
 	 */
@@ -261,8 +277,9 @@ abstract class Control implements Renderable, ScriptFeatureable {
 	}
 
 	/**
-	 * Reset alignment
+	 * Reset the alignment
 	 *
+	 * @api
 	 * @return static
 	 */
 	public function resetAlign() {
@@ -271,8 +288,9 @@ abstract class Control implements Renderable, ScriptFeatureable {
 	}
 
 	/**
-	 * Set Control scale
+	 * Set the scale
 	 *
+	 * @api
 	 * @param float $scale Control scale
 	 * @return static
 	 */
@@ -282,9 +300,10 @@ abstract class Control implements Renderable, ScriptFeatureable {
 	}
 
 	/**
-	 * Set visibility
+	 * Set the visibility
 	 *
-	 * @param bool $visible Whether the Control should be visible
+	 * @api
+	 * @param bool $visible If the Control should be visible
 	 * @return static
 	 */
 	public function setVisible($visible = true) {
@@ -293,8 +312,9 @@ abstract class Control implements Renderable, ScriptFeatureable {
 	}
 
 	/**
-	 * Set Control rotation
+	 * Set the rotation
 	 *
+	 * @api
 	 * @param float $rotation Control rotation
 	 * @return static
 	 */
@@ -306,6 +326,7 @@ abstract class Control implements Renderable, ScriptFeatureable {
 	/**
 	 * Add a new class name
 	 *
+	 * @api
 	 * @param string $class Class name
 	 * @return static
 	 */
@@ -320,6 +341,7 @@ abstract class Control implements Renderable, ScriptFeatureable {
 	/**
 	 * Add a dynamic Action Trigger
 	 *
+	 * @api
 	 * @param string $actionName Action to trigger
 	 * @param string $eventLabel (optional) Event on which the action is triggered
 	 * @return static
@@ -337,6 +359,7 @@ abstract class Control implements Renderable, ScriptFeatureable {
 	/**
 	 * Add a new Script Feature
 	 *
+	 * @api
 	 * @param ScriptFeature $scriptFeature Script Feature
 	 * @return static
 	 */
@@ -350,6 +373,7 @@ abstract class Control implements Renderable, ScriptFeatureable {
 	/**
 	 * Add a dynamic Feature opening the current map info
 	 *
+	 * @api
 	 * @param string $eventLabel (optional) Event on which the map info will be opened
 	 * @return static
 	 */
@@ -362,6 +386,7 @@ abstract class Control implements Renderable, ScriptFeatureable {
 	/**
 	 * Add a dynamic Feature to open a specific player profile
 	 *
+	 * @api
 	 * @param string $login      Login of the player
 	 * @param string $eventLabel (optional) Event on which the player profile will be opened
 	 * @return static
@@ -375,6 +400,7 @@ abstract class Control implements Renderable, ScriptFeatureable {
 	/**
 	 * Add a dynamic Feature playing a UISound
 	 *
+	 * @api
 	 * @param string $soundName  UISound name
 	 * @param int    $variant    (optional) Sound variant
 	 * @param string $eventLabel (optional) Event on which the sound will be played
@@ -389,6 +415,7 @@ abstract class Control implements Renderable, ScriptFeatureable {
 	/**
 	 * Add a dynamic Feature toggling another Control
 	 *
+	 * @api
 	 * @param Control $toggledControl Toggled Control
 	 * @param string  $labelName      (optional) Script label name
 	 * @param bool    $onlyShow       (optional) Whether it should only show the Control but not toggle
@@ -404,6 +431,7 @@ abstract class Control implements Renderable, ScriptFeatureable {
 	/**
 	 * Add a dynamic Feature showing a Tooltip on hovering
 	 *
+	 * @api
 	 * @param Control $tooltipControl Tooltip Control
 	 * @param bool    $stayOnClick    (optional) Whether the Tooltip should stay on click
 	 * @param bool    $invert         (optional) Whether the visibility toggling should be inverted
@@ -418,6 +446,7 @@ abstract class Control implements Renderable, ScriptFeatureable {
 	/**
 	 * Add a dynamic Feature showing a Tooltip on hovering
 	 *
+	 * @api
 	 * @param Label  $tooltipControl Tooltip Control
 	 * @param string $text           Text to display on the Tooltip Label
 	 * @param bool   $stayOnClick    (optional) Whether the Tooltip should stay on click
@@ -433,6 +462,7 @@ abstract class Control implements Renderable, ScriptFeatureable {
 	/**
 	 * Add a custom Control Script text part
 	 *
+	 * @api
 	 * @param string $scriptText Script text
 	 * @param string $label      (optional) Script label name
 	 * @return static
@@ -446,6 +476,7 @@ abstract class Control implements Renderable, ScriptFeatureable {
 	/**
 	 * Remove all Script Features
 	 *
+	 * @api
 	 * @return static
 	 */
 	public function removeScriptFeatures() {
@@ -502,4 +533,5 @@ abstract class Control implements Renderable, ScriptFeatureable {
 	 * @return string
 	 */
 	public abstract function getManiaScriptClass();
+
 }

@@ -19,6 +19,7 @@ use FML\Types\SubStyleable;
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
 class Quad extends Control implements Actionable, BgColorable, Linkable, Scriptable, Styleable, SubStyleable {
+
 	/*
 	 * Constants
 	 */
@@ -59,8 +60,9 @@ class Quad extends Control implements Actionable, BgColorable, Linkable, Scripta
 	}
 
 	/**
-	 * Set image url
+	 * Set the image url
 	 *
+	 * @api
 	 * @param string $image Image url
 	 * @return static
 	 */
@@ -70,8 +72,9 @@ class Quad extends Control implements Actionable, BgColorable, Linkable, Scripta
 	}
 
 	/**
-	 * Set image id to use from Dico
+	 * Set the image id to use from Dico
 	 *
+	 * @api
 	 * @param string $imageId Image id
 	 * @return static
 	 */
@@ -81,8 +84,9 @@ class Quad extends Control implements Actionable, BgColorable, Linkable, Scripta
 	}
 
 	/**
-	 * Set focus image url
+	 * Set the focus image url
 	 *
+	 * @api
 	 * @param string $imageFocus Focus image url
 	 * @return static
 	 */
@@ -92,8 +96,9 @@ class Quad extends Control implements Actionable, BgColorable, Linkable, Scripta
 	}
 
 	/**
-	 * Set focus image id to use from Dico
+	 * Set the focus image id to use from Dico
 	 *
+	 * @api
 	 * @param string $imageFocusId Focus image id
 	 * @return static
 	 */
@@ -103,8 +108,9 @@ class Quad extends Control implements Actionable, BgColorable, Linkable, Scripta
 	}
 
 	/**
-	 * Set colorization
+	 * Set the colorization
 	 *
+	 * @api
 	 * @param string $colorize Colorize value
 	 * @return static
 	 */
@@ -114,8 +120,9 @@ class Quad extends Control implements Actionable, BgColorable, Linkable, Scripta
 	}
 
 	/**
-	 * Set modulization
+	 * Set the modulization
 	 *
+	 * @api
 	 * @param string $modulizeColor Modulize value
 	 * @return static
 	 */
@@ -125,9 +132,10 @@ class Quad extends Control implements Actionable, BgColorable, Linkable, Scripta
 	}
 
 	/**
-	 * Disable the automatic image scaling
+	 * Set the automatic image scaling
 	 *
-	 * @param bool $autoScale Whether the image should scale automatically
+	 * @api
+	 * @param bool $autoScale If the image should scale automatically
 	 * @return static
 	 */
 	public function setAutoScale($autoScale) {
@@ -136,9 +144,10 @@ class Quad extends Control implements Actionable, BgColorable, Linkable, Scripta
 	}
 
 	/**
-	 * Set Keep Ratio Mode
+	 * Set the Keep Ratio mode
 	 *
-	 * @param string $keepRatio Keep Ratio Mode
+	 * @api
+	 * @param string $keepRatio Keep Ratio mode
 	 * @return static
 	 */
 	public function setKeepRatio($keepRatio) {
@@ -243,9 +252,10 @@ class Quad extends Control implements Actionable, BgColorable, Linkable, Scripta
 	}
 
 	/**
-	 * Set selected mode
+	 * Set selected style
 	 *
-	 * @param bool $styleSelected
+	 * @api
+	 * @param bool $styleSelected If the quad should be selected
 	 * @return static
 	 */
 	public function setStyleSelected($styleSelected) {
@@ -254,9 +264,10 @@ class Quad extends Control implements Actionable, BgColorable, Linkable, Scripta
 	}
 
 	/**
-	 * Set opacity
+	 * Set the opacity
 	 *
-	 * @param float $opacity
+	 * @api
+	 * @param float $opacity Opacity value
 	 * @return static
 	 */
 	public function setOpacity($opacity) {
@@ -267,6 +278,7 @@ class Quad extends Control implements Actionable, BgColorable, Linkable, Scripta
 	/**
 	 * Apply the given CheckBox Design
 	 *
+	 * @api
 	 * @param CheckBoxDesign $checkBoxDesign CheckBox Design
 	 * @return static
 	 */
@@ -336,4 +348,5 @@ class Quad extends Control implements Actionable, BgColorable, Linkable, Scripta
 		}
 		return $xmlElement;
 	}
+	
 }

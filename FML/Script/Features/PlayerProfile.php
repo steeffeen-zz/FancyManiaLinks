@@ -16,6 +16,7 @@ use FML\Types\Scriptable;
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
 class PlayerProfile extends ScriptFeature {
+
 	/*
 	 * Protected properties
 	 */
@@ -25,8 +26,9 @@ class PlayerProfile extends ScriptFeature {
 	protected $labelName = null;
 
 	/**
-	 * Construct a new Player Profile Feature
+	 * Construct a new Player Profile
 	 *
+	 * @api
 	 * @param string  $login     (optional) Player login
 	 * @param Control $control   (optional) Action Control
 	 * @param string  $labelName (optional) Script Label name
@@ -42,6 +44,7 @@ class PlayerProfile extends ScriptFeature {
 	/**
 	 * Set the login of the opened player
 	 *
+	 * @api
 	 * @param string $login Player login
 	 * @return static
 	 */
@@ -53,6 +56,7 @@ class PlayerProfile extends ScriptFeature {
 	/**
 	 * Set the Control
 	 *
+	 * @api
 	 * @param Control $control Profile Control
 	 * @return static
 	 */
@@ -66,8 +70,9 @@ class PlayerProfile extends ScriptFeature {
 	}
 
 	/**
-	 * Set the label name
+	 * Set the script label name
 	 *
+	 * @api
 	 * @param string $labelName Script Label name
 	 * @return static
 	 */
@@ -105,4 +110,5 @@ ShowProfile({$login});";
 		}
 		return $scriptText;
 	}
+	
 }

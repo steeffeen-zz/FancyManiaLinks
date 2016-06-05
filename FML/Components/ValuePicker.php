@@ -13,11 +13,13 @@ use FML\Types\ScriptFeatureable;
 /**
  * ValuePicker Component
  *
+ * @uses \FML\Controls\Entry
  * @author    steeffeen <mail@steeffeen.com>
  * @copyright FancyManiaLinks Copyright © 2014 Steffen Schröder
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
 class ValuePicker implements Renderable, ScriptFeatureable {
+	
 	/*
 	 * Protected properties
 	 */
@@ -25,8 +27,9 @@ class ValuePicker implements Renderable, ScriptFeatureable {
 	protected $feature = null;
 
 	/**
-	 * Create a new ValuePicker Component
+	 * Create a new ValuePicker
 	 *
+	 * @api
 	 * @param string $name    (optional) CheckBox name
 	 * @param array  $values  (optional) Possible values
 	 * @param bool   $default (optional) Default value
@@ -41,8 +44,9 @@ class ValuePicker implements Renderable, ScriptFeatureable {
 	}
 
 	/**
-	 * Set Name
+	 * Set the name
 	 *
+	 * @api
 	 * @param string $name ValuePicker name
 	 * @return static
 	 */
@@ -54,6 +58,7 @@ class ValuePicker implements Renderable, ScriptFeatureable {
 	/**
 	 * Set the possible values
 	 *
+	 * @api
 	 * @param array $values Possible values
 	 * @return static
 	 */
@@ -65,6 +70,7 @@ class ValuePicker implements Renderable, ScriptFeatureable {
 	/**
 	 * Set the default value
 	 *
+	 * @api
 	 * @param bool $default Default value
 	 * @return static
 	 */
@@ -74,8 +80,9 @@ class ValuePicker implements Renderable, ScriptFeatureable {
 	}
 
 	/**
-	 * Set the ValuePicker Label
+	 * Set the Label
 	 *
+	 * @api
 	 * @param Label $label ValuePicker Label
 	 * @return static
 	 */
@@ -85,8 +92,9 @@ class ValuePicker implements Renderable, ScriptFeatureable {
 	}
 
 	/**
-	 * Get the ValuePicker Label
+	 * Get the Label
 	 *
+	 * @api
 	 * @param bool $createIfEmpty (optional) Create the Label if it's not set
 	 * @return \FML\Controls\Label
 	 */
@@ -131,4 +139,5 @@ class ValuePicker implements Renderable, ScriptFeatureable {
 		$entry->setVisible(false)->setName($this->name);
 		return $entry;
 	}
+	
 }

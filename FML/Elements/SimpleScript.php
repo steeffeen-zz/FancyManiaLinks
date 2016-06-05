@@ -12,6 +12,7 @@ use FML\Types\Renderable;
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
 class SimpleScript implements Renderable {
+
 	/*
 	 * Protected properties
 	 */
@@ -19,8 +20,9 @@ class SimpleScript implements Renderable {
 	protected $text = null;
 
 	/**
-	 * Create a new SimpleScript object
+	 * Create a new SimpleScript
 	 *
+	 * @api
 	 * @param string $text (optional) Script text
 	 * @return static
 	 */
@@ -29,8 +31,9 @@ class SimpleScript implements Renderable {
 	}
 
 	/**
-	 * Construct a new SimpleScript object
+	 * Construct a new SimpleScript
 	 *
+	 * @api
 	 * @param string $text (optional) Script text
 	 */
 	public function __construct($text = null) {
@@ -40,8 +43,9 @@ class SimpleScript implements Renderable {
 	}
 
 	/**
-	 * Set script text
+	 * Set the script text
 	 *
+	 * @api
 	 * @param string $text Complete script text
 	 * @return static
 	 */
@@ -61,4 +65,5 @@ class SimpleScript implements Renderable {
 		}
 		return $xmlElement;
 	}
+	
 }

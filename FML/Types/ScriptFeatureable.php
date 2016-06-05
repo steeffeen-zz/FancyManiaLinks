@@ -12,9 +12,10 @@ namespace FML\Types;
 interface ScriptFeatureable {
 
 	/**
-	 * Get the assigned Script Features of the Element
+	 * Get the Script Features
 	 *
 	 * @return \FML\Script\Features\ScriptFeature[]
 	 */
 	public function getScriptFeatures();
+
 }

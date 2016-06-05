@@ -10,6 +10,7 @@ namespace FML;
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
 class CustomUI {
+
 	/*
 	 * Protected properties
 	 */
@@ -189,4 +190,5 @@ class CustomUI {
 		$settings['scoretable']      = $this->scoretableVisible;
 		return $settings;
 	}
+	
 }

@@ -12,6 +12,7 @@ use FML\Controls\Label;
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
 class Label_Text extends Label {
+
 	/*
 	 * Constants
 	 */
@@ -94,4 +95,5 @@ class Label_Text extends Label {
 	const STYLE_UiDriving_BgBottom         = 'UiDriving_BgBottom';
 	const STYLE_UiDriving_BgCard           = 'UiDriving_BgCard';
 	const STYLE_UiDriving_BgCenter         = 'UiDriving_BgCenter';
+	
 }

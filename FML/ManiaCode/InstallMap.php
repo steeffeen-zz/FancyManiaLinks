@@ -10,6 +10,7 @@ namespace FML\ManiaCode;
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
 class InstallMap extends Element {
+
 	/*
 	 * Protected properties
 	 */
@@ -18,8 +19,9 @@ class InstallMap extends Element {
 	protected $url = null;
 
 	/**
-	 * Create a new InstallMap object
+	 * Create a new InstallMap Element
 	 *
+	 * @api
 	 * @param string $name (optional) Map name
 	 * @param string $url  (optional) Map url
 	 * @return static
@@ -29,8 +31,9 @@ class InstallMap extends Element {
 	}
 
 	/**
-	 * Construct a new InstallMap object
+	 * Construct a new InstallMap Element
 	 *
+	 * @api
 	 * @param string $name (optional) Map name
 	 * @param string $url  (optional) Map url
 	 */
@@ -46,6 +49,7 @@ class InstallMap extends Element {
 	/**
 	 * Set the name of the map
 	 *
+	 * @api
 	 * @param string $name Map name
 	 * @return static
 	 */
@@ -57,6 +61,7 @@ class InstallMap extends Element {
 	/**
 	 * Set the url of the map
 	 *
+	 * @api
 	 * @param string $url Map url
 	 * @return static
 	 */
@@ -76,4 +81,5 @@ class InstallMap extends Element {
 		$xmlElement->appendChild($urlElement);
 		return $xmlElement;
 	}
+	
 }

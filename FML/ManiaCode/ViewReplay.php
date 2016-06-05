@@ -10,6 +10,7 @@ namespace FML\ManiaCode;
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
 class ViewReplay extends Element {
+
 	/*
 	 * Protected properties
 	 */
@@ -18,8 +19,9 @@ class ViewReplay extends Element {
 	protected $url = null;
 
 	/**
-	 * Create a new ViewReplay object
+	 * Create a new ViewReplay Element
 	 *
+	 * @api
 	 * @param string $name (optional) Replay name
 	 * @param string $url  (optional) Replay url
 	 * @return static
@@ -29,8 +31,9 @@ class ViewReplay extends Element {
 	}
 
 	/**
-	 * Construct a new ViewReplay object
+	 * Construct a new ViewReplay Element
 	 *
+	 * @api
 	 * @param string $name (optional) Replay name
 	 * @param string $url  (optional) Replay url
 	 */
@@ -46,6 +49,7 @@ class ViewReplay extends Element {
 	/**
 	 * Set the name of the replay
 	 *
+	 * @api
 	 * @param string $name Replay name
 	 * @return static
 	 */
@@ -57,6 +61,7 @@ class ViewReplay extends Element {
 	/**
 	 * Set the url of the replay
 	 *
+	 * @api
 	 * @param string $url Replay url
 	 * @return static
 	 */
@@ -76,4 +81,5 @@ class ViewReplay extends Element {
 		$xmlElement->appendChild($urlElement);
 		return $xmlElement;
 	}
+	
 }

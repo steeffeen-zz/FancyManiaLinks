@@ -10,6 +10,7 @@ namespace FML\ManiaCode;
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
 class AddFavorite extends Element {
+
 	/*
 	 * Protected properties
 	 */
@@ -19,8 +20,9 @@ class AddFavorite extends Element {
 	protected $serverPort = null;
 
 	/**
-	 * Create a new AddFavorite object
+	 * Create a new AddFavorite Element
 	 *
+	 * @api
 	 * @param string $login (optional) Server login
 	 * @return static
 	 */
@@ -29,8 +31,9 @@ class AddFavorite extends Element {
 	}
 
 	/**
-	 * Construct a new AddFavorite object
+	 * Construct a new AddFavorite Element
 	 *
+	 * @api
 	 * @param string $login (optional) Server login
 	 */
 	public function __construct($login = null) {
@@ -42,6 +45,7 @@ class AddFavorite extends Element {
 	/**
 	 * Set the server login
 	 *
+	 * @api
 	 * @param string $login Server login
 	 * @return static
 	 */
@@ -55,6 +59,7 @@ class AddFavorite extends Element {
 	/**
 	 * Set the server ip and port
 	 *
+	 * @api
 	 * @param string $serverIp   Server ip
 	 * @param int    $serverPort Server port
 	 * @return static
@@ -80,4 +85,5 @@ class AddFavorite extends Element {
 		}
 		return $xmlElement;
 	}
+	
 }

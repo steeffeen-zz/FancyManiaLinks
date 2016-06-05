@@ -17,6 +17,7 @@ use FML\Script\ScriptLabel;
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
 class ValuePickerFeature extends ScriptFeature {
+
 	/*
 	 * Constants
 	 */
@@ -38,6 +39,7 @@ class ValuePickerFeature extends ScriptFeature {
 	/**
 	 * Construct a new ValuePicker Feature
 	 *
+	 * @api
 	 * @param Label  $label   (optional) ValuePicker Label
 	 * @param Entry  $entry   (optional) Hidden Entry
 	 * @param array  $values  (optional) Possible values
@@ -59,8 +61,19 @@ class ValuePickerFeature extends ScriptFeature {
 	}
 
 	/**
+	 * Get the ValuePicker Label
+	 *
+	 * @api
+	 * @return \FML\Controls\Label
+	 */
+	public function getLabel() {
+		return $this->label;
+	}
+
+	/**
 	 * Set the ValuePicker Label
 	 *
+	 * @api
 	 * @param Label $label ValuePicker Label
 	 * @return static
 	 */
@@ -70,17 +83,19 @@ class ValuePickerFeature extends ScriptFeature {
 	}
 
 	/**
-	 * Get the ValuePicker Label
+	 * Get the hidden Entry
 	 *
-	 * @return \FML\Controls\Label
+	 * @api
+	 * @return \FML\Controls\Entry
 	 */
-	public function getLabel() {
-		return $this->label;
+	public function getEntry() {
+		return $this->entry;
 	}
 
 	/**
 	 * Set the hidden Entry
 	 *
+	 * @api
 	 * @param Entry $entry Hidden Entry
 	 * @return static
 	 */
@@ -90,17 +105,9 @@ class ValuePickerFeature extends ScriptFeature {
 	}
 
 	/**
-	 * Get the hidden Entry
-	 *
-	 * @return \FML\Controls\Entry
-	 */
-	public function getEntry() {
-		return $this->entry;
-	}
-
-	/**
 	 * Set the possible values
 	 *
+	 * @api
 	 * @param array $values Possible values
 	 * @return static
 	 */
@@ -113,18 +120,9 @@ class ValuePickerFeature extends ScriptFeature {
 	}
 
 	/**
-	 * Set the default value
-	 *
-	 * @param string $default Default value
-	 * @return static
-	 */
-	public function setDefault($default) {
-		$this->default = (string)$default;
-	}
-
-	/**
 	 * Get the default value
 	 *
+	 * @api
 	 * @return string
 	 */
 	public function getDefault() {
@@ -135,6 +133,18 @@ class ValuePickerFeature extends ScriptFeature {
 			return reset($this->values);
 		}
 		return null;
+	}
+
+	/**
+	 * Set the default value
+	 *
+	 * @api
+	 * @param string $default Default value
+	 * @return static
+	 */
+	public function setDefault($default) {
+		$this->default = (string)$default;
+		return $this;
 	}
 
 	/**
@@ -223,4 +233,5 @@ if (Event.ControlId == {$labelId}) {
 	" . self::FUNCTION_UPDATE_PICKER_VALUE . "(Label_Picker);
 }";
 	}
+
 }

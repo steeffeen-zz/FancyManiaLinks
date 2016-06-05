@@ -14,8 +14,10 @@ interface NewLineable {
 	/**
 	 * Set auto new line
 	 *
-	 * @param bool $autoNewLine Whether the Control should insert new lines automatically
+	 * @api
+	 * @param bool $autoNewLine If the Element should insert new lines automatically
 	 * @return static
 	 */
 	public function setAutoNewLine($autoNewLine);
+	
 }

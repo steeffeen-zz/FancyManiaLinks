@@ -12,19 +12,22 @@ namespace FML\Types;
 interface SubStyleable {
 
 	/**
-	 * Set sub style
+	 * Set the sub style
 	 *
+	 * @api
 	 * @param string $subStyle SubStyle name
 	 * @return static
 	 */
 	public function setSubStyle($subStyle);
 
 	/**
-	 * Set style and sub style
+	 * Set the style and the sub style
 	 *
+	 * @api
 	 * @param string $style    Style name
 	 * @param string $subStyle SubStyle name
 	 * @return static
 	 */
 	public function setStyles($style, $subStyle);
+	
 }

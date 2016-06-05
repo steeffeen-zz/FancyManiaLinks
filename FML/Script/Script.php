@@ -12,6 +12,7 @@ use FML\Script\Features\ScriptFeature;
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
 class Script {
+
 	/*
 	 * Constants
 	 */
@@ -34,6 +35,7 @@ class Script {
 	/**
 	 * Set a Script Include
 	 *
+	 * @api
 	 * @param string $file      Include file
 	 * @param string $namespace Include namespace
 	 * @return static
@@ -51,6 +53,7 @@ class Script {
 	/**
 	 * Add a Script Constant
 	 *
+	 * @api
 	 * @param string $name  Constant name
 	 * @param string $value Constant value
 	 * @return static
@@ -70,6 +73,7 @@ class Script {
 	/**
 	 * Add a Script Function
 	 *
+	 * @api
 	 * @param string $name Function name
 	 * @param string $text Function text
 	 * @return static
@@ -89,6 +93,7 @@ class Script {
 	/**
 	 * Add a custom Script text
 	 *
+	 * @api
 	 * @param string $name Label name
 	 * @param string $text Script text
 	 * @return static
@@ -106,6 +111,7 @@ class Script {
 	/**
 	 * Append a generic Script text for the next rendering
 	 *
+	 * @api
 	 * @param string $name     Label name
 	 * @param string $text     Script text
 	 * @param bool   $isolated (optional) Whether to isolate the Label Script
@@ -124,6 +130,7 @@ class Script {
 	/**
 	 * Remove all generic Script texts
 	 *
+	 * @api
 	 * @return static
 	 */
 	public function resetGenericScriptLabels() {
@@ -134,6 +141,7 @@ class Script {
 	/**
 	 * Add a Script Feature
 	 *
+	 * @api
 	 * @param ScriptFeature $feature Script Feature
 	 * @return static
 	 */
@@ -147,6 +155,7 @@ class Script {
 	/**
 	 * Load the given Script Feature
 	 *
+	 * @api
 	 * @param ScriptFeature $scriptFeature Script Feature to load
 	 * @return static
 	 */
@@ -158,6 +167,7 @@ class Script {
 	/**
 	 * Load the given Script Features
 	 *
+	 * @api
 	 * @param ScriptFeature[] $scriptFeatures Script Features to load
 	 * @return static
 	 */
@@ -197,9 +207,9 @@ class Script {
 	}
 
 	/**
-	 * Build the Script XML element
+	 * Render the Script
 	 *
-	 * @param \DOMDocument $domDocument DOMDocument for which the XML element should be created
+	 * @param \DOMDocument $domDocument DOMDocument for which the Script should be created
 	 * @return \DOMElement
 	 */
 	public function render(\DOMDocument $domDocument) {
@@ -323,4 +333,5 @@ main() {
 	public function __toString() {
 		return $this->buildScriptText();
 	}
+
 }

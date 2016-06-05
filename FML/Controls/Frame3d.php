@@ -14,6 +14,7 @@ use FML\Types\Scriptable;
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
 class Frame3d extends Frame implements Scriptable {
+
 	/*
 	 * Constants
 	 */
@@ -38,8 +39,9 @@ class Frame3d extends Frame implements Scriptable {
 	protected $scriptEvents = null;
 
 	/**
-	 * Set Style3d id
+	 * Set the Style3d id
 	 *
+	 * @api
 	 * @param string $style3dId Style3d id
 	 * @return static
 	 */
@@ -50,9 +52,10 @@ class Frame3d extends Frame implements Scriptable {
 	}
 
 	/**
-	 * Set Style3d
+	 * Set the Style3d
 	 *
-	 * @param Style3d $style3d Style3d object
+	 * @api
+	 * @param Style3d $style3d Style3d
 	 * @return static
 	 */
 	public function setStyle3d(Style3d $style3d) {
@@ -85,4 +88,5 @@ class Frame3d extends Frame implements Scriptable {
 		}
 		return $xmlElement;
 	}
+	
 }

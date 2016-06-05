@@ -13,6 +13,7 @@ use FML\Elements\FrameModel;
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
 class FrameInstance extends Control {
+
 	/*
 	 * Protected properties
 	 */
@@ -22,8 +23,9 @@ class FrameInstance extends Control {
 	protected $model = null;
 
 	/**
-	 * Create a new Frame Instance object
+	 * Create a new Frame Instance
 	 *
+	 * @api
 	 * @param string $modelId   (optional) Frame Model id
 	 * @param string $controlId (optional) Frame id
 	 * @return static
@@ -33,8 +35,9 @@ class FrameInstance extends Control {
 	}
 
 	/**
-	 * Construct a new Frame Instance object
+	 * Construct a new Frame Instance
 	 *
+	 * @api
 	 * @param string $modelId   (optional) Frame Model id
 	 * @param string $controlId (optional) Frame id
 	 */
@@ -46,8 +49,9 @@ class FrameInstance extends Control {
 	}
 
 	/**
-	 * Set Frame Model id
+	 * Set the Frame Model id
 	 *
+	 * @api
 	 * @param string $modelId Frame Model id
 	 * @return static
 	 */
@@ -58,8 +62,9 @@ class FrameInstance extends Control {
 	}
 
 	/**
-	 * Set Frame Model
+	 * Set the Frame Model
 	 *
+	 * @api
 	 * @param FrameModel $frameModel Frame Model
 	 * @return static
 	 */
@@ -89,4 +94,5 @@ class FrameInstance extends Control {
 		}
 		return $xmlElement;
 	}
+	
 }

@@ -11,6 +11,7 @@ namespace FML\Controls;
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
 class FileEntry extends Entry {
+
 	/*
 	 * Protected properties
 	 */
@@ -27,6 +28,7 @@ class FileEntry extends Entry {
 	/**
 	 * Set the base folder
 	 *
+	 * @api
 	 * @param string $folder Base folder
 	 * @return static
 	 */
@@ -45,4 +47,5 @@ class FileEntry extends Entry {
 		}
 		return $xmlElement;
 	}
+	
 }

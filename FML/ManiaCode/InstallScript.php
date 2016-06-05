@@ -10,6 +10,7 @@ namespace FML\ManiaCode;
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
 class InstallScript extends Element {
+
 	/*
 	 * Protected properties
 	 */
@@ -19,8 +20,9 @@ class InstallScript extends Element {
 	protected $url = null;
 
 	/**
-	 * Create a new InstallScript object
+	 * Create a new InstallScript Element
 	 *
+	 * @api
 	 * @param string $name (optional) Script name
 	 * @param string $file (optional) Script file
 	 * @param string $url  (optional) Script url
@@ -31,8 +33,9 @@ class InstallScript extends Element {
 	}
 
 	/**
-	 * Construct a new InstallScript object
+	 * Construct a new InstallScript Element
 	 *
+	 * @api
 	 * @param string $name (optional) Script name
 	 * @param string $file (optional) Script file
 	 * @param string $url  (optional) Script url
@@ -52,6 +55,7 @@ class InstallScript extends Element {
 	/**
 	 * Set the name of the script
 	 *
+	 * @api
 	 * @param string $name Script name
 	 * @return static
 	 */
@@ -63,6 +67,7 @@ class InstallScript extends Element {
 	/**
 	 * Set the file of the script
 	 *
+	 * @api
 	 * @param string $file Script file
 	 * @return static
 	 */
@@ -74,6 +79,7 @@ class InstallScript extends Element {
 	/**
 	 * Set the url of the script
 	 *
+	 * @api
 	 * @param string $url Script url
 	 * @return static
 	 */
@@ -95,4 +101,5 @@ class InstallScript extends Element {
 		$xmlElement->appendChild($urlElement);
 		return $xmlElement;
 	}
+	
 }

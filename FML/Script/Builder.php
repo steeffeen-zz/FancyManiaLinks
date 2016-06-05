@@ -10,6 +10,7 @@ namespace FML\Script;
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
 abstract class Builder {
+
 	/*
 	 * Constants
 	 */
@@ -18,6 +19,7 @@ abstract class Builder {
 	/**
 	 * Build a label implementation block
 	 *
+	 * @api
 	 * @param string $labelName          Name of the label
 	 * @param string $implementationCode Label implementation coding (without declaration)
 	 * @param bool   $isolate            Whether the code should be isolated in an own block
@@ -34,8 +36,9 @@ abstract class Builder {
 	/**
 	 * Escape dangerous characters in the given text
 	 *
+	 * @api
 	 * @param string $text           Text to escape
-	 * @param bool   $addApostrophes (optional) Whether to add apostrophes before and after the text
+	 * @param bool   $addApostrophes (optional) Add apostrophes before and after the text
 	 * @return string
 	 */
 	public static function escapeText($text, $addApostrophes = false) {
@@ -51,6 +54,7 @@ abstract class Builder {
 	/**
 	 * Get the 'Real' string representation of the given value
 	 *
+	 * @api
 	 * @param float $value Float value to convert to a ManiaScript 'Real'
 	 * @return string
 	 */
@@ -66,6 +70,7 @@ abstract class Builder {
 	/**
 	 * Get the 'Boolean' string representation of the given value
 	 *
+	 * @api
 	 * @param bool $value Value to convert to a ManiaScript 'Boolean'
 	 * @return string
 	 */
@@ -80,6 +85,7 @@ abstract class Builder {
 	/**
 	 * Get the string representation of the given array
 	 *
+	 * @api
 	 * @param array $array       Array to convert to a ManiaScript array
 	 * @param bool  $associative (optional) Whether the array should be associative
 	 * @return string
@@ -114,6 +120,7 @@ abstract class Builder {
 	/**
 	 * Get the include command for the given file and namespace
 	 *
+	 * @api
 	 * @param string $file      Include file
 	 * @param string $namespace (optional) Include namespace
 	 * @return string
@@ -134,6 +141,7 @@ abstract class Builder {
 	/**
 	 * Get the constant command for the given name and value
 	 *
+	 * @api
 	 * @param string $name  Constant name
 	 * @param string $value Constant value
 	 * @return string
@@ -147,4 +155,5 @@ abstract class Builder {
 		$constantText = "#Const	{$name}	{$value}" . PHP_EOL;
 		return $constantText;
 	}
+	
 }

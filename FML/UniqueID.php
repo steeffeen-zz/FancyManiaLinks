@@ -10,6 +10,7 @@ namespace FML;
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
 class UniqueID {
+
 	/*
 	 * Constants
 	 */
@@ -35,7 +36,7 @@ class UniqueID {
 	}
 
 	/**
-	 * Get a new unique index
+	 * Get a new global unique index
 	 *
 	 * @return int
 	 */
@@ -68,4 +69,5 @@ class UniqueID {
 	public function __toString() {
 		return $this->getValue();
 	}
+
 }

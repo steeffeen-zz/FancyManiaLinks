@@ -14,6 +14,7 @@ use FML\Types\Scriptable;
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
 class Audio extends Control implements Playable, Scriptable {
+
 	/*
 	 * Protected properties
 	 */
@@ -114,4 +115,5 @@ class Audio extends Control implements Playable, Scriptable {
 		}
 		return $xmlElement;
 	}
+
 }

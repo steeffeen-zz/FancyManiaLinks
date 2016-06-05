@@ -10,6 +10,7 @@ namespace FML\ManiaCode;
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
 class JoinServer extends Element {
+
 	/*
 	 * Protected properties
 	 */
@@ -19,8 +20,9 @@ class JoinServer extends Element {
 	protected $serverPort = null;
 
 	/**
-	 * Create a new JoinServer object
+	 * Create a new JoinServer Element
 	 *
+	 * @api
 	 * @param string $login (optional) Server login
 	 * @return static
 	 */
@@ -29,8 +31,9 @@ class JoinServer extends Element {
 	}
 
 	/**
-	 * Construct a new JoinServer object
+	 * Construct a new JoinServer Element
 	 *
+	 * @api
 	 * @param string $login (optional) Server login
 	 */
 	public function __construct($login = null) {
@@ -42,6 +45,7 @@ class JoinServer extends Element {
 	/**
 	 * Set the server login
 	 *
+	 * @api
 	 * @param string $login Server login
 	 * @return static
 	 */
@@ -55,6 +59,7 @@ class JoinServer extends Element {
 	/**
 	 * Set the server ip and port
 	 *
+	 * @api
 	 * @param string $serverIp   Server ip
 	 * @param int    $serverPort Server port
 	 * @return static
@@ -80,4 +85,5 @@ class JoinServer extends Element {
 		}
 		return $xmlElement;
 	}
+	
 }

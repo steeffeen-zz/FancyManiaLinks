@@ -15,6 +15,7 @@ use FML\Types\Scriptable;
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
 class Toggle extends ScriptFeature {
+
 	/*
 	 * Protected properties
 	 */
@@ -27,13 +28,14 @@ class Toggle extends ScriptFeature {
 	protected $onlyHide = null;
 
 	/**
-	 * Construct a new Toggle Feature
+	 * Construct a new Toggle
 	 *
+	 * @api
 	 * @param Control $togglingControl (optional) Toggling Control
 	 * @param Control $toggledControl  (optional) Toggled Control
 	 * @param string  $labelName       (optional) Script Label name
-	 * @param bool    $onlyShow        (optional) Whether it should only show the Control but not toggle
-	 * @param bool    $onlyHide        (optional) Whether it should only hide the Control but not toggle
+	 * @param bool    $onlyShow        (optional) If it should only show the Control but not toggle
+	 * @param bool    $onlyHide        (optional) If it should only hide the Control but not toggle
 	 */
 	public function __construct(Control $togglingControl = null, Control $toggledControl = null, $labelName = ScriptLabel::MOUSECLICK,
 	                            $onlyShow = false, $onlyHide = false) {
@@ -51,6 +53,7 @@ class Toggle extends ScriptFeature {
 	/**
 	 * Set the toggling Control
 	 *
+	 * @api
 	 * @param Control $control Toggling Control
 	 * @return static
 	 */
@@ -66,6 +69,7 @@ class Toggle extends ScriptFeature {
 	/**
 	 * Set the toggled Control
 	 *
+	 * @api
 	 * @param Control $control Toggling Control
 	 * @return static
 	 */
@@ -75,8 +79,9 @@ class Toggle extends ScriptFeature {
 	}
 
 	/**
-	 * Set the label name
+	 * Set the script label name
 	 *
+	 * @api
 	 * @param string $labelName Script Label Name
 	 * @return static
 	 */
@@ -88,7 +93,8 @@ class Toggle extends ScriptFeature {
 	/**
 	 * Set to only show
 	 *
-	 * @param bool $onlyShow Whether it should only show the Control but not toggle
+	 * @api
+	 * @param bool $onlyShow If it should only show the Control but not toggle
 	 * @return static
 	 */
 	public function setOnlyShow($onlyShow) {
@@ -99,7 +105,8 @@ class Toggle extends ScriptFeature {
 	/**
 	 * Set to only hide
 	 *
-	 * @param bool $onlyHide Whether it should only hide the Control but not toggle
+	 * @api
+	 * @param bool $onlyHide If it should only hide the Control but not toggle
 	 * @return static
 	 */
 	public function setOnlyHide($onlyHide) {
@@ -135,4 +142,5 @@ if (Event.Control.ControlId == {$togglingControlId}) {
 	ToggleControl.Visible = {$visibility};
 }";
 	}
+	
 }

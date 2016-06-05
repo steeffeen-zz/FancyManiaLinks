@@ -12,6 +12,7 @@ use FML\Controls\Control;
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
 class PagingPage {
+
 	/*
 	 * Protected properties
 	 */
@@ -22,6 +23,7 @@ class PagingPage {
 	/**
 	 * Construct a new Paging Page
 	 *
+	 * @api
 	 * @param Control $control    (optional) Page Control
 	 * @param int     $pageNumber (optional) Number of the Page
 	 */
@@ -33,8 +35,19 @@ class PagingPage {
 	}
 
 	/**
+	 * Get the Page Control
+	 *
+	 * @api
+	 * @return \FML\Controls\Control
+	 */
+	public function getControl() {
+		return $this->control;
+	}
+
+	/**
 	 * Set the Page Control
 	 *
+	 * @api
 	 * @param Control $control Page Control
 	 * @return static
 	 */
@@ -44,17 +57,19 @@ class PagingPage {
 	}
 
 	/**
-	 * Get the Page Control
+	 * Get the Page number
 	 *
-	 * @return \FML\Controls\Control
+	 * @api
+	 * @return int
 	 */
-	public function getControl() {
-		return $this->control;
+	public function getPageNumber() {
+		return $this->number;
 	}
 
 	/**
 	 * Set the Page number
 	 *
+	 * @api
 	 * @param int $pageNumber Number of the Page
 	 * @return static
 	 */
@@ -62,13 +77,5 @@ class PagingPage {
 		$this->number = (int)$pageNumber;
 		return $this;
 	}
-
-	/**
-	 * Get the Page number
-	 *
-	 * @return int
-	 */
-	public function getPageNumber() {
-		return $this->number;
-	}
+	
 }

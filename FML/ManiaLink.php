@@ -16,6 +16,7 @@ use FML\Types\ScriptFeatureable;
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
 class ManiaLink {
+
 	/*
 	 * Constants
 	 */
@@ -325,4 +326,5 @@ class ManiaLink {
 	public function __toString() {
 		return $this->render()->saveXML();
 	}
+	
 }

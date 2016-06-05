@@ -12,6 +12,7 @@ use FML\Types\Renderable;
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
 class Including implements Renderable {
+
 	/*
 	 * Protected properties
 	 */
@@ -19,8 +20,9 @@ class Including implements Renderable {
 	protected $url = null;
 
 	/**
-	 * Create a new Include object
+	 * Create a new Include
 	 *
+	 * @api
 	 * @param string $url (optional) Include url
 	 * @return static
 	 */
@@ -29,8 +31,9 @@ class Including implements Renderable {
 	}
 
 	/**
-	 * Construct a new Include object
+	 * Construct a new Include
 	 *
+	 * @api
 	 * @param string $url (optional) Include url
 	 */
 	public function __construct($url = null) {
@@ -40,8 +43,9 @@ class Including implements Renderable {
 	}
 
 	/**
-	 * Set url
+	 * Set the url
 	 *
+	 * @api
 	 * @param string $url Include url
 	 * @return static
 	 */
@@ -60,4 +64,5 @@ class Including implements Renderable {
 		}
 		return $xmlElement;
 	}
+	
 }

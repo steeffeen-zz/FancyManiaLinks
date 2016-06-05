@@ -10,6 +10,7 @@ namespace FML\ManiaCode;
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
 class Go_To extends Element {
+
 	/*
 	 * Protected properties
 	 */
@@ -17,8 +18,9 @@ class Go_To extends Element {
 	protected $link = null;
 
 	/**
-	 * Create a new Go_To object
+	 * Create a new Go_To Element
 	 *
+	 * @api
 	 * @param string $link (optional) Goto link
 	 * @return static
 	 */
@@ -27,8 +29,9 @@ class Go_To extends Element {
 	}
 
 	/**
-	 * Construct a new Go_To object
+	 * Construct a new Go_To Element
 	 *
+	 * @api
 	 * @param string $link (optional) Goto link
 	 */
 	public function __construct($link = null) {
@@ -38,8 +41,9 @@ class Go_To extends Element {
 	}
 
 	/**
-	 * Set link
+	 * Set the link
 	 *
+	 * @api
 	 * @param string $link Goto link
 	 * @return static
 	 */
@@ -57,4 +61,5 @@ class Go_To extends Element {
 		$xmlElement->appendChild($linkElement);
 		return $xmlElement;
 	}
+	
 }

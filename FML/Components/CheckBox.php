@@ -14,11 +14,13 @@ use FML\Types\ScriptFeatureable;
 /**
  * CheckBox Component
  *
+ * @uses \FML\Controls\Quad
  * @author    steeffeen <mail@steeffeen.com>
  * @copyright FancyManiaLinks Copyright © 2014 Steffen Schröder
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
 class CheckBox implements Renderable, ScriptFeatureable {
+
 	/*
 	 * Protected properties
 	 */
@@ -26,8 +28,9 @@ class CheckBox implements Renderable, ScriptFeatureable {
 	protected $feature = null;
 
 	/**
-	 * Create a new CheckBox Component
+	 * Create a new CheckBox
 	 *
+	 * @api
 	 * @param string $name    (optional) CheckBox name
 	 * @param bool   $default (optional) Default value
 	 * @param Quad   $quad    (optional) CheckBox quad
@@ -42,6 +45,7 @@ class CheckBox implements Renderable, ScriptFeatureable {
 	/**
 	 * Set the name
 	 *
+	 * @api
 	 * @param string $name CheckBox name
 	 * @return static
 	 */
@@ -53,6 +57,7 @@ class CheckBox implements Renderable, ScriptFeatureable {
 	/**
 	 * Set the default value
 	 *
+	 * @api
 	 * @param bool $default Default value
 	 * @return static
 	 */
@@ -62,8 +67,9 @@ class CheckBox implements Renderable, ScriptFeatureable {
 	}
 
 	/**
-	 * Set the enabled Design
+	 * Set the enabled design
 	 *
+	 * @api
 	 * @param string $style    Style name or image url
 	 * @param string $subStyle SubStyle name
 	 * @return static
@@ -79,8 +85,9 @@ class CheckBox implements Renderable, ScriptFeatureable {
 	}
 
 	/**
-	 * Set the disabled Design
+	 * Set the disabled design
 	 *
+	 * @api
 	 * @param string $style    Style name or image url
 	 * @param string $subStyle SubStyle name
 	 * @return static
@@ -98,6 +105,7 @@ class CheckBox implements Renderable, ScriptFeatureable {
 	/**
 	 * Set the CheckBox Quad
 	 *
+	 * @api
 	 * @param Quad $quad CheckBox Quad
 	 * @return static
 	 */
@@ -107,15 +115,9 @@ class CheckBox implements Renderable, ScriptFeatureable {
 	}
 
 	/**
-	 * @see \FML\Types\ScriptFeatureable::getScriptFeatures()
-	 */
-	public function getScriptFeatures() {
-		return ScriptFeature::collect($this->feature, $this->getQuad(), $this->feature->getEntry());
-	}
-
-	/**
 	 * Get the CheckBox Quad
 	 *
+	 * @api
 	 * @param bool $createIfEmpty (optional) Create the Quad if it's not set
 	 * @return \FML\Controls\Quad
 	 */
@@ -126,6 +128,13 @@ class CheckBox implements Renderable, ScriptFeatureable {
 			$this->setQuad($quad);
 		}
 		return $this->feature->getQuad();
+	}
+
+	/**
+	 * @see \FML\Types\ScriptFeatureable::getScriptFeatures()
+	 */
+	public function getScriptFeatures() {
+		return ScriptFeature::collect($this->feature, $this->getQuad(), $this->feature->getEntry());
 	}
 
 	/**
@@ -154,4 +163,5 @@ class CheckBox implements Renderable, ScriptFeatureable {
 		$entry->setVisible(false)->setName($this->name);
 		return $entry;
 	}
+
 }

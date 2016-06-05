@@ -10,6 +10,7 @@ namespace FML\ManiaCode;
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
 class AddBuddy extends Element {
+
 	/*
 	 * Protected properties
 	 */
@@ -19,6 +20,7 @@ class AddBuddy extends Element {
 	/**
 	 * Create a new AddBuddy Element
 	 *
+	 * @api
 	 * @param string $login (optional) Buddy login
 	 * @return static
 	 */
@@ -29,6 +31,7 @@ class AddBuddy extends Element {
 	/**
 	 * Construct a new AddBuddy Element
 	 *
+	 * @api
 	 * @param string $login (optional) Buddy login
 	 */
 	public function __construct($login = null) {
@@ -40,6 +43,7 @@ class AddBuddy extends Element {
 	/**
 	 * Set the buddy login
 	 *
+	 * @api
 	 * @param string $login Buddy login
 	 * @return static
 	 */
@@ -57,4 +61,5 @@ class AddBuddy extends Element {
 		$xmlElement->appendChild($loginElement);
 		return $xmlElement;
 	}
+	
 }

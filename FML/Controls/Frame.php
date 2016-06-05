@@ -16,6 +16,7 @@ use FML\Types\ScriptFeatureable;
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
 class Frame extends Control implements Container {
+
 	/*
 	 * Protected properties
 	 */
@@ -96,4 +97,5 @@ class Frame extends Control implements Container {
 		}
 		return $xmlElement;
 	}
+	
 }

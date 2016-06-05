@@ -18,4 +18,5 @@ interface Renderable {
 	 * @return \DOMElement
 	 */
 	public function render(\DOMDocument $domDocument);
+	
 }

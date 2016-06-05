@@ -1,7 +1,7 @@
 <?php
 
 /**
- * FancyManiaLinks - Automatic ManiaLink Generator Framework
+ * FancyManiaLinks - ManiaLink Generator Framework
  *
  * @author    steeffeen <mail@steeffeen.com>
  * @version   1.4.1
@@ -9,10 +9,17 @@
  * @copyright FancyManiaLinks Copyright © 2014 Steffen Schröder
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
+
 if (!defined('FML_PATH')) {
+	/**
+	 * @const FML_PATH Installation directory of FancyManiaLinks
+	 */
 	define('FML_PATH', __DIR__ . DIRECTORY_SEPARATOR);
 }
 if (!defined('FML_VERSION')) {
+	/**
+	 * @const FML_VERSION Installed version of FancyManiaLinks
+	 */
 	define('FML_VERSION', '1.4.1');
 }
 

@@ -15,6 +15,7 @@ use FML\Types\TextFormatable;
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
 class Format implements BgColorable, Renderable, Styleable, TextFormatable {
+
 	/*
 	 * Protected properties
 	 */
@@ -28,8 +29,9 @@ class Format implements BgColorable, Renderable, Styleable, TextFormatable {
 	protected $focusAreaColor2 = null;
 
 	/**
-	 * Create a new Format Element
+	 * Create a new Format
 	 *
+	 * @api
 	 * @return static
 	 */
 	public static function create() {
@@ -120,4 +122,5 @@ class Format implements BgColorable, Renderable, Styleable, TextFormatable {
 		}
 		return $formatXmlElement;
 	}
+	
 }

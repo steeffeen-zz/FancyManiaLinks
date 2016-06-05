@@ -12,6 +12,7 @@ use FML\Controls\Quad;
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
 class Quad_UiSMSpectatorScoreBig extends Quad {
+
 	/*
 	 * Constants
 	 */
@@ -42,4 +43,5 @@ class Quad_UiSMSpectatorScoreBig extends Quad {
 	 * Protected properties
 	 */
 	protected $style = self::STYLE;
+	
 }

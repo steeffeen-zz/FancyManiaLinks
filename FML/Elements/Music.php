@@ -12,6 +12,7 @@ use FML\Types\Renderable;
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
 class Music implements Renderable {
+
 	/*
 	 * Protected properties
 	 */
@@ -19,8 +20,9 @@ class Music implements Renderable {
 	protected $data = null;
 
 	/**
-	 * Create a new Music object
+	 * Create a new Music
 	 *
+	 * @api
 	 * @param string $data (optional) Media url
 	 * @return static
 	 */
@@ -29,8 +31,9 @@ class Music implements Renderable {
 	}
 
 	/**
-	 * Construct a new Music object
+	 * Construct a new Music
 	 *
+	 * @api
 	 * @param string $data (optional) Media url
 	 */
 	public function __construct($data = null) {
@@ -40,8 +43,9 @@ class Music implements Renderable {
 	}
 
 	/**
-	 * Set data url
+	 * Set the data url
 	 *
+	 * @api
 	 * @param string $data Data url
 	 * @return static
 	 */
@@ -60,4 +64,5 @@ class Music implements Renderable {
 		}
 		return $xmlElement;
 	}
+	
 }

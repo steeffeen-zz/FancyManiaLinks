@@ -10,6 +10,7 @@ namespace FML\Script;
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
 class ScriptInclude {
+
 	/*
 	 * Constants
 	 */
@@ -25,6 +26,7 @@ class ScriptInclude {
 	/**
 	 * Construct a new Script Include
 	 *
+	 * @api
 	 * @param string $file      (optional) Include file
 	 * @param string $namespace (optional) Include namespace
 	 */
@@ -36,6 +38,7 @@ class ScriptInclude {
 	/**
 	 * Set the file
 	 *
+	 * @api
 	 * @param string $file Include file
 	 * @return static
 	 */
@@ -45,23 +48,25 @@ class ScriptInclude {
 	}
 
 	/**
+	 * Get the namespace
+	 *
+	 * @api
+	 * @return string
+	 */
+	public function getNamespace() {
+		return $this->namespace;
+	}
+
+	/**
 	 * Set the namespace
 	 *
+	 * @api
 	 * @param string $namespace Include namespace
 	 * @return static
 	 */
 	public function setNamespace($namespace) {
 		$this->namespace = (string)$namespace;
 		return $this;
-	}
-
-	/**
-	 * Get the namespace
-	 *
-	 * @return string
-	 */
-	public function getNamespace() {
-		return $this->namespace;
 	}
 
 	/**
@@ -72,4 +77,5 @@ class ScriptInclude {
 	public function __toString() {
 		return Builder::getInclude($this->file, $this->namespace);
 	}
+
 }

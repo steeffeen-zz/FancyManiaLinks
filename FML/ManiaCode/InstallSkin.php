@@ -10,6 +10,7 @@ namespace FML\ManiaCode;
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
 class InstallSkin extends Element {
+
 	/*
 	 * Protected properties
 	 */
@@ -19,8 +20,9 @@ class InstallSkin extends Element {
 	protected $url = null;
 
 	/**
-	 * Create a new InstallSkin object
+	 * Create a new InstallSkin Element
 	 *
+	 * @api
 	 * @param string $name (optional) Skin name
 	 * @param string $file (optional) Skin file
 	 * @param string $url  (optional) Skin url
@@ -31,8 +33,9 @@ class InstallSkin extends Element {
 	}
 
 	/**
-	 * Construct a new InstallSkin object
+	 * Construct a new InstallSkin Element
 	 *
+	 * @api
 	 * @param string $name (optional) Skin name
 	 * @param string $file (optional) Skin file
 	 * @param string $url  (optional) Skin url
@@ -52,6 +55,7 @@ class InstallSkin extends Element {
 	/**
 	 * Set the name of the skin
 	 *
+	 * @api
 	 * @param string $name Skin name
 	 * @return static
 	 */
@@ -63,6 +67,7 @@ class InstallSkin extends Element {
 	/**
 	 * Set the file of the skin
 	 *
+	 * @api
 	 * @param string $file Skin file
 	 * @return static
 	 */
@@ -74,6 +79,7 @@ class InstallSkin extends Element {
 	/**
 	 * Set the url of the skin
 	 *
+	 * @api
 	 * @param string $url Skin url
 	 * @return static
 	 */
@@ -95,4 +101,5 @@ class InstallSkin extends Element {
 		$xmlElement->appendChild($urlElement);
 		return $xmlElement;
 	}
+	
 }

@@ -12,10 +12,12 @@ namespace FML\Types;
 interface Styleable {
 
 	/**
-	 * Set style
+	 * Set the style
 	 *
+	 * @api
 	 * @param string $style Style name
 	 * @return static
 	 */
 	public function setStyle($style);
+	
 }

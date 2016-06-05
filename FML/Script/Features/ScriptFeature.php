@@ -39,4 +39,5 @@ abstract class ScriptFeature {
 	 * @return static
 	 */
 	public abstract function prepare(Script $script);
+
 }

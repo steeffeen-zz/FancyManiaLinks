@@ -13,6 +13,7 @@ namespace FML\Stylesheet;
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
 class Mood {
+
 	/*
 	 * Protected properties
 	 */
@@ -33,8 +34,9 @@ class Mood {
 	protected $skyGradientKeys = array();
 
 	/**
-	 * Create a new Mood object
+	 * Create a new Mood
 	 *
+	 * @api
 	 * @return static
 	 */
 	public static function create() {
@@ -42,8 +44,9 @@ class Mood {
 	}
 
 	/**
-	 * Set ambient color in which the Elements reflect the light
+	 * Set the ambient color in which the Elements reflect the light
 	 *
+	 * @api
 	 * @param float $red   Red color value
 	 * @param float $green Green color value
 	 * @param float $blue  Blue color value
@@ -55,8 +58,9 @@ class Mood {
 	}
 
 	/**
-	 * Set minimum value for the background color range
+	 * Set the minimum value for the background color range
 	 *
+	 * @api
 	 * @param float $red   Red color value
 	 * @param float $green Green color value
 	 * @param float $blue  Blue color value
@@ -68,8 +72,9 @@ class Mood {
 	}
 
 	/**
-	 * Set maximum value for the background color range
+	 * Set the maximum value for the background color range
 	 *
+	 * @api
 	 * @param float $red   Red color value
 	 * @param float $green Green color value
 	 * @param float $blue  Blue color value
@@ -81,8 +86,9 @@ class Mood {
 	}
 
 	/**
-	 * Set RGB color of light source 0
+	 * Set the RGB color of light source 0
 	 *
+	 * @api
 	 * @param float $red   Red color value
 	 * @param float $green Green color value
 	 * @param float $blue  Blue color value
@@ -94,8 +100,9 @@ class Mood {
 	}
 
 	/**
-	 * Set intensity of light source 0
+	 * Set the intensity of light source 0
 	 *
+	 * @api
 	 * @param float $intensity Light intensity
 	 * @return static
 	 */
@@ -105,8 +112,9 @@ class Mood {
 	}
 
 	/**
-	 * Set phi angle of light source 0
+	 * Set the phi angle of light source 0
 	 *
+	 * @api
 	 * @param float $phiAngle Phi angle
 	 * @return static
 	 */
@@ -116,8 +124,9 @@ class Mood {
 	}
 
 	/**
-	 * Set theta angle of light source 0
+	 * Set the theta angle of light source 0
 	 *
+	 * @api
 	 * @param float $thetaAngle Theta angle
 	 * @return static
 	 */
@@ -127,8 +136,9 @@ class Mood {
 	}
 
 	/**
-	 * Set light ball color
+	 * Set the light ball color
 	 *
+	 * @api
 	 * @param float $red   Red color value
 	 * @param float $green Green color value
 	 * @param float $blue  Blue color value
@@ -140,8 +150,9 @@ class Mood {
 	}
 
 	/**
-	 * Set light ball intensity
+	 * Set the light ball intensity
 	 *
+	 * @api
 	 * @param float $intensity Light ball intensity
 	 * @return static
 	 */
@@ -151,8 +162,9 @@ class Mood {
 	}
 
 	/**
-	 * Set light ball radius
+	 * Set the light ball radius
 	 *
+	 * @api
 	 * @param float $radius Light ball radius
 	 * @return static
 	 */
@@ -162,8 +174,9 @@ class Mood {
 	}
 
 	/**
-	 * Set fog color
+	 * Set the fog color
 	 *
+	 * @api
 	 * @param float $red   Red color value
 	 * @param float $green Green color value
 	 * @param float $blue  Blue color value
@@ -175,8 +188,9 @@ class Mood {
 	}
 
 	/**
-	 * Set self illumination color
+	 * Set the self illumination color
 	 *
+	 * @api
 	 * @param float $red   Red color value
 	 * @param float $green Green color value
 	 * @param float $blue  Blue color value
@@ -188,8 +202,9 @@ class Mood {
 	}
 
 	/**
-	 * Set sky gradient scale
+	 * Set the sky gradient scale
 	 *
+	 * @api
 	 * @param float $scale Gradient scale
 	 * @return static
 	 */
@@ -201,6 +216,7 @@ class Mood {
 	/**
 	 * Add a sky gradient key
 	 *
+	 * @api
 	 * @param float  $gradientX Scale value
 	 * @param string $color     Gradient color
 	 * @return static
@@ -216,6 +232,7 @@ class Mood {
 	/**
 	 * Remove all sky gradient keys
 	 *
+	 * @api
 	 * @return static
 	 */
 	public function removeSkyGradientKeys() {
@@ -224,9 +241,9 @@ class Mood {
 	}
 
 	/**
-	 * Render the Mood XML element
+	 * Render the Mood
 	 *
-	 * @param \DOMDocument $domDocument DOMDocument for which the Mood XML element should be rendered
+	 * @param \DOMDocument $domDocument DOMDocument for which the Mood should be rendered
 	 * @return \DOMElement
 	 */
 	public function render(\DOMDocument $domDocument) {
@@ -282,4 +299,5 @@ class Mood {
 		}
 		return $moodXml;
 	}
+
 }

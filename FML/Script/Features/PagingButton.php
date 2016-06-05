@@ -13,6 +13,7 @@ use FML\Types\Scriptable;
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
 class PagingButton {
+
 	/*
 	 * Protected properties
 	 */
@@ -23,6 +24,7 @@ class PagingButton {
 	/**
 	 * Construct a new Paging Button
 	 *
+	 * @api
 	 * @param Control $control      (optional) Browse Control
 	 * @param int     $browseAction (optional) Number of browsed Pages per Click
 	 */
@@ -36,8 +38,19 @@ class PagingButton {
 	}
 
 	/**
-	 * Set the Button Control
+	 * Get the browse Control
 	 *
+	 * @api
+	 * @return \FML\Controls\Control
+	 */
+	public function getControl() {
+		return $this->control;
+	}
+
+	/**
+	 * Set the browse Control
+	 *
+	 * @api
 	 * @param Control $control Browse Control
 	 * @return static
 	 */
@@ -51,17 +64,19 @@ class PagingButton {
 	}
 
 	/**
-	 * Get the Button Control
+	 * Get the browse action
 	 *
-	 * @return \FML\Controls\Control
+	 * @api
+	 * @return int
 	 */
-	public function getControl() {
-		return $this->control;
+	public function getBrowseAction() {
+		return $this->browseAction;
 	}
 
 	/**
 	 * Set the browse action
 	 *
+	 * @api
 	 * @param int $browseAction Number of browsed Pages per click
 	 * @return static
 	 */
@@ -69,13 +84,5 @@ class PagingButton {
 		$this->browseAction = (int)$browseAction;
 		return $this;
 	}
-
-	/**
-	 * Get the browse action
-	 *
-	 * @return int
-	 */
-	public function getBrowseAction() {
-		return $this->browseAction;
-	}
+	
 }

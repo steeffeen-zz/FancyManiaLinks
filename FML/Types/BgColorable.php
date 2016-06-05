@@ -12,10 +12,12 @@ namespace FML\Types;
 interface BgColorable {
 
 	/**
-	 * Set background color
+	 * Set the background color
 	 *
+	 * @api
 	 * @param string $bgColor Background color
 	 * @return static
 	 */
 	public function setBgColor($bgColor);
+	
 }

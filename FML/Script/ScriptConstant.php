@@ -10,6 +10,7 @@ namespace FML\Script;
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
 class ScriptConstant {
+
 	/*
 	 * Protected properties
 	 */
@@ -19,6 +20,7 @@ class ScriptConstant {
 	/**
 	 * Construct a new Script Constant
 	 *
+	 * @api
 	 * @param string $name  (optional) Constant name
 	 * @param string $value (optional) Constant value
 	 */
@@ -30,6 +32,7 @@ class ScriptConstant {
 	/**
 	 * Set the name
 	 *
+	 * @api
 	 * @param string $name Constant name
 	 * @return static
 	 */
@@ -41,6 +44,7 @@ class ScriptConstant {
 	/**
 	 * Set the value
 	 *
+	 * @api
 	 * @param string $value Constant value
 	 * @return static
 	 */
@@ -57,4 +61,5 @@ class ScriptConstant {
 	public function __toString() {
 		return Builder::getConstant($this->name, $this->value);
 	}
+	
 }

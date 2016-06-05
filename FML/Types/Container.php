@@ -14,8 +14,9 @@ use FML\Elements\Format;
 interface Container {
 
 	/**
-	 * Add a new child Element
+	 * Add a new child
 	 *
+	 * @api
 	 * @param Renderable $child Child Control to add
 	 * @return static
 	 */
@@ -24,23 +25,27 @@ interface Container {
 	/**
 	 * Remove all children
 	 *
+	 * @api
 	 * @return static
 	 */
 	public function removeChildren();
 
 	/**
-	 * Set the Format object of the Container
+	 * Set the Format
 	 *
+	 * @api
 	 * @param Format $format New Format object
 	 * @return static
 	 */
 	public function setFormat(Format $format);
 
 	/**
-	 * Get the Format object of the Container
+	 * Get the Format
 	 *
-	 * @param bool $createIfEmpty (optional) Whether the Format object should be created if it's not set
+	 * @api
+	 * @param bool $createIfEmpty (optional) If the Format object should be created if it's not set
 	 * @return \FML\Elements\Format
 	 */
 	public function getFormat($createIfEmpty = true);
+	
 }

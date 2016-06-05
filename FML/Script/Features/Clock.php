@@ -15,6 +15,7 @@ use FML\Script\ScriptLabel;
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
 class Clock extends ScriptFeature {
+
 	/*
 	 * Protected properties
 	 */
@@ -24,8 +25,9 @@ class Clock extends ScriptFeature {
 	protected $showFullDate = null;
 
 	/**
-	 * Construct a new Clock Feature
+	 * Construct a new Clock
 	 *
+	 * @api
 	 * @param Label $label        (optional) Clock Label
 	 * @param bool  $showSeconds  (optional) Whether the seconds should be shown
 	 * @param bool  $showFullDate (optional) Whether the date should be shown
@@ -41,6 +43,7 @@ class Clock extends ScriptFeature {
 	/**
 	 * Set the Label
 	 *
+	 * @api
 	 * @param Label $label Clock Label
 	 * @return static
 	 */
@@ -50,9 +53,10 @@ class Clock extends ScriptFeature {
 	}
 
 	/**
-	 * Set whether seconds should be shown
+	 * Set if seconds should be shown
 	 *
-	 * @param bool $showSeconds Whether seconds should be shown
+	 * @api
+	 * @param bool $showSeconds If seconds should be shown
 	 * @return static
 	 */
 	public function setShowSeconds($showSeconds) {
@@ -61,9 +65,10 @@ class Clock extends ScriptFeature {
 	}
 
 	/**
-	 * Set whether the full date should be shown
+	 * Set if the full date should be shown
 	 *
-	 * @param bool $showFullDate Whether the full date should be shown
+	 * @api
+	 * @param bool $showFullDate If the full date should be shown
 	 * @return static
 	 */
 	public function setShowFullDate($showFullDate) {
@@ -102,4 +107,5 @@ TimeText = TextLib::SubText(TimeText, 11, 9);";
 ClockLabel.Value = TimeText;";
 		return $scriptText;
 	}
+
 }

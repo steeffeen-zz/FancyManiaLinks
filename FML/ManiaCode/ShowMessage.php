@@ -10,6 +10,7 @@ namespace FML\ManiaCode;
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
 class ShowMessage extends Element {
+
 	/*
 	 * Protected properties
 	 */
@@ -17,8 +18,9 @@ class ShowMessage extends Element {
 	protected $message = null;
 
 	/**
-	 * Create a new ShowMessage object
+	 * Create a new ShowMessage Element
 	 *
+	 * @api
 	 * @param string $message (optional) Message text
 	 * @return static
 	 */
@@ -27,8 +29,9 @@ class ShowMessage extends Element {
 	}
 
 	/**
-	 * Construct a new ShowMessage object
+	 * Construct a new ShowMessage Element
 	 *
+	 * @api
 	 * @param string $message (optional) Message text
 	 */
 	public function __construct($message = null) {
@@ -40,6 +43,7 @@ class ShowMessage extends Element {
 	/**
 	 * Set the message text
 	 *
+	 * @api
 	 * @param string $message Message text
 	 * @return static
 	 */
@@ -57,4 +61,5 @@ class ShowMessage extends Element {
 		$xmlElement->appendChild($messageElement);
 		return $xmlElement;
 	}
+	
 }
