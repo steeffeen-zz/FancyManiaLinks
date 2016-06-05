@@ -26,8 +26,9 @@ class CustomUI {
 	protected $globalVisible = null;
 
 	/**
-	 * Create a new CustomUI object
+	 * Create a new CustomUI
 	 *
+	 * @api
 	 * @return static
 	 */
 	public static function create() {
@@ -35,8 +36,9 @@ class CustomUI {
 	}
 
 	/**
-	 * Set XML encoding
+	 * Set the XML encoding
 	 *
+	 * @api
 	 * @param string $encoding XML encoding
 	 * @return static
 	 */
@@ -48,7 +50,8 @@ class CustomUI {
 	/**
 	 * Set showing of notices
 	 *
-	 * @param bool $visible Whether notices should be shown
+	 * @api
+	 * @param bool $visible If notices should be shown
 	 * @return static
 	 */
 	public function setNoticeVisible($visible) {
@@ -59,7 +62,8 @@ class CustomUI {
 	/**
 	 * Set showing of the challenge info
 	 *
-	 * @param bool $visible Whether the challenge info should be shown
+	 * @api
+	 * @param bool $visible If the challenge info should be shown
 	 * @return static
 	 */
 	public function setChallengeInfoVisible($visible) {
@@ -70,7 +74,8 @@ class CustomUI {
 	/**
 	 * Set showing of the net infos
 	 *
-	 * @param bool $visible Whether the net infos should be shown
+	 * @api
+	 * @param bool $visible If the net infos should be shown
 	 * @return static
 	 */
 	public function setNetInfosVisible($visible) {
@@ -81,7 +86,8 @@ class CustomUI {
 	/**
 	 * Set showing of the chat
 	 *
-	 * @param bool $visible Whether the chat should be shown
+	 * @api
+	 * @param bool $visible If the chat should be shown
 	 * @return static
 	 */
 	public function setChatVisible($visible) {
@@ -92,7 +98,8 @@ class CustomUI {
 	/**
 	 * Set showing of the checkpoint list
 	 *
-	 * @param bool $visible Whether the checkpoint should be shown
+	 * @api
+	 * @param bool $visible If the checkpoint should be shown
 	 * @return static
 	 */
 	public function setCheckpointListVisible($visible) {
@@ -103,7 +110,8 @@ class CustomUI {
 	/**
 	 * Set showing of round scores
 	 *
-	 * @param bool $visible Whether the round scores should be shown
+	 * @api
+	 * @param bool $visible If the round scores should be shown
 	 * @return static
 	 */
 	public function setRoundScoresVisible($visible) {
@@ -114,7 +122,8 @@ class CustomUI {
 	/**
 	 * Set showing of the scoretable
 	 *
-	 * @param bool $visible Whether the scoretable should be shown
+	 * @api
+	 * @param bool $visible If the scoretable should be shown
 	 * @return static
 	 */
 	public function setScoretableVisible($visible) {
@@ -125,7 +134,8 @@ class CustomUI {
 	/**
 	 * Set global showing
 	 *
-	 * @param bool $visible Whether the UI should be disabled completely
+	 * @api
+	 * @param bool $visible If the UI should be disabled completely
 	 * @return static
 	 */
 	public function setGlobalVisible($visible) {
@@ -134,9 +144,9 @@ class CustomUI {
 	}
 
 	/**
-	 * Render the XML document
+	 * Render the CustomUI
 	 *
-	 * @param \DOMDocument $domDocument (optional) DOMDocument for which the XML element should be rendered
+	 * @param \DOMDocument $domDocument (optional) DOMDocument for which the CustomUI should be rendered
 	 * @return \DOMDocument
 	 */
 	public function render($domDocument = null) {
@@ -190,5 +200,5 @@ class CustomUI {
 		$settings['scoretable']      = $this->scoretableVisible;
 		return $settings;
 	}
-	
+
 }

@@ -418,11 +418,11 @@ abstract class Control implements Renderable, ScriptFeatureable {
 	 * @api
 	 * @param Control $toggledControl Toggled Control
 	 * @param string  $labelName      (optional) Script label name
-	 * @param bool    $onlyShow       (optional) Whether it should only show the Control but not toggle
-	 * @param bool    $onlyHide       (optional) Whether it should only hide the Control but not toggle
+	 * @param bool    $onlyShow       (optional) If it should only show the Control but not toggle
+	 * @param bool    $onlyHide       (optional) If it should only hide the Control but not toggle
 	 * @return static
 	 */
-	public function addToggleFeature(Control $toggledControl, $labelName = Scriptlabel::MOUSECLICK, $onlyShow = false, $onlyHide = false) {
+	public function addToggleFeature(Control $toggledControl, $labelName = ScriptLabel::MOUSECLICK, $onlyShow = false, $onlyHide = false) {
 		$toggle = new Toggle($this, $toggledControl, $labelName, $onlyShow, $onlyHide);
 		$this->addScriptFeature($toggle);
 		return $this;

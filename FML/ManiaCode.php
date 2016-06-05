@@ -27,7 +27,7 @@ use FML\ManiaCode\ViewReplay;
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
 class ManiaCode {
-	
+
 	/*
 	 * Protected properties
 	 */
@@ -38,8 +38,9 @@ class ManiaCode {
 	protected $elements = array();
 
 	/**
-	 * Create a new ManiaCode object
+	 * Create a new ManiaCode
 	 *
+	 * @api
 	 * @return static
 	 */
 	public static function create() {
@@ -47,8 +48,9 @@ class ManiaCode {
 	}
 
 	/**
-	 * Set XML encoding
+	 * Set the XML encoding
 	 *
+	 * @api
 	 * @param string $encoding XML encoding
 	 * @return static
 	 */
@@ -60,7 +62,8 @@ class ManiaCode {
 	/**
 	 * Disable the showing of the confirmation at the end of the ManiaCode
 	 *
-	 * @param bool $disable Whether the confirmation should be shown
+	 * @api
+	 * @param bool $disable If the confirmation should be disabled
 	 * @return static
 	 */
 	public function disableConfirmation($disable) {
@@ -71,6 +74,7 @@ class ManiaCode {
 	/**
 	 * Show a message
 	 *
+	 * @api
 	 * @param string $message Message text
 	 * @return static
 	 */
@@ -83,6 +87,7 @@ class ManiaCode {
 	/**
 	 * Install a Macroblock
 	 *
+	 * @api
 	 * @param string $name Macroblock name
 	 * @param string $file Macroblock file
 	 * @param string $url  Macroblock url
@@ -97,6 +102,7 @@ class ManiaCode {
 	/**
 	 * Install a map
 	 *
+	 * @api
 	 * @param string $name Map name
 	 * @param string $url  Map url
 	 * @return static
@@ -110,6 +116,7 @@ class ManiaCode {
 	/**
 	 * Play a map
 	 *
+	 * @api
 	 * @param string $name Map name
 	 * @param string $url  Map url
 	 * @return static
@@ -123,6 +130,7 @@ class ManiaCode {
 	/**
 	 * Install a replay
 	 *
+	 * @api
 	 * @param string $name Replay name
 	 * @param string $url  Replay url
 	 * @return static
@@ -136,6 +144,7 @@ class ManiaCode {
 	/**
 	 * View a replay
 	 *
+	 * @api
 	 * @param string $name Replay name
 	 * @param string $url  Replay url
 	 * @return static
@@ -149,6 +158,7 @@ class ManiaCode {
 	/**
 	 * Play a replay
 	 *
+	 * @api
 	 * @param string $name Replay name
 	 * @param string $url  Replay url
 	 * @return static
@@ -162,6 +172,7 @@ class ManiaCode {
 	/**
 	 * Install a skin
 	 *
+	 * @api
 	 * @param string $name Skin name
 	 * @param string $file Skin file
 	 * @param string $url  Skin url
@@ -176,6 +187,7 @@ class ManiaCode {
 	/**
 	 * Get a skin
 	 *
+	 * @api
 	 * @param string $name Skin name
 	 * @param string $file Skin file
 	 * @param string $url  Skin url
@@ -190,6 +202,7 @@ class ManiaCode {
 	/**
 	 * Add a buddy
 	 *
+	 * @api
 	 * @param string $login Buddy login
 	 * @return static
 	 */
@@ -202,6 +215,7 @@ class ManiaCode {
 	/**
 	 * Go to a link
 	 *
+	 * @api
 	 * @param string $link Goto link
 	 * @return static
 	 */
@@ -214,6 +228,7 @@ class ManiaCode {
 	/**
 	 * Join a server
 	 *
+	 * @api
 	 * @param string $login Server login
 	 * @return static
 	 */
@@ -226,6 +241,7 @@ class ManiaCode {
 	/**
 	 * Add a server as favorite
 	 *
+	 * @api
 	 * @param string $login Server login
 	 * @return static
 	 */
@@ -238,6 +254,7 @@ class ManiaCode {
 	/**
 	 * Install a script
 	 *
+	 * @api
 	 * @param string $name Script name
 	 * @param string $file Script file
 	 * @param string $url  Script url
@@ -252,6 +269,7 @@ class ManiaCode {
 	/**
 	 * Install a title pack
 	 *
+	 * @api
 	 * @param string $name Pack name
 	 * @param string $file Pack file
 	 * @param string $url  Pack url
@@ -266,6 +284,7 @@ class ManiaCode {
 	/**
 	 * Add a ManiaCode element
 	 *
+	 * @api
 	 * @param Element $element Element to add
 	 * @return static
 	 */
@@ -275,8 +294,9 @@ class ManiaCode {
 	}
 
 	/**
-	 * Remove all elements from the ManiaCode
+	 * Remove all ManiaCode elements
 	 *
+	 * @api
 	 * @return static
 	 */
 	public function removeElements() {
@@ -285,9 +305,9 @@ class ManiaCode {
 	}
 
 	/**
-	 * Render the XML document
+	 * Render the ManiaCode
 	 *
-	 * @param bool $echo (optional) Whether the XML text should be echoed and the Content-Type header should be set
+	 * @param bool $echo (optional) If the XML text should be echoed and the Content-Type header should be set
 	 * @return \DOMDocument
 	 */
 	public function render($echo = false) {
@@ -317,5 +337,5 @@ class ManiaCode {
 	public function __toString() {
 		return $this->render()->saveXML();
 	}
-	
+
 }

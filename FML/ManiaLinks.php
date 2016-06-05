@@ -24,6 +24,7 @@ class ManiaLinks {
 	/**
 	 * Create a new ManiaLinks object
 	 *
+	 * @api
 	 * @return static
 	 */
 	public static function create() {
@@ -31,8 +32,9 @@ class ManiaLinks {
 	}
 
 	/**
-	 * Set XML encoding
+	 * Set the XML encoding
 	 *
+	 * @api
 	 * @param string $encoding XML encoding
 	 * @return static
 	 */
@@ -44,6 +46,7 @@ class ManiaLinks {
 	/**
 	 * Add a child ManiaLink
 	 *
+	 * @api
 	 * @param ManiaLink $child Child ManiaLink
 	 * @return static
 	 */
@@ -57,6 +60,7 @@ class ManiaLinks {
 	/**
 	 * Remove all child ManiaLinks
 	 *
+	 * @api
 	 * @return static
 	 */
 	public function removeChildren() {
@@ -65,20 +69,10 @@ class ManiaLinks {
 	}
 
 	/**
-	 * Set the CustomUI
-	 *
-	 * @param CustomUI $customUI CustomUI object
-	 * @return static
-	 */
-	public function setCustomUI(CustomUI $customUI) {
-		$this->customUI = $customUI;
-		return $this;
-	}
-
-	/**
 	 * Get the CustomUI
 	 *
-	 * @param bool $createIfEmpty (optional) Whether the CustomUI object should be created if it's not set
+	 * @api
+	 * @param bool $createIfEmpty (optional) If the CustomUI object should be created if it's not set
 	 * @return \FML\CustomUI
 	 */
 	public function getCustomUI($createIfEmpty = true) {
@@ -89,9 +83,21 @@ class ManiaLinks {
 	}
 
 	/**
-	 * Render the XML document
+	 * Set the CustomUI
 	 *
-	 * @param bool (optional) $echo Whether the XML text should be echoed and the Content-Type header should be set
+	 * @api
+	 * @param CustomUI $customUI CustomUI object
+	 * @return static
+	 */
+	public function setCustomUI(CustomUI $customUI) {
+		$this->customUI = $customUI;
+		return $this;
+	}
+
+	/**
+	 * Render the ManiaLinks object
+	 *
+	 * @param bool (optional) $echo If the XML text should be echoed and the Content-Type header should be set
 	 * @return \DOMDocument
 	 */
 	public function render($echo = false) {
@@ -122,5 +128,5 @@ class ManiaLinks {
 	public function __toString() {
 		return $this->render()->saveXML();
 	}
-	
+
 }

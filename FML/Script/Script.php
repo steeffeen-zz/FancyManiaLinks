@@ -36,7 +36,7 @@ class Script {
 	 * Set a Script Include
 	 *
 	 * @api
-	 * @param string $file      Include file
+	 * @param string|ScriptInclude $file      Include file or ScriptInclude
 	 * @param string $namespace Include namespace
 	 * @return static
 	 */
@@ -54,7 +54,7 @@ class Script {
 	 * Add a Script Constant
 	 *
 	 * @api
-	 * @param string $name  Constant name
+	 * @param string|ScriptConstant $name  Constant name or ScriptConstant
 	 * @param string $value Constant value
 	 * @return static
 	 */
@@ -74,7 +74,7 @@ class Script {
 	 * Add a Script Function
 	 *
 	 * @api
-	 * @param string $name Function name
+	 * @param string|ScriptFunction $name Function name or ScriptFunction
 	 * @param string $text Function text
 	 * @return static
 	 */
@@ -94,7 +94,7 @@ class Script {
 	 * Add a custom Script text
 	 *
 	 * @api
-	 * @param string $name Label name
+	 * @param string|ScriptLabel $name Label name or ScriptLabel
 	 * @param string $text Script text
 	 * @return static
 	 */
@@ -104,15 +104,17 @@ class Script {
 		} else {
 			$scriptLabel = new ScriptLabel($name, $text);
 		}
-		array_push($this->customLabels, $scriptLabel);
+		if (!in_array($scriptLabel, $this->customLabels)) {
+			array_push($this->customLabels, $scriptLabel);
+		}
 		return $this;
 	}
 
 	/**
 	 * Append a generic Script text for the next rendering
 	 *
-	 * @api
-	 * @param string $name     Label name
+	 * @TODO: get rid of generic script labels approach
+	 * @param string|ScriptLabel $name     Label name or ScriptLabel
 	 * @param string $text     Script text
 	 * @param bool   $isolated (optional) Whether to isolate the Label Script
 	 * @return static
@@ -123,14 +125,16 @@ class Script {
 		} else {
 			$scriptLabel = new ScriptLabel($name, $text, $isolated);
 		}
-		array_push($this->genericLabels, $scriptLabel);
+		if (!in_array($scriptLabel, $this->genericLabels)) {
+			array_push($this->genericLabels, $scriptLabel);
+		}
 		return $this;
 	}
 
 	/**
 	 * Remove all generic Script texts
 	 *
-	 * @api
+	 * @TODO: get rid of generic script labels approach
 	 * @return static
 	 */
 	public function resetGenericScriptLabels() {

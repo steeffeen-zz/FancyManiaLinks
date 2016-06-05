@@ -27,8 +27,9 @@ class UniqueID {
 	protected $index = null;
 
 	/**
-	 * Create a new Unique ID object
+	 * Create a new Unique ID
 	 *
+	 * @api
 	 * @return static
 	 */
 	public static function create() {
@@ -38,6 +39,7 @@ class UniqueID {
 	/**
 	 * Get a new global unique index
 	 *
+	 * @api
 	 * @return int
 	 */
 	protected static function newIndex() {
@@ -46,7 +48,9 @@ class UniqueID {
 	}
 
 	/**
-	 * Construct a Unique ID object
+	 * Construct a Unique ID
+	 *
+	 * @api
 	 */
 	public function __construct() {
 		$this->index = static::newIndex();
@@ -55,6 +59,7 @@ class UniqueID {
 	/**
 	 * Get the Unique ID value
 	 *
+	 * @api
 	 * @return string
 	 */
 	public function getValue() {
