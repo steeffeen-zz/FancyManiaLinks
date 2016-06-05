@@ -2,9 +2,9 @@
 
 namespace FML\Script\Features;
 
+use FML\Components\CheckBoxDesign;
 use FML\Controls\Entry;
 use FML\Controls\Quad;
-use FML\Models\CheckBoxDesign;
 use FML\Script\Builder;
 use FML\Script\Script;
 use FML\Script\ScriptInclude;
@@ -227,5 +227,5 @@ if (Event.ControlId == {$quadId}) {
 	" . self::FUNCTION_UPDATE_QUAD_DESIGN . "(Quad_CheckBox);
 }";
 	}
-	
+
 }

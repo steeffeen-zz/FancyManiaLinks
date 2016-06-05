@@ -2,7 +2,7 @@
 
 namespace FML\Controls;
 
-use FML\Models\CheckBoxDesign;
+use FML\Components\CheckBoxDesign;
 use FML\Types\Actionable;
 use FML\Types\BgColorable;
 use FML\Types\Linkable;
@@ -348,5 +348,5 @@ class Quad extends Control implements Actionable, BgColorable, Linkable, Scripta
 		}
 		return $xmlElement;
 	}
-	
+
 }

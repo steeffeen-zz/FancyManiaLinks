@@ -5,7 +5,6 @@ namespace FML\Components;
 use FML\Controls\Entry;
 use FML\Controls\Frame;
 use FML\Controls\Quad;
-use FML\Models\CheckBoxDesign;
 use FML\Script\Features\CheckBoxFeature;
 use FML\Script\Features\ScriptFeature;
 use FML\Types\Renderable;
@@ -14,7 +13,7 @@ use FML\Types\ScriptFeatureable;
 /**
  * CheckBox Component
  *
- * @uses \FML\Controls\Quad
+ * @uses      \FML\Controls\Quad
  * @author    steeffeen <mail@steeffeen.com>
  * @copyright FancyManiaLinks Copyright © 2014 Steffen Schröder
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
@@ -70,8 +69,8 @@ class CheckBox implements Renderable, ScriptFeatureable {
 	 * Set the enabled design
 	 *
 	 * @api
-	 * @param string $style    Style name or image url
-	 * @param string $subStyle SubStyle name
+	 * @param string|CheckBoxDesign $style    Style name, image url or checkbox design
+	 * @param string                $subStyle SubStyle name
 	 * @return static
 	 */
 	public function setEnabledDesign($style, $subStyle = null) {
@@ -88,8 +87,8 @@ class CheckBox implements Renderable, ScriptFeatureable {
 	 * Set the disabled design
 	 *
 	 * @api
-	 * @param string $style    Style name or image url
-	 * @param string $subStyle SubStyle name
+	 * @param string|CheckBoxDesign $style    Style name, image url or checkbox design
+	 * @param string                $subStyle SubStyle name
 	 * @return static
 	 */
 	public function setDisabledDesign($style, $subStyle = null) {
