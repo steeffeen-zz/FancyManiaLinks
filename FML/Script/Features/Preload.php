@@ -1,0 +1,67 @@
+<?php
+
+namespace FML\Script\Features;
+
+use FML\Script\Builder;
+use FML\Script\Script;
+use FML\Script\ScriptLabel;
+
+/**
+ * Script Feature for Preloading
+ *
+ * @author    steeffeen <mail@steeffeen.com>
+ * @copyright FancyManiaLinks Copyright © 2014 Steffen Schröder
+ * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
+ */
+class Preload extends ScriptFeature {
+
+	/*
+	 * Protected properties
+	 */
+	protected $imageUrls = [];
+
+	/**
+	 * Construct a new Preload
+	 *
+	 * @api
+	 * @param string[] $imageUrls Image Urls to preload
+	 */
+	public function __construct(array $imageUrls = []) {
+		$this->setImageUrls($imageUrls);
+	}
+
+	/**
+	 * Set Image Urls to preload
+	 *
+	 * @param array $imageUrls Image Urls
+	 * @return $this
+	 */
+	public function setImageUrls(array $imageUrls = []) {
+		$this->imageUrls = $imageUrls;
+		return $this;
+	}
+
+	/**
+	 * @see \FML\Script\Features\ScriptFeature::prepare()
+	 */
+	public function prepare(Script $script) {
+		$script->appendGenericScriptLabel(ScriptLabel::ONINIT, $this->getScriptText());
+		return $this;
+	}
+
+	/**
+	 * Get the script text
+	 *
+	 * @return string
+	 */
+	protected function getScriptText() {
+		$scriptText = "";
+		foreach ($this->imageUrls as $imageUrl) {
+			$escapedImageUrl = Builder::escapeText($imageUrl, true);
+			$scriptText .= "
+PreloadImage({$escapedImageUrl});";
+		}
+		return $scriptText;
+	}
+
+}
