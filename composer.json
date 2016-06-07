@@ -2,7 +2,7 @@
     "name": "steeffeen/fancymanialinks",
     "description": "ManiaLink Framework for Object-Based XML Generation",
     "keywords": ["maniaplanet", "shootmania", "trackmania", "manialink", "maniacode", "maniascript", "xml"],
-    "homepage": "http://steeffeen.github.io/FancyManiaLinks/",
+    "homepage": "https://github.com/steeffeen/FancyManiaLinks",
     "license": "GPL-3.0",
     "authors": [
         {

@@ -7,7 +7,7 @@ use FML\Script\Script;
 use FML\Script\ScriptLabel;
 
 /**
- * Script Feature for Preloading
+ * Script Feature for Image Preloading
  *
  * @author    steeffeen <mail@steeffeen.com>
  * @copyright FancyManiaLinks Copyright © 2014 Steffen Schröder
@@ -24,7 +24,7 @@ class Preload extends ScriptFeature {
 	 * Construct a new Preload
 	 *
 	 * @api
-	 * @param string[] $imageUrls Image Urls to preload
+	 * @param string[] $imageUrls Image Urls
 	 */
 	public function __construct(array $imageUrls = []) {
 		$this->setImageUrls($imageUrls);
@@ -33,8 +33,8 @@ class Preload extends ScriptFeature {
 	/**
 	 * Set Image Urls to preload
 	 *
-	 * @param array $imageUrls Image Urls
-	 * @return $this
+	 * @param string[] $imageUrls Image Urls
+	 * @return Preload
 	 */
 	public function setImageUrls(array $imageUrls = []) {
 		$this->imageUrls = $imageUrls;
