@@ -9,4 +9,9 @@
 		<log type="coverage-html" target="tests/logs/coverage.html"/>
 		<log type="coverage-clover" target="tests/logs/clover.xml"/>
 	</logging>
+	<filter>
+		<whitelist processUncoveredFilesFromWhitelist="true">
+			<directory suffix=".php">tests</directory>
+		</whitelist>
+	</filter>
 </phpunit>
