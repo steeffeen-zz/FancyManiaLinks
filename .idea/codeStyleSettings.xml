@@ -17,6 +17,9 @@
         </option>
         <option name="LINE_SEPARATOR" value="&#10;" />
         <option name="RIGHT_MARGIN" value="150" />
+        <MarkdownNavigatorCodeStyleSettings>
+          <option name="RIGHT_MARGIN" value="72" />
+        </MarkdownNavigatorCodeStyleSettings>
         <PHPCodeStyleSettings>
           <option name="ALIGN_PHPDOC_PARAM_NAMES" value="true" />
           <option name="ALIGN_PHPDOC_COMMENTS" value="true" />
