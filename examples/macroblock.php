@@ -3,7 +3,7 @@
 // Include FML
 require_once __DIR__ . '/../autoload.php';
 
-// Create maniacode
+// Create ManiaCode
 $maniaCode = new FML\ManiaCode();
 
 // Show a message

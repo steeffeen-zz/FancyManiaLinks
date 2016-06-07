@@ -73,7 +73,7 @@ class ManiaLinks {
 	 *
 	 * @api
 	 * @param bool $createIfEmpty (optional) If the CustomUI object should be created if it's not set
-	 * @return \FML\CustomUI
+	 * @return CustomUI
 	 */
 	public function getCustomUI($createIfEmpty = true) {
 		if (!$this->customUI && $createIfEmpty) {

@@ -78,18 +78,21 @@ class ControlScript extends ScriptFeature {
 
 	/**
 	 * Enable Script Events on the Control if needed
+	 *
+	 * @return static
 	 */
 	protected function updateScriptEvents() {
 		if (!$this->control || !ScriptLabel::isEventLabel($this->labelName)) {
-			return;
+			return $this;
 		}
 		if ($this->control instanceof Scriptable) {
 			$this->control->setScriptEvents(true);
 		}
+		return $this;
 	}
 
 	/**
-	 * @see \FML\Script\Features\ScriptFeature::prepare()
+	 * @see ScriptFeature::prepare()
 	 */
 	public function prepare(Script $script) {
 		$isolated = !ScriptLabel::isEventLabel($this->labelName);

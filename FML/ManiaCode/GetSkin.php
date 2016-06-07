@@ -89,17 +89,17 @@ class GetSkin extends Element {
 	}
 
 	/**
-	 * @see \FML\ManiaCode\Element::render()
+	 * @see Element::render()
 	 */
 	public function render(\DOMDocument $domDocument) {
-		$xmlElement  = parent::render($domDocument);
+		$domElement  = parent::render($domDocument);
 		$nameElement = $domDocument->createElement('name', $this->name);
-		$xmlElement->appendChild($nameElement);
+		$domElement->appendChild($nameElement);
 		$fileElement = $domDocument->createElement('file', $this->file);
-		$xmlElement->appendChild($fileElement);
+		$domElement->appendChild($fileElement);
 		$urlElement = $domDocument->createElement('url', $this->url);
-		$xmlElement->appendChild($urlElement);
-		return $xmlElement;
+		$domElement->appendChild($urlElement);
+		return $domElement;
 	}
 	
 }

@@ -155,21 +155,21 @@ class CustomUI {
 			$domDocument                = new \DOMDocument('1.0', $this->encoding);
 			$domDocument->xmlStandalone = true;
 		}
-		$xmlElement = $domDocument->createElement($this->tagName);
+		$domElement = $domDocument->createElement($this->tagName);
 		if (!$isChild) {
-			$domDocument->appendChild($xmlElement);
+			$domDocument->appendChild($domElement);
 		}
 		$settings = $this->getSettings();
 		foreach ($settings as $setting => $value) {
 			if ($value === null) {
 				continue;
 			}
-			$xmlSubElement = $domDocument->createElement($setting);
-			$xmlSubElement->setAttribute('visible', ($value ? 1 : 0));
-			$xmlElement->appendChild($xmlSubElement);
+			$domSubElement = $domDocument->createElement($setting);
+			$domSubElement->setAttribute('visible', ($value ? 1 : 0));
+			$domElement->appendChild($domSubElement);
 		}
 		if ($isChild) {
-			return $xmlElement;
+			return $domElement;
 		}
 		return $domDocument;
 	}

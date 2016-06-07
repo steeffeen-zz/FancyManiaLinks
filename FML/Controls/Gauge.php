@@ -36,7 +36,7 @@ class Gauge extends Control implements Styleable {
 	protected $style = null;
 
 	/**
-	 * @see \FML\Controls\Control::getManiaScriptClass()
+	 * @see Control::getManiaScriptClass()
 	 */
 	public function getManiaScriptClass() {
 		return 'CMlGauge';
@@ -127,7 +127,7 @@ class Gauge extends Control implements Styleable {
 	}
 
 	/**
-	 * @see \FML\Types\Styleable::setStyle()
+	 * @see Styleable::setStyle()
 	 */
 	public function setStyle($style) {
 		$this->style = (string)$style;
@@ -135,35 +135,35 @@ class Gauge extends Control implements Styleable {
 	}
 
 	/**
-	 * @see \FML\Control::render()
+	 * @see Control::render()
 	 */
 	public function render(\DOMDocument $domDocument) {
-		$xmlElement = parent::render($domDocument);
+		$domElement = parent::render($domDocument);
 		if ($this->ratio) {
-			$xmlElement->setAttribute('ratio', $this->ratio);
+			$domElement->setAttribute('ratio', $this->ratio);
 		}
 		if ($this->grading != 1.) {
-			$xmlElement->setAttribute('grading', $this->grading);
+			$domElement->setAttribute('grading', $this->grading);
 		}
 		if ($this->color) {
-			$xmlElement->setAttribute('color', $this->color);
+			$domElement->setAttribute('color', $this->color);
 		}
 		if ($this->centered) {
-			$xmlElement->setAttribute('centered', $this->centered);
+			$domElement->setAttribute('centered', $this->centered);
 		}
 		if ($this->clan) {
-			$xmlElement->setAttribute('clan', $this->clan);
+			$domElement->setAttribute('clan', $this->clan);
 		}
 		if (!$this->drawBg) {
-			$xmlElement->setAttribute('drawbg', $this->drawBg);
+			$domElement->setAttribute('drawbg', $this->drawBg);
 		}
 		if (!$this->drawBlockBg) {
-			$xmlElement->setAttribute('drawblockbg', $this->drawBlockBg);
+			$domElement->setAttribute('drawblockbg', $this->drawBlockBg);
 		}
 		if ($this->style) {
-			$xmlElement->setAttribute('style', $this->style);
+			$domElement->setAttribute('style', $this->style);
 		}
-		return $xmlElement;
+		return $domElement;
 	}
 	
 }

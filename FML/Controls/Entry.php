@@ -35,7 +35,7 @@ class Entry extends Control implements NewLineable, Scriptable, Styleable, TextF
 	protected $autoComplete = null;
 
 	/**
-	 * @see \FML\Controls\Control::getManiaScriptClass()
+	 * @see Control::getManiaScriptClass()
 	 */
 	public function getManiaScriptClass() {
 		return 'CMlEntry';
@@ -86,7 +86,7 @@ class Entry extends Control implements NewLineable, Scriptable, Styleable, TextF
 	}
 
 	/**
-	 * @see \FML\Types\NewLineable::setAutoNewLine()
+	 * @see NewLineable::setAutoNewLine()
 	 */
 	public function setAutoNewLine($autoNewLine) {
 		$this->autoNewLine = ($autoNewLine ? 1 : 0);
@@ -94,7 +94,7 @@ class Entry extends Control implements NewLineable, Scriptable, Styleable, TextF
 	}
 
 	/**
-	 * @see \FML\Types\Scriptable::setScriptEvents()
+	 * @see Scriptable::setScriptEvents()
 	 */
 	public function setScriptEvents($scriptEvents) {
 		$this->scriptEvents = ($scriptEvents ? 1 : 0);
@@ -102,7 +102,7 @@ class Entry extends Control implements NewLineable, Scriptable, Styleable, TextF
 	}
 
 	/**
-	 * @see \FML\Types\Styleable::setStyle()
+	 * @see Styleable::setStyle()
 	 */
 	public function setStyle($style) {
 		$this->style = (string)$style;
@@ -110,7 +110,7 @@ class Entry extends Control implements NewLineable, Scriptable, Styleable, TextF
 	}
 
 	/**
-	 * @see \FML\Types\TextFormatable::setTextColor()
+	 * @see TextFormatable::setTextColor()
 	 */
 	public function setTextColor($textColor) {
 		$this->textColor = (string)$textColor;
@@ -118,7 +118,7 @@ class Entry extends Control implements NewLineable, Scriptable, Styleable, TextF
 	}
 
 	/**
-	 * @see \FML\Types\TextFormatable::setTextSize()
+	 * @see TextFormatable::setTextSize()
 	 */
 	public function setTextSize($textSize) {
 		$this->textSize = (int)$textSize;
@@ -126,7 +126,7 @@ class Entry extends Control implements NewLineable, Scriptable, Styleable, TextF
 	}
 
 	/**
-	 * @see \FML\Types\TextFormatable::setTextFont()
+	 * @see TextFormatable::setTextFont()
 	 */
 	public function setTextFont($textFont) {
 		$this->textFont = (string)$textFont;
@@ -134,7 +134,7 @@ class Entry extends Control implements NewLineable, Scriptable, Styleable, TextF
 	}
 
 	/**
-	 * @see \FML\Types\TextFormatable::setAreaColor()
+	 * @see TextFormatable::setAreaColor()
 	 */
 	public function setAreaColor($areaColor) {
 		$this->focusAreaColor1 = (string)$areaColor;
@@ -142,7 +142,7 @@ class Entry extends Control implements NewLineable, Scriptable, Styleable, TextF
 	}
 
 	/**
-	 * @see \FML\Types\TextFormatable::setAreaFocusColor()
+	 * @see TextFormatable::setAreaFocusColor()
 	 */
 	public function setAreaFocusColor($areaFocusColor) {
 		$this->focusAreaColor2 = (string)$areaFocusColor;
@@ -175,15 +175,15 @@ class Entry extends Control implements NewLineable, Scriptable, Styleable, TextF
 	}
 
 	/**
-	 * @see \FML\Types\Renderable::render()
+	 * @see Renderable::render()
 	 */
 	public function render(\DOMDocument $domDocument) {
-		$xmlElement = parent::render($domDocument);
+		$domElement = parent::render($domDocument);
 		if ($this->name) {
-			$xmlElement->setAttribute('name', $this->name);
+			$domElement->setAttribute('name', $this->name);
 		}
 		if ($this->default !== null) {
-			$xmlElement->setAttribute('default', $this->default);
+			$domElement->setAttribute('default', $this->default);
 		} else if ($this->autoComplete) {
 			$value = null;
 			if (array_key_exists($this->name, $_GET)) {
@@ -192,34 +192,34 @@ class Entry extends Control implements NewLineable, Scriptable, Styleable, TextF
 				$value = $_POST[$this->name];
 			}
 			if ($value) {
-				$xmlElement->setAttribute('default', $value);
+				$domElement->setAttribute('default', $value);
 			}
 		}
 		if ($this->autoNewLine) {
-			$xmlElement->setAttribute('autonewline', $this->autoNewLine);
+			$domElement->setAttribute('autonewline', $this->autoNewLine);
 		}
 		if ($this->scriptEvents) {
-			$xmlElement->setAttribute('scriptevents', $this->scriptEvents);
+			$domElement->setAttribute('scriptevents', $this->scriptEvents);
 		}
 		if ($this->style) {
-			$xmlElement->setAttribute('style', $this->style);
+			$domElement->setAttribute('style', $this->style);
 		}
 		if ($this->textColor) {
-			$xmlElement->setAttribute('textcolor', $this->textColor);
+			$domElement->setAttribute('textcolor', $this->textColor);
 		}
 		if ($this->textSize >= 0.) {
-			$xmlElement->setAttribute('textsize', $this->textSize);
+			$domElement->setAttribute('textsize', $this->textSize);
 		}
 		if ($this->textFont) {
-			$xmlElement->setAttribute('textfont', $this->textFont);
+			$domElement->setAttribute('textfont', $this->textFont);
 		}
 		if ($this->focusAreaColor1) {
-			$xmlElement->setAttribute('focusareacolor1', $this->focusAreaColor1);
+			$domElement->setAttribute('focusareacolor1', $this->focusAreaColor1);
 		}
 		if ($this->focusAreaColor2) {
-			$xmlElement->setAttribute('focusareacolor2', $this->focusAreaColor2);
+			$domElement->setAttribute('focusareacolor2', $this->focusAreaColor2);
 		}
-		return $xmlElement;
+		return $domElement;
 	}
 	
 }

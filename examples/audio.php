@@ -3,7 +3,7 @@
 // Include FML
 require_once __DIR__ . '/../autoload.php';
 
-// Create manialink
+// Create ManiaLink
 $maniaLink = new \FML\ManiaLink();
 
 // Create audio element to play a sound

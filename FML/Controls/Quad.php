@@ -53,7 +53,7 @@ class Quad extends Control implements Actionable, BgColorable, Linkable, Scripta
 	protected $opacity = null;
 
 	/**
-	 * @see \FML\Controls\Control::getManiaScriptClass()
+	 * @see Control::getManiaScriptClass()
 	 */
 	public function getManiaScriptClass() {
 		return 'CMlQuad';
@@ -156,14 +156,14 @@ class Quad extends Control implements Actionable, BgColorable, Linkable, Scripta
 	}
 
 	/**
-	 * @see \FML\Types\Actionable::getAction()
+	 * @see Actionable::getAction()
 	 */
 	public function getAction() {
 		return $this->action;
 	}
 
 	/**
-	 * @see \FML\Types\Actionable::setAction()
+	 * @see Actionable::setAction()
 	 */
 	public function setAction($action) {
 		$this->action = (string)$action;
@@ -171,7 +171,7 @@ class Quad extends Control implements Actionable, BgColorable, Linkable, Scripta
 	}
 
 	/**
-	 * @see \FML\Types\Actionable::setActionKey()
+	 * @see Actionable::setActionKey()
 	 */
 	public function setActionKey($actionKey) {
 		$this->actionKey = (int)$actionKey;
@@ -179,7 +179,7 @@ class Quad extends Control implements Actionable, BgColorable, Linkable, Scripta
 	}
 
 	/**
-	 * @see \FML\Types\BgColorable::setBgColor()
+	 * @see BgColorable::setBgColor()
 	 */
 	public function setBgColor($bgColor) {
 		$this->bgColor = (string)$bgColor;
@@ -187,7 +187,7 @@ class Quad extends Control implements Actionable, BgColorable, Linkable, Scripta
 	}
 
 	/**
-	 * @see \FML\Types\Linkable::setUrl()
+	 * @see Linkable::setUrl()
 	 */
 	public function setUrl($url) {
 		$this->url = (string)$url;
@@ -195,7 +195,7 @@ class Quad extends Control implements Actionable, BgColorable, Linkable, Scripta
 	}
 
 	/**
-	 * @see \FML\Types\Linkable::setUrlId()
+	 * @see Linkable::setUrlId()
 	 */
 	public function setUrlId($urlId) {
 		$this->urlId = (string)$urlId;
@@ -203,7 +203,7 @@ class Quad extends Control implements Actionable, BgColorable, Linkable, Scripta
 	}
 
 	/**
-	 * @see \FML\Types\Linkable::setManialink()
+	 * @see Linkable::setManialink()
 	 */
 	public function setManialink($manialink) {
 		$this->manialink = (string)$manialink;
@@ -211,7 +211,7 @@ class Quad extends Control implements Actionable, BgColorable, Linkable, Scripta
 	}
 
 	/**
-	 * @see \FML\Types\Linkable::setManialinkId()
+	 * @see Linkable::setManialinkId()
 	 */
 	public function setManialinkId($manialinkId) {
 		$this->manialinkId = (string)$manialinkId;
@@ -219,7 +219,7 @@ class Quad extends Control implements Actionable, BgColorable, Linkable, Scripta
 	}
 
 	/**
-	 * @see \FML\Types\Scriptable::setScriptEvents()
+	 * @see Scriptable::setScriptEvents()
 	 */
 	public function setScriptEvents($scriptEvents) {
 		$this->scriptEvents = ($scriptEvents ? 1 : 0);
@@ -227,7 +227,7 @@ class Quad extends Control implements Actionable, BgColorable, Linkable, Scripta
 	}
 
 	/**
-	 * @see \FML\Types\SubStyleable::setStyles()
+	 * @see SubStyleable::setStyles()
 	 */
 	public function setStyles($style, $subStyle) {
 		$this->setStyle($style);
@@ -236,7 +236,7 @@ class Quad extends Control implements Actionable, BgColorable, Linkable, Scripta
 	}
 
 	/**
-	 * @see \FML\Types\Styleable::setStyle()
+	 * @see Styleable::setStyle()
 	 */
 	public function setStyle($style) {
 		$this->style = (string)$style;
@@ -244,7 +244,7 @@ class Quad extends Control implements Actionable, BgColorable, Linkable, Scripta
 	}
 
 	/**
-	 * @see \FML\Types\SubStyleable::setSubStyle()
+	 * @see SubStyleable::setSubStyle()
 	 */
 	public function setSubStyle($subStyle) {
 		$this->subStyle = (string)$subStyle;
@@ -288,65 +288,65 @@ class Quad extends Control implements Actionable, BgColorable, Linkable, Scripta
 	}
 
 	/**
-	 * @see \FML\Types\Renderable::render()
+	 * @see Renderable::render()
 	 */
 	public function render(\DOMDocument $domDocument) {
-		$xmlElement = parent::render($domDocument);
+		$domElement = parent::render($domDocument);
 		if ($this->image) {
-			$xmlElement->setAttribute('image', $this->image);
+			$domElement->setAttribute('image', $this->image);
 		}
 		if ($this->imageId) {
-			$xmlElement->setAttribute('imageid', $this->imageId);
+			$domElement->setAttribute('imageid', $this->imageId);
 		}
 		if ($this->imageFocus) {
-			$xmlElement->setAttribute('imagefocus', $this->imageFocus);
+			$domElement->setAttribute('imagefocus', $this->imageFocus);
 		}
 		if ($this->imageFocusId) {
-			$xmlElement->setAttribute('imagefocusid', $this->imageFocusId);
+			$domElement->setAttribute('imagefocusid', $this->imageFocusId);
 		}
 		if ($this->colorize) {
-			$xmlElement->setAttribute('colorize', $this->colorize);
+			$domElement->setAttribute('colorize', $this->colorize);
 		}
 		if ($this->modulizeColor) {
-			$xmlElement->setAttribute('modulizecolor', $this->modulizeColor);
+			$domElement->setAttribute('modulizecolor', $this->modulizeColor);
 		}
 		if (!$this->autoScale) {
-			$xmlElement->setAttribute('autoscale', $this->autoScale);
+			$domElement->setAttribute('autoscale', $this->autoScale);
 		}
 		if ($this->keepRatio) {
-			$xmlElement->setAttribute('keepratio', $this->keepRatio);
+			$domElement->setAttribute('keepratio', $this->keepRatio);
 		}
 		if (strlen($this->action) > 0) {
-			$xmlElement->setAttribute('action', $this->action);
+			$domElement->setAttribute('action', $this->action);
 		}
 		if ($this->actionKey >= 0) {
-			$xmlElement->setAttribute('actionkey', $this->actionKey);
+			$domElement->setAttribute('actionkey', $this->actionKey);
 		}
 		if ($this->bgColor) {
-			$xmlElement->setAttribute('bgcolor', $this->bgColor);
+			$domElement->setAttribute('bgcolor', $this->bgColor);
 		}
 		if ($this->url) {
-			$xmlElement->setAttribute('url', $this->url);
+			$domElement->setAttribute('url', $this->url);
 		}
 		if ($this->manialink) {
-			$xmlElement->setAttribute('manialink', $this->manialink);
+			$domElement->setAttribute('manialink', $this->manialink);
 		}
 		if ($this->scriptEvents) {
-			$xmlElement->setAttribute('scriptevents', $this->scriptEvents);
+			$domElement->setAttribute('scriptevents', $this->scriptEvents);
 		}
 		if ($this->style) {
-			$xmlElement->setAttribute('style', $this->style);
+			$domElement->setAttribute('style', $this->style);
 		}
 		if ($this->subStyle) {
-			$xmlElement->setAttribute('substyle', $this->subStyle);
+			$domElement->setAttribute('substyle', $this->subStyle);
 		}
 		if ($this->styleSelected) {
-			$xmlElement->setAttribute('styleselected', $this->styleSelected);
+			$domElement->setAttribute('styleselected', $this->styleSelected);
 		}
 		if ($this->opacity !== 1.) {
-			$xmlElement->setAttribute('opacity', $this->opacity);
+			$domElement->setAttribute('opacity', $this->opacity);
 		}
-		return $xmlElement;
+		return $domElement;
 	}
 
 }

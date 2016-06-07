@@ -73,7 +73,7 @@ class CheckBoxDesign implements Styleable, SubStyleable {
 	}
 
 	/**
-	 * @see \FML\Types\Styleable::setStyle()
+	 * @see Styleable::setStyle()
 	 */
 	public function setStyle($style) {
 		$this->style = (string)$style;
@@ -82,7 +82,7 @@ class CheckBoxDesign implements Styleable, SubStyleable {
 	}
 
 	/**
-	 * @see \FML\Types\SubStyleable::setSubStyle()
+	 * @see SubStyleable::setSubStyle()
 	 */
 	public function setSubStyle($subStyle) {
 		$this->subStyle = (string)$subStyle;
@@ -91,7 +91,7 @@ class CheckBoxDesign implements Styleable, SubStyleable {
 	}
 
 	/**
-	 * @see \FML\Types\SubStyleable::setStyles()
+	 * @see SubStyleable::setStyles()
 	 */
 	public function setStyles($style, $subStyle) {
 		$this->setStyle($style);

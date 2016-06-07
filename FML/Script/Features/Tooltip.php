@@ -118,7 +118,7 @@ class Tooltip extends ScriptFeature {
 	}
 
 	/**
-	 * @see \FML\Script\Features\ScriptFeature::prepare()
+	 * @see ScriptFeature::prepare()
 	 */
 	public function prepare(Script $script) {
 		$hoverControlId   = $this->hoverControl->getId(true, true);

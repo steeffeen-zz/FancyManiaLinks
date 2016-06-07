@@ -53,13 +53,13 @@ class ShowMessage extends Element {
 	}
 
 	/**
-	 * @see \FML\ManiaCode\Element::render()
+	 * @see Element::render()
 	 */
 	public function render(\DOMDocument $domDocument) {
-		$xmlElement     = parent::render($domDocument);
+		$domElement     = parent::render($domDocument);
 		$messageElement = $domDocument->createElement('message', $this->message);
-		$xmlElement->appendChild($messageElement);
-		return $xmlElement;
+		$domElement->appendChild($messageElement);
+		return $domElement;
 	}
-	
+
 }

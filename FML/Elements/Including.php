@@ -55,14 +55,14 @@ class Including implements Renderable {
 	}
 
 	/**
-	 * @see \FML\Types\Renderable::render()
+	 * @see Renderable::render()
 	 */
 	public function render(\DOMDocument $domDocument) {
-		$xmlElement = $domDocument->createElement($this->tagName);
+		$domElement = $domDocument->createElement($this->tagName);
 		if ($this->url) {
-			$xmlElement->setAttribute('url', $this->url);
+			$domElement->setAttribute('url', $this->url);
 		}
-		return $xmlElement;
+		return $domElement;
 	}
 	
 }

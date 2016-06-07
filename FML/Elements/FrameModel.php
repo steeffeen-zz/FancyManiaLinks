@@ -60,7 +60,7 @@ class FrameModel implements Container, Renderable {
 	}
 
 	/**
-	 * @see \FML\Types\Container::add()
+	 * @see Container::add()
 	 */
 	public function add(Renderable $childElement) {
 		if (!in_array($childElement, $this->children, true)) {
@@ -70,7 +70,7 @@ class FrameModel implements Container, Renderable {
 	}
 
 	/**
-	 * @see \FML\Types\Container::removeChildren()
+	 * @see Container::removeChildren()
 	 */
 	public function removeChildren() {
 		$this->children = array();
@@ -78,7 +78,7 @@ class FrameModel implements Container, Renderable {
 	}
 
 	/**
-	 * @see \FML\Types\Container::setFormat()
+	 * @see Container::setFormat()
 	 */
 	public function setFormat(Format $format) {
 		$this->format = $format;
@@ -86,7 +86,7 @@ class FrameModel implements Container, Renderable {
 	}
 
 	/**
-	 * @see \FML\Types\Container::getFormat()
+	 * @see Container::getFormat()
 	 */
 	public function getFormat($createIfEmpty = true) {
 		if (!$this->format && $createIfEmpty) {
@@ -96,21 +96,21 @@ class FrameModel implements Container, Renderable {
 	}
 
 	/**
-	 * @see \FML\Types\Renderable::render()
+	 * @see Renderable::render()
 	 */
 	public function render(\DOMDocument $domDocument) {
-		$xmlElement = $domDocument->createElement($this->tagName);
 		$this->checkId();
-		$xmlElement->setAttribute('id', $this->getId());
+		$domElement = $domDocument->createElement($this->tagName);
+		$domElement->setAttribute('id', $this->getId());
 		if ($this->format) {
 			$formatXml = $this->format->render($domDocument);
-			$xmlElement->appendChild($formatXml);
+			$domElement->appendChild($formatXml);
 		}
 		foreach ($this->children as $child) {
 			$childElement = $child->render($domDocument);
-			$xmlElement->appendChild($childElement);
+			$domElement->appendChild($childElement);
 		}
-		return $xmlElement;
+		return $domElement;
 	}
 	
 }

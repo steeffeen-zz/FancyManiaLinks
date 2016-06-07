@@ -95,7 +95,7 @@ class Menu extends ScriptFeature {
 	}
 
 	/**
-	 * @see \FML\Script\Features\ScriptFeature::prepare()
+	 * @see ScriptFeature::prepare()
 	 */
 	public function prepare(Script $script) {
 		$updateFunctionName = self::FUNCTION_UPDATE_MENU;

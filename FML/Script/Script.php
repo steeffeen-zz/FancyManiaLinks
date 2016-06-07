@@ -159,7 +159,6 @@ class Script {
 	/**
 	 * Load the given Script Feature
 	 *
-	 * @api
 	 * @param ScriptFeature $scriptFeature Script Feature to load
 	 * @return static
 	 */
@@ -171,7 +170,6 @@ class Script {
 	/**
 	 * Load the given Script Features
 	 *
-	 * @api
 	 * @param ScriptFeature[] $scriptFeatures Script Features to load
 	 * @return static
 	 */

@@ -71,15 +71,15 @@ class InstallMap extends Element {
 	}
 
 	/**
-	 * @see \FML\ManiaCode\Element::render()
+	 * @see Element::render()
 	 */
 	public function render(\DOMDocument $domDocument) {
-		$xmlElement  = parent::render($domDocument);
+		$domElement  = parent::render($domDocument);
 		$nameElement = $domDocument->createElement('name', $this->name);
-		$xmlElement->appendChild($nameElement);
+		$domElement->appendChild($nameElement);
 		$urlElement = $domDocument->createElement('url', $this->url);
-		$xmlElement->appendChild($urlElement);
-		return $xmlElement;
+		$domElement->appendChild($urlElement);
+		return $domElement;
 	}
 	
 }

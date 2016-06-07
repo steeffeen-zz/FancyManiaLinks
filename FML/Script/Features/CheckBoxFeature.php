@@ -66,7 +66,7 @@ class CheckBoxFeature extends ScriptFeature {
 	 * Get the Quad
 	 *
 	 * @api
-	 * @return \FML\Controls\Quad
+	 * @return Quad
 	 */
 	public function getQuad() {
 		return $this->quad;
@@ -88,7 +88,7 @@ class CheckBoxFeature extends ScriptFeature {
 	 * Get the Entry
 	 *
 	 * @api
-	 * @return \FML\Controls\Entry
+	 * @return Entry
 	 */
 	public function getEntry() {
 		return $this->entry;
@@ -143,7 +143,7 @@ class CheckBoxFeature extends ScriptFeature {
 	}
 
 	/**
-	 * @see \FML\Script\Features\ScriptFeature::prepare()
+	 * @see ScriptFeature::prepare()
 	 */
 	public function prepare(Script $script) {
 		if ($this->getQuad()) {

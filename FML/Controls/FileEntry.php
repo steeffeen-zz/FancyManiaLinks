@@ -19,7 +19,7 @@ class FileEntry extends Entry {
 	protected $folder = null;
 
 	/**
-	 * @see \FML\Controls\Control::getManiaScriptClass()
+	 * @see Control::getManiaScriptClass()
 	 */
 	public function getManiaScriptClass() {
 		return 'CMlFileEntry';
@@ -38,14 +38,14 @@ class FileEntry extends Entry {
 	}
 
 	/**
-	 * @see \FML\Types\Renderable::render()
+	 * @see Renderable::render()
 	 */
 	public function render(\DOMDocument $domDocument) {
-		$xmlElement = parent::render($domDocument);
+		$domElement = parent::render($domDocument);
 		if ($this->folder) {
-			$xmlElement->setAttribute('folder', $this->folder);
+			$domElement->setAttribute('folder', $this->folder);
 		}
-		return $xmlElement;
+		return $domElement;
 	}
 	
 }

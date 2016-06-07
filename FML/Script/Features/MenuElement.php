@@ -40,7 +40,7 @@ class MenuElement {
 	 * Get the Item Control
 	 *
 	 * @api
-	 * @return \FML\Controls\Control
+	 * @return Control
 	 */
 	public function getItem() {
 		return $this->item;
@@ -66,7 +66,7 @@ class MenuElement {
 	 * Get the Menu Control
 	 *
 	 * @api
-	 * @return \FML\Controls\Control
+	 * @return Control
 	 */
 	public function getControl() {
 		return $this->control;

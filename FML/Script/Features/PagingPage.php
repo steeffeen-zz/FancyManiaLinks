@@ -38,7 +38,7 @@ class PagingPage {
 	 * Get the Page Control
 	 *
 	 * @api
-	 * @return \FML\Controls\Control
+	 * @return Control
 	 */
 	public function getControl() {
 		return $this->control;

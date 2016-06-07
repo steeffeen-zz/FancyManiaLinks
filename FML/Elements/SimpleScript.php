@@ -55,15 +55,15 @@ class SimpleScript implements Renderable {
 	}
 
 	/**
-	 * @see \FML\Types\Renderable::render()
+	 * @see Renderable::render()
 	 */
 	public function render(\DOMDocument $domDocument) {
-		$xmlElement = $domDocument->createElement($this->tagName);
+		$domElement = $domDocument->createElement($this->tagName);
 		if ($this->text) {
 			$scriptComment = $domDocument->createComment($this->text);
-			$xmlElement->appendChild($scriptComment);
+			$domElement->appendChild($scriptComment);
 		}
-		return $xmlElement;
+		return $domElement;
 	}
 	
 }

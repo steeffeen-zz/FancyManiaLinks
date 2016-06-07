@@ -257,7 +257,7 @@ class Dico {
 	 * @return \DOMElement
 	 */
 	public function render(\DOMDocument $domDocument) {
-		$xmlElement = $domDocument->createElement($this->tagName);
+		$domElement = $domDocument->createElement($this->tagName);
 		foreach ($this->entries as $language => $entries) {
 			$languageElement = $domDocument->createElement('language');
 			$languageElement->setAttribute('id', $language);
@@ -265,9 +265,9 @@ class Dico {
 				$entryElement = $domDocument->createElement($entryId, $entryValue);
 				$languageElement->appendChild($entryElement);
 			}
-			$xmlElement->appendChild($languageElement);
+			$domElement->appendChild($languageElement);
 		}
-		return $xmlElement;
+		return $domElement;
 	}
 
 }

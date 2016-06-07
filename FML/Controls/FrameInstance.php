@@ -49,6 +49,13 @@ class FrameInstance extends Control {
 	}
 
 	/**
+	 * @see Control::getManiaScriptClass()
+	 */
+	public function getManiaScriptClass() {
+		return 'CMlFrame';
+	}
+
+	/**
 	 * Set the Frame Model id
 	 *
 	 * @api
@@ -75,24 +82,17 @@ class FrameInstance extends Control {
 	}
 
 	/**
-	 * @see \FML\Controls\Control::getManiaScriptClass()
-	 */
-	public function getManiaScriptClass() {
-		return 'CMlFrame';
-	}
-
-	/**
-	 * @see \FML\Renderable::render()
+	 * @see Renderable::render()
 	 */
 	public function render(\DOMDocument $domDocument) {
-		$xmlElement = parent::render($domDocument);
+		$domElement = parent::render($domDocument);
 		if ($this->model) {
 			$this->model->checkId();
-			$xmlElement->setAttribute('modelid', $this->model->getId());
+			$domElement->setAttribute('modelid', $this->model->getId());
 		} else if ($this->modelId) {
-			$xmlElement->setAttribute('modelid', $this->modelId);
+			$domElement->setAttribute('modelid', $this->modelId);
 		}
-		return $xmlElement;
+		return $domElement;
 	}
-	
+
 }

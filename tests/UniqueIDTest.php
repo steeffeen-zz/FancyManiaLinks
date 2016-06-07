@@ -2,7 +2,7 @@
 
 require_once __DIR__ . '/../autoload.php';
 
-class UniqueIDTest extends PHPUnit_Framework_TestCase {
+class UniqueIDTest extends \PHPUnit_Framework_TestCase {
 
 	public function testUniqueIDs() {
 		$firstUniqueID  = new \FML\UniqueID();

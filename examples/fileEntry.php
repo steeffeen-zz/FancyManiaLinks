@@ -3,10 +3,10 @@
 // Include FML
 require_once __DIR__ . '/../autoload.php';
 
-// Create manialink
+// Create ManiaLink
 $maniaLink = new \FML\ManiaLink();
 
-// Create file entry element to allow uploading a screenshot file
+// Create file entry element to allow uploading a ScreenShot file
 $fileEntry = new \FML\Controls\FileEntry();
 $maniaLink->add($fileEntry);
 $fileEntry->setSize(50, 7);

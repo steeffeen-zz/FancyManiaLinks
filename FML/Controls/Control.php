@@ -485,47 +485,49 @@ abstract class Control implements Renderable, ScriptFeatureable {
 	}
 
 	/**
-	 * @see \FML\Types\ScriptFeatureable::getScriptFeatures()
+	 * @see ScriptFeatureable::getScriptFeatures()
 	 */
 	public function getScriptFeatures() {
 		return $this->scriptFeatures;
 	}
 
 	/**
-	 * @see \FML\Types\Renderable::render()
+	 * @see Renderable::render()
 	 */
 	public function render(\DOMDocument $domDocument) {
-		$xmlElement = $domDocument->createElement($this->tagName);
+		$domElement = $domDocument->createElement($this->tagName);
 		if ($this->controlId) {
-			$xmlElement->setAttribute('id', $this->controlId);
+			$domElement->setAttribute('id', $this->controlId);
 		}
 		if ($this->posX || $this->posY || $this->posZ) {
-			$xmlElement->setAttribute('posn', "{$this->posX} {$this->posY} {$this->posZ}");
+			$domElement->setAttribute('posn', "{$this->posX} {$this->posY} {$this->posZ}");
 		}
 		if ($this->width >= 0. || $this->height >= 0.) {
-			$xmlElement->setAttribute('sizen', "{$this->width} {$this->height}");
+			$domElement->setAttribute('sizen', "{$this->width} {$this->height}");
 		}
 		if ($this->hAlign !== self::LEFT) {
-			$xmlElement->setAttribute('halign', $this->hAlign);
+			$domElement->setAttribute('halign', $this->hAlign);
 		}
 		if ($this->vAlign !== self::TOP) {
-			$xmlElement->setAttribute('valign', $this->vAlign);
+			$domElement->setAttribute('valign', $this->vAlign);
 		}
 		if ($this->scale != 1.) {
-			$xmlElement->setAttribute('scale', $this->scale);
+			$domElement->setAttribute('scale', $this->scale);
 		}
 		if ($this->hidden) {
-			$xmlElement->setAttribute('hidden', $this->hidden);
+			$domElement->setAttribute('hidden', $this->hidden);
 		}
 		if ($this->rotation) {
-			$xmlElement->setAttribute('rot', $this->rotation);
+			$domElement->setAttribute('rot', $this->rotation);
 		}
 		if (!empty($this->classes)) {
 			$classes = implode(' ', $this->classes);
-			$xmlElement->setAttribute('class', $classes);
+			$domElement->setAttribute('class', $classes);
 		}
-		return $xmlElement;
+		return $domElement;
 	}
+
+	// TODO: get tid of function and use property instead?
 
 	/**
 	 * Get the ManiaScript class of the Control

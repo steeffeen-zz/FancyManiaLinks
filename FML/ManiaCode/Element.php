@@ -23,8 +23,8 @@ abstract class Element {
 	 * @return \DOMElement
 	 */
 	public function render(\DOMDocument $domDocument) {
-		$xmlElement = $domDocument->createElement($this->tagName);
-		return $xmlElement;
+		$domElement = $domDocument->createElement($this->tagName);
+		return $domElement;
 	}
 	
 }

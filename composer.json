@@ -1,12 +1,12 @@
 {
     "name": "steeffeen/fancymanialinks",
     "description": "ManiaLink Framework for Object-Based XML Generation",
-    "keywords": ["maniaplanet", "shootmania", "trackmania", "manialink", "maniacode", "maniascript", "xml"],
+    "keywords": ["ManiaPlanet", "ShootMania", "TrackMania", "ManiaLink", "ManiaCode", "ManiaScript", "XML"],
     "homepage": "https://github.com/steeffeen/FancyManiaLinks",
     "license": "GPL-3.0",
     "authors": [
         {
-            "name": "Steffen Schröder",
+            "name": "Steffen Schroeder",
             "email": "mail@steeffeen.com",
             "homepage": "http://www.steeffeen.com"
         }

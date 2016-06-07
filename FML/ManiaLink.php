@@ -190,7 +190,7 @@ class ManiaLink {
 	 *
 	 * @api
 	 * @param bool $createIfEmpty (optional) If the Dico object should be created if it's not set
-	 * @return \FML\Elements\Dico
+	 * @return Dico
 	 */
 	public function getDico($createIfEmpty = true) {
 		if (!$this->dico && $createIfEmpty) {
@@ -216,7 +216,7 @@ class ManiaLink {
 	 *
 	 * @api
 	 * @param bool $createIfEmpty (optional) If the Stylesheet object should be created if it's not set
-	 * @return \FML\Stylesheet\Stylesheet
+	 * @return Stylesheet
 	 */
 	public function getStylesheet($createIfEmpty = true) {
 		if (!$this->stylesheet && $createIfEmpty) {
@@ -242,7 +242,7 @@ class ManiaLink {
 	 *
 	 * @api
 	 * @param bool $createIfEmpty (optional) If the Script object should be created if it's not set
-	 * @return \FML\Script\Script
+	 * @return Script
 	 */
 	public function getScript($createIfEmpty = true) {
 		if (!$this->script && $createIfEmpty) {

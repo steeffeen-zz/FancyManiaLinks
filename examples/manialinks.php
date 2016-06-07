@@ -3,10 +3,10 @@
 // Include FML
 require_once __DIR__ . '/../autoload.php';
 
-// Create manialinks container object
+// Create ManiaLinks container
 $maniaLinks = new \FML\ManiaLinks();
 
-// Create actual manialink object
+// Create actual ManiaLink
 $maniaLink = new \FML\ManiaLink();
 $maniaLinks->add($maniaLink);
 

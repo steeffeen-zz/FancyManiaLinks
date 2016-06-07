@@ -64,7 +64,7 @@ class ValuePickerFeature extends ScriptFeature {
 	 * Get the ValuePicker Label
 	 *
 	 * @api
-	 * @return \FML\Controls\Label
+	 * @return Label
 	 */
 	public function getLabel() {
 		return $this->label;
@@ -86,7 +86,7 @@ class ValuePickerFeature extends ScriptFeature {
 	 * Get the hidden Entry
 	 *
 	 * @api
-	 * @return \FML\Controls\Entry
+	 * @return Entry
 	 */
 	public function getEntry() {
 		return $this->entry;
@@ -148,7 +148,7 @@ class ValuePickerFeature extends ScriptFeature {
 	}
 
 	/**
-	 * @see \FML\Script\Features\ScriptFeature::prepare()
+	 * @see ScriptFeature::prepare()
 	 */
 	public function prepare(Script $script) {
 		if ($this->label) {

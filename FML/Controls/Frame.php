@@ -27,14 +27,14 @@ class Frame extends Control implements Container {
 	protected $format = null;
 
 	/**
-	 * @see \FML\Controls\Control::getManiaScriptClass()
+	 * @see Control::getManiaScriptClass()
 	 */
 	public function getManiaScriptClass() {
 		return 'CMlFrame';
 	}
 
 	/**
-	 * @see \FML\Types\Container::add()
+	 * @see Container::add()
 	 */
 	public function add(Renderable $child) {
 		if (!in_array($child, $this->children, true)) {
@@ -44,7 +44,7 @@ class Frame extends Control implements Container {
 	}
 
 	/**
-	 * @see \FML\Types\Container::removeChildren()
+	 * @see Container::removeChildren()
 	 */
 	public function removeChildren() {
 		$this->children = array();
@@ -52,7 +52,7 @@ class Frame extends Control implements Container {
 	}
 
 	/**
-	 * @see \FML\Types\Container::getFormat()
+	 * @see Container::getFormat()
 	 */
 	public function getFormat($createIfEmpty = true) {
 		if (!$this->format && $createIfEmpty) {
@@ -62,7 +62,7 @@ class Frame extends Control implements Container {
 	}
 
 	/**
-	 * @see \FML\Types\Container::setFormat()
+	 * @see Container::setFormat()
 	 */
 	public function setFormat(Format $format) {
 		$this->format = $format;
@@ -70,7 +70,7 @@ class Frame extends Control implements Container {
 	}
 
 	/**
-	 * @see \FML\Controls\Control::getScriptFeatures()
+	 * @see Control::getScriptFeatures()
 	 */
 	public function getScriptFeatures() {
 		$scriptFeatures = $this->scriptFeatures;
@@ -83,19 +83,19 @@ class Frame extends Control implements Container {
 	}
 
 	/**
-	 * @see \FML\Types\Renderable::render()
+	 * @see Renderable::render()
 	 */
 	public function render(\DOMDocument $domDocument) {
-		$xmlElement = parent::render($domDocument);
+		$domElement = parent::render($domDocument);
 		if ($this->format) {
 			$formatXml = $this->format->render($domDocument);
-			$xmlElement->appendChild($formatXml);
+			$domElement->appendChild($formatXml);
 		}
 		foreach ($this->children as $child) {
 			$childXmlElement = $child->render($domDocument);
-			$xmlElement->appendChild($childXmlElement);
+			$domElement->appendChild($childXmlElement);
 		}
-		return $xmlElement;
+		return $domElement;
 	}
 	
 }

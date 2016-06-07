@@ -41,7 +41,7 @@ class PagingButton {
 	 * Get the browse Control
 	 *
 	 * @api
-	 * @return \FML\Controls\Control
+	 * @return Control
 	 */
 	public function getControl() {
 		return $this->control;

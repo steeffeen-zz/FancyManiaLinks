@@ -53,13 +53,13 @@ class Go_To extends Element {
 	}
 
 	/**
-	 * @see \FML\ManiaCode\Element::render()
+	 * @see Element::render()
 	 */
 	public function render(\DOMDocument $domDocument) {
-		$xmlElement  = parent::render($domDocument);
+		$domElement  = parent::render($domDocument);
 		$linkElement = $domDocument->createElement('link', $this->link);
-		$xmlElement->appendChild($linkElement);
-		return $xmlElement;
+		$domElement->appendChild($linkElement);
+		return $domElement;
 	}
 	
 }

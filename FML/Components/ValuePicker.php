@@ -13,7 +13,7 @@ use FML\Types\ScriptFeatureable;
 /**
  * ValuePicker Component
  *
- * @uses \FML\Controls\Entry
+ * @uses Entry
  * @author    steeffeen <mail@steeffeen.com>
  * @copyright FancyManiaLinks Copyright © 2014 Steffen Schröder
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
@@ -96,7 +96,7 @@ class ValuePicker implements Renderable, ScriptFeatureable {
 	 *
 	 * @api
 	 * @param bool $createIfEmpty (optional) Create the Label if it's not set
-	 * @return \FML\Controls\Label
+	 * @return Label
 	 */
 	public function getLabel($createIfEmpty = true) {
 		if (!$this->feature->getLabel() && $createIfEmpty) {
@@ -107,14 +107,14 @@ class ValuePicker implements Renderable, ScriptFeatureable {
 	}
 
 	/**
-	 * @see \FML\Types\ScriptFeatureable::getScriptFeatures()
+	 * @see ScriptFeatureable::getScriptFeatures()
 	 */
 	public function getScriptFeatures() {
 		return ScriptFeature::collect($this->feature, $this->getLabel(), $this->feature->getEntry());
 	}
 
 	/**
-	 * @see \FML\Types\Renderable::render()
+	 * @see Renderable::render()
 	 */
 	public function render(\DOMDocument $domDocument) {
 		$frame = new Frame();
@@ -132,7 +132,7 @@ class ValuePicker implements Renderable, ScriptFeatureable {
 	/**
 	 * Build the hidden Entry
 	 *
-	 * @return \FML\Controls\Entry
+	 * @return Entry
 	 */
 	protected function buildEntry() {
 		$entry = new Entry();

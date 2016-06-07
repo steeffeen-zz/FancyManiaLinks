@@ -53,13 +53,13 @@ class AddBuddy extends Element {
 	}
 
 	/**
-	 * @see \FML\ManiaCode\Element::render()
+	 * @see Element::render()
 	 */
 	public function render(\DOMDocument $domDocument) {
-		$xmlElement   = parent::render($domDocument);
+		$domElement   = parent::render($domDocument);
 		$loginElement = $domDocument->createElement('login', $this->login);
-		$xmlElement->appendChild($loginElement);
-		return $xmlElement;
+		$domElement->appendChild($loginElement);
+		return $domElement;
 	}
-	
+
 }

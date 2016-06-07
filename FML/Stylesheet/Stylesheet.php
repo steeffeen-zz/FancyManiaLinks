@@ -72,7 +72,7 @@ class Stylesheet {
 	 *
 	 * @api
 	 * @param bool $createIfEmpty (optional) If the Mood object should be created if it's not set
-	 * @return \FML\Stylesheet\Mood
+	 * @return Mood
 	 */
 	public function getMood($createIfEmpty = true) {
 		if (!$this->mood && $createIfEmpty) {

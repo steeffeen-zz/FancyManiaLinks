@@ -13,7 +13,7 @@ use FML\Types\ScriptFeatureable;
 /**
  * CheckBox Component
  *
- * @uses      \FML\Controls\Quad
+ * @uses      Quad
  * @author    steeffeen <mail@steeffeen.com>
  * @copyright FancyManiaLinks Copyright © 2014 Steffen Schröder
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
@@ -118,7 +118,7 @@ class CheckBox implements Renderable, ScriptFeatureable {
 	 *
 	 * @api
 	 * @param bool $createIfEmpty (optional) Create the Quad if it's not set
-	 * @return \FML\Controls\Quad
+	 * @return Quad
 	 */
 	public function getQuad($createIfEmpty = true) {
 		if (!$this->feature->getQuad() && $createIfEmpty) {
@@ -130,14 +130,14 @@ class CheckBox implements Renderable, ScriptFeatureable {
 	}
 
 	/**
-	 * @see \FML\Types\ScriptFeatureable::getScriptFeatures()
+	 * @see ScriptFeatureable::getScriptFeatures()
 	 */
 	public function getScriptFeatures() {
 		return ScriptFeature::collect($this->feature, $this->getQuad(), $this->feature->getEntry());
 	}
 
 	/**
-	 * @see \FML\Types\Renderable::render()
+	 * @see Renderable::render()
 	 */
 	public function render(\DOMDocument $domDocument) {
 		$frame = new Frame();
@@ -155,7 +155,7 @@ class CheckBox implements Renderable, ScriptFeatureable {
 	/**
 	 * Build the hidden Entry
 	 *
-	 * @return \FML\Controls\Entry
+	 * @return Entry
 	 */
 	protected function buildEntry() {
 		$entry = new Entry();

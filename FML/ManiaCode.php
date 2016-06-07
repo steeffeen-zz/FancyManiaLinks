@@ -319,8 +319,8 @@ class ManiaCode {
 			$maniaCode->setAttribute('noconfirmation', $this->noConfirmation);
 		}
 		foreach ($this->elements as $element) {
-			$xmlElement = $element->render($domDocument);
-			$maniaCode->appendChild($xmlElement);
+			$domElement = $element->render($domDocument);
+			$maniaCode->appendChild($domElement);
 		}
 		if ($echo) {
 			header('Content-Type: application/xml; charset=utf-8;');

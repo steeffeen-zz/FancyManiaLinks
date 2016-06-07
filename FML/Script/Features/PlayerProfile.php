@@ -82,7 +82,7 @@ class PlayerProfile extends ScriptFeature {
 	}
 
 	/**
-	 * @see \FML\Script\Features\ScriptFeature::prepare()
+	 * @see ScriptFeature::prepare()
 	 */
 	public function prepare(Script $script) {
 		$script->appendGenericScriptLabel($this->labelName, $this->getScriptText());

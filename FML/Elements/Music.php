@@ -55,14 +55,14 @@ class Music implements Renderable {
 	}
 
 	/**
-	 * @see \FML\Types\Renderable::render()
+	 * @see Renderable::render()
 	 */
 	public function render(\DOMDocument $domDocument) {
-		$xmlElement = $domDocument->createElement($this->tagName);
+		$domElement = $domDocument->createElement($this->tagName);
 		if ($this->data) {
-			$xmlElement->setAttribute('data', $this->data);
+			$domElement->setAttribute('data', $this->data);
 		}
-		return $xmlElement;
+		return $domElement;
 	}
 	
 }

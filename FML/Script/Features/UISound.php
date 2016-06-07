@@ -60,7 +60,7 @@ class UISound extends ScriptFeature {
 	protected $volume = 1.;
 	protected $labelName = null;
 
-	// TODO: check if UISound can work without $soundName - make parameter mandatory
+	// TODO: check if UISound can even work without $soundName - otherwise make parameter mandatory
 
 	/**
 	 * Construct a new UISound
@@ -147,7 +147,7 @@ class UISound extends ScriptFeature {
 	}
 
 	/**
-	 * @see \FML\Script\Features\ScriptFeature::prepare()
+	 * @see ScriptFeature::prepare()
 	 */
 	public function prepare(Script $script) {
 		$script->appendGenericScriptLabel($this->labelName, $this->getScriptText());

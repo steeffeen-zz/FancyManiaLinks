@@ -39,7 +39,7 @@ class Format implements BgColorable, Renderable, Styleable, TextFormatable {
 	}
 
 	/**
-	 * @see \FML\Types\BgColorable::setBgColor()
+	 * @see BgColorable::setBgColor()
 	 */
 	public function setBgColor($bgColor) {
 		$this->bgColor = (string)$bgColor;
@@ -47,7 +47,7 @@ class Format implements BgColorable, Renderable, Styleable, TextFormatable {
 	}
 
 	/**
-	 * @see \FML\Types\Styleable::setStyle()
+	 * @see Styleable::setStyle()
 	 */
 	public function setStyle($style) {
 		$this->style = (string)$style;
@@ -55,7 +55,7 @@ class Format implements BgColorable, Renderable, Styleable, TextFormatable {
 	}
 
 	/**
-	 * @see \FML\Types\TextFormatable::setTextSize()
+	 * @see TextFormatable::setTextSize()
 	 */
 	public function setTextSize($textSize) {
 		$this->textSize = (int)$textSize;
@@ -63,7 +63,7 @@ class Format implements BgColorable, Renderable, Styleable, TextFormatable {
 	}
 
 	/**
-	 * @see \FML\Types\TextFormatable::setTextFont()
+	 * @see TextFormatable::setTextFont()
 	 */
 	public function setTextFont($textFont) {
 		$this->textFont = (string)$textFont;
@@ -71,7 +71,7 @@ class Format implements BgColorable, Renderable, Styleable, TextFormatable {
 	}
 
 	/**
-	 * @see \FML\Types\TextFormatable::setTextColor()
+	 * @see TextFormatable::setTextColor()
 	 */
 	public function setTextColor($textColor) {
 		$this->textColor = (string)$textColor;
@@ -79,7 +79,7 @@ class Format implements BgColorable, Renderable, Styleable, TextFormatable {
 	}
 
 	/**
-	 * @see \FML\Types\TextFormatable::setAreaColor()
+	 * @see TextFormatable::setAreaColor()
 	 */
 	public function setAreaColor($areaColor) {
 		$this->focusAreaColor1 = (string)$areaColor;
@@ -87,7 +87,7 @@ class Format implements BgColorable, Renderable, Styleable, TextFormatable {
 	}
 
 	/**
-	 * @see \FML\Types\TextFormatable::setAreaFocusColor()
+	 * @see TextFormatable::setAreaFocusColor()
 	 */
 	public function setAreaFocusColor($areaFocusColor) {
 		$this->focusAreaColor2 = (string)$areaFocusColor;
@@ -95,32 +95,32 @@ class Format implements BgColorable, Renderable, Styleable, TextFormatable {
 	}
 
 	/**
-	 * @see \FML\Types\Renderable::render()
+	 * @see Renderable::render()
 	 */
 	public function render(\DOMDocument $domDocument) {
-		$formatXmlElement = $domDocument->createElement($this->tagName);
+		$domElement = $domDocument->createElement($this->tagName);
 		if ($this->bgColor) {
-			$formatXmlElement->setAttribute('bgcolor', $this->bgColor);
+			$domElement->setAttribute('bgcolor', $this->bgColor);
 		}
 		if ($this->style) {
-			$formatXmlElement->setAttribute('style', $this->style);
+			$domElement->setAttribute('style', $this->style);
 		}
 		if ($this->textSize >= 0) {
-			$formatXmlElement->setAttribute('textsize', $this->textSize);
+			$domElement->setAttribute('textsize', $this->textSize);
 		}
 		if ($this->textFont) {
-			$formatXmlElement->setAttribute('textfont', $this->textFont);
+			$domElement->setAttribute('textfont', $this->textFont);
 		}
 		if ($this->textColor) {
-			$formatXmlElement->setAttribute('textcolor', $this->textColor);
+			$domElement->setAttribute('textcolor', $this->textColor);
 		}
 		if ($this->focusAreaColor1) {
-			$formatXmlElement->setAttribute('focusareacolor1', $this->focusAreaColor1);
+			$domElement->setAttribute('focusareacolor1', $this->focusAreaColor1);
 		}
 		if ($this->focusAreaColor2) {
-			$formatXmlElement->setAttribute('focusareacolor2', $this->focusAreaColor2);
+			$domElement->setAttribute('focusareacolor2', $this->focusAreaColor2);
 		}
-		return $formatXmlElement;
+		return $domElement;
 	}
 	
 }

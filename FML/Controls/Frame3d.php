@@ -65,7 +65,7 @@ class Frame3d extends Frame implements Scriptable {
 	}
 
 	/**
-	 * @see \FML\Types\Scriptable::setScriptEvents()
+	 * @see Scriptable::setScriptEvents()
 	 */
 	public function setScriptEvents($scriptEvents) {
 		$this->scriptEvents = ($scriptEvents ? 1 : 0);
@@ -73,20 +73,20 @@ class Frame3d extends Frame implements Scriptable {
 	}
 
 	/**
-	 * @see \FML\Types\Renderable::render()
+	 * @see Renderable::render()
 	 */
 	public function render(\DOMDocument $domDocument) {
-		$xmlElement = parent::render($domDocument);
+		$domElement = parent::render($domDocument);
 		if ($this->style3d) {
 			$this->style3d->checkId();
-			$xmlElement->setAttribute('style3d', $this->style3d->getId());
+			$domElement->setAttribute('style3d', $this->style3d->getId());
 		} else if ($this->style3dId) {
-			$xmlElement->setAttribute('style3d', $this->style3dId);
+			$domElement->setAttribute('style3d', $this->style3dId);
 		}
 		if ($this->scriptEvents) {
-			$xmlElement->setAttribute('scriptevents', $this->scriptEvents);
+			$domElement->setAttribute('scriptevents', $this->scriptEvents);
 		}
-		return $xmlElement;
+		return $domElement;
 	}
 	
 }

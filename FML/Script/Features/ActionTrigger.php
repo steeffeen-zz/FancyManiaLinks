@@ -9,7 +9,7 @@ use FML\Script\ScriptLabel;
 use FML\Types\Scriptable;
 
 /**
- * Script Feature for triggering a manialink page action
+ * Script Feature for triggering a ManiaLink page action
  *
  * @author    steeffeen
  * @copyright FancyManiaLinks Copyright © 2014 Steffen Schröder
@@ -86,7 +86,7 @@ class ActionTrigger extends ScriptFeature {
 	}
 
 	/**
-	 * @see \FML\Script\Features\ScriptFeature::prepare()
+	 * @see ScriptFeature::prepare()
 	 */
 	public function prepare(Script $script) {
 		$script->appendGenericScriptLabel($this->labelName, $this->getScriptText());
@@ -114,5 +114,5 @@ TriggerPageAction({$actionName});";
 		}
 		return $scriptText;
 	}
-	
+
 }

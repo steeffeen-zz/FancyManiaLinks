@@ -44,7 +44,7 @@ interface Container {
 	 *
 	 * @api
 	 * @param bool $createIfEmpty (optional) If the Format object should be created if it's not set
-	 * @return \FML\Elements\Format
+	 * @return Format
 	 */
 	public function getFormat($createIfEmpty = true);
 	

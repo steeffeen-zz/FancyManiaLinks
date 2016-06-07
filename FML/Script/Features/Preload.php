@@ -42,7 +42,7 @@ class Preload extends ScriptFeature {
 	}
 
 	/**
-	 * @see \FML\Script\Features\ScriptFeature::prepare()
+	 * @see ScriptFeature::prepare()
 	 */
 	public function prepare(Script $script) {
 		$script->appendGenericScriptLabel(ScriptLabel::ONINIT, $this->getScriptText());

@@ -28,14 +28,14 @@ class Audio extends Control implements Playable, Scriptable {
 	protected $scriptEvents = null;
 
 	/**
-	 * @see \FML\Controls\Control::getManiaScriptClass()
+	 * @see Control::getManiaScriptClass()
 	 */
 	public function getManiaScriptClass() {
 		return 'CMlMediaPlayer';
 	}
 
 	/**
-	 * @see \FML\Types\Playable::setData()
+	 * @see Playable::setData()
 	 */
 	public function setData($data) {
 		$this->data = (string)$data;
@@ -43,7 +43,7 @@ class Audio extends Control implements Playable, Scriptable {
 	}
 
 	/**
-	 * @see \FML\Types\Playable::setDataId()
+	 * @see Playable::setDataId()
 	 */
 	public function setDataId($dataId) {
 		$this->dataId = (string)$dataId;
@@ -51,7 +51,7 @@ class Audio extends Control implements Playable, Scriptable {
 	}
 
 	/**
-	 * @see \FML\Types\Playable::setPlay()
+	 * @see Playable::setPlay()
 	 */
 	public function setPlay($play) {
 		$this->play = ($play ? 1 : 0);
@@ -59,7 +59,7 @@ class Audio extends Control implements Playable, Scriptable {
 	}
 
 	/**
-	 * @see \FML\Types\Playable::setLooping()
+	 * @see Playable::setLooping()
 	 */
 	public function setLooping($looping) {
 		$this->looping = ($looping ? 1 : 0);
@@ -67,7 +67,7 @@ class Audio extends Control implements Playable, Scriptable {
 	}
 
 	/**
-	 * @see \FML\Types\Playable::setMusic()
+	 * @see Playable::setMusic()
 	 */
 	public function setMusic($music) {
 		$this->music = ($music ? 1 : 0);
@@ -75,7 +75,7 @@ class Audio extends Control implements Playable, Scriptable {
 	}
 
 	/**
-	 * @see \FML\Types\Playable::setVolume()
+	 * @see Playable::setVolume()
 	 */
 	public function setVolume($volume) {
 		$this->volume = (float)$volume;
@@ -83,7 +83,7 @@ class Audio extends Control implements Playable, Scriptable {
 	}
 
 	/**
-	 * @see \FML\Types\Scriptable::setScriptEvents()
+	 * @see Scriptable::setScriptEvents()
 	 */
 	public function setScriptEvents($scriptEvents) {
 		$this->scriptEvents = ($scriptEvents ? 1 : 0);
@@ -91,29 +91,29 @@ class Audio extends Control implements Playable, Scriptable {
 	}
 
 	/**
-	 * @see \FML\Types\Renderable::render()
+	 * @see Renderable::render()
 	 */
 	public function render(\DOMDocument $domDocument) {
-		$xmlElement = parent::render($domDocument);
+		$domElement = parent::render($domDocument);
 		if ($this->data) {
-			$xmlElement->setAttribute('data', $this->data);
+			$domElement->setAttribute('data', $this->data);
 		}
 		if ($this->play) {
-			$xmlElement->setAttribute('play', $this->play);
+			$domElement->setAttribute('play', $this->play);
 		}
 		if (!$this->looping) {
-			$xmlElement->setAttribute('looping', $this->looping);
+			$domElement->setAttribute('looping', $this->looping);
 		}
 		if ($this->music) {
-			$xmlElement->setAttribute('music', $this->music);
+			$domElement->setAttribute('music', $this->music);
 		}
 		if ($this->volume != 1.) {
-			$xmlElement->setAttribute('volume', $this->volume);
+			$domElement->setAttribute('volume', $this->volume);
 		}
 		if ($this->scriptEvents) {
-			$xmlElement->setAttribute('scriptevents', $this->scriptEvents);
+			$domElement->setAttribute('scriptevents', $this->scriptEvents);
 		}
-		return $xmlElement;
+		return $domElement;
 	}
 
 }

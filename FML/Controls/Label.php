@@ -47,7 +47,7 @@ class Label extends Control implements Actionable, Linkable, NewLineable, Script
 	protected $focusAreaColor2 = null;
 
 	/**
-	 * @see \FML\Controls\Control::getManiaScriptClass()
+	 * @see Control::getManiaScriptClass()
 	 */
 	public function getManiaScriptClass() {
 		return 'CMlLabel';
@@ -126,14 +126,14 @@ class Label extends Control implements Actionable, Linkable, NewLineable, Script
 	}
 
 	/**
-	 * @see \FML\Types\Actionable::getAction()
+	 * @see Actionable::getAction()
 	 */
 	public function getAction() {
 		return $this->action;
 	}
 
 	/**
-	 * @see \FML\Types\Actionable::setAction()
+	 * @see Actionable::setAction()
 	 */
 	public function setAction($action) {
 		$this->action = (string)$action;
@@ -141,7 +141,7 @@ class Label extends Control implements Actionable, Linkable, NewLineable, Script
 	}
 
 	/**
-	 * @see \FML\Types\Actionable::setActionKey()
+	 * @see Actionable::setActionKey()
 	 */
 	public function setActionKey($actionKey) {
 		$this->actionKey = (int)$actionKey;
@@ -149,7 +149,7 @@ class Label extends Control implements Actionable, Linkable, NewLineable, Script
 	}
 
 	/**
-	 * @see \FML\Types\Linkable::setUrl()
+	 * @see Linkable::setUrl()
 	 */
 	public function setUrl($url) {
 		$this->url = (string)$url;
@@ -157,7 +157,7 @@ class Label extends Control implements Actionable, Linkable, NewLineable, Script
 	}
 
 	/**
-	 * @see \FML\Types\Linkable::setUrlId()
+	 * @see Linkable::setUrlId()
 	 */
 	public function setUrlId($urlId) {
 		$this->urlId = (string)$urlId;
@@ -165,7 +165,7 @@ class Label extends Control implements Actionable, Linkable, NewLineable, Script
 	}
 
 	/**
-	 * @see \FML\Types\Linkable::setManialink()
+	 * @see Linkable::setManialink()
 	 */
 	public function setManialink($manialink) {
 		$this->manialink = (string)$manialink;
@@ -173,7 +173,7 @@ class Label extends Control implements Actionable, Linkable, NewLineable, Script
 	}
 
 	/**
-	 * @see \FML\Types\Linkable::setManialinkId()
+	 * @see Linkable::setManialinkId()
 	 */
 	public function setManialinkId($manialinkId) {
 		$this->manialinkId = (string)$manialinkId;
@@ -181,7 +181,7 @@ class Label extends Control implements Actionable, Linkable, NewLineable, Script
 	}
 
 	/**
-	 * @see \FML\Types\NewLineable::setAutoNewLine()
+	 * @see NewLineable::setAutoNewLine()
 	 */
 	public function setAutoNewLine($autoNewLine) {
 		$this->autoNewLine = ($autoNewLine ? 1 : 0);
@@ -189,7 +189,7 @@ class Label extends Control implements Actionable, Linkable, NewLineable, Script
 	}
 
 	/**
-	 * @see \FML\Types\Scriptable::setScriptEvents()
+	 * @see Scriptable::setScriptEvents()
 	 */
 	public function setScriptEvents($scriptEvents) {
 		$this->scriptEvents = ($scriptEvents ? 1 : 0);
@@ -197,7 +197,7 @@ class Label extends Control implements Actionable, Linkable, NewLineable, Script
 	}
 
 	/**
-	 * @see \FML\Types\Styleable::setStyle()
+	 * @see Styleable::setStyle()
 	 */
 	public function setStyle($style) {
 		$this->style = (string)$style;
@@ -205,7 +205,7 @@ class Label extends Control implements Actionable, Linkable, NewLineable, Script
 	}
 
 	/**
-	 * @see \FML\Types\TextFormatable::setTextSize()
+	 * @see TextFormatable::setTextSize()
 	 */
 	public function setTextSize($textSize) {
 		$this->textSize = (int)$textSize;
@@ -213,7 +213,7 @@ class Label extends Control implements Actionable, Linkable, NewLineable, Script
 	}
 
 	/**
-	 * @see \FML\Types\TextFormatable::setTextFont()
+	 * @see TextFormatable::setTextFont()
 	 */
 	public function setTextFont($textFont) {
 		$this->textFont = (string)$textFont;
@@ -221,7 +221,7 @@ class Label extends Control implements Actionable, Linkable, NewLineable, Script
 	}
 
 	/**
-	 * @see \FML\Types\TextFormatable::setTextColor()
+	 * @see TextFormatable::setTextColor()
 	 */
 	public function setTextColor($textColor) {
 		$this->textColor = (string)$textColor;
@@ -229,7 +229,7 @@ class Label extends Control implements Actionable, Linkable, NewLineable, Script
 	}
 
 	/**
-	 * @see \FML\Types\TextFormatable::setAreaColor()
+	 * @see TextFormatable::setAreaColor()
 	 */
 	public function setAreaColor($areaColor) {
 		$this->focusAreaColor1 = (string)$areaColor;
@@ -237,7 +237,7 @@ class Label extends Control implements Actionable, Linkable, NewLineable, Script
 	}
 
 	/**
-	 * @see \FML\Types\TextFormatable::setAreaFocusColor()
+	 * @see TextFormatable::setAreaFocusColor()
 	 */
 	public function setAreaFocusColor($areaFocusColor) {
 		$this->focusAreaColor2 = (string)$areaFocusColor;
@@ -259,68 +259,68 @@ class Label extends Control implements Actionable, Linkable, NewLineable, Script
 	}
 
 	/**
-	 * @see \FML\Types\Renderable::render()
+	 * @see Renderable::render()
 	 */
 	public function render(\DOMDocument $domDocument) {
-		$xmlElement = parent::render($domDocument);
+		$domElement = parent::render($domDocument);
 		if (strlen($this->text) > 0) {
-			$xmlElement->setAttribute('text', $this->text);
+			$domElement->setAttribute('text', $this->text);
 		}
 		if ($this->textId) {
-			$xmlElement->setAttribute('textid', $this->textId);
+			$domElement->setAttribute('textid', $this->textId);
 		}
 		if ($this->textPrefix) {
-			$xmlElement->setAttribute('textprefix', $this->textPrefix);
+			$domElement->setAttribute('textprefix', $this->textPrefix);
 		}
 		if ($this->textEmboss) {
-			$xmlElement->setAttribute('textemboss', $this->textEmboss);
+			$domElement->setAttribute('textemboss', $this->textEmboss);
 		}
 		if ($this->translate) {
-			$xmlElement->setAttribute('translate', $this->translate);
+			$domElement->setAttribute('translate', $this->translate);
 		}
 		if ($this->maxLines >= 0) {
-			$xmlElement->setAttribute('maxlines', $this->maxLines);
+			$domElement->setAttribute('maxlines', $this->maxLines);
 		}
 		if ($this->opacity != 1.) {
-			$xmlElement->setAttribute('opacity', $this->opacity);
+			$domElement->setAttribute('opacity', $this->opacity);
 		}
 		if (strlen($this->action) > 0) {
-			$xmlElement->setAttribute('action', $this->action);
+			$domElement->setAttribute('action', $this->action);
 		}
 		if ($this->actionKey >= 0) {
-			$xmlElement->setAttribute('actionkey', $this->actionKey);
+			$domElement->setAttribute('actionkey', $this->actionKey);
 		}
 		if ($this->url) {
-			$xmlElement->setAttribute('url', $this->url);
+			$domElement->setAttribute('url', $this->url);
 		}
 		if ($this->manialink) {
-			$xmlElement->setAttribute('manialink', $this->manialink);
+			$domElement->setAttribute('manialink', $this->manialink);
 		}
 		if ($this->autoNewLine) {
-			$xmlElement->setAttribute('autonewline', $this->autoNewLine);
+			$domElement->setAttribute('autonewline', $this->autoNewLine);
 		}
 		if ($this->scriptEvents) {
-			$xmlElement->setAttribute('scriptevents', $this->scriptEvents);
+			$domElement->setAttribute('scriptevents', $this->scriptEvents);
 		}
 		if ($this->style) {
-			$xmlElement->setAttribute('style', $this->style);
+			$domElement->setAttribute('style', $this->style);
 		}
 		if ($this->textSize >= 0) {
-			$xmlElement->setAttribute('textsize', $this->textSize);
+			$domElement->setAttribute('textsize', $this->textSize);
 		}
 		if ($this->textFont) {
-			$xmlElement->setAttribute('textfont', $this->textFont);
+			$domElement->setAttribute('textfont', $this->textFont);
 		}
 		if ($this->textColor) {
-			$xmlElement->setAttribute('textcolor', $this->textColor);
+			$domElement->setAttribute('textcolor', $this->textColor);
 		}
 		if ($this->focusAreaColor1) {
-			$xmlElement->setAttribute('focusareacolor1', $this->focusAreaColor1);
+			$domElement->setAttribute('focusareacolor1', $this->focusAreaColor1);
 		}
 		if ($this->focusAreaColor2) {
-			$xmlElement->setAttribute('focusareacolor2', $this->focusAreaColor2);
+			$domElement->setAttribute('focusareacolor2', $this->focusAreaColor2);
 		}
-		return $xmlElement;
+		return $domElement;
 	}
 	
 }

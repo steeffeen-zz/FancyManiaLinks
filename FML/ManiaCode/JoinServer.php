@@ -72,18 +72,18 @@ class JoinServer extends Element {
 	}
 
 	/**
-	 * @see \FML\ManiaCode\Element::render()
+	 * @see Element::render()
 	 */
 	public function render(\DOMDocument $domDocument) {
-		$xmlElement = parent::render($domDocument);
+		$domElement = parent::render($domDocument);
 		if ($this->serverIp === null) {
 			$loginElement = $domDocument->createElement('login', $this->login);
-			$xmlElement->appendChild($loginElement);
+			$domElement->appendChild($loginElement);
 		} else {
 			$ipElement = $domDocument->createElement('ip', $this->serverIp . ':' . $this->serverPort);
-			$xmlElement->appendChild($ipElement);
+			$domElement->appendChild($ipElement);
 		}
-		return $xmlElement;
+		return $domElement;
 	}
 	
 }

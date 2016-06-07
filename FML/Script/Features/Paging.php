@@ -207,7 +207,7 @@ class Paging extends ScriptFeature {
 	}
 
 	/**
-	 * @see \FML\Script\Features\ScriptFeature::prepare()
+	 * @see ScriptFeature::prepare()
 	 */
 	public function prepare(Script $script) {
 		if (empty($this->pages)) {
@@ -298,7 +298,7 @@ Void {$updatePageFunction}(Text _PagingId, Text _PageLabelId, Integer _BrowseAct
 	/**
 	 * Get the minimum Page
 	 *
-	 * @return \FML\Script\Features\PagingPage
+	 * @return PagingPage
 	 */
 	protected function getMinPage() {
 		$minPageNumber = null;
@@ -316,7 +316,7 @@ Void {$updatePageFunction}(Text _PagingId, Text _PageLabelId, Integer _BrowseAct
 	/**
 	 * Get the maximum Page
 	 *
-	 * @return \FML\Script\Features\PagingPage
+	 * @return PagingPage
 	 */
 	protected function getMaxPage() {
 		$maxPageNumber = null;
