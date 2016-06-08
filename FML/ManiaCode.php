@@ -31,8 +31,6 @@ class ManiaCode {
 	/*
 	 * Protected properties
 	 */
-	protected $encoding = 'utf-8';
-	protected $tagName = 'maniacode';
 	protected $noConfirmation = null;
 	/** @var Element[] $elements */
 	protected $elements = array();
@@ -45,18 +43,6 @@ class ManiaCode {
 	 */
 	public static function create() {
 		return new static();
-	}
-
-	/**
-	 * Set the XML encoding
-	 *
-	 * @api
-	 * @param string $encoding XML encoding
-	 * @return static
-	 */
-	public function setXmlEncoding($encoding) {
-		$this->encoding = (string)$encoding;
-		return $this;
 	}
 
 	/**
@@ -282,7 +268,7 @@ class ManiaCode {
 	}
 
 	/**
-	 * Add a ManiaCode element
+	 * Add a ManiaCode Element
 	 *
 	 * @api
 	 * @param Element $element Element to add
@@ -294,7 +280,7 @@ class ManiaCode {
 	}
 
 	/**
-	 * Remove all ManiaCode elements
+	 * Remove all ManiaCode Elements
 	 *
 	 * @api
 	 * @return static
@@ -311,31 +297,37 @@ class ManiaCode {
 	 * @return \DOMDocument
 	 */
 	public function render($echo = false) {
-		$domDocument                = new \DOMDocument('1.0', $this->encoding);
+		$domDocument                = new \DOMDocument("1.0", "utf-8");
 		$domDocument->xmlStandalone = true;
-		$maniaCode                  = $domDocument->createElement($this->tagName);
+
+		$maniaCode = $domDocument->createElement("maniacode");
 		$domDocument->appendChild($maniaCode);
+
 		if ($this->noConfirmation) {
 			$maniaCode->setAttribute('noconfirmation', $this->noConfirmation);
 		}
+
 		foreach ($this->elements as $element) {
 			$domElement = $element->render($domDocument);
 			$maniaCode->appendChild($domElement);
 		}
+
 		if ($echo) {
 			header('Content-Type: application/xml; charset=utf-8;');
 			echo $domDocument->saveXML();
 		}
+
 		return $domDocument;
 	}
 
 	/**
-	 * Get string representation
+	 * Get the string representation
 	 *
 	 * @return string
 	 */
 	public function __toString() {
-		return $this->render()->saveXML();
+		return $this->render()
+		            ->saveXML();
 	}
 
 }

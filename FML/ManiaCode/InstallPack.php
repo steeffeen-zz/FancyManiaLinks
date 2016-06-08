@@ -14,7 +14,6 @@ class InstallPack extends Element {
 	/*
 	 * Protected properties
 	 */
-	protected $tagName = 'install_pack';
 	protected $name = null;
 	protected $file = null;
 	protected $url = null;
@@ -92,14 +91,18 @@ class InstallPack extends Element {
 	 * @see Element::render()
 	 */
 	public function render(\DOMDocument $domDocument) {
-		$domElement  = parent::render($domDocument);
-		$nameElement = $domDocument->createElement('name', $this->name);
+		$domElement = $domDocument->createElement("install_pack");
+
+		$nameElement = $domDocument->createElement("name", $this->name);
 		$domElement->appendChild($nameElement);
-		$fileElement = $domDocument->createElement('file', $this->file);
+
+		$fileElement = $domDocument->createElement("file", $this->file);
 		$domElement->appendChild($fileElement);
-		$urlElement = $domDocument->createElement('url', $this->url);
+
+		$urlElement = $domDocument->createElement("url", $this->url);
 		$domElement->appendChild($urlElement);
+		
 		return $domElement;
 	}
-	
+
 }

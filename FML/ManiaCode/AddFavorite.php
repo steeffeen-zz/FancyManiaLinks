@@ -75,7 +75,8 @@ class AddFavorite extends Element {
 	 * @see Element::render()
 	 */
 	public function render(\DOMDocument $domDocument) {
-		$domElement = parent::render($domDocument);
+		$domElement = $domDocument->createElement("view_replay");
+
 		if ($this->serverIp === null) {
 			$loginElement = $domDocument->createElement('login', $this->login);
 			$domElement->appendChild($loginElement);
@@ -83,7 +84,8 @@ class AddFavorite extends Element {
 			$ipElement = $domDocument->createElement('ip', $this->serverIp . ':' . $this->serverPort);
 			$domElement->appendChild($ipElement);
 		}
+		
 		return $domElement;
 	}
-	
+
 }

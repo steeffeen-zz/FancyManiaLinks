@@ -14,7 +14,6 @@ class JoinServer extends Element {
 	/*
 	 * Protected properties
 	 */
-	protected $tagName = 'join_server';
 	protected $login = null;
 	protected $serverIp = null;
 	protected $serverPort = null;
@@ -75,14 +74,16 @@ class JoinServer extends Element {
 	 * @see Element::render()
 	 */
 	public function render(\DOMDocument $domDocument) {
-		$domElement = parent::render($domDocument);
+		$domElement = $domDocument->createElement("join_server");
+		
 		if ($this->serverIp === null) {
-			$loginElement = $domDocument->createElement('login', $this->login);
+			$loginElement = $domDocument->createElement("login", $this->login);
 			$domElement->appendChild($loginElement);
 		} else {
-			$ipElement = $domDocument->createElement('ip', $this->serverIp . ':' . $this->serverPort);
+			$ipElement = $domDocument->createElement("ip", $this->serverIp . ":" . $this->serverPort);
 			$domElement->appendChild($ipElement);
 		}
+		
 		return $domElement;
 	}
 	

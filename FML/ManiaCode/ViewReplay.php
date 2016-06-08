@@ -14,7 +14,6 @@ class ViewReplay extends Element {
 	/*
 	 * Protected properties
 	 */
-	protected $tagName = 'view_replay';
 	protected $name = null;
 	protected $url = null;
 
@@ -38,12 +37,22 @@ class ViewReplay extends Element {
 	 * @param string $url  (optional) Replay url
 	 */
 	public function __construct($name = null, $url = null) {
-		if ($name !== null) {
+		if ($name) {
 			$this->setName($name);
 		}
-		if ($url !== null) {
+		if ($url) {
 			$this->setUrl($url);
 		}
+	}
+
+	/**
+	 * Get the name of the replay
+	 *
+	 * @api
+	 * @return string
+	 */
+	public function getName() {
+		return $this->name;
 	}
 
 	/**
@@ -56,6 +65,16 @@ class ViewReplay extends Element {
 	public function setName($name) {
 		$this->name = (string)$name;
 		return $this;
+	}
+
+	/**
+	 * Get the url of the replay
+	 *
+	 * @api
+	 * @return string
+	 */
+	public function getUrl() {
+		return $this->url;
 	}
 
 	/**
@@ -74,12 +93,15 @@ class ViewReplay extends Element {
 	 * @see Element::render()
 	 */
 	public function render(\DOMDocument $domDocument) {
-		$domElement  = parent::render($domDocument);
-		$nameElement = $domDocument->createElement('name', $this->name);
+		$domElement = $domDocument->createElement("view_replay");
+
+		$nameElement = $domDocument->createElement("name", $this->name);
 		$domElement->appendChild($nameElement);
-		$urlElement = $domDocument->createElement('url', $this->url);
+
+		$urlElement = $domDocument->createElement("url", $this->url);
 		$domElement->appendChild($urlElement);
+		
 		return $domElement;
 	}
-	
+
 }

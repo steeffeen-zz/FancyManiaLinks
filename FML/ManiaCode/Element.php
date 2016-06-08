@@ -11,20 +11,27 @@ namespace FML\ManiaCode;
  */
 abstract class Element {
 
-	/*
-	 * Protected properties
-	 */
-	protected $tagName = 'element';
-
 	/**
 	 * Render the ManiaCode Element
 	 *
 	 * @param \DOMDocument $domDocument The DOMDocument for which the Element should be rendered
 	 * @return \DOMElement
 	 */
-	public function render(\DOMDocument $domDocument) {
-		$domElement = $domDocument->createElement($this->tagName);
-		return $domElement;
+	public abstract function render(\DOMDocument $domDocument);
+
+	/**
+	 * Get the string representation
+	 *
+	 * @return string
+	 */
+	public function __toString() {
+		$domDocument                = new \DOMDocument("1.0", "utf-8");
+		$domDocument->xmlStandalone = true;
+
+		$domElement = $this->render($domDocument);
+		$domDocument->appendChild($domElement);
+
+		return $domDocument->saveXML();
 	}
-	
+
 }

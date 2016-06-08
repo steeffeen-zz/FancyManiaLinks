@@ -14,7 +14,6 @@ class AddBuddy extends Element {
 	/*
 	 * Protected properties
 	 */
-	protected $tagName = 'add_buddy';
 	protected $login = null;
 
 	/**
@@ -56,9 +55,11 @@ class AddBuddy extends Element {
 	 * @see Element::render()
 	 */
 	public function render(\DOMDocument $domDocument) {
-		$domElement   = parent::render($domDocument);
+		$domElement = $domDocument->createElement("view_replay");
+
 		$loginElement = $domDocument->createElement('login', $this->login);
 		$domElement->appendChild($loginElement);
+
 		return $domElement;
 	}
 

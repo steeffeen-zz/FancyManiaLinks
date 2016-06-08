@@ -56,10 +56,12 @@ class Go_To extends Element {
 	 * @see Element::render()
 	 */
 	public function render(\DOMDocument $domDocument) {
-		$domElement  = parent::render($domDocument);
+		$domElement = $domDocument->createElement("view_replay");
+
 		$linkElement = $domDocument->createElement('link', $this->link);
 		$domElement->appendChild($linkElement);
+		
 		return $domElement;
 	}
-	
+
 }

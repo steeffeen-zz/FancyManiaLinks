@@ -92,14 +92,18 @@ class GetSkin extends Element {
 	 * @see Element::render()
 	 */
 	public function render(\DOMDocument $domDocument) {
-		$domElement  = parent::render($domDocument);
+		$domElement = $domDocument->createElement("view_replay");
+
 		$nameElement = $domDocument->createElement('name', $this->name);
 		$domElement->appendChild($nameElement);
+
 		$fileElement = $domDocument->createElement('file', $this->file);
 		$domElement->appendChild($fileElement);
+
 		$urlElement = $domDocument->createElement('url', $this->url);
 		$domElement->appendChild($urlElement);
+		
 		return $domElement;
 	}
-	
+
 }

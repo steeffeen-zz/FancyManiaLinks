@@ -14,7 +14,6 @@ class InstallMap extends Element {
 	/*
 	 * Protected properties
 	 */
-	protected $tagName = 'install_map';
 	protected $name = null;
 	protected $url = null;
 
@@ -74,12 +73,15 @@ class InstallMap extends Element {
 	 * @see Element::render()
 	 */
 	public function render(\DOMDocument $domDocument) {
-		$domElement  = parent::render($domDocument);
-		$nameElement = $domDocument->createElement('name', $this->name);
+		$domElement = $domDocument->createElement("install_map");
+
+		$nameElement = $domDocument->createElement("name", $this->name);
 		$domElement->appendChild($nameElement);
-		$urlElement = $domDocument->createElement('url', $this->url);
+
+		$urlElement = $domDocument->createElement("url", $this->url);
 		$domElement->appendChild($urlElement);
+
 		return $domElement;
 	}
-	
+
 }

@@ -14,7 +14,6 @@ class ShowMessage extends Element {
 	/*
 	 * Protected properties
 	 */
-	protected $tagName = 'show_message';
 	protected $message = null;
 
 	/**
@@ -56,9 +55,11 @@ class ShowMessage extends Element {
 	 * @see Element::render()
 	 */
 	public function render(\DOMDocument $domDocument) {
-		$domElement     = parent::render($domDocument);
-		$messageElement = $domDocument->createElement('message', $this->message);
+		$domElement = $domDocument->createElement("show_message");
+
+		$messageElement = $domDocument->createElement("message", $this->message);
 		$domElement->appendChild($messageElement);
+		
 		return $domElement;
 	}
 

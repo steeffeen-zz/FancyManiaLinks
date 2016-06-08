@@ -14,7 +14,6 @@ class PlayMap extends Element {
 	/*
 	 * Protected properties
 	 */
-	protected $tagName = 'play_map';
 	protected $name = null;
 	protected $url = null;
 
@@ -74,12 +73,15 @@ class PlayMap extends Element {
 	 * @see Element::render()
 	 */
 	public function render(\DOMDocument $domDocument) {
-		$domElement  = parent::render($domDocument);
-		$nameElement = $domDocument->createElement('name', $this->name);
+		$domElement = $domDocument->createElement("play_map");
+
+		$nameElement = $domDocument->createElement("name", $this->name);
 		$domElement->appendChild($nameElement);
-		$urlElement = $domDocument->createElement('url', $this->url);
+
+		$urlElement = $domDocument->createElement("url", $this->url);
 		$domElement->appendChild($urlElement);
+		
 		return $domElement;
 	}
-	
+
 }
