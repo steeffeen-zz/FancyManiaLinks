@@ -11,10 +11,14 @@ namespace FML\ManiaCode;
  */
 class PlayMap extends Element {
 
-	/*
-	 * Protected properties
+	/*+
+	 * @var string $name Map name
 	 */
 	protected $name = null;
+
+	/**
+	 * @var string $url Map url
+	 */
 	protected $url = null;
 
 	/**
@@ -37,16 +41,26 @@ class PlayMap extends Element {
 	 * @param string $url  (optional) Map url
 	 */
 	public function __construct($name = null, $url = null) {
-		if ($name !== null) {
+		if ($name) {
 			$this->setName($name);
 		}
-		if ($url !== null) {
+		if ($url) {
 			$this->setUrl($url);
 		}
 	}
 
 	/**
-	 * Set the name of the map
+	 * Get the map name
+	 *
+	 * @api
+	 * @return string
+	 */
+	public function getName() {
+		return $this->name;
+	}
+
+	/**
+	 * Set the map name
 	 *
 	 * @api
 	 * @param string $name Map name
@@ -58,7 +72,17 @@ class PlayMap extends Element {
 	}
 
 	/**
-	 * Set the url of the map
+	 * Get the map url
+	 *
+	 * @api
+	 * @return string
+	 */
+	public function getUrl() {
+		return $this->url;
+	}
+
+	/**
+	 * Set the map url
 	 *
 	 * @api
 	 * @param string $url Map url
@@ -80,7 +104,7 @@ class PlayMap extends Element {
 
 		$urlElement = $domDocument->createElement("url", $this->url);
 		$domElement->appendChild($urlElement);
-		
+
 		return $domElement;
 	}
 
