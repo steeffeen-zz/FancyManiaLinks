@@ -11,8 +11,8 @@ namespace FML\ManiaCode;
  */
 class AddBuddy extends Element {
 
-	/*
-	 * Protected properties
+	/**
+	 * @var string $login Buddy login
 	 */
 	protected $login = null;
 
@@ -34,9 +34,19 @@ class AddBuddy extends Element {
 	 * @param string $login (optional) Buddy login
 	 */
 	public function __construct($login = null) {
-		if ($login !== null) {
+		if ($login) {
 			$this->setLogin($login);
 		}
+	}
+
+	/**
+	 * Get the buddy login
+	 *
+	 * @api
+	 * @return string
+	 */
+	public function getLogin() {
+		return $this->login;
 	}
 
 	/**
@@ -55,9 +65,9 @@ class AddBuddy extends Element {
 	 * @see Element::render()
 	 */
 	public function render(\DOMDocument $domDocument) {
-		$domElement = $domDocument->createElement("view_replay");
+		$domElement = $domDocument->createElement("add_buddy");
 
-		$loginElement = $domDocument->createElement('login', $this->login);
+		$loginElement = $domDocument->createElement("login", $this->login);
 		$domElement->appendChild($loginElement);
 
 		return $domElement;
