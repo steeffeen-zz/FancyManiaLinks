@@ -11,12 +11,19 @@ namespace FML\ManiaCode;
  */
 class GetSkin extends Element {
 
-	/*
-	 * Protected properties
+	/**
+	 * @var string $name Skin name
 	 */
-	protected $tagName = 'get_skin';
 	protected $name = null;
+
+	/**
+	 * @var string $file Skin file
+	 */
 	protected $file = null;
+
+	/**
+	 * @var string $url Skin url
+	 */
 	protected $url = null;
 
 	/**
@@ -41,19 +48,29 @@ class GetSkin extends Element {
 	 * @param string $url  (optional) Skin url
 	 */
 	public function __construct($name = null, $file = null, $url = null) {
-		if ($name !== null) {
+		if ($name) {
 			$this->setName($name);
 		}
-		if ($file !== null) {
+		if ($file) {
 			$this->setFile($file);
 		}
-		if ($url !== null) {
+		if ($url) {
 			$this->setUrl($url);
 		}
 	}
 
 	/**
-	 * Set the name of the skin
+	 * Get the skin name
+	 *
+	 * @api
+	 * @return string
+	 */
+	public function getName() {
+		return $this->name;
+	}
+
+	/**
+	 * Set the skin name
 	 *
 	 * @api
 	 * @param string $name Skin name
@@ -65,7 +82,17 @@ class GetSkin extends Element {
 	}
 
 	/**
-	 * Set the file of the skin
+	 * Get the skin file
+	 *
+	 * @api
+	 * @return string
+	 */
+	public function getFile() {
+		return $this->file;
+	}
+
+	/**
+	 * Set the skin file
 	 *
 	 * @api
 	 * @param string $file Skin file
@@ -77,7 +104,17 @@ class GetSkin extends Element {
 	}
 
 	/**
-	 * Set the url of the skin
+	 * Get the skin url
+	 *
+	 * @api
+	 * @return string
+	 */
+	public function getUrl() {
+		return $this->url;
+	}
+
+	/**
+	 * Set the skin url
 	 *
 	 * @api
 	 * @param string $url Skin url
@@ -92,17 +129,17 @@ class GetSkin extends Element {
 	 * @see Element::render()
 	 */
 	public function render(\DOMDocument $domDocument) {
-		$domElement = $domDocument->createElement("view_replay");
+		$domElement = $domDocument->createElement("get_skin");
 
-		$nameElement = $domDocument->createElement('name', $this->name);
+		$nameElement = $domDocument->createElement("name", $this->name);
 		$domElement->appendChild($nameElement);
 
-		$fileElement = $domDocument->createElement('file', $this->file);
+		$fileElement = $domDocument->createElement("file", $this->file);
 		$domElement->appendChild($fileElement);
 
-		$urlElement = $domDocument->createElement('url', $this->url);
+		$urlElement = $domDocument->createElement("url", $this->url);
 		$domElement->appendChild($urlElement);
-		
+
 		return $domElement;
 	}
 
