@@ -11,8 +11,8 @@ namespace FML\ManiaCode;
  */
 class ShowMessage extends Element {
 
-	/*
-	 * Protected properties
+	/**
+	 * @var string $message Message text
 	 */
 	protected $message = null;
 
@@ -34,9 +34,19 @@ class ShowMessage extends Element {
 	 * @param string $message (optional) Message text
 	 */
 	public function __construct($message = null) {
-		if ($message !== null) {
+		if ($message) {
 			$this->setMessage($message);
 		}
+	}
+
+	/**
+	 * Get the message text
+	 *
+	 * @api
+	 * @return string
+	 */
+	public function getMessage() {
+		return $this->message;
 	}
 
 	/**
@@ -59,7 +69,7 @@ class ShowMessage extends Element {
 
 		$messageElement = $domDocument->createElement("message", $this->message);
 		$domElement->appendChild($messageElement);
-		
+
 		return $domElement;
 	}
 
