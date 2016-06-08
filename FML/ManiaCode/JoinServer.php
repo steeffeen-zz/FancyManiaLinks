@@ -11,34 +11,56 @@ namespace FML\ManiaCode;
  */
 class JoinServer extends Element {
 
-	/*
-	 * Protected properties
+	/**
+	 * @var string $login Server login
 	 */
 	protected $login = null;
-	protected $serverIp = null;
-	protected $serverPort = null;
+
+	/**
+	 * @var string $ip Server ip
+	 */
+	protected $ip = null;
+
+	/**
+	 * @var int $port Server port
+	 */
+	protected $port = null;
 
 	/**
 	 * Create a new JoinServer Element
 	 *
 	 * @api
-	 * @param string $login (optional) Server login
+	 * @param string $loginOrIp (optional) Server login or ip
+	 * @param int    $port      (optional) Server port
 	 * @return static
 	 */
-	public static function create($login = null) {
-		return new static($login);
+	public static function create($loginOrIp = null, $port = null) {
+		return new static($loginOrIp, $port);
 	}
 
 	/**
 	 * Construct a new JoinServer Element
 	 *
 	 * @api
-	 * @param string $login (optional) Server login
+	 * @param string $loginOrIp (optional) Server login or ip
+	 * @param int    $port      (optional) Server port
 	 */
-	public function __construct($login = null) {
-		if ($login !== null) {
-			$this->setLogin($login);
+	public function __construct($loginOrIp = null, $port = null) {
+		if ($port) {
+			$this->setIp($loginOrIp, $port);
+		} elseif ($loginOrIp) {
+			$this->setLogin($loginOrIp);
 		}
+	}
+
+	/**
+	 * Get the server login
+	 *
+	 * @api
+	 * @return string
+	 */
+	public function getLogin() {
+		return $this->login;
 	}
 
 	/**
@@ -49,24 +71,57 @@ class JoinServer extends Element {
 	 * @return static
 	 */
 	public function setLogin($login) {
-		$this->login      = (string)$login;
-		$this->serverIp   = null;
-		$this->serverPort = null;
+		$this->login = (string)$login;
+		$this->ip    = null;
+		$this->port  = null;
 		return $this;
+	}
+
+	/**
+	 * Get the server ip
+	 *
+	 * @api
+	 * @return string
+	 */
+	public function getIp() {
+		return $this->ip;
 	}
 
 	/**
 	 * Set the server ip and port
 	 *
 	 * @api
-	 * @param string $serverIp   Server ip
-	 * @param int    $serverPort Server port
+	 * @param string $ip   Server ip
+	 * @param int    $port (optional) Server port
 	 * @return static
 	 */
-	public function setIp($serverIp, $serverPort) {
-		$this->serverIp   = (string)$serverIp;
-		$this->serverPort = (int)$serverPort;
-		$this->login      = null;
+	public function setIp($ip, $port = null) {
+		$this->login = null;
+		$this->ip    = (string)$ip;
+		if ($port) {
+			$this->setPort($port);
+		}
+		return $this;
+	}
+
+	/**
+	 * Get the server port
+	 *
+	 * @api
+	 * @return int
+	 */
+	public function getPort() {
+		return $this->port;
+	}
+
+	/**
+	 * Set the server port
+	 *
+	 * @param int $port Server port
+	 * @return static
+	 */
+	public function setPort($port) {
+		$this->port = (int)$port;
 		return $this;
 	}
 
@@ -75,16 +130,16 @@ class JoinServer extends Element {
 	 */
 	public function render(\DOMDocument $domDocument) {
 		$domElement = $domDocument->createElement("join_server");
-		
-		if ($this->serverIp === null) {
+
+		if ($this->login) {
 			$loginElement = $domDocument->createElement("login", $this->login);
 			$domElement->appendChild($loginElement);
 		} else {
-			$ipElement = $domDocument->createElement("ip", $this->serverIp . ":" . $this->serverPort);
+			$ipElement = $domDocument->createElement("ip", $this->ip . ":" . $this->port);
 			$domElement->appendChild($ipElement);
 		}
-		
+
 		return $domElement;
 	}
-	
+
 }
