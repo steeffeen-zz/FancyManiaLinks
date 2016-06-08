@@ -11,10 +11,14 @@ namespace FML\ManiaCode;
  */
 class InstallReplay extends Element {
 
-	/*
-	 * Protected properties
+	/**
+	 * @var string $name Replay name
 	 */
 	protected $name = null;
+
+	/**
+	 * @var string $url Replay url
+	 */
 	protected $url = null;
 
 	/**
@@ -37,16 +41,26 @@ class InstallReplay extends Element {
 	 * @param string $url  (optional) Replay url
 	 */
 	public function __construct($name = null, $url = null) {
-		if ($name !== null) {
+		if ($name) {
 			$this->setName($name);
 		}
-		if ($url !== null) {
+		if ($url) {
 			$this->setUrl($url);
 		}
 	}
 
 	/**
-	 * Set the name of the replay
+	 * Get the replay name
+	 *
+	 * @api
+	 * @return string
+	 */
+	public function getName() {
+		return $this->name;
+	}
+
+	/**
+	 * Set the replay name
 	 *
 	 * @api
 	 * @param string $name Replay name
@@ -58,7 +72,17 @@ class InstallReplay extends Element {
 	}
 
 	/**
-	 * Set the url of the replay
+	 * Get the replay url
+	 *
+	 * @api
+	 * @return string
+	 */
+	public function getUrl() {
+		return $this->url;
+	}
+
+	/**
+	 * Set the replay url
 	 *
 	 * @api
 	 * @param string $url Replay url
@@ -80,7 +104,7 @@ class InstallReplay extends Element {
 
 		$urlElement = $domDocument->createElement("url", $this->url);
 		$domElement->appendChild($urlElement);
-		
+
 		return $domElement;
 	}
 
