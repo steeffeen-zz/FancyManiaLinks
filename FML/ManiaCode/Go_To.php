@@ -11,17 +11,16 @@ namespace FML\ManiaCode;
  */
 class Go_To extends Element {
 
-	/*
-	 * Protected properties
+	/**
+	 * @var string $link Link
 	 */
-	protected $tagName = 'goto';
 	protected $link = null;
 
 	/**
 	 * Create a new Go_To Element
 	 *
 	 * @api
-	 * @param string $link (optional) Goto link
+	 * @param string $link (optional) Link
 	 * @return static
 	 */
 	public static function create($link = null) {
@@ -32,19 +31,29 @@ class Go_To extends Element {
 	 * Construct a new Go_To Element
 	 *
 	 * @api
-	 * @param string $link (optional) Goto link
+	 * @param string $link (optional) Link
 	 */
 	public function __construct($link = null) {
-		if ($link !== null) {
+		if ($link) {
 			$this->setLink($link);
 		}
+	}
+
+	/**
+	 * Get the link
+	 *
+	 * @api
+	 * @return string
+	 */
+	public function getLink() {
+		return $this->link;
 	}
 
 	/**
 	 * Set the link
 	 *
 	 * @api
-	 * @param string $link Goto link
+	 * @param string $link Link
 	 * @return static
 	 */
 	public function setLink($link) {
@@ -56,11 +65,11 @@ class Go_To extends Element {
 	 * @see Element::render()
 	 */
 	public function render(\DOMDocument $domDocument) {
-		$domElement = $domDocument->createElement("view_replay");
+		$domElement = $domDocument->createElement("goto");
 
-		$linkElement = $domDocument->createElement('link', $this->link);
+		$linkElement = $domDocument->createElement("link", $this->link);
 		$domElement->appendChild($linkElement);
-		
+
 		return $domElement;
 	}
 
