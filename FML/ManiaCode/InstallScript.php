@@ -11,11 +11,19 @@ namespace FML\ManiaCode;
  */
 class InstallScript extends Element {
 
-	/*
-	 * Protected properties
+	/**
+	 * @var string $name Script name
 	 */
 	protected $name = null;
+
+	/**
+	 * @var string $file Script file
+	 */
 	protected $file = null;
+
+	/**
+	 * @var string $url Script url
+	 */
 	protected $url = null;
 
 	/**
@@ -40,19 +48,29 @@ class InstallScript extends Element {
 	 * @param string $url  (optional) Script url
 	 */
 	public function __construct($name = null, $file = null, $url = null) {
-		if ($name !== null) {
+		if ($name) {
 			$this->setName($name);
 		}
-		if ($file !== null) {
+		if ($file) {
 			$this->setFile($file);
 		}
-		if ($url !== null) {
+		if ($url) {
 			$this->setUrl($url);
 		}
 	}
 
 	/**
-	 * Set the name of the script
+	 * Get the script name
+	 *
+	 * @api
+	 * @return string
+	 */
+	public function getName() {
+		return $this->name;
+	}
+
+	/**
+	 * Set the script name
 	 *
 	 * @api
 	 * @param string $name Script name
@@ -64,7 +82,17 @@ class InstallScript extends Element {
 	}
 
 	/**
-	 * Set the file of the script
+	 * Get the script file
+	 *
+	 * @api
+	 * @return string
+	 */
+	public function getFile() {
+		return $this->file;
+	}
+
+	/**
+	 * Set the script file
 	 *
 	 * @api
 	 * @param string $file Script file
@@ -76,7 +104,17 @@ class InstallScript extends Element {
 	}
 
 	/**
-	 * Set the url of the script
+	 * Get the script url
+	 *
+	 * @api
+	 * @return string
+	 */
+	public function getUrl() {
+		return $this->url;
+	}
+
+	/**
+	 * Set the script url
 	 *
 	 * @api
 	 * @param string $url Script url
@@ -101,7 +139,7 @@ class InstallScript extends Element {
 
 		$urlElement = $domDocument->createElement("url", $this->url);
 		$domElement->appendChild($urlElement);
-		
+
 		return $domElement;
 	}
 
