@@ -11,11 +11,19 @@ namespace FML\ManiaCode;
  */
 class InstallPack extends Element {
 
-	/*
-	 * Protected properties
+	/**
+	 * @var string $name Pack name
 	 */
 	protected $name = null;
+
+	/**
+	 * @var string $file Pack file
+	 */
 	protected $file = null;
+
+	/**
+	 * @var string $url Pack url
+	 */
 	protected $url = null;
 
 	/**
@@ -40,19 +48,29 @@ class InstallPack extends Element {
 	 * @param string $url  (optional) Pack url
 	 */
 	public function __construct($name = null, $file = null, $url = null) {
-		if ($name !== null) {
+		if ($name) {
 			$this->setName($name);
 		}
-		if ($file !== null) {
+		if ($file) {
 			$this->setFile($file);
 		}
-		if ($url !== null) {
+		if ($url) {
 			$this->setUrl($url);
 		}
 	}
 
 	/**
-	 * Set the name of the pack
+	 * Get the pack name
+	 *
+	 * @api
+	 * @return string
+	 */
+	public function getName() {
+		return $this->name;
+	}
+
+	/**
+	 * Set the pack name
 	 *
 	 * @api
 	 * @param string $name Pack name
@@ -64,7 +82,17 @@ class InstallPack extends Element {
 	}
 
 	/**
-	 * Set the file of the pack
+	 * Get the pack file
+	 *
+	 * @api
+	 * @return string
+	 */
+	public function getFile() {
+		return $this->file;
+	}
+
+	/**
+	 * Set the pack file
 	 *
 	 * @api
 	 * @param string $file Pack file
@@ -76,7 +104,17 @@ class InstallPack extends Element {
 	}
 
 	/**
-	 * Set the url of the pack
+	 * Get the pack url
+	 *
+	 * @api
+	 * @return string
+	 */
+	public function getUrl() {
+		return $this->url;
+	}
+
+	/**
+	 * Set the pack url
 	 *
 	 * @api
 	 * @param string $url Pack url
@@ -101,7 +139,7 @@ class InstallPack extends Element {
 
 		$urlElement = $domDocument->createElement("url", $this->url);
 		$domElement->appendChild($urlElement);
-		
+
 		return $domElement;
 	}
 
