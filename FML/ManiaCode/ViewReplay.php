@@ -11,10 +11,14 @@ namespace FML\ManiaCode;
  */
 class ViewReplay extends Element {
 
-	/*
-	 * Protected properties
+	/**
+	 * @var string $name Replay name
 	 */
 	protected $name = null;
+
+	/**
+	 * @var string $url Replay url
+	 */
 	protected $url = null;
 
 	/**
@@ -46,7 +50,7 @@ class ViewReplay extends Element {
 	}
 
 	/**
-	 * Get the name of the replay
+	 * Get the replay name
 	 *
 	 * @api
 	 * @return string
@@ -56,7 +60,7 @@ class ViewReplay extends Element {
 	}
 
 	/**
-	 * Set the name of the replay
+	 * Set the replay name
 	 *
 	 * @api
 	 * @param string $name Replay name
@@ -68,7 +72,7 @@ class ViewReplay extends Element {
 	}
 
 	/**
-	 * Get the url of the replay
+	 * Get the replay url
 	 *
 	 * @api
 	 * @return string
@@ -78,7 +82,7 @@ class ViewReplay extends Element {
 	}
 
 	/**
-	 * Set the url of the replay
+	 * Set the replay url
 	 *
 	 * @api
 	 * @param string $url Replay url
@@ -100,7 +104,7 @@ class ViewReplay extends Element {
 
 		$urlElement = $domDocument->createElement("url", $this->url);
 		$domElement->appendChild($urlElement);
-		
+
 		return $domElement;
 	}
 
