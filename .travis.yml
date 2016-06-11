@@ -11,9 +11,11 @@ php:
 
 before_install:
 - if [[ "$TRAVIS_PHP_VERSION" > "5.5" ]]; then composer require satooshi/php-coveralls; else composer require satooshi/php-coveralls '~1.0'; fi;
+- composer require codeclimate/php-test-reporter
 
 before_script:
 - mkdir tests/logs
 
 after_script:
 - php vendor/bin/coveralls
+- php vendor/bin/test-reporter
