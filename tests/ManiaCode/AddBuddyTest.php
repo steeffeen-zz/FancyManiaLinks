@@ -24,11 +24,13 @@ class AddBuddyTest extends \PHPUnit_Framework_TestCase {
 	}
 
 	public function testRender() {
+		$domDocument = new \DOMDocument();
 		$addBuddy = new AddBuddy("some-login");
 
-		$xmlString = (string)$addBuddy;
+		$domElement = $addBuddy->render($domDocument);
+		$domDocument->appendChild($domElement);
 
-		$this->assertEquals($xmlString, "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>
+		$this->assertEquals($domDocument->saveXML(), "<?xml version=\"1.0\"?>
 <add_buddy><login>some-login</login></add_buddy>
 ");
 	}

@@ -46,11 +46,13 @@ class GetSkinTest extends \PHPUnit_Framework_TestCase {
 	}
 
 	public function testRender() {
+		$domDocument = new \DOMDocument();
 		$getSkin = new GetSkin("some-name", "some-file", "some-url");
 
-		$xmlString = (string)$getSkin;
+		$domElement = $getSkin->render($domDocument);
+		$domDocument->appendChild($domElement);
 
-		$this->assertEquals($xmlString, "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>
+		$this->assertEquals($domDocument->saveXML(), "<?xml version=\"1.0\"?>
 <get_skin><name>some-name</name><file>some-file</file><url>some-url</url></get_skin>
 ");
 	}

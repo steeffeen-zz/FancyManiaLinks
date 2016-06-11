@@ -87,21 +87,25 @@ class AddFavoriteTest extends \PHPUnit_Framework_TestCase {
 	}
 
 	public function testRenderWithLogin() {
+		$domDocument = new \DOMDocument();
 		$addFavorite = new AddFavorite("some-login");
 
-		$xmlString = (string)$addFavorite;
+		$domElement = $addFavorite->render($domDocument);
+		$domDocument->appendChild($domElement);
 
-		$this->assertEquals($xmlString, "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>
+		$this->assertEquals($domDocument->saveXML(), "<?xml version=\"1.0\"?>
 <add_favourite><login>some-login</login></add_favourite>
 ");
 	}
 
 	public function testRenderWithIpAndPort() {
+		$domDocument = new \DOMDocument();
 		$addFavorite = new AddFavorite("some.ip", 12345);
 
-		$xmlString = (string)$addFavorite;
+		$domElement = $addFavorite->render($domDocument);
+		$domDocument->appendChild($domElement);
 
-		$this->assertEquals($xmlString, "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>
+		$this->assertEquals($domDocument->saveXML(), "<?xml version=\"1.0\"?>
 <add_favourite><ip>some.ip:12345</ip></add_favourite>
 ");
 	}

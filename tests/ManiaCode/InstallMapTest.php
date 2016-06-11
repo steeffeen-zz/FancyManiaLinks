@@ -35,11 +35,13 @@ class InstallMapTest extends \PHPUnit_Framework_TestCase {
 	}
 
 	public function testRender() {
+		$domDocument = new \DOMDocument();
 		$installMap = new InstallMap("some-name", "some-url");
 
-		$xmlString = (string)$installMap;
+		$domElement = $installMap->render($domDocument);
+		$domDocument->appendChild($domElement);
 
-		$this->assertEquals($xmlString, "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>
+		$this->assertEquals($domDocument->saveXML(), "<?xml version=\"1.0\"?>
 <install_map><name>some-name</name><url>some-url</url></install_map>
 ");
 	}

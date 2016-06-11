@@ -35,11 +35,13 @@ class PlayReplayTest extends \PHPUnit_Framework_TestCase {
 	}
 
 	public function testRender() {
+		$domDocument = new \DOMDocument();
 		$playReplay = new PlayReplay("some-name", "some-url");
 
-		$xmlString = (string)$playReplay;
+		$domElement = $playReplay->render($domDocument);
+		$domDocument->appendChild($domElement);
 
-		$this->assertEquals($xmlString, "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>
+		$this->assertEquals($domDocument->saveXML(), "<?xml version=\"1.0\"?>
 <play_replay><name>some-name</name><url>some-url</url></play_replay>
 ");
 	}

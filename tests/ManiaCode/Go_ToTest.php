@@ -24,11 +24,13 @@ class Go_ToTest extends \PHPUnit_Framework_TestCase {
 	}
 
 	public function testRender() {
+		$domDocument = new \DOMDocument();
 		$goTo = new Go_To("some-link");
 
-		$xmlString = (string)$goTo;
+		$domElement = $goTo->render($domDocument);
+		$domDocument->appendChild($domElement);
 
-		$this->assertEquals($xmlString, "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>
+		$this->assertEquals($domDocument->saveXML(), "<?xml version=\"1.0\"?>
 <goto><link>some-link</link></goto>
 ");
 	}

@@ -9,7 +9,7 @@ namespace FML\ManiaCode;
  * @copyright FancyManiaLinks Copyright © 2014 Steffen Schröder
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
-class InstallPack extends Element {
+class InstallPack implements Element {
 
 	/**
 	 * @var string $name Pack name

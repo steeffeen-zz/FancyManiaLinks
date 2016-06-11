@@ -46,11 +46,13 @@ class InstallSkinTest extends \PHPUnit_Framework_TestCase {
 	}
 
 	public function testRender() {
+		$domDocument = new \DOMDocument();
 		$installSkin = new InstallSkin("some-name", "some-file", "some-url");
 
-		$xmlString = (string)$installSkin;
+		$domElement = $installSkin->render($domDocument);
+		$domDocument->appendChild($domElement);
 
-		$this->assertEquals($xmlString, "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>
+		$this->assertEquals($domDocument->saveXML(), "<?xml version=\"1.0\"?>
 <install_skin><name>some-name</name><file>some-file</file><url>some-url</url></install_skin>
 ");
 	}

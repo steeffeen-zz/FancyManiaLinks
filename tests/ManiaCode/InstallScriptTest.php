@@ -46,11 +46,13 @@ class InstallScriptTest extends \PHPUnit_Framework_TestCase {
 	}
 
 	public function testRender() {
+		$domDocument = new \DOMDocument();
 		$installScript = new InstallScript("some-name", "some-file", "some-url");
 
-		$xmlString = (string)$installScript;
+		$domElement = $installScript->render($domDocument);
+		$domDocument->appendChild($domElement);
 
-		$this->assertEquals($xmlString, "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>
+		$this->assertEquals($domDocument->saveXML(), "<?xml version=\"1.0\"?>
 <install_script><name>some-name</name><file>some-file</file><url>some-url</url></install_script>
 ");
 	}

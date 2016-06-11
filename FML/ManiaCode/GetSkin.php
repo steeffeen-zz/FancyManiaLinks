@@ -9,7 +9,7 @@ namespace FML\ManiaCode;
  * @copyright FancyManiaLinks Copyright © 2014 Steffen Schröder
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
-class GetSkin extends Element {
+class GetSkin implements Element {
 
 	/**
 	 * @var string $name Skin name

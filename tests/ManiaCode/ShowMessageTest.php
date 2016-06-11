@@ -24,11 +24,13 @@ class ShowMessageTest extends \PHPUnit_Framework_TestCase {
 	}
 
 	public function testRender() {
+		$domDocument = new \DOMDocument();
 		$showMessage = new ShowMessage("some-message");
 
-		$xmlString = (string)$showMessage;
+		$domElement = $showMessage->render($domDocument);
+		$domDocument->appendChild($domElement);
 
-		$this->assertEquals($xmlString, "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>
+		$this->assertEquals($domDocument->saveXML(), "<?xml version=\"1.0\"?>
 <show_message><message>some-message</message></show_message>
 ");
 	}

@@ -87,21 +87,25 @@ class JoinServerTest extends \PHPUnit_Framework_TestCase {
 	}
 
 	public function testRenderWithLogin() {
+		$domDocument = new \DOMDocument();
 		$joinServer = new JoinServer("some-login");
 
-		$xmlString = (string)$joinServer;
+		$domElement = $joinServer->render($domDocument);
+		$domDocument->appendChild($domElement);
 
-		$this->assertEquals($xmlString, "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>
+		$this->assertEquals($domDocument->saveXML(), "<?xml version=\"1.0\"?>
 <join_server><login>some-login</login></join_server>
 ");
 	}
 
 	public function testRenderWithIpAndPort() {
+		$domDocument = new \DOMDocument();
 		$joinServer = new JoinServer("some.ip", 12345);
 
-		$xmlString = (string)$joinServer;
+		$domElement = $joinServer->render($domDocument);
+		$domDocument->appendChild($domElement);
 
-		$this->assertEquals($xmlString, "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>
+		$this->assertEquals($domDocument->saveXML(), "<?xml version=\"1.0\"?>
 <join_server><ip>some.ip:12345</ip></join_server>
 ");
 	}

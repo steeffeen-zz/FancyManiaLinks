@@ -9,7 +9,7 @@ namespace FML\ManiaCode;
  * @copyright FancyManiaLinks Copyright © 2014 Steffen Schröder
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
-class JoinServer extends Element {
+class JoinServer implements Element {
 
 	/**
 	 * @var string $login Server login

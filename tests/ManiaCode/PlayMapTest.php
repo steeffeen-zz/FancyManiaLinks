@@ -35,11 +35,13 @@ class PlayMapTest extends \PHPUnit_Framework_TestCase {
 	}
 
 	public function testRender() {
+		$domDocument = new \DOMDocument();
 		$playMap = new PlayMap("some-name", "some-url");
 
-		$xmlString = (string)$playMap;
+		$domElement = $playMap->render($domDocument);
+		$domDocument->appendChild($domElement);
 
-		$this->assertEquals($xmlString, "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>
+		$this->assertEquals($domDocument->saveXML(), "<?xml version=\"1.0\"?>
 <play_map><name>some-name</name><url>some-url</url></play_map>
 ");
 	}
