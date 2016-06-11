@@ -561,8 +561,6 @@ abstract class Control implements Renderable, ScriptFeatureable
         return $domElement;
     }
 
-    // TODO: get tid of function and use property instead?
-
     /**
      * Get the ManiaScript class of the Control
      *

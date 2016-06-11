@@ -61,8 +61,6 @@ class UISound extends ScriptFeature
     protected $volume = 1.;
     protected $labelName = null;
 
-    // TODO: check if UISound can even work without $soundName - otherwise make parameter mandatory
-
     /**
      * Construct a new UISound
      *
