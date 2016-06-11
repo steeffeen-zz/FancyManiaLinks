@@ -118,8 +118,8 @@ class ManiaLinks
             $maniaLinks->appendChild($childXml);
         }
         if ($this->customUI) {
-            $customUIXml = $this->customUI->render($domDocument);
-            $maniaLinks->appendChild($customUIXml);
+            $customUIElement = $this->customUI->render($domDocument);
+            $maniaLinks->appendChild($customUIElement);
         }
         if ($echo) {
             header('Content-Type: application/xml; charset=utf-8;');

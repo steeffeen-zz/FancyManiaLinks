@@ -14,5 +14,6 @@ ratings:
   paths:
     - "**.php"
 exclude_paths:
-  - tests
-  - examples
+  - autoload.php
+  - examples/
+  - tests/
