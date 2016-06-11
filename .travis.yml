@@ -14,7 +14,7 @@ before_install:
 - composer require codeclimate/php-test-reporter
 
 before_script:
-- mkdir tests/logs
+- mkdir build/logs
 
 after_script:
 - php vendor/bin/coveralls
