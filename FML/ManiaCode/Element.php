@@ -9,14 +9,15 @@ namespace FML\ManiaCode;
  * @copyright FancyManiaLinks Copyright © 2014 Steffen Schröder
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
-interface Element {
+interface Element
+{
 
-	/**
-	 * Render the ManiaCode Element
-	 *
-	 * @param \DOMDocument $domDocument The DOMDocument for which the Element should be rendered
-	 * @return \DOMElement
-	 */
-	public function render(\DOMDocument $domDocument);
+    /**
+     * Render the ManiaCode Element
+     *
+     * @param \DOMDocument $domDocument The DOMDocument for which the Element should be rendered
+     * @return \DOMElement
+     */
+    public function render(\DOMDocument $domDocument);
 
 }

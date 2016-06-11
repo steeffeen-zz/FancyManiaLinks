@@ -13,21 +13,21 @@ $maniaLink->add($frame);
 // Create some lines with several elements
 $y = 50;
 for ($i = 1; $i <= 10; $i++) {
-	// Line background
-	$backgroundQuad = new \FML\Controls\Quads\Quad_ManiaplanetSystem();
-	$frame->add($backgroundQuad);
-	$backgroundQuad->setY($y);
-	$backgroundQuad->setSize(70, 8);
-	$backgroundQuad->setSubStyle($backgroundQuad::SUBSTYLE_BgDialog);
+    // Line background
+    $backgroundQuad = new \FML\Controls\Quads\Quad_ManiaplanetSystem();
+    $frame->add($backgroundQuad);
+    $backgroundQuad->setY($y)
+                   ->setSize(70, 8)
+                   ->setSubStyle($backgroundQuad::SUBSTYLE_BgDialog);
 
-	// Text label
-	$label = new \FML\Controls\Labels\Label_Text();
-	$frame->add($label);
-	$label->setY($y);
-	$label->setStyle($label::STYLE_TextTitle1);
-	$label->setText("Label #{$i}");
+    // Text label
+    $label = new \FML\Controls\Labels\Label_Text();
+    $frame->add($label);
+    $label->setY($y)
+          ->setStyle($label::STYLE_TextTitle1)
+          ->setText("Label #{$i}");
 
-	$y -= 10.;
+    $y -= 10.;
 }
 
 // Print xml

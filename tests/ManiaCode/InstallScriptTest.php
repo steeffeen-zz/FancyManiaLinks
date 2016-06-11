@@ -4,57 +4,63 @@ require_once __DIR__ . '/../../autoload.php';
 
 use FML\ManiaCode\InstallScript;
 
-class InstallScriptTest extends \PHPUnit_Framework_TestCase {
+class InstallScriptTest extends \PHPUnit_Framework_TestCase
+{
 
-	public function testConstruct() {
-		$installScript = new InstallScript("new-name", "new-file", "new-url");
+    public function testConstruct()
+    {
+        $installScript = new InstallScript("new-name", "new-file", "new-url");
 
-		$this->assertNotNull($installScript);
-		$this->assertEquals($installScript->getName(), "new-name");
-		$this->assertEquals($installScript->getFile(), "new-file");
-		$this->assertEquals($installScript->getUrl(), "new-url");
-	}
+        $this->assertNotNull($installScript);
+        $this->assertEquals($installScript->getName(), "new-name");
+        $this->assertEquals($installScript->getFile(), "new-file");
+        $this->assertEquals($installScript->getUrl(), "new-url");
+    }
 
-	public function testName() {
-		$installScript = new InstallScript();
+    public function testName()
+    {
+        $installScript = new InstallScript();
 
-		$this->assertNull($installScript->getName());
+        $this->assertNull($installScript->getName());
 
-		$this->assertSame($installScript->setName("test-name"), $installScript);
+        $this->assertSame($installScript->setName("test-name"), $installScript);
 
-		$this->assertEquals($installScript->getName(), "test-name");
-	}
+        $this->assertEquals($installScript->getName(), "test-name");
+    }
 
-	public function testFile() {
-		$installScript = new InstallScript();
+    public function testFile()
+    {
+        $installScript = new InstallScript();
 
-		$this->assertNull($installScript->getFile());
+        $this->assertNull($installScript->getFile());
 
-		$this->assertSame($installScript->setFile("test-file"), $installScript);
+        $this->assertSame($installScript->setFile("test-file"), $installScript);
 
-		$this->assertEquals($installScript->getFile(), "test-file");
-	}
+        $this->assertEquals($installScript->getFile(), "test-file");
+    }
 
-	public function testUrl() {
-		$installScript = new InstallScript();
+    public function testUrl()
+    {
+        $installScript = new InstallScript();
 
-		$this->assertNull($installScript->getUrl());
+        $this->assertNull($installScript->getUrl());
 
-		$this->assertSame($installScript->setUrl("test-url"), $installScript);
+        $this->assertSame($installScript->setUrl("test-url"), $installScript);
 
-		$this->assertEquals($installScript->getUrl(), "test-url");
-	}
+        $this->assertEquals($installScript->getUrl(), "test-url");
+    }
 
-	public function testRender() {
-		$domDocument = new \DOMDocument();
-		$installScript = new InstallScript("some-name", "some-file", "some-url");
+    public function testRender()
+    {
+        $domDocument   = new \DOMDocument();
+        $installScript = new InstallScript("some-name", "some-file", "some-url");
 
-		$domElement = $installScript->render($domDocument);
-		$domDocument->appendChild($domElement);
+        $domElement = $installScript->render($domDocument);
+        $domDocument->appendChild($domElement);
 
-		$this->assertEquals($domDocument->saveXML(), "<?xml version=\"1.0\"?>
+        $this->assertEquals($domDocument->saveXML(), "<?xml version=\"1.0\"?>
 <install_script><name>some-name</name><file>some-file</file><url>some-url</url></install_script>
 ");
-	}
+    }
 
 }

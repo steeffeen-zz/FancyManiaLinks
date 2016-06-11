@@ -11,22 +11,23 @@ use FML\Controls\Quad;
  * @copyright FancyManiaLinks Copyright © 2014 Steffen Schröder
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
-class Quad_ManiaplanetSystem extends Quad {
+class Quad_ManiaplanetSystem extends Quad
+{
 
-	/*
-	 * Constants
-	 */
-	const STYLE                   = 'ManiaplanetSystem';
-	const SUBSTYLE_BgDialog       = 'BgDialog';
-	const SUBSTYLE_BgDialogAnchor = 'BgDialogAnchor';
-	const SUBSTYLE_BgFloat        = 'BgFloat';
-	const SUBSTYLE_Events         = 'Events';
-	const SUBSTYLE_Medals         = 'Medals';
-	const SUBSTYLE_Statistics     = 'Statistics';
+    /*
+     * Constants
+     */
+    const STYLE                   = 'ManiaplanetSystem';
+    const SUBSTYLE_BgDialog       = 'BgDialog';
+    const SUBSTYLE_BgDialogAnchor = 'BgDialogAnchor';
+    const SUBSTYLE_BgFloat        = 'BgFloat';
+    const SUBSTYLE_Events         = 'Events';
+    const SUBSTYLE_Medals         = 'Medals';
+    const SUBSTYLE_Statistics     = 'Statistics';
 
-	/*
-	 * Protected properties
-	 */
-	protected $style = self::STYLE;
-	
+    /*
+     * Protected properties
+     */
+    protected $style = self::STYLE;
+
 }

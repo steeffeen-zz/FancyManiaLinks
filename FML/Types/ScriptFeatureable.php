@@ -11,13 +11,14 @@ use FML\Script\Features\ScriptFeature;
  * @copyright FancyManiaLinks Copyright © 2014 Steffen Schröder
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
-interface ScriptFeatureable {
+interface ScriptFeatureable
+{
 
-	/**
-	 * Get the Script Features
-	 *
-	 * @return ScriptFeature[]
-	 */
-	public function getScriptFeatures();
+    /**
+     * Get the Script Features
+     *
+     * @return ScriptFeature[]
+     */
+    public function getScriptFeatures();
 
 }

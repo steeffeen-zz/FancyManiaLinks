@@ -11,28 +11,29 @@ use FML\Controls\Quad;
  * @copyright FancyManiaLinks Copyright © 2014 Steffen Schröder
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
-class Quad_UIConstruction_Buttons2 extends Quad {
+class Quad_UIConstruction_Buttons2 extends Quad
+{
 
-	/*
-	 * Constants
-	 */
-	const STYLE                = 'UIConstruction_Buttons2';
-	const SUBSTYLE_AirMapping  = 'AirMapping';
-	const SUBSTYLE_BlockEditor = 'BlockEditor';
-	const SUBSTYLE_Copy        = 'Copy';
-	const SUBSTYLE_Cut         = 'Cut';
-	const SUBSTYLE_GhostBlocks = 'GhostBlocks';
-	const SUBSTYLE_KeysAdd     = 'KeysAdd';
-	const SUBSTYLE_KeysCopy    = 'KeysCopy';
-	const SUBSTYLE_KeysDelete  = 'KeysDelete';
-	const SUBSTYLE_KeysPaste   = 'KeysPaste';
-	const SUBSTYLE_New         = 'New';
-	const SUBSTYLE_Open        = 'Open';
-	const SUBSTYLE_Symmetry    = 'Symmetry';
+    /*
+     * Constants
+     */
+    const STYLE                = 'UIConstruction_Buttons2';
+    const SUBSTYLE_AirMapping  = 'AirMapping';
+    const SUBSTYLE_BlockEditor = 'BlockEditor';
+    const SUBSTYLE_Copy        = 'Copy';
+    const SUBSTYLE_Cut         = 'Cut';
+    const SUBSTYLE_GhostBlocks = 'GhostBlocks';
+    const SUBSTYLE_KeysAdd     = 'KeysAdd';
+    const SUBSTYLE_KeysCopy    = 'KeysCopy';
+    const SUBSTYLE_KeysDelete  = 'KeysDelete';
+    const SUBSTYLE_KeysPaste   = 'KeysPaste';
+    const SUBSTYLE_New         = 'New';
+    const SUBSTYLE_Open        = 'Open';
+    const SUBSTYLE_Symmetry    = 'Symmetry';
 
-	/*
-	 * Protected properties
-	 */
-	protected $style = self::STYLE;
-	
+    /*
+     * Protected properties
+     */
+    protected $style = self::STYLE;
+
 }

@@ -9,8 +9,8 @@ $maniaLink = new \FML\ManiaLink();
 // Create default time label
 $label = new \FML\Controls\Label();
 $maniaLink->add($label);
-$label->setY(10);
-$label->addClockFeature();
+$label->setY(10)
+      ->addClockFeature();
 
 // Create time label without seconds
 $label = new \FML\Controls\Label();
@@ -20,8 +20,8 @@ $label->addClockFeature(false);
 // Create full date label
 $label = new \FML\Controls\Label();
 $maniaLink->add($label);
-$label->setY(-10);
-$label->addClockFeature(true, true);
+$label->setY(-10)
+      ->addClockFeature(true, true);
 
 // Print xml
 $maniaLink->render(true);

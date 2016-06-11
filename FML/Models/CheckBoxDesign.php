@@ -11,5 +11,6 @@ namespace FML\Models;
  * @copyright  FancyManiaLinks Copyright © 2014 Steffen Schröder
  * @license    http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
-class CheckBoxDesign extends \FML\Components\CheckBoxDesign {
+class CheckBoxDesign extends \FML\Components\CheckBoxDesign
+{
 }

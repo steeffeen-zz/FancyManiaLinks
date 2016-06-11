@@ -9,15 +9,16 @@ namespace FML\Types;
  * @copyright FancyManiaLinks Copyright © 2014 Steffen Schröder
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
-interface Styleable {
+interface Styleable
+{
 
-	/**
-	 * Set the style
-	 *
-	 * @api
-	 * @param string $style Style name
-	 * @return static
-	 */
-	public function setStyle($style);
-	
+    /**
+     * Set the style
+     *
+     * @api
+     * @param string $style Style name
+     * @return static
+     */
+    public function setStyle($style);
+
 }

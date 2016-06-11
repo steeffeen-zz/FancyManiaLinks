@@ -11,19 +11,20 @@ use FML\Controls\Quad;
  * @copyright FancyManiaLinks Copyright © 2014 Steffen Schröder
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
-class Quad_Emblems extends Quad {
+class Quad_Emblems extends Quad
+{
 
-	/*
-	 * Constants
-	 */
-	const STYLE      = 'Emblems';
-	const SUBSTYLE_0 = '#0';
-	const SUBSTYLE_1 = '#1';
-	const SUBSTYLE_2 = '#2';
+    /*
+     * Constants
+     */
+    const STYLE      = 'Emblems';
+    const SUBSTYLE_0 = '#0';
+    const SUBSTYLE_1 = '#1';
+    const SUBSTYLE_2 = '#2';
 
-	/*
-	 * Protected properties
-	 */
-	protected $style = self::STYLE;
-	
+    /*
+     * Protected properties
+     */
+    protected $style = self::STYLE;
+
 }

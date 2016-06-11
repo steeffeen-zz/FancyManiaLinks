@@ -11,59 +11,64 @@ use FML\Types\Renderable;
  * @copyright FancyManiaLinks Copyright © 2014 Steffen Schröder
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
-class SimpleScript implements Renderable {
+class SimpleScript implements Renderable
+{
 
-	/*
-	 * Protected properties
-	 */
-	protected $tagName = 'script';
-	protected $text = null;
+    /*
+     * Protected properties
+     */
+    protected $tagName = 'script';
+    protected $text = null;
 
-	/**
-	 * Create a new SimpleScript
-	 *
-	 * @api
-	 * @param string $text (optional) Script text
-	 * @return static
-	 */
-	public static function create($text = null) {
-		return new static($text);
-	}
+    /**
+     * Create a new SimpleScript
+     *
+     * @api
+     * @param string $text (optional) Script text
+     * @return static
+     */
+    public static function create($text = null)
+    {
+        return new static($text);
+    }
 
-	/**
-	 * Construct a new SimpleScript
-	 *
-	 * @api
-	 * @param string $text (optional) Script text
-	 */
-	public function __construct($text = null) {
-		if ($text !== null) {
-			$this->setText($text);
-		}
-	}
+    /**
+     * Construct a new SimpleScript
+     *
+     * @api
+     * @param string $text (optional) Script text
+     */
+    public function __construct($text = null)
+    {
+        if ($text !== null) {
+            $this->setText($text);
+        }
+    }
 
-	/**
-	 * Set the script text
-	 *
-	 * @api
-	 * @param string $text Complete script text
-	 * @return static
-	 */
-	public function setText($text) {
-		$this->text = (string)$text;
-		return $this;
-	}
+    /**
+     * Set the script text
+     *
+     * @api
+     * @param string $text Complete script text
+     * @return static
+     */
+    public function setText($text)
+    {
+        $this->text = (string)$text;
+        return $this;
+    }
 
-	/**
-	 * @see Renderable::render()
-	 */
-	public function render(\DOMDocument $domDocument) {
-		$domElement = $domDocument->createElement($this->tagName);
-		if ($this->text) {
-			$scriptComment = $domDocument->createComment($this->text);
-			$domElement->appendChild($scriptComment);
-		}
-		return $domElement;
-	}
-	
+    /**
+     * @see Renderable::render()
+     */
+    public function render(\DOMDocument $domDocument)
+    {
+        $domElement = $domDocument->createElement($this->tagName);
+        if ($this->text) {
+            $scriptComment = $domDocument->createComment($this->text);
+            $domElement->appendChild($scriptComment);
+        }
+        return $domElement;
+    }
+
 }

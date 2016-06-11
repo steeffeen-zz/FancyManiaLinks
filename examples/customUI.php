@@ -7,9 +7,9 @@ require_once __DIR__ . '/../autoload.php';
 $customUI = new \FML\CustomUI();
 
 // Disable various display settings
-$customUI->setChallengeInfoVisible(false);
-$customUI->setCheckpointListVisible(false);
-$customUI->setRoundScoresVisible(false);
+$customUI->setChallengeInfoVisible(false)
+         ->setCheckpointListVisible(false)
+         ->setRoundScoresVisible(false);
 
 // Print xml
 echo $customUI;

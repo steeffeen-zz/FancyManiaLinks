@@ -9,9 +9,9 @@ $maniaLink = new \FML\ManiaLink();
 // Create audio element to play a sound
 $audio = new \FML\Controls\Audio();
 $maniaLink->add($audio);
-$audio->setSize(20, 20);
-$audio->setVolume(30);
-$audio->setData('http://fml.steeffeen.com/media/shoopdawhoop.ogg');
+$audio->setSize(20, 20)
+      ->setVolume(30)
+      ->setData('http://fml.steeffeen.com/media/shoopdawhoop.ogg');
 
 // Print xml
 $maniaLink->render(true);

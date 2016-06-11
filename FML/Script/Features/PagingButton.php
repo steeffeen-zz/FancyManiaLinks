@@ -12,77 +12,83 @@ use FML\Types\Scriptable;
  * @copyright FancyManiaLinks Copyright © 2014 Steffen Schröder
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
-class PagingButton {
+class PagingButton
+{
 
-	/*
-	 * Protected properties
-	 */
-	/** @var Control $control */
-	protected $control = null;
-	protected $browseAction = null;
+    /*
+     * Protected properties
+     */
+    /** @var Control $control */
+    protected $control = null;
+    protected $browseAction = null;
 
-	/**
-	 * Construct a new Paging Button
-	 *
-	 * @api
-	 * @param Control $control      (optional) Browse Control
-	 * @param int     $browseAction (optional) Number of browsed Pages per Click
-	 */
-	public function __construct(Control $control = null, $browseAction = null) {
-		if ($control !== null) {
-			$this->setControl($control);
-		}
-		if ($browseAction !== null) {
-			$this->setBrowseAction($browseAction);
-		}
-	}
+    /**
+     * Construct a new Paging Button
+     *
+     * @api
+     * @param Control $control      (optional) Browse Control
+     * @param int     $browseAction (optional) Number of browsed Pages per Click
+     */
+    public function __construct(Control $control = null, $browseAction = null)
+    {
+        if ($control !== null) {
+            $this->setControl($control);
+        }
+        if ($browseAction !== null) {
+            $this->setBrowseAction($browseAction);
+        }
+    }
 
-	/**
-	 * Get the browse Control
-	 *
-	 * @api
-	 * @return Control
-	 */
-	public function getControl() {
-		return $this->control;
-	}
+    /**
+     * Get the browse Control
+     *
+     * @api
+     * @return Control
+     */
+    public function getControl()
+    {
+        return $this->control;
+    }
 
-	/**
-	 * Set the browse Control
-	 *
-	 * @api
-	 * @param Control $control Browse Control
-	 * @return static
-	 */
-	public function setControl(Control $control) {
-		$control->checkId();
-		if ($control instanceof Scriptable) {
-			$control->setScriptEvents(true);
-		}
-		$this->control = $control;
-		return $this;
-	}
+    /**
+     * Set the browse Control
+     *
+     * @api
+     * @param Control $control Browse Control
+     * @return static
+     */
+    public function setControl(Control $control)
+    {
+        $control->checkId();
+        if ($control instanceof Scriptable) {
+            $control->setScriptEvents(true);
+        }
+        $this->control = $control;
+        return $this;
+    }
 
-	/**
-	 * Get the browse action
-	 *
-	 * @api
-	 * @return int
-	 */
-	public function getBrowseAction() {
-		return $this->browseAction;
-	}
+    /**
+     * Get the browse action
+     *
+     * @api
+     * @return int
+     */
+    public function getBrowseAction()
+    {
+        return $this->browseAction;
+    }
 
-	/**
-	 * Set the browse action
-	 *
-	 * @api
-	 * @param int $browseAction Number of browsed Pages per click
-	 * @return static
-	 */
-	public function setBrowseAction($browseAction) {
-		$this->browseAction = (int)$browseAction;
-		return $this;
-	}
-	
+    /**
+     * Set the browse action
+     *
+     * @api
+     * @param int $browseAction Number of browsed Pages per click
+     * @return static
+     */
+    public function setBrowseAction($browseAction)
+    {
+        $this->browseAction = (int)$browseAction;
+        return $this;
+    }
+
 }

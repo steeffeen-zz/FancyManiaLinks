@@ -16,157 +16,169 @@ use FML\Script\ScriptLabel;
  * @copyright FancyManiaLinks Copyright © 2014 Steffen Schröder
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
-class ValuePickerFeature extends ScriptFeature {
+class ValuePickerFeature extends ScriptFeature
+{
 
-	/*
-	 * Constants
-	 */
-	const FUNCTION_UPDATE_PICKER_VALUE = 'FML_UpdatePickerValue';
-	const VAR_PICKER_VALUES            = 'FML_Picker_Values';
-	const VAR_PICKER_DEFAULT_VALUE     = 'FML_Picker_Default_Value';
-	const VAR_PICKER_ENTRY_ID          = 'FML_Picker_EntryId';
+    /*
+     * Constants
+     */
+    const FUNCTION_UPDATE_PICKER_VALUE = 'FML_UpdatePickerValue';
+    const VAR_PICKER_VALUES            = 'FML_Picker_Values';
+    const VAR_PICKER_DEFAULT_VALUE     = 'FML_Picker_Default_Value';
+    const VAR_PICKER_ENTRY_ID          = 'FML_Picker_EntryId';
 
-	/*
-	 * Protected properties
-	 */
-	/** @var Label $label */
-	protected $label = null;
-	/** @var Entry $entry */
-	protected $entry = null;
-	protected $values = array();
-	protected $default = null;
+    /*
+     * Protected properties
+     */
+    /** @var Label $label */
+    protected $label = null;
+    /** @var Entry $entry */
+    protected $entry = null;
+    protected $values = array();
+    protected $default = null;
 
-	/**
-	 * Construct a new ValuePicker Feature
-	 *
-	 * @api
-	 * @param Label  $label   (optional) ValuePicker Label
-	 * @param Entry  $entry   (optional) Hidden Entry
-	 * @param array  $values  (optional) Possible values
-	 * @param string $default (optional) Default value
-	 */
-	public function __construct(Label $label = null, Entry $entry = null, array $values = array(), $default = null) {
-		if ($label !== null) {
-			$this->setLabel($label);
-		}
-		if ($entry !== null) {
-			$this->setEntry($entry);
-		}
-		if (!empty($values)) {
-			$this->setValues($values);
-		}
-		if ($default !== null) {
-			$this->setDefault($default);
-		}
-	}
+    /**
+     * Construct a new ValuePicker Feature
+     *
+     * @api
+     * @param Label  $label   (optional) ValuePicker Label
+     * @param Entry  $entry   (optional) Hidden Entry
+     * @param array  $values  (optional) Possible values
+     * @param string $default (optional) Default value
+     */
+    public function __construct(Label $label = null, Entry $entry = null, array $values = array(), $default = null)
+    {
+        if ($label !== null) {
+            $this->setLabel($label);
+        }
+        if ($entry !== null) {
+            $this->setEntry($entry);
+        }
+        if (!empty($values)) {
+            $this->setValues($values);
+        }
+        if ($default !== null) {
+            $this->setDefault($default);
+        }
+    }
 
-	/**
-	 * Get the ValuePicker Label
-	 *
-	 * @api
-	 * @return Label
-	 */
-	public function getLabel() {
-		return $this->label;
-	}
+    /**
+     * Get the ValuePicker Label
+     *
+     * @api
+     * @return Label
+     */
+    public function getLabel()
+    {
+        return $this->label;
+    }
 
-	/**
-	 * Set the ValuePicker Label
-	 *
-	 * @api
-	 * @param Label $label ValuePicker Label
-	 * @return static
-	 */
-	public function setLabel(Label $label) {
-		$this->label = $label->checkId()->setScriptEvents(true);
-		return $this;
-	}
+    /**
+     * Set the ValuePicker Label
+     *
+     * @api
+     * @param Label $label ValuePicker Label
+     * @return static
+     */
+    public function setLabel(Label $label)
+    {
+        $this->label = $label->checkId()
+                             ->setScriptEvents(true);
+        return $this;
+    }
 
-	/**
-	 * Get the hidden Entry
-	 *
-	 * @api
-	 * @return Entry
-	 */
-	public function getEntry() {
-		return $this->entry;
-	}
+    /**
+     * Get the hidden Entry
+     *
+     * @api
+     * @return Entry
+     */
+    public function getEntry()
+    {
+        return $this->entry;
+    }
 
-	/**
-	 * Set the hidden Entry
-	 *
-	 * @api
-	 * @param Entry $entry Hidden Entry
-	 * @return static
-	 */
-	public function setEntry(Entry $entry) {
-		$this->entry = $entry->checkId();
-		return $this;
-	}
+    /**
+     * Set the hidden Entry
+     *
+     * @api
+     * @param Entry $entry Hidden Entry
+     * @return static
+     */
+    public function setEntry(Entry $entry)
+    {
+        $this->entry = $entry->checkId();
+        return $this;
+    }
 
-	/**
-	 * Set the possible values
-	 *
-	 * @api
-	 * @param array $values Possible values
-	 * @return static
-	 */
-	public function setValues(array $values) {
-		$this->values = array();
-		foreach ($values as $value) {
-			array_push($this->values, (string)$value);
-		}
-		return $this;
-	}
+    /**
+     * Set the possible values
+     *
+     * @api
+     * @param array $values Possible values
+     * @return static
+     */
+    public function setValues(array $values)
+    {
+        $this->values = array();
+        foreach ($values as $value) {
+            array_push($this->values, (string)$value);
+        }
+        return $this;
+    }
 
-	/**
-	 * Get the default value
-	 *
-	 * @api
-	 * @return string
-	 */
-	public function getDefault() {
-		if ($this->default) {
-			return $this->default;
-		}
-		if (!empty($this->values)) {
-			return reset($this->values);
-		}
-		return null;
-	}
+    /**
+     * Get the default value
+     *
+     * @api
+     * @return string
+     */
+    public function getDefault()
+    {
+        if ($this->default) {
+            return $this->default;
+        }
+        if (!empty($this->values)) {
+            return reset($this->values);
+        }
+        return null;
+    }
 
-	/**
-	 * Set the default value
-	 *
-	 * @api
-	 * @param string $default Default value
-	 * @return static
-	 */
-	public function setDefault($default) {
-		$this->default = (string)$default;
-		return $this;
-	}
+    /**
+     * Set the default value
+     *
+     * @api
+     * @param string $default Default value
+     * @return static
+     */
+    public function setDefault($default)
+    {
+        $this->default = (string)$default;
+        return $this;
+    }
 
-	/**
-	 * @see ScriptFeature::prepare()
-	 */
-	public function prepare(Script $script) {
-		if ($this->label) {
-			$script->setScriptInclude(ScriptInclude::TEXTLIB);
-			$script->addScriptFunction(self::FUNCTION_UPDATE_PICKER_VALUE, $this->buildUpdatePickerValueFunction());
-			$script->appendGenericScriptLabel(ScriptLabel::ONINIT, $this->buildInitScriptText(), true);
-			$script->appendGenericScriptLabel(ScriptLabel::MOUSECLICK, $this->buildClickScriptText());
-		}
-		return $this;
-	}
+    /**
+     * @see ScriptFeature::prepare()
+     */
+    public function prepare(Script $script)
+    {
+        if ($this->label) {
+            $script->setScriptInclude(ScriptInclude::TEXTLIB);
+            $script->addScriptFunction(self::FUNCTION_UPDATE_PICKER_VALUE, $this->buildUpdatePickerValueFunction());
+            $script->appendGenericScriptLabel(ScriptLabel::ONINIT, $this->buildInitScriptText(), true);
+            $script->appendGenericScriptLabel(ScriptLabel::MOUSECLICK, $this->buildClickScriptText());
+        }
+        return $this;
+    }
 
-	/**
-	 * Build the function text
-	 *
-	 * @return string
-	 */
-	protected function buildUpdatePickerValueFunction() {
-		return "
+    /**
+     * Build the function text
+     *
+     * @return string
+     */
+    protected function buildUpdatePickerValueFunction()
+    {
+        return "
 Void " . self::FUNCTION_UPDATE_PICKER_VALUE . "(CMlLabel _Label) {
 	declare " . self::VAR_PICKER_VALUES . " as Values for _Label = Text[];
 	declare NewValueIndex = -1;
@@ -193,22 +205,23 @@ Void " . self::FUNCTION_UPDATE_PICKER_VALUE . "(CMlLabel _Label) {
 		Entry.Value = NewValue;
 	}
 }";
-	}
+    }
 
-	/**
-	 * Build the init script text
-	 *
-	 * @return string
-	 */
-	protected function buildInitScriptText() {
-		$labelId = $this->label->getId(true, true);
-		$entryId = '""';
-		if ($this->entry) {
-			$entryId = $this->entry->getId(true, true);
-		}
-		$values  = Builder::getArray($this->values);
-		$default = Builder::escapeText($this->getDefault(), true);
-		return "
+    /**
+     * Build the init script text
+     *
+     * @return string
+     */
+    protected function buildInitScriptText()
+    {
+        $labelId = $this->label->getId(true, true);
+        $entryId = '""';
+        if ($this->entry) {
+            $entryId = $this->entry->getId(true, true);
+        }
+        $values  = Builder::getArray($this->values);
+        $default = Builder::escapeText($this->getDefault(), true);
+        return "
 declare Label_Picker <=> (Page.GetFirstChild({$labelId}) as CMlLabel);
 declare Text[] " . self::VAR_PICKER_VALUES . " as Values for Label_Picker;
 Values = {$values};
@@ -218,20 +231,21 @@ declare Text " . self::VAR_PICKER_ENTRY_ID . " as EntryId for Label_Picker;
 EntryId = {$entryId};
 " . self::FUNCTION_UPDATE_PICKER_VALUE . "(Label_Picker);
 ";
-	}
+    }
 
-	/**
-	 * Build the script text for Label clicks
-	 *
-	 * @return string
-	 */
-	protected function buildClickScriptText() {
-		$labelId = $this->label->getId(true, true);
-		return "
+    /**
+     * Build the script text for Label clicks
+     *
+     * @return string
+     */
+    protected function buildClickScriptText()
+    {
+        $labelId = $this->label->getId(true, true);
+        return "
 if (Event.ControlId == {$labelId}) {
 	declare Label_Picker <=> (Event.Control as CMlLabel);
 	" . self::FUNCTION_UPDATE_PICKER_VALUE . "(Label_Picker);
 }";
-	}
+    }
 
 }

@@ -9,14 +9,15 @@ namespace FML\Types;
  * @copyright FancyManiaLinks Copyright © 2014 Steffen Schröder
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
-interface Scriptable {
+interface Scriptable
+{
 
-	/**
-	 * Set script events
-	 *
-	 * @param bool $scriptEvents If script events should be enabled
-	 * @return static
-	 */
-	public function setScriptEvents($scriptEvents);
-	
+    /**
+     * Set script events
+     *
+     * @param bool $scriptEvents If script events should be enabled
+     * @return static
+     */
+    public function setScriptEvents($scriptEvents);
+
 }

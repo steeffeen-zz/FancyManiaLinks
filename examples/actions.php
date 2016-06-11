@@ -9,16 +9,16 @@ $maniaLink = new \FML\ManiaLink();
 // Static action via xml
 $homeLabel = new \FML\Controls\Label();
 $maniaLink->add($homeLabel);
-$homeLabel->setX(-10);
-$homeLabel->setText('Home');
-$homeLabel->setAction(\FML\Types\Actionable::ACTION_HOME);
+$homeLabel->setX(-10)
+          ->setText('Home')
+          ->setAction(\FML\Types\Actionable::ACTION_HOME);
 
 // Dynamic action via script
 $enterLabel = new \FML\Controls\Label();
 $maniaLink->add($enterLabel);
-$enterLabel->setX(10);
-$enterLabel->setText('Quit');
-$enterLabel->addActionTriggerFeature(\FML\Types\Actionable::ACTION_QUIT);
+$enterLabel->setX(10)
+           ->setText('Quit')
+           ->addActionTriggerFeature(\FML\Types\Actionable::ACTION_QUIT);
 
 // Print xml
 $maniaLink->render(true);

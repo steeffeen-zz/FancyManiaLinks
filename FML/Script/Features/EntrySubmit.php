@@ -15,92 +15,100 @@ use FML\Script\ScriptLabel;
  * @copyright FancyManiaLinks Copyright © 2014 Steffen Schröder
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
-class EntrySubmit extends ScriptFeature {
+class EntrySubmit extends ScriptFeature
+{
 
-	/*
-	 * Protected properties
-	 */
-	/** @var Entry $entry */
-	protected $entry = null;
-	protected $url = null;
+    /*
+     * Protected properties
+     */
+    /** @var Entry $entry */
+    protected $entry = null;
+    protected $url = null;
 
-	/**
-	 * Construct a new Entry Submit
-	 *
-	 * @api
-	 * @param Entry  $entry (optional) Entry Control
-	 * @param string $url   (optional) Submit url
-	 */
-	public function __construct(Entry $entry = null, $url = null) {
-		if ($entry !== null) {
-			$this->setEntry($entry);
-		}
-		$this->setUrl($url);
-	}
+    /**
+     * Construct a new Entry Submit
+     *
+     * @api
+     * @param Entry  $entry (optional) Entry Control
+     * @param string $url   (optional) Submit url
+     */
+    public function __construct(Entry $entry = null, $url = null)
+    {
+        if ($entry !== null) {
+            $this->setEntry($entry);
+        }
+        $this->setUrl($url);
+    }
 
-	/**
-	 * Set the Entry
-	 *
-	 * @api
-	 * @param Entry $entry Entry Control
-	 * @return static
-	 */
-	public function setEntry(Entry $entry) {
-		$this->entry = $entry->checkId()->setScriptEvents(true);
-		return $this;
-	}
+    /**
+     * Set the Entry
+     *
+     * @api
+     * @param Entry $entry Entry Control
+     * @return static
+     */
+    public function setEntry(Entry $entry)
+    {
+        $this->entry = $entry->checkId()
+                             ->setScriptEvents(true);
+        return $this;
+    }
 
-	/**
-	 * Set the submit url
-	 *
-	 * @api
-	 * @param string $url Submit url
-	 * @return static
-	 */
-	public function setUrl($url) {
-		$this->url = (string)$url;
-		return $this;
-	}
+    /**
+     * Set the submit url
+     *
+     * @api
+     * @param string $url Submit url
+     * @return static
+     */
+    public function setUrl($url)
+    {
+        $this->url = (string)$url;
+        return $this;
+    }
 
-	/**
-	 * @see ScriptFeature::prepare()
-	 */
-	public function prepare(Script $script) {
-		$script->setScriptInclude(ScriptInclude::TEXTLIB);
-		$controlScript = new ControlScript($this->entry, $this->getScriptText(), ScriptLabel::ENTRYSUBMIT);
-		$controlScript->prepare($script);
-		return $this;
-	}
+    /**
+     * @see ScriptFeature::prepare()
+     */
+    public function prepare(Script $script)
+    {
+        $script->setScriptInclude(ScriptInclude::TEXTLIB);
+        $controlScript = new ControlScript($this->entry, $this->getScriptText(), ScriptLabel::ENTRYSUBMIT);
+        $controlScript->prepare($script);
+        return $this;
+    }
 
-	/**
-	 * Get the script text
-	 *
-	 * @return string
-	 */
-	protected function getScriptText() {
-		$url       = $this->buildCompatibleUrl();
-		$entryName = $this->entry->getName();
-		$link      = Builder::escapeText($entryName . $url . '=', true);
-		return "
+    /**
+     * Get the script text
+     *
+     * @return string
+     */
+    protected function getScriptText()
+    {
+        $url       = $this->buildCompatibleUrl();
+        $entryName = $this->entry->getName();
+        $link      = Builder::escapeText($entryName . $url . '=', true);
+        return "
 declare Value = TextLib::URLEncode(Entry.Value);
 OpenLink({$link}^Value, CMlScript::LinkType::Goto);
 ";
-	}
+    }
 
-	/**
-	 * Build the submit url compatible for the Entry parameter
-	 *
-	 * @return string
-	 */
-	protected function buildCompatibleUrl() {
-		$url         = $this->url;
-		$paramsBegin = stripos($url, '?');
-		if (!is_int($paramsBegin) || $paramsBegin < 0) {
-			$url .= '?';
-		} else {
-			$url .= '&';
-		}
-		return $url;
-	}
-	
+    /**
+     * Build the submit url compatible for the Entry parameter
+     *
+     * @return string
+     */
+    protected function buildCompatibleUrl()
+    {
+        $url         = $this->url;
+        $paramsBegin = stripos($url, '?');
+        if (!is_int($paramsBegin) || $paramsBegin < 0) {
+            $url .= '?';
+        } else {
+            $url .= '&';
+        }
+        return $url;
+    }
+
 }

@@ -9,25 +9,26 @@ namespace FML\Types;
  * @copyright FancyManiaLinks Copyright © 2014 Steffen Schröder
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
-interface SubStyleable {
+interface SubStyleable
+{
 
-	/**
-	 * Set the sub style
-	 *
-	 * @api
-	 * @param string $subStyle SubStyle name
-	 * @return static
-	 */
-	public function setSubStyle($subStyle);
+    /**
+     * Set the sub style
+     *
+     * @api
+     * @param string $subStyle SubStyle name
+     * @return static
+     */
+    public function setSubStyle($subStyle);
 
-	/**
-	 * Set the style and the sub style
-	 *
-	 * @api
-	 * @param string $style    Style name
-	 * @param string $subStyle SubStyle name
-	 * @return static
-	 */
-	public function setStyles($style, $subStyle);
-	
+    /**
+     * Set the style and the sub style
+     *
+     * @api
+     * @param string $style    Style name
+     * @param string $subStyle SubStyle name
+     * @return static
+     */
+    public function setStyles($style, $subStyle);
+
 }

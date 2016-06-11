@@ -9,57 +9,62 @@ namespace FML\Script;
  * @copyright FancyManiaLinks Copyright © 2014 Steffen Schröder
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
-class ScriptConstant {
+class ScriptConstant
+{
 
-	/*
-	 * Protected properties
-	 */
-	protected $name = null;
-	protected $value = null;
+    /*
+     * Protected properties
+     */
+    protected $name = null;
+    protected $value = null;
 
-	/**
-	 * Construct a new Script Constant
-	 *
-	 * @api
-	 * @param string $name  (optional) Constant name
-	 * @param string $value (optional) Constant value
-	 */
-	public function __construct($name = null, $value = null) {
-		$this->setName($name);
-		$this->setValue($value);
-	}
+    /**
+     * Construct a new Script Constant
+     *
+     * @api
+     * @param string $name  (optional) Constant name
+     * @param string $value (optional) Constant value
+     */
+    public function __construct($name = null, $value = null)
+    {
+        $this->setName($name);
+        $this->setValue($value);
+    }
 
-	/**
-	 * Set the name
-	 *
-	 * @api
-	 * @param string $name Constant name
-	 * @return static
-	 */
-	public function setName($name) {
-		$this->name = (string)$name;
-		return $this;
-	}
+    /**
+     * Set the name
+     *
+     * @api
+     * @param string $name Constant name
+     * @return static
+     */
+    public function setName($name)
+    {
+        $this->name = (string)$name;
+        return $this;
+    }
 
-	/**
-	 * Set the value
-	 *
-	 * @api
-	 * @param string $value Constant value
-	 * @return static
-	 */
-	public function setValue($value) {
-		$this->value = $value;
-		return $this;
-	}
+    /**
+     * Set the value
+     *
+     * @api
+     * @param string $value Constant value
+     * @return static
+     */
+    public function setValue($value)
+    {
+        $this->value = $value;
+        return $this;
+    }
 
-	/**
-	 * Build the Script Constant text
-	 *
-	 * @return string
-	 */
-	public function __toString() {
-		return Builder::getConstant($this->name, $this->value);
-	}
-	
+    /**
+     * Build the Script Constant text
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return Builder::getConstant($this->name, $this->value);
+    }
+
 }
