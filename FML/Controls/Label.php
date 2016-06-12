@@ -39,12 +39,36 @@ class Label extends Control implements Actionable, Linkable, NewLineable, Script
     protected $manialinkId = null;
     protected $autoNewLine = null;
     protected $scriptEvents = null;
+
+    /**
+     * @var string $style Style
+     */
     protected $style = null;
+
+    /**
+     * @var int $textSize Text size
+     */
     protected $textSize = -1;
+
+    /**
+     * @var string $textFont Text font
+     */
     protected $textFont = null;
+
+    /**
+     * @var string $textColor Text color
+     */
     protected $textColor = null;
-    protected $focusAreaColor1 = null;
-    protected $focusAreaColor2 = null;
+
+    /**
+     * @var string $areaColor Area color
+     */
+    protected $areaColor = null;
+
+    /**
+     * @var string $focusAreaColor Focus area color
+     */
+    protected $focusAreaColor = null;
 
     /**
      * @see Control::getTagName()
@@ -238,12 +262,28 @@ class Label extends Control implements Actionable, Linkable, NewLineable, Script
     }
 
     /**
+     * @see TextFormatable::getTextSize()
+     */
+    public function getTextSize()
+    {
+        return $this->textSize;
+    }
+
+    /**
      * @see TextFormatable::setTextSize()
      */
     public function setTextSize($textSize)
     {
         $this->textSize = (int)$textSize;
         return $this;
+    }
+
+    /**
+     * @see TextFormatable::getTextFont()
+     */
+    public function getTextFont()
+    {
+        return $this->textFont;
     }
 
     /**
@@ -256,6 +296,14 @@ class Label extends Control implements Actionable, Linkable, NewLineable, Script
     }
 
     /**
+     * @see TextFormatable::getTextColor()
+     */
+    public function getTextColor()
+    {
+        return $this->textColor;
+    }
+
+    /**
      * @see TextFormatable::setTextColor()
      */
     public function setTextColor($textColor)
@@ -265,12 +313,28 @@ class Label extends Control implements Actionable, Linkable, NewLineable, Script
     }
 
     /**
+     * @see TextFormatable::getAreaColor()
+     */
+    public function getAreaColor()
+    {
+        return $this->areaColor;
+    }
+
+    /**
      * @see TextFormatable::setAreaColor()
      */
     public function setAreaColor($areaColor)
     {
-        $this->focusAreaColor1 = (string)$areaColor;
+        $this->areaColor = (string)$areaColor;
         return $this;
+    }
+
+    /**
+     * @see TextFormatable::getAreaFocusColor()
+     */
+    public function getAreaFocusColor()
+    {
+        return $this->focusAreaColor;
     }
 
     /**
@@ -278,7 +342,7 @@ class Label extends Control implements Actionable, Linkable, NewLineable, Script
      */
     public function setAreaFocusColor($areaFocusColor)
     {
-        $this->focusAreaColor2 = (string)$areaFocusColor;
+        $this->focusAreaColor = (string)$areaFocusColor;
         return $this;
     }
 
@@ -304,61 +368,61 @@ class Label extends Control implements Actionable, Linkable, NewLineable, Script
     {
         $domElement = parent::render($domDocument);
         if (strlen($this->text) > 0) {
-            $domElement->setAttribute('text', $this->text);
+            $domElement->setAttribute("text", $this->text);
         }
         if ($this->textId) {
-            $domElement->setAttribute('textid', $this->textId);
+            $domElement->setAttribute("textid", $this->textId);
         }
         if ($this->textPrefix) {
-            $domElement->setAttribute('textprefix', $this->textPrefix);
+            $domElement->setAttribute("textprefix", $this->textPrefix);
         }
         if ($this->textEmboss) {
-            $domElement->setAttribute('textemboss', $this->textEmboss);
+            $domElement->setAttribute("textemboss", $this->textEmboss);
         }
         if ($this->translate) {
-            $domElement->setAttribute('translate', $this->translate);
+            $domElement->setAttribute("translate", $this->translate);
         }
         if ($this->maxLines >= 0) {
-            $domElement->setAttribute('maxlines', $this->maxLines);
+            $domElement->setAttribute("maxlines", $this->maxLines);
         }
         if ($this->opacity != 1.) {
-            $domElement->setAttribute('opacity', $this->opacity);
+            $domElement->setAttribute("opacity", $this->opacity);
         }
         if (strlen($this->action) > 0) {
-            $domElement->setAttribute('action', $this->action);
+            $domElement->setAttribute("action", $this->action);
         }
         if ($this->actionKey >= 0) {
-            $domElement->setAttribute('actionkey', $this->actionKey);
+            $domElement->setAttribute("actionkey", $this->actionKey);
         }
         if ($this->url) {
-            $domElement->setAttribute('url', $this->url);
+            $domElement->setAttribute("url", $this->url);
         }
         if ($this->manialink) {
-            $domElement->setAttribute('manialink', $this->manialink);
+            $domElement->setAttribute("manialink", $this->manialink);
         }
         if ($this->autoNewLine) {
-            $domElement->setAttribute('autonewline', $this->autoNewLine);
+            $domElement->setAttribute("autonewline", $this->autoNewLine);
         }
         if ($this->scriptEvents) {
-            $domElement->setAttribute('scriptevents', $this->scriptEvents);
+            $domElement->setAttribute("scriptevents", $this->scriptEvents);
         }
         if ($this->style) {
-            $domElement->setAttribute('style', $this->style);
+            $domElement->setAttribute("style", $this->style);
         }
         if ($this->textSize >= 0) {
-            $domElement->setAttribute('textsize', $this->textSize);
+            $domElement->setAttribute("textsize", $this->textSize);
         }
         if ($this->textFont) {
-            $domElement->setAttribute('textfont', $this->textFont);
+            $domElement->setAttribute("textfont", $this->textFont);
         }
         if ($this->textColor) {
-            $domElement->setAttribute('textcolor', $this->textColor);
+            $domElement->setAttribute("textcolor", $this->textColor);
         }
-        if ($this->focusAreaColor1) {
-            $domElement->setAttribute('focusareacolor1', $this->focusAreaColor1);
+        if ($this->areaColor) {
+            $domElement->setAttribute("focusareacolor1", $this->areaColor);
         }
-        if ($this->focusAreaColor2) {
-            $domElement->setAttribute('focusareacolor2', $this->focusAreaColor2);
+        if ($this->focusAreaColor) {
+            $domElement->setAttribute("focusareacolor2", $this->focusAreaColor);
         }
         return $domElement;
     }

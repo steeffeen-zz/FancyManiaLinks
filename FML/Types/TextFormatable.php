@@ -13,6 +13,14 @@ interface TextFormatable
 {
 
     /**
+     * Get the text size
+     *
+     * @api
+     * @return int
+     */
+    public function getTextSize();
+
+    /**
      * Set the text size
      *
      * @api
@@ -20,6 +28,14 @@ interface TextFormatable
      * @return static
      */
     public function setTextSize($textSize);
+
+    /**
+     * Get the text font
+     *
+     * @api
+     * @return string
+     */
+    public function getTextFont();
 
     /**
      * Set the text font
@@ -31,6 +47,14 @@ interface TextFormatable
     public function setTextFont($textFont);
 
     /**
+     * Get the text color
+     *
+     * @api
+     * @return string
+     */
+    public function getTextColor();
+
+    /**
      * Set the text color
      *
      * @api
@@ -40,6 +64,14 @@ interface TextFormatable
     public function setTextColor($textColor);
 
     /**
+     * Get the area color
+     *
+     * @api
+     * @return string
+     */
+    public function getAreaColor();
+
+    /**
      * Set the area color
      *
      * @api
@@ -47,6 +79,14 @@ interface TextFormatable
      * @return static
      */
     public function setAreaColor($areaColor);
+
+    /**
+     * Get the area focus color
+     *
+     * @api
+     * @return string
+     */
+    public function getAreaFocusColor();
 
     /**
      * Set the area focus color

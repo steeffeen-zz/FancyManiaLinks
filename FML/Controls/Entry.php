@@ -22,16 +22,48 @@ class Entry extends Control implements NewLineable, Scriptable, Styleable, TextF
     /*
      * Protected properties
      */
+    /**
+     * @var string $name Entry name
+     */
     protected $name = null;
+
+    /**
+     * @var string $default Default value
+     */
     protected $default = null;
     protected $autoNewLine = null;
     protected $scriptEvents = null;
+
+    /**
+     * @var string $style Style
+     */
     protected $style = null;
+
+    /**
+     * @var string $textColor Text color
+     */
     protected $textColor = null;
+
+    /**
+     * @var int $textSize Text size
+     */
     protected $textSize = -1;
+
+    /**
+     * @var string $textFont Text font
+     */
     protected $textFont = null;
-    protected $focusAreaColor1 = null;
-    protected $focusAreaColor2 = null;
+
+    /**
+     * @var string $areaColor Area color
+     */
+    protected $areaColor = null;
+
+    /**
+     * @var string $focusAreaColor Focus area color
+     */
+    protected $focusAreaColor = null;
+
     protected $autoComplete = null;
 
     /**
@@ -134,12 +166,28 @@ class Entry extends Control implements NewLineable, Scriptable, Styleable, TextF
     }
 
     /**
+     * @see TextFormatable::getTextColor()
+     */
+    public function getTextColor()
+    {
+        return $this->textColor;
+    }
+
+    /**
      * @see TextFormatable::setTextColor()
      */
     public function setTextColor($textColor)
     {
         $this->textColor = (string)$textColor;
         return $this;
+    }
+
+    /**
+     * @see TextFormatable::getTextSize()
+     */
+    public function getTextSize()
+    {
+        return $this->textSize;
     }
 
     /**
@@ -152,6 +200,14 @@ class Entry extends Control implements NewLineable, Scriptable, Styleable, TextF
     }
 
     /**
+     * @see TextFormatable::getTextFont()
+     */
+    public function getTextFont()
+    {
+        return $this->textFont;
+    }
+
+    /**
      * @see TextFormatable::setTextFont()
      */
     public function setTextFont($textFont)
@@ -161,12 +217,28 @@ class Entry extends Control implements NewLineable, Scriptable, Styleable, TextF
     }
 
     /**
+     * @see TextFormatable::getAreaColor()
+     */
+    public function getAreaColor()
+    {
+        return $this->areaColor;
+    }
+
+    /**
      * @see TextFormatable::setAreaColor()
      */
     public function setAreaColor($areaColor)
     {
-        $this->focusAreaColor1 = (string)$areaColor;
+        $this->areaColor = (string)$areaColor;
         return $this;
+    }
+
+    /**
+     * @see TextFormatable::getAreaFocusColor()
+     */
+    public function getAreaFocusColor()
+    {
+        return $this->focusAreaColor;
     }
 
     /**
@@ -174,7 +246,7 @@ class Entry extends Control implements NewLineable, Scriptable, Styleable, TextF
      */
     public function setAreaFocusColor($areaFocusColor)
     {
-        $this->focusAreaColor2 = (string)$areaFocusColor;
+        $this->focusAreaColor = (string)$areaFocusColor;
         return $this;
     }
 
@@ -212,10 +284,10 @@ class Entry extends Control implements NewLineable, Scriptable, Styleable, TextF
     {
         $domElement = parent::render($domDocument);
         if ($this->name) {
-            $domElement->setAttribute('name', $this->name);
+            $domElement->setAttribute("name", $this->name);
         }
         if ($this->default !== null) {
-            $domElement->setAttribute('default', $this->default);
+            $domElement->setAttribute("default", $this->default);
         } else if ($this->autoComplete) {
             $value = null;
             if (array_key_exists($this->name, $_GET)) {
@@ -224,32 +296,32 @@ class Entry extends Control implements NewLineable, Scriptable, Styleable, TextF
                 $value = $_POST[$this->name];
             }
             if ($value) {
-                $domElement->setAttribute('default', $value);
+                $domElement->setAttribute("default", $value);
             }
         }
         if ($this->autoNewLine) {
-            $domElement->setAttribute('autonewline', $this->autoNewLine);
+            $domElement->setAttribute("autonewline", $this->autoNewLine);
         }
         if ($this->scriptEvents) {
-            $domElement->setAttribute('scriptevents', $this->scriptEvents);
+            $domElement->setAttribute("scriptevents", $this->scriptEvents);
         }
         if ($this->style) {
-            $domElement->setAttribute('style', $this->style);
+            $domElement->setAttribute("style", $this->style);
         }
         if ($this->textColor) {
-            $domElement->setAttribute('textcolor', $this->textColor);
+            $domElement->setAttribute("textcolor", $this->textColor);
         }
         if ($this->textSize >= 0.) {
-            $domElement->setAttribute('textsize', $this->textSize);
+            $domElement->setAttribute("textsize", $this->textSize);
         }
         if ($this->textFont) {
-            $domElement->setAttribute('textfont', $this->textFont);
+            $domElement->setAttribute("textfont", $this->textFont);
         }
-        if ($this->focusAreaColor1) {
-            $domElement->setAttribute('focusareacolor1', $this->focusAreaColor1);
+        if ($this->areaColor) {
+            $domElement->setAttribute("focusareacolor1", $this->areaColor);
         }
-        if ($this->focusAreaColor2) {
-            $domElement->setAttribute('focusareacolor2', $this->focusAreaColor2);
+        if ($this->focusAreaColor) {
+            $domElement->setAttribute("focusareacolor2", $this->focusAreaColor);
         }
         return $domElement;
     }
