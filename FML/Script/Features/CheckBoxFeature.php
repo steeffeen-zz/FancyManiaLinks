@@ -28,17 +28,28 @@ class CheckBoxFeature extends ScriptFeature
     const VAR_CHECKBOX_DESIGNS        = 'FML_CheckBox_Designs';
     const VAR_CHECKBOX_ENTRY_ID       = 'FML_CheckBox_EntryId';
 
-    /*
-     * Protected properties
+    /**
+     * @var Quad $quad CheckBox Quad
      */
-    /** @var Quad $quad */
     protected $quad = null;
-    /** @var Entry $entry */
+
+    /**
+     * @var Entry $entry Hidden Entry for submitting the value
+     */
     protected $entry = null;
+
+    /**
+     * @var bool $default Default value
+     */
     protected $default = null;
-    /** @var CheckBoxDesign $enabledDesign */
+    /**
+     * @var CheckBoxDesign $enabledDesign Enabled design
+     */
     protected $enabledDesign = null;
-    /** @var CheckBoxDesign $disabledDesign */
+
+    /**
+     * @var CheckBoxDesign $disabledDesign Disabled design
+     */
     protected $disabledDesign = null;
 
     /**
@@ -51,15 +62,16 @@ class CheckBoxFeature extends ScriptFeature
      */
     public function __construct(Quad $quad = null, Entry $entry = null, $default = null)
     {
-        if ($quad !== null) {
+        if ($quad) {
             $this->setQuad($quad);
         }
-        if ($entry !== null) {
+        if ($entry) {
             $this->setEntry($entry);
         }
         if ($default !== null) {
             $this->setDefault($default);
         }
+
         $this->setEnabledDesign(CheckBoxDesign::defaultEnabledDesign());
         $this->setDisabledDesign(CheckBoxDesign::defaultDisabledDesign());
     }
@@ -114,6 +126,17 @@ class CheckBoxFeature extends ScriptFeature
     }
 
     /**
+     * Get the default value
+     *
+     * @api
+     * @return bool
+     */
+    public function getDefault()
+    {
+        return $this->default;
+    }
+
+    /**
      * Set the default value
      *
      * @api
@@ -127,6 +150,17 @@ class CheckBoxFeature extends ScriptFeature
     }
 
     /**
+     * Get the enabled Design
+     *
+     * @api
+     * @return CheckBoxDesign
+     */
+    public function getEnabledDesign()
+    {
+        return $this->enabledDesign;
+    }
+
+    /**
      * Set the enabled Design
      *
      * @api
@@ -137,6 +171,17 @@ class CheckBoxFeature extends ScriptFeature
     {
         $this->enabledDesign = $checkBoxDesign;
         return $this;
+    }
+
+    /**
+     * Get the disabled Design
+     *
+     * @api
+     * @return CheckBoxDesign
+     */
+    public function getDisabledDesign()
+    {
+        return $this->disabledDesign;
     }
 
     /**
@@ -181,20 +226,22 @@ Void " . self::FUNCTION_UPDATE_QUAD_DESIGN . "(CMlQuad _Quad) {
 	declare " . self::VAR_CHECKBOX_DESIGNS . " as Designs for _Quad = Text[Boolean];
 	declare Design = Designs[Enabled];
 	declare DesignParts = TextLib::Split(\"|\", Design);
-	if (DesignParts.count > 1) {
+	if (DesignParts.count == 2) {
 		_Quad.Style = DesignParts[0];
 		_Quad.Substyle = DesignParts[1];
 	} else {
 		_Quad.ImageUrl = Design;
 	}
-	declare " . self::VAR_CHECKBOX_ENTRY_ID . " as EntryId for _Quad = " . Builder::EMPTY_STRING . ";
-	if (EntryId != " . Builder::EMPTY_STRING . ") {
-		declare Value = \"0\";
-		if (Enabled) {
-			Value = \"1\";
-		}
+	declare " . self::VAR_CHECKBOX_ENTRY_ID . " as EntryId for _Quad = \"\";
+	if (EntryId != \"\") {
 		declare Entry <=> (Page.GetFirstChild(EntryId) as CMlEntry);
-		Entry.Value = Value;
+		if (Entry != Null) {
+		    if (Enabled) {
+		        Entry.Value = \"1\";
+    		} else {
+		        Entry.Value = \"0\";
+    		}
+		}
 	}
 }";
     }
@@ -206,24 +253,23 @@ Void " . self::FUNCTION_UPDATE_QUAD_DESIGN . "(CMlQuad _Quad) {
      */
     protected function buildInitScriptText()
     {
-        $quadId  = $this->getQuad()
-                        ->getId(true, true);
+        $quadId  = Builder::getId($this->getQuad());
         $entryId = '""';
         if ($this->entry) {
-            $entryId = $this->entry->getId(true, true);
+            $entryId = Builder::getId($this->getEntry());
         }
         $default              = Builder::getBoolean($this->default);
         $enabledDesignString  = $this->enabledDesign->getDesignString();
         $disabledDesignString = $this->disabledDesign->getDesignString();
         return "
-declare Quad_CheckBox <=> (Page.GetFirstChild({$quadId}) as CMlQuad);
+declare Quad_CheckBox <=> (Page.GetFirstChild(\"{$quadId}\") as CMlQuad);
 declare Text[Boolean] " . self::VAR_CHECKBOX_DESIGNS . " as Designs for Quad_CheckBox;
-Designs[True] = {$enabledDesignString};
-Designs[False] = {$disabledDesignString};
+Designs[True] = \"{$enabledDesignString}\";
+Designs[False] = \"{$disabledDesignString}\";
 declare Boolean " . self::VAR_CHECKBOX_ENABLED . " as Enabled for Quad_CheckBox;
 Enabled = !{$default};
 declare Text " . self::VAR_CHECKBOX_ENTRY_ID . " as EntryId for Quad_CheckBox;
-EntryId = {$entryId};
+EntryId = \"{$entryId}\";
 " . self::FUNCTION_UPDATE_QUAD_DESIGN . "(Quad_CheckBox);
 ";
     }
@@ -235,10 +281,9 @@ EntryId = {$entryId};
      */
     protected function buildClickScriptText()
     {
-        $quadId = $this->getQuad()
-                       ->getId(true, true);
+        $quadId = Builder::getId($this->getQuad());
         return "
-if (Event.ControlId == {$quadId}) {
+if (Event.ControlId == \"{$quadId}\") {
 	declare Quad_CheckBox <=> (Event.Control as CMlQuad);
 	" . self::FUNCTION_UPDATE_QUAD_DESIGN . "(Quad_CheckBox);
 }";

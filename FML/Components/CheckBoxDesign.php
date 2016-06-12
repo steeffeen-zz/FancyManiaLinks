@@ -4,7 +4,7 @@ namespace FML\Components;
 
 use FML\Controls\Quad;
 use FML\Controls\Quads\Quad_Icons64x64_1;
-use FML\Script\Builder;
+use FML\Types\Imageable;
 use FML\Types\Styleable;
 use FML\Types\SubStyleable;
 
@@ -15,15 +15,23 @@ use FML\Types\SubStyleable;
  * @copyright FancyManiaLinks Copyright © 2014 Steffen Schröder
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
-class CheckBoxDesign implements Styleable, SubStyleable
+class CheckBoxDesign implements Imageable, Styleable, SubStyleable
 {
 
-    /*
-     * Protected properties
+    /**
+     * @var string $style Style name
      */
-    protected $url = null;
     protected $style = null;
+
+    /**
+     * @var string $subStyle SubStyle name
+     */
     protected $subStyle = null;
+
+    /**
+     * @var string $imageUrl Image url
+     */
+    protected $imageUrl = null;
 
     /**
      * Create the default enabled Design
@@ -49,32 +57,25 @@ class CheckBoxDesign implements Styleable, SubStyleable
      * Construct a new CheckBox Design
      *
      * @api
-     * @param string $style    Style name or image url
+     * @param string $style    (optional) Style name or image url
      * @param string $subStyle (optional) SubStyle name
      */
-    public function __construct($style, $subStyle = null)
+    public function __construct($style = null, $subStyle = null)
     {
-        if ($subStyle === null) {
-            $this->setImageUrl($style);
-        } else {
+        if ($subStyle) {
             $this->setStyle($style);
             $this->setSubStyle($subStyle);
+        } elseif ($style) {
+            $this->setImageUrl($style);
         }
     }
 
     /**
-     * Set the image url
-     *
-     * @api
-     * @param string $url Image url
-     * @return static
+     * @see Styleable::getStyle()
      */
-    public function setImageUrl($url)
+    public function getStyle()
     {
-        $this->url      = (string)$url;
-        $this->style    = null;
-        $this->subStyle = null;
-        return $this;
+        return $this->style;
     }
 
     /**
@@ -85,6 +86,14 @@ class CheckBoxDesign implements Styleable, SubStyleable
         $this->style = (string)$style;
         $this->url   = null;
         return $this;
+    }
+
+    /**
+     * @see SubStyleable::getSubStyle()
+     */
+    public function getSubStyle()
+    {
+        return $this->subStyle;
     }
 
     /**
@@ -102,8 +111,33 @@ class CheckBoxDesign implements Styleable, SubStyleable
      */
     public function setStyles($style, $subStyle)
     {
-        $this->setStyle($style);
-        $this->setSubStyle($subStyle);
+        return $this->setStyle($style)
+                    ->setSubStyle($subStyle);
+    }
+
+    /**
+     * Get the image url
+     *
+     * @api
+     * @return string
+     */
+    public function getImageUrl()
+    {
+        return $this->imageUrl;
+    }
+
+    /**
+     * Set the image url
+     *
+     * @api
+     * @param string $imageUrl Image url
+     * @return static
+     */
+    public function setImageUrl($imageUrl)
+    {
+        $this->style    = null;
+        $this->subStyle = null;
+        $this->imageUrl = (string)$imageUrl;
         return $this;
     }
 
@@ -116,30 +150,25 @@ class CheckBoxDesign implements Styleable, SubStyleable
      */
     public function applyToQuad(Quad $quad)
     {
-        $quad->setImage($this->url);
-        $quad->setStyles($this->style, $this->subStyle);
+        if ($this->imageUrl) {
+            $quad->setImageUrl($this->imageUrl);
+        } elseif ($this->style) {
+            $quad->setStyles($this->style, $this->subStyle);
+        }
         return $this;
     }
 
     /**
      * Get the CheckBox Design string
      *
-     * @api
-     * @param bool $escaped        (optional) Whether the string should be escaped for the Script
-     * @param bool $addApostrophes (optional) Whether to add apostrophes before and after the text
      * @return string
      */
-    public function getDesignString($escaped = true, $addApostrophes = true)
+    public function getDesignString()
     {
-        if ($this->url !== null) {
-            $string = $this->url;
-        } else {
-            $string = $this->style . '|' . $this->subStyle;;
+        if ($this->imageUrl) {
+            return $this->imageUrl;
         }
-        if ($escaped) {
-            return Builder::escapeText($string, $addApostrophes);
-        }
-        return $string;
+        return $this->style . '|' . $this->subStyle;
     }
 
 }

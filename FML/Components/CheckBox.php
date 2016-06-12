@@ -21,14 +21,18 @@ use FML\Types\ScriptFeatureable;
 class CheckBox implements Renderable, ScriptFeatureable
 {
 
-    /*
-     * Protected properties
+    /**
+     * @var string $name CheckBox name
      */
     protected $name = null;
+
+    /**
+     * @var CheckBoxFeature $feature CheckBox Feature
+     */
     protected $feature = null;
 
     /**
-     * Create a new CheckBox
+     * Construct a new CheckBox
      *
      * @api
      * @param string $name    (optional) CheckBox name
@@ -38,9 +42,26 @@ class CheckBox implements Renderable, ScriptFeatureable
     public function __construct($name = null, $default = null, Quad $quad = null)
     {
         $this->feature = new CheckBoxFeature();
-        $this->setName($name);
-        $this->setDefault($default);
-        $this->setQuad($quad);
+        if ($name) {
+            $this->setName($name);
+        }
+        if ($default !== null) {
+            $this->setDefault($default);
+        }
+        if ($quad) {
+            $this->setQuad($quad);
+        }
+    }
+
+    /**
+     * Get the name
+     *
+     * @api
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
     }
 
     /**
@@ -57,6 +78,17 @@ class CheckBox implements Renderable, ScriptFeatureable
     }
 
     /**
+     * Get the default value
+     *
+     * @api
+     * @return bool
+     */
+    public function getDefault()
+    {
+        return $this->feature->getDefault();
+    }
+
+    /**
      * Set the default value
      *
      * @api
@@ -67,6 +99,17 @@ class CheckBox implements Renderable, ScriptFeatureable
     {
         $this->feature->setDefault($default);
         return $this;
+    }
+
+    /**
+     * Get the enabled design
+     *
+     * @api
+     * @return CheckBoxDesign
+     */
+    public function getEnabledDesign()
+    {
+        return $this->feature->getEnabledDesign();
     }
 
     /**
@@ -89,6 +132,17 @@ class CheckBox implements Renderable, ScriptFeatureable
     }
 
     /**
+     * Get the disabled design
+     *
+     * @api
+     * @return CheckBoxDesign
+     */
+    public function getDisabledDesign()
+    {
+        return $this->feature->getDisabledDesign();
+    }
+
+    /**
      * Set the disabled design
      *
      * @api
@@ -108,6 +162,21 @@ class CheckBox implements Renderable, ScriptFeatureable
     }
 
     /**
+     * Get the CheckBox Quad
+     *
+     * @api
+     * @return Quad
+     */
+    public function getQuad()
+    {
+        $quad = $this->feature->getQuad();
+        if ($quad) {
+            return $quad;
+        }
+        return $this->createQuad();
+    }
+
+    /**
      * Set the CheckBox Quad
      *
      * @api
@@ -121,20 +190,56 @@ class CheckBox implements Renderable, ScriptFeatureable
     }
 
     /**
-     * Get the CheckBox Quad
+     * Create the CheckBox Quad
      *
-     * @api
-     * @param bool $createIfEmpty (optional) Create the Quad if it's not set
      * @return Quad
      */
-    public function getQuad($createIfEmpty = true)
+    protected function createQuad()
     {
-        if (!$this->feature->getQuad() && $createIfEmpty) {
-            $quad = new Quad();
-            $quad->setSize(10, 10);
-            $this->setQuad($quad);
+        $quad = new Quad();
+        $quad->setSize(10, 10);
+        $this->setQuad($quad);
+        return $quad;
+    }
+
+    /**
+     * Get the hidden Entry
+     *
+     * @return Entry
+     */
+    protected function getEntry()
+    {
+        $entry = $this->feature->getEntry();
+        if ($entry) {
+            return $entry;
         }
-        return $this->feature->getQuad();
+        return $this->createEntry();
+    }
+
+    /**
+     * Set the hidden Entry
+     *
+     * @param Entry $entry Hidden Entry
+     * @return static
+     */
+    protected function setEntry(Entry $entry = null)
+    {
+        $this->feature->setEntry($entry);
+        return $this;
+    }
+
+    /**
+     * Create the hidden Entry
+     *
+     * @return Entry
+     */
+    protected function createEntry()
+    {
+        $entry = new Entry();
+        $entry->setVisible(false)
+              ->setName($this->name);
+        $this->setEntry($entry);
+        return $entry;
     }
 
     /**
@@ -155,24 +260,10 @@ class CheckBox implements Renderable, ScriptFeatureable
         $quad = $this->getQuad();
         $frame->add($quad);
 
-        $entry = $this->buildEntry();
+        $entry = $this->getEntry();
         $frame->add($entry);
-        $this->feature->setEntry($entry);
 
         return $frame->render($domDocument);
-    }
-
-    /**
-     * Build the hidden Entry
-     *
-     * @return Entry
-     */
-    protected function buildEntry()
-    {
-        $entry = new Entry();
-        $entry->setVisible(false)
-              ->setName($this->name);
-        return $entry;
     }
 
 }
