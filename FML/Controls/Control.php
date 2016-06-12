@@ -12,6 +12,7 @@ use FML\Script\Features\Toggle;
 use FML\Script\Features\Tooltip;
 use FML\Script\Features\UISound;
 use FML\Script\ScriptLabel;
+use FML\Types\Identifiable;
 use FML\Types\Renderable;
 use FML\Types\ScriptFeatureable;
 use FML\UniqueID;
@@ -24,7 +25,7 @@ use FML\UniqueID;
  * @copyright FancyManiaLinks Copyright © 2014 Steffen Schröder
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
-abstract class Control implements Renderable, ScriptFeatureable
+abstract class Control implements Identifiable, Renderable, ScriptFeatureable
 {
 
     /*
@@ -37,31 +38,76 @@ abstract class Control implements Renderable, ScriptFeatureable
     const BOTTOM  = 'bottom';
     const LEFT    = 'left';
 
-    /*
-     * Protected properties
+    /**
+     * @var string $controlId Control Id
      */
-    protected $tagName = 'control';
     protected $controlId = null;
+
+    /**
+     * @var float $posX X position
+     */
     protected $posX = 0.;
+
+    /**
+     * @var float $posY Y position
+     */
     protected $posY = 0.;
+
+    /**
+     * @var float $posZ Z position
+     */
     protected $posZ = 0.;
+
+    /**
+     * @var float $width Width
+     */
     protected $width = -1.;
+
+    /**
+     * @var float $height Height
+     */
     protected $height = -1.;
+
+    /**
+     * @var string $hAlign Horizontal alignment
+     */
     protected $hAlign = self::CENTER;
+
+    /**
+     * @var string $vAlign Vertical alignment
+     */
     protected $vAlign = self::CENTER2;
+
+    /**
+     * @var float $scale Scale
+     */
     protected $scale = 1.;
+
+    /**
+     * @var bool $hidden Hidden
+     */
     protected $hidden = null;
+
+    /**
+     * @var float $rotation Rotation
+     */
     protected $rotation = 0.;
-    /** @var string[] $classes */
+
+    /**
+     * @var string[] $classes Style classes
+     */
     protected $classes = array();
-    /** @var ScriptFeature[] $scriptFeatures */
+
+    /**
+     * @var ScriptFeature[] $scriptFeatures Script Features
+     */
     protected $scriptFeatures = array();
 
     /**
      * Create a new Control
      *
      * @api
-     * @param string $controlId (optional) Control id
+     * @param string $controlId (optional) Control Id
      * @return static
      */
     public static function create($controlId = null)
@@ -73,11 +119,11 @@ abstract class Control implements Renderable, ScriptFeatureable
      * Construct a new Control
      *
      * @api
-     * @param string $controlId (optional) Control id
+     * @param string $controlId (optional) Control Id
      */
     public function __construct($controlId = null)
     {
-        if ($controlId !== null) {
+        if ($controlId) {
             $this->setId($controlId);
         }
     }
@@ -99,10 +145,10 @@ abstract class Control implements Renderable, ScriptFeatureable
     }
 
     /**
-     * Set the Control id
+     * Set the Control Id
      *
      * @api
-     * @param string $controlId Control id
+     * @param string $controlId Control Id
      * @return static
      */
     public function setId($controlId)
@@ -209,9 +255,8 @@ abstract class Control implements Renderable, ScriptFeatureable
      */
     public function setSize($width, $height)
     {
-        $this->setWidth($width);
-        $this->setHeight($height);
-        return $this;
+        return $this->setWidth($width)
+                    ->setHeight($height);
     }
 
     /**
@@ -237,33 +282,6 @@ abstract class Control implements Renderable, ScriptFeatureable
     public function setHeight($height)
     {
         $this->height = (float)$height;
-        return $this;
-    }
-
-    /**
-     * Center the alignment
-     *
-     * @api
-     * @return static
-     */
-    public function centerAlign()
-    {
-        $this->setAlign(self::CENTER, self::CENTER2);
-        return $this;
-    }
-
-    /**
-     * Set the horizontal and the vertical alignment
-     *
-     * @api
-     * @param string $hAlign Horizontal alignment
-     * @param string $vAlign Vertical alignment
-     * @return static
-     */
-    public function setAlign($hAlign, $vAlign)
-    {
-        $this->setHAlign($hAlign);
-        $this->setVAlign($vAlign);
         return $this;
     }
 
@@ -294,15 +312,39 @@ abstract class Control implements Renderable, ScriptFeatureable
     }
 
     /**
-     * Reset the alignment
+     * Center the alignment
      *
      * @api
      * @return static
      */
-    public function resetAlign()
+    public function centerAlign()
     {
-        $this->setAlign(null, null);
-        return $this;
+        return $this->setAlign(self::CENTER, self::CENTER2);
+    }
+
+    /**
+     * Set the horizontal and the vertical alignment
+     *
+     * @api
+     * @param string $hAlign Horizontal alignment
+     * @param string $vAlign Vertical alignment
+     * @return static
+     */
+    public function setAlign($hAlign, $vAlign)
+    {
+        return $this->setHAlign($hAlign)
+                    ->setVAlign($vAlign);
+    }
+
+    /**
+     * Clear the alignment
+     *
+     * @api
+     * @return static
+     */
+    public function clearAlign()
+    {
+        return $this->setAlign(null, null);
     }
 
     /**
@@ -345,10 +387,10 @@ abstract class Control implements Renderable, ScriptFeatureable
     }
 
     /**
-     * Add a new class name
+     * Add a new style class
      *
      * @api
-     * @param string $class Class name
+     * @param string $class Style class name
      * @return static
      */
     public function addClass($class)
@@ -529,7 +571,7 @@ abstract class Control implements Renderable, ScriptFeatureable
      */
     public function render(\DOMDocument $domDocument)
     {
-        $domElement = $domDocument->createElement($this->tagName);
+        $domElement = $domDocument->createElement(static::getTagName());
         if ($this->controlId) {
             $domElement->setAttribute('id', $this->controlId);
         }
@@ -562,10 +604,17 @@ abstract class Control implements Renderable, ScriptFeatureable
     }
 
     /**
+     * Get the tag name of the Control
+     *
+     * @return string
+     */
+    abstract public static function getTagName();
+
+    /**
      * Get the ManiaScript class of the Control
      *
      * @return string
      */
-    public abstract function getManiaScriptClass();
+    abstract public static function getManiaScriptClass();
 
 }

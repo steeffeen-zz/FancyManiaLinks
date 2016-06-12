@@ -5,6 +5,7 @@ namespace FML\Controls;
 use FML\Components\CheckBoxDesign;
 use FML\Types\Actionable;
 use FML\Types\BgColorable;
+use FML\Types\Imageable;
 use FML\Types\Linkable;
 use FML\Types\Scriptable;
 use FML\Types\Styleable;
@@ -18,7 +19,7 @@ use FML\Types\SubStyleable;
  * @copyright FancyManiaLinks Copyright © 2014 Steffen Schröder
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
-class Quad extends Control implements Actionable, BgColorable, Linkable, Scriptable, Styleable, SubStyleable
+class Quad extends Control implements Actionable, BgColorable, Imageable, Linkable, Scriptable, Styleable, SubStyleable
 {
 
     /*
@@ -28,11 +29,11 @@ class Quad extends Control implements Actionable, BgColorable, Linkable, Scripta
     const KEEP_RATIO_CLIP     = 'Clip';
     const KEEP_RATIO_FIT      = 'Fit';
 
-    /*
-     * Protected properties
+    /**
+     * @var string $imageUrl
      */
-    protected $tagName = 'quad';
-    protected $image = null;
+    protected $imageUrl = null;
+
     protected $imageId = null;
     protected $imageFocus = null;
     protected $imageFocusId = null;
@@ -54,23 +55,35 @@ class Quad extends Control implements Actionable, BgColorable, Linkable, Scripta
     protected $opacity = null;
 
     /**
-     * @see Control::getManiaScriptClass()
+     * @see Control::getTagName()
      */
-    public function getManiaScriptClass()
+    public static function getTagName()
     {
-        return 'CMlQuad';
+        return "quad";
     }
 
     /**
-     * Set the image url
-     *
-     * @api
-     * @param string $image Image url
-     * @return static
+     * @see Control::getManiaScriptClass()
      */
-    public function setImage($image)
+    public static function getManiaScriptClass()
     {
-        $this->image = (string)$image;
+        return "CMlQuad";
+    }
+
+    /**
+     * @see Imageable::getImageUrl()
+     */
+    public function getImageUrl()
+    {
+        return $this->imageUrl;
+    }
+
+    /**
+     * @see Imageable::setImageUrl()
+     */
+    public function setImageUrl($imageUrl)
+    {
+        $this->imageUrl = (string)$imageUrl;
         return $this;
     }
 
@@ -246,13 +259,11 @@ class Quad extends Control implements Actionable, BgColorable, Linkable, Scripta
     }
 
     /**
-     * @see SubStyleable::setStyles()
+     * @see Styleable::getStyle()
      */
-    public function setStyles($style, $subStyle)
+    public function getStyle()
     {
-        $this->setStyle($style);
-        $this->setSubStyle($subStyle);
-        return $this;
+        return $this->style;
     }
 
     /**
@@ -265,11 +276,29 @@ class Quad extends Control implements Actionable, BgColorable, Linkable, Scripta
     }
 
     /**
+     * @see Styleable::getSubStyle()
+     */
+    public function getSubStyle()
+    {
+        return $this->subStyle;
+    }
+
+    /**
      * @see SubStyleable::setSubStyle()
      */
     public function setSubStyle($subStyle)
     {
         $this->subStyle = (string)$subStyle;
+        return $this;
+    }
+
+    /**
+     * @see SubStyleable::setStyles()
+     */
+    public function setStyles($style, $subStyle)
+    {
+        $this->setStyle($style);
+        $this->setSubStyle($subStyle);
         return $this;
     }
 
@@ -318,8 +347,8 @@ class Quad extends Control implements Actionable, BgColorable, Linkable, Scripta
     public function render(\DOMDocument $domDocument)
     {
         $domElement = parent::render($domDocument);
-        if ($this->image) {
-            $domElement->setAttribute('image', $this->image);
+        if ($this->imageUrl) {
+            $domElement->setAttribute('image', $this->imageUrl);
         }
         if ($this->imageId) {
             $domElement->setAttribute('imageid', $this->imageId);
