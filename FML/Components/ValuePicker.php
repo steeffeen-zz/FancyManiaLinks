@@ -21,28 +21,51 @@ use FML\Types\ScriptFeatureable;
 class ValuePicker implements Renderable, ScriptFeatureable
 {
 
-    /*
-     * Protected properties
+    /**
+     * @var string $name ValuePicker name
      */
     protected $name = null;
+
+    /**
+     * @var ValuePickerFeature $feature ValuePicker Feature
+     */
     protected $feature = null;
 
     /**
      * Create a new ValuePicker
      *
      * @api
-     * @param string $name    (optional) CheckBox name
-     * @param array  $values  (optional) Possible values
-     * @param bool   $default (optional) Default value
-     * @param Label  $label   (optional) ValuePicker label
+     * @param string   $name    (optional) ValuePicker name
+     * @param string[] $values  (optional) Possible values
+     * @param string   $default (optional) Default value
+     * @param Label    $label   (optional) ValuePicker label
      */
-    public function __construct($name = null, array $values = array(), $default = null, Label $label = null)
+    public function __construct($name = null, array $values = null, $default = null, Label $label = null)
     {
         $this->feature = new ValuePickerFeature();
-        $this->setName($name);
-        $this->setValues($values);
-        $this->setDefault($default);
-        $this->setLabel($label);
+        if ($name) {
+            $this->setName($name);
+        }
+        if ($values) {
+            $this->setValues($values);
+        }
+        if ($default !== null) {
+            $this->setDefault($default);
+        }
+        if ($label) {
+            $this->setLabel($label);
+        }
+    }
+
+    /**
+     * Get the name
+     *
+     * @api
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
     }
 
     /**
@@ -59,6 +82,17 @@ class ValuePicker implements Renderable, ScriptFeatureable
     }
 
     /**
+     * Get the possible values
+     *
+     * @api
+     * @return string[]
+     */
+    public function getValues()
+    {
+        return $this->feature->getValues();
+    }
+
+    /**
      * Set the possible values
      *
      * @api
@@ -69,6 +103,17 @@ class ValuePicker implements Renderable, ScriptFeatureable
     {
         $this->feature->setValues($values);
         return $this;
+    }
+
+    /**
+     * Get the default value
+     *
+     * @api
+     * @return string
+     */
+    public function getDefault()
+    {
+        return $this->feature->getDefault();
     }
 
     /**
@@ -85,32 +130,83 @@ class ValuePicker implements Renderable, ScriptFeatureable
     }
 
     /**
+     * Get the Label
+     *
+     * @api
+     * @return Label
+     */
+    public function getLabel()
+    {
+        $label = $this->feature->getLabel();
+        if ($label) {
+            return $label;
+        }
+        return $this->createLabel();
+    }
+
+    /**
      * Set the Label
      *
      * @api
      * @param Label $label ValuePicker Label
      * @return static
      */
-    public function setLabel(Label $label = null)
+    public function setLabel(Label $label)
     {
         $this->feature->setLabel($label);
         return $this;
     }
 
     /**
-     * Get the Label
+     * Create the Label
      *
-     * @api
-     * @param bool $createIfEmpty (optional) Create the Label if it's not set
      * @return Label
      */
-    public function getLabel($createIfEmpty = true)
+    protected function createLabel()
     {
-        if (!$this->feature->getLabel() && $createIfEmpty) {
-            $label = new Label();
-            $this->setLabel($label);
+        $label = new Label();
+        $this->setLabel($label);
+        return $label;
+    }
+
+    /**
+     * Get the hidden Entry
+     *
+     * @return Entry
+     */
+    public function getEntry()
+    {
+        $entry = $this->feature->getEntry();
+        if ($entry) {
+            return $entry;
         }
-        return $this->feature->getLabel();
+        return $this->createEntry();
+    }
+
+    /**
+     * Set the hidden Entry
+     *
+     * @param Entry $entry Hidden Entry
+     * @return static
+     */
+    public function setEntry(Entry $entry)
+    {
+        $this->feature->setEntry($entry);
+        return $this;
+    }
+
+    /**
+     * Create the hidden Entry
+     *
+     * @return Entry
+     */
+    protected function createEntry()
+    {
+        $entry = new Entry();
+        $entry->setVisible(false)
+              ->setName($this->name);
+        $this->setEntry($entry);
+        return $entry;
     }
 
     /**
@@ -131,24 +227,10 @@ class ValuePicker implements Renderable, ScriptFeatureable
         $label = $this->getLabel();
         $frame->add($label);
 
-        $entry = $this->buildEntry();
+        $entry = $this->getEntry();
         $frame->add($entry);
-        $this->feature->setEntry($entry);
 
         return $frame->render($domDocument);
-    }
-
-    /**
-     * Build the hidden Entry
-     *
-     * @return Entry
-     */
-    protected function buildEntry()
-    {
-        $entry = new Entry();
-        $entry->setVisible(false)
-              ->setName($this->name);
-        return $entry;
     }
 
 }

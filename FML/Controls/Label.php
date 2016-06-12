@@ -24,7 +24,6 @@ class Label extends Control implements Actionable, Linkable, NewLineable, Script
     /*
      * Protected properties
      */
-    protected $tagName = 'label';
     protected $text = null;
     protected $textId = null;
     protected $textPrefix = null;
@@ -48,11 +47,19 @@ class Label extends Control implements Actionable, Linkable, NewLineable, Script
     protected $focusAreaColor2 = null;
 
     /**
+     * @see Control::getTagName()
+     */
+    public static function getTagName()
+    {
+        return "label";
+    }
+
+    /**
      * @see Control::getManiaScriptClass()
      */
-    public function getManiaScriptClass()
+    public static function getManiaScriptClass()
     {
-        return 'CMlLabel';
+        return "CMlLabel";
     }
 
     /**
@@ -211,6 +218,14 @@ class Label extends Control implements Actionable, Linkable, NewLineable, Script
     {
         $this->scriptEvents = ($scriptEvents ? 1 : 0);
         return $this;
+    }
+
+    /**
+     * @see Styleable::getStyle()
+     */
+    public function getStyle()
+    {
+        return $this->style;
     }
 
     /**

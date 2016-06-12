@@ -27,34 +27,44 @@ class ValuePickerFeature extends ScriptFeature
     const VAR_PICKER_DEFAULT_VALUE     = 'FML_Picker_Default_Value';
     const VAR_PICKER_ENTRY_ID          = 'FML_Picker_EntryId';
 
-    /*
-     * Protected properties
+    /**
+     * @var Label $label Label
      */
-    /** @var Label $label */
     protected $label = null;
-    /** @var Entry $entry */
+
+    /**
+     * @var Entry $entry Hidden Entry
+     */
     protected $entry = null;
+
+    /**
+     * @var string[] $values Possible values
+     */
     protected $values = array();
+
+    /**
+     * @var string $default Default value
+     */
     protected $default = null;
 
     /**
      * Construct a new ValuePicker Feature
      *
      * @api
-     * @param Label  $label   (optional) ValuePicker Label
-     * @param Entry  $entry   (optional) Hidden Entry
-     * @param array  $values  (optional) Possible values
-     * @param string $default (optional) Default value
+     * @param Label    $label   (optional) ValuePicker Label
+     * @param Entry    $entry   (optional) Hidden Entry
+     * @param string[] $values  (optional) Possible values
+     * @param string   $default (optional) Default value
      */
-    public function __construct(Label $label = null, Entry $entry = null, array $values = array(), $default = null)
+    public function __construct(Label $label = null, Entry $entry = null, array $values = null, $default = null)
     {
-        if ($label !== null) {
+        if ($label) {
             $this->setLabel($label);
         }
-        if ($entry !== null) {
+        if ($entry) {
             $this->setEntry($entry);
         }
-        if (!empty($values)) {
+        if ($values && !empty($values)) {
             $this->setValues($values);
         }
         if ($default !== null) {
@@ -112,10 +122,21 @@ class ValuePickerFeature extends ScriptFeature
     }
 
     /**
+     * Get the possible values
+     *
+     * @api
+     * @return string[]
+     */
+    public function getValues()
+    {
+        return $this->values;
+    }
+
+    /**
      * Set the possible values
      *
      * @api
-     * @param array $values Possible values
+     * @param string[] $values Possible values
      * @return static
      */
     public function setValues(array $values)
@@ -191,16 +212,16 @@ Void " . self::FUNCTION_UPDATE_PICKER_VALUE . "(CMlLabel _Label) {
 			NewValueIndex = 0;
 		}
 	}
-	declare NewValue = " . Builder::EMPTY_STRING . ";
+	declare NewValue = \"\";
 	if (Values.existskey(NewValueIndex)) {
 		NewValue = Values[NewValueIndex];
 	} else {
-		declare " . self::VAR_PICKER_DEFAULT_VALUE . " as Default for _Label = " . Builder::EMPTY_STRING . ";
+		declare " . self::VAR_PICKER_DEFAULT_VALUE . " as Default for _Label = \"\";
 		NewValue = Default;
 	}
 	_Label.Value = NewValue;
-	declare " . self::VAR_PICKER_ENTRY_ID . " as EntryId for _Label = " . Builder::EMPTY_STRING . ";
-	if (EntryId != " . Builder::EMPTY_STRING . ") {
+	declare " . self::VAR_PICKER_ENTRY_ID . " as EntryId for _Label = \"\";
+	if (EntryId != \"\") {
 		declare Entry <=> (Page.GetFirstChild(EntryId) as CMlEntry);
 		Entry.Value = NewValue;
 	}
@@ -214,21 +235,23 @@ Void " . self::FUNCTION_UPDATE_PICKER_VALUE . "(CMlLabel _Label) {
      */
     protected function buildInitScriptText()
     {
-        $labelId = $this->label->getId(true, true);
+        $labelId = Builder::getId($this->label);
         $entryId = '""';
         if ($this->entry) {
-            $entryId = $this->entry->getId(true, true);
+            $entryId = Builder::getId($this->entry);
         }
+
         $values  = Builder::getArray($this->values);
-        $default = Builder::escapeText($this->getDefault(), true);
+        $default = Builder::escapeText($this->getDefault());
+
         return "
-declare Label_Picker <=> (Page.GetFirstChild({$labelId}) as CMlLabel);
+declare Label_Picker <=> (Page.GetFirstChild(\"{$labelId}\") as CMlLabel);
 declare Text[] " . self::VAR_PICKER_VALUES . " as Values for Label_Picker;
 Values = {$values};
 declare Text " . self::VAR_PICKER_DEFAULT_VALUE . " as Default for Label_Picker;
-Default = {$default};
+Default = \"{$default}\";
 declare Text " . self::VAR_PICKER_ENTRY_ID . " as EntryId for Label_Picker;
-EntryId = {$entryId};
+EntryId = \"{$entryId}\";
 " . self::FUNCTION_UPDATE_PICKER_VALUE . "(Label_Picker);
 ";
     }
@@ -240,9 +263,9 @@ EntryId = {$entryId};
      */
     protected function buildClickScriptText()
     {
-        $labelId = $this->label->getId(true, true);
+        $labelId = Builder::getId($this->label);
         return "
-if (Event.ControlId == {$labelId}) {
+if (Event.ControlId == \"{$labelId}\") {
 	declare Label_Picker <=> (Event.Control as CMlLabel);
 	" . self::FUNCTION_UPDATE_PICKER_VALUE . "(Label_Picker);
 }";
