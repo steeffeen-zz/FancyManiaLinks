@@ -14,10 +14,9 @@ use FML\Types\Renderable;
 class Including implements Renderable
 {
 
-    /*
-     * Protected properties
+    /**
+     * @var string $url Include url
      */
-    protected $tagName = 'include';
     protected $url = null;
 
     /**
@@ -40,9 +39,20 @@ class Including implements Renderable
      */
     public function __construct($url = null)
     {
-        if ($url !== null) {
+        if ($url) {
             $this->setUrl($url);
         }
+    }
+
+    /**
+     * Get the url
+     *
+     * @api
+     * @return string
+     */
+    public function getUrl()
+    {
+        return $this->url;
     }
 
     /**
@@ -63,9 +73,9 @@ class Including implements Renderable
      */
     public function render(\DOMDocument $domDocument)
     {
-        $domElement = $domDocument->createElement($this->tagName);
+        $domElement = $domDocument->createElement("include");
         if ($this->url) {
-            $domElement->setAttribute('url', $this->url);
+            $domElement->setAttribute("url", $this->url);
         }
         return $domElement;
     }
