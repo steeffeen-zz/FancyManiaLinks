@@ -18,21 +18,29 @@ use FML\Types\ScriptFeatureable;
 class Frame extends Control implements Container
 {
 
-    /*
-     * Protected properties
+    /**
+     * @var Renderable[] $children Children
      */
-    protected $tagName = 'frame';
-    /** @var Renderable[] $children */
     protected $children = array();
-    /** @var Format $format */
+    /**
+     * @var Format $format Format
+     */
     protected $format = null;
+
+    /**
+     * @see Control::getTagName()
+     */
+    public static function getTagName()
+    {
+        return "frame";
+    }
 
     /**
      * @see Control::getManiaScriptClass()
      */
-    public function getManiaScriptClass()
+    public static function getManiaScriptClass()
     {
-        return 'CMlFrame';
+        return "CMlFrame";
     }
 
     /**

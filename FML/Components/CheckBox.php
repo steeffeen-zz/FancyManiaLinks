@@ -183,7 +183,7 @@ class CheckBox implements Renderable, ScriptFeatureable
      * @param Quad $quad CheckBox Quad
      * @return static
      */
-    public function setQuad(Quad $quad = null)
+    public function setQuad(Quad $quad)
     {
         $this->feature->setQuad($quad);
         return $this;
@@ -207,7 +207,7 @@ class CheckBox implements Renderable, ScriptFeatureable
      *
      * @return Entry
      */
-    protected function getEntry()
+    public function getEntry()
     {
         $entry = $this->feature->getEntry();
         if ($entry) {
@@ -222,7 +222,7 @@ class CheckBox implements Renderable, ScriptFeatureable
      * @param Entry $entry Hidden Entry
      * @return static
      */
-    protected function setEntry(Entry $entry = null)
+    public function setEntry(Entry $entry)
     {
         $this->feature->setEntry($entry);
         return $this;

@@ -22,7 +22,6 @@ class Entry extends Control implements NewLineable, Scriptable, Styleable, TextF
     /*
      * Protected properties
      */
-    protected $tagName = 'entry';
     protected $name = null;
     protected $default = null;
     protected $autoNewLine = null;
@@ -36,11 +35,19 @@ class Entry extends Control implements NewLineable, Scriptable, Styleable, TextF
     protected $autoComplete = null;
 
     /**
+     * @see Control::getTagName()
+     */
+    public static function getTagName()
+    {
+        return "entry";
+    }
+
+    /**
      * @see Control::getManiaScriptClass()
      */
-    public function getManiaScriptClass()
+    public static function getManiaScriptClass()
     {
-        return 'CMlEntry';
+        return "CMlEntry";
     }
 
     /**
@@ -107,6 +114,14 @@ class Entry extends Control implements NewLineable, Scriptable, Styleable, TextF
     {
         $this->scriptEvents = ($scriptEvents ? 1 : 0);
         return $this;
+    }
+
+    /**
+     * @see Styleable::getStyle()
+     */
+    public function getStyle()
+    {
+        return $this->style;
     }
 
     /**
