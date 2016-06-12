@@ -2,6 +2,8 @@
 
 namespace FML\Script;
 
+use FML\Types\Identifiable;
+
 /**
  * ManiaScript Builder class
  *
@@ -52,6 +54,17 @@ abstract class Builder
             $escapedText = '"' . $escapedText . '"';
         }
         return $escapedText;
+    }
+
+    /**
+     * Get the escaped Id of the given Element
+     *
+     * @param Identifiable $element Element
+     * @return string
+     */
+    public static function getId(Identifiable $element)
+    {
+        return static::escapeText($element->getId());
     }
 
     /**
