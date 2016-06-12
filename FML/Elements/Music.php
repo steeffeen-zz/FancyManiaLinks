@@ -14,10 +14,9 @@ use FML\Types\Renderable;
 class Music implements Renderable
 {
 
-    /*
-     * Protected properties
+    /**
+     * @var string $data Media url
      */
-    protected $tagName = 'music';
     protected $data = null;
 
     /**
@@ -40,16 +39,27 @@ class Music implements Renderable
      */
     public function __construct($data = null)
     {
-        if ($data !== null) {
+        if ($data) {
             $this->setData($data);
         }
     }
 
     /**
-     * Set the data url
+     * Get the media url
      *
      * @api
-     * @param string $data Data url
+     * @return string
+     */
+    public function getData()
+    {
+        return $this->data;
+    }
+
+    /**
+     * Set the media url
+     *
+     * @api
+     * @param string $data Media url
      * @return static
      */
     public function setData($data)
@@ -63,9 +73,9 @@ class Music implements Renderable
      */
     public function render(\DOMDocument $domDocument)
     {
-        $domElement = $domDocument->createElement($this->tagName);
+        $domElement = $domDocument->createElement("music");
         if ($this->data) {
-            $domElement->setAttribute('data', $this->data);
+            $domElement->setAttribute("data", $this->data);
         }
         return $domElement;
     }
