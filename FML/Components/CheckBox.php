@@ -258,10 +258,10 @@ class CheckBox implements Renderable, ScriptFeatureable
         $frame = new Frame();
 
         $quad = $this->getQuad();
-        $frame->add($quad);
+        $frame->addChild($quad);
 
         $entry = $this->getEntry();
-        $frame->add($entry);
+        $frame->addChild($entry);
 
         return $frame->render($domDocument);
     }

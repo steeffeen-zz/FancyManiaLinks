@@ -44,9 +44,17 @@ class Frame extends Control implements Container
     }
 
     /**
-     * @see Container::add()
+     * @see Container::getChildren()
      */
-    public function add(Renderable $child)
+    public function getChildren()
+    {
+        return $this->children;
+    }
+
+    /**
+     * @see Container::addChild()
+     */
+    public function addChild(Renderable $child)
     {
         if (!in_array($child, $this->children, true)) {
             array_push($this->children, $child);
@@ -55,9 +63,20 @@ class Frame extends Control implements Container
     }
 
     /**
-     * @see Container::removeChildren()
+     * @see Container::addChildren()
      */
-    public function removeChildren()
+    public function addChildren(array $children)
+    {
+        foreach ($children as $child) {
+            $this->addChild($child);
+        }
+        return $this;
+    }
+
+    /**
+     * @see Container::removeAllChildren()
+     */
+    public function removeAllChildren()
     {
         $this->children = array();
         return $this;

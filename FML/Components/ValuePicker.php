@@ -225,10 +225,10 @@ class ValuePicker implements Renderable, ScriptFeatureable
         $frame = new Frame();
 
         $label = $this->getLabel();
-        $frame->add($label);
+        $frame->addChild($label);
 
         $entry = $this->getEntry();
-        $frame->add($entry);
+        $frame->addChild($entry);
 
         return $frame->render($domDocument);
     }

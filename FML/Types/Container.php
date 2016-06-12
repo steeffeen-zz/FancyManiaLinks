@@ -15,13 +15,30 @@ interface Container
 {
 
     /**
+     * Get the children
+     *
+     * @api
+     * @return Renderable[]
+     */
+    public function getChildren();
+
+    /**
      * Add a new child
      *
      * @api
      * @param Renderable $child Child Control to add
      * @return static
      */
-    public function add(Renderable $child);
+    public function addChild(Renderable $child);
+
+    /**
+     * Add new children
+     *
+     * @api
+     * @param Renderable[] $children Child Controls to add
+     * @return static
+     */
+    public function addChildren(array $children);
 
     /**
      * Remove all children
@@ -29,24 +46,23 @@ interface Container
      * @api
      * @return static
      */
-    public function removeChildren();
-
-    /**
-     * Set the Format
-     *
-     * @api
-     * @param Format $format New Format object
-     * @return static
-     */
-    public function setFormat(Format $format);
+    public function removeAllChildren();
 
     /**
      * Get the Format
      *
      * @api
-     * @param bool $createIfEmpty (optional) If the Format object should be created if it's not set
      * @return Format
      */
-    public function getFormat($createIfEmpty = true);
+    public function getFormat();
+
+    /**
+     * Set the Format
+     *
+     * @api
+     * @param Format $format New Format
+     * @return static
+     */
+    public function setFormat(Format $format);
 
 }
