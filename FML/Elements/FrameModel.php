@@ -3,6 +3,7 @@
 namespace FML\Elements;
 
 use FML\Types\Container;
+use FML\Types\Identifiable;
 use FML\Types\Renderable;
 use FML\UniqueID;
 
@@ -13,18 +14,67 @@ use FML\UniqueID;
  * @copyright FancyManiaLinks Copyright © 2014 Steffen Schröder
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
-class FrameModel implements Container, Renderable
+class FrameModel implements Container, Identifiable, Renderable
 {
 
-    /*
-     * Protected properties
+    /**
+     * @var string $modelId Model id
      */
-    protected $tagName = 'framemodel';
     protected $modelId = null;
-    /** @var Renderable[] $children */
+
+    /**
+     * @var Renderable[] $children Children
+     */
     protected $children = array();
-    /** @var Format $format */
+
+    /**
+     * @var Format $format Format
+     */
     protected $format = null;
+
+    /**
+     * Create a new Frame Model
+     *
+     * @api
+     * @param string       $modelId  Model id
+     * @param Renderable[] $children Children
+     * @return static
+     */
+    public static function create($modelId = null, array $children = null)
+    {
+        return new static($modelId, $children);
+    }
+
+    /**
+     * Construct a new Frame Model
+     *
+     * @api
+     * @param string       $modelId  Model id
+     * @param Renderable[] $children Children
+     */
+    public function __construct($modelId = null, array $children = null)
+    {
+        if ($modelId) {
+            $this->setId($modelId);
+        }
+        if ($children) {
+            $this->addChildren($children);
+        }
+    }
+
+    /**
+     * Get the Model id
+     *
+     * @api
+     * @return string
+     */
+    public function getId()
+    {
+        if (!$this->modelId) {
+            return $this->createId();
+        }
+        return $this->modelId;
+    }
 
     /**
      * Set the Model id
@@ -40,33 +90,29 @@ class FrameModel implements Container, Renderable
     }
 
     /**
-     * Get the Model id
-     *
-     * @api
-     * @return string
-     */
-    public function getId()
-    {
-        return $this->modelId;
-    }
-
-    /**
-     * Assign an id if necessary
+     * Create a new model id
      *
      * @return string
      */
-    public function checkId()
+    protected function createId()
     {
-        if (!$this->modelId) {
-            $this->setId(UniqueID::create());
-        }
-        return $this;
+        $modelId = UniqueID::create();
+        $this->setId($modelId);
+        return $this->getId();
     }
 
     /**
-     * @see Container::add()
+     * @see Container::getChildren()
      */
-    public function add(Renderable $childElement)
+    public function getChildren()
+    {
+        return $this->children;
+    }
+
+    /**
+     * @see Container::addChild()
+     */
+    public function addChild(Renderable $childElement)
     {
         if (!in_array($childElement, $this->children, true)) {
             array_push($this->children, $childElement);
@@ -75,12 +121,31 @@ class FrameModel implements Container, Renderable
     }
 
     /**
-     * @see Container::removeChildren()
+     * @see Container::addChildren()
      */
-    public function removeChildren()
+    public function addChildren(array $children)
+    {
+        foreach ($children as $child) {
+            $this->addChild($child);
+        }
+        return $this;
+    }
+
+    /**
+     * @see Container::removeAllChildren()
+     */
+    public function removeAllChildren()
     {
         $this->children = array();
         return $this;
+    }
+
+    /**
+     * @see Container::getFormat()
+     */
+    public function getFormat()
+    {
+        return $this->format;
     }
 
     /**
@@ -93,32 +158,23 @@ class FrameModel implements Container, Renderable
     }
 
     /**
-     * @see Container::getFormat()
-     */
-    public function getFormat($createIfEmpty = true)
-    {
-        if (!$this->format && $createIfEmpty) {
-            $this->setFormat(new Format());
-        }
-        return $this->format;
-    }
-
-    /**
      * @see Renderable::render()
      */
     public function render(\DOMDocument $domDocument)
     {
-        $this->checkId();
-        $domElement = $domDocument->createElement($this->tagName);
-        $domElement->setAttribute('id', $this->getId());
+        $domElement = $domDocument->createElement("framemodel");
+        $domElement->setAttribute("id", $this->getId());
+
         if ($this->format) {
-            $formatXml = $this->format->render($domDocument);
-            $domElement->appendChild($formatXml);
+            $formatElement = $this->format->render($domDocument);
+            $domElement->appendChild($formatElement);
         }
+
         foreach ($this->children as $child) {
             $childElement = $child->render($domDocument);
             $domElement->appendChild($childElement);
         }
+
         return $domElement;
     }
 
