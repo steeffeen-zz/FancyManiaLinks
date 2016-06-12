@@ -13,6 +13,14 @@ interface Styleable
 {
 
     /**
+     * Get the style
+     *
+     * @api
+     * @return string
+     */
+    public function getStyle();
+
+    /**
      * Set the style
      *
      * @api

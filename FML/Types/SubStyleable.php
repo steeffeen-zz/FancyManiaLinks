@@ -13,6 +13,14 @@ interface SubStyleable
 {
 
     /**
+     * Get the sub style
+     *
+     * @api
+     * @return string
+     */
+    public function getSubStyle();
+
+    /**
      * Set the sub style
      *
      * @api
