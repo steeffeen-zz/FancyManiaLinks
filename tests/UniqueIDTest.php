@@ -13,9 +13,12 @@ class UniqueIDTest extends \PHPUnit_Framework_TestCase
         $secondUniqueID = new UniqueID();
         $thirdUniqueID  = new UniqueID();
 
-        $this->assertEquals($firstUniqueID->getValue(), "FML_ID_1");
-        $this->assertEquals($secondUniqueID->getValue(), "FML_ID_2");
-        $this->assertEquals($thirdUniqueID->getValue(), "FML_ID_3");
+        $this->assertEquals($secondUniqueID->getIndex(), $firstUniqueID->getIndex() + 1);
+        $this->assertEquals($thirdUniqueID->getIndex(), $secondUniqueID->getIndex() + 1);
+
+        $this->assertEquals($firstUniqueID->getValue(), "FML_ID_" . $firstUniqueID->getIndex());
+        $this->assertEquals($secondUniqueID->getValue(), "FML_ID_" . $secondUniqueID->getIndex());
+        $this->assertEquals($thirdUniqueID->getValue(), "FML_ID_" . $thirdUniqueID->getIndex());
     }
 
 }

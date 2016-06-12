@@ -61,6 +61,16 @@ class UniqueID
     }
 
     /**
+     * Get the Unique ID index
+     *
+     * @return int
+     */
+    public function getIndex()
+    {
+        return $this->index;
+    }
+
+    /**
      * Get the Unique ID value
      *
      * @api
@@ -68,7 +78,7 @@ class UniqueID
      */
     public function getValue()
     {
-        return self::PREFIX . $this->index;
+        return self::PREFIX . $this->getIndex();
     }
 
     /**
