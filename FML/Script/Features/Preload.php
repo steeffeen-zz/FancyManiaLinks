@@ -19,7 +19,7 @@ class Preload extends ScriptFeature
     /*
      * Protected properties
      */
-    protected $imageUrls = [];
+    protected $imageUrls = array();
 
     /**
      * Construct a new Preload
@@ -27,9 +27,11 @@ class Preload extends ScriptFeature
      * @api
      * @param string[] $imageUrls Image Urls
      */
-    public function __construct(array $imageUrls = [])
+    public function __construct(array $imageUrls = null)
     {
-        $this->setImageUrls($imageUrls);
+        if ($imageUrls) {
+            $this->setImageUrls($imageUrls);
+        }
     }
 
     /**
@@ -38,7 +40,7 @@ class Preload extends ScriptFeature
      * @param string[] $imageUrls Image Urls
      * @return Preload
      */
-    public function setImageUrls(array $imageUrls = [])
+    public function setImageUrls(array $imageUrls = array())
     {
         $this->imageUrls = $imageUrls;
         return $this;

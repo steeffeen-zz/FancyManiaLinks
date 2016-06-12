@@ -10,11 +10,11 @@ class ValuePickerTest extends \PHPUnit_Framework_TestCase
     public function testConstruct()
     {
         $label       = new Label();
-        $valuePicker = new ValuePicker("test-name", ["test-first", "test-second"], "test-default", $label);
+        $valuePicker = new ValuePicker("test-name", array("test-first", "test-second"), "test-default", $label);
 
         $this->assertNotNull($valuePicker);
         $this->assertEquals($valuePicker->getName(), "test-name");
-        $this->assertEquals($valuePicker->getValues(), ["test-first", "test-second"]);
+        $this->assertEquals($valuePicker->getValues(), array("test-first", "test-second"));
         $this->assertEquals($valuePicker->getDefault(), "test-default");
         $this->assertSame($valuePicker->getLabel(), $label);
     }
@@ -34,11 +34,11 @@ class ValuePickerTest extends \PHPUnit_Framework_TestCase
     {
         $valuePicker = new ValuePicker();
 
-        $this->assertEquals($valuePicker->getValues(), []);
+        $this->assertEquals($valuePicker->getValues(), array());
 
-        $this->assertSame($valuePicker->setValues(["some-value", "other-value"]), $valuePicker);
+        $this->assertSame($valuePicker->setValues(array("some-value", "other-value")), $valuePicker);
 
-        $this->assertEquals($valuePicker->getValues(), ["some-value", "other-value"]);
+        $this->assertEquals($valuePicker->getValues(), array("some-value", "other-value"));
     }
 
     public function testDefault()
