@@ -1,7 +1,5 @@
 <?php
 
-require_once __DIR__ . '/../../autoload.php';
-
 use FML\ManiaCode\JoinServer;
 
 class JoinServerTest extends \PHPUnit_Framework_TestCase

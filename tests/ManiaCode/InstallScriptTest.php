@@ -1,7 +1,5 @@
 <?php
 
-require_once __DIR__ . '/../../autoload.php';
-
 use FML\ManiaCode\InstallScript;
 
 class InstallScriptTest extends \PHPUnit_Framework_TestCase

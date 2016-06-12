@@ -1,7 +1,5 @@
 <?php
 
-require_once __DIR__ . '/../../autoload.php';
-
 use FML\ManiaCode\Go_To;
 
 class Go_ToTest extends \PHPUnit_Framework_TestCase

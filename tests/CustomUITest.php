@@ -1,7 +1,5 @@
 <?php
 
-require_once __DIR__ . '/../autoload.php';
-
 use FML\CustomUI;
 
 class CustomUITest extends \PHPUnit_Framework_TestCase

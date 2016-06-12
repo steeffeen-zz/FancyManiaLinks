@@ -1,7 +1,5 @@
 <?php
 
-require_once __DIR__ . '/../../autoload.php';
-
 use FML\ManiaCode\InstallPack;
 
 class InstallPackTest extends \PHPUnit_Framework_TestCase

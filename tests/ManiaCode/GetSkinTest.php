@@ -1,7 +1,5 @@
 <?php
 
-require_once __DIR__ . '/../../autoload.php';
-
 use FML\ManiaCode\GetSkin;
 
 class GetSkinTest extends \PHPUnit_Framework_TestCase

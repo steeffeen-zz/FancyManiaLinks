@@ -1,7 +1,5 @@
 <?php
 
-require_once __DIR__ . '/../../autoload.php';
-
 use FML\Components\ValuePicker;
 use FML\Controls\Entry;
 use FML\Controls\Label;
