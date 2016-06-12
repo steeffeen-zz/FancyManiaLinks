@@ -25,38 +25,108 @@ class Quad extends Control implements Actionable, BgColorable, Imageable, Linkab
     /*
      * Constants
      */
-    const KEEP_RATIO_INACTIVE = 'inactive';
-    const KEEP_RATIO_CLIP     = 'Clip';
-    const KEEP_RATIO_FIT      = 'Fit';
+    const KEEP_RATIO_INACTIVE = "inactive";
+    const KEEP_RATIO_CLIP     = "Clip";
+    const KEEP_RATIO_FIT      = "Fit";
 
     /**
-     * @var string $imageUrl
+     * @var string $imageUrl Image url
      */
     protected $imageUrl = null;
 
+    /**
+     * @var string $imageId Image id
+     */
     protected $imageId = null;
-    protected $imageFocus = null;
+
+    /**
+     * @var string $imageFocusUrl Focus image url
+     */
+    protected $imageFocusUrl = null;
+
+    /**
+     * @var string $imageFocusId Focus image id
+     */
     protected $imageFocusId = null;
+
+    /**
+     * @var string $colorize Colorize value
+     */
     protected $colorize = null;
+
+    /**
+     * @var string $modulizeColor Modulization color
+     */
     protected $modulizeColor = null;
-    protected $autoScale = 1;
+
+    /**
+     * @var bool $autoScale Automatic scaling
+     */
+    protected $autoScale = true;
+
+    /**
+     * @var string $keepRatio Keep ratio mode
+     */
     protected $keepRatio = null;
+
+    /**
+     * @var string $action Action name
+     */
     protected $action = null;
-    protected $actionKey = -1;
+
+    /**
+     * @var int $actionKey Action key
+     */
+    protected $actionKey = null;
 
     /**
      * @var string $bgColor Background color
      */
     protected $bgColor = null;
-    
+
+    /**
+     * @var string $url Link url
+     */
     protected $url = null;
+
+    /**
+     * @var string $urlId Link url id
+     */
     protected $urlId = null;
+
+    /**
+     * @var string $manialink Manialink
+     */
     protected $manialink = null;
+
+    /**
+     * @var string $manialinkId Manialink id
+     */
     protected $manialinkId = null;
+
+    /**
+     * @var bool $scriptEvents Script events activation
+     */
     protected $scriptEvents = null;
+
+    /**
+     * @var string $style Style
+     */
     protected $style = null;
+
+    /**
+     * @var string $subStyle SubStyle
+     */
     protected $subStyle = null;
+
+    /**
+     * @var bool $styleSelected Style selected
+     */
     protected $styleSelected = null;
+
+    /**
+     * @var float $opacity Opacity
+     */
     protected $opacity = null;
 
     /**
@@ -109,12 +179,12 @@ class Quad extends Control implements Actionable, BgColorable, Imageable, Linkab
      * Set the focus image url
      *
      * @api
-     * @param string $imageFocus Focus image url
+     * @param string $imageFocusUrl Focus image url
      * @return static
      */
-    public function setImageFocus($imageFocus)
+    public function setImageFocusUrl($imageFocusUrl)
     {
-        $this->imageFocus = (string)$imageFocus;
+        $this->imageFocusUrl = (string)$imageFocusUrl;
         return $this;
     }
 
@@ -145,10 +215,10 @@ class Quad extends Control implements Actionable, BgColorable, Imageable, Linkab
     }
 
     /**
-     * Set the modulization
+     * Set the modulization color
      *
      * @api
-     * @param string $modulizeColor Modulize value
+     * @param string $modulizeColor Modulization color
      * @return static
      */
     public function setModulizeColor($modulizeColor)
@@ -166,7 +236,7 @@ class Quad extends Control implements Actionable, BgColorable, Imageable, Linkab
      */
     public function setAutoScale($autoScale)
     {
-        $this->autoScale = ($autoScale ? 1 : 0);
+        $this->autoScale = (bool)$autoScale;
         return $this;
     }
 
@@ -267,7 +337,7 @@ class Quad extends Control implements Actionable, BgColorable, Imageable, Linkab
      */
     public function setScriptEvents($scriptEvents)
     {
-        $this->scriptEvents = ($scriptEvents ? 1 : 0);
+        $this->scriptEvents = (bool)$scriptEvents;
         return $this;
     }
 
@@ -310,21 +380,20 @@ class Quad extends Control implements Actionable, BgColorable, Imageable, Linkab
      */
     public function setStyles($style, $subStyle)
     {
-        $this->setStyle($style);
-        $this->setSubStyle($subStyle);
-        return $this;
+        return $this->setStyle($style)
+                    ->setSubStyle($subStyle);
     }
 
     /**
      * Set selected style
      *
      * @api
-     * @param bool $styleSelected If the quad should be selected
+     * @param bool $styleSelected If the quad should be styled selected
      * @return static
      */
     public function setStyleSelected($styleSelected)
     {
-        $this->styleSelected = ($styleSelected ? 1 : 0);
+        $this->styleSelected = (bool)$styleSelected;
         return $this;
     }
 
@@ -361,58 +430,58 @@ class Quad extends Control implements Actionable, BgColorable, Imageable, Linkab
     {
         $domElement = parent::render($domDocument);
         if ($this->imageUrl) {
-            $domElement->setAttribute('image', $this->imageUrl);
+            $domElement->setAttribute("image", $this->imageUrl);
         }
         if ($this->imageId) {
-            $domElement->setAttribute('imageid', $this->imageId);
+            $domElement->setAttribute("imageid", $this->imageId);
         }
-        if ($this->imageFocus) {
-            $domElement->setAttribute('imagefocus', $this->imageFocus);
+        if ($this->imageFocusUrl) {
+            $domElement->setAttribute("imagefocus", $this->imageFocusUrl);
         }
         if ($this->imageFocusId) {
-            $domElement->setAttribute('imagefocusid', $this->imageFocusId);
+            $domElement->setAttribute("imagefocusid", $this->imageFocusId);
         }
         if ($this->colorize) {
-            $domElement->setAttribute('colorize', $this->colorize);
+            $domElement->setAttribute("colorize", $this->colorize);
         }
         if ($this->modulizeColor) {
-            $domElement->setAttribute('modulizecolor', $this->modulizeColor);
+            $domElement->setAttribute("modulizecolor", $this->modulizeColor);
         }
         if (!$this->autoScale) {
-            $domElement->setAttribute('autoscale', $this->autoScale);
+            $domElement->setAttribute("autoscale", 0);
         }
         if ($this->keepRatio) {
-            $domElement->setAttribute('keepratio', $this->keepRatio);
+            $domElement->setAttribute("keepratio", $this->keepRatio);
         }
-        if (strlen($this->action) > 0) {
-            $domElement->setAttribute('action', $this->action);
+        if ($this->action) {
+            $domElement->setAttribute("action", $this->action);
         }
-        if ($this->actionKey >= 0) {
-            $domElement->setAttribute('actionkey', $this->actionKey);
+        if ($this->actionKey) {
+            $domElement->setAttribute("actionkey", $this->actionKey);
         }
         if ($this->bgColor) {
-            $domElement->setAttribute('bgcolor', $this->bgColor);
+            $domElement->setAttribute("bgcolor", $this->bgColor);
         }
         if ($this->url) {
-            $domElement->setAttribute('url', $this->url);
+            $domElement->setAttribute("url", $this->url);
         }
         if ($this->manialink) {
-            $domElement->setAttribute('manialink', $this->manialink);
+            $domElement->setAttribute("manialink", $this->manialink);
         }
         if ($this->scriptEvents) {
-            $domElement->setAttribute('scriptevents', $this->scriptEvents);
+            $domElement->setAttribute("scriptevents", 1);
         }
         if ($this->style) {
-            $domElement->setAttribute('style', $this->style);
+            $domElement->setAttribute("style", $this->style);
         }
         if ($this->subStyle) {
-            $domElement->setAttribute('substyle', $this->subStyle);
+            $domElement->setAttribute("substyle", $this->subStyle);
         }
         if ($this->styleSelected) {
-            $domElement->setAttribute('styleselected', $this->styleSelected);
+            $domElement->setAttribute("styleselected", 1);
         }
         if ($this->opacity !== 1.) {
-            $domElement->setAttribute('opacity', $this->opacity);
+            $domElement->setAttribute("opacity", $this->opacity);
         }
         return $domElement;
     }
