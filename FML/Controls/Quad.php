@@ -43,7 +43,12 @@ class Quad extends Control implements Actionable, BgColorable, Imageable, Linkab
     protected $keepRatio = null;
     protected $action = null;
     protected $actionKey = -1;
+
+    /**
+     * @var string $bgColor Background color
+     */
     protected $bgColor = null;
+    
     protected $url = null;
     protected $urlId = null;
     protected $manialink = null;
@@ -202,6 +207,14 @@ class Quad extends Control implements Actionable, BgColorable, Imageable, Linkab
     {
         $this->actionKey = (int)$actionKey;
         return $this;
+    }
+
+    /**
+     * @see BgColorable::getBgColor()
+     */
+    public function getBgColor()
+    {
+        return $this->bgColor;
     }
 
     /**

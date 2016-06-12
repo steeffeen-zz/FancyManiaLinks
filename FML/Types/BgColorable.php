@@ -13,6 +13,14 @@ interface BgColorable
 {
 
     /**
+     * Get the background color
+     *
+     * @api
+     * @return string
+     */
+    public function getBgColor();
+
+    /**
      * Set the background color
      *
      * @api
