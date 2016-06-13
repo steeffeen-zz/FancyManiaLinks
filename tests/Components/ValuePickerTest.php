@@ -57,7 +57,7 @@ class ValuePickerTest extends \PHPUnit_Framework_TestCase
         $valuePicker = new ValuePicker();
         $label       = new Label();
 
-        $this->assertInstanceOf(get_class($label), $valuePicker->getLabel());
+        $this->assertTrue($valuePicker->getLabel() instanceof Label);
 
         $this->assertSame($valuePicker->setLabel($label), $valuePicker);
 
@@ -69,7 +69,7 @@ class ValuePickerTest extends \PHPUnit_Framework_TestCase
         $valuePicker = new ValuePicker();
         $entry       = new Entry();
 
-        $this->assertInstanceOf(get_class($entry), $valuePicker->getEntry());
+        $this->assertTrue($valuePicker->getEntry() instanceof Entry);
 
         $this->assertSame($valuePicker->setEntry($entry), $valuePicker);
 
