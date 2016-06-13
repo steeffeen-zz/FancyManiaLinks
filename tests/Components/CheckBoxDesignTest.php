@@ -1,7 +1,5 @@
 <?php
 
-namespace tests;
-
 use FML\Components\CheckBoxDesign;
 use FML\Controls\Quad;
 
