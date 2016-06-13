@@ -34,21 +34,11 @@ class CheckBoxDesign implements Imageable, Styleable, SubStyleable
     protected $imageUrl = null;
 
     /**
-     * Create the default enabled Design
+     * Create the default Design
      *
      * @return static
      */
-    public static function defaultEnabledDesign()
-    {
-        return new static(Quad_Icons64x64_1::STYLE, Quad_Icons64x64_1::SUBSTYLE_Check);
-    }
-
-    /**
-     * Create the default disabled Design
-     *
-     * @return static
-     */
-    public static function defaultDisabledDesign()
+    public static function defaultDesign()
     {
         return new static(Quad_Icons64x64_1::STYLE, Quad_Icons64x64_1::SUBSTYLE_Check);
     }
@@ -63,8 +53,7 @@ class CheckBoxDesign implements Imageable, Styleable, SubStyleable
     public function __construct($style = null, $subStyle = null)
     {
         if ($subStyle) {
-            $this->setStyle($style);
-            $this->setSubStyle($subStyle);
+            $this->setStyles($style, $subStyle);
         } elseif ($style) {
             $this->setImageUrl($style);
         }

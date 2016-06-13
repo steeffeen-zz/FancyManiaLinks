@@ -72,8 +72,8 @@ class CheckBoxFeature extends ScriptFeature
             $this->setDefault($default);
         }
 
-        $this->setEnabledDesign(CheckBoxDesign::defaultEnabledDesign());
-        $this->setDisabledDesign(CheckBoxDesign::defaultDisabledDesign());
+        $this->setEnabledDesign(CheckBoxDesign::defaultDesign());
+        $this->setDisabledDesign(CheckBoxDesign::defaultDesign());
     }
 
     /**

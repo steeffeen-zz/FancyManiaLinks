@@ -114,18 +114,9 @@ class CheckBoxDesignTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($designString, "image.url");
     }
 
-    public function testDefaultEnabledDesign()
+    public function testDefaultDesign()
     {
-        $checkBoxDesign = CheckBoxDesign::defaultEnabledDesign();
-
-        $this->assertTrue($checkBoxDesign instanceof CheckBoxDesign);
-        $this->assertNotNull($checkBoxDesign->getStyle());
-        $this->assertNotNull($checkBoxDesign->getSubStyle());
-    }
-
-    public function testDefaultDisabledDesign()
-    {
-        $checkBoxDesign = CheckBoxDesign::defaultDisabledDesign();
+        $checkBoxDesign = CheckBoxDesign::defaultDesign();
 
         $this->assertTrue($checkBoxDesign instanceof CheckBoxDesign);
         $this->assertNotNull($checkBoxDesign->getStyle());
