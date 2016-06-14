@@ -4,6 +4,9 @@
 	<testsuites>
 		<testsuite name="FML">
 			<directory>tests</directory>
+			<exclude>tests/Components/CheckBoxDesignTest.php</exclude>
+			<exclude>tests/Components/CheckBoxTest.php</exclude>
+			<exclude>tests/Components/ValuePickerTest.php</exclude>
 		</testsuite>
 	</testsuites>
 	<filter>
