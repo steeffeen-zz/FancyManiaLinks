@@ -3,8 +3,6 @@
 	<testsuites>
 		<testsuite name="FML">
 			<directory>tests</directory>
-			<exclude>tests/Components/CheckBoxDesignTest.php</exclude>
-			<exclude>tests/Components/CheckBoxTest.php</exclude>
 		</testsuite>
 	</testsuites>
 	<logging>
