@@ -12,15 +12,15 @@ class FormatTest extends \PHPUnit_Framework_TestCase
         $this->assertNotNull($format);
     }
 
-    public function testBgColor()
+    public function testBackgroundColor()
     {
         $format = new Format();
 
-        $this->assertNull($format->getBgColor());
+        $this->assertNull($format->getBackgroundColor());
 
-        $this->assertSame($format->setBgColor("test-color"), $format);
+        $this->assertSame($format, $format->setBackgroundColor("test-color"));
 
-        $this->assertEquals($format->getBgColor(), "test-color");
+        $this->assertEquals("test-color", $format->getBackgroundColor());
     }
 
     public function testStyle()
@@ -29,9 +29,9 @@ class FormatTest extends \PHPUnit_Framework_TestCase
 
         $this->assertNull($format->getStyle());
 
-        $this->assertSame($format->setStyle("test-style"), $format);
+        $this->assertSame($format, $format->setStyle("test-style"));
 
-        $this->assertEquals($format->getStyle(), "test-style");
+        $this->assertEquals("test-style", $format->getStyle());
     }
 
     public function testTextSize()
@@ -40,9 +40,9 @@ class FormatTest extends \PHPUnit_Framework_TestCase
 
         $this->assertNull($format->getTextSize());
 
-        $this->assertSame($format->setTextSize(13), $format);
+        $this->assertSame($format, $format->setTextSize(13));
 
-        $this->assertEquals($format->getTextSize(), 13);
+        $this->assertEquals(13, $format->getTextSize());
     }
 
     public function testTextFont()
@@ -51,9 +51,9 @@ class FormatTest extends \PHPUnit_Framework_TestCase
 
         $this->assertNull($format->getTextFont());
 
-        $this->assertSame($format->setTextFont("test-font"), $format);
+        $this->assertSame($format, $format->setTextFont("test-font"));
 
-        $this->assertEquals($format->getTextFont(), "test-font");
+        $this->assertEquals("test-font", $format->getTextFont());
     }
 
     public function testTextColor()
@@ -62,9 +62,9 @@ class FormatTest extends \PHPUnit_Framework_TestCase
 
         $this->assertNull($format->getTextColor());
 
-        $this->assertSame($format->setTextColor("test-color"), $format);
+        $this->assertSame($format, $format->setTextColor("test-color"));
 
-        $this->assertEquals($format->getTextColor(), "test-color");
+        $this->assertEquals("test-color", $format->getTextColor());
     }
 
     public function testAreaColor()
@@ -73,9 +73,9 @@ class FormatTest extends \PHPUnit_Framework_TestCase
 
         $this->assertNull($format->getAreaColor());
 
-        $this->assertSame($format->setAreaColor("test-color"), $format);
+        $this->assertSame($format, $format->setAreaColor("test-color"));
 
-        $this->assertEquals($format->getAreaColor(), "test-color");
+        $this->assertEquals("test-color", $format->getAreaColor());
     }
 
     public function testAreaFocusColor()
@@ -84,16 +84,16 @@ class FormatTest extends \PHPUnit_Framework_TestCase
 
         $this->assertNull($format->getAreaFocusColor());
 
-        $this->assertSame($format->setAreaFocusColor("test-color"), $format);
+        $this->assertSame($format, $format->setAreaFocusColor("test-color"));
 
-        $this->assertEquals($format->getAreaFocusColor(), "test-color");
+        $this->assertEquals("test-color", $format->getAreaFocusColor());
     }
 
     public function testRender()
     {
         $domDocument = new \DOMDocument();
         $format      = new Format();
-        $format->setBgColor("some-bgcolor")
+        $format->setBackgroundColor("some-bgcolor")
                ->setStyle("some-style")
                ->setTextSize(42)
                ->setTextFont("some-textfont")
@@ -104,9 +104,9 @@ class FormatTest extends \PHPUnit_Framework_TestCase
         $domElement = $format->render($domDocument);
         $domDocument->appendChild($domElement);
 
-        $this->assertEquals($domDocument->saveXML(), "<?xml version=\"1.0\"?>
+        $this->assertEquals("<?xml version=\"1.0\"?>
 <format bgcolor=\"some-bgcolor\" style=\"some-style\" textsize=\"42\" textfont=\"some-textfont\" textcolor=\"some-textcolor\" focusareacolor1=\"some-areacolor\" focusareacolor2=\"some-areafocuscolor\"/>
-");
+", $domDocument->saveXML());
     }
 
 }

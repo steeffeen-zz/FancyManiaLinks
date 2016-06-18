@@ -2,7 +2,7 @@
 
 namespace FML\Elements;
 
-use FML\Types\BgColorable;
+use FML\Types\BackgroundColorable;
 use FML\Types\Renderable;
 use FML\Types\Styleable;
 use FML\Types\TextFormatable;
@@ -14,13 +14,13 @@ use FML\Types\TextFormatable;
  * @copyright FancyManiaLinks Copyright © 2014 Steffen Schröder
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
-class Format implements BgColorable, Renderable, Styleable, TextFormatable
+class Format implements BackgroundColorable, Renderable, Styleable, TextFormatable
 {
 
     /**
-     * @var string $bgColor Background color
+     * @var string $backgroundColor Background color
      */
-    protected $bgColor = null;
+    protected $backgroundColor = null;
 
     /**
      * @var string $style Style
@@ -64,19 +64,19 @@ class Format implements BgColorable, Renderable, Styleable, TextFormatable
     }
 
     /**
-     * @see BgColorable::getBgColor()
+     * @see BgColorable::getBackgroundColor()
      */
-    public function getBgColor()
+    public function getBackgroundColor()
     {
-        return $this->bgColor;
+        return $this->backgroundColor;
     }
 
     /**
-     * @see BgColorable::setBgColor()
+     * @see BgColorable::setBackgroundColor()
      */
-    public function setBgColor($bgColor)
+    public function setBackgroundColor($backgroundColor)
     {
-        $this->bgColor = (string)$bgColor;
+        $this->backgroundColor = (string)$backgroundColor;
         return $this;
     }
 
@@ -188,8 +188,8 @@ class Format implements BgColorable, Renderable, Styleable, TextFormatable
     public function render(\DOMDocument $domDocument)
     {
         $domElement = $domDocument->createElement("format");
-        if ($this->bgColor) {
-            $domElement->setAttribute("bgcolor", $this->bgColor);
+        if ($this->backgroundColor) {
+            $domElement->setAttribute("bgcolor", $this->backgroundColor);
         }
         if ($this->style) {
             $domElement->setAttribute("style", $this->style);

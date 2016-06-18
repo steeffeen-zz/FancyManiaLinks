@@ -9,7 +9,7 @@ namespace FML\Types;
  * @copyright FancyManiaLinks Copyright © 2014 Steffen Schröder
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
-interface BgColorable
+interface BackgroundColorable
 {
 
     /**
@@ -18,15 +18,15 @@ interface BgColorable
      * @api
      * @return string
      */
-    public function getBgColor();
+    public function getBackgroundColor();
 
     /**
      * Set the background color
      *
      * @api
-     * @param string $bgColor Background color
+     * @param string $backgroundColor Background color
      * @return static
      */
-    public function setBgColor($bgColor);
+    public function setBackgroundColor($backgroundColor);
 
 }
