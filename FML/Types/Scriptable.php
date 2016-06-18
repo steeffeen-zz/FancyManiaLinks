@@ -13,6 +13,13 @@ interface Scriptable
 {
 
     /**
+     * Get script events
+     *
+     * @return bool
+     */
+    public function getScriptEvents();
+
+    /**
      * Set script events
      *
      * @param bool $scriptEvents If script events should be enabled

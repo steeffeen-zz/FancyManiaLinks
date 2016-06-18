@@ -13,13 +13,29 @@ interface Playable
 {
 
     /**
-     * Set the data
+     * Get the data url
      *
      * @api
-     * @param string $data Media url
+     * @return string
+     */
+    public function getData();
+
+    /**
+     * Set the data url
+     *
+     * @api
+     * @param string $data Data url
      * @return static
      */
     public function setData($data);
+
+    /**
+     * Get the data id to use from Dico
+     *
+     * @api
+     * @return string
+     */
+    public function getDataId();
 
     /**
      * Set the data id to use from Dico
@@ -31,6 +47,14 @@ interface Playable
     public function setDataId($dataId);
 
     /**
+     * Get play
+     *
+     * @api
+     * @return bool
+     */
+    public function getPlay();
+
+    /**
      * Set play
      *
      * @api
@@ -38,6 +62,14 @@ interface Playable
      * @return static
      */
     public function setPlay($play);
+
+    /**
+     * Get looping
+     *
+     * @api
+     * @return bool
+     */
+    public function getLooping();
 
     /**
      * Set looping
@@ -49,6 +81,14 @@ interface Playable
     public function setLooping($looping);
 
     /**
+     * Get music
+     *
+     * @api
+     * @return bool
+     */
+    public function getMusic();
+
+    /**
      * Set music
      *
      * @api
@@ -56,6 +96,14 @@ interface Playable
      * @return static
      */
     public function setMusic($music);
+
+    /**
+     * Get the volume
+     *
+     * @api
+     * @return float
+     */
+    public function getVolume();
 
     /**
      * Set the volume
