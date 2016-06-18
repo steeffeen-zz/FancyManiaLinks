@@ -63,10 +63,7 @@ class FrameModel implements Container, Identifiable, Renderable
     }
 
     /**
-     * Get the Model id
-     *
-     * @api
-     * @return string
+     * @see Identifiable::getId()
      */
     public function getId()
     {
@@ -77,16 +74,20 @@ class FrameModel implements Container, Identifiable, Renderable
     }
 
     /**
-     * Set the Model id
-     *
-     * @api
-     * @param string $modelId Model id
-     * @return static
+     * @see Identifiable::setId()
      */
     public function setId($modelId)
     {
         $this->modelId = (string)$modelId;
         return $this;
+    }
+
+    /**
+     * @see Identifiable::checkId()
+     */
+    public function checkId()
+    {
+        return UniqueID::check($this);
     }
 
     /**

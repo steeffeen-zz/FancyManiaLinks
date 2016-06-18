@@ -22,26 +22,11 @@ class Frame extends Control implements Container
      * @var Renderable[] $children Children
      */
     protected $children = array();
+    
     /**
      * @var Format $format Format
      */
     protected $format = null;
-
-    /**
-     * @see Control::getTagName()
-     */
-    public static function getTagName()
-    {
-        return "frame";
-    }
-
-    /**
-     * @see Control::getManiaScriptClass()
-     */
-    public static function getManiaScriptClass()
-    {
-        return "CMlFrame";
-    }
 
     /**
      * @see Container::getChildren()
@@ -100,6 +85,22 @@ class Frame extends Control implements Container
     {
         $this->format = $format;
         return $this;
+    }
+
+    /**
+     * @see Control::getTagName()
+     */
+    public function getTagName()
+    {
+        return "frame";
+    }
+
+    /**
+     * @see Control::getManiaScriptClass()
+     */
+    public function getManiaScriptClass()
+    {
+        return "CMlFrame";
     }
 
     /**

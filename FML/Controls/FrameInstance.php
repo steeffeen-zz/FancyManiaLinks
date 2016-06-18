@@ -15,55 +15,32 @@ use FML\Elements\FrameModel;
 class FrameInstance extends Control
 {
 
-    /*
-     * Protected properties
+    /**
+     * @var string $modelId FrameModel id
      */
-    protected $tagName = 'frameinstance';
     protected $modelId = null;
-    /** @var FrameModel $model */
+
+    /**
+     * @var FrameModel $model FrameModel
+     */
     protected $model = null;
 
     /**
-     * Create a new Frame Instance
+     * Get the FrameModel id
      *
      * @api
-     * @param string $modelId   (optional) Frame Model id
-     * @param string $controlId (optional) Frame id
-     * @return static
+     * @return string
      */
-    public static function create($modelId = null, $controlId = null)
+    public function getModelId()
     {
-        return new static($modelId, $controlId);
+        return $this->modelId;
     }
 
     /**
-     * Construct a new Frame Instance
+     * Set the FrameModel id
      *
      * @api
-     * @param string $modelId   (optional) Frame Model id
-     * @param string $controlId (optional) Frame id
-     */
-    public function __construct($modelId = null, $controlId = null)
-    {
-        parent::__construct($controlId);
-        if ($modelId !== null) {
-            $this->setModelId($modelId);
-        }
-    }
-
-    /**
-     * @see Control::getManiaScriptClass()
-     */
-    public function getManiaScriptClass()
-    {
-        return 'CMlFrame';
-    }
-
-    /**
-     * Set the Frame Model id
-     *
-     * @api
-     * @param string $modelId Frame Model id
+     * @param string $modelId FrameModel id
      * @return static
      */
     public function setModelId($modelId)
@@ -74,17 +51,44 @@ class FrameInstance extends Control
     }
 
     /**
-     * Set the Frame Model
+     * Get the FrameModel
      *
      * @api
-     * @param FrameModel $frameModel Frame Model
+     * @return FrameModel
+     */
+    public function getModel()
+    {
+        return $this->model;
+    }
+
+    /**
+     * Set the FrameModel
+     *
+     * @api
+     * @param FrameModel $frameModel FrameModel
      * @return static
      */
     public function setModel(FrameModel $frameModel)
     {
-        $this->model   = $frameModel;
         $this->modelId = null;
+        $this->model   = $frameModel;
         return $this;
+    }
+
+    /**
+     * @see Control::getTagName()
+     */
+    public function getTagName()
+    {
+        return "frameinstance";
+    }
+
+    /**
+     * @see Control::getManiaScriptClass()
+     */
+    public function getManiaScriptClass()
+    {
+        return "CMlFrame";
     }
 
     /**
@@ -95,9 +99,9 @@ class FrameInstance extends Control
         $domElement = parent::render($domDocument);
         if ($this->model) {
             $this->model->checkId();
-            $domElement->setAttribute('modelid', $this->model->getId());
+            $domElement->setAttribute("modelid", $this->model->getId());
         } else if ($this->modelId) {
-            $domElement->setAttribute('modelid', $this->modelId);
+            $domElement->setAttribute("modelid", $this->modelId);
         }
         return $domElement;
     }
