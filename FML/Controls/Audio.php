@@ -52,22 +52,6 @@ class Audio extends Control implements Playable, Scriptable
     protected $scriptEvents = null;
 
     /**
-     * @see Control::getTagName()
-     */
-    public function getTagName()
-    {
-        return "audio";
-    }
-
-    /**
-     * @see Control::getManiaScriptClass()
-     */
-    public function getManiaScriptClass()
-    {
-        return "CMlMediaPlayer";
-    }
-
-    /**
      * @see Playable::getData()
      */
     public function getData()
@@ -184,6 +168,22 @@ class Audio extends Control implements Playable, Scriptable
     {
         $this->scriptEvents = (bool)$scriptEvents;
         return $this;
+    }
+
+    /**
+     * @see Control::getTagName()
+     */
+    public function getTagName()
+    {
+        return "audio";
+    }
+
+    /**
+     * @see Control::getManiaScriptClass()
+     */
+    public function getManiaScriptClass()
+    {
+        return "CMlMediaPlayer";
     }
 
     /**

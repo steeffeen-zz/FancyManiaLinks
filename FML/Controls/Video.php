@@ -16,24 +16,47 @@ use FML\Types\Scriptable;
 class Video extends Control implements Playable, Scriptable
 {
 
-    /*
-     * Protected properties
+    /**
+     * @var string $data Data url
      */
-    protected $tagName = 'video';
     protected $data = null;
+
+    /**
+     * @var string $dataId Data id
+     */
     protected $dataId = null;
+
+    /**
+     * @var bool $play Play automaticcaly
+     */
     protected $play = null;
+
+    /**
+     * @var bool $looping Looping
+     */
     protected $looping = true;
+
+    /**
+     * @var bool $music Music type
+     */
     protected $music = null;
+
+    /**
+     * @var float $volume Volume
+     */
     protected $volume = 1.;
+
+    /**
+     * @var bool $scriptEvents Script events usage
+     */
     protected $scriptEvents = null;
 
     /**
-     * @see Control::getManiaScriptClass()
+     * @see Playable::getData()
      */
-    public function getManiaScriptClass()
+    public function getData()
     {
-        return 'CMlMediaPlayer';
+        return $this->data;
     }
 
     /**
@@ -46,6 +69,14 @@ class Video extends Control implements Playable, Scriptable
     }
 
     /**
+     * @see Playable::getDataId()
+     */
+    public function getDataId()
+    {
+        return $this->dataId;
+    }
+
+    /**
      * @see Playable::setDataId()
      */
     public function setDataId($dataId)
@@ -55,12 +86,28 @@ class Video extends Control implements Playable, Scriptable
     }
 
     /**
+     * @see Playable::getPlay()
+     */
+    public function getPlay()
+    {
+        return $this->play;
+    }
+
+    /**
      * @see Playable::setPlay()
      */
     public function setPlay($play)
     {
-        $this->play = ($play ? 1 : 0);
+        $this->play = (bool)$play;
         return $this;
+    }
+
+    /**
+     * @see Playable::getLooping()
+     */
+    public function getLooping()
+    {
+        return $this->looping;
     }
 
     /**
@@ -68,8 +115,16 @@ class Video extends Control implements Playable, Scriptable
      */
     public function setLooping($looping)
     {
-        $this->looping = ($looping ? 1 : 0);
+        $this->looping = (bool)$looping;
         return $this;
+    }
+
+    /**
+     * @see Playable::getMusic()
+     */
+    public function getMusic()
+    {
+        return $this->music;
     }
 
     /**
@@ -77,8 +132,16 @@ class Video extends Control implements Playable, Scriptable
      */
     public function setMusic($music)
     {
-        $this->music = ($music ? 1 : 0);
+        $this->music = (bool)$music;
         return $this;
+    }
+
+    /**
+     * @see Playable::getVolume()
+     */
+    public function getVolume()
+    {
+        return $this->volume;
     }
 
     /**
@@ -91,12 +154,36 @@ class Video extends Control implements Playable, Scriptable
     }
 
     /**
+     * @see Scriptable::getScriptEvents()
+     */
+    public function getScriptEvents()
+    {
+        return $this->scriptEvents;
+    }
+
+    /**
      * @see Scriptable::setScriptEvents()
      */
     public function setScriptEvents($scriptEvents)
     {
-        $this->scriptEvents = ($scriptEvents ? 1 : 0);
+        $this->scriptEvents = (bool)$scriptEvents;
         return $this;
+    }
+
+    /**
+     * @see Control::getTagName()
+     */
+    public function getTagName()
+    {
+        return "video";
+    }
+
+    /**
+     * @see Control::getManiaScriptClass()
+     */
+    public function getManiaScriptClass()
+    {
+        return "CMlMediaPlayer";
     }
 
     /**
@@ -106,22 +193,25 @@ class Video extends Control implements Playable, Scriptable
     {
         $domElement = parent::render($domDocument);
         if ($this->data) {
-            $domElement->setAttribute('data', $this->data);
+            $domElement->setAttribute("data", $this->data);
+        }
+        if ($this->dataId) {
+            $domElement->setAttribute("dataid", $this->dataId);
         }
         if ($this->play) {
-            $domElement->setAttribute('play', $this->play);
+            $domElement->setAttribute("play", 1);
         }
         if (!$this->looping) {
-            $domElement->setAttribute('looping', $this->looping);
+            $domElement->setAttribute("looping", 0);
         }
         if ($this->music) {
-            $domElement->setAttribute('music', $this->music);
+            $domElement->setAttribute("music", 1);
         }
         if ($this->volume != 1.) {
-            $domElement->setAttribute('volume', $this->volume);
+            $domElement->setAttribute("volume", $this->volume);
         }
         if ($this->scriptEvents) {
-            $domElement->setAttribute('scriptevents', $this->scriptEvents);
+            $domElement->setAttribute("scriptevents", 1);
         }
         return $domElement;
     }
