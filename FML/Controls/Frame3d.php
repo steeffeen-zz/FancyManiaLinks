@@ -21,7 +21,7 @@ class Frame3d extends Frame implements Scriptable
      */
     const STYLE_BaseStation = 'BaseStation';
     const STYLE_BaseBoxCase = 'BaseBoxCase';
-    const STYLE_Titlelogo   = 'Titlelogo';
+    const STYLE_TitleLogo   = 'Titlelogo';
     const STYLE_ButtonBack  = 'ButtonBack';
     const STYLE_ButtonNav   = 'ButtonNav';
     const STYLE_ButtonH     = 'ButtonH';
@@ -30,14 +30,31 @@ class Frame3d extends Frame implements Scriptable
     const STYLE_TitleEditor = 'TitleEditor';
     const STYLE_Window      = 'Window';
 
-    /*
-     * Protected properties
+    /**
+     * @var string $style3dId Style3d id
      */
-    protected $tagName = 'frame3d';
     protected $style3dId = null;
-    /** @var Style3d $style3d */
+
+    /**
+     * @var Style3d $style3d Style3d
+     */
     protected $style3d = null;
+
+    /**
+     * @var bool $scriptEvents Script events usage
+     */
     protected $scriptEvents = null;
+
+    /**
+     * Get the Style3d id
+     *
+     * @api
+     * @return string
+     */
+    public function getStyle3dId()
+    {
+        return $this->style3dId;
+    }
 
     /**
      * Set the Style3d id
@@ -54,6 +71,17 @@ class Frame3d extends Frame implements Scriptable
     }
 
     /**
+     * Get the Style3d
+     *
+     * @api
+     * @return Style3d
+     */
+    public function getStyle3d()
+    {
+        return $this->style3d;
+    }
+
+    /**
      * Set the Style3d
      *
      * @api
@@ -62,9 +90,17 @@ class Frame3d extends Frame implements Scriptable
      */
     public function setStyle3d(Style3d $style3d)
     {
-        $this->style3d   = $style3d;
         $this->style3dId = null;
+        $this->style3d   = $style3d;
         return $this;
+    }
+
+    /**
+     * @see Scriptable::getScriptEvents()
+     */
+    public function getScriptEvents()
+    {
+        return $this->scriptEvents;
     }
 
     /**
@@ -72,8 +108,16 @@ class Frame3d extends Frame implements Scriptable
      */
     public function setScriptEvents($scriptEvents)
     {
-        $this->scriptEvents = ($scriptEvents ? 1 : 0);
+        $this->scriptEvents = (bool)$scriptEvents;
         return $this;
+    }
+
+    /**
+     * @see Control::getTagName()
+     */
+    public function getTagName()
+    {
+        return "frame3d";
     }
 
     /**
@@ -84,12 +128,12 @@ class Frame3d extends Frame implements Scriptable
         $domElement = parent::render($domDocument);
         if ($this->style3d) {
             $this->style3d->checkId();
-            $domElement->setAttribute('style3d', $this->style3d->getId());
+            $domElement->setAttribute("style3d", $this->style3d->getId());
         } else if ($this->style3dId) {
-            $domElement->setAttribute('style3d', $this->style3dId);
+            $domElement->setAttribute("style3d", $this->style3dId);
         }
         if ($this->scriptEvents) {
-            $domElement->setAttribute('scriptevents', $this->scriptEvents);
+            $domElement->setAttribute("scriptevents", 1);
         }
         return $domElement;
     }
