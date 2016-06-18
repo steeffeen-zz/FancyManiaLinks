@@ -5,24 +5,6 @@ use FML\Controls\Audio;
 class AudioTest extends \PHPUnit_Framework_TestCase
 {
 
-    public function testTagName()
-    {
-        $audio = new Audio();
-
-        $tagName = $audio->getTagName();
-
-        $this->assertEquals("audio", $tagName);
-    }
-
-    public function testManiaScriptClass()
-    {
-        $audio = new Audio();
-
-        $maniaScriptClass = $audio->getManiaScriptClass();
-
-        $this->assertEquals("CMlMediaPlayer", $maniaScriptClass);
-    }
-
     public function testData()
     {
         $audio = new Audio();
@@ -98,6 +80,24 @@ class AudioTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($audio, $audio->setScriptEvents(true));
 
         $this->assertTrue($audio->getScriptEvents());
+    }
+
+    public function testTagName()
+    {
+        $audio = new Audio();
+
+        $tagName = $audio->getTagName();
+
+        $this->assertEquals("audio", $tagName);
+    }
+
+    public function testManiaScriptClass()
+    {
+        $audio = new Audio();
+
+        $maniaScriptClass = $audio->getManiaScriptClass();
+
+        $this->assertEquals("CMlMediaPlayer", $maniaScriptClass);
     }
 
     public function testRender()

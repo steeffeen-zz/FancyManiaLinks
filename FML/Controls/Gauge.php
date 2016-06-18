@@ -2,6 +2,7 @@
 
 namespace FML\Controls;
 
+use FML\Types\Colorable;
 use FML\Types\Styleable;
 
 /**
@@ -12,36 +13,66 @@ use FML\Types\Styleable;
  * @copyright FancyManiaLinks Copyright © 2014 Steffen Schröder
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
-class Gauge extends Control implements Styleable
+class Gauge extends Control implements Colorable, Styleable
 {
 
     /*
      * Constants
      */
-    const STYLE_BgCard           = 'BgCard';
-    const STYLE_EnergyBar        = 'EnergyBar';
-    const STYLE_ProgressBar      = 'ProgressBar';
-    const STYLE_ProgressBarSmall = 'ProgressBarSmall';
+    const STYLE_BgCard           = "BgCard";
+    const STYLE_EnergyBar        = "EnergyBar";
+    const STYLE_ProgressBar      = "ProgressBar";
+    const STYLE_ProgressBarSmall = "ProgressBarSmall";
 
-    /*
-     * Protected properties
+    /**
+     * @var float $ratio Ratio
      */
-    protected $tagName = 'gauge';
-    protected $ratio = 0.;
+    protected $ratio = 0.0;
+
+    /**
+     * @var float $grading Grading
+     */
     protected $grading = 1.;
+
+    /**
+     * @var string $color Color
+     */
     protected $color = null;
+
+    /**
+     * @var bool $centered Centered
+     */
     protected $centered = null;
+
+    /**
+     * @var int $clan Clan number
+     */
     protected $clan = null;
-    protected $drawBg = 1;
-    protected $drawBlockBg = 1;
+
+    /**
+     * @var bool $drawBackground Draw background
+     */
+    protected $drawBackground = true;
+
+    /**
+     * @var bool $drawBlockBackground Draw block background
+     */
+    protected $drawBlockBackground = true;
+
+    /**
+     * @var string $style Style
+     */
     protected $style = null;
 
     /**
-     * @see Control::getManiaScriptClass()
+     * Get the ratio
+     *
+     * @api
+     * @return float
      */
-    public function getManiaScriptClass()
+    public function getRatio()
     {
-        return 'CMlGauge';
+        return $this->ratio;
     }
 
     /**
@@ -58,6 +89,17 @@ class Gauge extends Control implements Styleable
     }
 
     /**
+     * Get the grading
+     *
+     * @api
+     * @return float
+     */
+    public function getGrading()
+    {
+        return $this->grading;
+    }
+
+    /**
      * Set the grading
      *
      * @api
@@ -71,16 +113,31 @@ class Gauge extends Control implements Styleable
     }
 
     /**
-     * Set the color
-     *
-     * @api
-     * @param string $color Gauge color
-     * @return static
+     * @see Colorable::getColor
+     */
+    public function getColor()
+    {
+        return $this->color;
+    }
+
+    /**
+     * @see Colorable::setColor
      */
     public function setColor($color)
     {
         $this->color = (string)$color;
         return $this;
+    }
+
+    /**
+     * Get centered
+     *
+     * @api
+     * @return bool
+     */
+    public function getCentered()
+    {
+        return $this->centered;
     }
 
     /**
@@ -92,8 +149,19 @@ class Gauge extends Control implements Styleable
      */
     public function setCentered($centered)
     {
-        $this->centered = ($centered ? 1 : 0);
+        $this->centered = (bool)$centered;
         return $this;
+    }
+
+    /**
+     * Get the clan
+     *
+     * @api
+     * @return int
+     */
+    public function getClan()
+    {
+        return $this->clan;
     }
 
     /**
@@ -110,29 +178,59 @@ class Gauge extends Control implements Styleable
     }
 
     /**
+     * Get draw background
+     *
+     * @api
+     * @return bool
+     */
+    public function getDrawBackground()
+    {
+        return $this->drawBackground;
+    }
+
+    /**
      * Set draw background
      *
      * @api
-     * @param bool $drawBg If the Gauges background should be drawn
+     * @param bool $drawBackground If the Gauges background should be drawn
      * @return static
      */
-    public function setDrawBg($drawBg)
+    public function setDrawBackground($drawBackground)
     {
-        $this->drawBg = ($drawBg ? 1 : 0);
+        $this->drawBackground = (bool)$drawBackground;
         return $this;
+    }
+
+    /**
+     * Get draw block background
+     *
+     * @api
+     * @return bool
+     */
+    public function getDrawBlockBackground()
+    {
+        return $this->drawBlockBackground;
     }
 
     /**
      * Set draw block background
      *
      * @api
-     * @param bool $drawBlockBg If the Gauges block background should be drawn
+     * @param bool $drawBlockBackground If the Gauges block background should be drawn
      * @return static
      */
-    public function setDrawBlockBg($drawBlockBg)
+    public function setDrawBlockBackground($drawBlockBackground)
     {
-        $this->drawBlockBg = ($drawBlockBg ? 1 : 0);
+        $this->drawBlockBackground = (bool)$drawBlockBackground;
         return $this;
+    }
+
+    /**
+     * @see Styleable::getStyle()
+     */
+    public function getStyle()
+    {
+        return $this->style;
     }
 
     /**
@@ -145,34 +243,50 @@ class Gauge extends Control implements Styleable
     }
 
     /**
+     * @see Control::getTagName()
+     */
+    public function getTagName()
+    {
+        return "gauge";
+    }
+
+    /**
+     * @see Control::getManiaScriptClass()
+     */
+    public function getManiaScriptClass()
+    {
+        return "CMlGauge";
+    }
+
+    /**
      * @see Control::render()
      */
     public function render(\DOMDocument $domDocument)
     {
         $domElement = parent::render($domDocument);
         if ($this->ratio) {
-            $domElement->setAttribute('ratio', $this->ratio);
+            $domElement->setAttribute("ratio", $this->ratio);
         }
         if ($this->grading != 1.) {
-            $domElement->setAttribute('grading', $this->grading);
+            $domElement->setAttribute("grading", $this->grading);
         }
         if ($this->color) {
-            $domElement->setAttribute('color', $this->color);
+            $domElement->setAttribute("color", $this->color);
         }
         if ($this->centered) {
-            $domElement->setAttribute('centered', $this->centered);
+            $domElement->setAttribute("centered", 1);
         }
         if ($this->clan) {
-            $domElement->setAttribute('clan', $this->clan);
+            $domElement->setAttribute("clan", $this->clan);
         }
-        if (!$this->drawBg) {
-            $domElement->setAttribute('drawbg', $this->drawBg);
+        if (!$this->drawBackground) {
+            $domElement->setAttribute("drawbg", 0);
         }
-        if (!$this->drawBlockBg) {
-            $domElement->setAttribute('drawblockbg', $this->drawBlockBg);
+        if (!$this->drawBlockBackground) {
+            $domElement->setAttribute("drawblockbg", 0);
         }
         if ($this->style) {
-            $domElement->setAttribute('style', $this->style);
+            $domElement->setAttribute("style", $this->style);
         }
         return $domElement;
     }
