@@ -571,7 +571,7 @@ abstract class Control implements Identifiable, Renderable, ScriptFeatureable
      */
     public function render(\DOMDocument $domDocument)
     {
-        $domElement = $domDocument->createElement(static::getTagName());
+        $domElement = $domDocument->createElement($this->getTagName());
         if ($this->controlId) {
             $domElement->setAttribute('id', $this->controlId);
         }
@@ -581,10 +581,10 @@ abstract class Control implements Identifiable, Renderable, ScriptFeatureable
         if ($this->width >= 0. || $this->height >= 0.) {
             $domElement->setAttribute('sizen', "{$this->width} {$this->height}");
         }
-        if ($this->hAlign !== self::LEFT) {
+        if ($this->hAlign) {
             $domElement->setAttribute('halign', $this->hAlign);
         }
-        if ($this->vAlign !== self::TOP) {
+        if ($this->vAlign) {
             $domElement->setAttribute('valign', $this->vAlign);
         }
         if ($this->scale != 1.) {
@@ -608,13 +608,13 @@ abstract class Control implements Identifiable, Renderable, ScriptFeatureable
      *
      * @return string
      */
-    abstract public static function getTagName();
+    abstract public function getTagName();
 
     /**
      * Get the ManiaScript class of the Control
      *
      * @return string
      */
-    abstract public static function getManiaScriptClass();
+    abstract public function getManiaScriptClass();
 
 }
