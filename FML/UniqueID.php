@@ -2,6 +2,8 @@
 
 namespace FML;
 
+use FML\Types\Identifiable;
+
 /**
  * Unique ID Model Class
  *
@@ -17,20 +19,19 @@ class UniqueID
      */
     const PREFIX = 'FML_ID_';
 
-    /*
-     * Static properties
+    /**
+     * @var int $currentIndex Current global id index
      */
     protected static $currentIndex = 0;
 
-    /*
-     * Protected properties
+    /**
+     * @var int $index Unique id index
      */
     protected $index = null;
 
     /**
      * Create a new Unique ID
      *
-     * @api
      * @return static
      */
     public static function create()
@@ -39,9 +40,41 @@ class UniqueID
     }
 
     /**
+     * Check and return the Id of an Identifable Element
+     *
+     * @param Identifiable $element Identifable element
+     * @return string
+     */
+    public static function check(Identifiable $element)
+    {
+        $elementId = $element->getId();
+
+        if (!$elementId) {
+            $element->setId(new static());
+            return $element->getId();
+        }
+
+        $dangerousCharacters = array(' ', '|', PHP_EOL);
+        $danger              = false;
+        foreach ($dangerousCharacters as $dangerousCharacter) {
+            if (stripos($elementId, $dangerousCharacter) !== false) {
+                $danger = true;
+                break;
+            }
+        }
+
+        if ($danger) {
+            trigger_error("Don't use special characters in IDs, they might cause problems! Stripping them for you...");
+            $elementId = str_ireplace($dangerousCharacters, '', $elementId);
+            $elementId->setId($elementId);
+        }
+
+        return $element->getId();
+    }
+
+    /**
      * Get a new global unique index
      *
-     * @api
      * @return int
      */
     protected static function newIndex()
@@ -52,8 +85,6 @@ class UniqueID
 
     /**
      * Construct a Unique ID
-     *
-     * @api
      */
     public function __construct()
     {
@@ -73,7 +104,6 @@ class UniqueID
     /**
      * Get the Unique ID value
      *
-     * @api
      * @return string
      */
     public function getValue()

@@ -29,4 +29,11 @@ interface Identifiable
      */
     public function setId($id);
 
+    /**
+     * Check and return the Id
+     *
+     * @return string
+     */
+    public function checkId();
+
 }

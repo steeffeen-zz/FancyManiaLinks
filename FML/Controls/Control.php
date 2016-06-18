@@ -145,11 +145,7 @@ abstract class Control implements Identifiable, Renderable, ScriptFeatureable
     }
 
     /**
-     * Set the Control Id
-     *
-     * @api
-     * @param string $controlId Control Id
-     * @return static
+     * @see Identifiable::setId()
      */
     public function setId($controlId)
     {
@@ -158,33 +154,11 @@ abstract class Control implements Identifiable, Renderable, ScriptFeatureable
     }
 
     /**
-     * Check Id for dangerous characters and assign a new unique id if necessary
-     *
-     * @param bool $forceNewId (optional) Force the generation of a new id
-     * @return static
+     * @see Identifiable::checkId()
      */
-    public function checkId($forceNewId = false)
+    public function checkId()
     {
-        if ($forceNewId || !$this->getId()) {
-            $this->setId(new UniqueID());
-            return $this;
-        }
-        $dangerousCharacters = array(' ', '	', '.', '|', '-', PHP_EOL);
-        $idCharacters        = str_split($this->getId());
-        $danger              = false;
-        foreach ($idCharacters as $character) {
-            if (!in_array($character, $dangerousCharacters)) {
-                continue;
-            }
-            $danger = true;
-            break;
-        }
-        if ($danger) {
-            trigger_error("Please don't use special characters in IDs, they might cause problems! (I stripped them for you.)");
-            $controlId = str_ireplace($dangerousCharacters, '', $this->getId());
-            $this->setId($controlId);
-        }
-        return $this;
+        return UniqueID::check($this);
     }
 
     /**
