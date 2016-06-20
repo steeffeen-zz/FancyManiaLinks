@@ -5,11 +5,19 @@ use FML\ManiaCode\InstallMap;
 class InstallMapTest extends \PHPUnit_Framework_TestCase
 {
 
+    public function testCreate()
+    {
+        $installMap = InstallMap::create("create-name", "create-url");
+
+        $this->assertTrue($installMap instanceof InstallMap);
+        $this->assertEquals($installMap->getName(), "create-name");
+        $this->assertEquals($installMap->getUrl(), "create-url");
+    }
+
     public function testConstruct()
     {
         $installMap = new InstallMap("new-name", "new-url");
 
-        $this->assertNotNull($installMap);
         $this->assertEquals($installMap->getName(), "new-name");
         $this->assertEquals($installMap->getUrl(), "new-url");
     }

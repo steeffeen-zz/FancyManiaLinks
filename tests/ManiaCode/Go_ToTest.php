@@ -5,11 +5,18 @@ use FML\ManiaCode\Go_To;
 class Go_ToTest extends \PHPUnit_Framework_TestCase
 {
 
+    public function testCreate()
+    {
+        $goTo = Go_To::create("create-link");
+
+        $this->assertTrue($goTo instanceof Go_To);
+        $this->assertEquals($goTo->getLink(), "create-link");
+    }
+
     public function testConstruct()
     {
         $goTo = new Go_To("new-link");
 
-        $this->assertNotNull($goTo);
         $this->assertEquals($goTo->getLink(), "new-link");
     }
 

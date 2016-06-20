@@ -5,11 +5,20 @@ use FML\ManiaCode\InstallSkin;
 class InstallSkinTest extends \PHPUnit_Framework_TestCase
 {
 
+    public function testCreate()
+    {
+        $installSkin = InstallSkin::create("create-name", "create-file", "create-url");
+
+        $this->assertTrue($installSkin instanceof InstallSkin);
+        $this->assertEquals($installSkin->getName(), "create-name");
+        $this->assertEquals($installSkin->getFile(), "create-file");
+        $this->assertEquals($installSkin->getUrl(), "create-url");
+    }
+
     public function testConstruct()
     {
         $installSkin = new InstallSkin("new-name", "new-file", "new-url");
 
-        $this->assertNotNull($installSkin);
         $this->assertEquals($installSkin->getName(), "new-name");
         $this->assertEquals($installSkin->getFile(), "new-file");
         $this->assertEquals($installSkin->getUrl(), "new-url");

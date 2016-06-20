@@ -5,11 +5,18 @@ use FML\ManiaCode\AddBuddy;
 class AddBuddyTest extends \PHPUnit_Framework_TestCase
 {
 
+    public function testCreate()
+    {
+        $addBuddy = AddBuddy::create("create-login");
+
+        $this->assertTrue($addBuddy instanceof AddBuddy);
+        $this->assertEquals($addBuddy->getLogin(), "create-login");
+    }
+
     public function testConstruct()
     {
         $addBuddy = new AddBuddy("new-login");
 
-        $this->assertNotNull($addBuddy);
         $this->assertEquals($addBuddy->getLogin(), "new-login");
     }
 

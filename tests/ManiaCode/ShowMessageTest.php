@@ -5,11 +5,18 @@ use FML\ManiaCode\ShowMessage;
 class ShowMessageTest extends \PHPUnit_Framework_TestCase
 {
 
+    public function testCreate()
+    {
+        $showMessage = ShowMessage::create("create-message");
+
+        $this->assertTrue($showMessage instanceof ShowMessage);
+        $this->assertEquals($showMessage->getMessage(), "create-message");
+    }
+
     public function testConstruct()
     {
         $showMessage = new ShowMessage("new-message");
 
-        $this->assertNotNull($showMessage);
         $this->assertEquals($showMessage->getMessage(), "new-message");
     }
 

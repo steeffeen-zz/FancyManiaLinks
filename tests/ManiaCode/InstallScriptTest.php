@@ -5,11 +5,20 @@ use FML\ManiaCode\InstallScript;
 class InstallScriptTest extends \PHPUnit_Framework_TestCase
 {
 
+    public function testCreate()
+    {
+        $installScript = InstallScript::create("create-name", "create-file", "create-url");
+
+        $this->assertTrue($installScript instanceof InstallScript);
+        $this->assertEquals($installScript->getName(), "create-name");
+        $this->assertEquals($installScript->getFile(), "create-file");
+        $this->assertEquals($installScript->getUrl(), "create-url");
+    }
+
     public function testConstruct()
     {
         $installScript = new InstallScript("new-name", "new-file", "new-url");
 
-        $this->assertNotNull($installScript);
         $this->assertEquals($installScript->getName(), "new-name");
         $this->assertEquals($installScript->getFile(), "new-file");
         $this->assertEquals($installScript->getUrl(), "new-url");

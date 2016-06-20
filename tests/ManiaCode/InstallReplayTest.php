@@ -5,11 +5,19 @@ use FML\ManiaCode\InstallReplay;
 class InstallReplayTest extends \PHPUnit_Framework_TestCase
 {
 
+    public function testCreate()
+    {
+        $installReplay = InstallReplay::create("create-name", "create-url");
+
+        $this->assertTrue($installReplay instanceof InstallReplay);
+        $this->assertEquals($installReplay->getName(), "create-name");
+        $this->assertEquals($installReplay->getUrl(), "create-url");
+    }
+
     public function testConstruct()
     {
         $installReplay = new InstallReplay("new-name", "new-url");
 
-        $this->assertNotNull($installReplay);
         $this->assertEquals($installReplay->getName(), "new-name");
         $this->assertEquals($installReplay->getUrl(), "new-url");
     }

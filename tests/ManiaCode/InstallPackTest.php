@@ -5,11 +5,20 @@ use FML\ManiaCode\InstallPack;
 class InstallPackTest extends \PHPUnit_Framework_TestCase
 {
 
+    public function testCreate()
+    {
+        $installPack = InstallPack::create("create-name", "create-file", "create-url");
+
+        $this->assertTrue($installPack instanceof InstallPack);
+        $this->assertEquals($installPack->getName(), "create-name");
+        $this->assertEquals($installPack->getFile(), "create-file");
+        $this->assertEquals($installPack->getUrl(), "create-url");
+    }
+
     public function testConstruct()
     {
         $installPack = new InstallPack("new-name", "new-file", "new-url");
 
-        $this->assertNotNull($installPack);
         $this->assertEquals($installPack->getName(), "new-name");
         $this->assertEquals($installPack->getFile(), "new-file");
         $this->assertEquals($installPack->getUrl(), "new-url");

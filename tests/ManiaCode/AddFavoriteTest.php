@@ -5,11 +5,30 @@ use FML\ManiaCode\AddFavorite;
 class AddFavoriteTest extends \PHPUnit_Framework_TestCase
 {
 
+    public function testCreateWithLogin()
+    {
+        $addFavorite = AddFavorite::create("create-login");
+
+        $this->assertTrue($addFavorite instanceof AddFavorite);
+        $this->assertEquals($addFavorite->getLogin(), "create-login");
+        $this->assertNull($addFavorite->getIp());
+        $this->assertNull($addFavorite->getPort());
+    }
+
+    public function testCreateWithIpAndPort()
+    {
+        $addFavorite = AddFavorite::create("create.ip", 420);
+
+        $this->assertTrue($addFavorite instanceof AddFavorite);
+        $this->assertNull($addFavorite->getLogin());
+        $this->assertEquals($addFavorite->getIp(), "create.ip");
+        $this->assertEquals($addFavorite->getPort(), 420);
+    }
+
     public function testConstructWithLogin()
     {
         $addFavorite = new AddFavorite("new-login");
 
-        $this->assertNotNull($addFavorite);
         $this->assertEquals($addFavorite->getLogin(), "new-login");
         $this->assertNull($addFavorite->getIp());
         $this->assertNull($addFavorite->getPort());
@@ -19,7 +38,6 @@ class AddFavoriteTest extends \PHPUnit_Framework_TestCase
     {
         $addFavorite = new AddFavorite("new.ip", 42);
 
-        $this->assertNotNull($addFavorite);
         $this->assertNull($addFavorite->getLogin());
         $this->assertEquals($addFavorite->getIp(), "new.ip");
         $this->assertEquals($addFavorite->getPort(), 42);

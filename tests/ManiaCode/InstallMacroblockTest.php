@@ -5,11 +5,20 @@ use FML\ManiaCode\InstallMacroblock;
 class InstallMacroblockTest extends \PHPUnit_Framework_TestCase
 {
 
+    public function testCreate()
+    {
+        $installMacroblock = InstallMacroblock::create("create-name", "create-file", "create-url");
+
+        $this->assertTrue($installMacroblock instanceof InstallMacroblock);
+        $this->assertEquals($installMacroblock->getName(), "create-name");
+        $this->assertEquals($installMacroblock->getFile(), "create-file");
+        $this->assertEquals($installMacroblock->getUrl(), "create-url");
+    }
+
     public function testConstruct()
     {
         $installMacroblock = new InstallMacroblock("new-name", "new-file", "new-url");
 
-        $this->assertNotNull($installMacroblock);
         $this->assertEquals($installMacroblock->getName(), "new-name");
         $this->assertEquals($installMacroblock->getFile(), "new-file");
         $this->assertEquals($installMacroblock->getUrl(), "new-url");

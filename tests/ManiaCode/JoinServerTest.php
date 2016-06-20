@@ -5,11 +5,30 @@ use FML\ManiaCode\JoinServer;
 class JoinServerTest extends \PHPUnit_Framework_TestCase
 {
 
+    public function testCreateWithLogin()
+    {
+        $joinServer = JoinServer::create("create-login");
+
+        $this->assertTrue($joinServer instanceof JoinServer);
+        $this->assertEquals($joinServer->getLogin(), "create-login");
+        $this->assertNull($joinServer->getIp());
+        $this->assertNull($joinServer->getPort());
+    }
+
+    public function testCreateWithIpAndPort()
+    {
+        $joinServer = JoinServer::create("create.ip", 420);
+
+        $this->assertTrue($joinServer instanceof JoinServer);
+        $this->assertNull($joinServer->getLogin());
+        $this->assertEquals($joinServer->getIp(), "create.ip");
+        $this->assertEquals($joinServer->getPort(), 420);
+    }
+
     public function testConstructWithLogin()
     {
         $joinServer = new JoinServer("new-login");
 
-        $this->assertNotNull($joinServer);
         $this->assertEquals($joinServer->getLogin(), "new-login");
         $this->assertNull($joinServer->getIp());
         $this->assertNull($joinServer->getPort());
@@ -19,7 +38,6 @@ class JoinServerTest extends \PHPUnit_Framework_TestCase
     {
         $joinServer = new JoinServer("new.ip", 42);
 
-        $this->assertNotNull($joinServer);
         $this->assertNull($joinServer->getLogin());
         $this->assertEquals($joinServer->getIp(), "new.ip");
         $this->assertEquals($joinServer->getPort(), 42);

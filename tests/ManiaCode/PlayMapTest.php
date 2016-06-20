@@ -5,11 +5,19 @@ use FML\ManiaCode\PlayMap;
 class PlayMapTest extends \PHPUnit_Framework_TestCase
 {
 
+    public function testCreate()
+    {
+        $playMap = PlayMap::create("create-name", "create-url");
+
+        $this->assertTrue($playMap instanceof PlayMap);
+        $this->assertEquals($playMap->getName(), "create-name");
+        $this->assertEquals($playMap->getUrl(), "create-url");
+    }
+
     public function testConstruct()
     {
         $playMap = new PlayMap("new-name", "new-url");
 
-        $this->assertNotNull($playMap);
         $this->assertEquals($playMap->getName(), "new-name");
         $this->assertEquals($playMap->getUrl(), "new-url");
     }

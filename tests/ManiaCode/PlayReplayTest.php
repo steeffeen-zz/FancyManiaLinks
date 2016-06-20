@@ -5,11 +5,19 @@ use FML\ManiaCode\PlayReplay;
 class PlayReplayTest extends \PHPUnit_Framework_TestCase
 {
 
+    public function testCreate()
+    {
+        $playReplay = PlayReplay::create("create-name", "create-url");
+
+        $this->assertTrue($playReplay instanceof PlayReplay);
+        $this->assertEquals($playReplay->getName(), "create-name");
+        $this->assertEquals($playReplay->getUrl(), "create-url");
+    }
+
     public function testConstruct()
     {
         $playReplay = new PlayReplay("new-name", "new-url");
 
-        $this->assertNotNull($playReplay);
         $this->assertEquals($playReplay->getName(), "new-name");
         $this->assertEquals($playReplay->getUrl(), "new-url");
     }

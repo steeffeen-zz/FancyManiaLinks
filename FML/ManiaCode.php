@@ -29,11 +29,14 @@ use FML\ManiaCode\ViewReplay;
 class ManiaCode
 {
 
-    /*
-     * Protected properties
+    /**
+     * @var bool $disableConfirmation Disable the confirmation
      */
-    protected $noConfirmation = null;
-    /** @var Element[] $elements */
+    protected $disableConfirmation = null;
+
+    /**
+     * @var Element[] $elements ManiaCode Elements
+     */
     protected $elements = array();
 
     /**
@@ -48,15 +51,26 @@ class ManiaCode
     }
 
     /**
+     * Get if the confirmation is disabled
+     *
+     * @api
+     * @return bool
+     */
+    public function getDisableConfirmation()
+    {
+        return $this->disableConfirmation;
+    }
+
+    /**
      * Disable the showing of the confirmation at the end of the ManiaCode
      *
      * @api
-     * @param bool $disable If the confirmation should be disabled
+     * @param bool $disableConfirmation If the confirmation should be disabled
      * @return static
      */
-    public function disableConfirmation($disable)
+    public function setDisableConfirmation($disableConfirmation)
     {
-        $this->noConfirmation = ($disable ? 1 : 0);
+        $this->disableConfirmation = (bool)$disableConfirmation;
         return $this;
     }
 
@@ -70,8 +84,7 @@ class ManiaCode
     public function addShowMessage($message)
     {
         $messageElement = new ShowMessage($message);
-        $this->addElement($messageElement);
-        return $this;
+        return $this->addElement($messageElement);
     }
 
     /**
@@ -86,8 +99,7 @@ class ManiaCode
     public function addInstallMacroblock($name, $file, $url)
     {
         $macroblockElement = new InstallMacroblock($name, $file, $url);
-        $this->addElement($macroblockElement);
-        return $this;
+        return $this->addElement($macroblockElement);
     }
 
     /**
@@ -101,8 +113,7 @@ class ManiaCode
     public function addInstallMap($name, $url)
     {
         $mapElement = new InstallMap($name, $url);
-        $this->addElement($mapElement);
-        return $this;
+        return $this->addElement($mapElement);
     }
 
     /**
@@ -116,8 +127,7 @@ class ManiaCode
     public function addPlayMap($name, $url)
     {
         $mapElement = new PlayMap($name, $url);
-        $this->addElement($mapElement);
-        return $this;
+        return $this->addElement($mapElement);
     }
 
     /**
@@ -131,8 +141,7 @@ class ManiaCode
     public function addInstallReplay($name, $url)
     {
         $replayElement = new InstallReplay($name, $url);
-        $this->addElement($replayElement);
-        return $this;
+        return $this->addElement($replayElement);
     }
 
     /**
@@ -146,8 +155,7 @@ class ManiaCode
     public function addViewReplay($name, $url)
     {
         $replayElement = new ViewReplay($name, $url);
-        $this->addElement($replayElement);
-        return $this;
+        return $this->addElement($replayElement);
     }
 
     /**
@@ -161,8 +169,7 @@ class ManiaCode
     public function addPlayReplay($name, $url)
     {
         $replayElement = new PlayReplay($name, $url);
-        $this->addElement($replayElement);
-        return $this;
+        return $this->addElement($replayElement);
     }
 
     /**
@@ -177,8 +184,7 @@ class ManiaCode
     public function addInstallSkin($name, $file, $url)
     {
         $skinElement = new InstallSkin($name, $file, $url);
-        $this->addElement($skinElement);
-        return $this;
+        return $this->addElement($skinElement);
     }
 
     /**
@@ -193,8 +199,7 @@ class ManiaCode
     public function addGetSkin($name, $file, $url)
     {
         $skinElement = new GetSkin($name, $file, $url);
-        $this->addElement($skinElement);
-        return $this;
+        return $this->addElement($skinElement);
     }
 
     /**
@@ -207,8 +212,7 @@ class ManiaCode
     public function addAddBuddy($login)
     {
         $buddyElement = new AddBuddy($login);
-        $this->addElement($buddyElement);
-        return $this;
+        return $this->addElement($buddyElement);
     }
 
     /**
@@ -221,8 +225,7 @@ class ManiaCode
     public function addGoto($link)
     {
         $gotoElement = new Go_To($link);
-        $this->addElement($gotoElement);
-        return $this;
+        return $this->addElement($gotoElement);
     }
 
     /**
@@ -235,8 +238,7 @@ class ManiaCode
     public function addJoinServer($login)
     {
         $serverElement = new JoinServer($login);
-        $this->addElement($serverElement);
-        return $this;
+        return $this->addElement($serverElement);
     }
 
     /**
@@ -249,8 +251,7 @@ class ManiaCode
     public function addAddFavorite($login)
     {
         $favoriteElement = new AddFavorite($login);
-        $this->addElement($favoriteElement);
-        return $this;
+        return $this->addElement($favoriteElement);
     }
 
     /**
@@ -265,8 +266,7 @@ class ManiaCode
     public function addInstallScript($name, $file, $url)
     {
         $scriptElement = new InstallScript($name, $file, $url);
-        $this->addElement($scriptElement);
-        return $this;
+        return $this->addElement($scriptElement);
     }
 
     /**
@@ -281,8 +281,18 @@ class ManiaCode
     public function addInstallPack($name, $file, $url)
     {
         $packElement = new InstallPack($name, $file, $url);
-        $this->addElement($packElement);
-        return $this;
+        return $this->addElement($packElement);
+    }
+
+    /**
+     * Get all Elements
+     *
+     * @api
+     * @return Element[]
+     */
+    public function getElements()
+    {
+        return $this->elements;
     }
 
     /**
@@ -294,7 +304,9 @@ class ManiaCode
      */
     public function addElement(Element $element)
     {
-        array_push($this->elements, $element);
+        if (!in_array($element, $this->elements, true)) {
+            array_push($this->elements, $element);
+        }
         return $this;
     }
 
@@ -304,7 +316,7 @@ class ManiaCode
      * @api
      * @return static
      */
-    public function removeElements()
+    public function removeAllElements()
     {
         $this->elements = array();
         return $this;
@@ -313,6 +325,7 @@ class ManiaCode
     /**
      * Render the ManiaCode
      *
+     * @api
      * @param bool $echo (optional) If the XML text should be echoed and the Content-Type header should be set
      * @return \DOMDocument
      */
@@ -321,20 +334,20 @@ class ManiaCode
         $domDocument                = new \DOMDocument("1.0", "utf-8");
         $domDocument->xmlStandalone = true;
 
-        $maniaCode = $domDocument->createElement("maniacode");
-        $domDocument->appendChild($maniaCode);
+        $domElement = $domDocument->createElement("maniacode");
+        $domDocument->appendChild($domElement);
 
-        if ($this->noConfirmation) {
-            $maniaCode->setAttribute('noconfirmation', $this->noConfirmation);
+        if ($this->disableConfirmation) {
+            $domElement->setAttribute("noconfirmation", 1);
         }
 
         foreach ($this->elements as $element) {
-            $domElement = $element->render($domDocument);
-            $maniaCode->appendChild($domElement);
+            $childDomElement = $element->render($domDocument);
+            $domElement->appendChild($childDomElement);
         }
 
         if ($echo) {
-            header('Content-Type: application/xml; charset=utf-8;');
+            header("Content-Type: application/xml; charset=utf-8;");
             echo $domDocument->saveXML();
         }
 

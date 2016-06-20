@@ -5,11 +5,20 @@ use FML\ManiaCode\GetSkin;
 class GetSkinTest extends \PHPUnit_Framework_TestCase
 {
 
+    public function testCreate()
+    {
+        $getSkin = GetSkin::create("create-name", "create-file", "create-url");
+
+        $this->assertTrue($getSkin instanceof GetSkin);
+        $this->assertEquals($getSkin->getName(), "create-name");
+        $this->assertEquals($getSkin->getFile(), "create-file");
+        $this->assertEquals($getSkin->getUrl(), "create-url");
+    }
+
     public function testConstruct()
     {
         $getSkin = new GetSkin("new-name", "new-file", "new-url");
 
-        $this->assertNotNull($getSkin);
         $this->assertEquals($getSkin->getName(), "new-name");
         $this->assertEquals($getSkin->getFile(), "new-file");
         $this->assertEquals($getSkin->getUrl(), "new-url");

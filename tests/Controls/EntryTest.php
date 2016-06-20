@@ -1,6 +1,7 @@
 <?php
 
 use FML\Controls\Entry;
+use FML\Script\Features\EntrySubmit;
 
 class EntryTest extends \PHPUnit_Framework_TestCase
 {
@@ -138,9 +139,10 @@ class EntryTest extends \PHPUnit_Framework_TestCase
 
         $this->assertCount(1, $scriptFeatures);
 
-        /** @var \FML\Script\Features\EntrySubmit $entrySubmit */
+        /** @var EntrySubmit $entrySubmit */
         $entrySubmit = $scriptFeatures[0];
 
+        $this->assertTrue($entrySubmit instanceof EntrySubmit);
         $this->assertSame($entry, $entrySubmit->getEntry());
         $this->assertEquals("test.url", $entrySubmit->getUrl());
     }

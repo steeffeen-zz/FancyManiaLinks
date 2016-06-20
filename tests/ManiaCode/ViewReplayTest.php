@@ -5,11 +5,19 @@ use FML\ManiaCode\ViewReplay;
 class ViewReplayTest extends \PHPUnit_Framework_TestCase
 {
 
+    public function testCreate()
+    {
+        $viewReplay = ViewReplay::create("create-name", "create-url");
+
+        $this->assertTrue($viewReplay instanceof ViewReplay);
+        $this->assertEquals($viewReplay->getName(), "create-name");
+        $this->assertEquals($viewReplay->getUrl(), "create-url");
+    }
+
     public function testConstruct()
     {
         $viewReplay = new ViewReplay("new-name", "new-url");
 
-        $this->assertNotNull($viewReplay);
         $this->assertEquals($viewReplay->getName(), "new-name");
         $this->assertEquals($viewReplay->getUrl(), "new-url");
     }
