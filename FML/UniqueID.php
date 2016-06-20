@@ -66,7 +66,7 @@ class UniqueID
         if ($danger) {
             trigger_error("Don't use special characters in IDs, they might cause problems! Stripping them for you...");
             $elementId = str_ireplace($dangerousCharacters, '', $elementId);
-            $elementId->setId($elementId);
+            $element->setId($elementId);
         }
 
         return $element->getId();

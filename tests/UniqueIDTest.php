@@ -37,9 +37,18 @@ class UniqueIDTest extends \PHPUnit_Framework_TestCase
     {
         $audio = new Audio("dangerous id");
 
-        $elementId = UniqueID::check($audio);
+        UniqueID::check($audio);
+    }
 
-        $this->assertNotNull($elementId);
+    public function testCheckWithStrippedDangerousId()
+    {
+        $audio = new Audio("dangerous id");
+
+        set_error_handler(function () {
+        });
+        $elementId = UniqueID::check($audio);
+        restore_error_handler();
+
         $this->assertEquals("dangerousid", $elementId);
         $this->assertEquals("dangerousid", $audio->getId());
     }
