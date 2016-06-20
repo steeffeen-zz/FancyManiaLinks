@@ -13,6 +13,14 @@ interface NewLineable
 {
 
     /**
+     * Get auto new line
+     *
+     * @api
+     * @return bool
+     */
+    public function getAutoNewLine();
+
+    /**
      * Set auto new line
      *
      * @api

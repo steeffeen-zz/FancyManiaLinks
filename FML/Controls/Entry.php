@@ -2,6 +2,7 @@
 
 namespace FML\Controls;
 
+use FML\Form\Parameters;
 use FML\Script\Features\EntrySubmit;
 use FML\Types\NewLineable;
 use FML\Types\Scriptable;
@@ -19,9 +20,6 @@ use FML\Types\TextFormatable;
 class Entry extends Control implements NewLineable, Scriptable, Styleable, TextFormatable
 {
 
-    /*
-     * Protected properties
-     */
     /**
      * @var string $name Entry name
      */
@@ -31,7 +29,15 @@ class Entry extends Control implements NewLineable, Scriptable, Styleable, TextF
      * @var string $default Default value
      */
     protected $default = null;
+
+    /**
+     * @var bool $autoNewLine Auto new line
+     */
     protected $autoNewLine = null;
+
+    /**
+     * @var bool $scriptEvents Script events usage
+     */
     protected $scriptEvents = null;
 
     /**
@@ -47,7 +53,7 @@ class Entry extends Control implements NewLineable, Scriptable, Styleable, TextF
     /**
      * @var int $textSize Text size
      */
-    protected $textSize = -1;
+    protected $textSize = null;
 
     /**
      * @var string $textFont Text font
@@ -64,23 +70,10 @@ class Entry extends Control implements NewLineable, Scriptable, Styleable, TextF
      */
     protected $focusAreaColor = null;
 
+    /**
+     * @var bool $autoComplete Auto complete
+     */
     protected $autoComplete = null;
-
-    /**
-     * @see Control::getTagName()
-     */
-    public static function getTagName()
-    {
-        return "entry";
-    }
-
-    /**
-     * @see Control::getManiaScriptClass()
-     */
-    public static function getManiaScriptClass()
-    {
-        return "CMlEntry";
-    }
 
     /**
      * Get the name
@@ -131,12 +124,28 @@ class Entry extends Control implements NewLineable, Scriptable, Styleable, TextF
     }
 
     /**
+     * @see NewLineable::getAutoNewLine()
+     */
+    public function getAutoNewLine()
+    {
+        return $this->autoNewLine;
+    }
+
+    /**
      * @see NewLineable::setAutoNewLine()
      */
     public function setAutoNewLine($autoNewLine)
     {
-        $this->autoNewLine = ($autoNewLine ? 1 : 0);
+        $this->autoNewLine = (bool)$autoNewLine;
         return $this;
+    }
+
+    /**
+     * @see Scriptable::getScriptEvents()
+     */
+    public function getScriptEvents()
+    {
+        return $this->scriptEvents;
     }
 
     /**
@@ -144,7 +153,7 @@ class Entry extends Control implements NewLineable, Scriptable, Styleable, TextF
      */
     public function setScriptEvents($scriptEvents)
     {
-        $this->scriptEvents = ($scriptEvents ? 1 : 0);
+        $this->scriptEvents = (bool)$scriptEvents;
         return $this;
     }
 
@@ -251,6 +260,17 @@ class Entry extends Control implements NewLineable, Scriptable, Styleable, TextF
     }
 
     /**
+     * Get auto completion
+     *
+     * @api
+     * @return bool
+     */
+    public function getAutoComplete()
+    {
+        return $this->autoComplete;
+    }
+
+    /**
      * Set auto completion
      *
      * @api
@@ -273,8 +293,23 @@ class Entry extends Control implements NewLineable, Scriptable, Styleable, TextF
     public function addSubmitFeature($url)
     {
         $entrySubmit = new EntrySubmit($this, $url);
-        $this->addScriptFeature($entrySubmit);
-        return $this;
+        return $this->addScriptFeature($entrySubmit);
+    }
+
+    /**
+     * @see Control::getTagName()
+     */
+    public function getTagName()
+    {
+        return "entry";
+    }
+
+    /**
+     * @see Control::getManiaScriptClass()
+     */
+    public function getManiaScriptClass()
+    {
+        return "CMlEntry";
     }
 
     /**
@@ -289,21 +324,16 @@ class Entry extends Control implements NewLineable, Scriptable, Styleable, TextF
         if ($this->default !== null) {
             $domElement->setAttribute("default", $this->default);
         } else if ($this->autoComplete) {
-            $value = null;
-            if (array_key_exists($this->name, $_GET)) {
-                $value = $_GET[$this->name];
-            } else if (array_key_exists($this->name, $_POST)) {
-                $value = $_POST[$this->name];
-            }
+            $value = Parameters::getValue($this->name);
             if ($value) {
                 $domElement->setAttribute("default", $value);
             }
         }
         if ($this->autoNewLine) {
-            $domElement->setAttribute("autonewline", $this->autoNewLine);
+            $domElement->setAttribute("autonewline", 1);
         }
         if ($this->scriptEvents) {
-            $domElement->setAttribute("scriptevents", $this->scriptEvents);
+            $domElement->setAttribute("scriptevents", 1);
         }
         if ($this->style) {
             $domElement->setAttribute("style", $this->style);
@@ -311,7 +341,7 @@ class Entry extends Control implements NewLineable, Scriptable, Styleable, TextF
         if ($this->textColor) {
             $domElement->setAttribute("textcolor", $this->textColor);
         }
-        if ($this->textSize >= 0.) {
+        if ($this->textSize) {
             $domElement->setAttribute("textsize", $this->textSize);
         }
         if ($this->textFont) {

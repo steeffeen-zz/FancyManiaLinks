@@ -18,11 +18,14 @@ use FML\Script\ScriptLabel;
 class EntrySubmit extends ScriptFeature
 {
 
-    /*
-     * Protected properties
+    /**
+     * @var Entry $entry Entry
      */
-    /** @var Entry $entry */
     protected $entry = null;
+
+    /**
+     * @var string $url Sumit url
+     */
     protected $url = null;
 
     /**
@@ -34,10 +37,23 @@ class EntrySubmit extends ScriptFeature
      */
     public function __construct(Entry $entry = null, $url = null)
     {
-        if ($entry !== null) {
+        if ($entry) {
             $this->setEntry($entry);
         }
-        $this->setUrl($url);
+        if ($url) {
+            $this->setUrl($url);
+        }
+    }
+
+    /**
+     * Get the Entry
+     *
+     * @api
+     * @return Entry
+     */
+    public function getEntry()
+    {
+        return $this->entry;
     }
 
     /**
@@ -49,9 +65,20 @@ class EntrySubmit extends ScriptFeature
      */
     public function setEntry(Entry $entry)
     {
-        $this->entry = $entry->checkId()
-                             ->setScriptEvents(true);
+        $entry->checkId();
+        $this->entry = $entry->setScriptEvents(true);
         return $this;
+    }
+
+    /**
+     * Get the submit url
+     *
+     * @api
+     * @return string
+     */
+    public function getUrl()
+    {
+        return $this->url;
     }
 
     /**
