@@ -5,6 +5,13 @@ use FML\CustomUI;
 class CustomUITest extends \PHPUnit_Framework_TestCase
 {
 
+    public function testCreate()
+    {
+        $customUI = CustomUI::create();
+
+        $this->assertTrue($customUI instanceof CustomUI);
+    }
+
     public function testGlobalVisible()
     {
         $customUI = new CustomUI();

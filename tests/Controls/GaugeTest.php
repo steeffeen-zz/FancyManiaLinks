@@ -116,6 +116,7 @@ class GaugeTest extends \PHPUnit_Framework_TestCase
               ->setGrading(0.1)
               ->setColor("some-color")
               ->setCentered(true)
+              ->setClan(3)
               ->setDrawBackground(false)
               ->setDrawBlockBackground(false)
               ->setStyle("some-style");
@@ -124,7 +125,7 @@ class GaugeTest extends \PHPUnit_Framework_TestCase
         $domDocument->appendChild($domElement);
 
         $this->assertEquals("<?xml version=\"1.0\"?>
-<gauge id=\"test.gauge\" ratio=\"0.7\" grading=\"0.1\" color=\"some-color\" centered=\"1\" drawbg=\"0\" drawblockbg=\"0\" style=\"some-style\"/>
+<gauge id=\"test.gauge\" ratio=\"0.7\" grading=\"0.1\" color=\"some-color\" centered=\"1\" clan=\"3\" drawbg=\"0\" drawblockbg=\"0\" style=\"some-style\"/>
 ", $domDocument->saveXML());
     }
 

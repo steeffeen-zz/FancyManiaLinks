@@ -341,4 +341,25 @@ class ManiaCodeTest extends \PHPUnit_Framework_TestCase
 ", $domDocument->saveXML());
     }
 
+    public function testToString()
+    {
+        /** @var \DOMDocument $domDocument */
+        $domDocument = $this->getMockBuilder("\\DomDocument")
+                            ->setMethods(array("saveXML"))
+                            ->getMock();
+        $domDocument->method("saveXML")
+                    ->willReturn("test-string");
+
+        /** @var ManiaCode $maniaCode */
+        $maniaCode = $this->getMockBuilder("\\FML\\ManiaCode")
+                          ->setMethods(array("render"))
+                          ->getMock();
+        $maniaCode->method("render")
+                  ->willReturn($domDocument);
+
+        $string = (string)$maniaCode;
+
+        $this->assertEquals("test-string", $string);
+    }
+
 }

@@ -42,11 +42,11 @@ class VideoTest extends \PHPUnit_Framework_TestCase
     {
         $video = new Video();
 
-        $this->assertNull($video->getPlay());
+        $this->assertTrue($video->getLooping());
 
-        $this->assertSame($video, $video->setPlay(true));
+        $this->assertSame($video, $video->setLooping(false));
 
-        $this->assertTrue($video->getPlay());
+        $this->assertFalse($video->getLooping());
     }
 
     public function testMusic()
@@ -109,6 +109,7 @@ class VideoTest extends \PHPUnit_Framework_TestCase
               ->setDataId("some.id")
               ->setPlay(true)
               ->setLooping(false)
+              ->setMusic(true)
               ->setVolume(0.3)
               ->setScriptEvents(true);
 
@@ -116,7 +117,7 @@ class VideoTest extends \PHPUnit_Framework_TestCase
         $domDocument->appendChild($domElement);
 
         $this->assertEquals("<?xml version=\"1.0\"?>
-<video id=\"test.video\" data=\"some.url\" dataid=\"some.id\" play=\"1\" looping=\"0\" volume=\"0.3\" scriptevents=\"1\"/>
+<video id=\"test.video\" data=\"some.url\" dataid=\"some.id\" play=\"1\" looping=\"0\" music=\"1\" volume=\"0.3\" scriptevents=\"1\"/>
 ", $domDocument->saveXML());
     }
 
