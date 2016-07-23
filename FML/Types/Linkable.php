@@ -13,6 +13,14 @@ interface Linkable
 {
 
     /**
+     * Get the url
+     *
+     * @api
+     * @return string
+     */
+    public function getUrl();
+
+    /**
      * Set the url
      *
      * @api
@@ -20,6 +28,14 @@ interface Linkable
      * @return static
      */
     public function setUrl($url);
+
+    /**
+     * Get the url id to use from Dico
+     *
+     * @api
+     * @return string
+     */
+    public function getUrlId();
 
     /**
      * Set the url id to use from Dico
@@ -31,6 +47,14 @@ interface Linkable
     public function setUrlId($urlId);
 
     /**
+     * Get the manialink
+     *
+     * @api
+     * @return string
+     */
+    public function getManialink();
+
+    /**
      * Set the manialink
      *
      * @api
@@ -38,6 +62,14 @@ interface Linkable
      * @return static
      */
     public function setManialink($manialink);
+
+    /**
+     * Get the manialink id to use from Dico
+     *
+     * @api
+     * @return string
+     */
+    public function getManialinkId();
 
     /**
      * Set the manialink id to use from Dico

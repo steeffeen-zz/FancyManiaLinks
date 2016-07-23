@@ -35,11 +35,20 @@ class Clock extends ScriptFeature
      */
     public function __construct(Label $label = null, $showSeconds = true, $showFullDate = false)
     {
-        if ($label !== null) {
-            $this->setLabel($label);
-        }
-        $this->setShowSeconds($showSeconds);
-        $this->setShowFullDate($showFullDate);
+        $this->setLabel($label)
+             ->setShowSeconds($showSeconds)
+             ->setShowFullDate($showFullDate);
+    }
+
+    /**
+     * Get the Label
+     *
+     * @api
+     * @return Label
+     */
+    public function getLabel()
+    {
+        return $this->label;
     }
 
     /**
@@ -49,10 +58,24 @@ class Clock extends ScriptFeature
      * @param Label $label Clock Label
      * @return static
      */
-    public function setLabel(Label $label)
+    public function setLabel(Label $label = null)
     {
-        $this->label = $label->checkId();
+        $this->label = $label;
+        if ($this->label) {
+            $this->label->checkId();
+        }
         return $this;
+    }
+
+    /**
+     * Get if seconds should be shown
+     *
+     * @api
+     * @return bool
+     */
+    public function getShowSeconds()
+    {
+        return $this->showSeconds;
     }
 
     /**
@@ -66,6 +89,17 @@ class Clock extends ScriptFeature
     {
         $this->showSeconds = (bool)$showSeconds;
         return $this;
+    }
+
+    /**
+     * Get if the full date should be shown
+     *
+     * @api
+     * @return bool
+     */
+    public function getShowFullDate()
+    {
+        return $this->showFullDate;
     }
 
     /**
@@ -86,8 +120,8 @@ class Clock extends ScriptFeature
      */
     public function prepare(Script $script)
     {
-        $script->setScriptInclude(ScriptInclude::TEXTLIB);
-        $script->appendGenericScriptLabel(ScriptLabel::TICK, $this->getScriptText(), true);
+        $script->setScriptInclude(ScriptInclude::TEXTLIB)
+               ->appendGenericScriptLabel(ScriptLabel::TICK, $this->getScriptText(), true);
         return $this;
     }
 

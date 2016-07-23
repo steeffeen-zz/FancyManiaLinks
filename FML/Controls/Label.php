@@ -24,20 +24,80 @@ class Label extends Control implements Actionable, Linkable, NewLineable, Script
     /*
      * Protected properties
      */
+
+    /**
+     * @var string $text Text
+     */
     protected $text = null;
+
+    /**
+     * @var string $textId Text ID
+     */
     protected $textId = null;
+
+    /**
+     * @var string $textPrefix Text prefix
+     */
     protected $textPrefix = null;
+
+    /**
+     * @var bool $textEmboss Text emboss
+     */
     protected $textEmboss = null;
+
+    /**
+     * @var bool $translate Translate text
+     */
     protected $translate = null;
+
+    /**
+     * @var int $maxLines Maximum lines
+     */
     protected $maxLines = -1;
+
+    /**
+     * @var float $opacity Opacity
+     */
     protected $opacity = 1.;
+
+    /**
+     * @var string $action Action
+     */
     protected $action = null;
+
+    /**
+     * @var int $actionKey Action key
+     */
     protected $actionKey = -1;
+
+    /**
+     * @var string $url Url
+     */
     protected $url = null;
+
+    /**
+     * @var string $urlId Url ID
+     */
     protected $urlId = null;
+
+    /**
+     * @var string $manialink Manialink
+     */
     protected $manialink = null;
+
+    /**
+     * @var string $manialinkId Manialink ID
+     */
     protected $manialinkId = null;
+
+    /**
+     * @var bool $autoNewLine Automatic new line
+     */
     protected $autoNewLine = null;
+
+    /**
+     * @var bool $scriptEvents Script events
+     */
     protected $scriptEvents = null;
 
     /**
@@ -71,19 +131,14 @@ class Label extends Control implements Actionable, Linkable, NewLineable, Script
     protected $focusAreaColor = null;
 
     /**
-     * @see Control::getTagName()
+     * Get the text
+     *
+     * @api
+     * @return string
      */
-    public static function getTagName()
+    public function getText()
     {
-        return "label";
-    }
-
-    /**
-     * @see Control::getManiaScriptClass()
-     */
-    public static function getManiaScriptClass()
-    {
-        return "CMlLabel";
+        return $this->text;
     }
 
     /**
@@ -100,6 +155,17 @@ class Label extends Control implements Actionable, Linkable, NewLineable, Script
     }
 
     /**
+     * Get the text id to use from Dico
+     *
+     * @api
+     * @return string
+     */
+    public function getTextId()
+    {
+        return $this->textId;
+    }
+
+    /**
      * Set the text id to use from Dico
      *
      * @api
@@ -110,6 +176,17 @@ class Label extends Control implements Actionable, Linkable, NewLineable, Script
     {
         $this->textId = (string)$textId;
         return $this;
+    }
+
+    /**
+     * Get the text prefix
+     *
+     * @api
+     * @return string
+     */
+    public function getTextPrefix()
+    {
+        return $this->textPrefix;
     }
 
     /**
@@ -126,6 +203,17 @@ class Label extends Control implements Actionable, Linkable, NewLineable, Script
     }
 
     /**
+     * Get text emboss
+     *
+     * @api
+     * @return bool
+     */
+    public function getTextEmboss()
+    {
+        return $this->textEmboss;
+    }
+
+    /**
      * Set text emboss
      *
      * @api
@@ -134,8 +222,19 @@ class Label extends Control implements Actionable, Linkable, NewLineable, Script
      */
     public function setTextEmboss($textEmboss)
     {
-        $this->textEmboss = ($textEmboss ? 1 : 0);
+        $this->textEmboss = (bool)$textEmboss;
         return $this;
+    }
+
+    /**
+     * Get translate
+     *
+     * @api
+     * @return bool
+     */
+    public function getTranslate()
+    {
+        return $this->translate;
     }
 
     /**
@@ -147,8 +246,19 @@ class Label extends Control implements Actionable, Linkable, NewLineable, Script
      */
     public function setTranslate($translate)
     {
-        $this->translate = ($translate ? 1 : 0);
+        $this->translate = (bool)$translate;
         return $this;
+    }
+
+    /**
+     * Get the max lines count
+     *
+     * @api
+     * @return int
+     */
+    public function getMaxLines()
+    {
+        return $this->maxLines;
     }
 
     /**
@@ -161,6 +271,30 @@ class Label extends Control implements Actionable, Linkable, NewLineable, Script
     public function setMaxLines($maxLines)
     {
         $this->maxLines = (int)$maxLines;
+        return $this;
+    }
+
+    /**
+     * Get the opacity
+     *
+     * @api
+     * @return float
+     */
+    public function getOpacity()
+    {
+        return $this->opacity;
+    }
+
+    /**
+     * Set the opacity
+     *
+     * @api
+     * @param float $opacity Opacity
+     * @return static
+     */
+    public function setOpacity($opacity)
+    {
+        $this->opacity = (float)$opacity;
         return $this;
     }
 
@@ -182,12 +316,28 @@ class Label extends Control implements Actionable, Linkable, NewLineable, Script
     }
 
     /**
+     * @see Actionable::getActionKey()
+     */
+    public function getActionKey()
+    {
+        return $this->actionKey;
+    }
+
+    /**
      * @see Actionable::setActionKey()
      */
     public function setActionKey($actionKey)
     {
         $this->actionKey = (int)$actionKey;
         return $this;
+    }
+
+    /**
+     * @see Linkable::getUrl()
+     */
+    public function getUrl()
+    {
+        return $this->url;
     }
 
     /**
@@ -200,12 +350,28 @@ class Label extends Control implements Actionable, Linkable, NewLineable, Script
     }
 
     /**
+     * @see Linkable::getUrlId()
+     */
+    public function getUrlId()
+    {
+        return $this->urlId;
+    }
+
+    /**
      * @see Linkable::setUrlId()
      */
     public function setUrlId($urlId)
     {
         $this->urlId = (string)$urlId;
         return $this;
+    }
+
+    /**
+     * @see Linkable::getManialink()
+     */
+    public function getManialink()
+    {
+        return $this->manialink;
     }
 
     /**
@@ -218,6 +384,14 @@ class Label extends Control implements Actionable, Linkable, NewLineable, Script
     }
 
     /**
+     * @see Linkable::getManialinkId()
+     */
+    public function getManialinkId()
+    {
+        return $this->manialinkId;
+    }
+
+    /**
      * @see Linkable::setManialinkId()
      */
     public function setManialinkId($manialinkId)
@@ -227,12 +401,28 @@ class Label extends Control implements Actionable, Linkable, NewLineable, Script
     }
 
     /**
+     * @see NewLineable::getAutoNewLine()
+     */
+    public function getAutoNewLine()
+    {
+        return $this->autoNewLine;
+    }
+
+    /**
      * @see NewLineable::setAutoNewLine()
      */
     public function setAutoNewLine($autoNewLine)
     {
-        $this->autoNewLine = ($autoNewLine ? 1 : 0);
+        $this->autoNewLine = (bool)$autoNewLine;
         return $this;
+    }
+
+    /**
+     * @see Scriptable::getScriptEvents()
+     */
+    public function getScriptEvents()
+    {
+        return $this->scriptEvents;
     }
 
     /**
@@ -240,7 +430,7 @@ class Label extends Control implements Actionable, Linkable, NewLineable, Script
      */
     public function setScriptEvents($scriptEvents)
     {
-        $this->scriptEvents = ($scriptEvents ? 1 : 0);
+        $this->scriptEvents = (bool)$scriptEvents;
         return $this;
     }
 
@@ -362,12 +552,28 @@ class Label extends Control implements Actionable, Linkable, NewLineable, Script
     }
 
     /**
+     * @see Control::getTagName()
+     */
+    public function getTagName()
+    {
+        return "label";
+    }
+
+    /**
+     * @see Control::getManiaScriptClass()
+     */
+    public function getManiaScriptClass()
+    {
+        return "CMlLabel";
+    }
+
+    /**
      * @see Renderable::render()
      */
     public function render(\DOMDocument $domDocument)
     {
         $domElement = parent::render($domDocument);
-        if (strlen($this->text) > 0) {
+        if ($this->text) {
             $domElement->setAttribute("text", $this->text);
         }
         if ($this->textId) {
@@ -388,7 +594,7 @@ class Label extends Control implements Actionable, Linkable, NewLineable, Script
         if ($this->opacity != 1.) {
             $domElement->setAttribute("opacity", $this->opacity);
         }
-        if (strlen($this->action) > 0) {
+        if ($this->action) {
             $domElement->setAttribute("action", $this->action);
         }
         if ($this->actionKey >= 0) {
@@ -397,8 +603,14 @@ class Label extends Control implements Actionable, Linkable, NewLineable, Script
         if ($this->url) {
             $domElement->setAttribute("url", $this->url);
         }
+        if ($this->urlId) {
+            $domElement->setAttribute("urlid", $this->urlId);
+        }
         if ($this->manialink) {
             $domElement->setAttribute("manialink", $this->manialink);
+        }
+        if ($this->manialinkId) {
+            $domElement->setAttribute("manialinkid", $this->manialinkId);
         }
         if ($this->autoNewLine) {
             $domElement->setAttribute("autonewline", $this->autoNewLine);

@@ -52,6 +52,14 @@ interface Actionable
     public function getAction();
 
     /**
+     * Get the action key
+     *
+     * @api
+     * @return int
+     */
+    public function getActionKey();
+
+    /**
      * Set the action key
      *
      * @api
