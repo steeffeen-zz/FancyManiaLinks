@@ -2,9 +2,8 @@
 
 namespace FML\Controls;
 
-use FML\Components\CheckBoxDesign;
 use FML\Types\Actionable;
-use FML\Types\BgColorable;
+use FML\Types\BackgroundColorable;
 use FML\Types\Imageable;
 use FML\Types\Linkable;
 use FML\Types\Scriptable;
@@ -19,7 +18,7 @@ use FML\Types\SubStyleable;
  * @copyright FancyManiaLinks Copyright © 2014 Steffen Schröder
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
-class Quad extends Control implements Actionable, BgColorable, Imageable, Linkable, Scriptable, Styleable, SubStyleable
+class Quad extends Control implements Actionable, BackgroundColorable, Imageable, Linkable, Scriptable, Styleable, SubStyleable
 {
 
     /*
@@ -35,7 +34,7 @@ class Quad extends Control implements Actionable, BgColorable, Imageable, Linkab
     protected $imageUrl = null;
 
     /**
-     * @var string $imageId Image id
+     * @var string $imageId Image ID
      */
     protected $imageId = null;
 
@@ -45,7 +44,7 @@ class Quad extends Control implements Actionable, BgColorable, Imageable, Linkab
     protected $imageFocusUrl = null;
 
     /**
-     * @var string $imageFocusId Focus image id
+     * @var string $imageFocusId Focus image ID
      */
     protected $imageFocusId = null;
 
@@ -70,6 +69,16 @@ class Quad extends Control implements Actionable, BgColorable, Imageable, Linkab
     protected $keepRatio = null;
 
     /**
+     * @var float $opacity Opacity
+     */
+    protected $opacity = 1.;
+
+    /**
+     * @var string $backgroundColor Background color
+     */
+    protected $backgroundColor = null;
+
+    /**
      * @var string $action Action name
      */
     protected $action = null;
@@ -77,12 +86,7 @@ class Quad extends Control implements Actionable, BgColorable, Imageable, Linkab
     /**
      * @var int $actionKey Action key
      */
-    protected $actionKey = null;
-
-    /**
-     * @var string $bgColor Background color
-     */
-    protected $bgColor = null;
+    protected $actionKey = -1;
 
     /**
      * @var string $url Link url
@@ -90,7 +94,7 @@ class Quad extends Control implements Actionable, BgColorable, Imageable, Linkab
     protected $url = null;
 
     /**
-     * @var string $urlId Link url id
+     * @var string $urlId Link url ID
      */
     protected $urlId = null;
 
@@ -100,7 +104,7 @@ class Quad extends Control implements Actionable, BgColorable, Imageable, Linkab
     protected $manialink = null;
 
     /**
-     * @var string $manialinkId Manialink id
+     * @var string $manialinkId Manialink ID
      */
     protected $manialinkId = null;
 
@@ -125,27 +129,6 @@ class Quad extends Control implements Actionable, BgColorable, Imageable, Linkab
     protected $styleSelected = null;
 
     /**
-     * @var float $opacity Opacity
-     */
-    protected $opacity = null;
-
-    /**
-     * @see Control::getTagName()
-     */
-    public static function getTagName()
-    {
-        return "quad";
-    }
-
-    /**
-     * @see Control::getManiaScriptClass()
-     */
-    public static function getManiaScriptClass()
-    {
-        return "CMlQuad";
-    }
-
-    /**
      * @see Imageable::getImageUrl()
      */
     public function getImageUrl()
@@ -163,6 +146,17 @@ class Quad extends Control implements Actionable, BgColorable, Imageable, Linkab
     }
 
     /**
+     * Get the image id to use from Dico
+     *
+     * @api
+     * @return string
+     */
+    public function getImageId()
+    {
+        return $this->imageId;
+    }
+
+    /**
      * Set the image id to use from Dico
      *
      * @api
@@ -173,6 +167,17 @@ class Quad extends Control implements Actionable, BgColorable, Imageable, Linkab
     {
         $this->imageId = (string)$imageId;
         return $this;
+    }
+
+    /**
+     * Get the focus image url
+     *
+     * @api
+     * @return string
+     */
+    public function getImageFocusUrl()
+    {
+        return $this->imageFocusUrl;
     }
 
     /**
@@ -189,6 +194,17 @@ class Quad extends Control implements Actionable, BgColorable, Imageable, Linkab
     }
 
     /**
+     * Get the focus image id to use from Dico
+     *
+     * @api
+     * @return string
+     */
+    public function getImageFocusId()
+    {
+        return $this->imageFocusId;
+    }
+
+    /**
      * Set the focus image id to use from Dico
      *
      * @api
@@ -199,6 +215,17 @@ class Quad extends Control implements Actionable, BgColorable, Imageable, Linkab
     {
         $this->imageFocusId = (string)$imageFocusId;
         return $this;
+    }
+
+    /**
+     * Get the colorization
+     *
+     * @api
+     * @return string
+     */
+    public function getColorize()
+    {
+        return $this->colorize;
     }
 
     /**
@@ -215,6 +242,17 @@ class Quad extends Control implements Actionable, BgColorable, Imageable, Linkab
     }
 
     /**
+     * Get the modulization color
+     *
+     * @api
+     * @return string
+     */
+    public function getModulizeColor()
+    {
+        return $this->modulizeColor;
+    }
+
+    /**
      * Set the modulization color
      *
      * @api
@@ -225,6 +263,17 @@ class Quad extends Control implements Actionable, BgColorable, Imageable, Linkab
     {
         $this->modulizeColor = (string)$modulizeColor;
         return $this;
+    }
+
+    /**
+     * Get the automatic image scaling
+     *
+     * @api
+     * @return bool
+     */
+    public function getAutoScale()
+    {
+        return $this->autoScale;
     }
 
     /**
@@ -241,6 +290,17 @@ class Quad extends Control implements Actionable, BgColorable, Imageable, Linkab
     }
 
     /**
+     * Get the Keep Ratio mode
+     *
+     * @api
+     * @return string
+     */
+    public function getKeepRatio()
+    {
+        return $this->keepRatio;
+    }
+
+    /**
      * Set the Keep Ratio mode
      *
      * @api
@@ -250,6 +310,47 @@ class Quad extends Control implements Actionable, BgColorable, Imageable, Linkab
     public function setKeepRatio($keepRatio)
     {
         $this->keepRatio = (string)$keepRatio;
+        return $this;
+    }
+
+    /**
+     * Get the opacity
+     *
+     * @api
+     * @return float
+     */
+    public function getOpacity()
+    {
+        return $this->opacity;
+    }
+
+    /**
+     * Set the opacity
+     *
+     * @api
+     * @param float $opacity Opacity value
+     * @return static
+     */
+    public function setOpacity($opacity)
+    {
+        $this->opacity = (float)$opacity;
+        return $this;
+    }
+
+    /**
+     * @see BackgroundColorable::getBackgroundColor()
+     */
+    public function getBackgroundColor()
+    {
+        return $this->backgroundColor;
+    }
+
+    /**
+     * @see BackgroundColorable::setBgColor()
+     */
+    public function setBackgroundColor($backgroundColor)
+    {
+        $this->backgroundColor = (string)$backgroundColor;
         return $this;
     }
 
@@ -271,6 +372,14 @@ class Quad extends Control implements Actionable, BgColorable, Imageable, Linkab
     }
 
     /**
+     * @see Actionable::getActionKey()
+     */
+    public function getActionKey()
+    {
+        return $this->actionKey;
+    }
+
+    /**
      * @see Actionable::setActionKey()
      */
     public function setActionKey($actionKey)
@@ -280,20 +389,11 @@ class Quad extends Control implements Actionable, BgColorable, Imageable, Linkab
     }
 
     /**
-     * @see BgColorable::getBgColor()
+     * @see Linkable::getUrl()
      */
-    public function getBgColor()
+    public function getUrl()
     {
-        return $this->bgColor;
-    }
-
-    /**
-     * @see BgColorable::setBgColor()
-     */
-    public function setBgColor($bgColor)
-    {
-        $this->bgColor = (string)$bgColor;
-        return $this;
+        return $this->url;
     }
 
     /**
@@ -306,12 +406,28 @@ class Quad extends Control implements Actionable, BgColorable, Imageable, Linkab
     }
 
     /**
+     * @see Linkable::getUrlId()
+     */
+    public function getUrlId()
+    {
+        return $this->urlId;
+    }
+
+    /**
      * @see Linkable::setUrlId()
      */
     public function setUrlId($urlId)
     {
         $this->urlId = (string)$urlId;
         return $this;
+    }
+
+    /**
+     * @see Linkable::getManialink()
+     */
+    public function getManialink()
+    {
+        return $this->manialink;
     }
 
     /**
@@ -324,12 +440,28 @@ class Quad extends Control implements Actionable, BgColorable, Imageable, Linkab
     }
 
     /**
+     * @see Linkable::getManialinkId()
+     */
+    public function getManialinkId()
+    {
+        return $this->manialinkId;
+    }
+
+    /**
      * @see Linkable::setManialinkId()
      */
     public function setManialinkId($manialinkId)
     {
         $this->manialinkId = (string)$manialinkId;
         return $this;
+    }
+
+    /**
+     * @see Scriptable::getScriptEvents()
+     */
+    public function getScriptEvents()
+    {
+        return $this->scriptEvents;
     }
 
     /**
@@ -385,6 +517,17 @@ class Quad extends Control implements Actionable, BgColorable, Imageable, Linkab
     }
 
     /**
+     * Get selected style
+     *
+     * @api
+     * @return bool
+     */
+    public function getStyleSelected()
+    {
+        return $this->styleSelected;
+    }
+
+    /**
      * Set selected style
      *
      * @api
@@ -398,29 +541,19 @@ class Quad extends Control implements Actionable, BgColorable, Imageable, Linkab
     }
 
     /**
-     * Set the opacity
-     *
-     * @api
-     * @param float $opacity Opacity value
-     * @return static
+     * @see Control::getTagName()
      */
-    public function setOpacity($opacity)
+    public function getTagName()
     {
-        $this->opacity = (float)$opacity;
-        return $this;
+        return "quad";
     }
 
     /**
-     * Apply the given CheckBox Design
-     *
-     * @api
-     * @param CheckBoxDesign $checkBoxDesign CheckBox Design
-     * @return static
+     * @see Control::getManiaScriptClass()
      */
-    public function applyCheckBoxDesign(CheckBoxDesign $checkBoxDesign)
+    public function getManiaScriptClass()
     {
-        $checkBoxDesign->applyToQuad($this);
-        return $this;
+        return "CMlQuad";
     }
 
     /**
@@ -453,20 +586,29 @@ class Quad extends Control implements Actionable, BgColorable, Imageable, Linkab
         if ($this->keepRatio) {
             $domElement->setAttribute("keepratio", $this->keepRatio);
         }
+        if ($this->opacity !== 1.) {
+            $domElement->setAttribute("opacity", $this->opacity);
+        }
+        if ($this->backgroundColor) {
+            $domElement->setAttribute("bgcolor", $this->backgroundColor);
+        }
         if ($this->action) {
             $domElement->setAttribute("action", $this->action);
         }
         if ($this->actionKey) {
             $domElement->setAttribute("actionkey", $this->actionKey);
         }
-        if ($this->bgColor) {
-            $domElement->setAttribute("bgcolor", $this->bgColor);
-        }
         if ($this->url) {
             $domElement->setAttribute("url", $this->url);
         }
+        if ($this->urlId) {
+            $domElement->setAttribute("urlid", $this->urlId);
+        }
         if ($this->manialink) {
             $domElement->setAttribute("manialink", $this->manialink);
+        }
+        if ($this->manialinkId) {
+            $domElement->setAttribute("manialinkid", $this->manialinkId);
         }
         if ($this->scriptEvents) {
             $domElement->setAttribute("scriptevents", 1);
@@ -479,9 +621,6 @@ class Quad extends Control implements Actionable, BgColorable, Imageable, Linkab
         }
         if ($this->styleSelected) {
             $domElement->setAttribute("styleselected", 1);
-        }
-        if ($this->opacity !== 1.) {
-            $domElement->setAttribute("opacity", $this->opacity);
         }
         return $domElement;
     }
