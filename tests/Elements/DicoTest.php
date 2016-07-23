@@ -42,6 +42,13 @@ class DicoTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals("value3", $dico->getEntry("lang3", "entry3"));
 
         $this->assertSame($dico, $dico->setEntry("lang2", "entry2", "value2"));
+        $this->assertSame($dico, $dico->setEntry("lang3", "entry3", ""));
+
+        $this->assertEquals("value1", $dico->getEntry("lang1", "entry1"));
+        $this->assertEquals("value2", $dico->getEntry("lang2", "entry2"));
+        $this->assertNull($dico->getEntry("lang3", "entry3"));
+
+        $this->assertSame($dico, $dico->setEntry("lang3", "entry3", "value3"));
         $this->assertSame($dico, $dico->removeAllEntries());
 
         $this->assertNull($dico->getEntry("lang1", "entry1"));
