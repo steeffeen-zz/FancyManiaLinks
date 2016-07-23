@@ -13,22 +13,24 @@ namespace FML\Controls;
 class FileEntry extends Entry
 {
 
-    /*
-     * Protected properties
+    /**
+     * @var string $folder Folder
      */
-    protected $tagName = 'fileentry';
     protected $folder = null;
 
     /**
-     * @see Control::getManiaScriptClass()
+     * Get the folder
+     *
+     * @api
+     * @return string
      */
-    public function getManiaScriptClass()
+    public function getFolder()
     {
-        return 'CMlFileEntry';
+        return $this->folder;
     }
 
     /**
-     * Set the base folder
+     * Set the folder
      *
      * @api
      * @param string $folder Base folder
@@ -41,13 +43,29 @@ class FileEntry extends Entry
     }
 
     /**
+     * @see Control::getTagName()
+     */
+    public function getTagName()
+    {
+        return "fileentry";
+    }
+
+    /**
+     * @see Control::getManiaScriptClass()
+     */
+    public function getManiaScriptClass()
+    {
+        return "CMlFileEntry";
+    }
+
+    /**
      * @see Renderable::render()
      */
     public function render(\DOMDocument $domDocument)
     {
         $domElement = parent::render($domDocument);
         if ($this->folder) {
-            $domElement->setAttribute('folder', $this->folder);
+            $domElement->setAttribute("folder", $this->folder);
         }
         return $domElement;
     }
