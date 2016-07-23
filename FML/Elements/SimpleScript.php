@@ -14,10 +14,9 @@ use FML\Types\Renderable;
 class SimpleScript implements Renderable
 {
 
-    /*
-     * Protected properties
+    /**
+     * @var string $text Script text
      */
-    protected $tagName = 'script';
     protected $text = null;
 
     /**
@@ -40,9 +39,20 @@ class SimpleScript implements Renderable
      */
     public function __construct($text = null)
     {
-        if ($text !== null) {
+        if ($text) {
             $this->setText($text);
         }
+    }
+
+    /**
+     * Get the script text
+     *
+     * @api
+     * @return string
+     */
+    public function getText()
+    {
+        return $this->text;
     }
 
     /**
@@ -63,7 +73,7 @@ class SimpleScript implements Renderable
      */
     public function render(\DOMDocument $domDocument)
     {
-        $domElement = $domDocument->createElement($this->tagName);
+        $domElement = $domDocument->createElement("script");
         if ($this->text) {
             $scriptComment = $domDocument->createComment($this->text);
             $domElement->appendChild($scriptComment);
