@@ -1,13 +1,13 @@
 <?php
 
-use FML\Controls\Quads\Quad_ManiaPlanetSystem;
+use FML\Controls\Quads\Quad_ManiaplanetSystem;
 
-class Quad_ManiaPlanetSystemTest extends \PHPUnit_Framework_TestCase
+class Quad_ManiaplanetSystemTest extends \PHPUnit_Framework_TestCase
 {
 
     public function testConstruct()
     {
-        $quad = new Quad_ManiaPlanetSystem();
+        $quad = new Quad_ManiaplanetSystem();
 
         $this->assertNotNull($quad);
         $this->assertEquals($quad::STYLE, $quad->getStyle());
