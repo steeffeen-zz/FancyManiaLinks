@@ -155,7 +155,6 @@ class Dico
     /*
      * Protected properties
      */
-    protected $tagName = 'dico';
     protected $entries = array();
 
     /**
@@ -167,6 +166,22 @@ class Dico
     public static function create()
     {
         return new static();
+    }
+
+    /**
+     * Get the translatable entry
+     *
+     * @api
+     * @param string $language Language id
+     * @param string $entryId  Entry id
+     * @return string
+     */
+    public function getEntry($language, $entryId)
+    {
+        if (isset($this->entries[$language]) && isset($this->entries[$language][$entryId])) {
+            return $this->entries[$language][$entryId];
+        }
+        return null;
     }
 
     /**
@@ -200,23 +215,15 @@ class Dico
      * Remove entries of the given id
      *
      * @api
-     * @param string $entryId  Entry id that should be removed
-     * @param string $language (optional) Only remove entries of the given language
+     * @param string $entryId Entry id that should be removed
      * @return static
      */
-    public function removeEntry($entryId, $language = null)
+    public function removeEntry($entryId)
     {
         $entryId = (string)$entryId;
-        if ($language) {
-            $language = (string)$language;
-            if (isset($this->entries[$language])) {
+        foreach ($this->entries as $language => $entries) {
+            if (isset($this->entries[$language][$entryId])) {
                 unset($this->entries[$language][$entryId]);
-            }
-        } else {
-            foreach ($this->entries as $language => $entries) {
-                if (isset($entries[$entryId])) {
-                    unset($entries[$language][$entryId]);
-                }
             }
         }
         return $this;
@@ -227,19 +234,13 @@ class Dico
      *
      * @api
      * @param string $language Language which entries should be removed
-     * @param string $entryId  (optional) Only remove the given entry id
      * @return static
      */
-    public function removeLanguage($language, $entryId = null)
+    public function removeLanguage($language)
     {
         $language = (string)$language;
         if (isset($this->entries[$language])) {
-            if ($entryId) {
-                $entryId = (string)$entryId;
-                unset($this->entries[$language][$entryId]);
-            } else {
-                unset($this->entries[$language]);
-            }
+            unset($this->entries[$language]);
         }
         return $this;
     }
@@ -250,7 +251,7 @@ class Dico
      * @api
      * @return static
      */
-    public function removeEntries()
+    public function removeAllEntries()
     {
         $this->entries = array();
         return $this;
@@ -264,10 +265,10 @@ class Dico
      */
     public function render(\DOMDocument $domDocument)
     {
-        $domElement = $domDocument->createElement($this->tagName);
+        $domElement = $domDocument->createElement("dico");
         foreach ($this->entries as $language => $entries) {
-            $languageElement = $domDocument->createElement('language');
-            $languageElement->setAttribute('id', $language);
+            $languageElement = $domDocument->createElement("language");
+            $languageElement->setAttribute("id", $language);
             foreach ($entries as $entryId => $entryValue) {
                 $entryElement = $domDocument->createElement($entryId, $entryValue);
                 $languageElement->appendChild($entryElement);

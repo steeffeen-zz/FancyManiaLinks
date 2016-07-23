@@ -9,7 +9,7 @@ class FormatTest extends \PHPUnit_Framework_TestCase
     {
         $format = Format::create();
 
-        $this->assertNotNull($format);
+        $this->assertTrue($format instanceof Format);
     }
 
     public function testBackgroundColor()
