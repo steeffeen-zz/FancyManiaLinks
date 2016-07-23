@@ -70,18 +70,15 @@ class Frame extends Control implements Container
     /**
      * @see Container::getFormat()
      */
-    public function getFormat($createIfEmpty = true)
+    public function getFormat()
     {
-        if (!$this->format && $createIfEmpty) {
-            $this->setFormat(new Format());
-        }
         return $this->format;
     }
 
     /**
      * @see Container::setFormat()
      */
-    public function setFormat(Format $format)
+    public function setFormat(Format $format = null)
     {
         $this->format = $format;
         return $this;

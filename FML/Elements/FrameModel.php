@@ -152,7 +152,7 @@ class FrameModel implements Container, Identifiable, Renderable
     /**
      * @see Container::setFormat()
      */
-    public function setFormat(Format $format)
+    public function setFormat(Format $format = null)
     {
         $this->format = $format;
         return $this;

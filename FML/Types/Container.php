@@ -63,6 +63,6 @@ interface Container
      * @param Format $format New Format
      * @return static
      */
-    public function setFormat(Format $format);
+    public function setFormat(Format $format = null);
 
 }
