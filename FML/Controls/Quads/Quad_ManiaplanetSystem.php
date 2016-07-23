@@ -25,8 +25,8 @@ class Quad_ManiaplanetSystem extends Quad
     const SUBSTYLE_Medals         = 'Medals';
     const SUBSTYLE_Statistics     = 'Statistics';
 
-    /*
-     * Protected properties
+    /**
+     * @var string $style Style
      */
     protected $style = self::STYLE;
 

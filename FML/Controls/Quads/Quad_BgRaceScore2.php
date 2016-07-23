@@ -46,8 +46,8 @@ class Quad_BgRaceScore2 extends Quad
     const SUBSTYLE_Tv                   = 'Tv';
     const SUBSTYLE_Warmup               = 'Warmup';
 
-    /*
-     * Protected properties
+    /**
+     * @var string $style Style
      */
     protected $style = self::STYLE;
 

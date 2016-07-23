@@ -28,8 +28,8 @@ class Quad_Hud3dEchelons extends Quad
     const SUBSTYLE_EchelonSilver2 = 'EchelonSilver2';
     const SUBSTYLE_EchelonSilver3 = 'EchelonSilver3';
 
-    /*
-     * Protected properties
+    /**
+     * @var string $style Style
      */
     protected $style = self::STYLE;
 

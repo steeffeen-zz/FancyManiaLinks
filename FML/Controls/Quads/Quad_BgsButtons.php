@@ -26,8 +26,8 @@ class Quad_BgsButtons extends Quad
     const SUBSTYLE_BgButtonSmall2         = 'BgButtonSmall2';
     const SUBSTYLE_BgButtonXSmall         = 'BgButtonXSmall';
 
-    /*
-     * Protected properties
+    /**
+     * @var string $style Style
      */
     protected $style = self::STYLE;
 

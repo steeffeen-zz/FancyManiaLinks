@@ -88,8 +88,8 @@ class Quad_Bgs1InRace extends Quad
     const SUBSTYLE_ProgressBarSmall    = 'ProgressBarSmall';
     const SUBSTYLE_Shadow              = 'Shadow';
 
-    /*
-     * Protected properties
+    /**
+     * @var string $style Style
      */
     protected $style = self::STYLE;
 

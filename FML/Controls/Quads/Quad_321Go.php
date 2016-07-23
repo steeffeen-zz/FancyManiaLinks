@@ -23,8 +23,8 @@ class Quad_321Go extends Quad
     const SUBSTYLE_1  = '1';
     const SUBSTYLE_Go = 'Go!';
 
-    /*
-     * Protected properties
+    /**
+     * @var string $style Style
      */
     protected $style = self::STYLE;
 

@@ -49,8 +49,8 @@ class Quad_Icons128x32_1 extends Quad
     const SUBSTYLE_UrlBg           = 'UrlBg';
     const SUBSTYLE_Windowed        = 'Windowed';
 
-    /*
-     * Protected properties
+    /**
+     * @var string $style Style
      */
     protected $style = self::STYLE;
 

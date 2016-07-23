@@ -42,8 +42,8 @@ class Quad_UIConstructionBullet_Buttons extends Quad
     const SUBSTYLE_Trail             = 'Trail';
     const SUBSTYLE_TrailFolder       = 'TrailFolder';
 
-    /*
-     * Protected properties
+    /**
+     * @var string $style Style
      */
     protected $style = self::STYLE;
 

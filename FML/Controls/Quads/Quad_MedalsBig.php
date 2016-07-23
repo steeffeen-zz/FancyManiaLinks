@@ -26,8 +26,8 @@ class Quad_MedalsBig extends Quad
     const SUBSTYLE_MedalSilver           = 'MedalSilver';
     const SUBSTYLE_MedalSlot             = 'MedalSlot';
 
-    /*
-     * Protected properties
+    /**
+     * @var string $style Style
      */
     protected $style = self::STYLE;
 

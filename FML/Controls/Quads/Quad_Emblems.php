@@ -22,8 +22,8 @@ class Quad_Emblems extends Quad
     const SUBSTYLE_1 = '#1';
     const SUBSTYLE_2 = '#2';
 
-    /*
-     * Protected properties
+    /**
+     * @var string $style Style
      */
     protected $style = self::STYLE;
 

@@ -76,8 +76,8 @@ class Quad_UIConstruction_Buttons extends Quad
     const SUBSTYLE_Validate_Step2       = 'Validate_Step2';
     const SUBSTYLE_Validate_Step3       = 'Validate_Step3';
 
-    /*
-     * Protected properties
+    /**
+     * @var string $style Style
      */
     protected $style = self::STYLE;
 

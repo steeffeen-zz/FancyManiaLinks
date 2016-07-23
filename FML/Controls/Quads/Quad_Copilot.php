@@ -31,8 +31,8 @@ class Quad_Copilot extends Quad
     const SUBSTYLE_UpGood     = 'UpGood';
     const SUBSTYLE_UpWrong    = 'UpWrong';
 
-    /*
-     * Protected properties
+    /**
+     * @var string $style Style
      */
     protected $style = self::STYLE;
 

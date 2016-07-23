@@ -34,8 +34,8 @@ class Quad_Icons64x64_2 extends Quad
     const SUBSTYLE_UnknownElimination = 'UnknownElimination';
     const SUBSTYLE_UnknownHit         = 'UnknownHit';
 
-    /*
-     * Protected properties
+    /**
+     * @var string $style Style
      */
     protected $style = self::STYLE;
 

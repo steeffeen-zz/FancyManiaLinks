@@ -25,8 +25,8 @@ class Quad_BgsChallengeMedals extends Quad
     const SUBSTYLE_BgPlayed    = 'BgPlayed';
     const SUBSTYLE_BgSilver    = 'BgSilver';
 
-    /*
-     * Protected properties
+    /**
+     * @var string $style Style
      */
     protected $style = self::STYLE;
 

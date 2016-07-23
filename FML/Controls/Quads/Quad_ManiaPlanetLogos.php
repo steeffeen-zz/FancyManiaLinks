@@ -26,8 +26,8 @@ class Quad_ManiaPlanetLogos extends Quad
     const SUBSTYLE_ManiaPlanetLogoWhite      = 'ManiaPlanetLogoWhite';
     const SUBSTYLE_ManiaPlanetLogoWhiteSmall = 'ManiaPlanetLogoWhiteSmall';
 
-    /*
-     * Protected properties
+    /**
+     * @var string $style Style
      */
     protected $style = self::STYLE;
 

@@ -40,8 +40,8 @@ class Quad_UiSMSpectatorScoreBig extends Quad
     CONST SUBSTYLE_UIRange1Bg         = 'UIRange1Bg';
     CONST SUBSTYLE_UIRange2Bg         = 'UIRange2Bg';
 
-    /*
-     * Protected properties
+    /**
+     * @var string $style Style
      */
     protected $style = self::STYLE;
 

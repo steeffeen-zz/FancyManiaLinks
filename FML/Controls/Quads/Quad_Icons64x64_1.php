@@ -105,8 +105,8 @@ class Quad_Icons64x64_1 extends Quad
     const SUBSTYLE_YellowHigh            = 'YellowHigh';
     const SUBSTYLE_YellowLow             = 'YellowLow';
 
-    /*
-     * Protected properties
+    /**
+     * @var string $style Style
      */
     protected $style = self::STYLE;
 

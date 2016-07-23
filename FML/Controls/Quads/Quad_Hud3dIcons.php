@@ -27,8 +27,8 @@ class Quad_Hud3dIcons extends Quad
     const SUBSTYLE_PointB        = 'PointB';
     const SUBSTYLE_PointC        = 'PointC';
 
-    /*
-     * Protected properties
+    /**
+     * @var string $style Style
      */
     protected $style = self::STYLE;
 

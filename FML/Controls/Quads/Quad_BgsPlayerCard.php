@@ -33,8 +33,8 @@ class Quad_BgsPlayerCard extends Quad
     const SUBSTYLE_BgRacePlayerName    = 'BgRacePlayerName';
     const SUBSTYLE_ProgressBar         = 'ProgressBar';
 
-    /*
-     * Protected properties
+    /**
+     * @var string $style Style
      */
     protected $style = self::STYLE;
 

@@ -23,8 +23,8 @@ class Quad_TitleLogos extends Quad
     const SUBSTYLE_Icon       = 'Icon';
     const SUBSTYLE_Title      = 'Title';
 
-    /*
-     * Protected properties
+    /**
+     * @var string $style Style
      */
     protected $style = self::STYLE;
 

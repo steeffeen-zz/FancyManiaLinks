@@ -83,8 +83,8 @@ class Quad_Icons128x128_1 extends Quad
     const SUBSTYLE_Upload           = 'Upload';
     const SUBSTYLE_Vehicles         = 'Vehicles';
 
-    /*
-     * Protected properties
+    /**
+     * @var string $style Style
      */
     protected $style = self::STYLE;
 
