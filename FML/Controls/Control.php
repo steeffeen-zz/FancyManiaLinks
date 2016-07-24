@@ -69,14 +69,14 @@ abstract class Control implements Identifiable, Renderable, ScriptFeatureable
     protected $height = -1.;
 
     /**
-     * @var string $hAlign Horizontal alignment
+     * @var string $horizontalAlign Horizontal alignment
      */
-    protected $hAlign = self::CENTER;
+    protected $horizontalAlign = self::CENTER;
 
     /**
-     * @var string $vAlign Vertical alignment
+     * @var string $verticalAlign Vertical alignment
      */
-    protected $vAlign = self::CENTER2;
+    protected $verticalAlign = self::CENTER2;
 
     /**
      * @var float $scale Scale
@@ -84,9 +84,9 @@ abstract class Control implements Identifiable, Renderable, ScriptFeatureable
     protected $scale = 1.;
 
     /**
-     * @var bool $hidden Hidden
+     * @var bool $visible Visibility
      */
-    protected $hidden = null;
+    protected $visible = true;
 
     /**
      * @var float $rotation Rotation
@@ -135,6 +135,7 @@ abstract class Control implements Identifiable, Renderable, ScriptFeatureable
      * @param bool $escaped        (optional) Escape the id for ManiaScript
      * @param bool $addApostrophes (optional) Add apostrophes before and after the text
      * @return string
+     *                             TODO: remove parameters to implement Identifiable interface method 1:1
      */
     public function getId($escaped = false, $addApostrophes = false)
     {
@@ -162,22 +163,14 @@ abstract class Control implements Identifiable, Renderable, ScriptFeatureable
     }
 
     /**
-     * Set the Control position
+     * Get the X position
      *
      * @api
-     * @param float $posX Horizontal position
-     * @param float $posY Vertical position
-     * @param float $posZ (optional) Depth
-     * @return static
+     * @return float
      */
-    public function setPosition($posX, $posY, $posZ = null)
+    public function getX()
     {
-        $this->setX($posX);
-        $this->setY($posY);
-        if ($posZ !== null) {
-            $this->setZ($posZ);
-        }
-        return $this;
+        return $this->posX;
     }
 
     /**
@@ -194,6 +187,17 @@ abstract class Control implements Identifiable, Renderable, ScriptFeatureable
     }
 
     /**
+     * Get the Y position
+     *
+     * @api
+     * @return float
+     */
+    public function getY()
+    {
+        return $this->posY;
+    }
+
+    /**
      * Set the Y position
      *
      * @api
@@ -207,6 +211,17 @@ abstract class Control implements Identifiable, Renderable, ScriptFeatureable
     }
 
     /**
+     * Get the Z position
+     *
+     * @api
+     * @return float
+     */
+    public function getZ()
+    {
+        return $this->posZ;
+    }
+
+    /**
      * Set the Z position
      *
      * @api
@@ -216,6 +231,73 @@ abstract class Control implements Identifiable, Renderable, ScriptFeatureable
     public function setZ($posZ)
     {
         $this->posZ = (float)$posZ;
+        return $this;
+    }
+
+    /**
+     * Set the Control position
+     *
+     * @api
+     * @param float $posX Horizontal position
+     * @param float $posY Vertical position
+     * @param float $posZ (optional) Depth
+     * @return static
+     */
+    public function setPosition($posX, $posY, $posZ = null)
+    {
+        $this->setX($posX)
+             ->setY($posY);
+        if ($posZ !== null) {
+            $this->setZ($posZ);
+        }
+        return $this;
+    }
+
+    /**
+     * Get the width
+     *
+     * @api
+     * @return float
+     */
+    public function getWidth()
+    {
+        return $this->width;
+    }
+
+    /**
+     * Set the width
+     *
+     * @api
+     * @param float $width Control width
+     * @return static
+     */
+    public function setWidth($width)
+    {
+        $this->width = (float)$width;
+        return $this;
+    }
+
+    /**
+     * Get the height
+     *
+     * @api
+     * @return float
+     */
+    public function getHeight()
+    {
+        return $this->height;
+    }
+
+    /**
+     * Set the height
+     *
+     * @api
+     * @param float $height Control height
+     * @return static
+     */
+    public function setHeight($height)
+    {
+        $this->height = (float)$height;
         return $this;
     }
 
@@ -234,55 +316,65 @@ abstract class Control implements Identifiable, Renderable, ScriptFeatureable
     }
 
     /**
-     * Set the width
+     * Get the horizontal alignment
      *
      * @api
-     * @param float $width Control width
-     * @return static
+     * @return string
      */
-    public function setWidth($width)
+    public function getHorizontalAlign()
     {
-        $this->width = (float)$width;
-        return $this;
-    }
-
-    /**
-     * Set the height
-     *
-     * @api
-     * @param float $height Control height
-     * @return static
-     */
-    public function setHeight($height)
-    {
-        $this->height = (float)$height;
-        return $this;
+        return $this->horizontalAlign;
     }
 
     /**
      * Set the horizontal alignment
      *
      * @api
-     * @param string $hAlign Horizontal alignment
+     * @param string $horizontalAlign Horizontal alignment
      * @return static
      */
-    public function setHAlign($hAlign)
+    public function setHorizontalAlign($horizontalAlign)
     {
-        $this->hAlign = (string)$hAlign;
+        $this->horizontalAlign = (string)$horizontalAlign;
         return $this;
+    }
+
+    /**
+     * Get the vertical alignment
+     *
+     * @api
+     * @return string
+     */
+    public function getVerticalAlign()
+    {
+        return $this->verticalAlign;
     }
 
     /**
      * Set the vertical alignment
      *
      * @api
-     * @param string $vAlign Vertical alignment
+     * @param string $verticalAlign Vertical alignment
      * @return static
      */
-    public function setVAlign($vAlign)
+    public function setVerticalAlign($verticalAlign)
     {
-        $this->vAlign = (string)$vAlign;
+        $this->verticalAlign = (string)$verticalAlign;
         return $this;
+    }
+
+    /**
+     * Set the horizontal and the vertical alignment
+     *
+     * @api
+     * @param string $horizontalAlign Horizontal alignment
+     * @param string $verticalAlign   Vertical alignment
+     * @return static
+     */
+    public function setAlign($horizontalAlign, $verticalAlign)
+    {
+        return $this->setHorizontalAlign($horizontalAlign)
+                    ->setVerticalAlign($verticalAlign);
     }
 
     /**
@@ -297,20 +389,6 @@ abstract class Control implements Identifiable, Renderable, ScriptFeatureable
     }
 
     /**
-     * Set the horizontal and the vertical alignment
-     *
-     * @api
-     * @param string $hAlign Horizontal alignment
-     * @param string $vAlign Vertical alignment
-     * @return static
-     */
-    public function setAlign($hAlign, $vAlign)
-    {
-        return $this->setHAlign($hAlign)
-                    ->setVAlign($vAlign);
-    }
-
-    /**
      * Clear the alignment
      *
      * @api
@@ -318,7 +396,20 @@ abstract class Control implements Identifiable, Renderable, ScriptFeatureable
      */
     public function clearAlign()
     {
-        return $this->setAlign(null, null);
+        $this->horizontalAlign = null;
+        $this->verticalAlign   = null;
+        return $this;
+    }
+
+    /**
+     * Get the scale
+     *
+     * @api
+     * @return float
+     */
+    public function getScale()
+    {
+        return $this->scale;
     }
 
     /**
@@ -335,16 +426,38 @@ abstract class Control implements Identifiable, Renderable, ScriptFeatureable
     }
 
     /**
+     * Get the visibility
+     *
+     * @api
+     * @return bool
+     */
+    public function getVisible()
+    {
+        return $this->visible;
+    }
+
+    /**
      * Set the visibility
      *
      * @api
      * @param bool $visible If the Control should be visible
      * @return static
      */
-    public function setVisible($visible = true)
+    public function setVisible($visible)
     {
-        $this->hidden = ($visible ? 0 : 1);
+        $this->visible = $visible;
         return $this;
+    }
+
+    /**
+     * Get the rotation
+     *
+     * @api
+     * @return float
+     */
+    public function getRotation()
+    {
+        return $this->rotation;
     }
 
     /**
@@ -361,10 +474,21 @@ abstract class Control implements Identifiable, Renderable, ScriptFeatureable
     }
 
     /**
+     * Get style classes
+     *
+     * @api
+     * @return string[]
+     */
+    public function getClasses()
+    {
+        return $this->classes;
+    }
+
+    /**
      * Add a new style class
      *
      * @api
-     * @param string $class Style class name
+     * @param string $class Style class
      * @return static
      */
     public function addClass($class)
@@ -373,6 +497,33 @@ abstract class Control implements Identifiable, Renderable, ScriptFeatureable
         if (!in_array($class, $this->classes)) {
             array_push($this->classes, $class);
         }
+        return $this;
+    }
+
+    /**
+     * Add new style classes
+     *
+     * @api
+     * @param string[] $classes Style classes
+     * @return static
+     */
+    public function addClasses(array $classes)
+    {
+        foreach ($classes as $class) {
+            $this->addClass($class);
+        }
+        return $this;
+    }
+
+    /**
+     * Remove all style classes
+     *
+     * @api
+     * @return static
+     */
+    public function removeAllClasses()
+    {
+        $this->classes = array();
         return $this;
     }
 
@@ -391,21 +542,6 @@ abstract class Control implements Identifiable, Renderable, ScriptFeatureable
         } else {
             $actionTrigger = new ActionTrigger($actionName, $this, $eventLabel);
             $this->addScriptFeature($actionTrigger);
-        }
-        return $this;
-    }
-
-    /**
-     * Add a new Script Feature
-     *
-     * @api
-     * @param ScriptFeature $scriptFeature Script Feature
-     * @return static
-     */
-    public function addScriptFeature(ScriptFeature $scriptFeature)
-    {
-        if (!in_array($scriptFeature, $this->scriptFeatures, true)) {
-            array_push($this->scriptFeatures, $scriptFeature);
         }
         return $this;
     }
@@ -516,20 +652,7 @@ abstract class Control implements Identifiable, Renderable, ScriptFeatureable
     public function addScriptText($scriptText, $label = ScriptLabel::MOUSECLICK)
     {
         $customText = new ControlScript($this, $scriptText, $label);
-        $this->addScriptFeature($customText);
-        return $this;
-    }
-
-    /**
-     * Remove all Script Features
-     *
-     * @api
-     * @return static
-     */
-    public function removeScriptFeatures()
-    {
-        $this->scriptFeatures = array();
-        return $this;
+        return $this->addScriptFeature($customText);
     }
 
     /**
@@ -541,38 +664,58 @@ abstract class Control implements Identifiable, Renderable, ScriptFeatureable
     }
 
     /**
+     * @see ScriptFeatureable::addScriptFeature()
+     */
+    public function addScriptFeature(ScriptFeature $scriptFeature)
+    {
+        if (!in_array($scriptFeature, $this->scriptFeatures, true)) {
+            array_push($this->scriptFeatures, $scriptFeature);
+        }
+        return $this;
+    }
+
+    /**
+     * @see ScriptFeatureable::removeAllScriptFeatures()
+     */
+    public function removeAllScriptFeatures()
+    {
+        $this->scriptFeatures = array();
+        return $this;
+    }
+
+    /**
      * @see Renderable::render()
      */
     public function render(\DOMDocument $domDocument)
     {
         $domElement = $domDocument->createElement($this->getTagName());
         if ($this->controlId) {
-            $domElement->setAttribute('id', $this->controlId);
+            $domElement->setAttribute("id", $this->controlId);
         }
         if ($this->posX || $this->posY || $this->posZ) {
-            $domElement->setAttribute('posn', "{$this->posX} {$this->posY} {$this->posZ}");
+            $domElement->setAttribute("posn", "{$this->posX} {$this->posY} {$this->posZ}");
         }
         if ($this->width >= 0. || $this->height >= 0.) {
-            $domElement->setAttribute('sizen', "{$this->width} {$this->height}");
+            $domElement->setAttribute("sizen", "{$this->width} {$this->height}");
         }
-        if ($this->hAlign) {
-            $domElement->setAttribute('halign', $this->hAlign);
+        if ($this->horizontalAlign) {
+            $domElement->setAttribute("halign", $this->horizontalAlign);
         }
-        if ($this->vAlign) {
-            $domElement->setAttribute('valign', $this->vAlign);
+        if ($this->verticalAlign) {
+            $domElement->setAttribute("valign", $this->verticalAlign);
         }
         if ($this->scale != 1.) {
-            $domElement->setAttribute('scale', $this->scale);
+            $domElement->setAttribute("scale", $this->scale);
         }
-        if ($this->hidden) {
-            $domElement->setAttribute('hidden', $this->hidden);
+        if (!$this->visible) {
+            $domElement->setAttribute("hidden", "1");
         }
         if ($this->rotation) {
-            $domElement->setAttribute('rot', $this->rotation);
+            $domElement->setAttribute("rot", $this->rotation);
         }
         if (!empty($this->classes)) {
-            $classes = implode(' ', $this->classes);
-            $domElement->setAttribute('class', $classes);
+            $classes = implode(" ", $this->classes);
+            $domElement->setAttribute("class", $classes);
         }
         return $domElement;
     }

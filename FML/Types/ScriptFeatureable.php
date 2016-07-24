@@ -21,4 +21,21 @@ interface ScriptFeatureable
      */
     public function getScriptFeatures();
 
+    /**
+     * Add a new Script Feature
+     *
+     * @api
+     * @param ScriptFeature $scriptFeature Script Feature
+     * @return static
+     */
+    public function addScriptFeature(ScriptFeature $scriptFeature);
+
+    /**
+     * Remove all Script Features
+     *
+     * @api
+     * @return static
+     */
+    public function removeAllScriptFeatures();
+
 }
