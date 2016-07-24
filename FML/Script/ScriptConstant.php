@@ -12,10 +12,14 @@ namespace FML\Script;
 class ScriptConstant
 {
 
-    /*
-     * Protected properties
+    /**
+     * @var string $name Name
      */
     protected $name = null;
+
+    /**
+     * @var mixed $value Value
+     */
     protected $value = null;
 
     /**
@@ -23,12 +27,27 @@ class ScriptConstant
      *
      * @api
      * @param string $name  (optional) Constant name
-     * @param string $value (optional) Constant value
+     * @param mixed  $value (optional) Constant value
      */
     public function __construct($name = null, $value = null)
     {
-        $this->setName($name);
-        $this->setValue($value);
+        if ($name) {
+            $this->setName($name);
+        }
+        if ($value !== null) {
+            $this->setValue($value);
+        }
+    }
+
+    /**
+     * Get the name
+     *
+     * @api
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
     }
 
     /**
@@ -45,10 +64,21 @@ class ScriptConstant
     }
 
     /**
+     * Get the value
+     *
+     * @api
+     * @return mixed
+     */
+    public function getValue()
+    {
+        return $this->value;
+    }
+
+    /**
      * Set the value
      *
      * @api
-     * @param string $value Constant value
+     * @param mixed $value Constant value
      * @return static
      */
     public function setValue($value)
