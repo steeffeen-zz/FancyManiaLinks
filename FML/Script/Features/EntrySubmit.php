@@ -65,8 +65,9 @@ class EntrySubmit extends ScriptFeature
      */
     public function setEntry(Entry $entry)
     {
-        $entry->checkId();
-        $this->entry = $entry->setScriptEvents(true);
+        $entry->setScriptEvents(true)
+              ->checkId();
+        $this->entry = $entry;
         return $this;
     }
 
