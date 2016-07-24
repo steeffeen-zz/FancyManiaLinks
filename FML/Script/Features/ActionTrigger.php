@@ -18,12 +18,19 @@ use FML\Types\Scriptable;
 class ActionTrigger extends ScriptFeature
 {
 
-    /*
-     * Protected properties
+    /**
+     * @var string $actionName Triggered action
      */
     protected $actionName = null;
-    /** @var Control $control */
+
+    /**
+     * @var Control $control Action Control
+     */
     protected $control = null;
+
+    /**
+     * @var string $labelName Script label name
+     */
     protected $labelName = null;
 
     /**
@@ -32,19 +39,30 @@ class ActionTrigger extends ScriptFeature
      * @api
      * @param string  $actionName (optional) Triggered action
      * @param Control $control    (optional) Action Control
-     * @param string  $labelName  (optional) Script Label name
+     * @param string  $labelName  (optional) Script label name
      */
     public function __construct($actionName = null, Control $control = null, $labelName = ScriptLabel::MOUSECLICK)
     {
-        if ($actionName !== null) {
+        if ($actionName) {
             $this->setActionName($actionName);
         }
-        if ($control !== null) {
+        if ($control) {
             $this->setControl($control);
         }
-        if ($labelName !== null) {
+        if ($labelName) {
             $this->setLabelName($labelName);
         }
+    }
+
+    /**
+     * Get the action to trigger
+     *
+     * @api
+     * @return string
+     */
+    public function getActionName()
+    {
+        return $this->actionName;
     }
 
     /**
@@ -61,20 +79,44 @@ class ActionTrigger extends ScriptFeature
     }
 
     /**
+     * Get the Control that should trigger the action
+     *
+     * @api
+     * @return Control
+     */
+    public function getControl()
+    {
+        return $this->control;
+    }
+
+    /**
      * Set the Control that should trigger the action
      *
      * @api
      * @param Control $control Action Control
      * @return static
      */
-    public function setControl(Control $control)
+    public function setControl(Control $control = null)
     {
-        $control->checkId();
-        if ($control instanceof Scriptable) {
-            $control->setScriptEvents(true);
+        if ($control) {
+            $control->checkId();
+            if ($control instanceof Scriptable) {
+                $control->setScriptEvents(true);
+            }
         }
         $this->control = $control;
         return $this;
+    }
+
+    /**
+     * Get the script label name
+     *
+     * @api
+     * @return string
+     */
+    public function getLabelName()
+    {
+        return $this->labelName;
     }
 
     /**
