@@ -17,12 +17,19 @@ use FML\Script\ScriptLabel;
 class Clock extends ScriptFeature
 {
 
-    /*
-     * Protected properties
+    /**
+     * @var Label $label Clock Label
      */
-    /** @var Label $label */
     protected $label = null;
+
+    /**
+     * @var bool $showSeconds Show the seconds
+     */
     protected $showSeconds = null;
+
+    /**
+     * @var bool $showFullDate Show the date
+     */
     protected $showFullDate = null;
 
     /**
@@ -30,13 +37,15 @@ class Clock extends ScriptFeature
      *
      * @api
      * @param Label $label        (optional) Clock Label
-     * @param bool  $showSeconds  (optional) Whether the seconds should be shown
-     * @param bool  $showFullDate (optional) Whether the date should be shown
+     * @param bool  $showSeconds  (optional) Show the seconds
+     * @param bool  $showFullDate (optional) Show the date
      */
     public function __construct(Label $label = null, $showSeconds = true, $showFullDate = false)
     {
-        $this->setLabel($label)
-             ->setShowSeconds($showSeconds)
+        if ($label) {
+            $this->setLabel($label);
+        }
+        $this->setShowSeconds($showSeconds)
              ->setShowFullDate($showFullDate);
     }
 
@@ -58,12 +67,10 @@ class Clock extends ScriptFeature
      * @param Label $label Clock Label
      * @return static
      */
-    public function setLabel(Label $label = null)
+    public function setLabel(Label $label)
     {
+        $label->checkId();
         $this->label = $label;
-        if ($this->label) {
-            $this->label->checkId();
-        }
         return $this;
     }
 
