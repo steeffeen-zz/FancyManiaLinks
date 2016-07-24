@@ -18,12 +18,19 @@ use FML\Types\Scriptable;
 class PlayerProfile extends ScriptFeature
 {
 
-    /*
-     * Protected properties
+    /**
+     * @var string $login Player login
      */
     protected $login = null;
-    /** @var Control $control */
+
+    /**
+     * @var Control $control Profile Control
+     */
     protected $control = null;
+
+    /**
+     * @var string $labelName Script Label name
+     */
     protected $labelName = null;
 
     /**
@@ -31,16 +38,31 @@ class PlayerProfile extends ScriptFeature
      *
      * @api
      * @param string  $login     (optional) Player login
-     * @param Control $control   (optional) Action Control
+     * @param Control $control   (optional) Profile Control
      * @param string  $labelName (optional) Script Label name
      */
     public function __construct($login = null, Control $control = null, $labelName = ScriptLabel::MOUSECLICK)
     {
-        $this->setLogin($login);
-        if ($control !== null) {
+        if ($login) {
+            $this->setLogin($login);
+        }
+        if ($control) {
             $this->setControl($control);
         }
-        $this->setLabelName($labelName);
+        if ($labelName) {
+            $this->setLabelName($labelName);
+        }
+    }
+
+    /**
+     * Get the login of the opened player
+     *
+     * @api
+     * @return string
+     */
+    public function getLogin()
+    {
+        return $this->login;
     }
 
     /**
@@ -52,12 +74,23 @@ class PlayerProfile extends ScriptFeature
      */
     public function setLogin($login)
     {
-        $this->login = $login;
+        $this->login = (string)$login;
         return $this;
     }
 
     /**
-     * Set the Control
+     * Get the Profile Control
+     *
+     * @api
+     * @return Control
+     */
+    public function getControl()
+    {
+        return $this->control;
+    }
+
+    /**
+     * Set the Profile Control
      *
      * @api
      * @param Control $control Profile Control
@@ -74,7 +107,18 @@ class PlayerProfile extends ScriptFeature
     }
 
     /**
-     * Set the script label name
+     * Get the Script Label name
+     *
+     * @api
+     * @return string
+     */
+    public function getLabelName()
+    {
+        return $this->labelName;
+    }
+
+    /**
+     * Set the Script Label name
      *
      * @api
      * @param string $labelName Script Label name
