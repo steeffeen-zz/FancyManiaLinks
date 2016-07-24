@@ -16,8 +16,8 @@ use FML\Script\ScriptLabel;
 class Preload extends ScriptFeature
 {
 
-    /*
-     * Protected properties
+    /**
+     * @var string[] $imageUrls Image urls
      */
     protected $imageUrls = array();
 
@@ -25,7 +25,7 @@ class Preload extends ScriptFeature
      * Construct a new Preload
      *
      * @api
-     * @param string[] $imageUrls Image Urls
+     * @param string[] $imageUrls (optional) Image urls
      */
     public function __construct(array $imageUrls = null)
     {
@@ -35,14 +35,53 @@ class Preload extends ScriptFeature
     }
 
     /**
+     * Get Image Urls to preload
+     *
+     * @api
+     * @return string[]
+     */
+    public function getImageUrls()
+    {
+        return $this->imageUrls;
+    }
+
+    /**
+     * Add an Image Url to preload
+     *
+     * @api
+     * @param string $imageUrl Image Url
+     * @return static
+     */
+    public function addImageUrl($imageUrl)
+    {
+        if (!in_array($imageUrl, $this->imageUrls)) {
+            array_push($this->imageUrls, $imageUrl);
+        }
+        return $this;
+    }
+
+    /**
      * Set Image Urls to preload
      *
+     * @api
      * @param string[] $imageUrls Image Urls
-     * @return Preload
+     * @return static
      */
     public function setImageUrls(array $imageUrls = array())
     {
         $this->imageUrls = $imageUrls;
+        return $this;
+    }
+
+    /**
+     * Remove all Image Urls
+     *
+     * @api
+     * @return static
+     */
+    public function removeAllImageUrls()
+    {
+        $this->imageUrls = array();
         return $this;
     }
 
