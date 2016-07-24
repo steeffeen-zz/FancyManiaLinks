@@ -18,30 +18,49 @@ class ScriptInclude
     const MATHLIB = 'MathLib';
     const TEXTLIB = 'TextLib';
 
-    /*
-     * Protected properties
+    /**
+     * @var string $file File name
      */
     protected $file = null;
+
+    /**
+     * @var string $namespace Namespace
+     */
     protected $namespace = null;
 
     /**
      * Construct a new Script Include
      *
      * @api
-     * @param string $file      (optional) Include file
-     * @param string $namespace (optional) Include namespace
+     * @param string $file      (optional) File name
+     * @param string $namespace (optional) Namespace
      */
     public function __construct($file = null, $namespace = null)
     {
-        $this->setFile($file);
-        $this->setNamespace($namespace);
+        if ($file) {
+            $this->setFile($file);
+        }
+        if ($namespace) {
+            $this->setNamespace($namespace);
+        }
+    }
+
+    /**
+     * Get the file
+     *
+     * @api
+     * @return string
+     */
+    public function getFile()
+    {
+        return $this->file;
     }
 
     /**
      * Set the file
      *
      * @api
-     * @param string $file Include file
+     * @param string $file File name
      * @return static
      */
     public function setFile($file)
@@ -65,7 +84,7 @@ class ScriptInclude
      * Set the namespace
      *
      * @api
-     * @param string $namespace Include namespace
+     * @param string $namespace Namespace
      * @return static
      */
     public function setNamespace($namespace)
