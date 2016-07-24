@@ -24,11 +24,19 @@ class ScriptLabel
     const MOUSEOUT    = 'FML_MouseOut';
     const MOUSEOVER   = 'FML_MouseOver';
 
-    /*
-     * Protected properties
+    /**
+     * @var string $name Label name
      */
     protected $name = null;
+
+    /**
+     * @var string $text Script text
+     */
     protected $text = null;
+
+    /**
+     * @var bool $isolated Isolate the script
+     */
     protected $isolated = null;
 
     /**
@@ -37,13 +45,30 @@ class ScriptLabel
      * @api
      * @param string $name     (optional) Label name
      * @param string $text     (optional) Script text
-     * @param bool   $isolated (optional) Isolate the Label Script
+     * @param bool   $isolated (optional) Isolate the script
      */
-    public function __construct($name = self::LOOP, $text = null, $isolated = false)
+    public function __construct($name = self::LOOP, $text = null, $isolated = null)
     {
-        $this->setName($name);
-        $this->setText($text);
-        $this->setIsolated($isolated);
+        if ($name) {
+            $this->setName($name);
+        }
+        if ($text) {
+            $this->setText($text);
+        }
+        if ($isolated) {
+            $this->setIsolated($isolated);
+        }
+    }
+
+    /**
+     * Get the name
+     *
+     * @api
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
     }
 
     /**
@@ -60,6 +85,17 @@ class ScriptLabel
     }
 
     /**
+     * Get the text
+     *
+     * @api
+     * @return string
+     */
+    public function getText()
+    {
+        return $this->text;
+    }
+
+    /**
      * Set the text
      *
      * @api
@@ -70,6 +106,17 @@ class ScriptLabel
     {
         $this->text = (string)$text;
         return $this;
+    }
+
+    /**
+     * Get isolation
+     *
+     * @api
+     * @return bool
+     */
+    public function getIsolated()
+    {
+        return $this->isolated;
     }
 
     /**
@@ -86,9 +133,18 @@ class ScriptLabel
     }
 
     /**
+     * Build the full Script Label text
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return Builder::getLabelImplementationBlock($this->name, $this->text, $this->isolated);
+    }
+
+    /**
      * Get the possible event label names
      *
-     * @api
      * @return string[]
      */
     public static function getEventLabels()
@@ -97,9 +153,9 @@ class ScriptLabel
     }
 
     /**
-     * Check if the given script label describes an event label
+     * Check if the given label name describes an event label
      *
-     * @param string $label Script label name
+     * @param string $label Label name
      * @return bool
      */
     public static function isEventLabel($label)
@@ -108,16 +164,6 @@ class ScriptLabel
             return true;
         }
         return false;
-    }
-
-    /**
-     * Build the full Script Label text
-     *
-     * @return string
-     */
-    public function __toString()
-    {
-        return Builder::getLabelImplementationBlock($this->name, $this->text, $this->isolated);
     }
 
 }
