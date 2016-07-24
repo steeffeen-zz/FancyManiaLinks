@@ -12,10 +12,14 @@ namespace FML\Script;
 class ScriptFunction
 {
 
-    /*
-     * Protected properties
+    /**
+     * @var string $name Function name
      */
     protected $name = null;
+
+    /**
+     * @var string $text Function text
+     */
     protected $text = null;
 
     /**
@@ -27,8 +31,23 @@ class ScriptFunction
      */
     public function __construct($name = null, $text = null)
     {
-        $this->setName($name);
-        $this->setText($text);
+        if ($name) {
+            $this->setName($name);
+        }
+        if ($text) {
+            $this->setText($text);
+        }
+    }
+
+    /**
+     * Get the name
+     *
+     * @api
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
     }
 
     /**
@@ -42,6 +61,17 @@ class ScriptFunction
     {
         $this->name = (string)$name;
         return $this;
+    }
+
+    /**
+     * Get the text
+     *
+     * @api
+     * @return string
+     */
+    public function getText()
+    {
+        return $this->text;
     }
 
     /**
