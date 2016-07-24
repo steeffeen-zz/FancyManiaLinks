@@ -17,12 +17,24 @@ use FML\Script\ScriptLabel;
 class KeyAction extends ScriptFeature
 {
 
-    /*
-     * Protected properties
+    /**
+     * @var string $actionName Action name
      */
     protected $actionName = null;
+
+    /**
+     * @var string $keyName Key name
+     */
     protected $keyName = null;
+
+    /**
+     * @var int $keyCode Key code
+     */
     protected $keyCode = null;
+
+    /**
+     * @var string $charPressed Pressed character
+     */
     protected $charPressed = null;
 
     /**
@@ -34,12 +46,23 @@ class KeyAction extends ScriptFeature
      */
     public function __construct($actionName = null, $keyName = null)
     {
-        if ($actionName !== null) {
+        if ($actionName) {
             $this->setActionName($actionName);
         }
-        if ($keyName !== null) {
+        if ($keyName) {
             $this->setKeyName($keyName);
         }
+    }
+
+    /**
+     * Get the action to trigger
+     *
+     * @api
+     * @return string
+     */
+    public function getActionName()
+    {
+        return $this->actionName;
     }
 
     /**
@@ -53,6 +76,17 @@ class KeyAction extends ScriptFeature
     {
         $this->actionName = (string)$actionName;
         return $this;
+    }
+
+    /**
+     * Get the key name for triggering the action
+     *
+     * @api
+     * @return string
+     */
+    public function getKeyName()
+    {
+        return $this->keyName;
     }
 
     /**
@@ -71,6 +105,17 @@ class KeyAction extends ScriptFeature
     }
 
     /**
+     * Get the key code for triggering the action
+     *
+     * @api
+     * @return int
+     */
+    public function getKeyCode()
+    {
+        return $this->keyCode;
+    }
+
+    /**
      * Set the key code for triggering the action
      *
      * @api
@@ -79,24 +124,35 @@ class KeyAction extends ScriptFeature
      */
     public function setKeyCode($keyCode)
     {
-        $this->keyCode     = (int)$keyCode;
         $this->keyName     = null;
+        $this->keyCode     = (int)$keyCode;
         $this->charPressed = null;
         return $this;
     }
 
     /**
-     * Set the char to press for triggering the action
+     * Get the character to press for triggering the action
      *
      * @api
-     * @param string $charPressed Pressed char
+     * @return string
+     */
+    public function getCharPressed()
+    {
+        return $this->charPressed;
+    }
+
+    /**
+     * Set the character to press for triggering the action
+     *
+     * @api
+     * @param string $charPressed Pressed character
      * @return static
      */
     public function setCharPressed($charPressed)
     {
-        $this->charPressed = (string)$charPressed;
         $this->keyName     = null;
         $this->keyCode     = null;
+        $this->charPressed = (string)$charPressed;
         return $this;
     }
 
