@@ -14,12 +14,15 @@ use FML\Controls\Control;
 class PagingPage
 {
 
-    /*
-     * Protected properties
+    /**
+     * @var Control $control Page Control
      */
-    /** @var Control $control */
     protected $control = null;
-    protected $number = null;
+
+    /**
+     * @var int $pageNumber Page number
+     */
+    protected $pageNumber = null;
 
     /**
      * Construct a new Paging Page
@@ -28,12 +31,14 @@ class PagingPage
      * @param Control $control    (optional) Page Control
      * @param int     $pageNumber (optional) Number of the Page
      */
-    public function __construct(Control $control = null, $pageNumber = 1)
+    public function __construct(Control $control = null, $pageNumber = null)
     {
-        if ($control !== null) {
+        if ($control) {
             $this->setControl($control);
         }
-        $this->setPageNumber($pageNumber);
+        if ($pageNumber) {
+            $this->setPageNumber($pageNumber);
+        }
     }
 
     /**
@@ -56,7 +61,8 @@ class PagingPage
      */
     public function setControl(Control $control)
     {
-        $this->control = $control->checkId();
+        $control->checkId();
+        $this->control = $control;
         return $this;
     }
 
@@ -68,7 +74,7 @@ class PagingPage
      */
     public function getPageNumber()
     {
-        return $this->number;
+        return $this->pageNumber;
     }
 
     /**
@@ -80,7 +86,7 @@ class PagingPage
      */
     public function setPageNumber($pageNumber)
     {
-        $this->number = (int)$pageNumber;
+        $this->pageNumber = (int)$pageNumber;
         return $this;
     }
 
