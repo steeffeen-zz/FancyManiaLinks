@@ -12,38 +12,50 @@ namespace FML;
 class ManiaLinks
 {
 
-    /*
-     * Protected Properties
+    /**
+     * @var ManiaLink[] $children ManiaLinks children
      */
-    protected $encoding = 'utf-8';
-    protected $tagName = 'manialinks';
-    /** @var ManiaLink[] $children */
     protected $children = array();
-    /** @var CustomUI $customUI */
+
+    /**
+     * @var CustomUI $customUI Custom UI
+     */
     protected $customUI = null;
 
     /**
      * Create a new ManiaLinks object
      *
      * @api
+     * @param ManiaLink[] $children ManiaLink children
      * @return static
      */
-    public static function create()
+    public static function create(array $children = null)
     {
-        return new static();
+        return new static($children);
     }
 
     /**
-     * Set the XML encoding
+     * Construct a new ManiaLinks object
      *
      * @api
-     * @param string $encoding XML encoding
-     * @return static
+     * @param ManiaLink[] $children ManiaLink children
      */
-    public function setXmlEncoding($encoding)
+    public function __construct(array $children = null)
     {
-        $this->encoding = (string)$encoding;
-        return $this;
+        if ($children) {
+            $this->setChildren($children);
+        }
+    }
+
+    /**
+     * Get all child ManiaLinks
+     *
+     * @api
+     * @return ManiaLink[]
+     */
+    public function getChildren()
+    {
+        return $this->children;
     }
 
     /**
@@ -53,10 +65,26 @@ class ManiaLinks
      * @param ManiaLink $child Child ManiaLink
      * @return static
      */
-    public function add(ManiaLink $child)
+    public function addChild(ManiaLink $child)
     {
         if (!in_array($child, $this->children, true)) {
             array_push($this->children, $child);
+        }
+        return $this;
+    }
+
+    /**
+     * Set ManiaLink children
+     *
+     * @api
+     * @param ManiaLink[] $children ManiaLink children
+     * @return static
+     */
+    public function setChildren(array $children)
+    {
+        $this->children = array();
+        foreach ($children as $child) {
+            $this->addChild($child);
         }
         return $this;
     }
@@ -67,7 +95,7 @@ class ManiaLinks
      * @api
      * @return static
      */
-    public function removeChildren()
+    public function removeAllChildren()
     {
         $this->children = array();
         return $this;
@@ -77,14 +105,10 @@ class ManiaLinks
      * Get the CustomUI
      *
      * @api
-     * @param bool $createIfEmpty (optional) If the CustomUI object should be created if it's not set
      * @return CustomUI
      */
-    public function getCustomUI($createIfEmpty = true)
+    public function getCustomUI()
     {
-        if (!$this->customUI && $createIfEmpty) {
-            $this->setCustomUI(new CustomUI());
-        }
         return $this->customUI;
     }
 
@@ -95,7 +119,7 @@ class ManiaLinks
      * @param CustomUI $customUI CustomUI object
      * @return static
      */
-    public function setCustomUI(CustomUI $customUI)
+    public function setCustomUI(CustomUI $customUI = null)
     {
         $this->customUI = $customUI;
         return $this;
@@ -109,22 +133,26 @@ class ManiaLinks
      */
     public function render($echo = false)
     {
-        $domDocument                = new \DOMDocument('1.0', $this->encoding);
+        $domDocument                = new \DOMDocument("1.0", "utf-8");
         $domDocument->xmlStandalone = true;
-        $maniaLinks                 = $domDocument->createElement($this->tagName);
+        $maniaLinks                 = $domDocument->createElement("manialinks");
         $domDocument->appendChild($maniaLinks);
+
         foreach ($this->children as $child) {
             $childXml = $child->render(false, $domDocument);
             $maniaLinks->appendChild($childXml);
         }
+
         if ($this->customUI) {
             $customUIElement = $this->customUI->render($domDocument);
             $maniaLinks->appendChild($customUIElement);
         }
+
         if ($echo) {
-            header('Content-Type: application/xml; charset=utf-8;');
+            header("Content-Type: application/xml; charset=utf-8;");
             echo $domDocument->saveXML();
         }
+
         return $domDocument;
     }
 

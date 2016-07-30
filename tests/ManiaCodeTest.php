@@ -342,6 +342,7 @@ class ManiaCodeTest extends \PHPUnit_Framework_TestCase
     }
 
     /*
+     * TODO: enable test of render with echo
     public function testRenderWithEcho()
     {
         $maniaCode = new ManiaCode();
