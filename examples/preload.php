@@ -12,7 +12,7 @@ $imageUrls = array("http://fml.steeffeen.com/does_not_exist.jpg", "http://fml.st
 // Create preload feature
 $preload = new \FML\Script\Features\Preload();
 $preload->setImageUrls($imageUrls);
-$maniaLink->getScript()
+$maniaLink->createScript()
           ->addFeature($preload);
 
 // Print xml

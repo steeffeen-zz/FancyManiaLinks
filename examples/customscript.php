@@ -5,12 +5,12 @@ require_once __DIR__ . '/../autoload.php';
 
 // Create ManiaLink
 $maniaLink = new \FML\ManiaLink();
-$script    = $maniaLink->getScript();
+$script    = $maniaLink->createScript();
 
 // Label element showing the current time
 $timeLabel = new \FML\Controls\Label();
-$maniaLink->add($timeLabel);
-$timeLabel->setId('Label_Time');
+$maniaLink->addChild($timeLabel);
+$timeLabel->setId("Label_Time");
 
 // Add custom script label to show the local date time
 $scriptText = '

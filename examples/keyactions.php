@@ -7,7 +7,7 @@ require_once __DIR__ . '/../autoload.php';
 $maniaLink = new \FML\ManiaLink();
 
 // Add Key Actions to the Script
-$script = $maniaLink->getScript();
+$script = $maniaLink->createScript();
 
 $f1KeyAction = new \FML\Script\Features\KeyAction('F1PressedAction', 'F1');
 $script->addFeature($f1KeyAction);

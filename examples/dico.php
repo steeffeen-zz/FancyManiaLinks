@@ -12,7 +12,8 @@ $maniaLink->add($label);
 $label->setTextId('hi');
 
 // Create dico with translated texts
-$dico = $maniaLink->getDico();
+$dico = new \FML\Elements\Dico();
+$maniaLink->setDico($dico);
 
 $dico->setEntry($dico::LANG_ENGLISH, 'hi', 'Hello!')
      ->setEntry($dico::LANG_GERMAN, 'hi', 'Hallo!')

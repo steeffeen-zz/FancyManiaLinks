@@ -7,8 +7,9 @@ require_once __DIR__ . '/../autoload.php';
 $maniaLink = new \FML\ManiaLink();
 $maniaLink->setBackground($maniaLink::BACKGROUND_STARS);
 
-// Get stylesheet object
-$stylesheet = $maniaLink->getStylesheet();
+// Create stylesheet object
+$stylesheet = new \FML\Stylesheet\Stylesheet();
+$maniaLink->setStylesheet($stylesheet);
 
 // Create new frame3d style
 $style3d = new \FML\Stylesheet\Style3d();
@@ -26,7 +27,7 @@ $frame3d->setY(30)
         ->setSize(100, 40);
 
 $label = new \FML\Controls\Label();
-$frame3d->add($label);
+$frame3d->addChild($label);
 $label->setTextColor('000')
       ->setText('My Style');
 

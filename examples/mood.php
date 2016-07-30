@@ -10,11 +10,14 @@ $maniaLink->setBackground($maniaLink::BACKGROUND_STARS);
 // Create dummy label
 $label = new \FML\Controls\Label();
 $maniaLink->add($label);
-$label->setText('My Mood');
+$label->setText("My Mood");
+
+// Create style sheet
+$stylesheet = new \FML\Stylesheet\Stylesheet();
+$maniaLink->setStylesheet($stylesheet);
 
 // Get mood object and set properties
-$mood = $maniaLink->getStylesheet()
-                  ->getMood();
+$mood = $stylesheet->getMood();
 
 $mood->setLightAmbientColor(0, 0, 0)
      ->setCloudsColorMin(0.05, 0.05, 0)

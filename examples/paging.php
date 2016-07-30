@@ -42,7 +42,7 @@ $counterLabel->setY(-30);
 
 // Create paging
 $paging = new \FML\Script\Features\Paging();
-$maniaLink->getScript()
+$maniaLink->createScript()
           ->addFeature($paging);
 
 // Set pagers

@@ -48,7 +48,7 @@ $subMenu2->setPosition(10, 0)
 
 // Create menu
 $menu = new \FML\Script\Features\Menu();
-$maniaLink->getScript()
+$maniaLink->createScript()
           ->addFeature($menu);
 $menu->addElement($menuItem0, $subMenu0)
      ->addElement($menuItem1, $subMenu1, true)
