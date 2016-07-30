@@ -22,10 +22,10 @@ class ValuePickerFeature extends ScriptFeature
     /*
      * Constants
      */
-    const FUNCTION_UPDATE_PICKER_VALUE = 'FML_UpdatePickerValue';
-    const VAR_PICKER_VALUES            = 'FML_Picker_Values';
-    const VAR_PICKER_DEFAULT_VALUE     = 'FML_Picker_Default_Value';
-    const VAR_PICKER_ENTRY_ID          = 'FML_Picker_EntryId';
+    const FUNCTION_UPDATE_PICKER_VALUE = "FML_UpdatePickerValue";
+    const VAR_PICKER_VALUES            = "FML_Picker_Values";
+    const VAR_PICKER_DEFAULT_VALUE     = "FML_Picker_Default_Value";
+    const VAR_PICKER_ENTRY_ID          = "FML_Picker_EntryId";
 
     /**
      * @var Label $label Label
@@ -51,7 +51,7 @@ class ValuePickerFeature extends ScriptFeature
      * Construct a new ValuePicker Feature
      *
      * @api
-     * @param Label    $label   (optional) ValuePicker Label
+     * @param Label    $label   (optional) Label
      * @param Entry    $entry   (optional) Hidden Entry
      * @param string[] $values  (optional) Possible values
      * @param string   $default (optional) Default value
@@ -73,7 +73,7 @@ class ValuePickerFeature extends ScriptFeature
     }
 
     /**
-     * Get the ValuePicker Label
+     * Get the Label
      *
      * @api
      * @return Label
@@ -84,16 +84,17 @@ class ValuePickerFeature extends ScriptFeature
     }
 
     /**
-     * Set the ValuePicker Label
+     * Set the Label
      *
      * @api
-     * @param Label $label ValuePicker Label
+     * @param Label $label Label
      * @return static
      */
     public function setLabel(Label $label)
     {
-        $this->label = $label->checkId()
-                             ->setScriptEvents(true);
+        $label->checkId();
+        $label->setScriptEvents(true);
+        $this->label = $label;
         return $this;
     }
 
@@ -117,7 +118,8 @@ class ValuePickerFeature extends ScriptFeature
      */
     public function setEntry(Entry $entry)
     {
-        $this->entry = $entry->checkId();
+        $entry->checkId();
+        $this->entry = $entry;
         return $this;
     }
 
@@ -133,6 +135,19 @@ class ValuePickerFeature extends ScriptFeature
     }
 
     /**
+     * Add a possible value
+     *
+     * @api
+     * @param string $value Possible value
+     * @return static
+     */
+    public function addValue($value)
+    {
+        array_push($this->values, (string)$value);
+        return $this;
+    }
+
+    /**
      * Set the possible values
      *
      * @api
@@ -143,7 +158,7 @@ class ValuePickerFeature extends ScriptFeature
     {
         $this->values = array();
         foreach ($values as $value) {
-            array_push($this->values, (string)$value);
+            $this->addValue($value);
         }
         return $this;
     }
@@ -175,6 +190,9 @@ class ValuePickerFeature extends ScriptFeature
     public function setDefault($default)
     {
         $this->default = (string)$default;
+        if ($this->default && !in_array($this->default, $this->values, true)) {
+            $this->addValue($this->default);
+        }
         return $this;
     }
 
