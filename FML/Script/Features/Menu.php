@@ -20,34 +20,46 @@ class Menu extends ScriptFeature
     /*
      * Constants
      */
-    const FUNCTION_UPDATE_MENU = 'FML_UpdateMenu';
+    const FUNCTION_UPDATE_MENU = "FML_UpdateMenu";
 
-    /*
-     * Protected properties
+    /**
+     * @var MenuElement[] $elements Menu Elements
      */
-    /** @var MenuElement[] $elements */
     protected $elements = array();
-    /** @var MenuElement $startElement */
+
+    /**
+     * @var MenuElement $startElement Start Element
+     */
     protected $startElement = null;
 
     /**
      * Construct a new Menu
      *
      * @api
-     * @param Control $item    (optional) Item Control in the Menu bar
-     * @param Control $control (optional) Toggled Menu Control
+     * @param Control $item           (optional) Item Control in the Menu bar
+     * @param Control $control        (optional) Toggled Menu Control
+     * @param bool    $isStartElement (optional) Whether the Menu should start with the given Element
      */
-    public function __construct(Control $item = null, Control $control = null)
+    public function __construct(Control $item = null, Control $control = null, $isStartElement = true)
     {
         if ($item && $control) {
-            $this->addElement($item, $control);
+            $this->addItem($item, $control, $isStartElement);
         }
     }
 
-    // TODO: change methods addElement & appendElement to improve the situation that they are called the same but use different parameters
+    /**
+     * Get the Menu Elements
+     *
+     * @api
+     * @return MenuElement[]
+     */
+    public function getElements()
+    {
+        return $this->elements;
+    }
 
     /**
-     * Add an Element
+     * Add a Menu item
      *
      * @api
      * @param Control $item           Item Control in the Menu bar
@@ -55,28 +67,30 @@ class Menu extends ScriptFeature
      * @param bool    $isStartElement (optional) Whether the Menu should start with this Element
      * @return static
      */
-    public function addElement(Control $item, Control $control, $isStartElement = false)
+    public function addItem(Control $item, Control $control, $isStartElement = false)
     {
         $menuElement = new MenuElement($item, $control);
-        $this->appendElement($menuElement, $isStartElement);
+        $this->addElement($menuElement, $isStartElement);
         return $this;
     }
 
     /**
-     * Append an Element
+     * Add a Menu Element
      *
      * @api
      * @param MenuElement $menuElement    Menu Element
      * @param bool        $isStartElement (optional) Whether the Menu should start with this Element
      * @return static
      */
-    public function appendElement(MenuElement $menuElement, $isStartElement = false)
+    public function addElement(MenuElement $menuElement, $isStartElement = false)
     {
         if (!in_array($menuElement, $this->elements, true)) {
             array_push($this->elements, $menuElement);
             if ($isStartElement) {
+                // new start element
                 $this->setStartElement($menuElement);
-            } else if (count($this->elements) > 1) {
+            } else {
+                // additional element - set invisible
                 $menuElement->getControl()
                             ->setVisible(false);
             }
@@ -85,16 +99,27 @@ class Menu extends ScriptFeature
     }
 
     /**
+     * Get the Element to start with
+     *
+     * @api
+     * @return MenuElement
+     */
+    public function getStartElement()
+    {
+        return $this->startElement;
+    }
+
+    /**
      * Set the Element to start with
      *
      * @api
-     * @param MenuElement $startElement Starting Element
+     * @param MenuElement $startElement Start Element
      * @return static
      */
-    public function setStartElement(MenuElement $startElement)
+    public function setStartElement(MenuElement $startElement = null)
     {
         $this->startElement = $startElement;
-        if (!in_array($startElement, $this->elements, true)) {
+        if ($startElement && !in_array($startElement, $this->elements, true)) {
             array_push($this->elements, $startElement);
         }
         return $this;
