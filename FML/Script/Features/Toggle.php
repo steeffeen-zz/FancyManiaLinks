@@ -17,15 +17,29 @@ use FML\Types\Scriptable;
 class Toggle extends ScriptFeature
 {
 
-    /*
-     * Protected properties
+    /**
+     * @var Control $togglingControl Toggling Control
      */
-    /** @var Control $togglingControl */
     protected $togglingControl = null;
-    /** @var Control $toggledControl */
+
+    /**
+     * @var Control $toggledControl Toggled Control
+     */
     protected $toggledControl = null;
+
+    /**
+     * @var $labelName Script Label name
+     */
     protected $labelName = null;
+
+    /**
+     * @var bool $onlyShow Show only
+     */
     protected $onlyShow = null;
+
+    /**
+     * @var bool $onlyHide Hide only
+     */
     protected $onlyHide = null;
 
     /**
@@ -45,15 +59,32 @@ class Toggle extends ScriptFeature
         $onlyShow = false,
         $onlyHide = false
     ) {
-        if ($togglingControl !== null) {
+        if ($togglingControl) {
             $this->setTogglingControl($togglingControl);
         }
-        if ($toggledControl !== null) {
+        if ($toggledControl) {
             $this->setToggledControl($toggledControl);
         }
-        $this->setLabelName($labelName);
-        $this->setOnlyShow($onlyShow);
-        $this->setOnlyHide($onlyHide);
+        if ($labelName) {
+            $this->setLabelName($labelName);
+        }
+        if ($onlyShow) {
+            $this->setOnlyShow($onlyShow);
+        }
+        if ($onlyHide) {
+            $this->setOnlyHide($onlyHide);
+        }
+    }
+
+    /**
+     * Get the toggling Control
+     *
+     * @api
+     * @return Control
+     */
+    public function getTogglingControl()
+    {
+        return $this->togglingControl;
     }
 
     /**
@@ -74,20 +105,43 @@ class Toggle extends ScriptFeature
     }
 
     /**
+     * Get the toggled Control
+     *
+     * @api
+     * @return Control
+     */
+    public function getToggledControl()
+    {
+        return $this->toggledControl;
+    }
+
+    /**
      * Set the toggled Control
      *
      * @api
-     * @param Control $control Toggling Control
+     * @param Control $control Toggled Control
      * @return static
      */
     public function setToggledControl(Control $control)
     {
-        $this->toggledControl = $control->checkId();
+        $control->checkId();
+        $this->toggledControl = $control;
         return $this;
     }
 
     /**
-     * Set the script label name
+     * Get the Script Label name
+     *
+     * @api
+     * @return string
+     */
+    public function getLabelName()
+    {
+        return $this->labelName;
+    }
+
+    /**
+     * Set the Script Label name
      *
      * @api
      * @param string $labelName Script Label Name
@@ -100,7 +154,18 @@ class Toggle extends ScriptFeature
     }
 
     /**
-     * Set to only show
+     * Get Show Only
+     *
+     * @api
+     * @return bool
+     */
+    public function getOnlyShow()
+    {
+        return $this->onlyShow;
+    }
+
+    /**
+     * Set Show Only
      *
      * @api
      * @param bool $onlyShow If it should only show the Control but not toggle
@@ -109,11 +174,25 @@ class Toggle extends ScriptFeature
     public function setOnlyShow($onlyShow)
     {
         $this->onlyShow = (bool)$onlyShow;
+        if ($this->onlyShow) {
+            $this->onlyHide = null;
+        }
         return $this;
     }
 
     /**
-     * Set to only hide
+     * Get Hide Only
+     *
+     * @api
+     * @return bool
+     */
+    public function getOnlyHide()
+    {
+        return $this->onlyHide;
+    }
+
+    /**
+     * Set Hide Only
      *
      * @api
      * @param bool $onlyHide If it should only hide the Control but not toggle
@@ -122,6 +201,9 @@ class Toggle extends ScriptFeature
     public function setOnlyHide($onlyHide)
     {
         $this->onlyHide = (bool)$onlyHide;
+        if ($this->onlyHide) {
+            $this->onlyShow = null;
+        }
         return $this;
     }
 
