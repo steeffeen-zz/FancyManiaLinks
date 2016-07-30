@@ -23,10 +23,10 @@ class CheckBoxFeature extends ScriptFeature
     /*
      * Constants
      */
-    const FUNCTION_UPDATE_QUAD_DESIGN = 'FML_UpdateQuadDesign';
-    const VAR_CHECKBOX_ENABLED        = 'FML_CheckBox_Enabled';
-    const VAR_CHECKBOX_DESIGNS        = 'FML_CheckBox_Designs';
-    const VAR_CHECKBOX_ENTRY_ID       = 'FML_CheckBox_EntryId';
+    const FUNCTION_UPDATE_QUAD_DESIGN = "FML_UpdateQuadDesign";
+    const VAR_CHECKBOX_ENABLED        = "FML_CheckBox_Enabled";
+    const VAR_CHECKBOX_DESIGNS        = "FML_CheckBox_Designs";
+    const VAR_CHECKBOX_ENTRY_ID       = "FML_CheckBox_EntryId";
 
     /**
      * @var Quad $quad CheckBox Quad
@@ -42,13 +42,14 @@ class CheckBoxFeature extends ScriptFeature
      * @var bool $default Default value
      */
     protected $default = null;
+
     /**
-     * @var CheckBoxDesign $enabledDesign Enabled design
+     * @var CheckBoxDesign $enabledDesign Enabled Design
      */
     protected $enabledDesign = null;
 
     /**
-     * @var CheckBoxDesign $disabledDesign Disabled design
+     * @var CheckBoxDesign $disabledDesign Disabled Design
      */
     protected $disabledDesign = null;
 
@@ -76,7 +77,7 @@ class CheckBoxFeature extends ScriptFeature
     }
 
     /**
-     * Get the Quad
+     * Get the CheckBox Quad
      *
      * @api
      * @return Quad
@@ -87,7 +88,7 @@ class CheckBoxFeature extends ScriptFeature
     }
 
     /**
-     * Set the Quad
+     * Set the CheckBox Quad
      *
      * @api
      * @param Quad $quad CheckBox Quad
@@ -95,13 +96,14 @@ class CheckBoxFeature extends ScriptFeature
      */
     public function setQuad(Quad $quad)
     {
-        $this->quad = $quad->checkId()
-                           ->setScriptEvents(true);
+        $quad->checkId();
+        $quad->setScriptEvents(true);
+        $this->quad = $quad;
         return $this;
     }
 
     /**
-     * Get the Entry
+     * Get the hidden Entry
      *
      * @api
      * @return Entry
@@ -112,15 +114,16 @@ class CheckBoxFeature extends ScriptFeature
     }
 
     /**
-     * Set the Entry
+     * Set the hidden Entry
      *
      * @api
-     * @param Entry $entry CheckBox Entry
+     * @param Entry $entry Hidden Entry
      * @return static
      */
     public function setEntry(Entry $entry)
     {
-        $this->entry = $entry->checkId();
+        $entry->checkId();
+        $this->entry = $entry;
         return $this;
     }
 
