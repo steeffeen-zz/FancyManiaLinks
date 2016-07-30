@@ -15,10 +15,14 @@ use FML\Types\Scriptable;
 class MenuElement
 {
 
-    /*
-     * Protected properties
+    /**
+     * @var Control $item Menu Item
      */
     protected $item = null;
+
+    /**
+     * @var Control $control Menu Control
+     */
     protected $control = null;
 
     /**
@@ -30,10 +34,10 @@ class MenuElement
      */
     public function __construct(Control $item = null, Control $control = null)
     {
-        if ($item !== null) {
+        if ($item) {
             $this->setItem($item);
         }
-        if ($control !== null) {
+        if ($control) {
             $this->setControl($control);
         }
     }
@@ -53,7 +57,7 @@ class MenuElement
      * Set the Item Control
      *
      * @api
-     * @param Control $item Item Control in the Menu bar
+     * @param Control $item Item Control
      * @return static
      */
     public function setItem(Control $item)
@@ -81,12 +85,13 @@ class MenuElement
      * Set the Menu Control
      *
      * @api
-     * @param Control $control Toggled Menu Control
+     * @param Control $control Menu Control
      * @return static
      */
     public function setControl(Control $control)
     {
-        $this->control = $control->checkId();
+        $control->checkId();
+        $this->control = $control;
         return $this;
     }
 
