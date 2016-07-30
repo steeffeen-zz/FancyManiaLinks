@@ -18,11 +18,14 @@ use FML\Types\Scriptable;
 class MapInfo extends ScriptFeature
 {
 
-    /*
-     * Protected properties
+    /**
+     * @var Control $control Map Info Control
      */
-    /** @var Control $control */
     protected $control = null;
+
+    /**
+     * @var string $labelName Script Label name
+     */
     protected $labelName = null;
 
     /**
@@ -32,10 +35,25 @@ class MapInfo extends ScriptFeature
      * @param Control $control   (optional) Map Info Control
      * @param string  $labelName (optional) Script Label name
      */
-    public function __construct(Control $control, $labelName = ScriptLabel::MOUSECLICK)
+    public function __construct(Control $control = null, $labelName = ScriptLabel::MOUSECLICK)
     {
-        $this->setControl($control);
-        $this->setLabelName($labelName);
+        if ($control) {
+            $this->setControl($control);
+        }
+        if ($labelName) {
+            $this->setLabelName($labelName);
+        }
+    }
+
+    /**
+     * Get the Control
+     *
+     * @api
+     * @return Control
+     */
+    public function getControl()
+    {
+        return $this->control;
     }
 
     /**
@@ -56,7 +74,18 @@ class MapInfo extends ScriptFeature
     }
 
     /**
-     * Set the label name
+     * Get the Script Label name
+     *
+     * @api
+     * @return string
+     */
+    public function getLabelName()
+    {
+        return $this->labelName;
+    }
+
+    /**
+     * Set the Script Label name
      *
      * @api
      * @param string $labelName Script Label name
