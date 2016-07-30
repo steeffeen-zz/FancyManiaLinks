@@ -19,15 +19,29 @@ use FML\Types\Scriptable;
 class Tooltip extends ScriptFeature
 {
 
-    /*
-     * Protected properties
+    /**
+     * @var Control $hoverControl Hover Control
      */
-    /** @var Control $hoverControl */
     protected $hoverControl = null;
-    /** @var Control $tooltipControl */
+
+    /**
+     * @var Control $tooltipControl Tooltip Control
+     */
     protected $tooltipControl = null;
+
+    /**
+     * @var bool $stayOnClick Stay on click
+     */
     protected $stayOnClick = null;
+
+    /**
+     * @var bool $invert Inverted visibility toggling
+     */
     protected $invert = null;
+
+    /**
+     * @var string $text Tooltip Text
+     */
     protected $text = null;
 
     /**
@@ -40,19 +54,34 @@ class Tooltip extends ScriptFeature
      * @param bool    $invert         (optional) If the visibility toggling should be inverted
      * @param string  $text           (optional) Text to display if the TooltipControl is a Label
      */
-    public function __construct(Control $hoverControl = null, Control $tooltipControl = null, $stayOnClick = false, $invert = false, $text = null)
+    public function __construct(Control $hoverControl = null, Control $tooltipControl = null, $stayOnClick = null, $invert = null, $text = null)
     {
-        if ($hoverControl !== null) {
+        if ($hoverControl) {
             $this->setHoverControl($hoverControl);
         }
-        if ($tooltipControl !== null) {
+        if ($tooltipControl) {
             $this->setTooltipControl($tooltipControl);
         }
-        $this->setStayOnClick($stayOnClick);
-        $this->setInvert($invert);
-        if ($text !== null) {
+        if ($stayOnClick) {
+            $this->setStayOnClick($stayOnClick);
+        }
+        if ($invert) {
+            $this->setInvert($invert);
+        }
+        if ($text) {
             $this->setText($text);
         }
+    }
+
+    /**
+     * Get the Hover Control
+     *
+     * @api
+     * @return Control
+     */
+    public function getHoverControl()
+    {
+        return $this->hoverControl;
     }
 
     /**
@@ -73,6 +102,17 @@ class Tooltip extends ScriptFeature
     }
 
     /**
+     * Get the Tooltip Control
+     *
+     * @api
+     * @return Control
+     */
+    public function getTooltipControl()
+    {
+        return $this->tooltipControl;
+    }
+
+    /**
      * Set the Tooltip Control
      *
      * @api
@@ -81,16 +121,28 @@ class Tooltip extends ScriptFeature
      */
     public function setTooltipControl(Control $tooltipControl)
     {
-        $this->tooltipControl = $tooltipControl->checkId()
-                                               ->setVisible(false);
+        $tooltipControl->checkId();
+        $tooltipControl->setVisible(false);
+        $this->tooltipControl = $tooltipControl;
         return $this;
     }
 
     /**
-     * Set to stay on click
+     * Get the staying on click
      *
      * @api
-     * @param bool $stayOnClick (optional) If the Tooltip should stay on click
+     * @return bool
+     */
+    public function getStayOnClick()
+    {
+        return $this->stayOnClick;
+    }
+
+    /**
+     * Set the staying on click
+     *
+     * @api
+     * @param bool $stayOnClick If the Tooltip should stay on click
      * @return static
      */
     public function setStayOnClick($stayOnClick)
@@ -100,10 +152,21 @@ class Tooltip extends ScriptFeature
     }
 
     /**
-     * Set to invert
+     * Get inverting of the visibility
      *
      * @api
-     * @param bool $invert (optional) If the visibility toggling should be inverted
+     * @return bool
+     */
+    public function getInvert()
+    {
+        return $this->invert;
+    }
+
+    /**
+     * Set inverting of the visibility
+     *
+     * @api
+     * @param bool $invert If the visibility toggling should be inverted
      * @return static
      */
     public function setInvert($invert)
@@ -113,10 +176,21 @@ class Tooltip extends ScriptFeature
     }
 
     /**
+     * Get the text
+     *
+     * @api
+     * @return string
+     */
+    public function getText()
+    {
+        return $this->text;
+    }
+
+    /**
      * Set the text
      *
      * @api
-     * @param string $text (optional) Text to display if the TooltipControl is a Label
+     * @param string $text Text to display if the TooltipControl is a Label
      * @return static
      */
     public function setText($text)
