@@ -10,7 +10,7 @@ use FML\Script\ScriptInclude;
 use FML\Script\ScriptLabel;
 
 /**
- * Script Feature realising a mechanism for browsing through Pages
+ * Script Feature realizing a mechanism for browsing through Pages
  *
  * @author    steeffeen <mail@steeffeen.com>
  * @copyright FancyManiaLinks Copyright © 2014 Steffen Schröder
@@ -22,110 +22,79 @@ class Paging extends ScriptFeature
     /*
      * Constants
      */
-    const VAR_CURRENT_PAGE             = 'FML_Paging_CurrentPage';
-    const FUNCTION_UPDATE_CURRENT_PAGE = 'FML_UpdateCurrentPage';
+    const VAR_CURRENT_PAGE             = "FML_Paging_CurrentPage";
+    const FUNCTION_UPDATE_CURRENT_PAGE = "FML_UpdateCurrentPage";
 
-    /*
-     * Protected properties
+    /**
+     * @var Label $label Page number Label
      */
-    /** @var PagingPage[] $pages */
-    protected $pages = array();
-    /** @var PagingButton[] $buttons */
-    protected $buttons = array();
-    /** @var Label $label */
     protected $label = null;
+
+    /**
+     * @var PagingPage[] $pages Pages
+     */
+    protected $pages = array();
+
+    /**
+     * @var PagingButton[] $buttons Paging Buttons
+     */
+    protected $buttons = array();
+
+    /**
+     * @var int $startPageNumber Start Page number
+     */
     protected $startPageNumber = null;
+
+    /**
+     * @var int $customMaxPageNumber Custom maximum page number
+     */
     protected $customMaxPageNumber = null;
+
+    /**
+     * @var string $previousChunkAction Previous chunk action name
+     */
     protected $previousChunkAction = null;
+
+    /**
+     * @var string $nextChunkAction Next chunk action name
+     */
     protected $nextChunkAction = null;
+
+    /**
+     * @var bool $chunkActionAppendsPageNumber Chunk action appended with Page number
+     */
     protected $chunkActionAppendsPageNumber = null;
 
     /**
      * Construct a new Paging
      *
      * @api
-     * @param Label $label (optional) Page number Label
+     * @param Label          $label   (optional) Page number Label
+     * @param PagingPage[]   $pages   (optional) Pages
+     * @param PagingButton[] $buttons (optional) Pageing Buttons
      */
-    public function __construct(Label $label = null)
+    public function __construct(Label $label = null, array $pages = null, array $buttons = null)
     {
-        if ($label !== null) {
+        if ($label) {
             $this->setLabel($label);
         }
-    }
-
-    // TODO: change methods addPage & appendPage to improve the situation that they are called the same but use different parameters
-
-    /**
-     * Add new Page Control
-     *
-     * @api
-     * @param Control $pageControl Page Control
-     * @param string  $pageNumber  (optional) Page number
-     * @return static
-     */
-    public function addPage(Control $pageControl, $pageNumber = null)
-    {
-        if ($pageNumber === null) {
-            $pageNumber = count($this->pages) + 1;
+        if ($pages) {
+            $this->setPages($pages);
         }
-        $page = new PagingPage($pageControl, $pageNumber);
-        $this->appendPage($page);
-        return $this;
+        if ($buttons) {
+            $this->setButtons($buttons);
+        }
     }
 
     /**
-     * Append a Page
+     * Get the Label showing the Page number
      *
      * @api
-     * @param PagingPage $page Paging Page
-     * @return static
+     * @return Label
      */
-    public function appendPage(PagingPage $page)
+    public function getLabel()
     {
-        if (!in_array($page, $this->pages, true)) {
-            array_push($this->pages, $page);
-        }
-        return $this;
-    }
-
-    // TODO: change methods addButton & appendButton to improve the situation that they are called the same but use different parameters
-
-    /**
-     * Add a new Button to browse through the Pages
-     *
-     * @api
-     * @param Control $buttonControl Button used for browsing
-     * @param int     $browseAction  (optional) Number of browsed Pages per click
-     * @return static
-     */
-    public function addButton(Control $buttonControl, $browseAction = null)
-    {
-        if ($browseAction === null) {
-            $buttonCount = count($this->buttons);
-            if ($buttonCount % 2 === 0) {
-                $browseAction = $buttonCount / 2 + 1;
-            } else {
-                $browseAction = $buttonCount / -2 - 1;
-            }
-        }
-        $button = new PagingButton($buttonControl, $browseAction);
-        $this->appendButton($button);
-        return $this;
-    }
-
-    /**
-     * Append a Button to browse through Pages
-     *
-     * @api
-     * @param PagingButton $button Paging Button
-     * @return static
-     */
-    public function appendButton(PagingButton $button)
-    {
-        if (!in_array($button, $this->buttons, true)) {
-            array_push($this->buttons, $button);
-        }
-        return $this;
+        return $this->label;
     }
 
     /**
@@ -137,12 +106,147 @@ class Paging extends ScriptFeature
      */
     public function setLabel(Label $label)
     {
-        $this->label = $label->checkId();
+        $label->checkId();
+        $this->label = $label;
         return $this;
     }
 
     /**
-     * Set the Start Page number
+     * Get the Pages
+     *
+     * @api
+     * @return PagingPage[]
+     */
+    public function getPages()
+    {
+        return $this->pages;
+    }
+
+    /**
+     * Add a new Page Control
+     *
+     * @api
+     * @param Control $pageControl Page Control
+     * @param string  $pageNumber  (optional) Page number
+     * @return static
+     */
+    public function addPageControl(Control $pageControl, $pageNumber = null)
+    {
+        if ($pageNumber === null) {
+            $pageNumber = count($this->pages) + 1;
+        }
+        $page = new PagingPage($pageControl, $pageNumber);
+        return $this->addPage($page);
+    }
+
+    /**
+     * Add a new Page
+     *
+     * @api
+     * @param PagingPage $page Page
+     * @return static
+     */
+    public function addPage(PagingPage $page)
+    {
+        if (!in_array($page, $this->pages, true)) {
+            array_push($this->pages, $page);
+        }
+        return $this;
+    }
+
+    /**
+     * Add new Pages
+     *
+     * @api
+     * @param PagingPage[] $pages Pages
+     * @return static
+     */
+    public function setPages(array $pages)
+    {
+        $this->pages = array();
+        foreach ($pages as $page) {
+            $this->addPage($page);
+        }
+        return $this;
+    }
+
+    /**
+     * Get the Buttons
+     *
+     * @api
+     * @return PagingButton[]
+     */
+    public function getButtons()
+    {
+        return $this->buttons;
+    }
+
+    /**
+     * Add a new Button Control to browse through the Pages
+     *
+     * @api
+     * @param Control $buttonControl Button used for browsing
+     * @param int     $browseAction  (optional) Number of browsed Pages per click
+     * @return static
+     */
+    public function addButtonControl(Control $buttonControl, $browseAction = null)
+    {
+        if ($browseAction === null) {
+            $buttonCount = count($this->buttons);
+            if ($buttonCount % 2 === 0) {
+                $browseAction = $buttonCount / 2 + 1;
+            } else {
+                $browseAction = $buttonCount / -2 - 1;
+            }
+        }
+        $button = new PagingButton($buttonControl, $browseAction);
+        return $this->addButton($button);
+    }
+
+    /**
+     * Add a new Button to browse through Pages
+     *
+     * @api
+     * @param PagingButton $button Paging Button
+     * @return static
+     */
+    public function addButton(PagingButton $button)
+    {
+        if (!in_array($button, $this->buttons, true)) {
+            array_push($this->buttons, $button);
+        }
+        return $this;
+    }
+
+    /**
+     * Set the Paging Buttons
+     *
+     * @api
+     * @param PagingButton[] $buttons Paging Buttons
+     * @return static
+     */
+    public function setButtons(array $buttons)
+    {
+        $this->buttons = array();
+        foreach ($buttons as $button) {
+            $this->addButton($button);
+        }
+        return $this;
+    }
+
+    /**
+     * Get the start Page number
+     *
+     * @api
+     * @return int
+     */
+    public function getStartPageNumber()
+    {
+        return $this->startPageNumber;
+    }
+
+    /**
+     * Set the start Page number
      *
      * @api
      * @param int $startPageNumber Page number to start with
@@ -151,6 +255,18 @@ class Paging extends ScriptFeature
     public function setStartPageNumber($startPageNumber)
     {
         $this->startPageNumber = (int)$startPageNumber;
+        return $this;
+    }
+
+    /**
+     * Get a custom maximum Page number for using chunks
+     *
+     * @api
+     * @return int
+     */
+    public function getCustomMaxPageNumber()
+    {
+        return $this->customMaxPageNumber;
     }
 
     /**
@@ -167,6 +283,17 @@ class Paging extends ScriptFeature
     }
 
     /**
+     * Get the action triggered when the previous chunk is needed
+     *
+     * @api
+     * @return string
+     */
+    public function getPreviousChunkAction()
+    {
+        return $this->previousChunkAction;
+    }
+
+    /**
      * Set the action triggered when the previous chunk is needed
      *
      * @api
@@ -177,6 +304,17 @@ class Paging extends ScriptFeature
     {
         $this->previousChunkAction = (string)$previousChunkAction;
         return $this;
+    }
+
+    /**
+     * Get the action triggered when the next chunk is needed
+     *
+     * @api
+     * @return string
+     */
+    public function getNextChunkAction()
+    {
+        return $this->nextChunkAction;
     }
 
     /**
@@ -201,16 +339,26 @@ class Paging extends ScriptFeature
      */
     public function setChunkActions($chunkAction)
     {
-        $this->setNextChunkAction($chunkAction);
-        $this->setPreviousChunkAction($chunkAction);
-        return $this;
+        return $this->setNextChunkAction($chunkAction)
+                    ->setPreviousChunkAction($chunkAction);
     }
 
     /**
-     * Set if the chunk action should get the needed Page number appended
+     * Get if the chunk action should append the needed Page number
      *
      * @api
-     * @param bool $appendPageNumber Whether to append the needed Page number
+     * @return bool
+     */
+    public function getChunkActionAppendsPageNumber()
+    {
+        return $this->chunkActionAppendsPageNumber;
+    }
+
+    /**
+     * Set if the chunk action should append the needed Page number
+     *
+     * @api
+     * @param bool $appendPageNumber Append the needed Page number
      * @return static
      */
     public function setChunkActionAppendsPageNumber($appendPageNumber)
