@@ -135,8 +135,7 @@ class Menu extends ScriptFeature
 
         // OnInit
         if ($this->startElement) {
-            $startControlId = $this->startElement->getControl()
-                                                 ->getId(true, true);
+            $startControlId  = Builder::escapeText($this->startElement->getControl()->getId());
             $initScriptText = "
 {$updateFunctionName}({$elementsArrayText}, {$startControlId});";
             $script->appendGenericScriptLabel(ScriptLabel::ONINIT, $initScriptText, true);

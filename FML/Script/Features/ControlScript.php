@@ -3,6 +3,7 @@
 namespace FML\Script\Features;
 
 use FML\Controls\Control;
+use FML\Script\Builder;
 use FML\Script\Script;
 use FML\Script\ScriptLabel;
 use FML\Types\Scriptable;
@@ -161,27 +162,27 @@ class ControlScript extends ScriptFeature
      */
     protected function buildScriptText()
     {
-        $controlId  = $this->control->getId(true);
+        $controlId  = Builder::escapeText($this->control->getId());
         $scriptText = '';
         $closeBlock = false;
         if (ScriptLabel::isEventLabel($this->labelName)) {
-            $scriptText .= '
-if (Event.ControlId == "' . $controlId . '") {
-declare Control <=> Event.Control;';
+            $scriptText .= "
+if (Event.ControlId == {$controlId}) {
+declare Control <=> Event.Control;";
             $closeBlock = true;
         } else {
-            $scriptText .= '
-declare Control <=> Page.GetFirstChild("' . $controlId . '");';
+            $scriptText .= "
+declare Control <=> Page.GetFirstChild({$controlId});";
         }
         $class = $this->control->getManiaScriptClass();
         $name  = preg_replace('/^CMl/', '', $class, 1);
-        $scriptText .= '
-declare ' . $name . ' <=> (Control as ' . $class . ');
-';
-        $scriptText .= $this->scriptText . '
-';
+        $scriptText .= "
+declare {$name} <=> (Control as {$class});
+";
+        $scriptText .= $this->scriptText . "
+";
         if ($closeBlock) {
-            $scriptText .= '}';
+            $scriptText .= "}";
         }
         return $scriptText;
     }

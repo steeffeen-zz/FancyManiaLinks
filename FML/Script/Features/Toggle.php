@@ -3,6 +3,7 @@
 namespace FML\Script\Features;
 
 use FML\Controls\Control;
+use FML\Script\Builder;
 use FML\Script\Script;
 use FML\Script\ScriptLabel;
 use FML\Types\Scriptable;
@@ -223,13 +224,13 @@ class Toggle extends ScriptFeature
      */
     protected function getScriptText()
     {
-        $togglingControlId = $this->togglingControl->getId(true, true);
-        $toggledControlId  = $this->toggledControl->getId(true, true);
-        $visibility        = '!ToggleControl.Visible';
+        $togglingControlId = Builder::escapeText($this->togglingControl->getId());
+        $toggledControlId  = Builder::escapeText($this->toggledControl->getId());
+        $visibility        = "!ToggleControl.Visible";
         if ($this->onlyShow) {
-            $visibility = 'True';
+            $visibility = "True";
         } else if ($this->onlyHide) {
-            $visibility = 'False';
+            $visibility = "False";
         }
         return "
 if (Event.Control.ControlId == {$togglingControlId}) {

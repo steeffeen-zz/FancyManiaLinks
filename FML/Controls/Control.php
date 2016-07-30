@@ -2,7 +2,6 @@
 
 namespace FML\Controls;
 
-use FML\Script\Builder;
 use FML\Script\Features\ActionTrigger;
 use FML\Script\Features\ControlScript;
 use FML\Script\Features\MapInfo;
@@ -129,19 +128,10 @@ abstract class Control implements Identifiable, Renderable, ScriptFeatureable
     }
 
     /**
-     * Get the Control id
-     * TODO: remove parameters to implement Identifiable interface method 1:1
-     *
-     * @api
-     * @param bool $escaped        (optional) Escape the id for ManiaScript
-     * @param bool $addApostrophes (optional) Add apostrophes before and after the text
-     * @return string
+     * @see Identifiable::getId()
      */
-    public function getId($escaped = false, $addApostrophes = false)
+    public function getId()
     {
-        if ($escaped) {
-            return Builder::escapeText($this->controlId, $addApostrophes);
-        }
         return $this->controlId;
     }
 

@@ -3,6 +3,7 @@
 namespace FML\Script\Features;
 
 use FML\Controls\Label;
+use FML\Script\Builder;
 use FML\Script\Script;
 use FML\Script\ScriptInclude;
 use FML\Script\ScriptLabel;
@@ -139,7 +140,7 @@ class Clock extends ScriptFeature
      */
     protected function getScriptText()
     {
-        $controlId  = $this->label->getId(true, true);
+        $controlId  = Builder::escapeText($this->label->getId());
         $scriptText = "
 declare ClockLabel <=> (Page.GetFirstChild({$controlId}) as CMlLabel);
 declare TimeText = CurrentLocalDateText;";

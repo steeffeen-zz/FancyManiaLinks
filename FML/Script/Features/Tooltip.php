@@ -204,11 +204,11 @@ class Tooltip extends ScriptFeature
      */
     public function prepare(Script $script)
     {
-        $hoverControlId   = $this->hoverControl->getId(true, true);
-        $tooltipControlId = $this->tooltipControl->getId(true, true);
+        $hoverControlId   = Builder::escapeText($this->hoverControl->getId());
+        $tooltipControlId = Builder::escapeText($this->tooltipControl->getId());
 
         // MouseOver
-        $visibility = ($this->invert ? 'False' : 'True');
+        $visibility = Builder::getBoolean(!$this->invert);
         $scriptText = "
 if (Event.Control.ControlId == {$hoverControlId}) {
 	declare TooltipControl = Page.GetFirstChild({$tooltipControlId});
@@ -224,7 +224,7 @@ if (Event.Control.ControlId == {$hoverControlId}) {
         $script->appendGenericScriptLabel(ScriptLabel::MOUSEOVER, $scriptText);
 
         // MouseOut
-        $visibility = ($this->invert ? 'True' : 'False');
+        $visibility = Builder::getBoolean($this->invert);
         $scriptText = "
 if (Event.Control.ControlId == {$hoverControlId}) {
 	declare TooltipControl = Page.GetFirstChild({$tooltipControlId});";

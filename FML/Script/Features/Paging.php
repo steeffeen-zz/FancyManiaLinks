@@ -390,10 +390,13 @@ class Paging extends ScriptFeature
 
         $pagingId    = $maxPage->getControl()
                                ->getId(true, true);
-        $pageLabelId = '""';
+        $pagingId    = Builder::escapeText($maxPage->getControl()
+                                                   ->getId());
+        $pageLabelId = Builder::EMPTY_STRING;
         if ($this->label) {
-            $pageLabelId = $this->label->getId(true, true);
+            $pageLabelId = Builder::escapeText($this->label->getId());
         }
+
         $pagesArrayText       = $this->getPagesArrayText();
         $pageButtonsArrayText = $this->getPageButtonsArrayText();
 
