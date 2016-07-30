@@ -15,32 +15,35 @@ use FML\Types\Scriptable;
 class PagingButton
 {
 
-    /*
-     * Protected properties
+    /**
+     * @var Control $control Paging Control
      */
-    /** @var Control $control */
     protected $control = null;
-    protected $browseAction = null;
+
+    /**
+     * @var int Paging count
+     */
+    protected $pagingCount = 1;
 
     /**
      * Construct a new Paging Button
      *
      * @api
-     * @param Control $control      (optional) Browse Control
-     * @param int     $browseAction (optional) Number of browsed Pages per Click
+     * @param Control $control     (optional) Paging Control
+     * @param int     $pagingCount (optional) Number of browsed pages per click
      */
-    public function __construct(Control $control = null, $browseAction = null)
+    public function __construct(Control $control = null, $pagingCount = 1)
     {
-        if ($control !== null) {
+        if ($control) {
             $this->setControl($control);
         }
-        if ($browseAction !== null) {
-            $this->setBrowseAction($browseAction);
+        if ($pagingCount) {
+            $this->setPagingCount($pagingCount);
         }
     }
 
     /**
-     * Get the browse Control
+     * Get the paging Control
      *
      * @api
      * @return Control
@@ -51,10 +54,10 @@ class PagingButton
     }
 
     /**
-     * Set the browse Control
+     * Set the paging Control
      *
      * @api
-     * @param Control $control Browse Control
+     * @param Control $control Paging Control
      * @return static
      */
     public function setControl(Control $control)
@@ -68,26 +71,26 @@ class PagingButton
     }
 
     /**
-     * Get the browse action
+     * Get the paging count
      *
      * @api
      * @return int
      */
-    public function getBrowseAction()
+    public function getPagingCount()
     {
-        return $this->browseAction;
+        return $this->pagingCount;
     }
 
     /**
-     * Set the browse action
+     * Set the paging count
      *
      * @api
-     * @param int $browseAction Number of browsed Pages per click
+     * @param int $pagingCount Number of browsed pages per click
      * @return static
      */
-    public function setBrowseAction($browseAction)
+    public function setPagingCount($pagingCount)
     {
-        $this->browseAction = (int)$browseAction;
+        $this->pagingCount = (int)$pagingCount;
         return $this;
     }
 
