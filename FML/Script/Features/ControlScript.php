@@ -17,58 +17,105 @@ use FML\Types\Scriptable;
 class ControlScript extends ScriptFeature
 {
 
-    /*
-     * Protected properties
+    /**
+     * @var Control $control Control
      */
-    /** @var Control $control */
     protected $control = null;
+
+    /**
+     * @var string $labelName Script Label name
+     */
     protected $labelName = null;
-    protected $text = null;
+
+    /**
+     * @var string $scriptText Script text
+     */
+    protected $scriptText = null;
 
     /**
      * Construct a new Control Script
      *
      * @api
-     * @param Control $control   Event Control
-     * @param string  $text      Script text
-     * @param string  $labelName (optional) Script Label name
+     * @param Control $control    (optional) Control
+     * @param string  $scriptText (optional) Script text
+     * @param string  $labelName  (optional) Script Label name
      */
-    public function __construct(Control $control, $text, $labelName = ScriptLabel::MOUSECLICK)
+    public function __construct(Control $control = null, $scriptText = null, $labelName = ScriptLabel::MOUSECLICK)
     {
-        $this->setControl($control);
-        $this->setText($text);
-        $this->setLabelName($labelName);
+        if ($control) {
+            $this->setControl($control);
+        }
+        if ($scriptText) {
+            $this->setScriptText($scriptText);
+        }
+        if ($labelName) {
+            $this->setLabelName($labelName);
+        }
+    }
+
+    /**
+     * Get the Control
+     *
+     * @api
+     * @return Control
+     */
+    public function getControl()
+    {
+        return $this->control;
     }
 
     /**
      * Set the Control
      *
      * @api
-     * @param Control $control Event Control
+     * @param Control $control Control
      * @return static
      */
     public function setControl(Control $control)
     {
-        $this->control = $control->checkId();
+        $control->checkId();
+        $this->control = $control;
         $this->updateScriptEvents();
         return $this;
+    }
+
+    /**
+     * Get the script text
+     *
+     * @api
+     * @return string
+     */
+    public function getScriptText()
+    {
+        return $this->scriptText;
     }
 
     /**
      * Set the script text
      *
      * @api
-     * @param string $text Script text
+     * @param string $scriptText Script text
      * @return static
      */
-    public function setText($text)
+    public function setScriptText($scriptText)
     {
-        $this->text = (string)$text;
+        $this->scriptText = (string)$scriptText;
         return $this;
     }
 
     /**
-     * Set the script label name
+     * Get the Script Label name
+     *
+     * @api
+     * @return string
+     */
+    public function getLabelName()
+    {
+        return $this->labelName;
+    }
+
+    /**
+     * Set the Script Label name
      *
      * @api
      * @param string $labelName Script Label name
@@ -131,7 +178,7 @@ declare Control <=> Page.GetFirstChild("' . $controlId . '");';
         $scriptText .= '
 declare ' . $name . ' <=> (Control as ' . $class . ');
 ';
-        $scriptText .= $this->text . '
+        $scriptText .= $this->scriptText . '
 ';
         if ($closeBlock) {
             $scriptText .= '}';
