@@ -1,6 +1,14 @@
 <?php
 
 use FML\Controls\Control;
+use FML\Controls\Label;
+use FML\Script\Features\ActionTrigger;
+use FML\Script\Features\ControlScript;
+use FML\Script\Features\MapInfo;
+use FML\Script\Features\PlayerProfile;
+use FML\Script\Features\Toggle;
+use FML\Script\Features\Tooltip;
+use FML\Script\Features\UISound;
 
 class ControlStub extends Control
 {
@@ -206,6 +214,203 @@ class ControlTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($control, $control->removeAllClasses());
 
         $this->assertEmpty($control->getClasses());
+    }
+
+    public function testScriptFeatures()
+    {
+        $control             = new ControlStub();
+        $firstScriptFeature  = new Toggle();
+        $secondScriptFeature = new Toggle();
+
+        $this->assertEmpty($control->getScriptFeatures());
+
+        $this->assertSame($control, $control->addScriptFeature($firstScriptFeature));
+
+        $this->assertEquals(array($firstScriptFeature), $control->getScriptFeatures());
+
+        $this->assertSame($control, $control->addScriptFeature($secondScriptFeature));
+        $this->assertSame($control, $control->addScriptFeature($firstScriptFeature));
+
+        $this->assertEquals(array($firstScriptFeature, $secondScriptFeature), $control->getScriptFeatures());
+
+        $this->assertSame($control, $control->removeAllScriptFeatures());
+
+        $this->assertEmpty($control->getScriptFeatures());
+    }
+
+    public function testActionTriggerFeature()
+    {
+        $control = new ControlStub();
+
+        $this->assertEmpty($control->getScriptFeatures());
+
+        $this->assertSame($control, $control->addActionTriggerFeature("test-action", "test-label"));
+
+        $scriptFeatures = $control->getScriptFeatures();
+
+        $this->assertCount(1, $scriptFeatures);
+
+        /** @var ActionTrigger $actionTrigger */
+        $actionTrigger = $scriptFeatures[0];
+
+        $this->assertTrue($actionTrigger instanceof ActionTrigger);
+        $this->assertEquals("test-action", $actionTrigger->getActionName());
+        $this->assertSame($control, $actionTrigger->getControl());
+        $this->assertEquals("test-label", $actionTrigger->getLabelName());
+    }
+
+    public function testMapInfoFeature()
+    {
+        $control = new ControlStub();
+
+        $this->assertEmpty($control->getScriptFeatures());
+
+        $this->assertSame($control, $control->addMapInfoFeature("test-label"));
+
+        $scriptFeatures = $control->getScriptFeatures();
+
+        $this->assertCount(1, $scriptFeatures);
+
+        /** @var MapInfo $mapInfo */
+        $mapInfo = $scriptFeatures[0];
+
+        $this->assertTrue($mapInfo instanceof MapInfo);
+        $this->assertSame($control, $mapInfo->getControl());
+        $this->assertEquals("test-label", $mapInfo->getLabelName());
+    }
+
+    public function testPlayerProfileFeature()
+    {
+        $control = new ControlStub();
+
+        $this->assertEmpty($control->getScriptFeatures());
+
+        $this->assertSame($control, $control->addPlayerProfileFeature("test-login", "test-label"));
+
+        $scriptFeatures = $control->getScriptFeatures();
+
+        $this->assertCount(1, $scriptFeatures);
+
+        /** @var PlayerProfile $playerProfile */
+        $playerProfile = $scriptFeatures[0];
+
+        $this->assertTrue($playerProfile instanceof PlayerProfile);
+        $this->assertEquals("test-login", $playerProfile->getLogin());
+        $this->assertSame($control, $playerProfile->getControl());
+        $this->assertEquals("test-label", $playerProfile->getLabelName());
+    }
+
+    public function testUISoundFeature()
+    {
+        $control = new ControlStub();
+
+        $this->assertEmpty($control->getScriptFeatures());
+
+        $this->assertSame($control, $control->addUISoundFeature("test-sound", 13, "test-label"));
+
+        $scriptFeatures = $control->getScriptFeatures();
+
+        $this->assertCount(1, $scriptFeatures);
+
+        /** @var UISound $uiSound */
+        $uiSound = $scriptFeatures[0];
+
+        $this->assertTrue($uiSound instanceof UISound);
+        $this->assertEquals("test-sound", $uiSound->getSoundName());
+        $this->assertSame($control, $uiSound->getControl());
+        $this->assertEquals(13, $uiSound->getVariant());
+        $this->assertEquals("test-label", $uiSound->getLabelName());
+    }
+
+    public function testToggleFeature()
+    {
+        $control        = new ControlStub();
+        $toggledControl = new ControlStub();
+
+        $this->assertEmpty($control->getScriptFeatures());
+
+        $this->assertSame($control, $control->addToggleFeature($toggledControl, "test-label", null, true));
+
+        $scriptFeatures = $control->getScriptFeatures();
+
+        $this->assertCount(1, $scriptFeatures);
+
+        /** @var Toggle $toggle */
+        $toggle = $scriptFeatures[0];
+
+        $this->assertTrue($toggle instanceof Toggle);
+        $this->assertSame($control, $toggle->getTogglingControl());
+        $this->assertSame($toggledControl, $toggle->getToggledControl());
+        $this->assertNull($toggle->getOnlyShow());
+        $this->assertTrue($toggle->getOnlyHide());
+    }
+
+    public function testTooltipFeature()
+    {
+        $control        = new ControlStub();
+        $tooltipControl = new ControlStub();
+
+        $this->assertEmpty($control->getScriptFeatures());
+
+        $this->assertSame($control, $control->addTooltipFeature($tooltipControl, true, true));
+
+        $scriptFeatures = $control->getScriptFeatures();
+
+        $this->assertCount(1, $scriptFeatures);
+
+        /** @var Tooltip $tooltip */
+        $tooltip = $scriptFeatures[0];
+
+        $this->assertTrue($tooltip instanceof Tooltip);
+        $this->assertSame($control, $tooltip->getHoverControl());
+        $this->assertSame($tooltipControl, $tooltip->getTooltipControl());
+        $this->assertTrue($tooltip->getStayOnClick());
+        $this->assertTrue($tooltip->getInvert());
+    }
+
+    public function testTooltipLabelFeature()
+    {
+        $control      = new ControlStub();
+        $tooltipLabel = new Label();
+
+        $this->assertEmpty($control->getScriptFeatures());
+
+        $this->assertSame($control, $control->addTooltipLabelFeature($tooltipLabel, "test-tooltip", true, true));
+
+        $scriptFeatures = $control->getScriptFeatures();
+
+        $this->assertCount(1, $scriptFeatures);
+
+        /** @var Tooltip $tooltip */
+        $tooltip = $scriptFeatures[0];
+
+        $this->assertTrue($tooltip instanceof Tooltip);
+        $this->assertSame($control, $tooltip->getHoverControl());
+        $this->assertSame($tooltipLabel, $tooltip->getTooltipControl());
+        $this->assertTrue($tooltip->getStayOnClick());
+        $this->assertTrue($tooltip->getInvert());
+        $this->assertEquals("test-tooltip", $tooltip->getText());
+    }
+
+    public function testScriptText()
+    {
+        $control = new ControlStub();
+
+        $this->assertEmpty($control->getScriptFeatures());
+
+        $this->assertSame($control, $control->addScriptText("test-code", "test-label"));
+
+        $scriptFeatures = $control->getScriptFeatures();
+
+        $this->assertCount(1, $scriptFeatures);
+
+        /** @var ControlScript $controlScript */
+        $controlScript = $scriptFeatures[0];
+
+        $this->assertTrue($controlScript instanceof ControlScript);
+        $this->assertSame($control, $controlScript->getControl());
+        $this->assertEquals("test-code", $controlScript->getScriptText());
+        $this->assertEquals("test-label", $controlScript->getLabelName());
     }
 
     public function testRender()

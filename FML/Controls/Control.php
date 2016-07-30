@@ -518,6 +518,34 @@ abstract class Control implements Identifiable, Renderable, ScriptFeatureable
     }
 
     /**
+     * @see ScriptFeatureable::getScriptFeatures()
+     */
+    public function getScriptFeatures()
+    {
+        return $this->scriptFeatures;
+    }
+
+    /**
+     * @see ScriptFeatureable::addScriptFeature()
+     */
+    public function addScriptFeature(ScriptFeature $scriptFeature)
+    {
+        if (!in_array($scriptFeature, $this->scriptFeatures, true)) {
+            array_push($this->scriptFeatures, $scriptFeature);
+        }
+        return $this;
+    }
+
+    /**
+     * @see ScriptFeatureable::removeAllScriptFeatures()
+     */
+    public function removeAllScriptFeatures()
+    {
+        $this->scriptFeatures = array();
+        return $this;
+    }
+
+    /**
      * Add a dynamic Action Trigger
      *
      * @api
@@ -618,15 +646,15 @@ abstract class Control implements Identifiable, Renderable, ScriptFeatureable
      * Add a dynamic Feature showing a Tooltip on hovering
      *
      * @api
-     * @param Label  $tooltipControl Tooltip Control
-     * @param string $text           Text to display on the Tooltip Label
-     * @param bool   $stayOnClick    (optional) Whether the Tooltip should stay on click
-     * @param bool   $invert         (optional) Whether the visibility toggling should be inverted
+     * @param Label  $tooltipLabel Tooltip Label
+     * @param string $text         Text to display on the Tooltip Label
+     * @param bool   $stayOnClick  (optional) Whether the Tooltip should stay on click
+     * @param bool   $invert       (optional) Whether the visibility toggling should be inverted
      * @return static
      */
-    public function addTooltipLabelFeature(Label $tooltipControl, $text, $stayOnClick = false, $invert = false)
+    public function addTooltipLabelFeature(Label $tooltipLabel, $text, $stayOnClick = false, $invert = false)
     {
-        $tooltip = new Tooltip($this, $tooltipControl, $stayOnClick, $invert, $text);
+        $tooltip = new Tooltip($this, $tooltipLabel, $stayOnClick, $invert, $text);
         $this->addScriptFeature($tooltip);
         return $this;
     }
@@ -642,34 +670,7 @@ abstract class Control implements Identifiable, Renderable, ScriptFeatureable
     public function addScriptText($scriptText, $label = ScriptLabel::MOUSECLICK)
     {
         $customText = new ControlScript($this, $scriptText, $label);
-        return $this->addScriptFeature($customText);
-    }
-
-    /**
-     * @see ScriptFeatureable::getScriptFeatures()
-     */
-    public function getScriptFeatures()
-    {
-        return $this->scriptFeatures;
-    }
-
-    /**
-     * @see ScriptFeatureable::addScriptFeature()
-     */
-    public function addScriptFeature(ScriptFeature $scriptFeature)
-    {
-        if (!in_array($scriptFeature, $this->scriptFeatures, true)) {
-            array_push($this->scriptFeatures, $scriptFeature);
-        }
-        return $this;
-    }
-
-    /**
-     * @see ScriptFeatureable::removeAllScriptFeatures()
-     */
-    public function removeAllScriptFeatures()
-    {
-        $this->scriptFeatures = array();
+        $this->addScriptFeature($customText);
         return $this;
     }
 
