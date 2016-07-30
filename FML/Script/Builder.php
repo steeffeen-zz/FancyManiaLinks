@@ -20,21 +20,23 @@ abstract class Builder
     const EMPTY_STRING = '""';
 
     /**
-     * Build a label implementation block
+     * Build a script label implementation block
      *
      * @api
      * @param string $labelName          Name of the label
      * @param string $implementationCode Label implementation coding (without declaration)
-     * @param bool   $isolate            Whether the code should be isolated in an own block
+     * @param bool   $isolate            (optional) If the code should be isolated in an own block
      * @return string
      */
     public static function getLabelImplementationBlock($labelName, $implementationCode, $isolate = true)
     {
         if ($isolate) {
-            $implementationCode = 'if(True){' . $implementationCode . '}';
+            $implementationCode = "if(True){{$implementationCode}}";
         }
-        $labelText = PHP_EOL . "***{$labelName}***" . PHP_EOL . "***{$implementationCode}***" . PHP_EOL;
-        return $labelText;
+        return "
+***{$labelName}***
+***{$implementationCode}***
+";
     }
 
     /**
@@ -45,7 +47,7 @@ abstract class Builder
      * @param bool   $addApostrophes (optional) Add apostrophes before and after the text
      * @return string
      */
-    public static function escapeText($text, $addApostrophes = false)
+    public static function escapeText($text, $addApostrophes = true)
     {
         $dangers      = array('\\', '"', "\n");
         $replacements = array('\\\\', '\\"', '\\n');
@@ -64,7 +66,7 @@ abstract class Builder
      */
     public static function getId(Identifiable $element)
     {
-        return static::escapeText($element->getId());
+        return static::escapeText($element->getId(), false);
     }
 
     /**
@@ -79,7 +81,7 @@ abstract class Builder
         $value     = (float)$value;
         $stringVal = (string)$value;
         if (!fmod($value, 1)) {
-            $stringVal .= '.';
+            $stringVal .= ".";
         }
         return $stringVal;
     }
@@ -95,9 +97,9 @@ abstract class Builder
     {
         $bool = (bool)$value;
         if ($bool) {
-            return 'True';
+            return "True";
         }
-        return 'False';
+        return "False";
     }
 
     /**
@@ -110,30 +112,39 @@ abstract class Builder
      */
     public static function getArray(array $array, $associative = false)
     {
-        $arrayText = '[';
+        $arrayText = "[";
         $index     = 0;
         $count     = count($array);
         foreach ($array as $key => $value) {
             if ($associative) {
-                if (is_string($key)) {
-                    $arrayText .= '"' . static::escapeText($key) . '"';
-                } else {
-                    $arrayText .= $key;
-                }
-                $arrayText .= ' => ';
+                $arrayText .= static::getValue($key);
+                $arrayText .= " => ";
             }
-            if (is_string($value)) {
-                $arrayText .= '"' . static::escapeText($value) . '"';
-            } else {
-                $arrayText .= $value;
-            }
+            $arrayText .= static::getValue($value);
             if ($index < $count - 1) {
-                $arrayText .= ', ';
+                $arrayText .= ", ";
                 $index++;
             }
         }
-        $arrayText .= ']';
-        return $arrayText;
+        return $arrayText . "]";
+    }
+
+    /**
+     * Get the string representation for the given value
+     *
+     * @api
+     * @param mixed $value Value
+     * @return string
+     */
+    public static function getValue($value)
+    {
+        if (is_string($value)) {
+            return static::escapeText($value);
+        }
+        if (is_bool($value)) {
+            return static::getBoolean($value);
+        }
+        return $value;
     }
 
     /**
@@ -146,16 +157,16 @@ abstract class Builder
      */
     public static function getInclude($file, $namespace = null)
     {
-        if (!$namespace && stripos($file, '.') === false) {
+        if (!$namespace && stripos($file, ".") === false) {
             $namespace = $file;
         }
-        $file        = static::escapeText($file, true);
+        $file        = static::escapeText($file);
         $includeText = "#Include	{$file}";
         if ($namespace) {
             $includeText .= "	as {$namespace}";
         }
-        $includeText .= PHP_EOL;
-        return $includeText;
+        return $includeText . "
+";
     }
 
     /**
@@ -168,13 +179,9 @@ abstract class Builder
      */
     public static function getConstant($name, $value)
     {
-        if (is_string($value)) {
-            $value = static::escapeText($value, true);
-        } else if (is_bool($value)) {
-            $value = static::getBoolean($value);
-        }
-        $constantText = "#Const	{$name}	{$value}" . PHP_EOL;
-        return $constantText;
+        $value = static::getValue($value);
+        return "#Const	{$name}	{$value}
+";
     }
 
 }

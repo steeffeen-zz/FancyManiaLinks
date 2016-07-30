@@ -397,8 +397,8 @@ class Paging extends ScriptFeature
         $pagesArrayText       = $this->getPagesArrayText();
         $pageButtonsArrayText = $this->getPageButtonsArrayText();
 
-        $previousChunkAction          = Builder::escapeText($this->previousChunkAction, true);
-        $nextChunkAction              = Builder::escapeText($this->nextChunkAction, true);
+        $previousChunkAction          = Builder::escapeText($this->previousChunkAction);
+        $nextChunkAction              = Builder::escapeText($this->nextChunkAction);
         $chunkActionAppendsPageNumber = Builder::getBoolean($this->chunkActionAppendsPageNumber);
 
         // Init

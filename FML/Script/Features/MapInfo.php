@@ -115,17 +115,16 @@ class MapInfo extends ScriptFeature
     {
         if ($this->control) {
             // Control event
-            $controlId  = Builder::escapeText($this->control->getId(), true);
-            $scriptText = "
+            $controlId = Builder::escapeText($this->control->getId());
+            return "
 if (Event.Control.ControlId == {$controlId}) {
 	ShowCurChallengeCard();
 }";
-        } else {
-            // Other
-            $scriptText = "
-ShowCurChallengeCard();";
         }
-        return $scriptText;
+
+        // Other events
+        return "
+ShowCurChallengeCard();";
     }
 
 }

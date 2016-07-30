@@ -130,12 +130,12 @@ abstract class Control implements Identifiable, Renderable, ScriptFeatureable
 
     /**
      * Get the Control id
+     * TODO: remove parameters to implement Identifiable interface method 1:1
      *
      * @api
      * @param bool $escaped        (optional) Escape the id for ManiaScript
      * @param bool $addApostrophes (optional) Add apostrophes before and after the text
      * @return string
-     *                             TODO: remove parameters to implement Identifiable interface method 1:1
      */
     public function getId($escaped = false, $addApostrophes = false)
     {

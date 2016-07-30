@@ -172,20 +172,20 @@ class KeyAction extends ScriptFeature
      */
     protected function getScriptText()
     {
-        $actionName = Builder::escapeText($this->actionName, true);
+        $actionName = Builder::escapeText($this->actionName);
         $key        = null;
         $value      = null;
         if ($this->keyName !== null) {
-            $key   = 'KeyName';
+            $key   = "KeyName";
             $value = $this->keyName;
         } else if ($this->keyCode !== null) {
-            $key   = 'KeyCode';
+            $key   = "KeyCode";
             $value = $this->keyCode;
         } else if ($this->charPressed !== null) {
-            $key   = 'CharPressed';
+            $key   = "CharPressed";
             $value = $this->charPressed;
         }
-        $value = Builder::escapeText($value, true);
+        $value = Builder::escapeText($value);
         return "
 if (Event.{$key} == {$value}) {
 	TriggerPageAction({$actionName});

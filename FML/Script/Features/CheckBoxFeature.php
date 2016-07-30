@@ -256,13 +256,15 @@ Void " . self::FUNCTION_UPDATE_QUAD_DESIGN . "(CMlQuad _Quad) {
     protected function buildInitScriptText()
     {
         $quadId  = Builder::getId($this->getQuad());
-        $entryId = '""';
+        $entryId = Builder::EMPTY_STRING;
         if ($this->entry) {
             $entryId = Builder::getId($this->getEntry());
         }
+
         $default              = Builder::getBoolean($this->default);
         $enabledDesignString  = $this->enabledDesign->getDesignString();
         $disabledDesignString = $this->disabledDesign->getDesignString();
+
         return "
 declare Quad_CheckBox <=> (Page.GetFirstChild(\"{$quadId}\") as CMlQuad);
 declare Text[Boolean] " . self::VAR_CHECKBOX_DESIGNS . " as Designs for Quad_CheckBox;

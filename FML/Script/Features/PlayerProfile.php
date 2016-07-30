@@ -146,20 +146,20 @@ class PlayerProfile extends ScriptFeature
      */
     protected function getScriptText()
     {
-        $login = Builder::escapeText($this->login, true);
+        $login = Builder::escapeText($this->login);
+
         if ($this->control) {
             // Control event
-            $controlId  = Builder::escapeText($this->control->getId(), true);
-            $scriptText = "
+            $controlId = Builder::escapeText($this->control->getId());
+            return "
 if (Event.Control.ControlId == {$controlId}) {
 	ShowProfile({$login});
 }";
-        } else {
-            // Other
-            $scriptText = "
-ShowProfile({$login});";
         }
-        return $scriptText;
+
+        // Other events
+        return "
+ShowProfile({$login});";
     }
 
 }

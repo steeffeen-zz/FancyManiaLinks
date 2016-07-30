@@ -214,7 +214,7 @@ if (Event.Control.ControlId == {$hoverControlId}) {
 	declare TooltipControl = Page.GetFirstChild({$tooltipControlId});
 	TooltipControl.Visible = {$visibility};";
         if (is_string($this->text) && ($this->tooltipControl instanceof Label)) {
-            $tooltipText = Builder::escapeText($this->text, true);
+            $tooltipText = Builder::escapeText($this->text);
             $scriptText .= "
 	declare TooltipLabel = (TooltipControl as CMlLabel);
 	TooltipLabel.Value = {$tooltipText};";

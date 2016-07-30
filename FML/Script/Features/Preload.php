@@ -103,7 +103,7 @@ class Preload extends ScriptFeature
     {
         $scriptText = "";
         foreach ($this->imageUrls as $imageUrl) {
-            $escapedImageUrl = Builder::escapeText($imageUrl, true);
+            $escapedImageUrl = Builder::escapeText($imageUrl);
             $scriptText .= "
 PreloadImage({$escapedImageUrl});";
         }

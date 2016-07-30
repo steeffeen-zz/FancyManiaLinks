@@ -148,10 +148,10 @@ class ActionTrigger extends ScriptFeature
      */
     protected function getScriptText()
     {
-        $actionName = Builder::escapeText($this->actionName, true);
+        $actionName = Builder::escapeText($this->actionName);
         if ($this->control) {
             // Control event
-            $controlId  = Builder::escapeText($this->control->getId(), true);
+            $controlId  = Builder::escapeText($this->control->getId());
             $scriptText = "
 if (Event.Control.ControlId == {$controlId}) {
 	TriggerPageAction({$actionName});

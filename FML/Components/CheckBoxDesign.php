@@ -157,7 +157,7 @@ class CheckBoxDesign implements Imageable, Styleable, SubStyleable
         if ($this->imageUrl) {
             return $this->imageUrl;
         }
-        return $this->style . '|' . $this->subStyle;
+        return $this->style . "|" . $this->subStyle;
     }
 
 }
