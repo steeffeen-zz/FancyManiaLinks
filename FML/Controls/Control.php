@@ -526,7 +526,11 @@ abstract class Control implements Identifiable, Renderable, ScriptFeatureable
     }
 
     /**
-     * @see ScriptFeatureable::addScriptFeature()
+     * Add a new Script Feature
+     *
+     * @api
+     * @param ScriptFeature $scriptFeature Script Feature
+     * @return static
      */
     public function addScriptFeature(ScriptFeature $scriptFeature)
     {
@@ -537,7 +541,10 @@ abstract class Control implements Identifiable, Renderable, ScriptFeatureable
     }
 
     /**
-     * @see ScriptFeatureable::removeAllScriptFeatures()
+     * Remove all Script Features
+     *
+     * @api
+     * @return static
      */
     public function removeAllScriptFeatures()
     {
