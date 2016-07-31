@@ -10,16 +10,16 @@ class PlayMapTest extends \PHPUnit_Framework_TestCase
         $playMap = PlayMap::create("create-name", "create-url");
 
         $this->assertTrue($playMap instanceof PlayMap);
-        $this->assertEquals($playMap->getName(), "create-name");
-        $this->assertEquals($playMap->getUrl(), "create-url");
+        $this->assertEquals("create-name", $playMap->getName());
+        $this->assertEquals("create-url", $playMap->getUrl());
     }
 
     public function testConstruct()
     {
         $playMap = new PlayMap("new-name", "new-url");
 
-        $this->assertEquals($playMap->getName(), "new-name");
-        $this->assertEquals($playMap->getUrl(), "new-url");
+        $this->assertEquals("new-name", $playMap->getName());
+        $this->assertEquals("new-url", $playMap->getUrl());
     }
 
     public function testName()
@@ -28,9 +28,9 @@ class PlayMapTest extends \PHPUnit_Framework_TestCase
 
         $this->assertNull($playMap->getName());
 
-        $this->assertSame($playMap->setName("test-name"), $playMap);
+        $this->assertSame($playMap, $playMap->setName("test-name"));
 
-        $this->assertEquals($playMap->getName(), "test-name");
+        $this->assertEquals("test-name", $playMap->getName());
     }
 
     public function testUrl()
@@ -39,22 +39,22 @@ class PlayMapTest extends \PHPUnit_Framework_TestCase
 
         $this->assertNull($playMap->getUrl());
 
-        $this->assertSame($playMap->setUrl("test-url"), $playMap);
+        $this->assertSame($playMap, $playMap->setUrl("test-url"));
 
-        $this->assertEquals($playMap->getUrl(), "test-url");
+        $this->assertEquals("test-url", $playMap->getUrl());
     }
 
     public function testRender()
     {
-        $domDocument = new \DOMDocument();
-        $playMap     = new PlayMap("some-name", "some-url");
+        $playMap = new PlayMap("some-name", "some-url");
 
-        $domElement = $playMap->render($domDocument);
+        $domDocument = new \DOMDocument();
+        $domElement  = $playMap->render($domDocument);
         $domDocument->appendChild($domElement);
 
-        $this->assertEquals($domDocument->saveXML(), "<?xml version=\"1.0\"?>
+        $this->assertEquals("<?xml version=\"1.0\"?>
 <play_map><name>some-name</name><url>some-url</url></play_map>
-");
+", $domDocument->saveXML());
     }
 
 }

@@ -10,14 +10,14 @@ class ShowMessageTest extends \PHPUnit_Framework_TestCase
         $showMessage = ShowMessage::create("create-message");
 
         $this->assertTrue($showMessage instanceof ShowMessage);
-        $this->assertEquals($showMessage->getMessage(), "create-message");
+        $this->assertEquals("create-message", $showMessage->getMessage());
     }
 
     public function testConstruct()
     {
         $showMessage = new ShowMessage("new-message");
 
-        $this->assertEquals($showMessage->getMessage(), "new-message");
+        $this->assertEquals("new-message", $showMessage->getMessage());
     }
 
     public function testMessage()
@@ -26,22 +26,22 @@ class ShowMessageTest extends \PHPUnit_Framework_TestCase
 
         $this->assertNull($showMessage->getMessage());
 
-        $this->assertSame($showMessage->setMessage("test-message"), $showMessage);
+        $this->assertSame($showMessage, $showMessage->setMessage("test-message"));
 
-        $this->assertEquals($showMessage->getMessage(), "test-message");
+        $this->assertEquals("test-message", $showMessage->getMessage());
     }
 
     public function testRender()
     {
-        $domDocument = new \DOMDocument();
         $showMessage = new ShowMessage("some-message");
 
-        $domElement = $showMessage->render($domDocument);
+        $domDocument = new \DOMDocument();
+        $domElement  = $showMessage->render($domDocument);
         $domDocument->appendChild($domElement);
 
-        $this->assertEquals($domDocument->saveXML(), "<?xml version=\"1.0\"?>
+        $this->assertEquals("<?xml version=\"1.0\"?>
 <show_message><message>some-message</message></show_message>
-");
+", $domDocument->saveXML());
     }
 
 }

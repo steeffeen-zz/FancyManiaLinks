@@ -10,14 +10,14 @@ class AddBuddyTest extends \PHPUnit_Framework_TestCase
         $addBuddy = AddBuddy::create("create-login");
 
         $this->assertTrue($addBuddy instanceof AddBuddy);
-        $this->assertEquals($addBuddy->getLogin(), "create-login");
+        $this->assertEquals("create-login", $addBuddy->getLogin());
     }
 
     public function testConstruct()
     {
         $addBuddy = new AddBuddy("new-login");
 
-        $this->assertEquals($addBuddy->getLogin(), "new-login");
+        $this->assertEquals("new-login", $addBuddy->getLogin());
     }
 
     public function testLogin()
@@ -26,22 +26,22 @@ class AddBuddyTest extends \PHPUnit_Framework_TestCase
 
         $this->assertNull($addBuddy->getLogin());
 
-        $this->assertSame($addBuddy->setLogin("test-login"), $addBuddy);
+        $this->assertSame($addBuddy, $addBuddy->setLogin("test-login"));
 
-        $this->assertEquals($addBuddy->getLogin(), "test-login");
+        $this->assertEquals("test-login", $addBuddy->getLogin());
     }
 
     public function testRender()
     {
-        $domDocument = new \DOMDocument();
-        $addBuddy    = new AddBuddy("some-login");
+        $addBuddy = new AddBuddy("some-login");
 
-        $domElement = $addBuddy->render($domDocument);
+        $domDocument = new \DOMDocument();
+        $domElement  = $addBuddy->render($domDocument);
         $domDocument->appendChild($domElement);
 
-        $this->assertEquals($domDocument->saveXML(), "<?xml version=\"1.0\"?>
+        $this->assertEquals("<?xml version=\"1.0\"?>
 <add_buddy><login>some-login</login></add_buddy>
-");
+", $domDocument->saveXML());
     }
 
 }

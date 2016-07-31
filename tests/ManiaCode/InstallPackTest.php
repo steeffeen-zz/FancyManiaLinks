@@ -10,18 +10,18 @@ class InstallPackTest extends \PHPUnit_Framework_TestCase
         $installPack = InstallPack::create("create-name", "create-file", "create-url");
 
         $this->assertTrue($installPack instanceof InstallPack);
-        $this->assertEquals($installPack->getName(), "create-name");
-        $this->assertEquals($installPack->getFile(), "create-file");
-        $this->assertEquals($installPack->getUrl(), "create-url");
+        $this->assertEquals("create-name", $installPack->getName());
+        $this->assertEquals("create-file", $installPack->getFile());
+        $this->assertEquals("create-url", $installPack->getUrl());
     }
 
     public function testConstruct()
     {
         $installPack = new InstallPack("new-name", "new-file", "new-url");
 
-        $this->assertEquals($installPack->getName(), "new-name");
-        $this->assertEquals($installPack->getFile(), "new-file");
-        $this->assertEquals($installPack->getUrl(), "new-url");
+        $this->assertEquals("new-name", $installPack->getName());
+        $this->assertEquals("new-file", $installPack->getFile());
+        $this->assertEquals("new-url", $installPack->getUrl());
     }
 
     public function testName()
@@ -30,9 +30,9 @@ class InstallPackTest extends \PHPUnit_Framework_TestCase
 
         $this->assertNull($installPack->getName());
 
-        $this->assertSame($installPack->setName("test-name"), $installPack);
+        $this->assertSame($installPack, $installPack->setName("test-name"));
 
-        $this->assertEquals($installPack->getName(), "test-name");
+        $this->assertEquals("test-name", $installPack->getName());
     }
 
     public function testFile()
@@ -41,9 +41,9 @@ class InstallPackTest extends \PHPUnit_Framework_TestCase
 
         $this->assertNull($installPack->getFile());
 
-        $this->assertSame($installPack->setFile("test-file"), $installPack);
+        $this->assertSame($installPack, $installPack->setFile("test-file"));
 
-        $this->assertEquals($installPack->getFile(), "test-file");
+        $this->assertEquals("test-file", $installPack->getFile());
     }
 
     public function testUrl()
@@ -52,22 +52,22 @@ class InstallPackTest extends \PHPUnit_Framework_TestCase
 
         $this->assertNull($installPack->getUrl());
 
-        $this->assertSame($installPack->setUrl("test-url"), $installPack);
+        $this->assertSame($installPack, $installPack->setUrl("test-url"));
 
-        $this->assertEquals($installPack->getUrl(), "test-url");
+        $this->assertEquals("test-url", $installPack->getUrl());
     }
 
     public function testRender()
     {
-        $domDocument = new \DOMDocument();
         $installPack = new InstallPack("some-name", "some-file", "some-url");
 
-        $domElement = $installPack->render($domDocument);
+        $domDocument = new \DOMDocument();
+        $domElement  = $installPack->render($domDocument);
         $domDocument->appendChild($domElement);
 
-        $this->assertEquals($domDocument->saveXML(), "<?xml version=\"1.0\"?>
+        $this->assertEquals("<?xml version=\"1.0\"?>
 <install_pack><name>some-name</name><file>some-file</file><url>some-url</url></install_pack>
-");
+", $domDocument->saveXML());
     }
 
 }

@@ -10,7 +10,7 @@ class AddFavoriteTest extends \PHPUnit_Framework_TestCase
         $addFavorite = AddFavorite::create("create-login");
 
         $this->assertTrue($addFavorite instanceof AddFavorite);
-        $this->assertEquals($addFavorite->getLogin(), "create-login");
+        $this->assertEquals("create-login", $addFavorite->getLogin());
         $this->assertNull($addFavorite->getIp());
         $this->assertNull($addFavorite->getPort());
     }
@@ -21,15 +21,15 @@ class AddFavoriteTest extends \PHPUnit_Framework_TestCase
 
         $this->assertTrue($addFavorite instanceof AddFavorite);
         $this->assertNull($addFavorite->getLogin());
-        $this->assertEquals($addFavorite->getIp(), "create.ip");
-        $this->assertEquals($addFavorite->getPort(), 420);
+        $this->assertEquals("create.ip", $addFavorite->getIp());
+        $this->assertEquals(420, $addFavorite->getPort());
     }
 
     public function testConstructWithLogin()
     {
         $addFavorite = new AddFavorite("new-login");
 
-        $this->assertEquals($addFavorite->getLogin(), "new-login");
+        $this->assertEquals("new-login", $addFavorite->getLogin());
         $this->assertNull($addFavorite->getIp());
         $this->assertNull($addFavorite->getPort());
     }
@@ -39,8 +39,8 @@ class AddFavoriteTest extends \PHPUnit_Framework_TestCase
         $addFavorite = new AddFavorite("new.ip", 42);
 
         $this->assertNull($addFavorite->getLogin());
-        $this->assertEquals($addFavorite->getIp(), "new.ip");
-        $this->assertEquals($addFavorite->getPort(), 42);
+        $this->assertEquals("new.ip", $addFavorite->getIp());
+        $this->assertEquals(42, $addFavorite->getPort());
     }
 
     public function testLogin()
@@ -49,9 +49,9 @@ class AddFavoriteTest extends \PHPUnit_Framework_TestCase
 
         $this->assertNull($addFavorite->getLogin());
 
-        $this->assertSame($addFavorite->setLogin("test-login"), $addFavorite);
+        $this->assertSame($addFavorite, $addFavorite->setLogin("test-login"));
 
-        $this->assertEquals($addFavorite->getLogin(), "test-login");
+        $this->assertEquals("test-login", $addFavorite->getLogin());
     }
 
     public function testIp()
@@ -60,9 +60,9 @@ class AddFavoriteTest extends \PHPUnit_Framework_TestCase
 
         $this->assertNull($addFavorite->getIp());
 
-        $this->assertSame($addFavorite->setIp("test.ip"), $addFavorite);
+        $this->assertSame($addFavorite, $addFavorite->setIp("test.ip"));
 
-        $this->assertEquals($addFavorite->getIp(), "test.ip");
+        $this->assertEquals("test.ip", $addFavorite->getIp());
     }
 
     public function testPort()
@@ -71,9 +71,9 @@ class AddFavoriteTest extends \PHPUnit_Framework_TestCase
 
         $this->assertNull($addFavorite->getPort());
 
-        $this->assertSame($addFavorite->setPort(13), $addFavorite);
+        $this->assertSame($addFavorite, $addFavorite->setPort(13));
 
-        $this->assertEquals($addFavorite->getPort(), 13);
+        $this->assertEquals(13, $addFavorite->getPort());
     }
 
     public function testIpAndPort()
@@ -83,57 +83,57 @@ class AddFavoriteTest extends \PHPUnit_Framework_TestCase
         $this->assertNull($addFavorite->getIp());
         $this->assertNull($addFavorite->getPort());
 
-        $this->assertSame($addFavorite->setIp("other.ip", 1337), $addFavorite);
+        $this->assertSame($addFavorite, $addFavorite->setIp("other.ip", 1337));
 
-        $this->assertEquals($addFavorite->getIp(), "other.ip");
-        $this->assertEquals($addFavorite->getPort(), 1337);
+        $this->assertEquals("other.ip", $addFavorite->getIp());
+        $this->assertEquals(1337, $addFavorite->getPort());
     }
 
     public function testLoginAndIpAndPort()
     {
         $addFavorite = new AddFavorite("first.login");
 
-        $this->assertEquals($addFavorite->getLogin(), "first.login");
+        $this->assertEquals("first.login", $addFavorite->getLogin());
         $this->assertNull($addFavorite->getIp());
         $this->assertNull($addFavorite->getPort());
 
         $addFavorite->setIp("evil.ip", 666);
 
         $this->assertNull($addFavorite->getLogin());
-        $this->assertEquals($addFavorite->getIp(), "evil.ip");
-        $this->assertEquals($addFavorite->getPort(), 666);
+        $this->assertEquals("evil.ip", $addFavorite->getIp());
+        $this->assertEquals(666, $addFavorite->getPort());
 
         $addFavorite->setLogin("second.login");
 
-        $this->assertEquals($addFavorite->getLogin(), "second.login");
+        $this->assertEquals("second.login", $addFavorite->getLogin());
         $this->assertNull($addFavorite->getIp());
         $this->assertNull($addFavorite->getPort());
     }
 
     public function testRenderWithLogin()
     {
-        $domDocument = new \DOMDocument();
         $addFavorite = new AddFavorite("some-login");
 
-        $domElement = $addFavorite->render($domDocument);
+        $domDocument = new \DOMDocument();
+        $domElement  = $addFavorite->render($domDocument);
         $domDocument->appendChild($domElement);
 
-        $this->assertEquals($domDocument->saveXML(), "<?xml version=\"1.0\"?>
+        $this->assertEquals("<?xml version=\"1.0\"?>
 <add_favourite><login>some-login</login></add_favourite>
-");
+", $domDocument->saveXML());
     }
 
     public function testRenderWithIpAndPort()
     {
-        $domDocument = new \DOMDocument();
         $addFavorite = new AddFavorite("some.ip", 12345);
 
-        $domElement = $addFavorite->render($domDocument);
+        $domDocument = new \DOMDocument();
+        $domElement  = $addFavorite->render($domDocument);
         $domDocument->appendChild($domElement);
 
-        $this->assertEquals($domDocument->saveXML(), "<?xml version=\"1.0\"?>
+        $this->assertEquals("<?xml version=\"1.0\"?>
 <add_favourite><ip>some.ip:12345</ip></add_favourite>
-");
+", $domDocument->saveXML());
     }
 
 }

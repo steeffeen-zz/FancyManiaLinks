@@ -10,38 +10,38 @@ class Go_ToTest extends \PHPUnit_Framework_TestCase
         $goTo = Go_To::create("create-link");
 
         $this->assertTrue($goTo instanceof Go_To);
-        $this->assertEquals($goTo->getLink(), "create-link");
+        $this->assertEquals("create-link", $goTo->getLink());
     }
 
     public function testConstruct()
     {
         $goTo = new Go_To("new-link");
 
-        $this->assertEquals($goTo->getLink(), "new-link");
+        $this->assertEquals("new-link", $goTo->getLink());
     }
 
-    public function testMessage()
+    public function testLink()
     {
         $goTo = new Go_To();
 
         $this->assertNull($goTo->getLink());
 
-        $this->assertSame($goTo->setLink("test-link"), $goTo);
+        $this->assertSame($goTo, $goTo->setLink("test-link"));
 
-        $this->assertEquals($goTo->getLink(), "test-link");
+        $this->assertEquals("test-link", $goTo->getLink());
     }
 
     public function testRender()
     {
-        $domDocument = new \DOMDocument();
-        $goTo        = new Go_To("some-link");
+        $goTo = new Go_To("some-link");
 
-        $domElement = $goTo->render($domDocument);
+        $domDocument = new \DOMDocument();
+        $domElement  = $goTo->render($domDocument);
         $domDocument->appendChild($domElement);
 
-        $this->assertEquals($domDocument->saveXML(), "<?xml version=\"1.0\"?>
+        $this->assertEquals("<?xml version=\"1.0\"?>
 <goto><link>some-link</link></goto>
-");
+", $domDocument->saveXML());
     }
 
 }

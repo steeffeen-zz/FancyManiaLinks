@@ -10,18 +10,18 @@ class InstallScriptTest extends \PHPUnit_Framework_TestCase
         $installScript = InstallScript::create("create-name", "create-file", "create-url");
 
         $this->assertTrue($installScript instanceof InstallScript);
-        $this->assertEquals($installScript->getName(), "create-name");
-        $this->assertEquals($installScript->getFile(), "create-file");
-        $this->assertEquals($installScript->getUrl(), "create-url");
+        $this->assertEquals("create-name", $installScript->getName());
+        $this->assertEquals("create-file", $installScript->getFile());
+        $this->assertEquals("create-url", $installScript->getUrl());
     }
 
     public function testConstruct()
     {
         $installScript = new InstallScript("new-name", "new-file", "new-url");
 
-        $this->assertEquals($installScript->getName(), "new-name");
-        $this->assertEquals($installScript->getFile(), "new-file");
-        $this->assertEquals($installScript->getUrl(), "new-url");
+        $this->assertEquals("new-name", $installScript->getName());
+        $this->assertEquals("new-file", $installScript->getFile());
+        $this->assertEquals("new-url", $installScript->getUrl());
     }
 
     public function testName()
@@ -30,9 +30,9 @@ class InstallScriptTest extends \PHPUnit_Framework_TestCase
 
         $this->assertNull($installScript->getName());
 
-        $this->assertSame($installScript->setName("test-name"), $installScript);
+        $this->assertSame($installScript, $installScript->setName("test-name"));
 
-        $this->assertEquals($installScript->getName(), "test-name");
+        $this->assertEquals("test-name", $installScript->getName());
     }
 
     public function testFile()
@@ -41,9 +41,9 @@ class InstallScriptTest extends \PHPUnit_Framework_TestCase
 
         $this->assertNull($installScript->getFile());
 
-        $this->assertSame($installScript->setFile("test-file"), $installScript);
+        $this->assertSame($installScript, $installScript->setFile("test-file"));
 
-        $this->assertEquals($installScript->getFile(), "test-file");
+        $this->assertEquals("test-file", $installScript->getFile());
     }
 
     public function testUrl()
@@ -52,22 +52,22 @@ class InstallScriptTest extends \PHPUnit_Framework_TestCase
 
         $this->assertNull($installScript->getUrl());
 
-        $this->assertSame($installScript->setUrl("test-url"), $installScript);
+        $this->assertSame($installScript, $installScript->setUrl("test-url"));
 
-        $this->assertEquals($installScript->getUrl(), "test-url");
+        $this->assertEquals("test-url", $installScript->getUrl());
     }
 
     public function testRender()
     {
-        $domDocument   = new \DOMDocument();
         $installScript = new InstallScript("some-name", "some-file", "some-url");
 
-        $domElement = $installScript->render($domDocument);
+        $domDocument = new \DOMDocument();
+        $domElement  = $installScript->render($domDocument);
         $domDocument->appendChild($domElement);
 
-        $this->assertEquals($domDocument->saveXML(), "<?xml version=\"1.0\"?>
+        $this->assertEquals("<?xml version=\"1.0\"?>
 <install_script><name>some-name</name><file>some-file</file><url>some-url</url></install_script>
-");
+", $domDocument->saveXML());
     }
 
 }

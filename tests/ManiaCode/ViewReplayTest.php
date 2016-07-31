@@ -10,16 +10,16 @@ class ViewReplayTest extends \PHPUnit_Framework_TestCase
         $viewReplay = ViewReplay::create("create-name", "create-url");
 
         $this->assertTrue($viewReplay instanceof ViewReplay);
-        $this->assertEquals($viewReplay->getName(), "create-name");
-        $this->assertEquals($viewReplay->getUrl(), "create-url");
+        $this->assertEquals("create-name", $viewReplay->getName());
+        $this->assertEquals("create-url", $viewReplay->getUrl());
     }
 
     public function testConstruct()
     {
         $viewReplay = new ViewReplay("new-name", "new-url");
 
-        $this->assertEquals($viewReplay->getName(), "new-name");
-        $this->assertEquals($viewReplay->getUrl(), "new-url");
+        $this->assertEquals("new-name", $viewReplay->getName());
+        $this->assertEquals("new-url", $viewReplay->getUrl());
     }
 
     public function testName()
@@ -28,9 +28,9 @@ class ViewReplayTest extends \PHPUnit_Framework_TestCase
 
         $this->assertNull($viewReplay->getName());
 
-        $this->assertSame($viewReplay->setName("test-name"), $viewReplay);
+        $this->assertSame($viewReplay, $viewReplay->setName("test-name"));
 
-        $this->assertEquals($viewReplay->getName(), "test-name");
+        $this->assertEquals("test-name", $viewReplay->getName());
     }
 
     public function testUrl()
@@ -39,22 +39,22 @@ class ViewReplayTest extends \PHPUnit_Framework_TestCase
 
         $this->assertNull($viewReplay->getUrl());
 
-        $this->assertSame($viewReplay->setUrl("test-url"), $viewReplay);
+        $this->assertSame($viewReplay, $viewReplay->setUrl("test-url"));
 
-        $this->assertEquals($viewReplay->getUrl(), "test-url");
+        $this->assertEquals("test-url", $viewReplay->getUrl());
     }
 
     public function testRender()
     {
-        $domDocument = new \DOMDocument();
-        $viewReplay  = new ViewReplay("some-name", "some-url");
+        $viewReplay = new ViewReplay("some-name", "some-url");
 
-        $domElement = $viewReplay->render($domDocument);
+        $domDocument = new \DOMDocument();
+        $domElement  = $viewReplay->render($domDocument);
         $domDocument->appendChild($domElement);
 
-        $this->assertEquals($domDocument->saveXML(), "<?xml version=\"1.0\"?>
+        $this->assertEquals("<?xml version=\"1.0\"?>
 <view_replay><name>some-name</name><url>some-url</url></view_replay>
-");
+", $domDocument->saveXML());
     }
 
 }

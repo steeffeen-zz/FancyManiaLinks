@@ -10,16 +10,16 @@ class InstallReplayTest extends \PHPUnit_Framework_TestCase
         $installReplay = InstallReplay::create("create-name", "create-url");
 
         $this->assertTrue($installReplay instanceof InstallReplay);
-        $this->assertEquals($installReplay->getName(), "create-name");
-        $this->assertEquals($installReplay->getUrl(), "create-url");
+        $this->assertEquals("create-name", $installReplay->getName());
+        $this->assertEquals("create-url", $installReplay->getUrl());
     }
 
     public function testConstruct()
     {
         $installReplay = new InstallReplay("new-name", "new-url");
 
-        $this->assertEquals($installReplay->getName(), "new-name");
-        $this->assertEquals($installReplay->getUrl(), "new-url");
+        $this->assertEquals("new-name", $installReplay->getName());
+        $this->assertEquals("new-url", $installReplay->getUrl());
     }
 
     public function testName()
@@ -28,9 +28,9 @@ class InstallReplayTest extends \PHPUnit_Framework_TestCase
 
         $this->assertNull($installReplay->getName());
 
-        $this->assertSame($installReplay->setName("test-name"), $installReplay);
+        $this->assertSame($installReplay, $installReplay->setName("test-name"));
 
-        $this->assertEquals($installReplay->getName(), "test-name");
+        $this->assertEquals("test-name", $installReplay->getName());
     }
 
     public function testUrl()
@@ -39,22 +39,22 @@ class InstallReplayTest extends \PHPUnit_Framework_TestCase
 
         $this->assertNull($installReplay->getUrl());
 
-        $this->assertSame($installReplay->setUrl("test-url"), $installReplay);
+        $this->assertSame($installReplay, $installReplay->setUrl("test-url"));
 
-        $this->assertEquals($installReplay->getUrl(), "test-url");
+        $this->assertEquals("test-url", $installReplay->getUrl());
     }
 
     public function testRender()
     {
-        $domDocument   = new \DOMDocument();
         $installReplay = new InstallReplay("some-name", "some-url");
 
-        $domElement = $installReplay->render($domDocument);
+        $domDocument = new \DOMDocument();
+        $domElement  = $installReplay->render($domDocument);
         $domDocument->appendChild($domElement);
 
-        $this->assertEquals($domDocument->saveXML(), "<?xml version=\"1.0\"?>
+        $this->assertEquals("<?xml version=\"1.0\"?>
 <install_replay><name>some-name</name><url>some-url</url></install_replay>
-");
+", $domDocument->saveXML());
     }
 
 }

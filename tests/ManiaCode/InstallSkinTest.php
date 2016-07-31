@@ -10,18 +10,18 @@ class InstallSkinTest extends \PHPUnit_Framework_TestCase
         $installSkin = InstallSkin::create("create-name", "create-file", "create-url");
 
         $this->assertTrue($installSkin instanceof InstallSkin);
-        $this->assertEquals($installSkin->getName(), "create-name");
-        $this->assertEquals($installSkin->getFile(), "create-file");
-        $this->assertEquals($installSkin->getUrl(), "create-url");
+        $this->assertEquals("create-name", $installSkin->getName());
+        $this->assertEquals("create-file", $installSkin->getFile());
+        $this->assertEquals("create-url", $installSkin->getUrl());
     }
 
     public function testConstruct()
     {
         $installSkin = new InstallSkin("new-name", "new-file", "new-url");
 
-        $this->assertEquals($installSkin->getName(), "new-name");
-        $this->assertEquals($installSkin->getFile(), "new-file");
-        $this->assertEquals($installSkin->getUrl(), "new-url");
+        $this->assertEquals("new-name", $installSkin->getName());
+        $this->assertEquals("new-file", $installSkin->getFile());
+        $this->assertEquals("new-url", $installSkin->getUrl());
     }
 
     public function testName()
@@ -30,9 +30,9 @@ class InstallSkinTest extends \PHPUnit_Framework_TestCase
 
         $this->assertNull($installSkin->getName());
 
-        $this->assertSame($installSkin->setName("test-name"), $installSkin);
+        $this->assertSame($installSkin, $installSkin->setName("test-name"));
 
-        $this->assertEquals($installSkin->getName(), "test-name");
+        $this->assertEquals("test-name", $installSkin->getName());
     }
 
     public function testFile()
@@ -41,9 +41,9 @@ class InstallSkinTest extends \PHPUnit_Framework_TestCase
 
         $this->assertNull($installSkin->getFile());
 
-        $this->assertSame($installSkin->setFile("test-file"), $installSkin);
+        $this->assertSame($installSkin, $installSkin->setFile("test-file"));
 
-        $this->assertEquals($installSkin->getFile(), "test-file");
+        $this->assertEquals("test-file", $installSkin->getFile());
     }
 
     public function testUrl()
@@ -52,22 +52,22 @@ class InstallSkinTest extends \PHPUnit_Framework_TestCase
 
         $this->assertNull($installSkin->getUrl());
 
-        $this->assertSame($installSkin->setUrl("test-url"), $installSkin);
+        $this->assertSame($installSkin, $installSkin->setUrl("test-url"));
 
-        $this->assertEquals($installSkin->getUrl(), "test-url");
+        $this->assertEquals("test-url", $installSkin->getUrl());
     }
 
     public function testRender()
     {
-        $domDocument = new \DOMDocument();
         $installSkin = new InstallSkin("some-name", "some-file", "some-url");
 
-        $domElement = $installSkin->render($domDocument);
+        $domDocument = new \DOMDocument();
+        $domElement  = $installSkin->render($domDocument);
         $domDocument->appendChild($domElement);
 
-        $this->assertEquals($domDocument->saveXML(), "<?xml version=\"1.0\"?>
+        $this->assertEquals("<?xml version=\"1.0\"?>
 <install_skin><name>some-name</name><file>some-file</file><url>some-url</url></install_skin>
-");
+", $domDocument->saveXML());
     }
 
 }
