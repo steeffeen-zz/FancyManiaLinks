@@ -17,58 +17,113 @@ class Style3d
     /*
      * Constants
      */
-    const MODEL_Box     = 'Box';
-    const MODEL_Button  = 'Button';
-    const MODEL_ButtonH = 'ButtonH';
-    const MODEL_Title   = 'Title';
-    const MODEL_Window  = 'Window';
+    const MODEL_Box     = "Box";
+    const MODEL_Button  = "Button";
+    const MODEL_ButtonH = "ButtonH";
+    const MODEL_Title   = "Title";
+    const MODEL_Window  = "Window";
 
-    /*
-     * Protected properties
+    /**
+     * @var string $styleId Style ID
      */
-    protected $tagName = 'style3d';
     protected $styleId = null;
+
+    /**
+     * @var string $model Style model
+     */
     protected $model = self::MODEL_Box;
+
+    /**
+     * @var float $thickness Thickness
+     */
     protected $thickness = null;
+
+    /**
+     * @var string $color Color
+     */
     protected $color = null;
+
+    /**
+     * @var string $focusColor Focus color
+     */
     protected $focusColor = null;
+
+    /**
+     * @var string $lightColor Light color
+     */
     protected $lightColor = null;
+
+    /**
+     * @var string $focusLightColor Focus light color
+     */
     protected $focusLightColor = null;
+
+    /**
+     * @var float $yOffset Y-offset
+     */
     protected $yOffset = null;
+
+    /**
+     * @var float $focusYOffset Focus Y-offset
+     */
     protected $focusYOffset = null;
+
+    /**
+     * @var float $zOffset Z-offset
+     */
     protected $zOffset = null;
+
+    /**
+     * @var float $focusZOffset Focus Z-offset
+     */
     protected $focusZOffset = null;
 
     /**
      * Create a new Style3d
      *
      * @api
-     * @param string $styleId (optional) Style id
+     * @param string $styleId (optional) Style ID
+     * @param string $model   (optional) Style model
      * @return static
      */
-    public static function create($styleId = null)
+    public static function create($styleId = null, $model = null)
     {
-        return new static($styleId);
+        return new static($styleId, $model);
     }
 
     /**
      * Construct a new Style3d
      *
      * @api
-     * @param string $styleId (optional) Style id
+     * @param string $styleId (optional) Style ID
+     * @param string $model   (optional) Style model
      */
-    public function __construct($styleId = null)
+    public function __construct($styleId = null, $model = null)
     {
-        if ($styleId !== null) {
+        if ($styleId) {
             $this->setId($styleId);
+        }
+        if ($model) {
+            $this->setModel($model);
         }
     }
 
     /**
-     * Set the style id
+     * Get the Style ID
      *
      * @api
-     * @param string $styleId Style id
+     * @return string
+     */
+    public function getId()
+    {
+        return $this->styleId;
+    }
+
+    /**
+     * Set the Style ID
+     *
+     * @api
+     * @param string $styleId Style ID
      * @return static
      */
     public function setId($styleId)
@@ -78,7 +133,7 @@ class Style3d
     }
 
     /**
-     * Check for id and assign one if necessary
+     * Check the ID and assign one if necessary
      *
      * @return static
      */
@@ -91,14 +146,14 @@ class Style3d
     }
 
     /**
-     * Get the style id
+     * Get the model
      *
      * @api
      * @return string
      */
-    public function getId()
+    public function getModel()
     {
-        return $this->styleId;
+        return $this->model;
     }
 
     /**
@@ -115,6 +170,17 @@ class Style3d
     }
 
     /**
+     * Get the thickness
+     *
+     * @api
+     * @return float
+     */
+    public function getThickness()
+    {
+        return $this->thickness;
+    }
+
+    /**
      * Set the thickness
      *
      * @api
@@ -125,6 +191,17 @@ class Style3d
     {
         $this->thickness = (float)$thickness;
         return $this;
+    }
+
+    /**
+     * Get the color
+     *
+     * @api
+     * @return string
+     */
+    public function getColor()
+    {
+        return $this->color;
     }
 
     /**
@@ -141,6 +218,17 @@ class Style3d
     }
 
     /**
+     * Get the focus color
+     *
+     * @api
+     * @return string
+     */
+    public function getFocusColor()
+    {
+        return $this->focusColor;
+    }
+
+    /**
      * Set the focus color
      *
      * @api
@@ -151,6 +239,17 @@ class Style3d
     {
         $this->focusColor = (string)$focusColor;
         return $this;
+    }
+
+    /**
+     * Get the light color
+     *
+     * @api
+     * @return string
+     */
+    public function getLightColor()
+    {
+        return $this->lightColor;
     }
 
     /**
@@ -167,6 +266,17 @@ class Style3d
     }
 
     /**
+     * Get the focus light color
+     *
+     * @api
+     * @return string
+     */
+    public function getFocusLightColor()
+    {
+        return $this->focusLightColor;
+    }
+
+    /**
      * Set the focus light color
      *
      * @api
@@ -177,6 +287,17 @@ class Style3d
     {
         $this->focusLightColor = (string)$focusLightColor;
         return $this;
+    }
+
+    /**
+     * Get the Y-offset
+     *
+     * @api
+     * @return float
+     */
+    public function getYOffset()
+    {
+        return $this->yOffset;
     }
 
     /**
@@ -193,6 +314,17 @@ class Style3d
     }
 
     /**
+     * Get the focus Y-offset
+     *
+     * @api
+     * @return float
+     */
+    public function getFocusYOffset()
+    {
+        return $this->focusYOffset;
+    }
+
+    /**
      * Set the focus Y-offset
      *
      * @api
@@ -206,6 +338,17 @@ class Style3d
     }
 
     /**
+     * Get the Z-offset
+     *
+     * @api
+     * @return float
+     */
+    public function getZOffset()
+    {
+        return $this->zOffset;
+    }
+
+    /**
      * Set the Z-offset
      *
      * @api
@@ -216,6 +359,17 @@ class Style3d
     {
         $this->zOffset = (float)$zOffset;
         return $this;
+    }
+
+    /**
+     * Get the focus Z-offset
+     *
+     * @api
+     * @return float
+     */
+    public function getFocusZOffset()
+    {
+        return $this->focusZOffset;
     }
 
     /**
@@ -239,40 +393,40 @@ class Style3d
      */
     public function render(\DOMDocument $domDocument)
     {
-        $style3dXml = $domDocument->createElement($this->tagName);
+        $style3dXml = $domDocument->createElement("style3d");
         $this->checkId();
         if ($this->styleId) {
-            $style3dXml->setAttribute('id', $this->styleId);
+            $style3dXml->setAttribute("id", $this->styleId);
         }
         if ($this->model) {
-            $style3dXml->setAttribute('model', $this->model);
+            $style3dXml->setAttribute("model", $this->model);
         }
         if ($this->thickness) {
-            $style3dXml->setAttribute('thickness', $this->thickness);
+            $style3dXml->setAttribute("thickness", $this->thickness);
         }
         if ($this->color) {
-            $style3dXml->setAttribute('color', $this->color);
+            $style3dXml->setAttribute("color", $this->color);
         }
         if ($this->focusColor) {
-            $style3dXml->setAttribute('fcolor', $this->focusColor);
+            $style3dXml->setAttribute("fcolor", $this->focusColor);
         }
         if ($this->lightColor) {
-            $style3dXml->setAttribute('lightcolor', $this->lightColor);
+            $style3dXml->setAttribute("lightcolor", $this->lightColor);
         }
         if ($this->focusLightColor) {
-            $style3dXml->setAttribute('flightcolor', $this->focusLightColor);
+            $style3dXml->setAttribute("flightcolor", $this->focusLightColor);
         }
         if ($this->yOffset) {
-            $style3dXml->setAttribute('yoffset', $this->yOffset);
+            $style3dXml->setAttribute("yoffset", $this->yOffset);
         }
         if ($this->focusYOffset) {
-            $style3dXml->setAttribute('fyoffset', $this->focusYOffset);
+            $style3dXml->setAttribute("fyoffset", $this->focusYOffset);
         }
         if ($this->zOffset) {
-            $style3dXml->setAttribute('zoffset', $this->zOffset);
+            $style3dXml->setAttribute("zoffset", $this->zOffset);
         }
         if ($this->focusZOffset) {
-            $style3dXml->setAttribute('fzoffset', $this->focusZOffset);
+            $style3dXml->setAttribute("fzoffset", $this->focusZOffset);
         }
         return $style3dXml;
     }
