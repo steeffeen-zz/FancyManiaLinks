@@ -3,6 +3,9 @@
 class ExamplesTest extends \PHPUnit_Framework_TestCase
 {
 
+    /**
+     * @coversNothing
+     */
     public function testExamples()
     {
         $examplesDirectory = __DIR__ . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . "examples" . DIRECTORY_SEPARATOR;
