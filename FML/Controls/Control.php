@@ -562,12 +562,8 @@ abstract class Control implements Identifiable, Renderable, ScriptFeatureable
      */
     public function addActionTriggerFeature($actionName, $eventLabel = ScriptLabel::MOUSECLICK)
     {
-        if ($actionName instanceof ActionTrigger) {
-            $this->addScriptFeature($actionName);
-        } else {
-            $actionTrigger = new ActionTrigger($actionName, $this, $eventLabel);
-            $this->addScriptFeature($actionTrigger);
-        }
+        $actionTrigger = new ActionTrigger($actionName, $this, $eventLabel);
+        $this->addScriptFeature($actionTrigger);
         return $this;
     }
 
