@@ -8,8 +8,8 @@ $maniaLink = new \FML\ManiaLink();
 
 // Include another url
 $include = new \FML\Elements\Including();
-$maniaLink->add($include);
+$maniaLink->addChild($include);
 $include->setUrl('http://fml.steeffeen.com/examples/included.php');
 
 // Print xml
-$maniaLink->render(true);
+echo $maniaLink;

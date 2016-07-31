@@ -9,7 +9,7 @@ $maniaLink->setBackground($maniaLink::BACKGROUND_STARS);
 
 // Create dummy label
 $label = new \FML\Controls\Label();
-$maniaLink->add($label);
+$maniaLink->addChild($label);
 $label->setText("My Mood");
 
 // Create style sheet
@@ -42,4 +42,4 @@ $mood->addSkyGradientKey(0.13, 'FFFF00')
      ->addSkyGradientKey(0.4, '222200');
 
 // Print xml
-$maniaLink->render(true);
+echo $maniaLink;

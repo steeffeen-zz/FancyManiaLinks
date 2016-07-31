@@ -8,7 +8,7 @@ $maniaLink = new \FML\ManiaLink();
 
 // Label element
 $testLabel = new \FML\Controls\Label();
-$maniaLink->add($testLabel);
+$maniaLink->addChild($testLabel);
 $testLabel->setText('Click Me!');
 
 // Add custom script text to show a click counter
@@ -20,4 +20,4 @@ Label.Value = Counter^"x! Click Me Again!";
 $testLabel->addScriptText($scriptText);
 
 // Print xml
-$maniaLink->render(true);
+echo $maniaLink;

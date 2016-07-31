@@ -14,7 +14,7 @@ class ValuePickerTest extends \PHPUnit_Framework_TestCase
 
         $this->assertNotNull($valuePicker);
         $this->assertEquals($valuePicker->getName(), "test-name");
-        $this->assertEquals($valuePicker->getValues(), array("test-first", "test-second"));
+        $this->assertEquals($valuePicker->getValues(), array("test-first", "test-second", "test-default"));
         $this->assertEquals($valuePicker->getDefault(), "test-default");
         $this->assertSame($valuePicker->getLabel(), $label);
     }

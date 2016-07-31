@@ -16,4 +16,4 @@ $maniaLink->createScript()
           ->addFeature($preload);
 
 // Print xml
-$maniaLink->render(true);
+echo $maniaLink;

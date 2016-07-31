@@ -21,7 +21,7 @@ $style3d->setId('MyStyle')
 
 // Create frame3d using the style
 $frame3d = new \FML\Controls\Frame3d();
-$maniaLink->add($frame3d);
+$maniaLink->addChild($frame3d);
 $frame3d->setY(30)
         ->setStyle3d($style3d)
         ->setSize(100, 40);
@@ -32,4 +32,4 @@ $label->setTextColor('000')
       ->setText('My Style');
 
 // Print xml
-$maniaLink->render(true);
+echo $maniaLink;

@@ -8,7 +8,7 @@ $maniaLink = new \FML\ManiaLink();
 
 // Create checkbox
 $checkBox = new \FML\Components\CheckBox('TestCheckBox');
-$maniaLink->add($checkBox);
+$maniaLink->addChild($checkBox);
 
 // Print xml
-$maniaLink->render(true);
+echo $maniaLink;

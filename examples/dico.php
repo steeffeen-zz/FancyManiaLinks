@@ -8,7 +8,7 @@ $maniaLink = new \FML\ManiaLink();
 
 // Create label with textid
 $label = new \FML\Controls\Label();
-$maniaLink->add($label);
+$maniaLink->addChild($label);
 $label->setTextId('hi');
 
 // Create dico with translated texts
@@ -26,4 +26,4 @@ $dico->setEntry($dico::LANG_ENGLISH, 'hi', 'Hello!')
      ->setEntry($dico::LANG_RUSSIAN, 'hi', 'Алло!');
 
 // Print xml
-$maniaLink->render(true);
+echo $maniaLink;

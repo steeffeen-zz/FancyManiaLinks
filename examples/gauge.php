@@ -11,19 +11,19 @@ $gaugeFillStatus = 0.75;
 
 // Create gauge element
 $gauge = new \FML\Controls\Gauge();
-$maniaLink->add($gauge);
+$maniaLink->addChild($gauge);
 $gauge->setSize(100, 30)
       ->setColor('0f5')
-      ->setDrawBg(false)
+      ->setDrawBackground(false)
       ->setRatio($gaugeFillStatus);
 
 // Create label for gauge value
 $label = new \FML\Controls\Labels\Label_Text();
-$maniaLink->add($label);
+$maniaLink->addChild($label);
 $label->setStyle($label::STYLE_TextTitle1)
       ->setY(-1.5)
       ->setTextSize(4)
       ->setText($gaugeFillStatus . '%');
 
 // Print xml
-$maniaLink->render(true);
+echo $maniaLink;

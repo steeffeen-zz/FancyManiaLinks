@@ -8,11 +8,11 @@ $maniaLinks = new \FML\ManiaLinks();
 
 // Create actual ManiaLink
 $maniaLink = new \FML\ManiaLink();
-$maniaLinks->add($maniaLink);
+$maniaLinks->addChild($maniaLink);
 
 // Add a label
 $label = new FML\Controls\Label();
-$maniaLink->add($label);
+$maniaLink->addChild($label);
 $label->setText('Label');
 
 // Add custom ui to container which disables the map info
@@ -21,4 +21,4 @@ $maniaLinks->setCustomUI($customUI);
 $customUI->setChallengeInfoVisible(false);
 
 // Print xml
-$maniaLinks->render(true);
+echo $maniaLinks;

@@ -10,4 +10,4 @@ $maniaCode = new \FML\ManiaCode();
 $maniaCode->addShowMessage('FML rules!');
 
 // Print xml
-$maniaCode->render(true);
+echo $maniaCode;

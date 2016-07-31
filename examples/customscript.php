@@ -31,4 +31,4 @@ Event.Control.Scale = 1.;
 $script->addCustomScriptLabel(\FML\Script\ScriptLabel::MOUSEOUT, $scriptText);
 
 // Print xml
-$maniaLink->render(true);
+echo $maniaLink;

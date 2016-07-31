@@ -8,12 +8,12 @@ $maniaLink = new \FML\ManiaLink();
 
 // Label element showing the current time
 $timeLabel = new \FML\Controls\Label();
-$maniaLink->add($timeLabel);
+$maniaLink->addChild($timeLabel);
 $timeLabel->setId('Label_Time');
 
 // Create script with plain script text showing the local date time
 $script = new \FML\Elements\SimpleScript();
-$maniaLink->add($script);
+$maniaLink->addChild($script);
 $scriptText = '
 main() {
 	declare Label_Time <=> (Page.GetFirstChild("Label_Time") as CMlLabel);
@@ -25,4 +25,4 @@ main() {
 $script->setText($scriptText);
 
 // Print xml
-$maniaLink->render(true);
+echo $maniaLink;

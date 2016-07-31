@@ -16,4 +16,4 @@ $f2KeyAction = new \FML\Script\Features\KeyAction('F2PressedAction', 'F2');
 $script->addFeature($f2KeyAction);
 
 // Print xml
-$maniaLink->render(true);
+echo $maniaLink;

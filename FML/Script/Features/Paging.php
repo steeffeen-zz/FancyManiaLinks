@@ -530,7 +530,7 @@ Void {$updatePageFunction}(Text _PagingId, Text _PageLabelId, Integer _BrowseAct
         $pageButtons = array();
         foreach ($this->buttons as $pageButton) {
             $pageButtons[$pageButton->getControl()
-                                    ->getId()] = $pageButton->getBrowseAction();
+                                    ->getId()] = $pageButton->getPagingCount();
         }
         return Builder::getArray($pageButtons, true);
     }

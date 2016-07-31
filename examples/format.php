@@ -8,7 +8,7 @@ $maniaLink = new \FML\ManiaLink();
 
 // Create frame containing some elements
 $frame = new \FML\Controls\Frame();
-$maniaLink->add($frame);
+$maniaLink->addChild($frame);
 
 // Create format element modifying all the children of the frame
 $format = new \FML\Elements\Format();
@@ -22,7 +22,7 @@ $format->setTextSize(5)
 $y = 50;
 for ($i = 1; $i <= 10; $i++) {
     $label = new \FML\Controls\Label();
-    $frame->add($label);
+    $frame->addChild($label);
     $label->setY($y)
           ->setSize(45, 7)
           ->setText("Label #{$i}")
@@ -32,4 +32,4 @@ for ($i = 1; $i <= 10; $i++) {
 }
 
 // Print xml
-$maniaLink->render(true);
+echo $maniaLink;

@@ -8,8 +8,8 @@ $maniaLink = new \FML\ManiaLink();
 
 // Create music element to play background music
 $music = new \FML\Elements\Music();
-$maniaLink->add($music);
+$maniaLink->addChild($music);
 $music->setData('http://fml.steeffeen.com/media/cantinabar.ogg');
 
 // Print xml
-$maniaLink->render(true);
+echo $maniaLink;

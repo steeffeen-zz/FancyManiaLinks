@@ -8,14 +8,14 @@ $maniaLink = new \FML\ManiaLink();
 
 // Create file entry element to allow uploading a ScreenShot file
 $fileEntry = new \FML\Controls\FileEntry();
-$maniaLink->add($fileEntry);
+$maniaLink->addChild($fileEntry);
 $fileEntry->setSize(50, 7)
           ->setName('inputFile')
           ->setFolder('ScreenShots');
 
 // Add submit button
 $submitButton = new \FML\Controls\Quads\Quad_Icons64x64_1();
-$maniaLink->add($submitButton);
+$maniaLink->addChild($submitButton);
 $submitButton->setSize(10, 10)
              ->setX(40)
              ->setSubStyle($submitButton::SUBSTYLE_Outbox)
@@ -34,18 +34,18 @@ if (isset($_GET['filename'])) {
 
         // Build output labels showing file name and size
         $nameLabel = new \FML\Controls\Label();
-        $maniaLink->add($nameLabel);
+        $maniaLink->addChild($nameLabel);
         $nameLabel->setPosition(-20, -22)
-                  ->setHAlign('left')
+                  ->setHorizontalAlign('left')
                   ->setText('File Name: ' . $_GET['filename']);
 
         $sizeLabel = new \FML\Controls\Label();
-        $maniaLink->add($sizeLabel);
+        $maniaLink->addChild($sizeLabel);
         $sizeLabel->setPosition(-20, -30)
-                  ->setHAlign('left')
+                  ->setHorizontalAlign('left')
                   ->setText("File Size: {$fileSize} KB");
     }
 }
 
 // Print xml
-$maniaLink->render(true);
+echo $maniaLink;

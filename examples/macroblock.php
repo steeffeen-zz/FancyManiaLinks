@@ -11,4 +11,4 @@ $maniaCode->addInstallMacroblock('Test Macroblock', 'Blocks/Storm/testmacroblock
     'http://fml.steeffeen.com/media/testmacroblock.Macroblock.Gbx');
 
 // Print xml
-$maniaCode->render(true);
+echo $maniaLink;
