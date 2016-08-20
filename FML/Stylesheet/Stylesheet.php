@@ -12,13 +12,14 @@ namespace FML\Stylesheet;
 class Stylesheet
 {
 
-    /*
-     * Protected properties
+    /**
+     * @var Style3d[] $styles3d 3d Styles
      */
-    protected $tagName = 'stylesheet';
-    /** @var Style3d[] $styles3d */
     protected $styles3d = array();
-    /** @var Mood $mood */
+
+    /**
+     * @var Mood $mood Mood
+     */
     protected $mood = null;
 
     /**
@@ -30,6 +31,17 @@ class Stylesheet
     public static function create()
     {
         return new static();
+    }
+
+    /**
+     * Get the Styles3d
+     *
+     * @api
+     * @return Style3d[]
+     */
+    public function getStyles3d()
+    {
+        return $this->styles3d;
     }
 
     /**
@@ -53,22 +65,9 @@ class Stylesheet
      * @api
      * @return static
      */
-    public function removeStyles()
+    public function removeAllStyles3d()
     {
         $this->styles3d = array();
-        return $this;
-    }
-
-    /**
-     * Set the Mood of the Stylesheet
-     *
-     * @api
-     * @param Mood $mood Mood object
-     * @return static
-     */
-    public function setMood(Mood $mood)
-    {
-        $this->mood = $mood;
         return $this;
     }
 
@@ -76,14 +75,39 @@ class Stylesheet
      * Get the Mood
      *
      * @api
-     * @param bool $createIfEmpty (optional) If the Mood object should be created if it's not set
      * @return Mood
      */
-    public function getMood($createIfEmpty = true)
+    public function getMood()
     {
-        if (!$this->mood && $createIfEmpty) {
-            $this->setMood(new Mood());
+        return $this->mood;
+    }
+
+    /**
+     * Set the Mood
+     *
+     * @api
+     * @param Mood $mood Mood
+     * @return static
+     */
+    public function setMood(Mood $mood = null)
+    {
+        $this->mood = $mood;
+        return $this;
+    }
+
+    /**
+     * Create a new Mood if necessary
+     *
+     * @api
+     * @return Mood
+     */
+    public function createMood()
+    {
+        if ($this->mood) {
+            return $this->mood;
         }
+        $mood = new Mood();
+        $this->setMood($mood);
         return $this->mood;
     }
 
@@ -95,9 +119,9 @@ class Stylesheet
      */
     public function render(\DOMDocument $domDocument)
     {
-        $stylesheetXml = $domDocument->createElement($this->tagName);
+        $stylesheetXml = $domDocument->createElement("stylesheet");
         if ($this->styles3d) {
-            $stylesXml = $domDocument->createElement('frame3dstyles');
+            $stylesXml = $domDocument->createElement("frame3dstyles");
             $stylesheetXml->appendChild($stylesXml);
             foreach ($this->styles3d as $style3d) {
                 $style3dXml = $style3d->render($domDocument);

@@ -17,7 +17,7 @@ $stylesheet = new \FML\Stylesheet\Stylesheet();
 $maniaLink->setStylesheet($stylesheet);
 
 // Get mood object and set properties
-$mood = $stylesheet->getMood();
+$mood = $stylesheet->createMood();
 
 $mood->setLightAmbientColor(0, 0, 0)
      ->setCloudsColorMin(0.05, 0.05, 0)
