@@ -341,21 +341,23 @@ class ManiaCodeTest extends \PHPUnit_Framework_TestCase
 ", $domDocument->saveXML());
     }
 
-    /*
-     * TODO: enable test of render with echo
+    /**
+     * @runInSeparateProcess
+     * @preserveGlobalState disabled
+     */
     public function testRenderWithEcho()
     {
         $maniaCode = new ManiaCode();
-        $maniaCode->setDisableConfirmation(true)
-                  ->addShowMessage("some-message");
 
         $this->expectOutputString("<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>
-<maniacode noconfirmation=\"1\"><show_message><message>some-message</message></show_message></maniacode>
+<maniacode/>
 ");
 
         $maniaCode->render(true);
+
+        // TODO: test Content-Type header
+        // $this->assertContains("Content-Type: application/xml; charset=utf-8;", headers_list());
     }
-    */
 
     public function testToString()
     {

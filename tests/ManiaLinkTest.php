@@ -205,6 +205,24 @@ class ManiaLinkTest extends \PHPUnit_Framework_TestCase
 ", $domDocument->saveXML());
     }
 
+    /**
+     * @runInSeparateProcess
+     * @preserveGlobalState disabled
+     */
+    public function testRenderWithEcho()
+    {
+        $maniaLink = new ManiaLink();
+
+        $this->expectOutputString("<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>
+<manialink version=\"1\"/>
+");
+
+        $maniaLink->render(true);
+
+        // TODO: test Content-Type header
+        // $this->assertContains("Content-Type: application/xml; charset=utf-8;", headers_list());
+    }
+
     public function testToString()
     {
         $maniaLink = new ManiaLink();
