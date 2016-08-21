@@ -101,6 +101,17 @@ class MoodTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals("1.2 3.4 5.6", $mood->getLightBallColor());
     }
 
+    public function testLightBallIntensity()
+    {
+        $mood = new Mood();
+
+        $this->assertEquals(1., $mood->getLightBallIntensity());
+
+        $this->assertSame($mood, $mood->setLightBallIntensity(13.37));
+
+        $this->assertEquals(13.37, $mood->getLightBallIntensity());
+    }
+
     public function testLightBallRadius()
     {
         $mood = new Mood();
