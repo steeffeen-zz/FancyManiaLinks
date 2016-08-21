@@ -2,11 +2,9 @@
 
 namespace FML\Stylesheet;
 
-    // Warning: The mood class isn't fully supported yet!
-    // Missing attributes: LDir1..
-
 /**
  * Class representing a Stylesheet Mood
+ * Warning: The mood class isn't fully supported yet - Missing attributes: LDir1 etc.
  *
  * @author    steeffeen <mail@steeffeen.com>
  * @copyright FancyManiaLinks Copyright © 2014 Steffen Schröder
@@ -15,23 +13,74 @@ namespace FML\Stylesheet;
 class Mood
 {
 
-    /*
-     * Protected properties
+    /**
+     * @var string $lightAmbientColor Light ambient color
      */
-    protected $tagName = 'mood';
-    protected $lAmbient_LinearRgb = null;
-    protected $cloudsRgbMinLinear = null;
-    protected $cloudsRgbMaxLinear = null;
-    protected $lDir0_LinearRgb = null;
-    protected $lDir0_Intens = 1.;
-    protected $lDir0_DirPhi = 0.;
-    protected $lDir0_DirTheta = 0.;
-    protected $lBall_LinearRgb = null;
-    protected $lBall_Intensity = 1.;
-    protected $lBall_Radius = 0.;
-    protected $fogColorSrgb = null;
-    protected $selfIllumColor = null;
-    protected $skyGradientV_Scale = 1.;
+    protected $lightAmbientColor = null;
+
+    /**
+     * @var string $cloudsMinimumColor Clouds minimum color
+     */
+    protected $cloudsMinimumColor = null;
+
+    /**
+     * @var string $cloudsMaximumColor Clouds maximum color
+     */
+    protected $cloudsMaximumColor = null;
+
+    /**
+     * @var string $light0Color Color of light source 0
+     */
+    protected $light0Color = null;
+
+    /**
+     * @var float $light0Intensity Intensity of light source 0
+     */
+    protected $light0Intensity = 1.;
+
+    /**
+     * @var float $light0PhiAngle Phi angle of light source 0
+     */
+    protected $light0PhiAngle = 0.;
+
+    /**
+     * @var float $light0ThetaAngle Theta angle of light source 0
+     */
+    protected $light0ThetaAngle = 0.;
+
+    /**
+     * @var string $lightBallColor Light ball color
+     */
+    protected $lightBallColor = null;
+
+    /**
+     * @var float $lightBallIntensity Light ball intensity
+     */
+    protected $lightBallIntensity = 1.;
+
+    /**
+     * @var float $lightBallRadius Light ball radius
+     */
+    protected $lightBallRadius = 0.;
+
+    /**
+     * @var string $fogColor Fog color
+     */
+    protected $fogColor = null;
+
+    /**
+     * @var float $selfIlluminationColor Self illumination color
+     */
+    protected $selfIlluminationColor = null;
+
+    /**
+     * @var float $skyGradientV_Scale Sky gradient scale
+     */
+    protected $skyGradientScale = 1.;
+
+    /**
+     * @var SkyGradientKey[] $skyGradientKeys Sky Gradient Keys
+     */
     protected $skyGradientKeys = array();
 
     /**
@@ -46,7 +95,18 @@ class Mood
     }
 
     /**
-     * Set the ambient color in which the Elements reflect the light
+     * Get the light ambient color
+     *
+     * @api
+     * @return string
+     */
+    public function getLightAmbientColor()
+    {
+        return $this->lightAmbientColor;
+    }
+
+    /**
+     * Set the ambient color in which elements reflect the light
      *
      * @api
      * @param float $red   Red color value
@@ -56,8 +116,19 @@ class Mood
      */
     public function setLightAmbientColor($red, $green, $blue)
     {
-        $this->lAmbient_LinearRgb = floatval($red) . ' ' . floatval($green) . ' ' . floatval($blue);
+        $this->lightAmbientColor = floatval($red) . ' ' . floatval($green) . ' ' . floatval($blue);
         return $this;
+    }
+
+    /**
+     * Get the minimum value for the background color range
+     *
+     * @api
+     * @return string
+     */
+    public function getCloudsMinimumColor()
+    {
+        return $this->cloudsMinimumColor;
     }
 
     /**
@@ -69,10 +140,21 @@ class Mood
      * @param float $blue  Blue color value
      * @return static
      */
-    public function setCloudsColorMin($red, $green, $blue)
+    public function setCloudsMinimumColor($red, $green, $blue)
     {
-        $this->cloudsRgbMinLinear = floatval($red) . ' ' . floatval($green) . ' ' . floatval($blue);
+        $this->cloudsMinimumColor = floatval($red) . ' ' . floatval($green) . ' ' . floatval($blue);
         return $this;
+    }
+
+    /**
+     * Get the maximum value for the background color range
+     *
+     * @api
+     * @return string
+     */
+    public function getCloudsMaximumColor()
+    {
+        return $this->cloudsMaximumColor;
     }
 
     /**
@@ -84,10 +166,21 @@ class Mood
      * @param float $blue  Blue color value
      * @return static
      */
-    public function setCloudsColorMax($red, $green, $blue)
+    public function setCloudsMaximumColor($red, $green, $blue)
     {
-        $this->cloudsRgbMaxLinear = floatval($red) . ' ' . floatval($green) . ' ' . floatval($blue);
+        $this->cloudsMaximumColor = floatval($red) . ' ' . floatval($green) . ' ' . floatval($blue);
         return $this;
+    }
+
+    /**
+     * Get the RGB color of light source 0
+     *
+     * @api
+     * @return string
+     */
+    public function getLight0Color()
+    {
+        return $this->light0Color;
     }
 
     /**
@@ -101,8 +194,19 @@ class Mood
      */
     public function setLight0Color($red, $green, $blue)
     {
-        $this->lDir0_LinearRgb = floatval($red) . ' ' . floatval($green) . ' ' . floatval($blue);
+        $this->light0Color = floatval($red) . ' ' . floatval($green) . ' ' . floatval($blue);
         return $this;
+    }
+
+    /**
+     * Get the intensity of light source 0
+     *
+     * @api
+     * @return float
+     */
+    public function getLight0Intensity()
+    {
+        return $this->light0Intensity;
     }
 
     /**
@@ -114,8 +218,19 @@ class Mood
      */
     public function setLight0Intensity($intensity)
     {
-        $this->lDir0_Intens = (float)$intensity;
+        $this->light0Intensity = (float)$intensity;
         return $this;
+    }
+
+    /**
+     * Get the phi angle of light source 0
+     *
+     * @api
+     * @return float
+     */
+    public function getLight0PhiAngle()
+    {
+        return $this->light0PhiAngle;
     }
 
     /**
@@ -127,8 +242,19 @@ class Mood
      */
     public function setLight0PhiAngle($phiAngle)
     {
-        $this->lDir0_DirPhi = (float)$phiAngle;
+        $this->light0PhiAngle = (float)$phiAngle;
         return $this;
+    }
+
+    /**
+     * Get the theta angle of light source 0
+     *
+     * @api
+     * @return float
+     */
+    public function getLight0ThetaAngle()
+    {
+        return $this->light0ThetaAngle;
     }
 
     /**
@@ -140,8 +266,19 @@ class Mood
      */
     public function setLight0ThetaAngle($thetaAngle)
     {
-        $this->lDir0_DirTheta = (float)$thetaAngle;
+        $this->light0ThetaAngle = (float)$thetaAngle;
         return $this;
+    }
+
+    /**
+     * Get the light ball color
+     *
+     * @api
+     * @return string
+     */
+    public function getLightBallColor()
+    {
+        return $this->lightBallColor;
     }
 
     /**
@@ -155,8 +292,19 @@ class Mood
      */
     public function setLightBallColor($red, $green, $blue)
     {
-        $this->lBall_LinearRgb = floatval($red) . ' ' . floatval($green) . ' ' . floatval($blue);
+        $this->lightBallColor = floatval($red) . ' ' . floatval($green) . ' ' . floatval($blue);
         return $this;
+    }
+
+    /**
+     * Get the light ball intensity
+     *
+     * @api
+     * @return float
+     */
+    public function getLightBallIntensity()
+    {
+        return $this->lightBallIntensity;
     }
 
     /**
@@ -168,8 +316,19 @@ class Mood
      */
     public function setLightBallIntensity($intensity)
     {
-        $this->lBall_Intensity = (float)$intensity;
+        $this->lightBallIntensity = (float)$intensity;
         return $this;
+    }
+
+    /**
+     * Get the light ball radius
+     *
+     * @api
+     * @return float
+     */
+    public function getLightBallRadius()
+    {
+        return $this->lightBallRadius;
     }
 
     /**
@@ -181,8 +340,19 @@ class Mood
      */
     public function setLightBallRadius($radius)
     {
-        $this->lBall_Radius = (float)$radius;
+        $this->lightBallRadius = (float)$radius;
         return $this;
+    }
+
+    /**
+     * Get the fog color
+     *
+     * @api
+     * @return string
+     */
+    public function getFogColor()
+    {
+        return $this->fogColor;
     }
 
     /**
@@ -196,8 +366,19 @@ class Mood
      */
     public function setFogColor($red, $green, $blue)
     {
-        $this->fogColorSrgb = floatval($red) . ' ' . floatval($green) . ' ' . floatval($blue);
+        $this->fogColor = floatval($red) . ' ' . floatval($green) . ' ' . floatval($blue);
         return $this;
+    }
+
+    /**
+     * Get the self illumination color
+     *
+     * @api
+     * @return string
+     */
+    public function getSelfIlluminationColor()
+    {
+        return $this->selfIlluminationColor;
     }
 
     /**
@@ -209,49 +390,81 @@ class Mood
      * @param float $blue  Blue color value
      * @return static
      */
-    public function setSelfIllumColor($red, $green, $blue)
+    public function setSelfIlluminationColor($red, $green, $blue)
     {
-        $this->selfIllumColor = floatval($red) . ' ' . floatval($green) . ' ' . floatval($blue);
+        $this->selfIlluminationColor = floatval($red) . ' ' . floatval($green) . ' ' . floatval($blue);
         return $this;
+    }
+
+    /**
+     * Get the sky gradient scale
+     *
+     * @api
+     * @return float
+     */
+    public function getSkyGradientScale()
+    {
+        return $this->skyGradientScale;
     }
 
     /**
      * Set the sky gradient scale
      *
      * @api
-     * @param float $scale Gradient scale
+     * @param float $skyGradientScale Sky gradient scale
      * @return static
      */
-    public function setSkyGradientScale($scale)
+    public function setSkyGradientScale($skyGradientScale)
     {
-        $this->skyGradientV_Scale = (float)$scale;
+        $this->skyGradientScale = (float)$skyGradientScale;
         return $this;
+    }
+
+    /**
+     * Get Sky Gradient Keys
+     *
+     * @api
+     * @return SkyGradientKey[]
+     */
+    public function getSkyGradientKeys()
+    {
+        return $this->skyGradientKeys;
     }
 
     /**
      * Add a sky gradient key
      *
      * @api
-     * @param float  $gradientX Scale value
-     * @param string $color     Gradient color
+     * @param SkyGradientKey $skyGradientKey Sky Gradient Key
      * @return static
      */
-    public function addSkyGradientKey($gradientX, $color)
+    public function addSkyGradientKey(SkyGradientKey $skyGradientKey)
     {
-        $gradientX   = (float)$gradientX;
-        $color       = (string)$color;
-        $gradientKey = array('x' => $gradientX, 'color' => $color);
-        array_push($this->skyGradientKeys, $gradientKey);
+        array_push($this->skyGradientKeys, $skyGradientKey);
         return $this;
     }
 
     /**
-     * Remove all sky gradient keys
+     * Add a sky gradient
+     *
+     * @api
+     * @param float  $x     X value
+     * @param string $color Color value
+     * @return static
+     */
+    public function addSkyGradient($x, $color)
+    {
+        $skyGradientKey = new SkyGradientKey($x, $color);
+        return $this->addSkyGradientKey($skyGradientKey);
+    }
+
+    /**
+     * Remove all Sky Gradient Keys
      *
      * @api
      * @return static
      */
-    public function removeSkyGradientKeys()
+    public function removeAllSkyGradientKeys()
     {
         $this->skyGradientKeys = array();
         return $this;
@@ -265,57 +478,55 @@ class Mood
      */
     public function render(\DOMDocument $domDocument)
     {
-        $moodXml = $domDocument->createElement($this->tagName);
-        if ($this->lAmbient_LinearRgb) {
-            $moodXml->setAttribute('LAmbient_LinearRgb', $this->lAmbient_LinearRgb);
+        $domElement = $domDocument->createElement("mood");
+        if ($this->lightAmbientColor) {
+            $domElement->setAttribute("LAmbient_LinearRgb", $this->lightAmbientColor);
         }
-        if ($this->cloudsRgbMinLinear) {
-            $moodXml->setAttribute('CloudsRgbMinLinear', $this->cloudsRgbMinLinear);
+        if ($this->cloudsMinimumColor) {
+            $domElement->setAttribute("CloudsRgbMinLinear", $this->cloudsMinimumColor);
         }
-        if ($this->cloudsRgbMaxLinear) {
-            $moodXml->setAttribute('CloudsRgbMaxLinear', $this->cloudsRgbMaxLinear);
+        if ($this->cloudsMaximumColor) {
+            $domElement->setAttribute("CloudsRgbMaxLinear", $this->cloudsMaximumColor);
         }
-        if ($this->lDir0_LinearRgb) {
-            $moodXml->setAttribute('LDir0_LinearRgb', $this->lDir0_LinearRgb);
+        if ($this->light0Color) {
+            $domElement->setAttribute("LDir0_LinearRgb", $this->light0Color);
         }
-        if ($this->lDir0_Intens) {
-            $moodXml->setAttribute('LDir0_Intens', $this->lDir0_Intens);
+        if ($this->light0Intensity != 1.) {
+            $domElement->setAttribute("LDir0_Intens", $this->light0Intensity);
         }
-        if ($this->lDir0_DirPhi) {
-            $moodXml->setAttribute('LDir0_DirPhi', $this->lDir0_DirPhi);
+        if ($this->light0PhiAngle) {
+            $domElement->setAttribute("LDir0_DirPhi", $this->light0PhiAngle);
         }
-        if ($this->lDir0_DirTheta) {
-            $moodXml->setAttribute('LDir0_DirTheta', $this->lDir0_DirTheta);
+        if ($this->light0ThetaAngle) {
+            $domElement->setAttribute("LDir0_DirTheta", $this->light0ThetaAngle);
         }
-        if ($this->lBall_LinearRgb) {
-            $moodXml->setAttribute('LBall_LinearRgb', $this->lBall_LinearRgb);
+        if ($this->lightBallColor) {
+            $domElement->setAttribute("LBall_LinearRgb", $this->lightBallColor);
         }
-        if ($this->lBall_Intensity) {
-            $moodXml->setAttribute('LBall_Intens', $this->lBall_Intensity);
+        if ($this->lightBallIntensity != 1.) {
+            $domElement->setAttribute("LBall_Intens", $this->lightBallIntensity);
         }
-        if ($this->lBall_Radius) {
-            $moodXml->setAttribute('LBall_Radius', $this->lBall_Radius);
+        if ($this->lightBallRadius) {
+            $domElement->setAttribute("LBall_Radius", $this->lightBallRadius);
         }
-        if ($this->fogColorSrgb) {
-            $moodXml->setAttribute('FogColorSrgb', $this->fogColorSrgb);
+        if ($this->fogColor) {
+            $domElement->setAttribute("FogColorSrgb", $this->fogColor);
         }
-        if ($this->selfIllumColor) {
-            $moodXml->setAttribute('SelfIllumColor', $this->selfIllumColor);
+        if ($this->selfIlluminationColor) {
+            $domElement->setAttribute("SelfIllumColor", $this->selfIlluminationColor);
         }
-        if ($this->skyGradientV_Scale) {
-            $moodXml->setAttribute('SkyGradientV_Scale', $this->skyGradientV_Scale);
+        if ($this->skyGradientScale != 1.) {
+            $domElement->setAttribute("SkyGradientV_Scale", $this->skyGradientScale);
         }
         if ($this->skyGradientKeys) {
-            $skyGradientXml = $domDocument->createElement('skygradient');
-            $moodXml->appendChild($skyGradientXml);
-            foreach ($this->skyGradientKeys as $gradientKey) {
-                $keyXml = $domDocument->createElement('key');
-                $skyGradientXml->appendChild($keyXml);
-                $keyXml->setAttribute('x', $gradientKey['x']);
-                $keyXml->setAttribute('color', $gradientKey['color']);
+            $skyGradientElement = $domDocument->createElement("skygradient");
+            $domElement->appendChild($skyGradientElement);
+            foreach ($this->skyGradientKeys as $skyGradientKey) {
+                $skyGradientKeyElement = $skyGradientKey->render($domDocument);
+                $skyGradientElement->appendChild($skyGradientKeyElement);
             }
         }
-        return $moodXml;
+        return $domElement;
     }
 
 }

@@ -72,7 +72,7 @@ class StylesheetTest extends \PHPUnit_Framework_TestCase
         $domDocument->appendChild($domElement);
 
         $this->assertEquals("<?xml version=\"1.0\"?>
-<stylesheet><frame3dstyles><style3d id=\"test-style\" model=\"test-model\"/></frame3dstyles><mood LDir0_Intens=\"1\" LBall_Intens=\"1\" SkyGradientV_Scale=\"1\"/></stylesheet>
+<stylesheet><frame3dstyles><style3d id=\"test-style\" model=\"test-model\"/></frame3dstyles><mood/></stylesheet>
 ", $domDocument->saveXML());
     }
 
