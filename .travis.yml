@@ -10,10 +10,14 @@ php:
   - nightly
 
 before_install:
+- composer require --dev phpunit/phpunit
 - composer require --dev codeclimate/php-test-reporter
 
 before_script:
 - mkdir -p build/logs
+
+script:
+- vendor/bin/phpunit
 
 after_script:
 - php vendor/bin/test-reporter
