@@ -8,11 +8,14 @@
         {
             "name": "Steffen Schroeder",
             "email": "mail@steeffeen.com",
-            "homepage": "http://www.steeffeen.com"
+            "homepage": "http://www.steeffeen.com/"
         }
     ],
     "require": {
         "php": ">=5.3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "<6"
     },
     "autoload": {
         "psr-4": {

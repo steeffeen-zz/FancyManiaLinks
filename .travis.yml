@@ -10,7 +10,6 @@ php:
   - nightly
 
 before_install:
-- composer require --dev phpunit/phpunit
 - composer require --dev codeclimate/php-test-reporter
 
 before_script:
