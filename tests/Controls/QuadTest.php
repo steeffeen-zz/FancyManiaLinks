@@ -82,6 +82,17 @@ class QuadTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse($quad->getAutoScale());
     }
 
+    public function testAutoScaleFixedWidth()
+    {
+        $quad = new Quad();
+
+        $this->assertEquals(-1., $quad->getAutoScaleFixedWidth());
+
+        $this->assertSame($quad, $quad->setAutoScaleFixedWidth(13.37));
+
+        $this->assertEquals(13.37, $quad->getAutoScaleFixedWidth());
+    }
+
     public function testKeepRatio()
     {
         $quad = new Quad();
@@ -264,6 +275,7 @@ class QuadTest extends \PHPUnit_Framework_TestCase
              ->setColorize("some-color")
              ->setModulizeColor("some-color")
              ->setAutoScale(false)
+             ->setAutoScaleFixedWidth(42.42)
              ->setKeepRatio("some-mode")
              ->setOpacity(0.5)
              ->setBackgroundColor("some-color")
@@ -282,7 +294,7 @@ class QuadTest extends \PHPUnit_Framework_TestCase
         $domDocument->appendChild($domElement);
 
         $this->assertEquals("<?xml version=\"1.0\"?>
-<quad id=\"test.quad\" image=\"some.url\" imageid=\"some-id\" imagefocus=\"some.url\" imagefocusid=\"some-id\" colorize=\"some-color\" modulizecolor=\"some-color\" autoscale=\"0\" keepratio=\"some-mode\" opacity=\"0.5\" bgcolor=\"some-color\" action=\"some-action\" actionkey=\"42\" url=\"some.url\" urlid=\"some.urlid\" manialink=\"some-manialink\" manialinkid=\"some-manialinkid\" scriptevents=\"1\" style=\"some-style\" substyle=\"some-substyle\" styleselected=\"1\"/>
+<quad id=\"test.quad\" image=\"some.url\" imageid=\"some-id\" imagefocus=\"some.url\" imagefocusid=\"some-id\" colorize=\"some-color\" modulizecolor=\"some-color\" autoscale=\"0\" autoscalefixedWidth=\"42.42\" keepratio=\"some-mode\" opacity=\"0.5\" bgcolor=\"some-color\" action=\"some-action\" actionkey=\"42\" url=\"some.url\" urlid=\"some.urlid\" manialink=\"some-manialink\" manialinkid=\"some-manialinkid\" scriptevents=\"1\" style=\"some-style\" substyle=\"some-substyle\" styleselected=\"1\"/>
 ", $domDocument->saveXML());
     }
 

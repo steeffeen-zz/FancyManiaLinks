@@ -64,6 +64,11 @@ class Quad extends Control implements Actionable, BackgroundColorable, Imageable
     protected $autoScale = true;
 
     /**
+     * @var float $autoScaleFixedWidth Fixed width for automatic scaling
+     */
+    protected $autoScaleFixedWidth = -1.;
+
+    /**
      * @var string $keepRatio Keep ratio mode
      */
     protected $keepRatio = null;
@@ -286,6 +291,30 @@ class Quad extends Control implements Actionable, BackgroundColorable, Imageable
     public function setAutoScale($autoScale)
     {
         $this->autoScale = (bool)$autoScale;
+        return $this;
+    }
+
+    /**
+     * Get the fixed width for automatic image scaling
+     *
+     * @api
+     * @return float
+     */
+    public function getAutoScaleFixedWidth()
+    {
+        return $this->autoScaleFixedWidth;
+    }
+
+    /**
+     * Set the fixed width for automatic image scaling
+     *
+     * @api
+     * @param float $autoScaleFixedWidth Fixed width for automatic image scaling
+     * @return static
+     */
+    public function setAutoScaleFixedWidth($autoScaleFixedWidth)
+    {
+        $this->autoScaleFixedWidth = (float)$autoScaleFixedWidth;
         return $this;
     }
 
@@ -582,6 +611,9 @@ class Quad extends Control implements Actionable, BackgroundColorable, Imageable
         }
         if (!$this->autoScale) {
             $domElement->setAttribute("autoscale", 0);
+        }
+        if ($this->autoScaleFixedWidth > 0.) {
+            $domElement->setAttribute("autoscalefixedWidth", $this->autoScaleFixedWidth);
         }
         if ($this->keepRatio) {
             $domElement->setAttribute("keepratio", $this->keepRatio);
