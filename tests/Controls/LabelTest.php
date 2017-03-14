@@ -61,17 +61,6 @@ class LabelTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($label->getTranslate());
     }
 
-    public function testMaxLines()
-    {
-        $label = new Label();
-
-        $this->assertEquals(-1, $label->getMaxLines());
-
-        $this->assertSame($label, $label->setMaxLines(13));
-
-        $this->assertEquals(13, $label->getMaxLines());
-    }
-
     public function testOpacity()
     {
         $label = new Label();
@@ -158,6 +147,28 @@ class LabelTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($label, $label->setAutoNewLine(true));
 
         $this->assertTrue($label->getAutoNewLine());
+    }
+
+    public function testLineSpacing()
+    {
+        $label = new Label();
+
+        $this->assertEquals(-1., $label->getLineSpacing());
+
+        $this->assertSame($label, $label->setLineSpacing(13.37));
+
+        $this->assertEquals(13.37, $label->getLineSpacing());
+    }
+
+    public function testMaxLines()
+    {
+        $label = new Label();
+
+        $this->assertEquals(-1, $label->getMaxLines());
+
+        $this->assertSame($label, $label->setMaxLines(13));
+
+        $this->assertEquals(13, $label->getMaxLines());
     }
 
     public function testScriptEvents()
@@ -282,7 +293,6 @@ class LabelTest extends \PHPUnit_Framework_TestCase
               ->setTextPrefix("some-prefix")
               ->setTextEmboss(true)
               ->setTranslate(true)
-              ->setMaxLines(42)
               ->setOpacity(0.5)
               ->setAction("some-action")
               ->setActionKey(42)
@@ -291,6 +301,8 @@ class LabelTest extends \PHPUnit_Framework_TestCase
               ->setManialink("some-manialink")
               ->setManialinkId("some-manialinkid")
               ->setAutoNewLine(true)
+              ->setLineSpacing(12.34)
+              ->setMaxLines(42)
               ->setScriptEvents(true)
               ->setStyle("some-style")
               ->setTextSize(42)
@@ -303,7 +315,7 @@ class LabelTest extends \PHPUnit_Framework_TestCase
         $domDocument->appendChild($domElement);
 
         $this->assertEquals("<?xml version=\"1.0\"?>
-<label id=\"test.label\" text=\"some-text\" textid=\"some-id\" textprefix=\"some-prefix\" textemboss=\"1\" translate=\"1\" maxlines=\"42\" opacity=\"0.5\" action=\"some-action\" actionkey=\"42\" url=\"some.url\" urlid=\"some.urlid\" manialink=\"some-manialink\" manialinkid=\"some-manialinkid\" autonewline=\"1\" scriptevents=\"1\" style=\"some-style\" textsize=\"42\" textfont=\"some-font\" textcolor=\"some-color\" focusareacolor1=\"some-color\" focusareacolor2=\"some-color\"/>
+<label id=\"test.label\" text=\"some-text\" textid=\"some-id\" textprefix=\"some-prefix\" textemboss=\"1\" translate=\"1\" opacity=\"0.5\" action=\"some-action\" actionkey=\"42\" url=\"some.url\" urlid=\"some.urlid\" manialink=\"some-manialink\" manialinkid=\"some-manialinkid\" autonewline=\"1\" linespacing=\"12.34\" maxline=\"42\" scriptevents=\"1\" style=\"some-style\" textsize=\"42\" textfont=\"some-font\" textcolor=\"some-color\" focusareacolor1=\"some-color\" focusareacolor2=\"some-color\"/>
 ", $domDocument->saveXML());
     }
 

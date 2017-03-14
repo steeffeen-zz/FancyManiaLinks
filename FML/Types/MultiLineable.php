@@ -46,4 +46,21 @@ interface MultiLineable
      */
     public function setLineSpacing($lineSpacing);
 
+    /**
+     * Get the maximum number of lines
+     *
+     * @api
+     * @return int
+     */
+    public function getMaxLines();
+
+    /**
+     * Set the maximum number of lines
+     *
+     * @api
+     * @param int $maxLines Maximum number of lines
+     * @return static
+     */
+    public function setMaxLines($maxLines);
+
 }

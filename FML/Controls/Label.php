@@ -5,6 +5,7 @@ namespace FML\Controls;
 use FML\Script\Features\Clock;
 use FML\Types\Actionable;
 use FML\Types\Linkable;
+use FML\Types\MultiLineable;
 use FML\Types\NewLineable;
 use FML\Types\Scriptable;
 use FML\Types\Styleable;
@@ -18,7 +19,7 @@ use FML\Types\TextFormatable;
  * @copyright FancyManiaLinks Copyright © 2014 Steffen Schröder
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
-class Label extends Control implements Actionable, Linkable, NewLineable, Scriptable, Styleable, TextFormatable
+class Label extends Control implements Actionable, Linkable, NewLineable, MultiLineable, Scriptable, Styleable, TextFormatable
 {
 
     /*
@@ -94,6 +95,11 @@ class Label extends Control implements Actionable, Linkable, NewLineable, Script
      * @var bool $autoNewLine Automatic new line
      */
     protected $autoNewLine = null;
+
+    /**
+     * @var float $lineSpacing Line spacing
+     */
+    protected $lineSpacing = -1.;
 
     /**
      * @var bool $scriptEvents Script events
@@ -251,30 +257,6 @@ class Label extends Control implements Actionable, Linkable, NewLineable, Script
     }
 
     /**
-     * Get the max lines count
-     *
-     * @api
-     * @return int
-     */
-    public function getMaxLines()
-    {
-        return $this->maxLines;
-    }
-
-    /**
-     * Set the max lines count
-     *
-     * @api
-     * @param int $maxLines Max lines count
-     * @return static
-     */
-    public function setMaxLines($maxLines)
-    {
-        $this->maxLines = (int)$maxLines;
-        return $this;
-    }
-
-    /**
      * Get the opacity
      *
      * @api
@@ -401,7 +383,7 @@ class Label extends Control implements Actionable, Linkable, NewLineable, Script
     }
 
     /**
-     * @see NewLineable::getAutoNewLine()
+     * @see MultiLineable::getAutoNewLine()
      */
     public function getAutoNewLine()
     {
@@ -409,11 +391,45 @@ class Label extends Control implements Actionable, Linkable, NewLineable, Script
     }
 
     /**
-     * @see NewLineable::setAutoNewLine()
+     * @see MultiLineable::setAutoNewLine()
      */
     public function setAutoNewLine($autoNewLine)
     {
         $this->autoNewLine = (bool)$autoNewLine;
+        return $this;
+    }
+
+    /**
+     * @see MultiLineable::getLineSpacing()
+     */
+    public function getLineSpacing()
+    {
+        return $this->lineSpacing;
+    }
+
+    /**
+     * @see MultiLineable::setLineSpacing()
+     */
+    public function setLineSpacing($lineSpacing)
+    {
+        $this->lineSpacing = (float)$lineSpacing;
+        return $this;
+    }
+
+    /**
+     * @see MultiLineable::getMaxLines()
+     */
+    public function getMaxLines()
+    {
+        return $this->maxLines;
+    }
+
+    /**
+     * @see MultiLineable::setMaxLines()
+     */
+    public function setMaxLines($maxLines)
+    {
+        $this->maxLines = (int)$maxLines;
         return $this;
     }
 
@@ -588,9 +604,6 @@ class Label extends Control implements Actionable, Linkable, NewLineable, Script
         if ($this->translate) {
             $domElement->setAttribute("translate", $this->translate);
         }
-        if ($this->maxLines >= 0) {
-            $domElement->setAttribute("maxlines", $this->maxLines);
-        }
         if ($this->opacity != 1.) {
             $domElement->setAttribute("opacity", $this->opacity);
         }
@@ -614,6 +627,12 @@ class Label extends Control implements Actionable, Linkable, NewLineable, Script
         }
         if ($this->autoNewLine) {
             $domElement->setAttribute("autonewline", $this->autoNewLine);
+        }
+        if ($this->lineSpacing) {
+            $domElement->setAttribute("linespacing", $this->lineSpacing);
+        }
+        if ($this->maxLines > 0) {
+            $domElement->setAttribute("maxline", $this->maxLines);
         }
         if ($this->scriptEvents) {
             $domElement->setAttribute("scriptevents", $this->scriptEvents);

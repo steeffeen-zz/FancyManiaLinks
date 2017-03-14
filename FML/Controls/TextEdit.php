@@ -150,10 +150,7 @@ class TextEdit extends Control implements MultiLineable, Scriptable, Styleable, 
     }
 
     /**
-     * Get the maximum number of lines
-     *
-     * @api
-     * @return int
+     * @see MultiLineable::getMaxLines()
      */
     public function getMaxLines()
     {
@@ -161,11 +158,7 @@ class TextEdit extends Control implements MultiLineable, Scriptable, Styleable, 
     }
 
     /**
-     * Set the maximum number of lines
-     *
-     * @api
-     * @param int $maxLines Maximum number of lines
-     * @return static
+     * @see MultiLineable::setMaxLines()
      */
     public function setMaxLines($maxLines)
     {
@@ -368,10 +361,10 @@ class TextEdit extends Control implements MultiLineable, Scriptable, Styleable, 
         if ($this->autoNewLine) {
             $domElement->setAttribute("autonewline", 1);
         }
-        if ($this->lineSpacing) {
+        if ($this->lineSpacing > 0) {
             $domElement->setAttribute("linespacing", $this->lineSpacing);
         }
-        if ($this->maxLines) {
+        if ($this->maxLines > 0) {
             $domElement->setAttribute("maxline", $this->maxLines);
         }
         if ($this->showLineNumbers) {
