@@ -28,6 +28,17 @@ class EntryTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals("test-default", $entry->getDefault());
     }
 
+    public function testSelectText()
+    {
+        $entry = new Entry();
+
+        $this->assertNull($entry->getSelectText());
+
+        $this->assertSame($entry, $entry->setSelectText(true));
+
+        $this->assertTrue($entry->getSelectText());
+    }
+
     public function testAutoNewLine()
     {
         $entry = new Entry();
@@ -37,6 +48,17 @@ class EntryTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($entry, $entry->setAutoNewLine(true));
 
         $this->assertTrue($entry->getAutoNewLine());
+    }
+
+    public function testTextFormat()
+    {
+        $entry = new Entry();
+
+        $this->assertNull($entry->getTextFormat());
+
+        $this->assertSame($entry, $entry->setTextFormat("test-format"));
+
+        $this->assertEquals("test-format", $entry->getTextFormat());
     }
 
     public function testScriptEvents()
@@ -168,7 +190,9 @@ class EntryTest extends \PHPUnit_Framework_TestCase
         $entry->clearAlign()
               ->setName("some-name")
               ->setDefault("some-default")
+              ->setSelectText(true)
               ->setAutoNewLine(true)
+              ->setTextFormat("some-format")
               ->setScriptEvents(true)
               ->setStyle("some-style")
               ->setTextColor("some-color")
@@ -181,7 +205,7 @@ class EntryTest extends \PHPUnit_Framework_TestCase
         $domDocument->appendChild($domElement);
 
         $this->assertEquals("<?xml version=\"1.0\"?>
-<entry id=\"test.entry\" name=\"some-name\" default=\"some-default\" autonewline=\"1\" scriptevents=\"1\" style=\"some-style\" textcolor=\"some-color\" textsize=\"42\" textfont=\"some-font\" focusareacolor1=\"some-color\" focusareacolor2=\"some-color\"/>
+<entry id=\"test.entry\" name=\"some-name\" default=\"some-default\" selecttext=\"1\" autonewline=\"1\" textformat=\"some-format\" scriptevents=\"1\" style=\"some-style\" textcolor=\"some-color\" textsize=\"42\" textfont=\"some-font\" focusareacolor1=\"some-color\" focusareacolor2=\"some-color\"/>
 ", $domDocument->saveXML());
     }
 

@@ -20,6 +20,13 @@ use FML\Types\TextFormatable;
 class Entry extends Control implements NewLineable, Scriptable, Styleable, TextFormatable
 {
 
+    /*
+     * Constants
+     */
+    const FORMAT_Default     = "Default";
+    const FORMAT_Password    = "Password";
+    const FORMAT_NewPassword = "NewPassword";
+
     /**
      * @var string $name Entry name
      */
@@ -31,9 +38,20 @@ class Entry extends Control implements NewLineable, Scriptable, Styleable, TextF
     protected $default = null;
 
     /**
+     * @var bool $selectText Select text
+     */
+    protected $selectText = null;
+
+    /**
+     * @deprecated
      * @var bool $autoNewLine Auto new line
      */
     protected $autoNewLine = null;
+
+    /**
+     * @var string $textFormat Text format
+     */
+    protected $textFormat = null;
 
     /**
      * @var bool $scriptEvents Script events usage
@@ -124,6 +142,30 @@ class Entry extends Control implements NewLineable, Scriptable, Styleable, TextF
     }
 
     /**
+     * Get select text
+     *
+     * @api
+     * @return bool
+     */
+    public function getSelectText()
+    {
+        return $this->selectText;
+    }
+
+    /**
+     * Set select text
+     *
+     * @api
+     * @param bool $selectText Select text
+     * @return static
+     */
+    public function setSelectText($selectText)
+    {
+        $this->selectText = $selectText;
+        return $this;
+    }
+
+    /**
      * @see NewLineable::getAutoNewLine()
      */
     public function getAutoNewLine()
@@ -137,6 +179,30 @@ class Entry extends Control implements NewLineable, Scriptable, Styleable, TextF
     public function setAutoNewLine($autoNewLine)
     {
         $this->autoNewLine = (bool)$autoNewLine;
+        return $this;
+    }
+
+    /**
+     * Get text format
+     *
+     * @api
+     * @return string
+     */
+    public function getTextFormat()
+    {
+        return $this->textFormat;
+    }
+
+    /**
+     * Set text format
+     *
+     * @api
+     * @param string $textFormat Text format
+     * @return static
+     */
+    public function setTextFormat($textFormat)
+    {
+        $this->textFormat = $textFormat;
         return $this;
     }
 
@@ -329,8 +395,14 @@ class Entry extends Control implements NewLineable, Scriptable, Styleable, TextF
                 $domElement->setAttribute("default", $value);
             }
         }
+        if ($this->selectText) {
+            $domElement->setAttribute("selecttext", 1);
+        }
         if ($this->autoNewLine) {
             $domElement->setAttribute("autonewline", 1);
+        }
+        if ($this->textFormat) {
+            $domElement->setAttribute("textformat", $this->textFormat);
         }
         if ($this->scriptEvents) {
             $domElement->setAttribute("scriptevents", 1);
