@@ -5,9 +5,11 @@ namespace FML\Types;
 /**
  * Interface for Elements with autonewline attribute
  *
- * @author    steeffeen <mail@steeffeen.com>
- * @copyright FancyManiaLinks Copyright © 2014 Steffen Schröder
- * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
+ * @deprecated Use MultiLineable
+ * @see        MultiLineable
+ * @author     steeffeen <mail@steeffeen.com>
+ * @copyright  FancyManiaLinks Copyright © 2014 Steffen Schröder
+ * @license    http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
 interface NewLineable
 {
@@ -16,6 +18,7 @@ interface NewLineable
      * Get auto new line
      *
      * @api
+     * @deprecated
      * @return bool
      */
     public function getAutoNewLine();
@@ -24,6 +27,7 @@ interface NewLineable
      * Set auto new line
      *
      * @api
+     * @deprecated
      * @param bool $autoNewLine If the Element should insert new lines automatically
      * @return static
      */
