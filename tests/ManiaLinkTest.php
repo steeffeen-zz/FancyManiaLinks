@@ -12,21 +12,46 @@ class ManiaLinkTest extends \PHPUnit_Framework_TestCase
     public function testCreate()
     {
         $child     = new Including();
-        $maniaLink = ManiaLink::create("test-id", "test-name", array($child));
+        $maniaLink = ManiaLink::create("test-id", 1337, "test-name", array($child));
 
         $this->assertTrue($maniaLink instanceof ManiaLink);
         $this->assertEquals("test-id", $maniaLink->getId());
+        $this->assertEquals(1337, $maniaLink->getVersion());
         $this->assertEquals("test-name", $maniaLink->getName());
+        $this->assertEquals(array($child), $maniaLink->getChildren());
+    }
+
+    public function testCreateWithoutVersion()
+    {
+        $child     = new Including();
+        $maniaLink = ManiaLink::create("old-id", "old-name", array($child));
+
+        $this->assertTrue($maniaLink instanceof ManiaLink);
+        $this->assertEquals("old-id", $maniaLink->getId());
+        $this->assertEquals(1, $maniaLink->getVersion());
+        $this->assertEquals("old-name", $maniaLink->getName());
         $this->assertEquals(array($child), $maniaLink->getChildren());
     }
 
     public function testConstruct()
     {
         $child     = new Including();
-        $maniaLink = new ManiaLink("some-id", "some-name", array($child));
+        $maniaLink = new ManiaLink("some-id", 1234, "some-name", array($child));
 
         $this->assertEquals("some-id", $maniaLink->getId());
+        $this->assertEquals(1234, $maniaLink->getVersion());
         $this->assertEquals("some-name", $maniaLink->getName());
+        $this->assertEquals(array($child), $maniaLink->getChildren());
+    }
+
+    public function testConstructWithoutVersion()
+    {
+        $child     = new Including();
+        $maniaLink = new ManiaLink("old-id", "old-name", array($child));
+
+        $this->assertEquals("old-id", $maniaLink->getId());
+        $this->assertEquals(1, $maniaLink->getVersion());
+        $this->assertEquals("old-name", $maniaLink->getName());
         $this->assertEquals(array($child), $maniaLink->getChildren());
     }
 
@@ -46,6 +71,17 @@ class ManiaLinkTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals("new-id", $maniaLink->getId());
         $this->assertEquals("test-id", $maniaLink->getName());
+    }
+
+    public function testVersion()
+    {
+        $maniaLink = new ManiaLink();
+
+        $this->assertEquals(1, $maniaLink->getVersion());
+
+        $this->assertSame($maniaLink, $maniaLink->setVersion(42));
+
+        $this->assertEquals(42, $maniaLink->getVersion());
     }
 
     public function testName()
@@ -175,6 +211,7 @@ class ManiaLinkTest extends \PHPUnit_Framework_TestCase
     {
         $maniaLink = new ManiaLink();
         $maniaLink->setId("some-id")
+                  ->setVersion(13)
                   ->setName("some-name")
                   ->setBackground("some-background")
                   ->setNavigable3d(false)
@@ -187,7 +224,7 @@ class ManiaLinkTest extends \PHPUnit_Framework_TestCase
         $domDocument = $maniaLink->render();
 
         $this->assertEquals("<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>
-<manialink version=\"1\" id=\"some-id\" name=\"some-name\" background=\"some-background\" navigable3d=\"0\"><timeout>42</timeout><dico/><include/><stylesheet/></manialink>
+<manialink id=\"some-id\" version=\"13\" name=\"some-name\" background=\"some-background\" navigable3d=\"0\"><timeout>42</timeout><dico/><include/><stylesheet/></manialink>
 ", $domDocument->saveXML());
     }
 

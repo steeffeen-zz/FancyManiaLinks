@@ -33,6 +33,11 @@ class ManiaLink
     protected $maniaLinkId = null;
 
     /**
+     * @var int $version ManiaLink version
+     */
+    protected $version = 1;
+
+    /**
      * @var string $name ManiaLink name
      */
     protected $name = null;
@@ -76,31 +81,42 @@ class ManiaLink
      * Create a new ManiaLink
      *
      * @api
-     * @param string       $maniaLinkId   (optional) ManiaLink ID
-     * @param string       $maniaLinkName (optional) ManiaLink name
-     * @param Renderable[] $children      (optional) Children
+     * @param string       $maniaLinkId (optional) ManiaLink ID
+     * @param int          $version     (optional) Version
+     * @param string       $name        (optional) Name
+     * @param Renderable[] $children    (optional) Children
      * @return static
      */
-    public static function create($maniaLinkId = null, $maniaLinkName = null, array $children = null)
+    public static function create($maniaLinkId = null, $version = null, $name = null, array $children = null)
     {
-        return new static($maniaLinkId, $maniaLinkName, $children);
+        return new static($maniaLinkId, $version, $name, $children);
     }
 
     /**
      * Construct a new ManiaLink
      *
      * @api
-     * @param string       $maniaLinkId   (optional) ManiaLink ID
-     * @param string       $maniaLinkName (optional) ManiaLink name
-     * @param Renderable[] $children      (optional) Children
+     * @param string       $maniaLinkId (optional) ManiaLink ID
+     * @param int          $version     (optional) Version
+     * @param string       $name        (optional) Name
+     * @param Renderable[] $children    (optional) Children
      */
-    public function __construct($maniaLinkId = null, $maniaLinkName = null, array $children = null)
+    public function __construct($maniaLinkId = null, $version = null, $name = null, array $children = null)
     {
+        if (is_string($version)) {
+            // backwards-compatibility (version has been introduced later)
+            $children = $name;
+            $name     = $version;
+            $version  = null;
+        }
         if ($maniaLinkId) {
             $this->setId($maniaLinkId);
         }
-        if ($maniaLinkName) {
-            $this->setName($maniaLinkName);
+        if ($version) {
+            $this->setVersion($version);
+        }
+        if ($name) {
+            $this->setName($name);
         }
         if ($children) {
             $this->setChildren($children);
@@ -131,6 +147,30 @@ class ManiaLink
         if ($this->maniaLinkId && !$this->name) {
             $this->setName($this->maniaLinkId);
         }
+        return $this;
+    }
+
+    /**
+     * Get the version
+     *
+     * @api
+     * @return int
+     */
+    public function getVersion()
+    {
+        return $this->version;
+    }
+
+    /**
+     * Set the version
+     *
+     * @api
+     * @param int $version ManiaLink version
+     * @return static
+     */
+    public function setVersion($version)
+    {
+        $this->version = (int)$version;
         return $this;
     }
 
@@ -391,9 +431,11 @@ class ManiaLink
             $domDocument->appendChild($maniaLink);
         }
 
-        $maniaLink->setAttribute("version", "1");
         if ($this->maniaLinkId) {
             $maniaLink->setAttribute("id", $this->maniaLinkId);
+        }
+        if ($this->version > 0) {
+            $maniaLink->setAttribute("version", $this->version);
         }
         if ($this->name) {
             $maniaLink->setAttribute("name", $this->name);
