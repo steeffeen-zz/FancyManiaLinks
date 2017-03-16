@@ -689,6 +689,9 @@ abstract class Control implements Identifiable, Renderable, ScriptFeatureable
         if ($this->posX || $this->posY || $this->posZ) {
             $domElement->setAttribute("posn", "{$this->posX} {$this->posY} {$this->posZ}");
         }
+        if ($this->posZ) {
+            $domElement->setAttribute("z-index", $this->posZ);
+        }
         if ($this->width >= 0. || $this->height >= 0.) {
             $domElement->setAttribute("sizen", "{$this->width} {$this->height}");
         }
