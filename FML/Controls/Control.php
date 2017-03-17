@@ -98,6 +98,11 @@ abstract class Control implements Identifiable, Renderable, ScriptFeatureable
     protected $classes = array();
 
     /**
+     * @var mixed[] $dataAttributes Data attributes
+     */
+    protected $dataAttributes = array();
+
+    /**
      * @var ScriptFeature[] $scriptFeatures Script Features
      */
     protected $scriptFeatures = array();
@@ -518,6 +523,111 @@ abstract class Control implements Identifiable, Renderable, ScriptFeatureable
     }
 
     /**
+     * Check if a data attribute is set
+     *
+     * @api
+     * @param string $name Name
+     * @return bool
+     */
+    public function hasDataAttribute($name)
+    {
+        return isset($this->dataAttributes[$name]);
+    }
+
+    /**
+     * Get data attribute
+     *
+     * @api
+     * @param string $name Name
+     * @return mixed
+     */
+    public function getDataAttribute($name)
+    {
+        if (isset($this->dataAttributes[$name])) {
+            return $this->dataAttributes[$name];
+        }
+        return null;
+    }
+
+    /**
+     * Get data attributes
+     *
+     * @api
+     * @return mixed[]
+     */
+    public function getDataAttributes()
+    {
+        return $this->dataAttributes;
+    }
+
+    /**
+     * Add data attribute
+     *
+     * @api
+     * @param string $name  Name
+     * @param mixed  $value Value
+     * @return static
+     */
+    public function addDataAttribute($name, $value)
+    {
+        $this->dataAttributes[$name] = $value;
+        return $this;
+    }
+
+    /**
+     * Add multiple data attributes
+     *
+     * @api
+     * @param mixed[] $dataAttributes Data attributes
+     * @return static
+     */
+    public function addDataAttributes(array $dataAttributes)
+    {
+        foreach ($dataAttributes as $name => $value) {
+            $this->addDataAttribute($name, $value);
+        }
+        return $this;
+    }
+
+    /**
+     * Set data attributes (replacing all previous attributes)
+     *
+     * @api
+     * @param mixed[] $dataAttributes Data attributes
+     * @return static
+     */
+    public function setDataAttributes(array $dataAttributes)
+    {
+        return $this->removeAllDataAttributes()
+                    ->addDataAttributes($dataAttributes);
+    }
+
+    /**
+     * Remove data attribute
+     *
+     * @api
+     * @param string $name Name
+     * @return static
+     */
+    public function removeDataAttribute($name)
+    {
+        unset($this->dataAttributes[$name]);
+        return $this;
+    }
+
+    /**
+     * Remove all data attributes
+     *
+     * @api
+     * @return static
+     */
+    public function removeAllDataAttributes()
+    {
+        $this->dataAttributes = array();
+        return $this;
+    }
+
+    /**
      * @see ScriptFeatureable::getScriptFeatures()
      */
     public function getScriptFeatures()
@@ -713,6 +823,9 @@ abstract class Control implements Identifiable, Renderable, ScriptFeatureable
         if (!empty($this->classes)) {
             $classes = implode(" ", $this->classes);
             $domElement->setAttribute("class", $classes);
+        }
+        foreach ($this->dataAttributes as $dataAttributeName => $dataAttributeValue) {
+            $domElement->setAttribute("data-" . $dataAttributeName, $dataAttributeValue);
         }
         return $domElement;
     }

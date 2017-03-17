@@ -216,6 +216,37 @@ class ControlTest extends \PHPUnit_Framework_TestCase
         $this->assertEmpty($control->getClasses());
     }
 
+    public function testDataAttributes()
+    {
+        $control = new ControlStub();
+
+        $this->assertEmpty($control->getDataAttributes());
+
+        $this->assertSame($control, $control->setDataAttributes(array("test-attribute1" => "test-value", "test-attribute2" => 13)));
+
+        $this->assertEquals(array("test-attribute1" => "test-value", "test-attribute2" => 13), $control->getDataAttributes());
+
+        $this->assertTrue($control->hasDataAttribute("test-attribute1"));
+        $this->assertTrue($control->hasDataAttribute("test-attribute2"));
+        $this->assertFalse($control->hasDataAttribute("test-attribute3"));
+
+        $this->assertEquals("test-value", $control->getDataAttribute("test-attribute1"));
+        $this->assertEquals(13, $control->getDataAttribute("test-attribute2"));
+        $this->assertNull($control->getDataAttribute("test-attribute3"));
+
+        $this->assertSame($control, $control->removeDataAttribute("test-attribute2"));
+
+        $this->assertEquals(array("test-attribute1" => "test-value"), $control->getDataAttributes());
+
+        $this->assertTrue($control->hasDataAttribute("test-attribute1"));
+        $this->assertFalse($control->hasDataAttribute("test-attribute2"));
+
+        $this->assertSame($control, $control->removeAllDataAttributes());
+
+        $this->assertEmpty($control->getDataAttributes());
+        $this->assertFalse($control->hasDataAttribute("test-attribute1"));
+    }
+
     public function testScriptFeatures()
     {
         $control             = new ControlStub();
@@ -424,13 +455,14 @@ class ControlTest extends \PHPUnit_Framework_TestCase
                 ->setScale(0.5)
                 ->setVisible(false)
                 ->setRotation(0.3)
-                ->addClasses(array("some-class1", "some-class2"));
+                ->addClasses(array("some-class1", "some-class2"))
+                ->addDataAttributes(array("attribute1" => "value1", "attribute2" => "value2"));
 
         $domElement = $control->render($domDocument);
         $domDocument->appendChild($domElement);
 
         $this->assertEquals("<?xml version=\"1.0\"?>
-<control id=\"some.control\" posn=\"9.8 7.6 5.4\" z-index=\"5.4\" sizen=\"98.76 54.32\" halign=\"some-halign\" valign=\"some-valign\" scale=\"0.5\" hidden=\"1\" rot=\"0.3\" class=\"some-class1 some-class2\"/>
+<control id=\"some.control\" posn=\"9.8 7.6 5.4\" z-index=\"5.4\" sizen=\"98.76 54.32\" halign=\"some-halign\" valign=\"some-valign\" scale=\"0.5\" hidden=\"1\" rot=\"0.3\" class=\"some-class1 some-class2\" data-attribute1=\"value1\" data-attribute2=\"value2\"/>
 ", $domDocument->saveXML());
     }
 
