@@ -103,6 +103,42 @@ abstract class Builder
     }
 
     /**
+     * Get the Vec3 representation for the given values
+     *
+     * @api
+     * @param float|float[] $valueX Value X
+     * @param float         $valueY (optional) Value Y
+     * @return string
+     */
+    public static function getVec2($valueX, $valueY = null)
+    {
+        if (is_array($valueX)) {
+            $valueY = (isset($valueX[1]) ? $valueX[1] : 0.);
+            $valueX = (isset($valueX[0]) ? $valueX[0] : 0.);
+        }
+        return "<" . static::getReal($valueX) . "," . static::getReal($valueY) . ">";
+    }
+
+    /**
+     * Get the Vec3 representation for the given values
+     *
+     * @api
+     * @param float|float[] $valueX Value X
+     * @param float         $valueY (optional) Value Y
+     * @param float         $valueZ (optional) Value Z
+     * @return string
+     */
+    public static function getVec3($valueX, $valueY = null, $valueZ = null)
+    {
+        if (is_array($valueX)) {
+            $valueZ = (isset($valueX[2]) ? $valueX[2] : 0.);
+            $valueY = (isset($valueX[1]) ? $valueX[1] : 0.);
+            $valueX = (isset($valueX[0]) ? $valueX[0] : 0.);
+        }
+        return "<" . static::getReal($valueX) . "," . static::getReal($valueY) . "," . static::getReal($valueZ) . ">";
+    }
+
+    /**
      * Get the string representation of the given array
      *
      * @api

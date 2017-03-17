@@ -46,6 +46,23 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals("False", Builder::getBoolean(false));
     }
 
+    public function testVec2()
+    {
+        $this->assertEquals("<0.,0.>", Builder::getVec2(array()));
+        $this->assertEquals("<1.,2.>", Builder::getVec2(array(1., 2.)));
+        $this->assertEquals("<3.,4.>", Builder::getVec2(3., 4.));
+        $this->assertEquals("<5.,0.>", Builder::getVec2(5.));
+    }
+
+    public function testVec3()
+    {
+        $this->assertEquals("<0.,0.,0.>", Builder::getVec3(array()));
+        $this->assertEquals("<1.,2.,3.>", Builder::getVec3(array(1., 2., 3.)));
+        $this->assertEquals("<4.,5.,6.>", Builder::getVec3(4., 5., 6.));
+        $this->assertEquals("<7.,8.,0.>", Builder::getVec3(7., 8.));
+        $this->assertEquals("<9.,0.,0.>", Builder::getVec3(9.));
+    }
+
     public function testArray()
     {
         $this->assertEquals("[\"a\", \"b\", \"c\"]", Builder::getArray(array("a", "b", "c")));
