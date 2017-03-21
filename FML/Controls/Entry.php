@@ -59,6 +59,11 @@ class Entry extends Control implements NewLineable, Scriptable, Styleable, TextF
     protected $scriptEvents = null;
 
     /**
+     * @var string $scriptAction Script action
+     */
+    protected $scriptAction = null;
+
+    /**
      * @var string $style Style
      */
     protected $style = null;
@@ -220,6 +225,23 @@ class Entry extends Control implements NewLineable, Scriptable, Styleable, TextF
     public function setScriptEvents($scriptEvents)
     {
         $this->scriptEvents = (bool)$scriptEvents;
+        return $this;
+    }
+
+    /**
+     * @see Scriptable::getScriptAction()
+     */
+    public function getScriptAction()
+    {
+        return $this->scriptAction;
+    }
+
+    /**
+     * @see Scriptable::setScriptAction()
+     */
+    public function setScriptAction($scriptAction)
+    {
+        $this->scriptAction = (string)$scriptAction;
         return $this;
     }
 
@@ -406,6 +428,9 @@ class Entry extends Control implements NewLineable, Scriptable, Styleable, TextF
         }
         if ($this->scriptEvents) {
             $domElement->setAttribute("scriptevents", 1);
+        }
+        if ($this->scriptAction) {
+            $domElement->setAttribute("scriptaction", $this->scriptAction);
         }
         if ($this->style) {
             $domElement->setAttribute("style", $this->style);

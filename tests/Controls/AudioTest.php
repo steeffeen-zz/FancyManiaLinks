@@ -82,6 +82,17 @@ class AudioTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($audio->getScriptEvents());
     }
 
+    public function testScriptAction()
+    {
+        $audio = new Audio();
+
+        $this->assertNull($audio->getScriptAction());
+
+        $this->assertSame($audio, $audio->setScriptAction("test-action'param1'param2"));
+
+        $this->assertEquals("test-action'param1'param2", $audio->getScriptAction());
+    }
+
     public function testTagName()
     {
         $audio = new Audio();
@@ -111,13 +122,14 @@ class AudioTest extends \PHPUnit_Framework_TestCase
               ->setLooping(false)
               ->setMusic(true)
               ->setVolume(0.3)
-              ->setScriptEvents(true);
+              ->setScriptEvents(true)
+              ->setScriptAction("some-action'param1'param2");
 
         $domElement = $audio->render($domDocument);
         $domDocument->appendChild($domElement);
 
         $this->assertEquals("<?xml version=\"1.0\"?>
-<audio id=\"test.audio\" data=\"some.url\" dataid=\"some.id\" play=\"1\" looping=\"0\" music=\"1\" volume=\"0.3\" scriptevents=\"1\"/>
+<audio id=\"test.audio\" data=\"some.url\" dataid=\"some.id\" play=\"1\" looping=\"0\" music=\"1\" volume=\"0.3\" scriptevents=\"1\" scriptaction=\"some-action'param1'param2\"/>
 ", $domDocument->saveXML());
     }
 

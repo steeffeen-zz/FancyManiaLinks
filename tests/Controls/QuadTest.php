@@ -203,6 +203,17 @@ class QuadTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($quad->getScriptEvents());
     }
 
+    public function testScriptAction()
+    {
+        $quad = new Quad();
+
+        $this->assertNull($quad->getScriptAction());
+
+        $this->assertSame($quad, $quad->setScriptAction("test-action'param1'param2"));
+
+        $this->assertEquals("test-action'param1'param2", $quad->getScriptAction());
+    }
+
     public function testStyle()
     {
         $quad = new Quad();
@@ -286,6 +297,7 @@ class QuadTest extends \PHPUnit_Framework_TestCase
              ->setManialink("some-manialink")
              ->setManialinkId("some-manialinkid")
              ->setScriptEvents(true)
+             ->setScriptAction("some-action'param1'param2")
              ->setStyle("some-style")
              ->setSubStyle("some-substyle")
              ->setStyleSelected(true);
@@ -294,7 +306,7 @@ class QuadTest extends \PHPUnit_Framework_TestCase
         $domDocument->appendChild($domElement);
 
         $this->assertEquals("<?xml version=\"1.0\"?>
-<quad id=\"test.quad\" image=\"some.url\" imageid=\"some-id\" imagefocus=\"some.url\" imagefocusid=\"some-id\" colorize=\"some-color\" modulizecolor=\"some-color\" autoscale=\"0\" autoscalefixedWidth=\"42.42\" keepratio=\"some-mode\" opacity=\"0.5\" bgcolor=\"some-color\" action=\"some-action\" actionkey=\"42\" url=\"some.url\" urlid=\"some.urlid\" manialink=\"some-manialink\" manialinkid=\"some-manialinkid\" scriptevents=\"1\" style=\"some-style\" substyle=\"some-substyle\" styleselected=\"1\"/>
+<quad id=\"test.quad\" image=\"some.url\" imageid=\"some-id\" imagefocus=\"some.url\" imagefocusid=\"some-id\" colorize=\"some-color\" modulizecolor=\"some-color\" autoscale=\"0\" autoscalefixedWidth=\"42.42\" keepratio=\"some-mode\" opacity=\"0.5\" bgcolor=\"some-color\" action=\"some-action\" actionkey=\"42\" url=\"some.url\" urlid=\"some.urlid\" manialink=\"some-manialink\" manialinkid=\"some-manialinkid\" scriptevents=\"1\" scriptaction=\"some-action'param1'param2\" style=\"some-style\" substyle=\"some-substyle\" styleselected=\"1\"/>
 ", $domDocument->saveXML());
     }
 

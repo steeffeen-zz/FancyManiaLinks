@@ -72,6 +72,17 @@ class EntryTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($entry->getScriptEvents());
     }
 
+    public function testScriptAction()
+    {
+        $entry = new Entry();
+
+        $this->assertNull($entry->getScriptAction());
+
+        $this->assertSame($entry, $entry->setScriptAction("test-action'param1'param2"));
+
+        $this->assertEquals("test-action'param1'param2", $entry->getScriptAction());
+    }
+
     public function testStyle()
     {
         $entry = new Entry();
@@ -194,6 +205,7 @@ class EntryTest extends \PHPUnit_Framework_TestCase
               ->setAutoNewLine(true)
               ->setTextFormat("some-format")
               ->setScriptEvents(true)
+              ->setScriptAction("some-action'param1'param2")
               ->setStyle("some-style")
               ->setTextColor("some-color")
               ->setTextSize(42)
@@ -205,7 +217,7 @@ class EntryTest extends \PHPUnit_Framework_TestCase
         $domDocument->appendChild($domElement);
 
         $this->assertEquals("<?xml version=\"1.0\"?>
-<entry id=\"test.entry\" name=\"some-name\" default=\"some-default\" selecttext=\"1\" autonewline=\"1\" textformat=\"some-format\" scriptevents=\"1\" style=\"some-style\" textcolor=\"some-color\" textsize=\"42\" textfont=\"some-font\" focusareacolor1=\"some-color\" focusareacolor2=\"some-color\"/>
+<entry id=\"test.entry\" name=\"some-name\" default=\"some-default\" selecttext=\"1\" autonewline=\"1\" textformat=\"some-format\" scriptevents=\"1\" scriptaction=\"some-action'param1'param2\" style=\"some-style\" textcolor=\"some-color\" textsize=\"42\" textfont=\"some-font\" focusareacolor1=\"some-color\" focusareacolor2=\"some-color\"/>
 ", $domDocument->saveXML());
     }
 

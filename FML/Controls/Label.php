@@ -22,10 +22,6 @@ use FML\Types\TextFormatable;
 class Label extends Control implements Actionable, Linkable, NewLineable, MultiLineable, Scriptable, Styleable, TextFormatable
 {
 
-    /*
-     * Protected properties
-     */
-
     /**
      * @var string $text Text
      */
@@ -102,9 +98,14 @@ class Label extends Control implements Actionable, Linkable, NewLineable, MultiL
     protected $lineSpacing = -1.;
 
     /**
-     * @var bool $scriptEvents Script events
+     * @var bool $scriptEvents Script events usage
      */
     protected $scriptEvents = null;
+
+    /**
+     * @var string $scriptAction Script action
+     */
+    protected $scriptAction = null;
 
     /**
      * @var string $style Style
@@ -451,6 +452,23 @@ class Label extends Control implements Actionable, Linkable, NewLineable, MultiL
     }
 
     /**
+     * @see Scriptable::getScriptAction()
+     */
+    public function getScriptAction()
+    {
+        return $this->scriptAction;
+    }
+
+    /**
+     * @see Scriptable::setScriptAction()
+     */
+    public function setScriptAction($scriptAction)
+    {
+        $this->scriptAction = (string)$scriptAction;
+        return $this;
+    }
+
+    /**
      * @see Styleable::getStyle()
      */
     public function getStyle()
@@ -636,6 +654,9 @@ class Label extends Control implements Actionable, Linkable, NewLineable, MultiL
         }
         if ($this->scriptEvents) {
             $domElement->setAttribute("scriptevents", $this->scriptEvents);
+        }
+        if ($this->scriptAction) {
+            $domElement->setAttribute("scriptaction", $this->scriptAction);
         }
         if ($this->style) {
             $domElement->setAttribute("style", $this->style);

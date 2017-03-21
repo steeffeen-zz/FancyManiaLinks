@@ -114,9 +114,14 @@ class Quad extends Control implements Actionable, BackgroundColorable, Imageable
     protected $manialinkId = null;
 
     /**
-     * @var bool $scriptEvents Script events activation
+     * @var bool $scriptEvents Script events usage
      */
     protected $scriptEvents = null;
+
+    /**
+     * @var string $scriptAction Script action
+     */
+    protected $scriptAction = null;
 
     /**
      * @var string $style Style
@@ -503,6 +508,23 @@ class Quad extends Control implements Actionable, BackgroundColorable, Imageable
     }
 
     /**
+     * @see Scriptable::getScriptAction()
+     */
+    public function getScriptAction()
+    {
+        return $this->scriptAction;
+    }
+
+    /**
+     * @see Scriptable::setScriptAction()
+     */
+    public function setScriptAction($scriptAction)
+    {
+        $this->scriptAction = (string)$scriptAction;
+        return $this;
+    }
+
+    /**
      * @see Styleable::getStyle()
      */
     public function getStyle()
@@ -644,6 +666,9 @@ class Quad extends Control implements Actionable, BackgroundColorable, Imageable
         }
         if ($this->scriptEvents) {
             $domElement->setAttribute("scriptevents", 1);
+        }
+        if ($this->scriptAction) {
+            $domElement->setAttribute("scriptaction", $this->scriptAction);
         }
         if ($this->style) {
             $domElement->setAttribute("style", $this->style);

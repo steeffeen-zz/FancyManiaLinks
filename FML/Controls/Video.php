@@ -52,6 +52,11 @@ class Video extends Control implements Playable, Scriptable
     protected $scriptEvents = null;
 
     /**
+     * @var string $scriptAction Script action
+     */
+    protected $scriptAction = null;
+
+    /**
      * @see Playable::getData()
      */
     public function getData()
@@ -171,6 +176,23 @@ class Video extends Control implements Playable, Scriptable
     }
 
     /**
+     * @see Scriptable::getScriptAction()
+     */
+    public function getScriptAction()
+    {
+        return $this->scriptAction;
+    }
+
+    /**
+     * @see Scriptable::setScriptAction()
+     */
+    public function setScriptAction($scriptAction)
+    {
+        $this->scriptAction = (string)$scriptAction;
+        return $this;
+    }
+
+    /**
      * @see Control::getTagName()
      */
     public function getTagName()
@@ -212,6 +234,9 @@ class Video extends Control implements Playable, Scriptable
         }
         if ($this->scriptEvents) {
             $domElement->setAttribute("scriptevents", 1);
+        }
+        if ($this->scriptAction) {
+            $domElement->setAttribute("scriptaction", $this->scriptAction);
         }
         return $domElement;
     }

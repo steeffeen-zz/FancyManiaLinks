@@ -82,6 +82,17 @@ class VideoTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($video->getScriptEvents());
     }
 
+    public function testScriptAction()
+    {
+        $video = new Video();
+
+        $this->assertNull($video->getScriptAction());
+
+        $this->assertSame($video, $video->setScriptAction("test-action'param1'param2"));
+
+        $this->assertEquals("test-action'param1'param2", $video->getScriptAction());
+    }
+
     public function testTagName()
     {
         $video = new Video();
@@ -111,13 +122,14 @@ class VideoTest extends \PHPUnit_Framework_TestCase
               ->setLooping(false)
               ->setMusic(true)
               ->setVolume(0.3)
-              ->setScriptEvents(true);
+              ->setScriptEvents(true)
+              ->setScriptAction("some-action'param1'param2");
 
         $domElement = $video->render($domDocument);
         $domDocument->appendChild($domElement);
 
         $this->assertEquals("<?xml version=\"1.0\"?>
-<video id=\"test.video\" data=\"some.url\" dataid=\"some.id\" play=\"1\" looping=\"0\" music=\"1\" volume=\"0.3\" scriptevents=\"1\"/>
+<video id=\"test.video\" data=\"some.url\" dataid=\"some.id\" play=\"1\" looping=\"0\" music=\"1\" volume=\"0.3\" scriptevents=\"1\" scriptaction=\"some-action'param1'param2\"/>
 ", $domDocument->saveXML());
     }
 

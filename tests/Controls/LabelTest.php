@@ -182,6 +182,17 @@ class LabelTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($label->getScriptEvents());
     }
 
+    public function testScriptAction()
+    {
+        $label = new Label();
+
+        $this->assertNull($label->getScriptAction());
+
+        $this->assertSame($label, $label->setScriptAction("test-action'param1'param2"));
+
+        $this->assertEquals("test-action'param1'param2", $label->getScriptAction());
+    }
+
     public function testStyle()
     {
         $label = new Label();
@@ -304,6 +315,7 @@ class LabelTest extends \PHPUnit_Framework_TestCase
               ->setLineSpacing(12.34)
               ->setMaxLines(42)
               ->setScriptEvents(true)
+              ->setScriptAction("some-action'param1'param2")
               ->setStyle("some-style")
               ->setTextSize(42)
               ->setTextFont("some-font")
@@ -315,7 +327,7 @@ class LabelTest extends \PHPUnit_Framework_TestCase
         $domDocument->appendChild($domElement);
 
         $this->assertEquals("<?xml version=\"1.0\"?>
-<label id=\"test.label\" text=\"some-text\" textid=\"some-id\" textprefix=\"some-prefix\" textemboss=\"1\" translate=\"1\" opacity=\"0.5\" action=\"some-action\" actionkey=\"42\" url=\"some.url\" urlid=\"some.urlid\" manialink=\"some-manialink\" manialinkid=\"some-manialinkid\" autonewline=\"1\" linespacing=\"12.34\" maxline=\"42\" scriptevents=\"1\" style=\"some-style\" textsize=\"42\" textfont=\"some-font\" textcolor=\"some-color\" focusareacolor1=\"some-color\" focusareacolor2=\"some-color\"/>
+<label id=\"test.label\" text=\"some-text\" textid=\"some-id\" textprefix=\"some-prefix\" textemboss=\"1\" translate=\"1\" opacity=\"0.5\" action=\"some-action\" actionkey=\"42\" url=\"some.url\" urlid=\"some.urlid\" manialink=\"some-manialink\" manialinkid=\"some-manialinkid\" autonewline=\"1\" linespacing=\"12.34\" maxline=\"42\" scriptevents=\"1\" scriptaction=\"some-action'param1'param2\" style=\"some-style\" textsize=\"42\" textfont=\"some-font\" textcolor=\"some-color\" focusareacolor1=\"some-color\" focusareacolor2=\"some-color\"/>
 ", $domDocument->saveXML());
     }
 

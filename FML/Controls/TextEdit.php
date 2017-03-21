@@ -62,6 +62,11 @@ class TextEdit extends Control implements MultiLineable, Scriptable, Styleable, 
     protected $scriptEvents = null;
 
     /**
+     * @var string $scriptAction Script action
+     */
+    protected $scriptAction = null;
+
+    /**
      * @var string $style Style
      */
     protected $style = null;
@@ -232,6 +237,23 @@ class TextEdit extends Control implements MultiLineable, Scriptable, Styleable, 
     }
 
     /**
+     * @see Scriptable::getScriptAction()
+     */
+    public function getScriptAction()
+    {
+        return $this->scriptAction;
+    }
+
+    /**
+     * @see Scriptable::setScriptAction()
+     */
+    public function setScriptAction($scriptAction)
+    {
+        $this->scriptAction = (string)$scriptAction;
+        return $this;
+    }
+
+    /**
      * @see Styleable::getStyle()
      */
     public function getStyle()
@@ -375,6 +397,9 @@ class TextEdit extends Control implements MultiLineable, Scriptable, Styleable, 
         }
         if ($this->scriptEvents) {
             $domElement->setAttribute("scriptevents", 1);
+        }
+        if ($this->scriptAction) {
+            $domElement->setAttribute("scriptaction", $this->scriptAction);
         }
         if ($this->style) {
             $domElement->setAttribute("style", $this->style);

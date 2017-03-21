@@ -82,6 +82,17 @@ class TextEditTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($textEdit->getScriptEvents());
     }
 
+    public function testScriptAction()
+    {
+        $textEdit = new TextEdit();
+
+        $this->assertNull($textEdit->getScriptAction());
+
+        $this->assertSame($textEdit, $textEdit->setScriptAction("test-action'param1'param2"));
+
+        $this->assertEquals("test-action'param1'param2", $textEdit->getScriptAction());
+    }
+
     public function testStyle()
     {
         $textEdit = new TextEdit();
@@ -174,6 +185,7 @@ class TextEditTest extends \PHPUnit_Framework_TestCase
                  ->setShowLineNumbers(true)
                  ->setTextFormat("some-format")
                  ->setScriptEvents(true)
+                 ->setScriptAction("some-action'param1'param2")
                  ->setStyle("some-style")
                  ->setTextColor("some-color")
                  ->setTextSize(42)
@@ -185,7 +197,7 @@ class TextEditTest extends \PHPUnit_Framework_TestCase
         $domDocument->appendChild($domElement);
 
         $this->assertEquals("<?xml version=\"1.0\"?>
-<textedit id=\"test.textedit\" default=\"some-default\" autonewline=\"1\" linespacing=\"12.34\" maxline=\"42\" showlinenumbers=\"1\" textformat=\"some-format\" scriptevents=\"1\" style=\"some-style\" textcolor=\"some-color\" textsize=\"42\" textfont=\"some-font\" focusareacolor1=\"some-color\" focusareacolor2=\"some-color\"/>
+<textedit id=\"test.textedit\" default=\"some-default\" autonewline=\"1\" linespacing=\"12.34\" maxline=\"42\" showlinenumbers=\"1\" textformat=\"some-format\" scriptevents=\"1\" scriptaction=\"some-action'param1'param2\" style=\"some-style\" textcolor=\"some-color\" textsize=\"42\" textfont=\"some-font\" focusareacolor1=\"some-color\" focusareacolor2=\"some-color\"/>
 ", $domDocument->saveXML());
     }
 

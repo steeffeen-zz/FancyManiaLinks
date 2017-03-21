@@ -46,6 +46,11 @@ class Frame3d extends Frame implements Scriptable
     protected $scriptEvents = null;
 
     /**
+     * @var string $scriptAction Script action
+     */
+    protected $scriptAction = null;
+
+    /**
      * Get the Style3d id
      *
      * @api
@@ -113,6 +118,23 @@ class Frame3d extends Frame implements Scriptable
     }
 
     /**
+     * @see Scriptable::getScriptAction()
+     */
+    public function getScriptAction()
+    {
+        return $this->scriptAction;
+    }
+
+    /**
+     * @see Scriptable::setScriptAction()
+     */
+    public function setScriptAction($scriptAction)
+    {
+        $this->scriptAction = (string)$scriptAction;
+        return $this;
+    }
+
+    /**
      * @see Control::getTagName()
      */
     public function getTagName()
@@ -134,6 +156,9 @@ class Frame3d extends Frame implements Scriptable
         }
         if ($this->scriptEvents) {
             $domElement->setAttribute("scriptevents", 1);
+        }
+        if ($this->scriptAction) {
+            $domElement->setAttribute("scriptaction", $this->scriptAction);
         }
         return $domElement;
     }
