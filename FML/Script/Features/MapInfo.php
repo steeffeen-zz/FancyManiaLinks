@@ -12,7 +12,7 @@ use FML\Types\Scriptable;
  * Script Feature for opening the map info
  *
  * @author    steeffeen
- * @copyright FancyManiaLinks Copyright © 2014 Steffen Schröder
+ * @copyright FancyManiaLinks Copyright © 2017 Steffen Schröder
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
 class MapInfo extends ScriptFeature

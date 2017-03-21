@@ -7,7 +7,7 @@ namespace FML\Stylesheet;
  * Warning: The mood class isn't fully supported yet - Missing attributes: LDir1 etc.
  *
  * @author    steeffeen <mail@steeffeen.com>
- * @copyright FancyManiaLinks Copyright © 2014 Steffen Schröder
+ * @copyright FancyManiaLinks Copyright © 2017 Steffen Schröder
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
 class Mood

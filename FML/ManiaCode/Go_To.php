@@ -6,7 +6,7 @@ namespace FML\ManiaCode;
  * ManiaCode Element for going to a link
  *
  * @author    steeffeen
- * @copyright FancyManiaLinks Copyright © 2014 Steffen Schröder
+ * @copyright FancyManiaLinks Copyright © 2017 Steffen Schröder
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
 class Go_To implements Element

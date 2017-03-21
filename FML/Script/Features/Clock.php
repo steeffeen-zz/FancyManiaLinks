@@ -12,7 +12,7 @@ use FML\Script\ScriptLabel;
  * Script Feature showing the current time on a Label
  *
  * @author    steeffeen
- * @copyright FancyManiaLinks Copyright © 2014 Steffen Schröder
+ * @copyright FancyManiaLinks Copyright © 2017 Steffen Schröder
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
 class Clock extends ScriptFeature

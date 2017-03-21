@@ -6,7 +6,7 @@
  * @author    steeffeen <mail@steeffeen.com>
  * @version   1.4.2-dev
  * @link      http://github.com/steeffeen/FancyManiaLinks
- * @copyright FancyManiaLinks Copyright © 2014 Steffen Schröder
+ * @copyright FancyManiaLinks Copyright © 2017 Steffen Schröder
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
 

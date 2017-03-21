@@ -12,7 +12,7 @@ use FML\Script\ScriptLabel;
  * Script Feature for submitting an Entry
  *
  * @author    steeffeen
- * @copyright FancyManiaLinks Copyright © 2014 Steffen Schröder
+ * @copyright FancyManiaLinks Copyright © 2017 Steffen Schröder
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
 class EntrySubmit extends ScriptFeature

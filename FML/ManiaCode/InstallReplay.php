@@ -6,7 +6,7 @@ namespace FML\ManiaCode;
  * ManiaCode Element installing a replay
  *
  * @author    steeffeen <mail@steeffeen.com>
- * @copyright FancyManiaLinks Copyright © 2014 Steffen Schröder
+ * @copyright FancyManiaLinks Copyright © 2017 Steffen Schröder
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
 class InstallReplay implements Element

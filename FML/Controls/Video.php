@@ -10,7 +10,7 @@ use FML\Types\Scriptable;
  * (CMlMediaPlayer)
  *
  * @author    steeffeen <mail@steeffeen.com>
- * @copyright FancyManiaLinks Copyright © 2014 Steffen Schröder
+ * @copyright FancyManiaLinks Copyright © 2017 Steffen Schröder
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
 class Video extends Control implements Playable, Scriptable
