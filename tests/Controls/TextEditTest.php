@@ -82,15 +82,22 @@ class TextEditTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($textEdit->getScriptEvents());
     }
 
-    public function testScriptAction()
+    public function testScriptActionAndParameters()
     {
         $textEdit = new TextEdit();
 
         $this->assertNull($textEdit->getScriptAction());
+        $this->assertNull($textEdit->getScriptActionParameters());
 
-        $this->assertSame($textEdit, $textEdit->setScriptAction("test-action'param1'param2"));
+        $this->assertSame($textEdit, $textEdit->setScriptAction("test-action"));
 
-        $this->assertEquals("test-action'param1'param2", $textEdit->getScriptAction());
+        $this->assertEquals("test-action", $textEdit->getScriptAction());
+        $this->assertNull($textEdit->getScriptActionParameters());
+
+        $this->assertSame($textEdit, $textEdit->setScriptAction("test-action-2", array("param1", "param2")));
+
+        $this->assertEquals("test-action-2", $textEdit->getScriptAction());
+        $this->assertEquals(array("param1", "param2"), $textEdit->getScriptActionParameters());
     }
 
     public function testStyle()
@@ -185,7 +192,7 @@ class TextEditTest extends \PHPUnit_Framework_TestCase
                  ->setShowLineNumbers(true)
                  ->setTextFormat("some-format")
                  ->setScriptEvents(true)
-                 ->setScriptAction("some-action'param1'param2")
+                 ->setScriptAction("some-action", array("param1", "param2"))
                  ->setStyle("some-style")
                  ->setTextColor("some-color")
                  ->setTextSize(42)

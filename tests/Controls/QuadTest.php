@@ -203,15 +203,22 @@ class QuadTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($quad->getScriptEvents());
     }
 
-    public function testScriptAction()
+    public function testScriptActionAndParameters()
     {
         $quad = new Quad();
 
         $this->assertNull($quad->getScriptAction());
+        $this->assertNull($quad->getScriptActionParameters());
 
-        $this->assertSame($quad, $quad->setScriptAction("test-action'param1'param2"));
+        $this->assertSame($quad, $quad->setScriptAction("test-action"));
 
-        $this->assertEquals("test-action'param1'param2", $quad->getScriptAction());
+        $this->assertEquals("test-action", $quad->getScriptAction());
+        $this->assertNull($quad->getScriptActionParameters());
+
+        $this->assertSame($quad, $quad->setScriptAction("test-action-2", array("param1", "param2")));
+
+        $this->assertEquals("test-action-2", $quad->getScriptAction());
+        $this->assertEquals(array("param1", "param2"), $quad->getScriptActionParameters());
     }
 
     public function testStyle()
@@ -297,7 +304,7 @@ class QuadTest extends \PHPUnit_Framework_TestCase
              ->setManialink("some-manialink")
              ->setManialinkId("some-manialinkid")
              ->setScriptEvents(true)
-             ->setScriptAction("some-action'param1'param2")
+             ->setScriptAction("some-action", array("param1", "param2"))
              ->setStyle("some-style")
              ->setSubStyle("some-substyle")
              ->setStyleSelected(true);

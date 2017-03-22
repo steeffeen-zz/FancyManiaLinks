@@ -41,9 +41,27 @@ interface Scriptable
      * Set script action
      *
      * @api
-     * @param string $scriptAction Script action to be triggered
+     * @param string   $scriptAction           Script action to be triggered
+     * @param string[] $scriptActionParameters (optional) Script action parameters
      * @return static
      */
-    public function setScriptAction($scriptAction);
+    public function setScriptAction($scriptAction, array $scriptActionParameters = null);
+
+    /**
+     * Get script action parameters
+     *
+     * @api
+     * @return string[]
+     */
+    public function getScriptActionParameters();
+
+    /**
+     * Set script action parameters
+     *
+     * @api
+     * @param string[] $scriptActionParameters (optional) Script action parameters
+     * @return static
+     */
+    public function setScriptActionParameters(array $scriptActionParameters = null);
 
 }

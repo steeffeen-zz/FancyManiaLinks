@@ -124,6 +124,11 @@ class Quad extends Control implements Actionable, BackgroundColorable, Imageable
     protected $scriptAction = null;
 
     /**
+     * @var string[] $scriptActionParameters Script action parameters
+     */
+    protected $scriptActionParameters = null;
+
+    /**
      * @var string $style Style
      */
     protected $style = null;
@@ -518,9 +523,27 @@ class Quad extends Control implements Actionable, BackgroundColorable, Imageable
     /**
      * @see Scriptable::setScriptAction()
      */
-    public function setScriptAction($scriptAction)
+    public function setScriptAction($scriptAction, array $scriptActionParameters = null)
     {
         $this->scriptAction = (string)$scriptAction;
+        $this->setScriptActionParameters($scriptActionParameters);
+        return $this;
+    }
+
+    /**
+     * @see Scriptable::getScriptActionParameters()
+     */
+    public function getScriptActionParameters()
+    {
+        return $this->scriptActionParameters;
+    }
+
+    /**
+     * @see Scriptable::setScriptActionParameters()
+     */
+    public function setScriptActionParameters(array $scriptActionParameters = null)
+    {
+        $this->scriptActionParameters = $scriptActionParameters;
         return $this;
     }
 
@@ -668,7 +691,11 @@ class Quad extends Control implements Actionable, BackgroundColorable, Imageable
             $domElement->setAttribute("scriptevents", 1);
         }
         if ($this->scriptAction) {
-            $domElement->setAttribute("scriptaction", $this->scriptAction);
+            $scriptAction = array($this->scriptAction);
+            if ($this->scriptActionParameters) {
+                $scriptAction = array_merge($scriptAction, $this->scriptActionParameters);
+            }
+            $domElement->setAttribute("scriptaction", implode("'", $scriptAction));
         }
         if ($this->style) {
             $domElement->setAttribute("style", $this->style);

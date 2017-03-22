@@ -182,15 +182,22 @@ class LabelTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($label->getScriptEvents());
     }
 
-    public function testScriptAction()
+    public function testScriptActionAndParameters()
     {
         $label = new Label();
 
         $this->assertNull($label->getScriptAction());
+        $this->assertNull($label->getScriptActionParameters());
 
-        $this->assertSame($label, $label->setScriptAction("test-action'param1'param2"));
+        $this->assertSame($label, $label->setScriptAction("test-action"));
 
-        $this->assertEquals("test-action'param1'param2", $label->getScriptAction());
+        $this->assertEquals("test-action", $label->getScriptAction());
+        $this->assertNull($label->getScriptActionParameters());
+
+        $this->assertSame($label, $label->setScriptAction("test-action-2", array("param1", "param2")));
+
+        $this->assertEquals("test-action-2", $label->getScriptAction());
+        $this->assertEquals(array("param1", "param2"), $label->getScriptActionParameters());
     }
 
     public function testStyle()
@@ -315,7 +322,7 @@ class LabelTest extends \PHPUnit_Framework_TestCase
               ->setLineSpacing(12.34)
               ->setMaxLines(42)
               ->setScriptEvents(true)
-              ->setScriptAction("some-action'param1'param2")
+              ->setScriptAction("some-action", array("param1", "param2"))
               ->setStyle("some-style")
               ->setTextSize(42)
               ->setTextFont("some-font")

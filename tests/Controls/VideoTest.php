@@ -82,15 +82,22 @@ class VideoTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($video->getScriptEvents());
     }
 
-    public function testScriptAction()
+    public function testScriptActionAndParameters()
     {
         $video = new Video();
 
         $this->assertNull($video->getScriptAction());
+        $this->assertNull($video->getScriptActionParameters());
 
-        $this->assertSame($video, $video->setScriptAction("test-action'param1'param2"));
+        $this->assertSame($video, $video->setScriptAction("test-action"));
 
-        $this->assertEquals("test-action'param1'param2", $video->getScriptAction());
+        $this->assertEquals("test-action", $video->getScriptAction());
+        $this->assertNull($video->getScriptActionParameters());
+
+        $this->assertSame($video, $video->setScriptAction("test-action-2", array("param1", "param2")));
+
+        $this->assertEquals("test-action-2", $video->getScriptAction());
+        $this->assertEquals(array("param1", "param2"), $video->getScriptActionParameters());
     }
 
     public function testTagName()
@@ -123,7 +130,7 @@ class VideoTest extends \PHPUnit_Framework_TestCase
               ->setMusic(true)
               ->setVolume(0.3)
               ->setScriptEvents(true)
-              ->setScriptAction("some-action'param1'param2");
+              ->setScriptAction("some-action", array("param1", "param2"));
 
         $domElement = $video->render($domDocument);
         $domDocument->appendChild($domElement);

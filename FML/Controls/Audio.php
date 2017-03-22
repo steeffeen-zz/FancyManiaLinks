@@ -57,6 +57,11 @@ class Audio extends Control implements Playable, Scriptable
     protected $scriptAction = null;
 
     /**
+     * @var string[] $scriptActionParameters Script action parameters
+     */
+    protected $scriptActionParameters = null;
+
+    /**
      * @see Playable::getData()
      */
     public function getData()
@@ -186,9 +191,27 @@ class Audio extends Control implements Playable, Scriptable
     /**
      * @see Scriptable::setScriptAction()
      */
-    public function setScriptAction($scriptAction)
+    public function setScriptAction($scriptAction, array $scriptActionParameters = null)
     {
         $this->scriptAction = (string)$scriptAction;
+        $this->setScriptActionParameters($scriptActionParameters);
+        return $this;
+    }
+
+    /**
+     * @see Scriptable::getScriptActionParameters()
+     */
+    public function getScriptActionParameters()
+    {
+        return $this->scriptActionParameters;
+    }
+
+    /**
+     * @see Scriptable::setScriptActionParameters()
+     */
+    public function setScriptActionParameters(array $scriptActionParameters = null)
+    {
+        $this->scriptActionParameters = $scriptActionParameters;
         return $this;
     }
 
@@ -236,7 +259,11 @@ class Audio extends Control implements Playable, Scriptable
             $domElement->setAttribute("scriptevents", 1);
         }
         if ($this->scriptAction) {
-            $domElement->setAttribute("scriptaction", $this->scriptAction);
+            $scriptAction = array($this->scriptAction);
+            if ($this->scriptActionParameters) {
+                $scriptAction = array_merge($scriptAction, $this->scriptActionParameters);
+            }
+            $domElement->setAttribute("scriptaction", implode("'", $scriptAction));
         }
         return $domElement;
     }

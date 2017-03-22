@@ -72,15 +72,22 @@ class EntryTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($entry->getScriptEvents());
     }
 
-    public function testScriptAction()
+    public function testScriptActionAndParameters()
     {
         $entry = new Entry();
 
         $this->assertNull($entry->getScriptAction());
+        $this->assertNull($entry->getScriptActionParameters());
 
-        $this->assertSame($entry, $entry->setScriptAction("test-action'param1'param2"));
+        $this->assertSame($entry, $entry->setScriptAction("test-action"));
 
-        $this->assertEquals("test-action'param1'param2", $entry->getScriptAction());
+        $this->assertEquals("test-action", $entry->getScriptAction());
+        $this->assertNull($entry->getScriptActionParameters());
+
+        $this->assertSame($entry, $entry->setScriptAction("test-action-2", array("param1", "param2")));
+
+        $this->assertEquals("test-action-2", $entry->getScriptAction());
+        $this->assertEquals(array("param1", "param2"), $entry->getScriptActionParameters());
     }
 
     public function testStyle()
@@ -205,7 +212,7 @@ class EntryTest extends \PHPUnit_Framework_TestCase
               ->setAutoNewLine(true)
               ->setTextFormat("some-format")
               ->setScriptEvents(true)
-              ->setScriptAction("some-action'param1'param2")
+              ->setScriptAction("some-action", array("param1", "param2"))
               ->setStyle("some-style")
               ->setTextColor("some-color")
               ->setTextSize(42)

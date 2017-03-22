@@ -64,15 +64,22 @@ class Frame3dTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($frame3d->getScriptEvents());
     }
 
-    public function testScriptAction()
+    public function testScriptActionAndParameters()
     {
         $frame3d = new Frame3d();
 
         $this->assertNull($frame3d->getScriptAction());
+        $this->assertNull($frame3d->getScriptActionParameters());
 
-        $this->assertSame($frame3d, $frame3d->setScriptAction("test-action'param1'param2"));
+        $this->assertSame($frame3d, $frame3d->setScriptAction("test-action"));
 
-        $this->assertEquals("test-action'param1'param2", $frame3d->getScriptAction());
+        $this->assertEquals("test-action", $frame3d->getScriptAction());
+        $this->assertNull($frame3d->getScriptActionParameters());
+
+        $this->assertSame($frame3d, $frame3d->setScriptAction("test-action-2", array("param1", "param2")));
+
+        $this->assertEquals("test-action-2", $frame3d->getScriptAction());
+        $this->assertEquals(array("param1", "param2"), $frame3d->getScriptActionParameters());
     }
 
     public function testTagName()
@@ -89,7 +96,7 @@ class Frame3dTest extends \PHPUnit_Framework_TestCase
         $frame3d->clearAlign()
                 ->setStyle3dId("some.style.3d")
                 ->setScriptEvents(true)
-                ->setScriptAction("some-action'param1'param2");
+                ->setScriptAction("some-action", array("param1", "param2"));
 
         $domElement = $frame3d->render($domDocument);
         $domDocument->appendChild($domElement);

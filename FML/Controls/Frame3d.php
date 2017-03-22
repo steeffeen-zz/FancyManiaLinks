@@ -46,6 +46,11 @@ class Frame3d extends Frame implements Scriptable
     protected $scriptEvents = null;
 
     /**
+     * @var string[] $scriptActionParameters Script action parameters
+     */
+    protected $scriptActionParameters = null;
+
+    /**
      * @var string $scriptAction Script action
      */
     protected $scriptAction = null;
@@ -128,9 +133,27 @@ class Frame3d extends Frame implements Scriptable
     /**
      * @see Scriptable::setScriptAction()
      */
-    public function setScriptAction($scriptAction)
+    public function setScriptAction($scriptAction, array $scriptActionParameters = null)
     {
         $this->scriptAction = (string)$scriptAction;
+        $this->setScriptActionParameters($scriptActionParameters);
+        return $this;
+    }
+
+    /**
+     * @see Scriptable::getScriptActionParameters()
+     */
+    public function getScriptActionParameters()
+    {
+        return $this->scriptActionParameters;
+    }
+
+    /**
+     * @see Scriptable::setScriptActionParameters()
+     */
+    public function setScriptActionParameters(array $scriptActionParameters = null)
+    {
+        $this->scriptActionParameters = $scriptActionParameters;
         return $this;
     }
 
@@ -158,7 +181,11 @@ class Frame3d extends Frame implements Scriptable
             $domElement->setAttribute("scriptevents", 1);
         }
         if ($this->scriptAction) {
-            $domElement->setAttribute("scriptaction", $this->scriptAction);
+            $scriptAction = array($this->scriptAction);
+            if ($this->scriptActionParameters) {
+                $scriptAction = array_merge($scriptAction, $this->scriptActionParameters);
+            }
+            $domElement->setAttribute("scriptaction", implode("'", $scriptAction));
         }
         return $domElement;
     }
