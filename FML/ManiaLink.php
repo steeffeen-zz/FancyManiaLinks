@@ -116,7 +116,7 @@ class ManiaLink
         $this->setVersion(self::MANIALINK_VERSION);
         if ($version) {
             $this->setVersion($version);
-        } 
+        }
         if ($name) {
             $this->setName($name);
         }
