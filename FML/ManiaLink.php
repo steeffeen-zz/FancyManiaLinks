@@ -21,6 +21,7 @@ class ManiaLink
     /*
      * Constants
      */
+    const MANIALINK_VERSION   = 3;
     const BACKGROUND_0        = "0";
     const BACKGROUND_1        = "1";
     const BACKGROUND_STARS    = "stars";
@@ -101,7 +102,7 @@ class ManiaLink
      * @param string       $name        (optional) Name
      * @param Renderable[] $children    (optional) Children
      */
-    public function __construct($maniaLinkId = null, $version = null, $name = null, array $children = null)
+    public function __construct($maniaLinkId = null, $version = self::MANIALINK_VERSION, $name = null, array $children = null)
     {
         if (is_string($version)) {
             // backwards-compatibility (version has been introduced later)
@@ -121,6 +122,7 @@ class ManiaLink
         if ($children) {
             $this->setChildren($children);
         }
+        $this->createScript();
     }
 
     /**
@@ -281,6 +283,18 @@ class ManiaLink
         return $this->children;
     }
 
+	/**
+	 * Add a child
+	 *
+	 * @api
+	 * @param Renderable $child Child Element to add
+	 * @return static
+	 * @deprecated use addChild() instead
+	 */
+	public function add(Renderable $child){
+    	return $this->addChild($child);
+    }
+
     /**
      * Add a child
      *
@@ -310,6 +324,18 @@ class ManiaLink
             $this->addChild($child);
         }
         return $this;
+    }
+
+	/**
+	 * Remove all children
+	 *
+	 * @api
+	 * @return static
+	 * @deprecated use removeAllChildren() instead
+	 */
+    public function removeChildren()
+    {
+    	return $this->removeAllChildren();
     }
 
     /**
