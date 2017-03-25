@@ -102,7 +102,7 @@ class ManiaLink
      * @param string       $name        (optional) Name
      * @param Renderable[] $children    (optional) Children
      */
-    public function __construct($maniaLinkId = null, $version = self::MANIALINK_VERSION, $name = null, array $children = null)
+    public function __construct($maniaLinkId = null, $version = null, $name = null, array $children = null)
     {
         if (is_string($version)) {
             // backwards-compatibility (version has been introduced later)
@@ -115,6 +115,8 @@ class ManiaLink
         }
         if ($version) {
             $this->setVersion($version);
+        } else {
+            $this->setVersion(self::MANIALINK_VERSION);
         }
         if ($name) {
             $this->setName($name);
