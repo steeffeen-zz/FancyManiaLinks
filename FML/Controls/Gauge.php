@@ -188,18 +188,18 @@ class Gauge extends Control implements Colorable, Styleable
         return $this->drawBackground;
     }
 
-	/**
-	 * Set draw background
-	 *
-	 * @api
-	 * @param bool $drawBackground If the Gauges background should be drawn
-	 * @return static
-	 * @deprecated use setDrawBackground() instead
-	 */
-	public function setDrawBg($drawBackground)
-	{
-		return $this->setDrawBackground($drawBackground);
-	}
+    /**
+     * Set draw background
+     *
+     * @api
+     * @param bool $drawBackground If the Gauges background should be drawn
+     * @return static
+     * @deprecated use setDrawBackground() instead
+     */
+    public function setDrawBg($drawBackground)
+    {
+        return $this->setDrawBackground($drawBackground);
+    }
 
     /**
      * Set draw background

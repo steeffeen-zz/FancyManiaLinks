@@ -36,13 +36,13 @@ class Frame extends Control implements Container
         return $this->children;
     }
 
-	/**
-	 * @see Container::addChild()
-	 * @deprecated use addChild() instead
-	 */
-	public function add(Renderable $child)
+    /**
+     * @see        Container::addChild()
+     * @deprecated use addChild() instead
+     */
+    public function add(Renderable $child)
     {
-    	return $this->addChild($child);
+        return $this->addChild($child);
     }
 
     /**

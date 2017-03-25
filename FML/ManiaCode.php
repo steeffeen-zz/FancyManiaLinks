@@ -310,17 +310,17 @@ class ManiaCode
         return $this;
     }
 
-	/**
-	 * Remove all ManiaCode Elements
-	 *
-	 * @api
-	 * @return static
-	 * @deprecated use removeAllElements() instead
-	 */
-	public function removeElements()
-	{
-		return $this->removeAllElements();
-	}
+    /**
+     * Remove all ManiaCode Elements
+     *
+     * @api
+     * @return static
+     * @deprecated use removeAllElements() instead
+     */
+    public function removeElements()
+    {
+        return $this->removeAllElements();
+    }
 
     /**
      * Remove all ManiaCode Elements

@@ -58,17 +58,17 @@ class ManiaLinks
         return $this->children;
     }
 
-	/**
-	 * Add a child ManiaLink
-	 *
-	 * @api
-	 * @param ManiaLink $child Child ManiaLink
-	 * @return static
-	 * @deprecated use addChild() instead
-	 */
+    /**
+     * Add a child ManiaLink
+     *
+     * @api
+     * @param ManiaLink $child Child ManiaLink
+     * @return static
+     * @deprecated use addChild() instead
+     */
     public function add(ManiaLink $child)
     {
-    	return $this->addChild($child);
+        return $this->addChild($child);
     }
 
     /**
@@ -102,16 +102,16 @@ class ManiaLinks
         return $this;
     }
 
-	/**
-	 * Remove all child ManiaLinks
-	 *
-	 * @api
-	 * @return static
-	 * @deprecated use removeAllChildren instead
-	 */
+    /**
+     * Remove all child ManiaLinks
+     *
+     * @api
+     * @return static
+     * @deprecated use removeAllChildren instead
+     */
     public function removeChildren()
     {
-    	return $this->removeAllChildren();
+        return $this->removeAllChildren();
     }
 
     /**

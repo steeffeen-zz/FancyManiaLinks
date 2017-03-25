@@ -283,16 +283,17 @@ class ManiaLink
         return $this->children;
     }
 
-	/**
-	 * Add a child
-	 *
-	 * @api
-	 * @param Renderable $child Child Element to add
-	 * @return static
-	 * @deprecated use addChild() instead
-	 */
-	public function add(Renderable $child){
-    	return $this->addChild($child);
+    /**
+     * Add a child
+     *
+     * @api
+     * @param Renderable $child Child Element to add
+     * @return static
+     * @deprecated use addChild() instead
+     */
+    public function add(Renderable $child)
+    {
+        return $this->addChild($child);
     }
 
     /**
@@ -326,16 +327,16 @@ class ManiaLink
         return $this;
     }
 
-	/**
-	 * Remove all children
-	 *
-	 * @api
-	 * @return static
-	 * @deprecated use removeAllChildren() instead
-	 */
+    /**
+     * Remove all children
+     *
+     * @api
+     * @return static
+     * @deprecated use removeAllChildren() instead
+     */
     public function removeChildren()
     {
-    	return $this->removeAllChildren();
+        return $this->removeAllChildren();
     }
 
     /**
