@@ -71,7 +71,7 @@ class ManiaLinksTest extends \PHPUnit_Framework_TestCase
         $domDocument = $maniaLinks->render();
 
         $this->assertEquals("<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>
-<manialinks><manialink version=\"1\"/><custom_ui/></manialinks>
+<manialinks><manialink version=\"3\"/><custom_ui/></manialinks>
 ", $domDocument->saveXML());
     }
 

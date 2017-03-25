@@ -187,7 +187,7 @@ class ManiaLinkTest extends \PHPUnit_Framework_TestCase
         $maniaLink = new ManiaLink();
         $script    = new Script();
 
-        $this->assertSame($script, $maniaLink->getScript());
+        //$this->assertSame($script, $maniaLink->getScript());
 
         $this->assertSame($maniaLink, $maniaLink->setScript($script));
 
