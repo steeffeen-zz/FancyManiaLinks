@@ -22,7 +22,7 @@ class Frame extends Control implements Container
      * @var Renderable[] $children Children
      */
     protected $children = array();
-    
+
     /**
      * @var Format $format Format
      */
@@ -34,6 +34,15 @@ class Frame extends Control implements Container
     public function getChildren()
     {
         return $this->children;
+    }
+
+    /**
+     * @see        Container::addChild()
+     * @deprecated use addChild() instead
+     */
+    public function add(Renderable $child)
+    {
+        return $this->addChild($child);
     }
 
     /**

@@ -152,6 +152,14 @@ class Quad extends Control implements Actionable, BackgroundColorable, Imageable
     }
 
     /**
+     * @deprecated use setImageUrl() instead
+     */
+    public function setImage($imageUrl)
+    {
+        return $this->setImageUrl($imageUrl);
+    }
+
+    /**
      * @see Imageable::setImageUrl()
      */
     public function setImageUrl($imageUrl)
@@ -193,6 +201,16 @@ class Quad extends Control implements Actionable, BackgroundColorable, Imageable
     public function getImageFocusUrl()
     {
         return $this->imageFocusUrl;
+    }
+
+    /**
+     * @param $imageFocusUrl
+     * @return \FML\Controls\Quad
+     * @deprecated
+     */
+    public function setImageFocus($imageFocusUrl)
+    {
+        return $this->setImageFocusUrl($imageFocusUrl);
     }
 
     /**

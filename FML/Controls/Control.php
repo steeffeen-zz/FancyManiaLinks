@@ -327,6 +327,19 @@ abstract class Control implements Identifiable, Renderable, ScriptFeatureable
      * @api
      * @param string $horizontalAlign Horizontal alignment
      * @return static
+     * @deprecated Use setHorizontalAlign() instead
+     */
+    public function setHAlign($horizontalAlign)
+    {
+        return $this->setHorizontalAlign($horizontalAlign);
+    }
+
+    /**
+     * Set the horizontal alignment
+     *
+     * @api
+     * @param string $horizontalAlign Horizontal alignment
+     * @return static
      */
     public function setHorizontalAlign($horizontalAlign)
     {
@@ -343,6 +356,19 @@ abstract class Control implements Identifiable, Renderable, ScriptFeatureable
     public function getVerticalAlign()
     {
         return $this->verticalAlign;
+    }
+
+    /**
+     * Set the vertical alignment
+     *
+     * @api
+     * @param string $verticalAlign Vertical alignment
+     * @return static
+     * @deprecated
+     */
+    public function setVAlign($verticalAlign)
+    {
+        return $this->setVerticalAlign($verticalAlign);
     }
 
     /**
@@ -648,6 +674,18 @@ abstract class Control implements Identifiable, Renderable, ScriptFeatureable
             array_push($this->scriptFeatures, $scriptFeature);
         }
         return $this;
+    }
+
+    /**
+     * Remove all Script Features
+     *
+     * @api
+     * @return static
+     * @deprecated use removeAllScriptFeatures() instead
+     */
+    public function removeScriptFeatures()
+    {
+        return $this->removeAllScriptFeatures();
     }
 
     /**
