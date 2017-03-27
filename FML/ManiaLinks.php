@@ -64,7 +64,8 @@ class ManiaLinks
      * @api
      * @param ManiaLink $child Child ManiaLink
      * @return static
-     * @deprecated use addChild() instead
+     * @deprecated Use addChild()
+     * @see        ManiaLinks::addChild()
      */
     public function add(ManiaLink $child)
     {
@@ -107,7 +108,8 @@ class ManiaLinks
      *
      * @api
      * @return static
-     * @deprecated use removeAllChildren instead
+     * @deprecated Use removeAllChildren()
+     * @see        ManiaLinks::removeAllChildren()
      */
     public function removeChildren()
     {

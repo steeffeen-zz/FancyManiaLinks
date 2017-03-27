@@ -37,8 +37,8 @@ class Frame extends Control implements Container
     }
 
     /**
-     * @see        Container::addChild()
-     * @deprecated use addChild() instead
+     * @deprecated Use addChild()
+     * @see        Frame::addChild()
      */
     public function add(Renderable $child)
     {

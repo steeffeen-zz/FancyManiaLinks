@@ -192,9 +192,10 @@ class Gauge extends Control implements Colorable, Styleable
      * Set draw background
      *
      * @api
-     * @param bool $drawBackground If the Gauges background should be drawn
+     * @param bool $drawBackground If the Gauge background should be drawn
      * @return static
-     * @deprecated use setDrawBackground() instead
+     * @deprecated Use setDrawBackground()
+     * @see        Gauge::setDrawBackground()
      */
     public function setDrawBg($drawBackground)
     {
@@ -205,7 +206,7 @@ class Gauge extends Control implements Colorable, Styleable
      * Set draw background
      *
      * @api
-     * @param bool $drawBackground If the Gauges background should be drawn
+     * @param bool $drawBackground If the Gauge background should be drawn
      * @return static
      */
     public function setDrawBackground($drawBackground)
@@ -229,7 +230,7 @@ class Gauge extends Control implements Colorable, Styleable
      * Set draw block background
      *
      * @api
-     * @param bool $drawBlockBackground If the Gauges block background should be drawn
+     * @param bool $drawBlockBackground If the Gauge block background should be drawn
      * @return static
      */
     public function setDrawBlockBackground($drawBlockBackground)

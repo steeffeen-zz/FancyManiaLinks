@@ -315,7 +315,8 @@ class ManiaCode
      *
      * @api
      * @return static
-     * @deprecated use removeAllElements() instead
+     * @deprecated Use removeAllElements()
+     * @see        ManiaCode::removeAllElements()
      */
     public function removeElements()
     {

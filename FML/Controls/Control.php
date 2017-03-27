@@ -327,7 +327,8 @@ abstract class Control implements Identifiable, Renderable, ScriptFeatureable
      * @api
      * @param string $horizontalAlign Horizontal alignment
      * @return static
-     * @deprecated Use setHorizontalAlign() instead
+     * @deprecated Use setHorizontalAlign()
+     * @see        Control::setHorizontalAlign()
      */
     public function setHAlign($horizontalAlign)
     {
@@ -364,7 +365,8 @@ abstract class Control implements Identifiable, Renderable, ScriptFeatureable
      * @api
      * @param string $verticalAlign Vertical alignment
      * @return static
-     * @deprecated
+     * @deprecated Use setVerticalAlign()
+     * @see        Control::setVerticalAlign()
      */
     public function setVAlign($verticalAlign)
     {
@@ -681,7 +683,8 @@ abstract class Control implements Identifiable, Renderable, ScriptFeatureable
      *
      * @api
      * @return static
-     * @deprecated use removeAllScriptFeatures() instead
+     * @deprecated Use removeAllScriptFeatures()
+     * @see        Control::removeAllScriptFeatures()
      */
     public function removeScriptFeatures()
     {

@@ -113,7 +113,6 @@ class ManiaLink
         if ($maniaLinkId) {
             $this->setId($maniaLinkId);
         }
-        $this->setVersion(self::MANIALINK_VERSION);
         if ($version) {
             $this->setVersion($version);
         }
@@ -123,7 +122,6 @@ class ManiaLink
         if ($children) {
             $this->setChildren($children);
         }
-        $this->createScript();
     }
 
     /**
@@ -290,7 +288,8 @@ class ManiaLink
      * @api
      * @param Renderable $child Child Element to add
      * @return static
-     * @deprecated use addChild() instead
+     * @deprecated Use addChild()
+     * @see        ManiaLink::addChild()
      */
     public function add(Renderable $child)
     {
@@ -333,7 +332,8 @@ class ManiaLink
      *
      * @api
      * @return static
-     * @deprecated use removeAllChildren() instead
+     * @deprecated Use removeAllChildren()
+     * @see        ManiaLink::removeAllChildren()
      */
     public function removeChildren()
     {
@@ -404,10 +404,14 @@ class ManiaLink
      * Get the Script
      *
      * @api
+     * @param bool $createIfEmpty (optional) Create the script if it's not set yet
      * @return Script
      */
-    public function getScript()
+    public function getScript($createIfEmpty = true)
     {
+        if ($createIfEmpty && !$this->script) {
+            $this->createScript();
+        }
         return $this->script;
     }
 
