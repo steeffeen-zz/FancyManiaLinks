@@ -84,6 +84,11 @@ class Quad extends Control implements Actionable, BackgroundColorable, Imageable
     protected $backgroundColor = null;
 
     /**
+     * @var string $focusBackgroundColor Focus background color
+     */
+    protected $focusBackgroundColor = null;
+
+    /**
      * @var string $action Action name
      */
     protected $action = null;
@@ -409,7 +414,7 @@ class Quad extends Control implements Actionable, BackgroundColorable, Imageable
 
     /**
      * @deprecated Use setBackgroundColor()
-     * @see        BackgroundColorable::setBgColor()
+     * @see        Quad::setBackgroundColor()
      */
     public function setBgColor($backgroundColor)
     {
@@ -417,11 +422,28 @@ class Quad extends Control implements Actionable, BackgroundColorable, Imageable
     }
 
     /**
-     * @see BackgroundColorable::setBgColor()
+     * @see BackgroundColorable::setBackgroundColor()
      */
     public function setBackgroundColor($backgroundColor)
     {
         $this->backgroundColor = (string)$backgroundColor;
+        return $this;
+    }
+
+    /**
+     * @see BackgroundColorable::getFocusBackgroundColor()
+     */
+    public function getFocusBackgroundColor()
+    {
+        return $this->focusBackgroundColor;
+    }
+
+    /**
+     * @see BackgroundColorable::setFocusBackgroundColor()
+     */
+    public function setFocusBackgroundColor($focusBackgroundColor)
+    {
+        $this->focusBackgroundColor = (string)$focusBackgroundColor;
         return $this;
     }
 
@@ -700,6 +722,9 @@ class Quad extends Control implements Actionable, BackgroundColorable, Imageable
         }
         if ($this->backgroundColor) {
             $domElement->setAttribute("bgcolor", $this->backgroundColor);
+        }
+        if ($this->focusBackgroundColor) {
+            $domElement->setAttribute("bgcolorfocus", $this->focusBackgroundColor);
         }
         if ($this->action) {
             $domElement->setAttribute("action", $this->action);

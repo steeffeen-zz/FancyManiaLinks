@@ -126,6 +126,17 @@ class QuadTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals("test-color", $quad->getBackgroundColor());
     }
 
+    public function testFocusBackgroundColor()
+    {
+        $quad = new Quad();
+
+        $this->assertNull($quad->getFocusBackgroundColor());
+
+        $this->assertSame($quad, $quad->setFocusBackgroundColor("test-focus-color"));
+
+        $this->assertEquals("test-focus-color", $quad->getFocusBackgroundColor());
+    }
+
     public function testAction()
     {
         $quad = new Quad();
@@ -297,6 +308,7 @@ class QuadTest extends \PHPUnit_Framework_TestCase
              ->setKeepRatio("some-mode")
              ->setOpacity(0.5)
              ->setBackgroundColor("some-color")
+             ->setFocusBackgroundColor("some-focus-color")
              ->setAction("some-action")
              ->setActionKey(42)
              ->setUrl("some.url")
@@ -313,7 +325,7 @@ class QuadTest extends \PHPUnit_Framework_TestCase
         $domDocument->appendChild($domElement);
 
         $this->assertEquals("<?xml version=\"1.0\"?>
-<quad id=\"test.quad\" image=\"some.url\" imageid=\"some-id\" imagefocus=\"some.url\" imagefocusid=\"some-id\" colorize=\"some-color\" modulizecolor=\"some-color\" autoscale=\"0\" autoscalefixedWidth=\"42.42\" keepratio=\"some-mode\" opacity=\"0.5\" bgcolor=\"some-color\" action=\"some-action\" actionkey=\"42\" url=\"some.url\" urlid=\"some.urlid\" manialink=\"some-manialink\" manialinkid=\"some-manialinkid\" scriptevents=\"1\" scriptaction=\"some-action'param1'param2\" style=\"some-style\" substyle=\"some-substyle\" styleselected=\"1\"/>
+<quad id=\"test.quad\" image=\"some.url\" imageid=\"some-id\" imagefocus=\"some.url\" imagefocusid=\"some-id\" colorize=\"some-color\" modulizecolor=\"some-color\" autoscale=\"0\" autoscalefixedWidth=\"42.42\" keepratio=\"some-mode\" opacity=\"0.5\" bgcolor=\"some-color\" bgcolorfocus=\"some-focus-color\" action=\"some-action\" actionkey=\"42\" url=\"some.url\" urlid=\"some.urlid\" manialink=\"some-manialink\" manialinkid=\"some-manialinkid\" scriptevents=\"1\" scriptaction=\"some-action'param1'param2\" style=\"some-style\" substyle=\"some-substyle\" styleselected=\"1\"/>
 ", $domDocument->saveXML());
     }
 

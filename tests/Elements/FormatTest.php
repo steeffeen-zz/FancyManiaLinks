@@ -23,6 +23,17 @@ class FormatTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals("test-color", $format->getBackgroundColor());
     }
 
+    public function testFocusBackgroundColor()
+    {
+        $format = new Format();
+
+        $this->assertNull($format->getFocusBackgroundColor());
+
+        $this->assertSame($format, $format->setFocusBackgroundColor("test-focus-color"));
+
+        $this->assertEquals("test-focus-color", $format->getFocusBackgroundColor());
+    }
+
     public function testStyle()
     {
         $format = new Format();
@@ -94,6 +105,7 @@ class FormatTest extends \PHPUnit_Framework_TestCase
         $domDocument = new \DOMDocument();
         $format      = new Format();
         $format->setBackgroundColor("some-bgcolor")
+               ->setFocusBackgroundColor("some-focus-color")
                ->setStyle("some-style")
                ->setTextSize(42)
                ->setTextFont("some-textfont")
@@ -105,7 +117,7 @@ class FormatTest extends \PHPUnit_Framework_TestCase
         $domDocument->appendChild($domElement);
 
         $this->assertEquals("<?xml version=\"1.0\"?>
-<format bgcolor=\"some-bgcolor\" style=\"some-style\" textsize=\"42\" textfont=\"some-textfont\" textcolor=\"some-textcolor\" focusareacolor1=\"some-areacolor\" focusareacolor2=\"some-areafocuscolor\"/>
+<format bgcolor=\"some-bgcolor\" bgcolorfocus=\"some-focus-color\" style=\"some-style\" textsize=\"42\" textfont=\"some-textfont\" textcolor=\"some-textcolor\" focusareacolor1=\"some-areacolor\" focusareacolor2=\"some-areafocuscolor\"/>
 ", $domDocument->saveXML());
     }
 

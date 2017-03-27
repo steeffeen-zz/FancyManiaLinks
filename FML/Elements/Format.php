@@ -23,6 +23,11 @@ class Format implements BackgroundColorable, Renderable, Styleable, TextFormatab
     protected $backgroundColor = null;
 
     /**
+     * @var string $focusBackgroundColor Focus background color
+     */
+    protected $focusBackgroundColor = null;
+
+    /**
      * @var string $style Style
      */
     protected $style = null;
@@ -64,7 +69,7 @@ class Format implements BackgroundColorable, Renderable, Styleable, TextFormatab
     }
 
     /**
-     * @see BgColorable::getBackgroundColor()
+     * @see BackgroundColorable::getBackgroundColor()
      */
     public function getBackgroundColor()
     {
@@ -72,11 +77,28 @@ class Format implements BackgroundColorable, Renderable, Styleable, TextFormatab
     }
 
     /**
-     * @see BgColorable::setBackgroundColor()
+     * @see BackgroundColorable::setBackgroundColor()
      */
     public function setBackgroundColor($backgroundColor)
     {
         $this->backgroundColor = (string)$backgroundColor;
+        return $this;
+    }
+
+    /**
+     * @see BackgroundColorable::getFocusBackgroundColor()
+     */
+    public function getFocusBackgroundColor()
+    {
+        return $this->focusBackgroundColor;
+    }
+
+    /**
+     * @see BackgroundColorable::setFocusBackgroundColor()
+     */
+    public function setFocusBackgroundColor($focusBackgroundColor)
+    {
+        $this->focusBackgroundColor = (string)$focusBackgroundColor;
         return $this;
     }
 
@@ -190,6 +212,9 @@ class Format implements BackgroundColorable, Renderable, Styleable, TextFormatab
         $domElement = $domDocument->createElement("format");
         if ($this->backgroundColor) {
             $domElement->setAttribute("bgcolor", $this->backgroundColor);
+        }
+        if ($this->focusBackgroundColor) {
+            $domElement->setAttribute("bgcolorfocus", $this->focusBackgroundColor);
         }
         if ($this->style) {
             $domElement->setAttribute("style", $this->style);
