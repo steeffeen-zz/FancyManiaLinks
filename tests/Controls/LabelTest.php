@@ -153,7 +153,7 @@ class LabelTest extends \PHPUnit_Framework_TestCase
     {
         $label = new Label();
 
-        $this->assertEquals(-1., $label->getLineSpacing());
+        $this->assertEquals(1., $label->getLineSpacing());
 
         $this->assertSame($label, $label->setLineSpacing(13.37));
 

@@ -31,7 +31,7 @@ class TextEditTest extends \PHPUnit_Framework_TestCase
     {
         $textEdit = new TextEdit();
 
-        $this->assertEquals(-1., $textEdit->getLineSpacing());
+        $this->assertEquals(1., $textEdit->getLineSpacing());
 
         $this->assertSame($textEdit, $textEdit->setLineSpacing(13.37));
 
