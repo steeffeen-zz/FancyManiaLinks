@@ -408,6 +408,15 @@ class Quad extends Control implements Actionable, BackgroundColorable, Imageable
     }
 
     /**
+     * @deprecated Use setBackgroundColor()
+     * @see        BackgroundColorable::setBgColor()
+     */
+    public function setBgColor($backgroundColor)
+    {
+        return $this->setBackgroundColor($backgroundColor);
+    }
+
+    /**
      * @see BackgroundColorable::setBgColor()
      */
     public function setBackgroundColor($backgroundColor)
