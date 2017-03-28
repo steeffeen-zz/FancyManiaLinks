@@ -2,6 +2,7 @@
 
 namespace FML\Elements;
 
+use FML\Stylesheet\Style;
 use FML\Types\Container;
 use FML\Types\Identifiable;
 use FML\Types\Renderable;
@@ -142,7 +143,8 @@ class FrameModel implements Container, Identifiable, Renderable
     }
 
     /**
-     * @see Container::getFormat()
+     * @deprecated Use Style
+     * @see        Style
      */
     public function getFormat()
     {
@@ -150,7 +152,8 @@ class FrameModel implements Container, Identifiable, Renderable
     }
 
     /**
-     * @see Container::setFormat()
+     * @deprecated Use Style
+     * @see        Style
      */
     public function setFormat(Format $format = null)
     {

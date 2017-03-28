@@ -171,15 +171,24 @@ class ManiaLinkTest extends \PHPUnit_Framework_TestCase
         $maniaLink  = new ManiaLink();
         $stylesheet = new Stylesheet();
 
-        $this->assertNull($maniaLink->getStylesheet());
+        $this->assertNull($maniaLink->getStylesheet(false));
 
         $this->assertSame($maniaLink, $maniaLink->setStylesheet($stylesheet));
 
         $this->assertSame($stylesheet, $maniaLink->getStylesheet());
+        $this->assertSame($stylesheet, $maniaLink->createStylesheet());
+        $this->assertSame($stylesheet, $maniaLink->getStylesheet());
 
         $this->assertSame($maniaLink, $maniaLink->setStylesheet(null));
 
-        $this->assertNull($maniaLink->getStylesheet());
+        $this->assertNull($maniaLink->getStylesheet(false));
+
+        $createdStylesheet = $maniaLink->getStylesheet(true);
+
+        $this->assertTrue($createdStylesheet instanceof Stylesheet);
+        $this->assertSame($createdStylesheet, $maniaLink->getStylesheet());
+        $this->assertSame($createdStylesheet, $maniaLink->createStylesheet());
+        $this->assertSame($createdStylesheet, $maniaLink->getStylesheet());
     }
 
     public function testScript()
@@ -200,8 +209,6 @@ class ManiaLinkTest extends \PHPUnit_Framework_TestCase
         $this->assertNull($maniaLink->getScript(false));
 
         $createdScript = $maniaLink->getScript(true);
-
-        $this->assertSame($createdScript, $maniaLink->createScript());
 
         $this->assertTrue($createdScript instanceof Script);
         $this->assertSame($createdScript, $maniaLink->getScript());

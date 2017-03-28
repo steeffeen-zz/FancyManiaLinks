@@ -281,7 +281,7 @@ class Gauge extends Control implements Colorable, Styleable
         if ($this->ratio) {
             $domElement->setAttribute("ratio", $this->ratio);
         }
-        if ($this->grading != 1.) {
+        if ($this->grading !== 1.) {
             $domElement->setAttribute("grading", $this->grading);
         }
         if ($this->color) {

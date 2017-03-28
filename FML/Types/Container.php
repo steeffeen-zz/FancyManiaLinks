@@ -3,6 +3,7 @@
 namespace FML\Types;
 
 use FML\Elements\Format;
+use FML\Stylesheet\Style;
 
 /**
  * Interface for Element being able to contain other Controls
@@ -53,6 +54,8 @@ interface Container
      *
      * @api
      * @return Format
+     * @deprecated Use Style
+     * @see        Style
      */
     public function getFormat();
 
@@ -62,6 +65,8 @@ interface Container
      * @api
      * @param Format $format New Format
      * @return static
+     * @deprecated Use Style
+     * @see        Style
      */
     public function setFormat(Format $format = null);
 

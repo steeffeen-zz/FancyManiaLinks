@@ -3,6 +3,7 @@
 namespace FML\Controls;
 
 use FML\Elements\Format;
+use FML\Stylesheet\Style;
 use FML\Types\Container;
 use FML\Types\Renderable;
 use FML\Types\ScriptFeatureable;
@@ -25,6 +26,7 @@ class Frame extends Control implements Container
 
     /**
      * @var Format $format Format
+     * @deprecated
      */
     protected $format = null;
 
@@ -77,7 +79,8 @@ class Frame extends Control implements Container
     }
 
     /**
-     * @see Container::getFormat()
+     * @deprecated Use Style
+     * @see        Style
      */
     public function getFormat()
     {
@@ -85,7 +88,8 @@ class Frame extends Control implements Container
     }
 
     /**
-     * @see Container::setFormat()
+     * @deprecated Use Style
+     * @see        Style
      */
     public function setFormat(Format $format = null)
     {

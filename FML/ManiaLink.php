@@ -382,8 +382,11 @@ class ManiaLink
      * @api
      * @return Stylesheet
      */
-    public function getStylesheet()
+    public function getStylesheet($createIfEmpty = true)
     {
+        if (!$this->stylesheet && $createIfEmpty) {
+            return $this->createStylesheet();
+        }
         return $this->stylesheet;
     }
 
@@ -401,6 +404,22 @@ class ManiaLink
     }
 
     /**
+     * Create and assign a new Stylesheet if necessary
+     *
+     * @api
+     * @return Stylesheet
+     */
+    public function createStylesheet()
+    {
+        if ($this->stylesheet) {
+            return $this->stylesheet;
+        }
+        $stylesheet = new Stylesheet();
+        $this->setStylesheet($stylesheet);
+        return $this->stylesheet;
+    }
+
+    /**
      * Get the Script
      *
      * @api
@@ -409,8 +428,8 @@ class ManiaLink
      */
     public function getScript($createIfEmpty = true)
     {
-        if ($createIfEmpty && !$this->script) {
-            $this->createScript();
+        if (!$this->script && $createIfEmpty) {
+            return $this->createScript();
         }
         return $this->script;
     }

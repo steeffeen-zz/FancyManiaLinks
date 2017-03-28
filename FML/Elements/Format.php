@@ -2,6 +2,7 @@
 
 namespace FML\Elements;
 
+use FML\Stylesheet\Style;
 use FML\Types\BackgroundColorable;
 use FML\Types\Renderable;
 use FML\Types\Styleable;
@@ -10,9 +11,11 @@ use FML\Types\TextFormatable;
 /**
  * Format Element
  *
- * @author    steeffeen <mail@steeffeen.com>
- * @copyright FancyManiaLinks Copyright © 2017 Steffen Schröder
- * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
+ * @author     steeffeen <mail@steeffeen.com>
+ * @copyright  FancyManiaLinks Copyright © 2017 Steffen Schröder
+ * @license    http://www.gnu.org/licenses/ GNU General Public License, Version 3
+ * @deprecated Use Style
+ * @see        Style
  */
 class Format implements BackgroundColorable, Renderable, Styleable, TextFormatable
 {
