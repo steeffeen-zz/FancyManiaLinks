@@ -10,6 +10,10 @@ php:
   - hhvm
   - nightly
 
+branches:
+  except:
+    - /^v1\.\d+/
+
 before_install:
 - composer require --dev codeclimate/php-test-reporter
 
