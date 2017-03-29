@@ -478,7 +478,7 @@ class ControlTest extends \PHPUnit_Framework_TestCase
         $domDocument->appendChild($domElement);
 
         $this->assertEquals("<?xml version=\"1.0\"?>
-<control id=\"some.control\" posn=\"9.8 7.6 5.4\" z-index=\"5.4\" sizen=\"98.76 54.32\" halign=\"some-halign\" valign=\"some-valign\" scale=\"0.5\" hidden=\"1\" rot=\"0.3\" class=\"some-class1 some-class2\" data-attribute1=\"value1\" data-attribute2=\"value2\"/>
+<control id=\"some.control\" pos=\"9.8 7.6\" posn=\"9.8 7.6 5.4\" z-index=\"5.4\" size=\"98.76 54.32\" sizen=\"98.76 54.32\" width=\"98.76\" height=\"54.32\" halign=\"some-halign\" valign=\"some-valign\" scale=\"0.5\" hidden=\"1\" rot=\"0.3\" class=\"some-class1 some-class2\" data-attribute1=\"value1\" data-attribute2=\"value2\"/>
 ", $domDocument->saveXML());
     }
 

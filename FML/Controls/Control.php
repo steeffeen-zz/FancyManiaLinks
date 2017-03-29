@@ -852,14 +852,28 @@ abstract class Control implements Identifiable, Renderable, ScriptFeatureable
         if ($this->controlId) {
             $domElement->setAttribute("id", $this->controlId);
         }
+        if ($this->posX || $this->posY) {
+            $domElement->setAttribute("pos", "{$this->posX} {$this->posY}");
+        }
         if ($this->posX || $this->posY || $this->posZ) {
+            // backwards-compatibility
             $domElement->setAttribute("posn", "{$this->posX} {$this->posY} {$this->posZ}");
         }
         if ($this->posZ) {
             $domElement->setAttribute("z-index", $this->posZ);
         }
         if ($this->width >= 0. || $this->height >= 0.) {
+            $domElement->setAttribute("size", "{$this->width} {$this->height}");
+            // backwards-compatibility
             $domElement->setAttribute("sizen", "{$this->width} {$this->height}");
+            if ($this->width >= 0.) {
+                // backwards-compatibility
+                $domElement->setAttribute("width", $this->width);
+            }
+            if ($this->height >= 0.) {
+                // backwards-compatibility
+                $domElement->setAttribute("height", $this->height);
+            }
         }
         if ($this->horizontalAlign) {
             $domElement->setAttribute("halign", $this->horizontalAlign);
@@ -876,7 +890,7 @@ abstract class Control implements Identifiable, Renderable, ScriptFeatureable
         if ($this->rotation) {
             $domElement->setAttribute("rot", $this->rotation);
         }
-        if (!empty($this->classes)) {
+        if ($this->classes) {
             $classes = implode(" ", $this->classes);
             $domElement->setAttribute("class", $classes);
         }
