@@ -312,6 +312,21 @@ class ManiaLink
     }
 
     /**
+     * Add children
+     *
+     * @api
+     * @param Renderable[] $children Child Elements to add
+     * @return static
+     */
+    public function addChildren(array $children)
+    {
+        foreach ($children as $child) {
+            $this->addChild($child);
+        }
+        return $this;
+    }
+
+    /**
      * Set children
      *
      * @api
@@ -320,11 +335,8 @@ class ManiaLink
      */
     public function setChildren(array $children)
     {
-        $this->children = array();
-        foreach ($children as $child) {
-            $this->addChild($child);
-        }
-        return $this;
+        return $this->removeAllChildren()
+                    ->addChildren($children);
     }
 
     /**

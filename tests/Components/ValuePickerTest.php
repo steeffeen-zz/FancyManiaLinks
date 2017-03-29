@@ -3,6 +3,8 @@
 use FML\Components\ValuePicker;
 use FML\Controls\Entry;
 use FML\Controls\Label;
+use FML\Script\Features\ControlScript;
+use FML\Script\Features\ValuePickerFeature;
 
 class ValuePickerTest extends \PHPUnit_Framework_TestCase
 {
@@ -74,6 +76,22 @@ class ValuePickerTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($valuePicker->setEntry($entry), $valuePicker);
 
         $this->assertSame($valuePicker->getEntry(), $entry);
+    }
+
+    public function testScriptFeatures()
+    {
+        $valuePicker        = new ValuePicker();
+        $label              = $valuePicker->getLabel();
+        $entry              = $valuePicker->getEntry();
+        $labelScriptFeature = new ControlScript($label);
+        $entryScriptFeature = new ControlScript($entry);
+
+        $scriptFeatures = $valuePicker->getScriptFeatures();
+
+        $this->assertCount(3, $scriptFeatures);
+        $this->assertTrue($scriptFeatures[0] instanceof ValuePickerFeature);
+        $this->assertSame($labelScriptFeature, $scriptFeatures[1]);
+        $this->assertSame($entryScriptFeature, $scriptFeatures[2]);
     }
 
     public function testRender()

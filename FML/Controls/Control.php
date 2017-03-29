@@ -679,6 +679,21 @@ abstract class Control implements Identifiable, Renderable, ScriptFeatureable
     }
 
     /**
+     * Add new Script Features
+     *
+     * @api
+     * @param ScriptFeature[] $scriptFeatures Script Features
+     * @return static
+     */
+    public function addScriptFeatures(array $scriptFeatures)
+    {
+        foreach ($scriptFeatures as $scriptFeature) {
+            $this->addScriptFeature($scriptFeature);
+        }
+        return $this;
+    }
+
+    /**
      * Remove all Script Features
      *
      * @api

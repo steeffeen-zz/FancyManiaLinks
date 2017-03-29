@@ -17,6 +17,10 @@ class GraphTest extends \PHPUnit_Framework_TestCase
         $this->assertEmpty($graph->getScriptFeatures());
 
         $this->assertSame($graph, $graph->addCurve($graphCurve1));
+
+        $this->assertEquals(array($graphCurve1), $graph->getCurves());
+        $this->assertEquals(array($graphCurve1), $graph->getScriptFeatures());
+
         $this->assertSame($graph, $graph->addCurves(array($graphCurve2, $graphCurve3)));
 
         $this->assertEquals(array($graphCurve1, $graphCurve2, $graphCurve3), $graph->getCurves());

@@ -20,13 +20,18 @@ class FrameTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(array($firstChild), $frame->getChildren());
 
-        $this->assertSame($frame, $frame->addChildren(array($firstChild, $secondChild)));
+        $this->assertSame($frame, $frame->addChild($secondChild));
+        $this->assertSame($frame, $frame->add($firstChild));
 
         $this->assertEquals(array($firstChild, $secondChild), $frame->getChildren());
 
         $this->assertSame($frame, $frame->removeAllChildren());
 
         $this->assertEmpty($frame->getChildren());
+
+        $this->assertSame($frame, $frame->addChildren(array($firstChild, $secondChild)));
+
+        $this->assertEquals(array($firstChild, $secondChild), $frame->getChildren());
     }
 
     public function testFormat()

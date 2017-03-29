@@ -37,11 +37,19 @@ class ManiaLinksTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(array($firstManiaLink), $maniaLinks->getChildren());
 
         $this->assertSame($maniaLinks, $maniaLinks->addChild($secondManiaLink));
-        $this->assertSame($maniaLinks, $maniaLinks->addChild($firstManiaLink));
+        $this->assertSame($maniaLinks, $maniaLinks->add($firstManiaLink));
 
         $this->assertEquals(array($firstManiaLink, $secondManiaLink), $maniaLinks->getChildren());
 
         $this->assertSame($maniaLinks, $maniaLinks->removeAllChildren());
+
+        $this->assertEmpty($maniaLinks->getChildren());
+
+        $this->assertSame($maniaLinks, $maniaLinks->addChildren(array($firstManiaLink, $secondManiaLink)));
+
+        $this->assertEquals(array($firstManiaLink, $secondManiaLink), $maniaLinks->getChildren());
+
+        $this->assertSame($maniaLinks, $maniaLinks->removeChildren());
 
         $this->assertEmpty($maniaLinks->getChildren());
     }

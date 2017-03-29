@@ -88,6 +88,21 @@ class ManiaLinks
     }
 
     /**
+     * Add child ManiaLinks
+     *
+     * @api
+     * @param ManiaLink[] $children Child ManiaLinks
+     * @return static
+     */
+    public function addChildren(array $children)
+    {
+        foreach ($children as $child) {
+            $this->addChild($child);
+        }
+        return $this;
+    }
+
+    /**
      * Set ManiaLink children
      *
      * @api
@@ -96,11 +111,8 @@ class ManiaLinks
      */
     public function setChildren(array $children)
     {
-        $this->children = array();
-        foreach ($children as $child) {
-            $this->addChild($child);
-        }
-        return $this;
+        return $this->removeAllChildren()
+                    ->addChildren($children);
     }
 
     /**

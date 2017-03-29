@@ -14,6 +14,10 @@ class QuadTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($quad, $quad->setImageUrl("test.url"));
 
         $this->assertEquals("test.url", $quad->getImageUrl());
+
+        $this->assertSame($quad, $quad->setImage("test.url.deprecated"));
+
+        $this->assertEquals("test.url.deprecated", $quad->getImageUrl());
     }
 
     public function testImageId()
@@ -36,6 +40,10 @@ class QuadTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($quad, $quad->setImageFocusUrl("test.url"));
 
         $this->assertEquals("test.url", $quad->getImageFocusUrl());
+
+        $this->assertSame($quad, $quad->setImageFocus("test.url.deprecated"));
+
+        $this->assertEquals("test.url.deprecated", $quad->getImageFocusUrl());
     }
 
     public function testImageFocusId()
@@ -124,6 +132,10 @@ class QuadTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($quad, $quad->setBackgroundColor("test-color"));
 
         $this->assertEquals("test-color", $quad->getBackgroundColor());
+
+        $this->assertSame($quad, $quad->setBgColor("test-color-deprecated"));
+
+        $this->assertEquals("test-color-deprecated", $quad->getBackgroundColor());
     }
 
     public function testFocusBackgroundColor()

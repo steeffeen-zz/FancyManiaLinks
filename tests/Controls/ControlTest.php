@@ -128,6 +128,10 @@ class ControlTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($control, $control->setHorizontalAlign("test-align"));
 
         $this->assertEquals("test-align", $control->getHorizontalAlign());
+
+        $this->assertSame($control, $control->setHAlign("test-align-deprecated"));
+
+        $this->assertEquals("test-align-deprecated", $control->getHorizontalAlign());
     }
 
     public function testVerticalAlign()
@@ -139,6 +143,10 @@ class ControlTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($control, $control->setVerticalAlign("test-align"));
 
         $this->assertEquals("test-align", $control->getVerticalAlign());
+
+        $this->assertSame($control, $control->setVAlign("test-align-deprecated"));
+
+        $this->assertEquals("test-align-deprecated", $control->getVerticalAlign());
     }
 
     public function testAlign()
@@ -265,6 +273,14 @@ class ControlTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(array($firstScriptFeature, $secondScriptFeature), $control->getScriptFeatures());
 
         $this->assertSame($control, $control->removeAllScriptFeatures());
+
+        $this->assertEmpty($control->getScriptFeatures());
+
+        $this->assertSame($control, $control->addScriptFeatures(array($firstScriptFeature, $secondScriptFeature)));
+
+        $this->assertEquals(array($firstScriptFeature, $secondScriptFeature), $control->getScriptFeatures());
+
+        $this->assertSame($control, $control->removeScriptFeatures());
 
         $this->assertEmpty($control->getScriptFeatures());
     }

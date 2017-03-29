@@ -69,6 +69,10 @@ class GaugeTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($gauge, $gauge->setDrawBackground(false));
 
         $this->assertFalse($gauge->getDrawBackground());
+
+        $this->assertSame($gauge, $gauge->setDrawBg(true));
+
+        $this->assertTrue($gauge->getDrawBackground());
     }
 
     public function testDrawBlockBackground()

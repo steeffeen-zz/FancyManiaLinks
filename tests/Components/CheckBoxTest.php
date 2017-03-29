@@ -4,6 +4,8 @@ use FML\Components\CheckBox;
 use FML\Components\CheckBoxDesign;
 use FML\Controls\Entry;
 use FML\Controls\Quad;
+use FML\Script\Features\CheckBoxFeature;
+use FML\Script\Features\ControlScript;
 
 class CheckBoxTest extends \PHPUnit_Framework_TestCase
 {
@@ -113,6 +115,22 @@ class CheckBoxTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($checkBox->setEntry($entry), $checkBox);
 
         $this->assertSame($checkBox->getEntry(), $entry);
+    }
+
+    public function testScriptFeatures()
+    {
+        $checkBox           = new CheckBox();
+        $quad               = $checkBox->getQuad();
+        $entry              = $checkBox->getEntry();
+        $quadScriptFeature  = new ControlScript($quad);
+        $entryScriptFeature = new ControlScript($entry);
+
+        $scriptFeatures = $checkBox->getScriptFeatures();
+
+        $this->assertCount(3, $scriptFeatures);
+        $this->assertTrue($scriptFeatures[0] instanceof CheckBoxFeature);
+        $this->assertSame($quadScriptFeature, $scriptFeatures[1]);
+        $this->assertSame($entryScriptFeature, $scriptFeatures[2]);
     }
 
     public function testRender()
