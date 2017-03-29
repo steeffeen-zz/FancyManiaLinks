@@ -75,6 +75,7 @@ class ControlScript extends ScriptFeature
     public function setControl(Control $control)
     {
         $control->checkId();
+        $control->addScriptFeature($this);
         $this->control = $control;
         $this->updateScriptEvents();
         return $this;

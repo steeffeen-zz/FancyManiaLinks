@@ -27,6 +27,7 @@ class ControlScriptTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($controlScript, $controlScript->setControl($control));
 
         $this->assertSame($control, $controlScript->getControl());
+        $this->assertEquals(array($controlScript), $control->getScriptFeatures());
     }
 
     public function testScriptText()
