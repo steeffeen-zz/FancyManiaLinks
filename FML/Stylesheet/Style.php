@@ -113,7 +113,7 @@ class Style implements BackgroundColorable, Colorable, Renderable, Styleable, Su
     public function addStyleId($styleId)
     {
         $styleId = (string)$styleId;
-        if (!in_array($styleId, $this->styleClasses)) {
+        if (!in_array($styleId, $this->styleIds)) {
             array_push($this->styleIds, $styleId);
         }
         return $this;

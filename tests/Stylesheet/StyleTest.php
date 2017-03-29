@@ -1,5 +1,6 @@
 <?php
 
+use FML\Controls\Label;
 use FML\Stylesheet\Style;
 
 class StyleTest extends \PHPUnit_Framework_TestCase
@@ -15,25 +16,32 @@ class StyleTest extends \PHPUnit_Framework_TestCase
     public function testStyleIds()
     {
         $style = new Style();
+        $label = new Label("test.label");
 
-        $this->assertEmpty($style->getStyleClasses());
+        $this->assertEmpty($style->getStyleIds());
 
-        $this->assertSame($style, $style->addStyleClass("test-class1"));
+        $this->assertSame($style, $style->addStyleId("test-id1"));
 
-        $this->assertEquals(array("test-class1"), $style->getStyleClasses());
+        $this->assertEquals(array("test-id1"), $style->getStyleIds());
 
-        $this->assertSame($style, $style->addStyleClasses(array("test-class1", "test-class2")));
+        $this->assertSame($style, $style->addStyleIds(array("test-id1", "test-id2")));
 
-        $this->assertEquals(array("test-class1", "test-class2"), $style->getStyleClasses());
+        $this->assertEquals(array("test-id1", "test-id2"), $style->getStyleIds());
 
-        $this->assertSame($style, $style->removeAllStyleClasses());
+        $this->assertSame($style, $style->removeAllStyleIds());
 
-        $this->assertEmpty($style->getStyleClasses());
+        $this->assertEmpty($style->getStyleIds());
+
+        $this->assertSame($style, $style->applyToControl($label));
+
+        $this->assertEquals(array("test.label"), $style->getStyleIds());
     }
 
     public function testStyleClasses()
     {
         $style = new Style();
+        $label = new Label("test.label");
+        $label->addClasses(array("label.class1", "label.class2"));
 
         $this->assertEmpty($style->getStyleClasses());
 
@@ -48,6 +56,10 @@ class StyleTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($style, $style->removeAllStyleClasses());
 
         $this->assertEmpty($style->getStyleClasses());
+
+        $this->assertSame($style, $style->applyToControlViaClasses($label));
+
+        $this->assertEquals(array("label.class1", "label.class2"), $style->getStyleClasses());
     }
 
     public function testBackgroundColor()
