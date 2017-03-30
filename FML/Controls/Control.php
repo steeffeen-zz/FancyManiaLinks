@@ -60,12 +60,12 @@ abstract class Control implements Identifiable, Renderable, ScriptFeatureable
     /**
      * @var float $width Width
      */
-    protected $width = -1.;
+    protected $width = 0.;
 
     /**
      * @var float $height Height
      */
-    protected $height = -1.;
+    protected $height = 0.;
 
     /**
      * @var string $horizontalAlign Horizontal alignment
@@ -862,15 +862,15 @@ abstract class Control implements Identifiable, Renderable, ScriptFeatureable
         if ($this->posZ) {
             $domElement->setAttribute("z-index", $this->posZ);
         }
-        if ($this->width >= 0. || $this->height >= 0.) {
+        if ($this->width > 0. || $this->height > 0.) {
             $domElement->setAttribute("size", "{$this->width} {$this->height}");
             // backwards-compatibility
             $domElement->setAttribute("sizen", "{$this->width} {$this->height}");
-            if ($this->width >= 0.) {
+            if ($this->width > 0.) {
                 // backwards-compatibility
                 $domElement->setAttribute("width", $this->width);
             }
-            if ($this->height >= 0.) {
+            if ($this->height > 0.) {
                 // backwards-compatibility
                 $domElement->setAttribute("height", $this->height);
             }

@@ -88,7 +88,7 @@ class ControlTest extends \PHPUnit_Framework_TestCase
     {
         $control = new ControlStub();
 
-        $this->assertEquals(-1., $control->getWidth());
+        $this->assertEquals(0., $control->getWidth());
 
         $this->assertSame($control, $control->setWidth(13.37));
 
@@ -99,7 +99,7 @@ class ControlTest extends \PHPUnit_Framework_TestCase
     {
         $control = new ControlStub();
 
-        $this->assertEquals(-1., $control->getHeight());
+        $this->assertEquals(0., $control->getHeight());
 
         $this->assertSame($control, $control->setHeight(13.37));
 
@@ -110,8 +110,8 @@ class ControlTest extends \PHPUnit_Framework_TestCase
     {
         $control = new ControlStub();
 
-        $this->assertEquals(-1., $control->getWidth());
-        $this->assertEquals(-1., $control->getHeight());
+        $this->assertEquals(0., $control->getWidth());
+        $this->assertEquals(0., $control->getHeight());
 
         $this->assertSame($control, $control->setSize(12.34, 56.78));
 
