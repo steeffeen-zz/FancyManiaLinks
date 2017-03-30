@@ -901,6 +901,18 @@ abstract class Control implements Identifiable, Renderable, ScriptFeatureable
     }
 
     /**
+     * Get the string representation
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        $domDocument = new \DOMDocument("1.0", "utf-8");
+        $domDocument->appendChild($this->render($domDocument));
+        return $domDocument->saveXML($domDocument->documentElement);
+    }
+
+    /**
      * Get the tag name of the Control
      *
      * @return string

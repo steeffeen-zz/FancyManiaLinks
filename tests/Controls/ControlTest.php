@@ -482,4 +482,12 @@ class ControlTest extends \PHPUnit_Framework_TestCase
 ", $domDocument->saveXML());
     }
 
+    public function testToString()
+    {
+        $control = new ControlStub("some.other.control");
+        $control->clearAlign();
+
+        $this->assertEquals("<control id=\"some.other.control\"/>", (string)$control);
+    }
+
 }
