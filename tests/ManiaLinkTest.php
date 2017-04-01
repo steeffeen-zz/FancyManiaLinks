@@ -9,15 +9,26 @@ use FML\Stylesheet\Stylesheet;
 class ManiaLinkTest extends \PHPUnit_Framework_TestCase
 {
 
-    public function testCreate()
+    public function testCreateWithoutParameters()
     {
-        $child     = new Including();
-        $maniaLink = ManiaLink::create("test-id", 1337, "test-name", array($child));
+        $maniaLink = ManiaLink::create();
 
         $this->assertTrue($maniaLink instanceof ManiaLink);
-        $this->assertEquals("test-id", $maniaLink->getId());
-        $this->assertEquals(1337, $maniaLink->getVersion());
-        $this->assertEquals("test-name", $maniaLink->getName());
+        $this->assertNull($maniaLink->getId());
+        $this->assertEquals(1, $maniaLink->getVersion());
+        $this->assertNull($maniaLink->getName());
+        $this->assertEmpty($maniaLink->getChildren());
+    }
+
+    public function testCreateWithParameters()
+    {
+        $child     = new Including();
+        $maniaLink = ManiaLink::create("old-id", "old-name", array($child));
+
+        $this->assertTrue($maniaLink instanceof ManiaLink);
+        $this->assertEquals("old-id", $maniaLink->getId());
+        $this->assertEquals(1, $maniaLink->getVersion());
+        $this->assertEquals("old-name", $maniaLink->getName());
         $this->assertEquals(array($child), $maniaLink->getChildren());
     }
 
@@ -33,7 +44,39 @@ class ManiaLinkTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(array($child), $maniaLink->getChildren());
     }
 
-    public function testConstruct()
+    public function testCreateWithVersion()
+    {
+        $child     = new Including();
+        $maniaLink = ManiaLink::create("test-id", 1337, "test-name", array($child));
+
+        $this->assertTrue($maniaLink instanceof ManiaLink);
+        $this->assertEquals("test-id", $maniaLink->getId());
+        $this->assertEquals(1337, $maniaLink->getVersion());
+        $this->assertEquals("test-name", $maniaLink->getName());
+        $this->assertEquals(array($child), $maniaLink->getChildren());
+    }
+
+    public function testCreateWithVersion0()
+    {
+        $child     = new Including();
+        $maniaLink = ManiaLink::create("test-id-0", 0);
+
+        $this->assertTrue($maniaLink instanceof ManiaLink);
+        $this->assertEquals("test-id-0", $maniaLink->getId());
+        $this->assertEquals(0, $maniaLink->getVersion());
+    }
+
+    public function testConstructWithoutParameters()
+    {
+        $maniaLink = new ManiaLink();
+
+        $this->assertNull($maniaLink->getId());
+        $this->assertEquals(1, $maniaLink->getVersion());
+        $this->assertNull($maniaLink->getName());
+        $this->assertEmpty($maniaLink->getChildren());
+    }
+
+    public function testConstructWithParameters()
     {
         $child     = new Including();
         $maniaLink = new ManiaLink("some-id", 1234, "some-name", array($child));
@@ -163,7 +206,7 @@ class ManiaLinkTest extends \PHPUnit_Framework_TestCase
         $maniaLink = new ManiaLink();
         $dico      = new Dico();
 
-        $this->assertNull($maniaLink->getDico());
+        $this->assertNull($maniaLink->getDico(false));
 
         $this->assertSame($maniaLink, $maniaLink->setDico($dico));
 
@@ -171,7 +214,12 @@ class ManiaLinkTest extends \PHPUnit_Framework_TestCase
 
         $this->assertSame($maniaLink, $maniaLink->setDico(null));
 
-        $this->assertNull($maniaLink->getDico());
+        $this->assertNull($maniaLink->getDico(false));
+
+        $createdDico = $maniaLink->getDico();
+
+        $this->assertTrue($createdDico instanceof Dico);
+        $this->assertSame($createdDico, $maniaLink->getDico());
     }
 
     public function testStylesheet()

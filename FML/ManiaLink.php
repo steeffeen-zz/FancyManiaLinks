@@ -21,7 +21,10 @@ class ManiaLink
     /*
      * Constants
      */
-    const MANIALINK_VERSION   = 3;
+    const VERSION_0           = 0;
+    const VERSION_1           = 1;
+    const VERSION_2           = 2;
+    const VERSION_3           = 3;
     const BACKGROUND_0        = "0";
     const BACKGROUND_1        = "1";
     const BACKGROUND_STARS    = "stars";
@@ -36,7 +39,7 @@ class ManiaLink
     /**
      * @var int $version ManiaLink version
      */
-    protected $version = 1;
+    protected $version = 0;
 
     /**
      * @var string $name ManiaLink name
@@ -88,7 +91,7 @@ class ManiaLink
      * @param Renderable[] $children    (optional) Children
      * @return static
      */
-    public static function create($maniaLinkId = null, $version = null, $name = null, array $children = null)
+    public static function create($maniaLinkId = null, $version = ManiaLink::VERSION_1, $name = null, array $children = null)
     {
         return new static($maniaLinkId, $version, $name, $children);
     }
@@ -102,13 +105,13 @@ class ManiaLink
      * @param string       $name        (optional) Name
      * @param Renderable[] $children    (optional) Children
      */
-    public function __construct($maniaLinkId = null, $version = null, $name = null, array $children = null)
+    public function __construct($maniaLinkId = null, $version = ManiaLink::VERSION_1, $name = null, array $children = null)
     {
-        if (is_string($version)) {
+        if (is_string($version) && (!$name || is_array($name)) && !$children) {
             // backwards-compatibility (version has been introduced later)
             $children = $name;
             $name     = $version;
-            $version  = null;
+            $version  = ManiaLink::VERSION_1;
         }
         if ($maniaLinkId) {
             $this->setId($maniaLinkId);
@@ -368,10 +371,14 @@ class ManiaLink
      * Get the Dictionary
      *
      * @api
+     * @param bool $createIfEmpty (optional) If the Dico should be created if it doesn't exist yet
      * @return Dico
      */
-    public function getDico()
+    public function getDico($createIfEmpty = true)
     {
+        if (!$this->dico && $createIfEmpty) {
+            $this->setDico(new Dico());
+        }
         return $this->dico;
     }
 
