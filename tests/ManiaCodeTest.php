@@ -241,16 +241,24 @@ class ManiaCodeTest extends \PHPUnit_Framework_TestCase
         $maniaCode = new ManiaCode();
 
         $this->assertSame($maniaCode, $maniaCode->addJoinServer("test-login"));
+        $this->assertSame($maniaCode, $maniaCode->addJoinServer("test-ip", 1337));
 
         $elements = $maniaCode->getElements();
 
-        $this->assertCount(1, $elements);
+        $this->assertCount(2, $elements);
 
-        /** @var JoinServer $joinServer */
-        $joinServer = $elements[0];
+        /** @var JoinServer $joinServer0 */
+        $joinServer0 = $elements[0];
 
-        $this->assertTrue($joinServer instanceof JoinServer);
-        $this->assertEquals("test-login", $joinServer->getLogin());
+        $this->assertTrue($joinServer0 instanceof JoinServer);
+        $this->assertEquals("test-login", $joinServer0->getLogin());
+
+        /** @var JoinServer $joinServer1 */
+        $joinServer1 = $elements[1];
+
+        $this->assertTrue($joinServer1 instanceof JoinServer);
+        $this->assertEquals("test-ip", $joinServer1->getIp());
+        $this->assertEquals(1337, $joinServer1->getPort());
     }
 
     public function testAddFavorite()
@@ -258,16 +266,24 @@ class ManiaCodeTest extends \PHPUnit_Framework_TestCase
         $maniaCode = new ManiaCode();
 
         $this->assertSame($maniaCode, $maniaCode->addAddFavorite("test-login"));
+        $this->assertSame($maniaCode, $maniaCode->addAddFavorite("test-ip", 42));
 
         $elements = $maniaCode->getElements();
 
-        $this->assertCount(1, $elements);
+        $this->assertCount(2, $elements);
 
-        /** @var AddFavorite $addFavorite */
-        $addFavorite = $elements[0];
+        /** @var AddFavorite $addFavorite0 */
+        $addFavorite0 = $elements[0];
 
-        $this->assertTrue($addFavorite instanceof AddFavorite);
-        $this->assertEquals("test-login", $addFavorite->getLogin());
+        $this->assertTrue($addFavorite0 instanceof AddFavorite);
+        $this->assertEquals("test-login", $addFavorite0->getLogin());
+
+        /** @var AddFavorite $addFavorite1 */
+        $addFavorite1 = $elements[1];
+
+        $this->assertTrue($addFavorite1 instanceof AddFavorite);
+        $this->assertEquals("test-ip", $addFavorite1->getIp());
+        $this->assertEquals(42, $addFavorite1->getPort());
     }
 
     public function testInstallScript()
@@ -310,20 +326,25 @@ class ManiaCodeTest extends \PHPUnit_Framework_TestCase
 
     public function testElements()
     {
-        $maniaCode = new ManiaCode();
-        $element   = new ShowMessage("some-message");
+        $maniaCode     = new ManiaCode();
+        $firstElement  = new ShowMessage();
+        $secondElement = new ShowMessage();
 
         $this->assertEmpty($maniaCode->getElements());
 
-        $this->assertSame($maniaCode, $maniaCode->addElement($element));
+        $this->assertSame($maniaCode, $maniaCode->addElement($firstElement));
 
-        $elements = $maniaCode->getElements();
-
-        $this->assertCount(1, $elements);
-
-        $this->assertSame($element, $elements[0]);
+        $this->assertEquals(array($firstElement), $maniaCode->getElements());
 
         $this->assertSame($maniaCode, $maniaCode->removeAllElements());
+
+        $this->assertEmpty($maniaCode->getElements());
+
+        $this->assertSame($maniaCode, $maniaCode->addElements(array($firstElement, $secondElement)));
+
+        $this->assertEquals(array($firstElement, $secondElement), $maniaCode->getElements());
+
+        $this->assertSame($maniaCode, $maniaCode->removeElements());
 
         $this->assertEmpty($maniaCode->getElements());
     }
