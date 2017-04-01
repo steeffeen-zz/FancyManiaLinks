@@ -1,6 +1,7 @@
 <?php
 
 use FML\Stylesheet\Mood;
+use FML\Stylesheet\Style;
 use FML\Stylesheet\Style3d;
 use FML\Stylesheet\Stylesheet;
 
@@ -12,6 +13,36 @@ class StylesheetTest extends \PHPUnit_Framework_TestCase
         $stylesheet = Stylesheet::create();
 
         $this->assertTrue($stylesheet instanceof Stylesheet);
+    }
+
+    public function testStyles()
+    {
+        $stylesheet  = new Stylesheet();
+        $firstStyle  = new Style();
+        $secondStyle = new Style();
+
+        $this->assertEmpty($stylesheet->getStyles());
+
+        $this->assertSame($stylesheet, $stylesheet->addStyle($firstStyle));
+
+        $this->assertEquals(array($firstStyle), $stylesheet->getStyles());
+
+        $this->assertSame($stylesheet, $stylesheet->addStyle($secondStyle));
+        $this->assertSame($stylesheet, $stylesheet->addStyle($firstStyle));
+
+        $this->assertEquals(array($firstStyle, $secondStyle), $stylesheet->getStyles());
+
+        $this->assertSame($stylesheet, $stylesheet->removeAllStyles());
+
+        $this->assertEmpty($stylesheet->getStyles());
+
+        $this->assertSame($stylesheet, $stylesheet->addStyle($firstStyle));
+
+        $this->assertEquals(array($firstStyle), $stylesheet->getStyles());
+
+        $this->assertSame($stylesheet, $stylesheet->removeStyles());
+
+        $this->assertEmpty($stylesheet->getStyles());
     }
 
     public function testStyles3d()
