@@ -34,6 +34,14 @@ class StylesheetTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($stylesheet, $stylesheet->removeAllStyles3d());
 
         $this->assertEmpty($stylesheet->getStyles3d());
+
+        $this->assertSame($stylesheet, $stylesheet->addStyle3d($firstStyle3d));
+
+        $this->assertEquals(array($firstStyle3d), $stylesheet->getStyles3d());
+
+        $this->assertSame($stylesheet, $stylesheet->removeStyles());
+
+        $this->assertEmpty($stylesheet->getStyles3d());
     }
 
     public function testMood()
@@ -41,7 +49,7 @@ class StylesheetTest extends \PHPUnit_Framework_TestCase
         $stylesheet = new Stylesheet();
         $mood       = new Mood();
 
-        $this->assertNull($stylesheet->getMood());
+        $this->assertNull($stylesheet->getMood(false));
 
         $this->assertSame($stylesheet, $stylesheet->setMood($mood));
 
@@ -51,9 +59,9 @@ class StylesheetTest extends \PHPUnit_Framework_TestCase
 
         $this->assertSame($stylesheet, $stylesheet->setMood(null));
 
-        $this->assertNull($stylesheet->getMood());
+        $this->assertNull($stylesheet->getMood(false));
 
-        $createdMood = $stylesheet->createMood();
+        $createdMood = $stylesheet->getMood(true);
 
         $this->assertTrue($createdMood instanceof Mood);
         $this->assertSame($createdMood, $stylesheet->getMood());

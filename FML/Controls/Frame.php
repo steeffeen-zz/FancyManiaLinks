@@ -70,6 +70,15 @@ class Frame extends Control implements Container
     }
 
     /**
+     * @deprecated Use removeAllChildren()
+     * @see        Frame::removeAllChildren()
+     */
+    public function removeChildren()
+    {
+        return $this->removeAllChildren();
+    }
+
+    /**
      * @see Container::removeAllChildren()
      */
     public function removeAllChildren()
@@ -82,8 +91,11 @@ class Frame extends Control implements Container
      * @deprecated Use Style
      * @see        Style
      */
-    public function getFormat()
+    public function getFormat($createIfEmpty = true)
     {
+        if (!$this->format && $createIfEmpty) {
+            $this->setFormat(new Format());
+        }
         return $this->format;
     }
 

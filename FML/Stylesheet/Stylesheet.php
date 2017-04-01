@@ -72,13 +72,30 @@ class Stylesheet
     }
 
     /**
+     * Remove all Style3ds
+     *
+     * @api
+     * @return static
+     * @deprecated Use removeAllStyles3d()
+     * @see        Stylesheet::removeAllStyles3d()
+     */
+    public function removeStyles()
+    {
+        return $this->removeAllStyles3d();
+    }
+
+    /**
      * Get the Mood
      *
      * @api
+     * @param bool $createIfEmpty (optional) If the Mood should be created if it doesn't exist yet
      * @return Mood
      */
-    public function getMood()
+    public function getMood($createIfEmpty = true)
     {
+        if (!$this->mood && $createIfEmpty) {
+            $this->createMood();
+        }
         return $this->mood;
     }
 

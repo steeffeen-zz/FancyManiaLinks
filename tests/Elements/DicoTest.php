@@ -42,6 +42,15 @@ class DicoTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals("value3", $dico->getEntry("lang3", "entry3"));
 
         $this->assertSame($dico, $dico->setEntry("lang2", "entry2", "value2"));
+        $this->assertSame($dico, $dico->setEntry("lang22", "entry2", "value2"));
+        $this->assertSame($dico, $dico->removeEntry("entry2", "lang22"));
+
+        $this->assertEquals("value1", $dico->getEntry("lang1", "entry1"));
+        $this->assertEquals("value2", $dico->getEntry("lang2", "entry2"));
+        $this->assertNull($dico->getEntry("lang22", "entry2"));
+        $this->assertEquals("value3", $dico->getEntry("lang3", "entry3"));
+
+        $this->assertSame($dico, $dico->setEntry("lang2", "entry2", "value2"));
         $this->assertSame($dico, $dico->setEntry("lang3", "entry3", ""));
 
         $this->assertEquals("value1", $dico->getEntry("lang1", "entry1"));
@@ -54,6 +63,11 @@ class DicoTest extends \PHPUnit_Framework_TestCase
         $this->assertNull($dico->getEntry("lang1", "entry1"));
         $this->assertNull($dico->getEntry("lang2", "entry2"));
         $this->assertNull($dico->getEntry("lang3", "entry3"));
+
+        $this->assertSame($dico, $dico->setEntry("lang1", "entry1", "value1"));
+        $this->assertSame($dico, $dico->removeEntries());
+
+        $this->assertNull($dico->getEntry("lang1", "entry1"));
     }
 
     public function testRender()

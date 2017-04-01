@@ -106,6 +106,20 @@ class ControlScript extends ScriptFeature
     }
 
     /**
+     * Set the script text
+     *
+     * @api
+     * @param string $text Text
+     * @return static
+     * @deprecated Use setScriptText()
+     * @see        ControlScript::setScriptText()
+     */
+    public function setText($text)
+    {
+        return $this->setScriptText($text);
+    }
+
+    /**
      * Get the Script Label name
      *
      * @api
@@ -175,8 +189,8 @@ declare Control <=> Event.Control;";
             $scriptText .= "
 declare Control <=> Page.GetFirstChild({$controlId});";
         }
-        $class = $this->control->getManiaScriptClass();
-        $name  = preg_replace('/^CMl/', '', $class, 1);
+        $class      = $this->control->getManiaScriptClass();
+        $name       = preg_replace('/^CMl/', '', $class, 1);
         $scriptText .= "
 declare {$name} <=> (Control as {$class});
 ";

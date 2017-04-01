@@ -39,6 +39,10 @@ class ControlScriptTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($controlScript, $controlScript->setScriptText("some-script"));
 
         $this->assertEquals("some-script", $controlScript->getScriptText());
+
+        $this->assertSame($controlScript, $controlScript->setText("some-script-deprecated"));
+
+        $this->assertEquals("some-script-deprecated", $controlScript->getScriptText());
     }
 
     public function testLabelName()

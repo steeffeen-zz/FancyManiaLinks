@@ -32,6 +32,10 @@ class FrameTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($frame, $frame->addChildren(array($firstChild, $secondChild)));
 
         $this->assertEquals(array($firstChild, $secondChild), $frame->getChildren());
+
+        $this->assertSame($frame, $frame->removeChildren());
+
+        $this->assertEmpty($frame->getChildren());
     }
 
     public function testFormat()
@@ -39,7 +43,12 @@ class FrameTest extends \PHPUnit_Framework_TestCase
         $frame  = new Frame();
         $format = new Format();
 
-        $this->assertNull($frame->getFormat());
+        $this->assertNull($frame->getFormat(false));
+
+        $createdFormat = $frame->getFormat();
+
+        $this->assertTrue($createdFormat instanceof Format);
+        $this->assertSame($createdFormat, $frame->getFormat());
 
         $this->assertSame($frame, $frame->setFormat($format));
 

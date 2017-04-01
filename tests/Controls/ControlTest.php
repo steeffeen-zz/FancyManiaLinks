@@ -161,12 +161,17 @@ class ControlTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals("test-halign", $control->getHorizontalAlign());
         $this->assertEquals("test-valign", $control->getVerticalAlign());
 
+        $this->assertSame($control, $control->clearAlign());
+
+        $this->assertNull($control->getHorizontalAlign());
+        $this->assertNull($control->getVerticalAlign());
+
         $this->assertSame($control, $control->centerAlign());
 
         $this->assertEquals($control::CENTER, $control->getHorizontalAlign());
         $this->assertEquals($control::CENTER2, $control->getVerticalAlign());
 
-        $this->assertSame($control, $control->clearAlign());
+        $this->assertSame($control, $control->resetAlign());
 
         $this->assertNull($control->getHorizontalAlign());
         $this->assertNull($control->getVerticalAlign());

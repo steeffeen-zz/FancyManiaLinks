@@ -21,6 +21,10 @@ class FormatTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($format, $format->setBackgroundColor("test-color"));
 
         $this->assertEquals("test-color", $format->getBackgroundColor());
+
+        $this->assertSame($format, $format->setBgColor("test-color-deprecated"));
+
+        $this->assertEquals("test-color-deprecated", $format->getBackgroundColor());
     }
 
     public function testFocusBackgroundColor()

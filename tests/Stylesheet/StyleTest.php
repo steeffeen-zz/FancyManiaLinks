@@ -71,6 +71,10 @@ class StyleTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($style, $style->setBackgroundColor("test-color"));
 
         $this->assertEquals("test-color", $style->getBackgroundColor());
+
+        $this->assertSame($style, $style->setBgColor("test-color-deprecated"));
+
+        $this->assertEquals("test-color-deprecated", $style->getBackgroundColor());
     }
 
     public function testFocusBackgroundColor()

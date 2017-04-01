@@ -6,6 +6,15 @@ use FML\Elements\FrameModel;
 class FrameInstanceTest extends \PHPUnit_Framework_TestCase
 {
 
+    public function testCreate()
+    {
+        $frameInstance = FrameInstance::create("test.frame.instance", "test.model");
+
+        $this->assertTrue($frameInstance instanceof FrameInstance);
+        $this->assertEquals("test.frame.instance", $frameInstance->getId());
+        $this->assertEquals("test.model", $frameInstance->getModelId());
+    }
+
     public function testModelId()
     {
         $frameInstance = new FrameInstance();

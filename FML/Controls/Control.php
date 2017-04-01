@@ -412,6 +412,19 @@ abstract class Control implements Identifiable, Renderable, ScriptFeatureable
     }
 
     /**
+     * Reset the alignment
+     *
+     * @api
+     * @return static
+     * @deprecated Use clearAlign()
+     * @see        Control::clearAlign()
+     */
+    public function resetAlign()
+    {
+        return $this->clearAlign();
+    }
+
+    /**
      * Clear the alignment
      *
      * @api

@@ -2,8 +2,10 @@
 
 namespace FML\Controls;
 
+use FML\Components\CheckBoxDesign;
 use FML\Types\Actionable;
 use FML\Types\BackgroundColorable;
+use FML\Types\BgColorable;
 use FML\Types\Imageable;
 use FML\Types\Linkable;
 use FML\Types\Scriptable;
@@ -18,7 +20,7 @@ use FML\Types\SubStyleable;
  * @copyright FancyManiaLinks Copyright © 2017 Steffen Schröder
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
-class Quad extends Control implements Actionable, BackgroundColorable, Imageable, Linkable, Scriptable, Styleable, SubStyleable
+class Quad extends Control implements Actionable, BackgroundColorable, BgColorable, Imageable, Linkable, Scriptable, Styleable, SubStyleable
 {
 
     /*
@@ -413,21 +415,21 @@ class Quad extends Control implements Actionable, BackgroundColorable, Imageable
     }
 
     /**
-     * @deprecated Use setBackgroundColor()
-     * @see        Quad::setBackgroundColor()
-     */
-    public function setBgColor($backgroundColor)
-    {
-        return $this->setBackgroundColor($backgroundColor);
-    }
-
-    /**
      * @see BackgroundColorable::setBackgroundColor()
      */
     public function setBackgroundColor($backgroundColor)
     {
         $this->backgroundColor = (string)$backgroundColor;
         return $this;
+    }
+
+    /**
+     * @deprecated Use setBackgroundColor()
+     * @see        Quad::setBackgroundColor()
+     */
+    public function setBgColor($bgColor)
+    {
+        return $this->setBackgroundColor($bgColor);
     }
 
     /**
@@ -665,6 +667,19 @@ class Quad extends Control implements Actionable, BackgroundColorable, Imageable
     public function setStyleSelected($styleSelected)
     {
         $this->styleSelected = (bool)$styleSelected;
+        return $this;
+    }
+
+    /**
+     * Apply the CheckBox Design
+     *
+     * @api
+     * @param CheckBoxDesign $checkBoxDesign CheckBox Design
+     * @return static
+     */
+    public function applyCheckBoxDesign(CheckBoxDesign $checkBoxDesign)
+    {
+        $checkBoxDesign->applyToQuad($this);
         return $this;
     }
 

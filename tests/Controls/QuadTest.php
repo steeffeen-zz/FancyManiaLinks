@@ -1,5 +1,6 @@
 <?php
 
+use FML\Components\CheckBoxDesign;
 use FML\Controls\Quad;
 
 class QuadTest extends \PHPUnit_Framework_TestCase
@@ -288,6 +289,17 @@ class QuadTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($quad, $quad->setStyleSelected(true));
 
         $this->assertTrue($quad->getStyleSelected());
+    }
+
+    public function testApplyCheckBoxDesign()
+    {
+        $quad           = new Quad();
+        $checkBoxDesign = new CheckBoxDesign("quad-style", "quad-substyle");
+
+        $this->assertSame($quad, $quad->applyCheckBoxDesign($checkBoxDesign));
+
+        $this->assertEquals($quad->getStyle(), "quad-style");
+        $this->assertEquals($quad->getSubStyle(), "quad-substyle");
     }
 
     public function testTagName()

@@ -59,7 +59,7 @@ class ManiaLinksTest extends \PHPUnit_Framework_TestCase
         $maniaLinks = new ManiaLinks();
         $customUI   = new CustomUI();
 
-        $this->assertNull($maniaLinks->getCustomUI());
+        $this->assertNull($maniaLinks->getCustomUI(false));
 
         $this->assertSame($maniaLinks, $maniaLinks->setCustomUI($customUI));
 
@@ -67,7 +67,12 @@ class ManiaLinksTest extends \PHPUnit_Framework_TestCase
 
         $this->assertSame($maniaLinks, $maniaLinks->setCustomUI(null));
 
-        $this->assertNull($maniaLinks->getCustomUI());
+        $this->assertNull($maniaLinks->getCustomUI(false));
+
+        $createdCustomUI = $maniaLinks->getCustomUI();
+
+        $this->assertTrue($createdCustomUI instanceof CustomUI);
+        $this->assertSame($createdCustomUI, $maniaLinks->getCustomUI());
     }
 
     public function testRender()

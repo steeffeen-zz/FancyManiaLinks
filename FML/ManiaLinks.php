@@ -120,6 +120,18 @@ class ManiaLinks
      *
      * @api
      * @return static
+     */
+    public function removeAllChildren()
+    {
+        $this->children = array();
+        return $this;
+    }
+
+    /**
+     * Remove all child ManiaLinks
+     *
+     * @api
+     * @return static
      * @deprecated Use removeAllChildren()
      * @see        ManiaLinks::removeAllChildren()
      */
@@ -129,25 +141,17 @@ class ManiaLinks
     }
 
     /**
-     * Remove all child ManiaLinks
-     *
-     * @api
-     * @return static
-     */
-    public function removeAllChildren()
-    {
-        $this->children = array();
-        return $this;
-    }
-
-    /**
      * Get the CustomUI
      *
      * @api
+     * @param bool $createIfEmpty (optional) If the Custom UI should be created if it doesn't exist yet
      * @return CustomUI
      */
-    public function getCustomUI()
+    public function getCustomUI($createIfEmpty = true)
     {
+        if (!$this->customUI && $createIfEmpty) {
+            $this->setCustomUI(new CustomUI());
+        }
         return $this->customUI;
     }
 

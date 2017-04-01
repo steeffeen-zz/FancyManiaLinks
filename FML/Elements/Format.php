@@ -4,6 +4,7 @@ namespace FML\Elements;
 
 use FML\Stylesheet\Style;
 use FML\Types\BackgroundColorable;
+use FML\Types\BgColorable;
 use FML\Types\Renderable;
 use FML\Types\Styleable;
 use FML\Types\TextFormatable;
@@ -17,7 +18,7 @@ use FML\Types\TextFormatable;
  * @deprecated Use Style
  * @see        Style
  */
-class Format implements BackgroundColorable, Renderable, Styleable, TextFormatable
+class Format implements BackgroundColorable, BgColorable, Renderable, Styleable, TextFormatable
 {
 
     /**
@@ -86,6 +87,15 @@ class Format implements BackgroundColorable, Renderable, Styleable, TextFormatab
     {
         $this->backgroundColor = (string)$backgroundColor;
         return $this;
+    }
+
+    /**
+     * @deprecated Use setBackgroundColor()
+     * @see        Format::setBackgroundColor()
+     */
+    public function setBgColor($bgColor)
+    {
+        return $this->setBackgroundColor($bgColor);
     }
 
     /**

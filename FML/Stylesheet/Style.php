@@ -4,6 +4,7 @@ namespace FML\Stylesheet;
 
 use FML\Controls\Control;
 use FML\Types\BackgroundColorable;
+use FML\Types\BgColorable;
 use FML\Types\Colorable;
 use FML\Types\Renderable;
 use FML\Types\Styleable;
@@ -18,7 +19,7 @@ use FML\Types\TextFormatable;
  * @copyright FancyManiaLinks Copyright © 2017 Steffen Schröder
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
-class Style implements BackgroundColorable, Colorable, Renderable, Styleable, SubStyleable, TextFormatable
+class Style implements BackgroundColorable, BgColorable, Colorable, Renderable, Styleable, SubStyleable, TextFormatable
 {
 
     /**
@@ -265,6 +266,15 @@ class Style implements BackgroundColorable, Colorable, Renderable, Styleable, Su
     {
         $this->backgroundColor = (string)$backgroundColor;
         return $this;
+    }
+
+    /**
+     * @deprecated Use setBackgroundColor()
+     * @see        Style::setBackgroundColor()
+     */
+    public function setBgColor($bgdColor)
+    {
+        return $this->setBackgroundColor($bgdColor);
     }
 
     /**
