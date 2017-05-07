@@ -87,7 +87,7 @@ class LabelTest extends \PHPUnit_Framework_TestCase
     {
         $label = new Label();
 
-        $this->assertEquals(-1, $label->getActionKey());
+        $this->assertNull($label->getActionKey());
 
         $this->assertSame($label, $label->setActionKey(13));
 

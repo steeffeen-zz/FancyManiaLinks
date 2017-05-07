@@ -165,7 +165,7 @@ class QuadTest extends \PHPUnit_Framework_TestCase
     {
         $quad = new Quad();
 
-        $this->assertEquals(-1, $quad->getActionKey());
+        $this->assertNull($quad->getActionKey());
 
         $this->assertSame($quad, $quad->setActionKey(13));
 
