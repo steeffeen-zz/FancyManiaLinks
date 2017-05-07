@@ -16,9 +16,9 @@ class CheckBoxTest extends \PHPUnit_Framework_TestCase
         $checkBox = new CheckBox("test-name", true, $quad);
 
         $this->assertNotNull($checkBox);
-        $this->assertEquals($checkBox->getName(), "test-name");
+        $this->assertEquals("test-name", $checkBox->getName());
         $this->assertTrue($checkBox->getDefault());
-        $this->assertSame($checkBox->getQuad(), $quad);
+        $this->assertSame($quad, $checkBox->getQuad());
     }
 
     public function testName()
@@ -26,10 +26,14 @@ class CheckBoxTest extends \PHPUnit_Framework_TestCase
         $checkBox = new CheckBox();
 
         $this->assertNull($checkBox->getName());
+        $this->assertNull($checkBox->getEntry()
+                                   ->getName());
 
-        $this->assertSame($checkBox->setName("some-name"), $checkBox);
+        $this->assertSame($checkBox, $checkBox->setName("some-name"));
 
-        $this->assertEquals($checkBox->getName(), "some-name");
+        $this->assertEquals("some-name", $checkBox->getName());
+        $this->assertEquals("some-name", $checkBox->getEntry()
+                                                  ->getName());
     }
 
     public function testDefault()
@@ -38,7 +42,7 @@ class CheckBoxTest extends \PHPUnit_Framework_TestCase
 
         $this->assertNull($checkBox->getDefault());
 
-        $this->assertSame($checkBox->setDefault(false), $checkBox);
+        $this->assertSame($checkBox, $checkBox->setDefault(false));
 
         $this->assertFalse($checkBox->getDefault());
     }
@@ -50,22 +54,22 @@ class CheckBoxTest extends \PHPUnit_Framework_TestCase
 
         $this->assertTrue($checkBox->getEnabledDesign() instanceof CheckBoxDesign);
 
-        $this->assertSame($checkBox->setEnabledDesign($enabledDesign), $checkBox);
+        $this->assertSame($checkBox, $checkBox->setEnabledDesign($enabledDesign));
 
-        $this->assertSame($checkBox->getEnabledDesign(), $enabledDesign);
+        $this->assertSame($enabledDesign, $checkBox->getEnabledDesign());
     }
 
     public function testEnabledDesignWithStyles()
     {
         $checkBox = new CheckBox();
 
-        $this->assertSame($checkBox->setEnabledDesign("design.style", "design.substyle"), $checkBox);
+        $this->assertSame($checkBox, $checkBox->setEnabledDesign("design.style", "design.substyle"));
 
         $enabledDesign = $checkBox->getEnabledDesign();
 
         $this->assertTrue($enabledDesign instanceof CheckBoxDesign);
-        $this->assertEquals($enabledDesign->getStyle(), "design.style");
-        $this->assertEquals($enabledDesign->getSubStyle(), "design.substyle");
+        $this->assertEquals("design.style", $enabledDesign->getStyle());
+        $this->assertEquals("design.substyle", $enabledDesign->getSubStyle());
     }
 
     public function testDisabledDesign()
@@ -75,22 +79,22 @@ class CheckBoxTest extends \PHPUnit_Framework_TestCase
 
         $this->assertTrue($checkBox->getDisabledDesign() instanceof CheckBoxDesign);
 
-        $this->assertSame($checkBox->setDisabledDesign($disabledDesign), $checkBox);
+        $this->assertSame($checkBox, $checkBox->setDisabledDesign($disabledDesign));
 
-        $this->assertSame($checkBox->getDisabledDesign(), $disabledDesign);
+        $this->assertSame($disabledDesign, $checkBox->getDisabledDesign());
     }
 
     public function testDisabledDesignWithStyles()
     {
         $checkBox = new CheckBox();
 
-        $this->assertSame($checkBox->setDisabledDesign("design.style", "design.substyle"), $checkBox);
+        $this->assertSame($checkBox, $checkBox->setDisabledDesign("design.style", "design.substyle"));
 
         $disabledDesign = $checkBox->getDisabledDesign();
 
         $this->assertTrue($disabledDesign instanceof CheckBoxDesign);
-        $this->assertEquals($disabledDesign->getStyle(), "design.style");
-        $this->assertEquals($disabledDesign->getSubStyle(), "design.substyle");
+        $this->assertEquals("design.style", $disabledDesign->getStyle());
+        $this->assertEquals("design.substyle", $disabledDesign->getSubStyle());
     }
 
     public function testQuad()
@@ -100,9 +104,9 @@ class CheckBoxTest extends \PHPUnit_Framework_TestCase
 
         $this->assertTrue($checkBox->getQuad() instanceof Quad);
 
-        $this->assertSame($checkBox->setQuad($quad), $checkBox);
+        $this->assertSame($checkBox, $checkBox->setQuad($quad));
 
-        $this->assertSame($checkBox->getQuad(), $quad);
+        $this->assertSame($quad, $checkBox->getQuad());
     }
 
     public function testEntry()
@@ -112,9 +116,9 @@ class CheckBoxTest extends \PHPUnit_Framework_TestCase
 
         $this->assertTrue($checkBox->getEntry() instanceof Entry);
 
-        $this->assertSame($checkBox->setEntry($entry), $checkBox);
+        $this->assertSame($checkBox, $checkBox->setEntry($entry));
 
-        $this->assertSame($checkBox->getEntry(), $entry);
+        $this->assertSame($entry, $checkBox->getEntry());
     }
 
     public function testScriptFeatures()
