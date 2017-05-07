@@ -65,10 +65,12 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
 
     public function testArray()
     {
-        $this->assertEquals("[\"a\", \"b\", \"c\"]", Builder::getArray(array("a", "b", "c")));
-        $this->assertEquals("[1, 2, 3]", Builder::getArray(array("a" => 1, "b" => 2, "c" => 3)));
-        $this->assertEquals("[-1, -2, -3]", Builder::getArray(array(-1, -2, -3)));
-        $this->assertEquals("[1.2, 3.4, 5.6]", Builder::getArray(array(1.2, 3.4, 5.6)));
+        $this->assertEquals("[0 => \"a\", 1 => \"b\", 2 => \"c\"]", Builder::getArray(array("a", "b", "c")));
+        $this->assertEquals("[\"a\", \"b\", \"c\"]", Builder::getArray(array("a", "b", "c"), false));
+        $this->assertEquals("[\"a\" => 1, \"b\" => 2, \"c\" => 3]", Builder::getArray(array("a" => 1, "b" => 2, "c" => 3)));
+        $this->assertEquals("[1, 2, 3]", Builder::getArray(array("a" => 1, "b" => 2, "c" => 3), false));
+        $this->assertEquals("[0 => 1.2, 1 => 3.4, 2 => 5.6]", Builder::getArray(array(1.2, 3.4, 5.6)));
+        $this->assertEquals("[1.2, 3.4, 5.6]", Builder::getArray(array(1.2, 3.4, 5.6), false));
     }
 
     public function testArrayAssociative()
