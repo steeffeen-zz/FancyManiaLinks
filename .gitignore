@@ -1,4 +1,7 @@
 /.settings/
 /.project
 /.buildpath
-/.idea/
+/.idea/*
+!/.idea/.name
+!/.idea/encodings.xml
+!/.idea/codeStyleSettings.xml
