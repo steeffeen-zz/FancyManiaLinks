@@ -119,6 +119,21 @@ class ControlTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(56.78, $control->getHeight());
     }
 
+    public function testDefaultHorizontalAlign()
+    {
+        Control::setDefaultHorizontalAlign("default-align");
+
+        $control = new ControlStub();
+
+        $this->assertEquals("default-align", $control->getHorizontalAlign());
+
+        Control::setDefaultHorizontalAlign(Control::CENTER);
+
+        $control = new ControlStub();
+
+        $this->assertEquals(Control::CENTER, $control->getHorizontalAlign());
+    }
+
     public function testHorizontalAlign()
     {
         $control = new ControlStub();
@@ -134,6 +149,21 @@ class ControlTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals("test-align-deprecated", $control->getHorizontalAlign());
     }
 
+    public function testDefaultVerticalAlign()
+    {
+        Control::setDefaultVerticalAlign("default-align");
+
+        $control = new ControlStub();
+
+        $this->assertEquals("default-align", $control->getVerticalAlign());
+
+        Control::setDefaultVerticalAlign(Control::CENTER2);
+
+        $control = new ControlStub();
+
+        $this->assertEquals(Control::CENTER2, $control->getVerticalAlign());
+    }
+
     public function testVerticalAlign()
     {
         $control = new ControlStub();
@@ -147,6 +177,23 @@ class ControlTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($control, $control->setVAlign("test-align-deprecated"));
 
         $this->assertEquals("test-align-deprecated", $control->getVerticalAlign());
+    }
+
+    public function testDefaultAlign()
+    {
+        Control::clearDefaultAlign();
+
+        $control = new ControlStub();
+
+        $this->assertEquals("", $control->getHorizontalAlign());
+        $this->assertEquals("", $control->getVerticalAlign());
+
+        Control::centerDefaultAlign();
+
+        $control = new ControlStub();
+
+        $this->assertEquals(Control::CENTER, $control->getHorizontalAlign());
+        $this->assertEquals(Control::CENTER2, $control->getVerticalAlign());
     }
 
     public function testAlign()
