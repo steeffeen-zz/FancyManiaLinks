@@ -91,7 +91,7 @@ class GraphCurveTest extends \PHPUnit_Framework_TestCase
     {
         $graphCurve = new GraphCurve();
 
-        $this->assertEquals(-1., $graphCurve->getWidth());
+        $this->assertNull($graphCurve->getWidth());
 
         $this->assertSame($graphCurve, $graphCurve->setWidth(13.37));
 
