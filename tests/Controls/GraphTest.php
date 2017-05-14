@@ -2,9 +2,22 @@
 
 use FML\Controls\Graph;
 use FML\Script\Features\GraphCurve;
+use FML\Script\Features\GraphSettings;
 
 class GraphTest extends \PHPUnit_Framework_TestCase
 {
+
+    public function testSettings()
+    {
+        $graph = new Graph();
+
+        $settings = $graph->getSettings();
+
+        $this->assertTrue($settings instanceof GraphSettings);
+        $this->assertSame($graph, $settings->getGraph());
+        $this->assertSame($settings, $graph->getSettings());
+        $this->assertEquals(array($settings), $graph->getScriptFeatures());
+    }
 
     public function testCurves()
     {
