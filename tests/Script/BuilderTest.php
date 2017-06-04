@@ -32,6 +32,20 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals("other\\\"id", Builder::getId(new Label("other\"id")));
     }
 
+    public function testText()
+    {
+        $this->assertEquals('"Test Text"', Builder::getText("Test Text"));
+        $this->assertEquals('""', Builder::getText(null));
+        $this->assertEquals('"13"', Builder::getText(13));
+    }
+
+    public function testInteger()
+    {
+        $this->assertEquals("13", Builder::getInteger(13));
+        $this->assertEquals("0", Builder::getInteger(null));
+        $this->assertEquals("-42", Builder::getInteger(-42));
+    }
+
     public function testReal()
     {
         $this->assertEquals("13.42", Builder::getReal(13.42));
