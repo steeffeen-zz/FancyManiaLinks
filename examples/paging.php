@@ -6,6 +6,11 @@ require_once __DIR__ . '/../autoload.php';
 // Create ManiaLink
 $maniaLink = new \FML\ManiaLink();
 
+// Create paging
+$paging = new \FML\Script\Features\Paging();
+$maniaLink->getScript()
+          ->addFeature($paging);
+
 // Create pages
 $page0 = new \FML\Controls\Quads\Quad_Emblems();
 $maniaLink->addChild($page0);
@@ -22,6 +27,11 @@ $maniaLink->addChild($page2);
 $page2->setSize(50, 50)
       ->setSubStyle($page2::SUBSTYLE_2);
 
+// Set pages
+$paging->addPageControl($page0)
+       ->addPageControl($page1)
+       ->addPageControl($page2);
+
 // Create paging buttons
 $leftPagerQuad = new \FML\Controls\Quads\Quad_Icons64x64_1();
 $maniaLink->addChild($leftPagerQuad);
@@ -35,24 +45,14 @@ $rightPagerQuad->setPosition(20, -30)
                ->setSize(10, 10)
                ->setSubStyle($rightPagerQuad::SUBSTYLE_ArrowNext);
 
-// Create counter label (optional)
-$counterLabel = new \FML\Controls\Label();
-$maniaLink->addChild($counterLabel);
-$counterLabel->setY(-30);
-
-// Create paging
-$paging = new \FML\Script\Features\Paging();
-$maniaLink->createScript()
-          ->addFeature($paging);
-
 // Set pagers
 $paging->addButtonControl($rightPagerQuad)
        ->addButtonControl($leftPagerQuad);
 
-// Set pages
-$paging->addPageControl($page0)
-       ->addPageControl($page1)
-       ->addPageControl($page2);
+// Create counter label (optional)
+$counterLabel = new \FML\Controls\Label();
+$maniaLink->addChild($counterLabel);
+$counterLabel->setY(-30);
 
 // Set page label
 $paging->setLabel($counterLabel);

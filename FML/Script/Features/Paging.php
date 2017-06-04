@@ -425,22 +425,23 @@ if (PageButtons.existskey(Event.Control.ControlId)) {
 Void {$updatePageFunction}(Text _PagingId, Text _PageLabelId, Integer _BrowseAction, Integer _MinPageNumber, Integer _MaxPageNumber, Text[Integer] _Pages, Text _PreviousChunkAction, Text _NextChunkAction, Boolean _ChunkActionAppendPageNumber) {
 	declare {$currentPageVariable} for This = Integer[Text];
 	if (!{$currentPageVariable}.existskey(_PagingId)) return;
-	declare CurrentPage = {$currentPageVariable}[_PagingId] + _BrowseAction;
-	if (CurrentPage < _MinPageNumber) {
-		CurrentPage = _MinPageNumber;
-	} else if (CurrentPage > _MaxPageNumber) {
-		CurrentPage = _MaxPageNumber;
+	declare NewPageNumber = {$currentPageVariable}[_PagingId] + _BrowseAction;
+	if (NewPageNumber < _MinPageNumber) {
+		NewPageNumber = _MinPageNumber;
+	} else if (NewPageNumber > _MaxPageNumber) {
+		NewPageNumber = _MaxPageNumber;
 	}
-	{$currentPageVariable}[_PagingId] = CurrentPage;
-	declare PageFound = False;
-	foreach (PageNumber => PageId in _Pages) {
-		declare PageControl <=> Page.GetFirstChild(PageId);
-		PageControl.Visible = (CurrentPage == PageNumber);
-		if (PageControl.Visible) {
-			PageFound = True;
-		}
-	}
-	if (!PageFound && _BrowseAction != 0) {
+	{$currentPageVariable}[_PagingId] = NewPageNumber;
+	if (_Pages.existskey(NewPageNumber)) {
+        foreach (PageNumber => PageId in _Pages) {
+            declare PageControl <=> Page.GetFirstChild(PageId);
+            PageControl.Visible = (PageNumber == NewPageNumber);
+        }
+        if (_PageLabelId != \"\") {
+            declare PageLabel <=> (Page.GetFirstChild(_PageLabelId) as CMlLabel);
+            PageLabel.Value = NewPageNumber^\"/\"^_MaxPageNumber;
+        }
+	} else {
 		declare Text ChunkAction;
 		if (_BrowseAction < 0) {
 			ChunkAction = _PreviousChunkAction;
@@ -448,14 +449,10 @@ Void {$updatePageFunction}(Text _PagingId, Text _PageLabelId, Integer _BrowseAct
 			ChunkAction = _NextChunkAction;
 		}
 		if (_ChunkActionAppendPageNumber) {
-			ChunkAction ^= CurrentPage;
+			ChunkAction ^= NewPageNumber;
 		}
 		TriggerPageAction(ChunkAction);
 	}
-	if (_PageLabelId == " . Builder::EMPTY_STRING . ") return;
-	declare PageLabel <=> (Page.GetFirstChild(_PageLabelId) as CMlLabel);
-	if (PageLabel == Null) return;
-	PageLabel.Value = CurrentPage^\"/\"^_MaxPageNumber;
 }";
         $script->addScriptFunction($updatePageFunction, $functionText);
         return $this;
