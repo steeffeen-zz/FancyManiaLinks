@@ -4,7 +4,7 @@
  * FancyManiaLinks - ManiaLink Generator Framework
  *
  * @author    steeffeen <mail@steeffeen.com>
- * @version   2.0.0
+ * @version   2.1.0-dev
  * @link      http://github.com/steeffeen/FancyManiaLinks
  * @copyright FancyManiaLinks Copyright © 2017 Steffen Schröder
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
@@ -20,7 +20,7 @@ if (!defined('FML_VERSION')) {
     /**
      * @const FML_VERSION Installed version of FancyManiaLinks
      */
-    define('FML_VERSION', '2.0.0');
+    define('FML_VERSION', '2.1.0-dev');
 }
 
 /*
