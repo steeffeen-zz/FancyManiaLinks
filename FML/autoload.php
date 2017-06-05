@@ -4,7 +4,7 @@
  * FancyManiaLinks - Automatic ManiaLink Generator Framework
  *
  * @author steeffeen
- * @version 1.1
+ * @version 1.1.1-dev
  * @link http://github.com/steeffeen/FancyManiaLinks
  * @copyright FancyManiaLinks Copyright © 2014 Steffen Schröder
  * @license http://www.gnu.org/licenses/ GNU General Public License, Version 3
