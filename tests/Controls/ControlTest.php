@@ -121,17 +121,23 @@ class ControlTest extends \PHPUnit_Framework_TestCase
 
     public function testDefaultHorizontalAlign()
     {
+        $defaultHorizontalAlign = Control::getDefaultHorizontalAlign();
+
+        $this->assertEquals($defaultHorizontalAlign, Control::CENTER);
+
         Control::setDefaultHorizontalAlign("default-align");
 
         $control = new ControlStub();
 
+        $this->assertEquals("default-align", Control::getDefaultHorizontalAlign());
         $this->assertEquals("default-align", $control->getHorizontalAlign());
 
-        Control::setDefaultHorizontalAlign(Control::CENTER);
+        Control::setDefaultHorizontalAlign($defaultHorizontalAlign);
 
         $control = new ControlStub();
 
-        $this->assertEquals(Control::CENTER, $control->getHorizontalAlign());
+        $this->assertEquals($defaultHorizontalAlign, Control::getDefaultHorizontalAlign());
+        $this->assertEquals($defaultHorizontalAlign, $control->getHorizontalAlign());
     }
 
     public function testHorizontalAlign()
@@ -151,17 +157,23 @@ class ControlTest extends \PHPUnit_Framework_TestCase
 
     public function testDefaultVerticalAlign()
     {
+        $defaultVerticalAlign = Control::getDefaultVerticalAlign();
+
+        $this->assertEquals($defaultVerticalAlign, Control::CENTER2);
+
         Control::setDefaultVerticalAlign("default-align");
 
         $control = new ControlStub();
 
+        $this->assertEquals("default-align", Control::getDefaultVerticalAlign());
         $this->assertEquals("default-align", $control->getVerticalAlign());
 
-        Control::setDefaultVerticalAlign(Control::CENTER2);
+        Control::setDefaultVerticalAlign($defaultVerticalAlign);
 
         $control = new ControlStub();
 
-        $this->assertEquals(Control::CENTER2, $control->getVerticalAlign());
+        $this->assertEquals($defaultVerticalAlign, Control::getDefaultVerticalAlign());
+        $this->assertEquals($defaultVerticalAlign, $control->getVerticalAlign());
     }
 
     public function testVerticalAlign()
