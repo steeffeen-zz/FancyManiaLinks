@@ -149,14 +149,17 @@ class UIPropertiesTest extends \PHPUnit_Framework_TestCase
 ", $domDocument->saveXML());
     }
 
-    public function testToStringWithSomeOtherSettings()
+    public function testToStringWithAllSettings()
     {
         $uiProperties = new UIProperties();
         $uiProperties->setChatVisible(true)
+                     ->setChatOffset(1.2, 3.4)
                      ->setChatLineCount(13)
                      ->setChatAvatarVisible(false)
-                     ->setMapInfoPosition(9.8, 7.6, 5.4)
+                     ->setMapInfoVisible(true)
+                     ->setMapInfoPosition(9.8, 7.6)
                      ->setCountdownVisible(false)
+                     ->setCountdownPosition(4.5, 6.7, 8.9)
                      ->setGoVisible(true)
                      ->setEndMapLadderRecapVisible(true)
                      ->setScoresTableAltVisible(false);
@@ -164,7 +167,7 @@ class UIPropertiesTest extends \PHPUnit_Framework_TestCase
         $xmlString = (string)$uiProperties;
 
         $this->assertEquals("<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>
-<ui_properties><chat visible=\"true\" linecount=\"13\"/><chat_avatar visible=\"false\"/><map_info pos=\"9.8 7.6 5.4\"/><countdown visible=\"false\"/><go visible=\"true\"/><endmap_ladder_recap visible=\"true\"/><scorestable alt_visible=\"false\"/></ui_properties>
+<ui_properties><chat visible=\"true\" offset=\"1.2 3.4\" linecount=\"13\"/><chat_avatar visible=\"false\"/><map_info visible=\"true\" pos=\"9.8 7.6\"/><countdown visible=\"false\" pos=\"4.5 6.7 8.9\"/><go visible=\"true\"/><endmap_ladder_recap visible=\"true\"/><scorestable alt_visible=\"false\"/></ui_properties>
 ", $xmlString);
     }
 

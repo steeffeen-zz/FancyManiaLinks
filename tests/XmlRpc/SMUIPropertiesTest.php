@@ -56,7 +56,7 @@ class SMUIPropertiesTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse($smUiProperties->getConsumablesVisible());
     }
 
-    public function testToStringWithSettings()
+    public function testToStringWithAllSettings()
     {
         $smUiProperties = new SMUIProperties();
         $smUiProperties->setChatVisible(false)
