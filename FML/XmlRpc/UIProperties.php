@@ -73,6 +73,56 @@ class UIProperties
     }
 
     /**
+     * Get the chat offset
+     *
+     * @api
+     * @return string
+     */
+    public function getChatOffset()
+    {
+        return $this->getProperty($this->chatProperties, "offset");
+    }
+
+    /**
+     * Set the chat offset
+     *
+     * @api
+     * @param float $offsetX X offset
+     * @param float $offsetY Y offset
+     * @return static
+     */
+    public function setChatOffset($offsetX, $offsetY)
+    {
+        $offset = array((float)$offsetX, (float)$offsetY);
+        $this->setProperty($this->chatProperties, "offset", implode(" ", $offset));
+        return $this;
+    }
+
+    /**
+     * Get the chat line count
+     *
+     * @api
+     * @return int
+     */
+    public function getChatLineCount()
+    {
+        return $this->getProperty($this->chatProperties, "linecount");
+    }
+
+    /**
+     * Set the chat line count
+     *
+     * @api
+     * @param int $lineCount Line count
+     * @return static
+     */
+    public function setChatLineCount($lineCount)
+    {
+        $this->setProperty($this->chatProperties, "linecount", (int)$lineCount);
+        return $this;
+    }
+
+    /**
      * Get the chat avatar visibility
      *
      * @api
@@ -121,6 +171,32 @@ class UIProperties
     }
 
     /**
+     * Get the map info position
+     *
+     * @api
+     * @return string
+     */
+    public function getMapInfoPosition()
+    {
+        return $this->getPositionProperty($this->mapInfoProperties);
+    }
+
+    /**
+     * Set the map info position
+     *
+     * @api
+     * @param float $positionX X position
+     * @param float $positionY Y position
+     * @param float $positionZ (optional) Z position (Z-index)
+     * @return static
+     */
+    public function setMapInfoPosition($positionX, $positionY, $positionZ = null)
+    {
+        $this->setPositionProperty($this->mapInfoProperties, $positionX, $positionY, $positionZ);
+        return $this;
+    }
+
+    /**
      * Get the countdown visibility
      *
      * @api
@@ -141,6 +217,32 @@ class UIProperties
     public function setCountdownVisible($visible)
     {
         $this->setVisibleProperty($this->countdownProperties, $visible);
+        return $this;
+    }
+
+    /**
+     * Get the countdown position
+     *
+     * @api
+     * @return string
+     */
+    public function getCountdownPosition()
+    {
+        return $this->getPositionProperty($this->countdownProperties);
+    }
+
+    /**
+     * Set the countdown position
+     *
+     * @api
+     * @param float $positionX X position
+     * @param float $positionY Y position
+     * @param float $positionZ (optional) Z position (Z-index)
+     * @return static
+     */
+    public function setCountdownPosition($positionX, $positionY, $positionZ = null)
+    {
+        $this->setPositionProperty($this->countdownProperties, $positionX, $positionY, $positionZ);
         return $this;
     }
 
@@ -191,7 +293,8 @@ class UIProperties
             $domElement->appendChild($propertyDomElement);
 
             foreach ($propertySettings as $settingName => $settingValue) {
-                $propertyDomElement->setAttribute($settingName, var_export($settingValue, true));
+                $settingValueString = (is_string($settingValue) ? $settingValue : var_export($settingValue, true));
+                $propertyDomElement->setAttribute($settingName, $settingValueString);
             }
         }
 
@@ -297,11 +400,11 @@ class UIProperties
      */
     protected function setPositionProperty(array &$properties, $positionX, $positionY, $positionZ = null)
     {
-        $positions = array((float)$positionX, (float)$positionY);
+        $position = array((float)$positionX, (float)$positionY);
         if ($positionZ) {
-            array_push($positions, (float)$positionZ);
+            array_push($position, (float)$positionZ);
         }
-        $this->setProperty($properties, "pos", implode(" ", $positions));
+        $this->setProperty($properties, "pos", implode(" ", $position));
         return $this;
     }
 
