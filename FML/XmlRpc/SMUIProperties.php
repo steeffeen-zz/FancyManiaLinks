@@ -33,16 +33,6 @@ class SMUIProperties extends UIProperties
     protected $consumablesProperties = array();
 
     /**
-     * @var array $endMapLadderRecapProperties End map ladder recap properties
-     */
-    protected $endMapLadderRecapProperties = array();
-
-    /**
-     * @var array $scoresTableProperties Scores table properties
-     */
-    protected $scoresTableProperties = array();
-
-    /**
      * Get the notices visibility
      *
      * @api
@@ -139,54 +129,6 @@ class SMUIProperties extends UIProperties
     }
 
     /**
-     * Get the end map ladder recap visibility
-     *
-     * @api
-     * @return bool
-     */
-    public function getEndMapLadderRecapVisible()
-    {
-        return $this->getVisibleProperty($this->endMapLadderRecapProperties);
-    }
-
-    /**
-     * Set the end map ladder recap visibility
-     *
-     * @api
-     * @param bool $visible If the end map ladder recap should be visible
-     * @return static
-     */
-    public function setEndMapLadderRecapVisible($visible)
-    {
-        $this->setVisibleProperty($this->endMapLadderRecapProperties, $visible);
-        return $this;
-    }
-
-    /**
-     * Get the scores table alt visibility
-     *
-     * @api
-     * @return bool
-     */
-    public function getScoresTableAltVisible()
-    {
-        return $this->getProperty($this->scoresTableProperties, "alt_visible");
-    }
-
-    /**
-     * Set the scores table alt visibility
-     *
-     * @api
-     * @param bool $altVisible If the scores table should be visible on alt
-     * @return static
-     */
-    public function setScoresTableAltVisible($altVisible)
-    {
-        $this->setProperty($this->scoresTableProperties, "alt_visible", (bool)$altVisible);
-        return $this;
-    }
-
-    /**
      * @see UIProperties::getProperties()
      */
     protected function getProperties()
@@ -195,9 +137,7 @@ class SMUIProperties extends UIProperties
             "notices" => $this->noticesProperties,
             "crosshair" => $this->crosshairProperties,
             "gauges" => $this->gaugesProperties,
-            "consumables" => $this->consumablesProperties,
-            "endmap_ladder_recap" => $this->endMapLadderRecapProperties,
-            "scorestable" => $this->scoresTableProperties
+            "consumables" => $this->consumablesProperties
         ));
     }
 

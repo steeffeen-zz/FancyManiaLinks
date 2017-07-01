@@ -56,28 +56,6 @@ class SMUIPropertiesTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse($smUiProperties->getConsumablesVisible());
     }
 
-    public function testEndMapLadderRecapVisible()
-    {
-        $smUiProperties = new SMUIProperties();
-
-        $this->assertNull($smUiProperties->getEndMapLadderRecapVisible());
-
-        $this->assertSame($smUiProperties, $smUiProperties->setEndMapLadderRecapVisible(false));
-
-        $this->assertFalse($smUiProperties->getEndMapLadderRecapVisible());
-    }
-
-    public function testScoresTableAltVisible()
-    {
-        $smUiProperties = new SMUIProperties();
-
-        $this->assertNull($smUiProperties->getScoresTableAltVisible());
-
-        $this->assertSame($smUiProperties, $smUiProperties->setScoresTableAltVisible(false));
-
-        $this->assertFalse($smUiProperties->getScoresTableAltVisible());
-    }
-
     public function testToStringWithSettings()
     {
         $smUiProperties = new SMUIProperties();
@@ -85,14 +63,12 @@ class SMUIPropertiesTest extends \PHPUnit_Framework_TestCase
                        ->setNoticesVisible(true)
                        ->setCrosshairVisible(false)
                        ->setGaugesVisible(true)
-                       ->setConsumablesVisible(false)
-                       ->setEndMapLadderRecapVisible(true)
-                       ->setScoresTableAltVisible(false);
+                       ->setConsumablesVisible(false);
 
         $xmlString = (string)$smUiProperties;
 
         $this->assertEquals("<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>
-<ui_properties><chat visible=\"false\"/><notices visible=\"true\"/><crosshair visible=\"false\"/><gauges visible=\"true\"/><consumables visible=\"false\"/><endmap_ladder_recap visible=\"true\"/><scorestable alt_visible=\"false\"/></ui_properties>
+<ui_properties><chat visible=\"false\"/><notices visible=\"true\"/><crosshair visible=\"false\"/><gauges visible=\"true\"/><consumables visible=\"false\"/></ui_properties>
 ", $xmlString);
     }
 

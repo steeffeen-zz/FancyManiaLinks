@@ -111,6 +111,28 @@ class UIPropertiesTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse($uiProperties->getGoVisible());
     }
 
+    public function testEndMapLadderRecapVisible()
+    {
+        $uiProperties = new UIProperties();
+
+        $this->assertNull($uiProperties->getEndMapLadderRecapVisible());
+
+        $this->assertSame($uiProperties, $uiProperties->setEndMapLadderRecapVisible(false));
+
+        $this->assertFalse($uiProperties->getEndMapLadderRecapVisible());
+    }
+
+    public function testScoresTableAltVisible()
+    {
+        $uiProperties = new UIProperties();
+
+        $this->assertNull($uiProperties->getScoresTableAltVisible());
+
+        $this->assertSame($uiProperties, $uiProperties->setScoresTableAltVisible(false));
+
+        $this->assertFalse($uiProperties->getScoresTableAltVisible());
+    }
+
     public function testRenderStandaloneWithSomeSettings()
     {
         $uiProperties = new UIProperties();
@@ -133,15 +155,16 @@ class UIPropertiesTest extends \PHPUnit_Framework_TestCase
         $uiProperties->setChatVisible(true)
                      ->setChatLineCount(13)
                      ->setChatAvatarVisible(false)
-                     ->setMapInfoVisible(true)
                      ->setMapInfoPosition(9.8, 7.6, 5.4)
                      ->setCountdownVisible(false)
-                     ->setGoVisible(true);
+                     ->setGoVisible(true)
+                     ->setEndMapLadderRecapVisible(true)
+                     ->setScoresTableAltVisible(false);
 
         $xmlString = (string)$uiProperties;
 
         $this->assertEquals("<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>
-<ui_properties><chat visible=\"true\" linecount=\"13\"/><chat_avatar visible=\"false\"/><map_info visible=\"true\" pos=\"9.8 7.6 5.4\"/><countdown visible=\"false\"/><go visible=\"true\"/></ui_properties>
+<ui_properties><chat visible=\"true\" linecount=\"13\"/><chat_avatar visible=\"false\"/><map_info pos=\"9.8 7.6 5.4\"/><countdown visible=\"false\"/><go visible=\"true\"/><endmap_ladder_recap visible=\"true\"/><scorestable alt_visible=\"false\"/></ui_properties>
 ", $xmlString);
     }
 

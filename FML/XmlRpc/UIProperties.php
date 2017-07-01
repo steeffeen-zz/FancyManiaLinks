@@ -38,6 +38,16 @@ class UIProperties
     protected $goProperties = array();
 
     /**
+     * @var array $endMapLadderRecapProperties End map ladder recap properties
+     */
+    protected $endMapLadderRecapProperties = array();
+
+    /**
+     * @var array $scoresTableProperties Scores table properties
+     */
+    protected $scoresTableProperties = array();
+
+    /**
      * Create new UI Properties
      *
      * @api
@@ -271,6 +281,54 @@ class UIProperties
     }
 
     /**
+     * Get the end map ladder recap visibility
+     *
+     * @api
+     * @return bool
+     */
+    public function getEndMapLadderRecapVisible()
+    {
+        return $this->getVisibleProperty($this->endMapLadderRecapProperties);
+    }
+
+    /**
+     * Set the end map ladder recap visibility
+     *
+     * @api
+     * @param bool $visible If the end map ladder recap should be visible
+     * @return static
+     */
+    public function setEndMapLadderRecapVisible($visible)
+    {
+        $this->setVisibleProperty($this->endMapLadderRecapProperties, $visible);
+        return $this;
+    }
+
+    /**
+     * Get the scores table alt visibility
+     *
+     * @api
+     * @return bool
+     */
+    public function getScoresTableAltVisible()
+    {
+        return $this->getProperty($this->scoresTableProperties, "alt_visible");
+    }
+
+    /**
+     * Set the scores table alt visibility
+     *
+     * @api
+     * @param bool $altVisible If the scores table should be visible on alt
+     * @return static
+     */
+    public function setScoresTableAltVisible($altVisible)
+    {
+        $this->setProperty($this->scoresTableProperties, "alt_visible", (bool)$altVisible);
+        return $this;
+    }
+
+    /**
      * Render the UI Properties standalone
      *
      * @return \DOMDocument
@@ -324,7 +382,9 @@ class UIProperties
             "chat_avatar" => $this->chatAvatarProperties,
             "map_info" => $this->mapInfoProperties,
             "countdown" => $this->countdownProperties,
-            "go" => $this->goProperties
+            "go" => $this->goProperties,
+            "endmap_ladder_recap" => $this->endMapLadderRecapProperties,
+            "scorestable" => $this->scoresTableProperties
         );
     }
 
