@@ -148,7 +148,7 @@ class ToggleInterface extends ScriptFeature
     {
         $stateVariableName = $this::VAR_STATE;
         return "
-declare persistent {$stateVariableName} as CurrentState for Page = True;
+declare persistent {$stateVariableName} as CurrentState for LocalUser = True;
 Page.MainFrame.Visible = CurrentState;
 ";
     }
@@ -176,7 +176,7 @@ if (Event.{$keyProperty} == {$keyValue}) {
         if ($this->rememberState) {
             $stateVariableName = $this::VAR_STATE;
             $scriptText        .= "
-    declare persistent {$stateVariableName} as CurrentState for Page = True;
+    declare persistent {$stateVariableName} as CurrentState for LocalUser = True;
     CurrentState = Page.MainFrame.Visible;
 ";
         }
