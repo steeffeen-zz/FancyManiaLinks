@@ -2,23 +2,19 @@
 
 use FML\XmlRpc\UIProperties;
 
-class UIPropertiesStub extends UIProperties
-{
-}
-
 class UIPropertiesTest extends \PHPUnit_Framework_TestCase
 {
 
     public function testCreate()
     {
-        $uiProperties = UIPropertiesStub::create();
+        $uiProperties = UIProperties::create();
 
-        $this->assertTrue($uiProperties instanceof UIPropertiesStub);
+        $this->assertTrue($uiProperties instanceof UIProperties);
     }
 
     public function testChatVisible()
     {
-        $uiProperties = new UIPropertiesStub();
+        $uiProperties = new UIProperties();
 
         $this->assertNull($uiProperties->getChatVisible());
 
@@ -29,7 +25,7 @@ class UIPropertiesTest extends \PHPUnit_Framework_TestCase
 
     public function testChatAvatarVisible()
     {
-        $uiProperties = new UIPropertiesStub();
+        $uiProperties = new UIProperties();
 
         $this->assertNull($uiProperties->getChatAvatarVisible());
 
@@ -40,7 +36,7 @@ class UIPropertiesTest extends \PHPUnit_Framework_TestCase
 
     public function testMapInfoVisible()
     {
-        $uiProperties = new UIPropertiesStub();
+        $uiProperties = new UIProperties();
 
         $this->assertNull($uiProperties->getMapInfoVisible());
 
@@ -51,7 +47,7 @@ class UIPropertiesTest extends \PHPUnit_Framework_TestCase
 
     public function testCountdownVisible()
     {
-        $uiProperties = new UIPropertiesStub();
+        $uiProperties = new UIProperties();
 
         $this->assertNull($uiProperties->getCountdownVisible());
 
@@ -62,7 +58,7 @@ class UIPropertiesTest extends \PHPUnit_Framework_TestCase
 
     public function testGoVisible()
     {
-        $uiProperties = new UIPropertiesStub();
+        $uiProperties = new UIProperties();
 
         $this->assertNull($uiProperties->getGoVisible());
 
@@ -73,7 +69,7 @@ class UIPropertiesTest extends \PHPUnit_Framework_TestCase
 
     public function testRenderStandaloneWithSomeSettings()
     {
-        $uiProperties = new UIPropertiesStub();
+        $uiProperties = new UIProperties();
         $uiProperties->setChatVisible(false)
                      ->setMapInfoVisible(false)
                      ->setCountdownVisible(true);
@@ -87,7 +83,7 @@ class UIPropertiesTest extends \PHPUnit_Framework_TestCase
 
     public function testToStringWithAllSettings()
     {
-        $uiProperties = new UIPropertiesStub();
+        $uiProperties = new UIProperties();
         $uiProperties->setChatVisible(true)
                      ->setChatAvatarVisible(false)
                      ->setMapInfoVisible(true)

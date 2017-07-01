@@ -9,7 +9,7 @@ namespace FML\XmlRpc;
  * @copyright FancyManiaLinks Copyright © 2017 Steffen Schröder
  * @license   http://www.gnu.org/licenses/ GNU General Public License, Version 3
  */
-abstract class UIProperties
+class UIProperties
 {
 
     /**
@@ -56,7 +56,7 @@ abstract class UIProperties
      */
     public function getChatVisible()
     {
-        return $this->getProperty($this->chatProperties, "visible");
+        return $this->getVisibleProperty($this->chatProperties);
     }
 
     /**
@@ -68,7 +68,7 @@ abstract class UIProperties
      */
     public function setChatVisible($visible)
     {
-        $this->chatProperties["visible"] = (bool)$visible;
+        $this->setVisibleProperty($this->chatProperties, $visible);
         return $this;
     }
 
@@ -80,7 +80,7 @@ abstract class UIProperties
      */
     public function getChatAvatarVisible()
     {
-        return $this->getProperty($this->chatAvatarProperties, "visible");
+        return $this->getVisibleProperty($this->chatAvatarProperties);
     }
 
     /**
@@ -92,7 +92,7 @@ abstract class UIProperties
      */
     public function setChatAvatarVisible($visible)
     {
-        $this->chatAvatarProperties["visible"] = (bool)$visible;
+        $this->setVisibleProperty($this->chatAvatarProperties, $visible);
         return $this;
     }
 
@@ -104,7 +104,7 @@ abstract class UIProperties
      */
     public function getMapInfoVisible()
     {
-        return $this->getProperty($this->mapInfoProperties, "visible");
+        return $this->getVisibleProperty($this->mapInfoProperties);
     }
 
     /**
@@ -116,7 +116,7 @@ abstract class UIProperties
      */
     public function setMapInfoVisible($visible)
     {
-        $this->mapInfoProperties["visible"] = (bool)$visible;
+        $this->setVisibleProperty($this->mapInfoProperties, $visible);
         return $this;
     }
 
@@ -128,7 +128,7 @@ abstract class UIProperties
      */
     public function getCountdownVisible()
     {
-        return $this->getProperty($this->countdownProperties, "visible");
+        return $this->getVisibleProperty($this->countdownProperties);
     }
 
     /**
@@ -140,7 +140,7 @@ abstract class UIProperties
      */
     public function setCountdownVisible($visible)
     {
-        $this->countdownProperties["visible"] = (bool)$visible;
+        $this->setVisibleProperty($this->countdownProperties, $visible);
         return $this;
     }
 
@@ -152,7 +152,7 @@ abstract class UIProperties
      */
     public function getGoVisible()
     {
-        return $this->getProperty($this->goProperties, "visible");
+        return $this->getVisibleProperty($this->goProperties);
     }
 
     /**
@@ -164,7 +164,7 @@ abstract class UIProperties
      */
     public function setGoVisible($visible)
     {
-        $this->goProperties["visible"] = (bool)$visible;
+        $this->setVisibleProperty($this->goProperties, $visible);
         return $this;
     }
 
@@ -230,12 +230,79 @@ abstract class UIProperties
      *
      * @param array  $properties Properties array
      * @param string $name       Property name
-     * @param mixed  $default    (optional) Default value
      * @return mixed
      */
-    protected function getProperty(array $properties, $name, $default = null)
+    protected function getProperty(array $properties, $name)
     {
-        return (isset($properties[$name]) ? $properties[$name] : $default);
+        return (isset($properties[$name]) ? $properties[$name] : null);
+    }
+
+    /**
+     * Set a property value
+     *
+     * @param array  $properties Properties array
+     * @param string $name       Property name
+     * @param mixed  $value      Property value
+     * @return static
+     */
+    protected function setProperty(array &$properties, $name, $value)
+    {
+        $properties[$name] = $value;
+        return $this;
+    }
+
+    /**
+     * Set the Visible property value
+     *
+     * @param array $properties Properties array
+     * @return bool
+     */
+    protected function getVisibleProperty(array &$properties)
+    {
+        return $this->getProperty($properties, "visible");
+    }
+
+    /**
+     * Set the Visible property value
+     *
+     * @param array $properties Properties array
+     * @param bool  $visible    Visibility value
+     * @return static
+     */
+    protected function setVisibleProperty(array &$properties, $visible)
+    {
+        $this->setProperty($properties, "visible", (bool)$visible);
+        return $this;
+    }
+
+    /**
+     * Get the Position property value
+     *
+     * @param array $properties Properties array
+     * @return string
+     */
+    protected function getPositionProperty(array &$properties)
+    {
+        return $this->getProperty($properties, "pos");
+    }
+
+    /**
+     * Set the Position property value
+     *
+     * @param array $properties Properties array
+     * @param float $positionX  X position
+     * @param float $positionY  Y position
+     * @param float $positionZ  (optional) Z position (Z-index)
+     * @return static
+     */
+    protected function setPositionProperty(array &$properties, $positionX, $positionY, $positionZ = null)
+    {
+        $positions = array((float)$positionX, (float)$positionY);
+        if ($positionZ) {
+            array_push($positions, (float)$positionZ);
+        }
+        $this->setProperty($properties, "pos", implode(" ", $positions));
+        return $this;
     }
 
 }
