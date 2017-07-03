@@ -1,0 +1,7 @@
+main() {
+	declare Label_Time <=> (Page.GetFirstChild("<?php echo $parameters["LabelId"] ?>") as CMlLabel);
+	while (True) {
+		yield;
+		Label_Time.Value = <?php echo $parameters["LabelValue"] ?>;
+	}
+}
