@@ -174,7 +174,7 @@ if (Event.{$keyProperty} == {$keyValue}) {
     Page.MainFrame.Visible = !Page.MainFrame.Visible;
 ";
         if ($this->rememberState) {
-            $stateVariableName = $this::VAR_STATE;
+            $stateVariableName = static::VAR_STATE;
             $scriptText        .= "
     declare persistent {$stateVariableName} as CurrentState for LocalUser = True;
     CurrentState = Page.MainFrame.Visible;

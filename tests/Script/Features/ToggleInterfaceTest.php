@@ -1,6 +1,8 @@
 <?php
 
 use FML\Script\Features\ToggleInterface;
+use FML\Script\Script;
+use FML\Script\ScriptLabel;
 
 class ToggleInterfaceTest extends \PHPUnit_Framework_TestCase
 {
@@ -55,6 +57,39 @@ class ToggleInterfaceTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($toggleInterface, $toggleInterface->setRememberState(false));
 
         $this->assertFalse($toggleInterface->getRememberState());
+    }
+
+    public function testPrepareWithoutRemembering()
+    {
+        $toggleInterface = new ToggleInterface("TestKey", false);
+        $script          = new Script();
+
+        $toggleInterface->prepare($script);
+
+        $genericScriptLabels = $script->getGenericScriptLabels();
+        $this->assertCount(1, $genericScriptLabels);
+        $keyPressLabel = $genericScriptLabels[0];
+        $this->assertEquals(ScriptLabel::KEYPRESS, $keyPressLabel->getName());
+        $this->assertNotNull($keyPressLabel->getText());
+    }
+
+    public function testPrepareWithRemembering()
+    {
+        $toggleInterface = new ToggleInterface("TestKey", true);
+        $script          = new Script();
+
+        $toggleInterface->prepare($script);
+
+        $genericScriptLabels = $script->getGenericScriptLabels();
+        $this->assertCount(2, $genericScriptLabels);
+
+        $keyPressLabel = $genericScriptLabels[0];
+        $this->assertEquals(ScriptLabel::KEYPRESS, $keyPressLabel->getName());
+        $this->assertNotNull($keyPressLabel->getText());
+
+        $initLabel = $genericScriptLabels[1];
+        $this->assertEquals(ScriptLabel::ONINIT, $initLabel->getName());
+        $this->assertNotNull($initLabel->getText());
     }
 
 }
