@@ -4,6 +4,8 @@ namespace FML\Script;
 
 use FML\Script\Features\ScriptFeature;
 
+// TODO: rename the protected getXYZ methods to getXZYText (point out that it's a compiled string and not an array)
+
 /**
  * Class representing the ManiaLink Script
  *
@@ -53,6 +55,16 @@ class Script
     protected $genericLabels = array();
 
     /**
+     * Get all Script Includes
+     *
+     * @return ScriptInclude[]
+     */
+    public function getScriptIncludes()
+    {
+        return $this->includes;
+    }
+
+    /**
      * Set a Script Include
      *
      * @api
@@ -69,6 +81,16 @@ class Script
         }
         $this->includes[$scriptInclude->getNamespace()] = $scriptInclude;
         return $this;
+    }
+
+    /**
+     * Get all Script Constants
+     *
+     * @return ScriptConstant[]
+     */
+    public function getScriptConstants()
+    {
+        return $this->constants;
     }
 
     /**
@@ -90,6 +112,16 @@ class Script
             array_push($this->constants, $scriptConstant);
         }
         return $this;
+    }
+
+    /**
+     * Get all Script Functions
+     *
+     * @return ScriptFunction[]
+     */
+    public function getScriptFunctions()
+    {
+        return $this->functions;
     }
 
     /**
@@ -132,6 +164,16 @@ class Script
             array_push($this->customLabels, $scriptLabel);
         }
         return $this;
+    }
+
+    /**
+     * Get all generic Script Labels
+     *
+     * @return ScriptLabel[]
+     */
+    public function getGenericScriptLabels()
+    {
+        return $this->genericLabels;
     }
 
     /**
