@@ -66,7 +66,6 @@ class GraphSettingsTest extends \PHPUnit_Framework_TestCase
         $onInitScriptLabel = $genericScriptLabels[0];
         $this->assertEquals(ScriptLabel::OnInit, $onInitScriptLabel->getName());
         $this->assertNotNull($onInitScriptLabel->getText());
-        $this->assertEquals("d", $onInitScriptLabel->getText());
     }
 
 }
