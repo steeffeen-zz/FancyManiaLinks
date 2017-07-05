@@ -15,15 +15,52 @@ class ScriptLabel
     /*
      * Constants
      */
-    const ONINIT      = 'FML_OnInit';
-    const LOOP        = 'FML_Loop';
-    const TICK        = 'FML_Tick';
-    const ENTRYSUBMIT = 'FML_EntrySubmit';
-    const KEYPRESS    = 'FML_KeyPress';
-    const MOUSECLICK  = 'FML_MouseClick';
-    const MOUSECLICK2 = 'FML_MouseClick2';
-    const MOUSEOUT    = 'FML_MouseOut';
-    const MOUSEOVER   = 'FML_MouseOver';
+    const OnInit      = "FML_OnInit";
+    const Loop        = "FML_Loop";
+    const Tick        = "FML_Tick";
+    const EntrySubmit = "FML_EntrySubmit";
+    const KeyPress    = "FML_KeyPress";
+    const MouseClick  = "FML_MouseClick";
+    const MouseClick2 = "FML_MouseClick2";
+    const MouseOut    = "FML_MouseOut";
+    const MouseOver   = "FML_MouseOver";
+
+    /**
+     * @deprecated Use ScriptLabel::OnInit
+     */
+    const ONINIT = "FML_OnInit";
+    /**
+     * @deprecated Use ScriptLabel::Loop
+     */
+    const LOOP = "FML_Loop";
+    /**
+     * @deprecated Use ScriptLabel::Tick
+     */
+    const TICK = "FML_Tick";
+    /**
+     * @deprecated Use ScriptLabel::EntrySubmit
+     */
+    const ENTRYSUBMIT = "FML_EntrySubmit";
+    /**
+     * @deprecated Use ScriptLabel::KeyPress
+     */
+    const KEYPRESS = "FML_KeyPress";
+    /**
+     * @deprecated Use ScriptLabel::MouseClick
+     */
+    const MOUSECLICK = "FML_MouseClick";
+    /**
+     * @deprecated Use ScriptLabel::MouseClick2
+     */
+    const MOUSECLICK2 = "FML_MouseClick2";
+    /**
+     * @deprecated Use ScriptLabel::MouseOut
+     */
+    const MOUSEOUT = "FML_MouseOut";
+    /**
+     * @deprecated Use ScriptLabel::MouseOver
+     */
+    const MOUSEOVER = "FML_MouseOver";
 
     /**
      * @var string $name Label name
