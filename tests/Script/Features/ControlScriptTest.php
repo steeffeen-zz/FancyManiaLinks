@@ -2,6 +2,7 @@
 
 use FML\Controls\Label;
 use FML\Script\Features\ControlScript;
+use FML\Script\Script;
 use FML\Script\ScriptLabel;
 
 class ControlScriptTest extends \PHPUnit_Framework_TestCase
@@ -49,11 +50,52 @@ class ControlScriptTest extends \PHPUnit_Framework_TestCase
     {
         $controlScript = new ControlScript();
 
-        $this->assertEquals(ScriptLabel::MOUSECLICK, $controlScript->getLabelName());
+        $this->assertEquals(ScriptLabel::MouseClick, $controlScript->getLabelName());
 
         $this->assertSame($controlScript, $controlScript->setLabelName("some-label"));
 
         $this->assertEquals("some-label", $controlScript->getLabelName());
+    }
+
+    public function testPrepareWithEventLabel()
+    {
+        $control       = new Label("TestControl");
+        $controlScript = new ControlScript($control, "script text", ScriptLabel::MouseClick);
+        $script        = new Script();
+
+        $controlScript->prepare($script);
+
+        $genericScriptLabels = $script->getGenericScriptLabels();
+        $this->assertNotEmpty($genericScriptLabels);
+        $controlScriptLabel = $genericScriptLabels[0];
+        $this->assertEquals(ScriptLabel::MouseClick, $controlScriptLabel->getName());
+        $this->assertEquals("
+if (Event.ControlId == \"TestControl\") {
+declare Control <=> Event.Control;
+declare Label <=> (Control as CMlLabel);
+script text
+}", $controlScriptLabel->getText());
+        $this->assertNull($controlScriptLabel->getIsolated());
+    }
+
+    public function testPrepareWithOtherLabel()
+    {
+        $control       = new Label("TestControl");
+        $controlScript = new ControlScript($control, "script text", "label name");
+        $script        = new Script();
+
+        $controlScript->prepare($script);
+
+        $genericScriptLabels = $script->getGenericScriptLabels();
+        $this->assertNotEmpty($genericScriptLabels);
+        $controlScriptLabel = $genericScriptLabels[0];
+        $this->assertEquals("label name", $controlScriptLabel->getName());
+        $this->assertEquals("
+declare Control <=> Page.GetFirstChild(\"TestControl\");
+declare Label <=> (Control as CMlLabel);
+script text
+", $controlScriptLabel->getText());
+        $this->assertTrue($controlScriptLabel->getIsolated());
     }
 
 }
