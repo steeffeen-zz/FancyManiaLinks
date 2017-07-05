@@ -123,34 +123,30 @@ class GraphSettings extends ScriptFeature
      */
     public function prepare(Script $script)
     {
-        $script->appendGenericScriptLabel(ScriptLabel::ONINIT, $this->getScriptText(), true);
+        $controlScript = new ControlScript($this->graph, $this->getOnInitScriptText(), ScriptLabel::OnInit);
+        $controlScript->prepare($script);
         return $this;
     }
 
     /**
-     * Get the script text
+     * Get the on init event script text
      *
      * @return string
      */
-    protected function getScriptText()
+    protected function getOnInitScriptText()
     {
-        $graphId    = Builder::escapeText($this->graph->getId(), false);
-        $scriptText = "
-declare Graph <=> (Page.GetFirstChild(\"{$graphId}\") as CMlGraph);
-if (Graph != Null) {
-";
+        $scriptText = "";
         if ($this->minimumCoordinates) {
-            $coordsMinValue = Builder::getVec2($this->minimumCoordinates);
-            $scriptText     .= "
-    Graph.CoordsMin = {$coordsMinValue};";
+            $minimumCoordinatesValue = Builder::getVec2($this->minimumCoordinates);
+            $scriptText              .= "
+Graph.CoordsMin = {$minimumCoordinatesValue};";
         }
         if ($this->maximumCoordinates) {
-            $coordsMinValue = Builder::getVec2($this->maximumCoordinates);
-            $scriptText     .= "
-    Graph.CoordsMax = {$coordsMinValue};";
+            $maximumCoordinatesValue = Builder::getVec2($this->maximumCoordinates);
+            $scriptText              .= "
+Graph.CoordsMax = {$maximumCoordinatesValue};";
         }
-        return $scriptText . "
-}";
+        return $scriptText;
     }
 
 }

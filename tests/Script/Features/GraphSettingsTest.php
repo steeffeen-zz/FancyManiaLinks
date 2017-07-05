@@ -2,6 +2,8 @@
 
 use FML\Controls\Graph;
 use FML\Script\Features\GraphSettings;
+use FML\Script\Script;
+use FML\Script\ScriptLabel;
 
 class GraphSettingsTest extends \PHPUnit_Framework_TestCase
 {
@@ -48,6 +50,23 @@ class GraphSettingsTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($graphSettings, $graphSettings->setMaximumCoordinates(array(3., 4.)));
 
         $this->assertEquals(array(3., 4.), $graphSettings->getMaximumCoordinates());
+    }
+
+    public function testPrepare()
+    {
+        $graph         = new Graph();
+        $graphSettings = new GraphSettings();
+        $graphSettings->setGraph($graph);
+        $script = new Script();
+
+        $graphSettings->prepare($script);
+
+        $genericScriptLabels = $script->getGenericScriptLabels();
+        $this->assertNotEmpty($genericScriptLabels);
+        $onInitScriptLabel = $genericScriptLabels[0];
+        $this->assertEquals(ScriptLabel::OnInit, $onInitScriptLabel->getName());
+        $this->assertNotNull($onInitScriptLabel->getText());
+        $this->assertEquals("d", $onInitScriptLabel->getText());
     }
 
 }
