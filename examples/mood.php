@@ -7,17 +7,23 @@ require_once __DIR__ . '/../autoload.php';
 $maniaLink = new \FML\ManiaLink();
 $maniaLink->setBackground($maniaLink::BACKGROUND_STARS);
 
-// Create dummy label
+// Create Frame3d
+$frame3d = new \FML\Controls\Frame3d();
+$maniaLink->addChild($frame3d);
+$frame3d->setStyle3dId("ButtonNav")
+        ->setSize(100, 20);
+
+// Create label
 $label = new \FML\Controls\Label();
-$maniaLink->addChild($label);
-$label->setText("My Mood");
+$frame3d->addChild($label);
+$label->setText("Example Mood");
 
 // Create style sheet
 $stylesheet = new \FML\Stylesheet\Stylesheet();
 $maniaLink->setStylesheet($stylesheet);
 
 // Get mood object and set properties
-$mood = $stylesheet->createMood();
+$mood = $stylesheet->getMood();
 
 $mood->setLightAmbientColor(0, 0, 0)
      ->setCloudsMinimumColor(0.05, 0.05, 0)
