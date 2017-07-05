@@ -28,25 +28,23 @@
           <option name="PHPDOC_KEEP_BLANK_LINES" value="false" />
           <option name="LOWER_CASE_BOOLEAN_CONST" value="true" />
           <option name="LOWER_CASE_NULL_CONST" value="true" />
+          <option name="ELSE_IF_STYLE" value="SEPARATE" />
           <option name="KEEP_RPAREN_AND_LBRACE_ON_ONE_LINE" value="true" />
           <option name="ALIGN_CLASS_CONSTANTS" value="true" />
         </PHPCodeStyleSettings>
         <XML>
           <option name="XML_LEGACY_SETTINGS_IMPORTED" value="true" />
         </XML>
-        <codeStyleSettings language="HTML">
-          <indentOptions>
-            <option name="USE_TAB_CHARACTER" value="true" />
-          </indentOptions>
-        </codeStyleSettings>
         <codeStyleSettings language="PHP">
           <option name="KEEP_LINE_BREAKS" value="false" />
           <option name="KEEP_FIRST_COLUMN_COMMENT" value="false" />
           <option name="KEEP_CONTROL_STATEMENT_IN_ONE_LINE" value="false" />
           <option name="KEEP_BLANK_LINES_IN_DECLARATIONS" value="1" />
           <option name="KEEP_BLANK_LINES_IN_CODE" value="1" />
-          <option name="KEEP_BLANK_LINES_BEFORE_RBRACE" value="1" />
+          <option name="KEEP_BLANK_LINES_BEFORE_RBRACE" value="0" />
           <option name="BLANK_LINES_AFTER_PACKAGE" value="1" />
+          <option name="BLANK_LINES_AROUND_FIELD" value="1" />
+          <option name="BLANK_LINES_AFTER_CLASS_HEADER" value="1" />
           <option name="SPECIAL_ELSE_IF_TREATMENT" value="true" />
           <option name="ALIGN_MULTILINE_CHAINED_METHODS" value="true" />
           <option name="ALIGN_MULTILINE_PARAMETERS" value="false" />
@@ -67,9 +65,6 @@
           <option name="DOWHILE_BRACE_FORCE" value="3" />
           <option name="WHILE_BRACE_FORCE" value="3" />
           <option name="FOR_BRACE_FORCE" value="3" />
-          <indentOptions>
-            <option name="SMART_TABS" value="true" />
-          </indentOptions>
           <arrangement>
             <rules>
               <section>
@@ -235,11 +230,6 @@
               </section>
             </rules>
           </arrangement>
-        </codeStyleSettings>
-        <codeStyleSettings language="XML">
-          <indentOptions>
-            <option name="USE_TAB_CHARACTER" value="true" />
-          </indentOptions>
         </codeStyleSettings>
       </value>
     </option>

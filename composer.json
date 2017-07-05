@@ -1,25 +1,33 @@
 {
-    "name": "steeffeen/fancymanialinks",
-    "description": "ManiaLink Framework for Object-Based XML Generation",
-    "keywords": ["ManiaPlanet", "ShootMania", "TrackMania", "ManiaLink", "ManiaCode", "ManiaScript", "XML"],
-    "homepage": "https://github.com/steeffeen/FancyManiaLinks",
-    "license": "GPL-3.0",
-    "authors": [
-        {
-            "name": "Steffen Schroeder",
-            "email": "mail@steeffeen.com",
-            "homepage": "http://www.steeffeen.com/"
-        }
-    ],
-    "require": {
-        "php": ">=5.3"
-    },
-    "require-dev": {
-        "phpunit/phpunit": "<6"
-    },
-    "autoload": {
-        "psr-4": {
-            "FML\\": "FML/"
-        }
+  "name": "steeffeen/fancymanialinks",
+  "description": "ManiaLink Framework for Object-Based XML Generation",
+  "keywords": [
+    "ManiaPlanet",
+    "ShootMania",
+    "TrackMania",
+    "ManiaLink",
+    "ManiaCode",
+    "ManiaScript",
+    "XML"
+  ],
+  "homepage": "https://github.com/steeffeen/FancyManiaLinks",
+  "license": "GPL-3.0",
+  "authors": [
+    {
+      "name": "Steffen Schroeder",
+      "email": "mail@steeffeen.com",
+      "homepage": "http://www.steeffeen.com/"
     }
+  ],
+  "require": {
+    "php": ">=5.3"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "<6"
+  },
+  "autoload": {
+    "psr-4": {
+      "FML\\": "FML/"
+    }
+  }
 }

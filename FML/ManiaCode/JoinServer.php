@@ -51,7 +51,7 @@ class JoinServer implements Element
     {
         if ($port) {
             $this->setIp($loginOrIp, $port);
-        } elseif ($loginOrIp) {
+        } else if ($loginOrIp) {
             $this->setLogin($loginOrIp);
         }
     }

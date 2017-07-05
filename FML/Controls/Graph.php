@@ -4,7 +4,6 @@ namespace FML\Controls;
 
 use FML\Script\Features\GraphCurve;
 use FML\Script\Features\GraphSettings;
-use FML\Script\Features\ScriptFeature;
 
 /**
  * Graph Control

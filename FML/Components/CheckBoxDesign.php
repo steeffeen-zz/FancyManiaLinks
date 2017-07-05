@@ -54,7 +54,7 @@ class CheckBoxDesign implements Imageable, Styleable, SubStyleable
     {
         if ($subStyle) {
             $this->setStyles($style, $subStyle);
-        } elseif ($style) {
+        } else if ($style) {
             $this->setImageUrl($style);
         }
     }
@@ -141,7 +141,7 @@ class CheckBoxDesign implements Imageable, Styleable, SubStyleable
     {
         if ($this->imageUrl) {
             $quad->setImageUrl($this->imageUrl);
-        } elseif ($this->style) {
+        } else if ($this->style) {
             $quad->setStyles($this->style, $this->subStyle);
         }
         return $this;
