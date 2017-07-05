@@ -15,8 +15,17 @@ class ScriptInclude
     /*
      * Constants
      */
-    const MATHLIB = 'MathLib';
-    const TEXTLIB = 'TextLib';
+    const MathLib = "MathLib";
+    const TextLib = "TextLib";
+
+    /**
+     * @deprecated Use ScriptInclude::MathLib
+     */
+    const MATHLIB = "MathLib";
+    /**
+     * @deprecated Use ScriptInclude::TextLib
+     */
+    const TEXTLIB = "TextLib";
 
     /**
      * @var string $file File name
