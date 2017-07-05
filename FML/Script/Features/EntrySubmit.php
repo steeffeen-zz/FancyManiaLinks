@@ -24,7 +24,7 @@ class EntrySubmit extends ScriptFeature
     protected $entry = null;
 
     /**
-     * @var string $url Sumit url
+     * @var string $url Submit url
      */
     protected $url = null;
 
@@ -100,22 +100,25 @@ class EntrySubmit extends ScriptFeature
      */
     public function prepare(Script $script)
     {
-        $script->setScriptInclude(ScriptInclude::TEXTLIB);
-        $controlScript = new ControlScript($this->entry, $this->getScriptText(), ScriptLabel::ENTRYSUBMIT);
+        if (!$this->entry) {
+            return $this;
+        }
+        $script->setScriptInclude(ScriptInclude::TextLib, ScriptInclude::TextLib);
+        $controlScript = new ControlScript($this->entry, $this->getEntrySubmitScriptText(), ScriptLabel::ENTRYSUBMIT);
         $controlScript->prepare($script);
         return $this;
     }
 
     /**
-     * Get the script text
+     * Get the entry submit event script text
      *
      * @return string
      */
-    protected function getScriptText()
+    protected function getEntrySubmitScriptText()
     {
         $url       = $this->buildCompatibleUrl();
         $entryName = $this->entry->getName();
-        $link      = Builder::escapeText($entryName . $url . "=");
+        $link      = Builder::escapeText($url . $entryName . "=");
         return "
 declare Value = TextLib::URLEncode(Entry.Value);
 OpenLink({$link}^Value, CMlScript::LinkType::Goto);
@@ -123,18 +126,18 @@ OpenLink({$link}^Value, CMlScript::LinkType::Goto);
     }
 
     /**
-     * Build the submit url compatible for the Entry parameter
+     * Build the submit url compatible for the entry parameter
      *
      * @return string
      */
     protected function buildCompatibleUrl()
     {
-        $url         = $this->url;
-        $paramsBegin = stripos($url, '?');
-        if (!is_int($paramsBegin) || $paramsBegin < 0) {
-            $url .= '?';
+        $url             = $this->url;
+        $parametersIndex = stripos($url, "?");
+        if (!is_int($parametersIndex) || $parametersIndex < 0) {
+            $url .= "?";
         } else {
-            $url .= '&';
+            $url .= "&";
         }
         return $url;
     }

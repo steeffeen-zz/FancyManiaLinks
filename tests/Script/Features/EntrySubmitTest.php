@@ -2,6 +2,8 @@
 
 use FML\Controls\Entry;
 use FML\Script\Features\EntrySubmit;
+use FML\Script\Script;
+use FML\Script\ScriptLabel;
 
 class EntrySubmitTest extends \PHPUnit_Framework_TestCase
 {
@@ -36,6 +38,39 @@ class EntrySubmitTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($entrySubmit, $entrySubmit->setUrl("some.url"));
 
         $this->assertEquals("some.url", $entrySubmit->getUrl());
+    }
+
+    public function testPrepareWithoutEntry()
+    {
+        $entrySubmit = new EntrySubmit();
+        $script      = new Script();
+
+        $entrySubmit->prepare($script);
+
+        $this->assertEmpty($script->getScriptIncludes());
+        $this->assertEmpty($script->getGenericScriptLabels());
+    }
+
+    public function testPrepareWithRadioButtons()
+    {
+        $entry       = new Entry("TestEntry");
+        $entrySubmit = new EntrySubmit();
+        $entrySubmit->setEntry($entry);
+        $script = new Script();
+
+        $entrySubmit->prepare($script);
+
+        $scriptIncludes = $script->getScriptIncludes();
+        $this->assertNotEmpty($scriptIncludes);
+        $scriptInclude = $scriptIncludes["TextLib"];
+        $this->assertEquals("TextLib", $scriptInclude->getFile());
+        $this->assertEquals("TextLib", $scriptInclude->getNamespace());
+
+        $genericScriptLabels = $script->getGenericScriptLabels();
+        $this->assertNotEmpty($genericScriptLabels);
+        $entrySubmitLabel = $genericScriptLabels[0];
+        $this->assertEquals(ScriptLabel::ENTRYSUBMIT, $entrySubmitLabel->getName());
+        $this->assertNotNull($entrySubmitLabel->getText());
     }
 
 }

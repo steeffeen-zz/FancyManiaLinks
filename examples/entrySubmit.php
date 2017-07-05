@@ -1,7 +1,7 @@
 <?php
 
 // Include FML
-require_once __DIR__ . '/../autoload.php';
+require_once __DIR__ . "/../autoload.php";
 
 // Create ManiaLink
 $maniaLink = new \FML\ManiaLink();
@@ -10,14 +10,14 @@ $maniaLink = new \FML\ManiaLink();
 $entry = new \FML\Controls\Entry();
 $maniaLink->addChild($entry);
 $entry->setSize(50, 7)
-      ->setName('input')
+      ->setName("input")
       ->setAutoComplete(true);
 
 // Add submit feature
-$entry->addSubmitFeature('fancyml?entrysubmit');
+$entry->addSubmitFeature("fancyml?entrysubmit");
 
 // Display input if any is given
-if (!empty($_GET['input'])) {
+if (!empty($_GET["input"])) {
     $outputLabel = new \FML\Controls\Label();
     $maniaLink->addChild($outputLabel);
     $outputLabel->setY(-30)
