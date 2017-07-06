@@ -100,11 +100,8 @@ class EntrySubmit extends ScriptFeature
      */
     public function prepare(Script $script)
     {
-        if (!$this->entry) {
-            return $this;
-        }
         $script->setScriptInclude(ScriptInclude::TextLib, ScriptInclude::TextLib);
-        $controlScript = new ControlScript($this->entry, $this->getEntrySubmitScriptText(), ScriptLabel::ENTRYSUBMIT);
+        $controlScript = new ControlScript($this->entry, $this->getEntrySubmitScriptText(), ScriptLabel::EntrySubmit);
         $controlScript->prepare($script);
         return $this;
     }

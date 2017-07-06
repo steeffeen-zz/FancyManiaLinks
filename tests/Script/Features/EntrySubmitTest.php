@@ -40,23 +40,11 @@ class EntrySubmitTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals("some.url", $entrySubmit->getUrl());
     }
 
-    public function testPrepareWithoutEntry()
+    public function testPrepare()
     {
-        $entrySubmit = new EntrySubmit();
+        $entry       = new Entry();
+        $entrySubmit = new EntrySubmit($entry);
         $script      = new Script();
-
-        $entrySubmit->prepare($script);
-
-        $this->assertEmpty($script->getScriptIncludes());
-        $this->assertEmpty($script->getGenericScriptLabels());
-    }
-
-    public function testPrepareWithRadioButtons()
-    {
-        $entry       = new Entry("TestEntry");
-        $entrySubmit = new EntrySubmit();
-        $entrySubmit->setEntry($entry);
-        $script = new Script();
 
         $entrySubmit->prepare($script);
 
@@ -69,7 +57,7 @@ class EntrySubmitTest extends \PHPUnit_Framework_TestCase
         $genericScriptLabels = $script->getGenericScriptLabels();
         $this->assertNotEmpty($genericScriptLabels);
         $entrySubmitLabel = $genericScriptLabels[0];
-        $this->assertEquals(ScriptLabel::ENTRYSUBMIT, $entrySubmitLabel->getName());
+        $this->assertEquals(ScriptLabel::EntrySubmit, $entrySubmitLabel->getName());
         $this->assertNotNull($entrySubmitLabel->getText());
     }
 
