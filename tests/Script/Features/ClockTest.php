@@ -2,6 +2,8 @@
 
 use FML\Controls\Label;
 use FML\Script\Features\Clock;
+use FML\Script\Script;
+use FML\Script\ScriptLabel;
 
 class ClockTest extends \PHPUnit_Framework_TestCase
 {
@@ -50,6 +52,27 @@ class ClockTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($clock, $clock->setShowFullDate(true));
 
         $this->assertTrue($clock->getShowFullDate());
+    }
+
+    public function testPrepare()
+    {
+        $label  = new Label();
+        $clock  = new Clock($label);
+        $script = new Script();
+
+        $clock->prepare($script);
+
+        $scriptIncludes = $script->getScriptIncludes();
+        $this->assertNotEmpty($scriptIncludes);
+        $scriptInclude = $scriptIncludes["TextLib"];
+        $this->assertEquals("TextLib", $scriptInclude->getFile());
+        $this->assertEquals("TextLib", $scriptInclude->getNamespace());
+
+        $genericScriptLabels = $script->getGenericScriptLabels();
+        $this->assertNotEmpty($genericScriptLabels);
+        $tickLabel = $genericScriptLabels[0];
+        $this->assertEquals(ScriptLabel::Tick, $tickLabel->getName());
+        $this->assertNotNull($tickLabel->getText());
     }
 
 }

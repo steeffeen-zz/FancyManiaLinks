@@ -3,7 +3,6 @@
 namespace FML\Script\Features;
 
 use FML\Controls\Label;
-use FML\Script\Builder;
 use FML\Script\Script;
 use FML\Script\ScriptInclude;
 use FML\Script\ScriptLabel;
@@ -128,21 +127,20 @@ class Clock extends ScriptFeature
      */
     public function prepare(Script $script)
     {
-        $script->setScriptInclude(ScriptInclude::TEXTLIB)
-               ->appendGenericScriptLabel(ScriptLabel::TICK, $this->getScriptText(), true);
+        $script->setScriptInclude(ScriptInclude::TextLib, ScriptInclude::TextLib);
+        $controlScript = new ControlScript($this->label, $this->getTickScriptText(), ScriptLabel::Tick);
+        $controlScript->prepare($script);
         return $this;
     }
 
     /**
-     * Get the script text
+     * Get the tick event script text
      *
      * @return string
      */
-    protected function getScriptText()
+    protected function getTickScriptText()
     {
-        $controlId  = Builder::escapeText($this->label->getId());
         $scriptText = "
-declare ClockLabel <=> (Page.GetFirstChild({$controlId}) as CMlLabel);
 declare TimeText = CurrentLocalDateText;";
         if (!$this->showSeconds) {
             $scriptText .= "
@@ -152,9 +150,8 @@ TimeText = TextLib::SubText(TimeText, 0, 16);";
             $scriptText .= "
 TimeText = TextLib::SubText(TimeText, 11, 9);";
         }
-        $scriptText .= "
-ClockLabel.Value = TimeText;";
-        return $scriptText;
+        return $scriptText . "
+Label.Value = TimeText;";
     }
 
 }
