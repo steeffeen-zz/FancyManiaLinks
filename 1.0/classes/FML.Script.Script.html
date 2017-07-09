@@ -1,0 +1,3036 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>FancyManiaLinks v1.0 API Documentation</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="../css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="../js/html5.js"></script>
+    <![endif]-->
+    <script src="../js/jquery-1.11.0.min.js"></script>
+    <script src="../js/ui/1.10.4/jquery-ui.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+    <script type="text/javascript">
+    function loadExternalCodeSnippets() {
+        Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+            var src = pre.getAttribute('data-src');
+            var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+            var language = 'php';
+
+            var code = document.createElement('code');
+            code.className = 'language-' + language;
+
+            pre.textContent = '';
+
+            code.textContent = 'Loading…';
+
+            pre.appendChild(code);
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('GET', src, true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+
+                    if (xhr.status < 400 && xhr.responseText) {
+                        code.textContent = xhr.responseText;
+
+                        Prism.highlightElement(code);
+                    }
+                    else if (xhr.status >= 400) {
+                        code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                    }
+                    else {
+                        code.textContent = '✖ Error: File does not exist or is empty';
+                    }
+                }
+            };
+
+            xhr.send(null);
+        });
+    }
+
+    $(document).ready(function(){
+        loadExternalCodeSnippets();
+    });
+    $('#source-view').on('shown', function () {
+        loadExternalCodeSnippets();
+    })
+</script>
+
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">FancyManiaLinks v1.0 API Documentation</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                                        <li class="dropdown">
+                        <a href="../index.html" class="dropdown-toggle" data-toggle="dropdown">
+                            API Documentation <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                                                        <li><a href="../namespaces/FML.html">\FML</a></li>
+                                                    </ul>
+                    </li>
+                                        <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">512</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">4</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/deprecated.html">
+                                                                                                            <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+                                <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1151111356"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+            </div>
+            <div id="namespace-1151111356" class="accordion-body collapse in">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-181754781"></a>
+                                <a href="../namespaces/FML.html" style="margin-left: 30px; padding-left: 0">FML</a>
+            </div>
+            <div id="namespace-181754781" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1645496778"></a>
+                                <a href="../namespaces/FML.Controls.html" style="margin-left: 30px; padding-left: 0">Controls</a>
+            </div>
+            <div id="namespace-1645496778" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1881721757"></a>
+                                <a href="../namespaces/FML.Controls.Labels.html" style="margin-left: 30px; padding-left: 0">Labels</a>
+            </div>
+            <div id="namespace-1881721757" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/FML.Controls.Labels.Label_Button.html">Label_Button</a></li>
+                                                    <li class="class"><a href="../classes/FML.Controls.Labels.Label_Text.html">Label_Text</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-838821764"></a>
+                                <a href="../namespaces/FML.Controls.Quads.html" style="margin-left: 30px; padding-left: 0">Quads</a>
+            </div>
+            <div id="namespace-838821764" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/FML.Controls.Quads.Quad_321Go.html">Quad_321Go</a></li>
+                                                    <li class="class"><a href="../classes/FML.Controls.Quads.Quad_BgRaceScore2.html">Quad_BgRaceScore2</a></li>
+                                                    <li class="class"><a href="../classes/FML.Controls.Quads.Quad_Bgs1.html">Quad_Bgs1</a></li>
+                                                    <li class="class"><a href="../classes/FML.Controls.Quads.Quad_Bgs1InRace.html">Quad_Bgs1InRace</a></li>
+                                                    <li class="class"><a href="../classes/FML.Controls.Quads.Quad_BgsChallengeMedals.html">Quad_BgsChallengeMedals</a></li>
+                                                    <li class="class"><a href="../classes/FML.Controls.Quads.Quad_BgsPlayerCard.html">Quad_BgsPlayerCard</a></li>
+                                                    <li class="class"><a href="../classes/FML.Controls.Quads.Quad_Copilot.html">Quad_Copilot</a></li>
+                                                    <li class="class"><a href="../classes/FML.Controls.Quads.Quad_Emblems.html">Quad_Emblems</a></li>
+                                                    <li class="class"><a href="../classes/FML.Controls.Quads.Quad_EnergyBar.html">Quad_EnergyBar</a></li>
+                                                    <li class="class"><a href="../classes/FML.Controls.Quads.Quad_Hud3dEchelons.html">Quad_Hud3dEchelons</a></li>
+                                                    <li class="class"><a href="../classes/FML.Controls.Quads.Quad_Hud3dIcons.html">Quad_Hud3dIcons</a></li>
+                                                    <li class="class"><a href="../classes/FML.Controls.Quads.Quad_Icons128x128_1.html">Quad_Icons128x128_1</a></li>
+                                                    <li class="class"><a href="../classes/FML.Controls.Quads.Quad_Icons128x128_Blink.html">Quad_Icons128x128_Blink</a></li>
+                                                    <li class="class"><a href="../classes/FML.Controls.Quads.Quad_Icons128x32_1.html">Quad_Icons128x32_1</a></li>
+                                                    <li class="class"><a href="../classes/FML.Controls.Quads.Quad_Icons64x64_1.html">Quad_Icons64x64_1</a></li>
+                                                    <li class="class"><a href="../classes/FML.Controls.Quads.Quad_Icons64x64_2.html">Quad_Icons64x64_2</a></li>
+                                                    <li class="class"><a href="../classes/FML.Controls.Quads.Quad_ManiaPlanetLogos.html">Quad_ManiaPlanetLogos</a></li>
+                                                    <li class="class"><a href="../classes/FML.Controls.Quads.Quad_ManiaPlanetMainMenu.html">Quad_ManiaPlanetMainMenu</a></li>
+                                                    <li class="class"><a href="../classes/FML.Controls.Quads.Quad_ManiaplanetSystem.html">Quad_ManiaplanetSystem</a></li>
+                                                    <li class="class"><a href="../classes/FML.Controls.Quads.Quad_MedalsBig.html">Quad_MedalsBig</a></li>
+                                                    <li class="class"><a href="../classes/FML.Controls.Quads.Quad_TitleLogos.html">Quad_TitleLogos</a></li>
+                                                    <li class="class"><a href="../classes/FML.Controls.Quads.Quad_UIConstruction_Buttons.html">Quad_UIConstruction_Buttons</a></li>
+                                                    <li class="class"><a href="../classes/FML.Controls.Quads.Quad_UIConstruction_Buttons2.html">Quad_UIConstruction_Buttons2</a></li>
+                                                    <li class="class"><a href="../classes/FML.Controls.Quads.Quad_UiSMSpectatorScoreBig.html">Quad_UiSMSpectatorScoreBig</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/FML.Controls.Audio.html">Audio</a></li>
+                                                    <li class="class"><a href="../classes/FML.Controls.Control.html">Control</a></li>
+                                                    <li class="class"><a href="../classes/FML.Controls.Entry.html">Entry</a></li>
+                                                    <li class="class"><a href="../classes/FML.Controls.FileEntry.html">FileEntry</a></li>
+                                                    <li class="class"><a href="../classes/FML.Controls.Frame.html">Frame</a></li>
+                                                    <li class="class"><a href="../classes/FML.Controls.Frame3d.html">Frame3d</a></li>
+                                                    <li class="class"><a href="../classes/FML.Controls.FrameInstance.html">FrameInstance</a></li>
+                                                    <li class="class"><a href="../classes/FML.Controls.Gauge.html">Gauge</a></li>
+                                                    <li class="class"><a href="../classes/FML.Controls.Label.html">Label</a></li>
+                                                    <li class="class"><a href="../classes/FML.Controls.Quad.html">Quad</a></li>
+                                                    <li class="class"><a href="../classes/FML.Controls.Video.html">Video</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1238029337"></a>
+                                <a href="../namespaces/FML.Elements.html" style="margin-left: 30px; padding-left: 0">Elements</a>
+            </div>
+            <div id="namespace-1238029337" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/FML.Elements.Dico.html">Dico</a></li>
+                                                    <li class="class"><a href="../classes/FML.Elements.Format.html">Format</a></li>
+                                                    <li class="class"><a href="../classes/FML.Elements.FrameModel.html">FrameModel</a></li>
+                                                    <li class="class"><a href="../classes/FML.Elements.Including.html">Including</a></li>
+                                                    <li class="class"><a href="../classes/FML.Elements.Music.html">Music</a></li>
+                                                    <li class="class"><a href="../classes/FML.Elements.SimpleScript.html">SimpleScript</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-550993282"></a>
+                                <a href="../namespaces/FML.ManiaCode.html" style="margin-left: 30px; padding-left: 0">ManiaCode</a>
+            </div>
+            <div id="namespace-550993282" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/FML.ManiaCode.Element.html">Element</a></li>
+                                                                                                    <li class="class"><a href="../classes/FML.ManiaCode.AddBuddy.html">AddBuddy</a></li>
+                                                    <li class="class"><a href="../classes/FML.ManiaCode.AddFavorite.html">AddFavorite</a></li>
+                                                    <li class="class"><a href="../classes/FML.ManiaCode.GetSkin.html">GetSkin</a></li>
+                                                    <li class="class"><a href="../classes/FML.ManiaCode.Go_To.html">Go_To</a></li>
+                                                    <li class="class"><a href="../classes/FML.ManiaCode.InstallMacroblock.html">InstallMacroblock</a></li>
+                                                    <li class="class"><a href="../classes/FML.ManiaCode.InstallMap.html">InstallMap</a></li>
+                                                    <li class="class"><a href="../classes/FML.ManiaCode.InstallPack.html">InstallPack</a></li>
+                                                    <li class="class"><a href="../classes/FML.ManiaCode.InstallReplay.html">InstallReplay</a></li>
+                                                    <li class="class"><a href="../classes/FML.ManiaCode.InstallScript.html">InstallScript</a></li>
+                                                    <li class="class"><a href="../classes/FML.ManiaCode.InstallSkin.html">InstallSkin</a></li>
+                                                    <li class="class"><a href="../classes/FML.ManiaCode.JoinServer.html">JoinServer</a></li>
+                                                    <li class="class"><a href="../classes/FML.ManiaCode.PlayMap.html">PlayMap</a></li>
+                                                    <li class="class"><a href="../classes/FML.ManiaCode.PlayReplay.html">PlayReplay</a></li>
+                                                    <li class="class"><a href="../classes/FML.ManiaCode.ShowMessage.html">ShowMessage</a></li>
+                                                    <li class="class"><a href="../classes/FML.ManiaCode.ViewReplay.html">ViewReplay</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-2133610198"></a>
+                                <a href="../namespaces/FML.Script.html" style="margin-left: 30px; padding-left: 0">Script</a>
+            </div>
+            <div id="namespace-2133610198" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/FML.Script.Builder.html">Builder</a></li>
+                                                    <li class="class"><a href="../classes/FML.Script.EUISound.html">EUISound</a></li>
+                                                    <li class="class"><a href="../classes/FML.Script.Script.html">Script</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-553208149"></a>
+                                <a href="../namespaces/FML.Stylesheet.html" style="margin-left: 30px; padding-left: 0">Stylesheet</a>
+            </div>
+            <div id="namespace-553208149" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/FML.Stylesheet.Mood.html">Mood</a></li>
+                                                    <li class="class"><a href="../classes/FML.Stylesheet.Style3d.html">Style3d</a></li>
+                                                    <li class="class"><a href="../classes/FML.Stylesheet.Stylesheet.html">Stylesheet</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-400408657"></a>
+                                <a href="../namespaces/FML.Types.html" style="margin-left: 30px; padding-left: 0">Types</a>
+            </div>
+            <div id="namespace-400408657" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/FML.Types.Actionable.html">Actionable</a></li>
+                                                    <li class="interface"><a href="../classes/FML.Types.BgColorable.html">BgColorable</a></li>
+                                                    <li class="interface"><a href="../classes/FML.Types.Container.html">Container</a></li>
+                                                    <li class="interface"><a href="../classes/FML.Types.Linkable.html">Linkable</a></li>
+                                                    <li class="interface"><a href="../classes/FML.Types.NewLineable.html">NewLineable</a></li>
+                                                    <li class="interface"><a href="../classes/FML.Types.Playable.html">Playable</a></li>
+                                                    <li class="interface"><a href="../classes/FML.Types.Renderable.html">Renderable</a></li>
+                                                    <li class="interface"><a href="../classes/FML.Types.Scriptable.html">Scriptable</a></li>
+                                                    <li class="interface"><a href="../classes/FML.Types.Styleable.html">Styleable</a></li>
+                                                    <li class="interface"><a href="../classes/FML.Types.SubStyleable.html">SubStyleable</a></li>
+                                                    <li class="interface"><a href="../classes/FML.Types.TextFormatable.html">TextFormatable</a></li>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/FML.CustomUI.html">CustomUI</a></li>
+                                                    <li class="class"><a href="../classes/FML.ManiaCode.html">ManiaCode</a></li>
+                                                    <li class="class"><a href="../classes/FML.ManiaLink.html">ManiaLink</a></li>
+                                                    <li class="class"><a href="../classes/FML.ManiaLinks.html">ManiaLinks</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        </div>
+    </section>
+    <section class="row-fluid">
+        <div class="span10 offset2">
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <nav>
+                                                <a href="../namespaces/FML.Script.html">\FML\Script</a> <i class="icon-level-up"></i>
+                                            </nav>
+                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
+
+                    <h1><small>\FML\Script</small>Script</h1>
+                    <p><em>Class representing the ManiaLink Script</em></p>
+                    
+                    
+                                        
+                    <section id="summary">
+                        <h2>Summary</h2>
+                        <section class="row-fluid heading">
+                            <section class="span4">
+                                <a href="#methods">Methods</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#properties">Properties</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#constants">Constants</a>
+                            </section>
+                        </section>
+                        <section class="row-fluid public">
+                            <section class="span4">
+                                                                    <a href="../classes/FML.Script.Script.html#method_create" class="">create()</a><br />
+                                                                    <a href="../classes/FML.Script.Script.html#method___construct" class="">__construct()</a><br />
+                                                                    <a href="../classes/FML.Script.Script.html#method_setInclude" class="">setInclude()</a><br />
+                                                                    <a href="../classes/FML.Script.Script.html#method_setConstant" class="">setConstant()</a><br />
+                                                                    <a href="../classes/FML.Script.Script.html#method_setFunction" class="">setFunction()</a><br />
+                                                                    <a href="../classes/FML.Script.Script.html#method_addTooltip" class="">addTooltip()</a><br />
+                                                                    <a href="../classes/FML.Script.Script.html#method_addMenu" class="">addMenu()</a><br />
+                                                                    <a href="../classes/FML.Script.Script.html#method_addPage" class="">addPage()</a><br />
+                                                                    <a href="../classes/FML.Script.Script.html#method_addPager" class="">addPager()</a><br />
+                                                                    <a href="../classes/FML.Script.Script.html#method_addPageLabel" class="">addPageLabel()</a><br />
+                                                                    <a href="../classes/FML.Script.Script.html#method_addProfileButton" class="">addProfileButton()</a><br />
+                                                                    <a href="../classes/FML.Script.Script.html#method_addMapInfoButton" class="">addMapInfoButton()</a><br />
+                                                                    <a href="../classes/FML.Script.Script.html#method_addSound" class="">addSound()</a><br />
+                                                                    <a href="../classes/FML.Script.Script.html#method_addToggle" class="">addToggle()</a><br />
+                                                                    <a href="../classes/FML.Script.Script.html#method_addSpectateButton" class="">addSpectateButton()</a><br />
+                                                                    <a href="../classes/FML.Script.Script.html#method_addPageActionTrigger" class="">addPageActionTrigger()</a><br />
+                                                                    <a href="../classes/FML.Script.Script.html#method_addTimeLabel" class="">addTimeLabel()</a><br />
+                                                                    <a href="../classes/FML.Script.Script.html#method_render" class="">render()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No public properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/FML.Script.Script.html#constant_CLASS_TOOLTIP" class="">CLASS_TOOLTIP</a><br />
+                                                                    <a href="../classes/FML.Script.Script.html#constant_CLASS_MENU" class="">CLASS_MENU</a><br />
+                                                                    <a href="../classes/FML.Script.Script.html#constant_CLASS_MENUBUTTON" class="">CLASS_MENUBUTTON</a><br />
+                                                                    <a href="../classes/FML.Script.Script.html#constant_CLASS_PAGE" class="">CLASS_PAGE</a><br />
+                                                                    <a href="../classes/FML.Script.Script.html#constant_CLASS_PAGER" class="">CLASS_PAGER</a><br />
+                                                                    <a href="../classes/FML.Script.Script.html#constant_CLASS_PAGELABEL" class="">CLASS_PAGELABEL</a><br />
+                                                                    <a href="../classes/FML.Script.Script.html#constant_CLASS_PROFILE" class="">CLASS_PROFILE</a><br />
+                                                                    <a href="../classes/FML.Script.Script.html#constant_CLASS_MAPINFO" class="">CLASS_MAPINFO</a><br />
+                                                                    <a href="../classes/FML.Script.Script.html#constant_CLASS_SOUND" class="">CLASS_SOUND</a><br />
+                                                                    <a href="../classes/FML.Script.Script.html#constant_CLASS_TOGGLE" class="">CLASS_TOGGLE</a><br />
+                                                                    <a href="../classes/FML.Script.Script.html#constant_CLASS_SPECTATE" class="">CLASS_SPECTATE</a><br />
+                                                                    <a href="../classes/FML.Script.Script.html#constant_CLASS_PAGEACTION" class="">CLASS_PAGEACTION</a><br />
+                                                                    <a href="../classes/FML.Script.Script.html#constant_CLASS_TIME" class="">CLASS_TIME</a><br />
+                                                                    <a href="../classes/FML.Script.Script.html#constant_OPTION_TOOLTIP_STAYONCLICK" class="">OPTION_TOOLTIP_STAYONCLICK</a><br />
+                                                                    <a href="../classes/FML.Script.Script.html#constant_OPTION_TOOLTIP_INVERT" class="">OPTION_TOOLTIP_INVERT</a><br />
+                                                                    <a href="../classes/FML.Script.Script.html#constant_OPTION_TOOLTIP_TEXT" class="">OPTION_TOOLTIP_TEXT</a><br />
+                                                                    <a href="../classes/FML.Script.Script.html#constant_OPTION_TOGGLE_SHOW" class="">OPTION_TOGGLE_SHOW</a><br />
+                                                                    <a href="../classes/FML.Script.Script.html#constant_OPTION_TOGGLE_HIDE" class="">OPTION_TOGGLE_HIDE</a><br />
+                                                                    <a href="../classes/FML.Script.Script.html#constant_OPTION_PROFILE_OWN" class="">OPTION_PROFILE_OWN</a><br />
+                                                                    <a href="../classes/FML.Script.Script.html#constant_OPTION_TIME_HIDESECONDS" class="">OPTION_TIME_HIDESECONDS</a><br />
+                                                                    <a href="../classes/FML.Script.Script.html#constant_OPTION_TIME_FULLDATE" class="">OPTION_TIME_FULLDATE</a><br />
+                                                                    <a href="../classes/FML.Script.Script.html#constant_LABEL_ONINIT" class="">LABEL_ONINIT</a><br />
+                                                                    <a href="../classes/FML.Script.Script.html#constant_LABEL_LOOP" class="">LABEL_LOOP</a><br />
+                                                                    <a href="../classes/FML.Script.Script.html#constant_LABEL_TICK" class="">LABEL_TICK</a><br />
+                                                                    <a href="../classes/FML.Script.Script.html#constant_LABEL_ENTRYSUBMIT" class="">LABEL_ENTRYSUBMIT</a><br />
+                                                                    <a href="../classes/FML.Script.Script.html#constant_LABEL_KEYPRESS" class="">LABEL_KEYPRESS</a><br />
+                                                                    <a href="../classes/FML.Script.Script.html#constant_LABEL_MOUSECLICK" class="">LABEL_MOUSECLICK</a><br />
+                                                                    <a href="../classes/FML.Script.Script.html#constant_LABEL_MOUSEOUT" class="">LABEL_MOUSEOUT</a><br />
+                                                                    <a href="../classes/FML.Script.Script.html#constant_LABEL_MOUSEOVER" class="">LABEL_MOUSEOVER</a><br />
+                                                                    <a href="../classes/FML.Script.Script.html#constant_CONSTANT_TOOLTIPTEXTS" class="">CONSTANT_TOOLTIPTEXTS</a><br />
+                                                                    <a href="../classes/FML.Script.Script.html#constant_FUNCTION_GETTOOLTIPCONTROLID" class="">FUNCTION_GETTOOLTIPCONTROLID</a><br />
+                                                                    <a href="../classes/FML.Script.Script.html#constant_FUNCTION_SETTOOLTIPTEXT" class="">FUNCTION_SETTOOLTIPTEXT</a><br />
+                                                                    <a href="../classes/FML.Script.Script.html#constant_FUNCTION_TOGGLE" class="">FUNCTION_TOGGLE</a><br />
+                                                            </section>
+                        </section>
+                        <section class="row-fluid protected">
+                            <section class="span4">
+                                                                    <em>No protected methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/FML.Script.Script.html#property_tagName" class="">$tagName</a><br />
+                                                                    <a href="../classes/FML.Script.Script.html#property_includes" class="">$includes</a><br />
+                                                                    <a href="../classes/FML.Script.Script.html#property_constants" class="">$constants</a><br />
+                                                                    <a href="../classes/FML.Script.Script.html#property_functions" class="">$functions</a><br />
+                                                                    <a href="../classes/FML.Script.Script.html#property_tooltips" class="">$tooltips</a><br />
+                                                                    <a href="../classes/FML.Script.Script.html#property_tooltipTexts" class="">$tooltipTexts</a><br />
+                                                                    <a href="../classes/FML.Script.Script.html#property_menus" class="">$menus</a><br />
+                                                                    <a href="../classes/FML.Script.Script.html#property_pages" class="">$pages</a><br />
+                                                                    <a href="../classes/FML.Script.Script.html#property_profile" class="">$profile</a><br />
+                                                                    <a href="../classes/FML.Script.Script.html#property_mapInfo" class="">$mapInfo</a><br />
+                                                                    <a href="../classes/FML.Script.Script.html#property_sounds" class="">$sounds</a><br />
+                                                                    <a href="../classes/FML.Script.Script.html#property_toggles" class="">$toggles</a><br />
+                                                                    <a href="../classes/FML.Script.Script.html#property_spectate" class="">$spectate</a><br />
+                                                                    <a href="../classes/FML.Script.Script.html#property_pageActions" class="">$pageActions</a><br />
+                                                                    <a href="../classes/FML.Script.Script.html#property_times" class="">$times</a><br />
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                        <section class="row-fluid private">
+                            <section class="span4">
+                                                                    <a href="../classes/FML.Script.Script.html#method_buildScriptText" class="">buildScriptText()</a><br />
+                                                                    <a href="../classes/FML.Script.Script.html#method_getHeaderComment" class="">getHeaderComment()</a><br />
+                                                                    <a href="../classes/FML.Script.Script.html#method_getIncludes" class="">getIncludes()</a><br />
+                                                                    <a href="../classes/FML.Script.Script.html#method_getConstants" class="">getConstants()</a><br />
+                                                                    <a href="../classes/FML.Script.Script.html#method_buildTooltipConstants" class="">buildTooltipConstants()</a><br />
+                                                                    <a href="../classes/FML.Script.Script.html#method_getFunctions" class="">getFunctions()</a><br />
+                                                                    <a href="../classes/FML.Script.Script.html#method_buildTooltipFunctions" class="">buildTooltipFunctions()</a><br />
+                                                                    <a href="../classes/FML.Script.Script.html#method_getLabels" class="">getLabels()</a><br />
+                                                                    <a href="../classes/FML.Script.Script.html#method_getTooltipLabels" class="">getTooltipLabels()</a><br />
+                                                                    <a href="../classes/FML.Script.Script.html#method_getMenuLabels" class="">getMenuLabels()</a><br />
+                                                                    <a href="../classes/FML.Script.Script.html#method_getPagesLabels" class="">getPagesLabels()</a><br />
+                                                                    <a href="../classes/FML.Script.Script.html#method_getProfileLabels" class="">getProfileLabels()</a><br />
+                                                                    <a href="../classes/FML.Script.Script.html#method_getMapInfoLabels" class="">getMapInfoLabels()</a><br />
+                                                                    <a href="../classes/FML.Script.Script.html#method_getSoundLabels" class="">getSoundLabels()</a><br />
+                                                                    <a href="../classes/FML.Script.Script.html#method_getToggleLabels" class="">getToggleLabels()</a><br />
+                                                                    <a href="../classes/FML.Script.Script.html#method_getSpectateLabels" class="">getSpectateLabels()</a><br />
+                                                                    <a href="../classes/FML.Script.Script.html#method_getPageActionLabels" class="">getPageActionLabels()</a><br />
+                                                                    <a href="../classes/FML.Script.Script.html#method_getTimeLabels" class="">getTimeLabels()</a><br />
+                                                                    <a href="../classes/FML.Script.Script.html#method_getMainFunction" class="">getMainFunction()</a><br />
+                                                                    <a href="../classes/FML.Script.Script.html#method_spliceParameters" class="">spliceParameters()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No private properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                    </section>
+                </div>
+                <aside class="span4 detailsbar">
+                                        
+                    
+                    <dl>
+                        <dt>File</dt>
+                            <dd><a href="../files/Script.Script.html"><div class="path-wrapper">Script\Script.php</div></a></dd>
+                                                <dt>Package</dt>
+                            <dd><div class="namespace-wrapper">Default</div></dd>
+                                                <dt>Class hierarchy</dt>
+                            <dd class="hierarchy">
+                                                                                                                                                                    <div class="namespace-wrapper">\FML\Script\Script</div>
+                            </dd>
+
+                        
+                        
+                        
+                        
+                                                                        </dl>
+                    <h2>Tags</h2>
+                    <table class="table table-condensed">
+                                            <tr>
+                            <th>
+                                author
+                            </th>
+                            <td>
+                                                                    <p>steeffeen</p>
+                                                            </td>
+                        </tr>
+                                            <tr>
+                            <th>
+                                copyright
+                            </th>
+                            <td>
+                                                                    <p>FancyManiaLinks Copyright © 2014 Steffen Schröder</p>
+                                                            </td>
+                        </tr>
+                                            <tr>
+                            <th>
+                                license
+                            </th>
+                            <td>
+                                                                    <p><a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a> GNU General Public License, Version 3</p>
+                                                            </td>
+                        </tr>
+                                        </table>
+                </aside>
+            </div>
+
+                                    <a id="constants" name="constants"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Constants</h2>
+                </div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_CLASS_TOOLTIP" name="constant_CLASS_TOOLTIP" class="anchor"></a>
+            <article id="constant_CLASS_TOOLTIP" class="constant">
+                <h3 class="">CLASS_TOOLTIP</h3>
+                <pre class="signature">CLASS_TOOLTIP</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_CLASS_MENU" name="constant_CLASS_MENU" class="anchor"></a>
+            <article id="constant_CLASS_MENU" class="constant">
+                <h3 class="">CLASS_MENU</h3>
+                <pre class="signature">CLASS_MENU</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_CLASS_MENUBUTTON" name="constant_CLASS_MENUBUTTON" class="anchor"></a>
+            <article id="constant_CLASS_MENUBUTTON" class="constant">
+                <h3 class="">CLASS_MENUBUTTON</h3>
+                <pre class="signature">CLASS_MENUBUTTON</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_CLASS_PAGE" name="constant_CLASS_PAGE" class="anchor"></a>
+            <article id="constant_CLASS_PAGE" class="constant">
+                <h3 class="">CLASS_PAGE</h3>
+                <pre class="signature">CLASS_PAGE</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_CLASS_PAGER" name="constant_CLASS_PAGER" class="anchor"></a>
+            <article id="constant_CLASS_PAGER" class="constant">
+                <h3 class="">CLASS_PAGER</h3>
+                <pre class="signature">CLASS_PAGER</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_CLASS_PAGELABEL" name="constant_CLASS_PAGELABEL" class="anchor"></a>
+            <article id="constant_CLASS_PAGELABEL" class="constant">
+                <h3 class="">CLASS_PAGELABEL</h3>
+                <pre class="signature">CLASS_PAGELABEL</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_CLASS_PROFILE" name="constant_CLASS_PROFILE" class="anchor"></a>
+            <article id="constant_CLASS_PROFILE" class="constant">
+                <h3 class="">CLASS_PROFILE</h3>
+                <pre class="signature">CLASS_PROFILE</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_CLASS_MAPINFO" name="constant_CLASS_MAPINFO" class="anchor"></a>
+            <article id="constant_CLASS_MAPINFO" class="constant">
+                <h3 class="">CLASS_MAPINFO</h3>
+                <pre class="signature">CLASS_MAPINFO</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_CLASS_SOUND" name="constant_CLASS_SOUND" class="anchor"></a>
+            <article id="constant_CLASS_SOUND" class="constant">
+                <h3 class="">CLASS_SOUND</h3>
+                <pre class="signature">CLASS_SOUND</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_CLASS_TOGGLE" name="constant_CLASS_TOGGLE" class="anchor"></a>
+            <article id="constant_CLASS_TOGGLE" class="constant">
+                <h3 class="">CLASS_TOGGLE</h3>
+                <pre class="signature">CLASS_TOGGLE</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_CLASS_SPECTATE" name="constant_CLASS_SPECTATE" class="anchor"></a>
+            <article id="constant_CLASS_SPECTATE" class="constant">
+                <h3 class="">CLASS_SPECTATE</h3>
+                <pre class="signature">CLASS_SPECTATE</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_CLASS_PAGEACTION" name="constant_CLASS_PAGEACTION" class="anchor"></a>
+            <article id="constant_CLASS_PAGEACTION" class="constant">
+                <h3 class="">CLASS_PAGEACTION</h3>
+                <pre class="signature">CLASS_PAGEACTION</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_CLASS_TIME" name="constant_CLASS_TIME" class="anchor"></a>
+            <article id="constant_CLASS_TIME" class="constant">
+                <h3 class="">CLASS_TIME</h3>
+                <pre class="signature">CLASS_TIME</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_OPTION_TOOLTIP_STAYONCLICK" name="constant_OPTION_TOOLTIP_STAYONCLICK" class="anchor"></a>
+            <article id="constant_OPTION_TOOLTIP_STAYONCLICK" class="constant">
+                <h3 class="">OPTION_TOOLTIP_STAYONCLICK</h3>
+                <pre class="signature">OPTION_TOOLTIP_STAYONCLICK</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_OPTION_TOOLTIP_INVERT" name="constant_OPTION_TOOLTIP_INVERT" class="anchor"></a>
+            <article id="constant_OPTION_TOOLTIP_INVERT" class="constant">
+                <h3 class="">OPTION_TOOLTIP_INVERT</h3>
+                <pre class="signature">OPTION_TOOLTIP_INVERT</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_OPTION_TOOLTIP_TEXT" name="constant_OPTION_TOOLTIP_TEXT" class="anchor"></a>
+            <article id="constant_OPTION_TOOLTIP_TEXT" class="constant">
+                <h3 class="">OPTION_TOOLTIP_TEXT</h3>
+                <pre class="signature">OPTION_TOOLTIP_TEXT</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_OPTION_TOGGLE_SHOW" name="constant_OPTION_TOGGLE_SHOW" class="anchor"></a>
+            <article id="constant_OPTION_TOGGLE_SHOW" class="constant">
+                <h3 class="">OPTION_TOGGLE_SHOW</h3>
+                <pre class="signature">OPTION_TOGGLE_SHOW</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_OPTION_TOGGLE_HIDE" name="constant_OPTION_TOGGLE_HIDE" class="anchor"></a>
+            <article id="constant_OPTION_TOGGLE_HIDE" class="constant">
+                <h3 class="">OPTION_TOGGLE_HIDE</h3>
+                <pre class="signature">OPTION_TOGGLE_HIDE</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_OPTION_PROFILE_OWN" name="constant_OPTION_PROFILE_OWN" class="anchor"></a>
+            <article id="constant_OPTION_PROFILE_OWN" class="constant">
+                <h3 class="">OPTION_PROFILE_OWN</h3>
+                <pre class="signature">OPTION_PROFILE_OWN</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_OPTION_TIME_HIDESECONDS" name="constant_OPTION_TIME_HIDESECONDS" class="anchor"></a>
+            <article id="constant_OPTION_TIME_HIDESECONDS" class="constant">
+                <h3 class="">OPTION_TIME_HIDESECONDS</h3>
+                <pre class="signature">OPTION_TIME_HIDESECONDS</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_OPTION_TIME_FULLDATE" name="constant_OPTION_TIME_FULLDATE" class="anchor"></a>
+            <article id="constant_OPTION_TIME_FULLDATE" class="constant">
+                <h3 class="">OPTION_TIME_FULLDATE</h3>
+                <pre class="signature">OPTION_TIME_FULLDATE</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_LABEL_ONINIT" name="constant_LABEL_ONINIT" class="anchor"></a>
+            <article id="constant_LABEL_ONINIT" class="constant">
+                <h3 class="">LABEL_ONINIT</h3>
+                <pre class="signature">LABEL_ONINIT</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_LABEL_LOOP" name="constant_LABEL_LOOP" class="anchor"></a>
+            <article id="constant_LABEL_LOOP" class="constant">
+                <h3 class="">LABEL_LOOP</h3>
+                <pre class="signature">LABEL_LOOP</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_LABEL_TICK" name="constant_LABEL_TICK" class="anchor"></a>
+            <article id="constant_LABEL_TICK" class="constant">
+                <h3 class="">LABEL_TICK</h3>
+                <pre class="signature">LABEL_TICK</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_LABEL_ENTRYSUBMIT" name="constant_LABEL_ENTRYSUBMIT" class="anchor"></a>
+            <article id="constant_LABEL_ENTRYSUBMIT" class="constant">
+                <h3 class="">LABEL_ENTRYSUBMIT</h3>
+                <pre class="signature">LABEL_ENTRYSUBMIT</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_LABEL_KEYPRESS" name="constant_LABEL_KEYPRESS" class="anchor"></a>
+            <article id="constant_LABEL_KEYPRESS" class="constant">
+                <h3 class="">LABEL_KEYPRESS</h3>
+                <pre class="signature">LABEL_KEYPRESS</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_LABEL_MOUSECLICK" name="constant_LABEL_MOUSECLICK" class="anchor"></a>
+            <article id="constant_LABEL_MOUSECLICK" class="constant">
+                <h3 class="">LABEL_MOUSECLICK</h3>
+                <pre class="signature">LABEL_MOUSECLICK</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_LABEL_MOUSEOUT" name="constant_LABEL_MOUSEOUT" class="anchor"></a>
+            <article id="constant_LABEL_MOUSEOUT" class="constant">
+                <h3 class="">LABEL_MOUSEOUT</h3>
+                <pre class="signature">LABEL_MOUSEOUT</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_LABEL_MOUSEOVER" name="constant_LABEL_MOUSEOVER" class="anchor"></a>
+            <article id="constant_LABEL_MOUSEOVER" class="constant">
+                <h3 class="">LABEL_MOUSEOVER</h3>
+                <pre class="signature">LABEL_MOUSEOVER</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_CONSTANT_TOOLTIPTEXTS" name="constant_CONSTANT_TOOLTIPTEXTS" class="anchor"></a>
+            <article id="constant_CONSTANT_TOOLTIPTEXTS" class="constant">
+                <h3 class="">CONSTANT_TOOLTIPTEXTS</h3>
+                <pre class="signature">CONSTANT_TOOLTIPTEXTS</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_FUNCTION_GETTOOLTIPCONTROLID" name="constant_FUNCTION_GETTOOLTIPCONTROLID" class="anchor"></a>
+            <article id="constant_FUNCTION_GETTOOLTIPCONTROLID" class="constant">
+                <h3 class="">FUNCTION_GETTOOLTIPCONTROLID</h3>
+                <pre class="signature">FUNCTION_GETTOOLTIPCONTROLID</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_FUNCTION_SETTOOLTIPTEXT" name="constant_FUNCTION_SETTOOLTIPTEXT" class="anchor"></a>
+            <article id="constant_FUNCTION_SETTOOLTIPTEXT" class="constant">
+                <h3 class="">FUNCTION_SETTOOLTIPTEXT</h3>
+                <pre class="signature">FUNCTION_SETTOOLTIPTEXT</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_FUNCTION_TOGGLE" name="constant_FUNCTION_TOGGLE" class="anchor"></a>
+            <article id="constant_FUNCTION_TOGGLE" class="constant">
+                <h3 class="">FUNCTION_TOGGLE</h3>
+                <pre class="signature">FUNCTION_TOGGLE</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                            
+                                    <a id="properties" name="properties"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Properties</h2>
+                </div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_tagName" name="property_tagName" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$tagName</h3>
+                <pre class="signature">$tagName : </pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_includes" name="property_includes" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$includes</h3>
+                <pre class="signature">$includes : </pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_constants" name="property_constants" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$constants</h3>
+                <pre class="signature">$constants : </pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_functions" name="property_functions" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$functions</h3>
+                <pre class="signature">$functions : </pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_tooltips" name="property_tooltips" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$tooltips</h3>
+                <pre class="signature">$tooltips : </pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_tooltipTexts" name="property_tooltipTexts" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$tooltipTexts</h3>
+                <pre class="signature">$tooltipTexts : </pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_menus" name="property_menus" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$menus</h3>
+                <pre class="signature">$menus : </pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_pages" name="property_pages" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$pages</h3>
+                <pre class="signature">$pages : </pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_profile" name="property_profile" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$profile</h3>
+                <pre class="signature">$profile : </pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_mapInfo" name="property_mapInfo" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$mapInfo</h3>
+                <pre class="signature">$mapInfo : </pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_sounds" name="property_sounds" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$sounds</h3>
+                <pre class="signature">$sounds : </pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_toggles" name="property_toggles" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$toggles</h3>
+                <pre class="signature">$toggles : </pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_spectate" name="property_spectate" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$spectate</h3>
+                <pre class="signature">$spectate : </pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_pageActions" name="property_pageActions" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$pageActions</h3>
+                <pre class="signature">$pageActions : </pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_times" name="property_times" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$times</h3>
+                <pre class="signature">$times : </pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                            
+                                    <a id="methods" name="methods"></a>
+            <div class="row-fluid">
+                <div class="span8 content class"><h2>Methods</h2></div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_create" name="method_create" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">create()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">create() : \FML\Script\Script</pre>
+                <p><em>Create a new Script Object</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/FML.Script.Script.html">\FML\Script\Script</a>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method___construct" name="method___construct" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">__construct()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">__construct() </pre>
+                <p><em>Construct a new Script Object</em></p>
+                
+
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setInclude" name="method_setInclude" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setInclude()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setInclude(string  <span class="argument">$namespace</span>, string  <span class="argument">$file</span>) : \FML\Script\Script</pre>
+                <p><em>Set an Include of the Script</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$namespace </td>
+                                <td><p>Namespace used for the Include</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$file </td>
+                                <td><p>Included File Url</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/FML.Script.Script.html">\FML\Script\Script</a>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setConstant" name="method_setConstant" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setConstant()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setConstant(string  <span class="argument">$name</span>, string  <span class="argument">$value</span>) : \FML\Script\Script</pre>
+                <p><em>Set a Constant of the Script</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$name </td>
+                                <td><p>Variable Name of the Constant</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$value </td>
+                                <td><p>Constant Value</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/FML.Script.Script.html">\FML\Script\Script</a>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setFunction" name="method_setFunction" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setFunction()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setFunction(string  <span class="argument">$name</span>, string  <span class="argument">$coding</span>) : \FML\Script\Script</pre>
+                <p><em>Set a Function of the Script</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$name </td>
+                                <td><p>Function Name</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$coding </td>
+                                <td><p>Complete Function Implementation including Declaration</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/FML.Script.Script.html">\FML\Script\Script</a>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_addTooltip" name="method_addTooltip" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">addTooltip()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">addTooltip(\FML\Controls\Control  <span class="argument">$hoverControl</span>, \FML\Controls\Control  <span class="argument">$tooltipControl</span>) : \FML\Script\Script</pre>
+                <p><em>Add a Tooltip Behavior</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/FML.Controls.Control.html">\FML\Controls\Control</a></td>
+                                <td>$hoverControl </td>
+                                <td><p>The Control that shows the Tooltip</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><a href="../classes/FML.Controls.Control.html">\FML\Controls\Control</a></td>
+                                <td>$tooltipControl </td>
+                                <td><p>The Tooltip to display</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/FML.Script.Script.html">\FML\Script\Script</a>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_addMenu" name="method_addMenu" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">addMenu()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">addMenu(\FML\Controls\Control  <span class="argument">$clickControl</span>, \FML\Controls\Control  <span class="argument">$menuControl</span>, string  <span class="argument">$menuId = null</span>) : \FML\Script\Script</pre>
+                <p><em>Add a Menu Behavior</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/FML.Controls.Control.html">\FML\Controls\Control</a></td>
+                                <td>$clickControl </td>
+                                <td><p>The Control showing the Menu</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><a href="../classes/FML.Controls.Control.html">\FML\Controls\Control</a></td>
+                                <td>$menuControl </td>
+                                <td><p>The Menu to show</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$menuId </td>
+                                <td><p>(optional) An identifier to specify the Menu Group</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/FML.Script.Script.html">\FML\Script\Script</a>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_addPage" name="method_addPage" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">addPage()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">addPage(\FML\Controls\Control  <span class="argument">$pageControl</span>, integer  <span class="argument">$pageNumber</span>, string  <span class="argument">$pagesId = null</span>) : \FML\Script\Script</pre>
+                <p><em>Add a Page for a Paging Behavior</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/FML.Controls.Control.html">\FML\Controls\Control</a></td>
+                                <td>$pageControl </td>
+                                <td><p>The Page to display</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>integer</td>
+                                <td>$pageNumber </td>
+                                <td><p>The Number of the Page</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$pagesId </td>
+                                <td><p>(optional) An identifier to specify the Pages Group</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/FML.Script.Script.html">\FML\Script\Script</a>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_addPager" name="method_addPager" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">addPager()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">addPager(\FML\Controls\Control  <span class="argument">$pagerControl</span>, integer  <span class="argument">$pagingAction</span>, string  <span class="argument">$pagesId = null</span>) : \FML\Script\Script</pre>
+                <p><em>Add a Pager Button for a Paging Behavior</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/FML.Controls.Control.html">\FML\Controls\Control</a></td>
+                                <td>$pagerControl </td>
+                                <td><p>The Control to leaf through the Pages</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>integer</td>
+                                <td>$pagingAction </td>
+                                <td><p>The Number of Pages the Pager leafs</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$pagesId </td>
+                                <td><p>(optional) An identifier to specify the Pages Group</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/FML.Script.Script.html">\FML\Script\Script</a>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_addPageLabel" name="method_addPageLabel" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">addPageLabel()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">addPageLabel(\FML\Controls\Label  <span class="argument">$pageLabel</span>, string  <span class="argument">$pagesId = null</span>) : \FML\Script\Script</pre>
+                <p><em>Add a Label that shows the current Page Number</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/FML.Controls.Label.html">\FML\Controls\Label</a></td>
+                                <td>$pageLabel </td>
+                                <td><p>The Label showing the Number of the currently displayed Page</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$pagesId </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/FML.Script.Script.html">\FML\Script\Script</a>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_addProfileButton" name="method_addProfileButton" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">addProfileButton()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">addProfileButton(\FML\Controls\Control  <span class="argument">$profileControl</span>, string  <span class="argument">$playerLogin</span>) : \FML\Script\Script</pre>
+                <p><em>Add a Button Behavior that will open the Built-In Player Profile
+(Works only for Server ManiaLinks)</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/FML.Controls.Control.html">\FML\Controls\Control</a></td>
+                                <td>$profileControl </td>
+                                <td><p>The Control opening a Profile</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$playerLogin </td>
+                                <td><p>The Player Login</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/FML.Script.Script.html">\FML\Script\Script</a>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_addMapInfoButton" name="method_addMapInfoButton" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">addMapInfoButton()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">addMapInfoButton(\FML\Controls\Control  <span class="argument">$mapInfoControl</span>) : \FML\Script\Script</pre>
+                <p><em>Add a Button Behavior that will open the Built-In Map Info
+(Works only on a Server)</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/FML.Controls.Control.html">\FML\Controls\Control</a></td>
+                                <td>$mapInfoControl </td>
+                                <td><p>The Control opening the Map Info</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/FML.Script.Script.html">\FML\Script\Script</a>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_addSound" name="method_addSound" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">addSound()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">addSound(\FML\Controls\Control  <span class="argument">$control</span>, string  <span class="argument">$soundName</span>, integer  <span class="argument">$soundVariant</span>, float  <span class="argument">$soundVolume = 1.0</span>, string  <span class="argument">$eventLabel = self::LABEL_MOUSECLICK</span>) : \FML\Script\Script</pre>
+                <p><em>Add a Sound Playing for the Control
+(Works only for Server ManiaLinks)</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/FML.Controls.Control.html">\FML\Controls\Control</a></td>
+                                <td>$control </td>
+                                <td><p>The Control playing a Sound</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$soundName </td>
+                                <td><p>The Sound to play</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>integer</td>
+                                <td>$soundVariant </td>
+                                <td><p>(optional) Sound Variant</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>float</td>
+                                <td>$soundVolume </td>
+                                <td><p>(optional) Sound Volume</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$eventLabel </td>
+                                <td><p>(optional) The Event Label on which the Sound should be played</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/FML.Script.Script.html">\FML\Script\Script</a>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_addToggle" name="method_addToggle" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">addToggle()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">addToggle(\FML\Controls\Control  <span class="argument">$clickControl</span>, \FML\Controls\Control  <span class="argument">$toggleControl</span>,   <span class="argument">$option = null</span>) : \FML\Script\Script</pre>
+                <p><em>Add a Toggling Behavior</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/FML.Controls.Control.html">\FML\Controls\Control</a></td>
+                                <td>$clickControl </td>
+                                <td><p>The Control that toggles another Control on Click</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><a href="../classes/FML.Controls.Control.html">\FML\Controls\Control</a></td>
+                                <td>$toggleControl </td>
+                                <td><p>The Control to toggle</p></td>
+                            </tr>
+                                                    <tr>
+                                <td></td>
+                                <td>$option </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/FML.Script.Script.html">\FML\Script\Script</a>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_addSpectateButton" name="method_addSpectateButton" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">addSpectateButton()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">addSpectateButton(\FML\Controls\Control  <span class="argument">$clickControl</span>, string  <span class="argument">$spectateTargetLogin</span>) : \FML\Script\Script</pre>
+                <p><em>Add a Spectate Button Behavior</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/FML.Controls.Control.html">\FML\Controls\Control</a></td>
+                                <td>$clickControl </td>
+                                <td><p>The Control that works as Spectate Button</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$spectateTargetLogin </td>
+                                <td><p>The Login of the Player to Spectate</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/FML.Script.Script.html">\FML\Script\Script</a>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_addPageActionTrigger" name="method_addPageActionTrigger" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">addPageActionTrigger()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">addPageActionTrigger(\FML\Controls\Control  <span class="argument">$actionControl</span>, string  <span class="argument">$action = null</span>) : \FML\Script\Script</pre>
+                <p><em>Trigger an Action on Control Click</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/FML.Controls.Control.html">\FML\Controls\Control</a></td>
+                                <td>$actionControl </td>
+                                <td><p>The Control triggering the Action</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$action </td>
+                                <td><p>(optional) The Action to trigger (if empty the Action of the Control will be triggered)</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/FML.Script.Script.html">\FML\Script\Script</a>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_addTimeLabel" name="method_addTimeLabel" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">addTimeLabel()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">addTimeLabel(\FML\Controls\Label  <span class="argument">$timeLabel</span>, boolean  <span class="argument">$hideSeconds = false</span>, boolean  <span class="argument">$showDate = false</span>) : \FML\Script\Script</pre>
+                <p><em>Add a Label showing the current Time</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/FML.Controls.Label.html">\FML\Controls\Label</a></td>
+                                <td>$timeLabel </td>
+                                <td><p>The Label showing the current Time</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>boolean</td>
+                                <td>$hideSeconds </td>
+                                <td><p>Whether the seconds should be hidden</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>boolean</td>
+                                <td>$showDate </td>
+                                <td><p>Whether to show the full Date Text</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/FML.Script.Script.html">\FML\Script\Script</a>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_render" name="method_render" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">render()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">render(\DOMDocument  <span class="argument">$domDocument</span>) : \DOMElement</pre>
+                <p><em>Create the Script XML Tag</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\DOMDocument</td>
+                                <td>$domDocument </td>
+                                <td><p>DOMDocument for which the XML Element should be created</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    \DOMElement
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_buildScriptText" name="method_buildScriptText" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">buildScriptText()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">buildScriptText() : string</pre>
+                <p><em>Build the complete Script Text</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getHeaderComment" name="method_getHeaderComment" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">getHeaderComment()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getHeaderComment() : string</pre>
+                <p><em>Get the Header Comment</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getIncludes" name="method_getIncludes" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">getIncludes()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getIncludes() : string</pre>
+                <p><em>Get the Includes</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getConstants" name="method_getConstants" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">getConstants()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getConstants() : string</pre>
+                <p><em>Get the Constants</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_buildTooltipConstants" name="method_buildTooltipConstants" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">buildTooltipConstants()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">buildTooltipConstants() </pre>
+                <p><em>Build the Constants needed for tooltips</em></p>
+                
+
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getFunctions" name="method_getFunctions" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">getFunctions()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getFunctions() : string</pre>
+                <p><em>Get the Functions</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_buildTooltipFunctions" name="method_buildTooltipFunctions" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">buildTooltipFunctions()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">buildTooltipFunctions() </pre>
+                <p><em>Build the Functions needed for Tooltips</em></p>
+                
+
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getLabels" name="method_getLabels" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">getLabels()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getLabels() : string</pre>
+                <p><em>Get Labels</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getTooltipLabels" name="method_getTooltipLabels" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">getTooltipLabels()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getTooltipLabels() : string</pre>
+                <p><em>Get the Tooltip Labels</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getMenuLabels" name="method_getMenuLabels" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">getMenuLabels()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getMenuLabels() : string</pre>
+                <p><em>Get the Menu Labels</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getPagesLabels" name="method_getPagesLabels" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">getPagesLabels()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getPagesLabels() : string</pre>
+                <p><em>Get the Pages Labels</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getProfileLabels" name="method_getProfileLabels" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">getProfileLabels()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getProfileLabels() : string</pre>
+                <p><em>Get the Profile Labels</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getMapInfoLabels" name="method_getMapInfoLabels" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">getMapInfoLabels()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getMapInfoLabels() : string</pre>
+                <p><em>Get the Map Info Labels</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getSoundLabels" name="method_getSoundLabels" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">getSoundLabels()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getSoundLabels() : string</pre>
+                <p><em>Get the Sound Labels</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getToggleLabels" name="method_getToggleLabels" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">getToggleLabels()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getToggleLabels() : string</pre>
+                <p><em>Get the Toggle Labels</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getSpectateLabels" name="method_getSpectateLabels" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">getSpectateLabels()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getSpectateLabels() : string</pre>
+                <p><em>Get the Spectate labels</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getPageActionLabels" name="method_getPageActionLabels" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">getPageActionLabels()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getPageActionLabels() : string</pre>
+                <p><em>Get the Page Actions Labels</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getTimeLabels" name="method_getTimeLabels" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">getTimeLabels()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getTimeLabels() : string</pre>
+                <p><em>Get the Time Labels</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getMainFunction" name="method_getMainFunction" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">getMainFunction()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getMainFunction() : string</pre>
+                <p><em>Get the Main Function</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_spliceParameters" name="method_spliceParameters" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">spliceParameters()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">spliceParameters(array  <span class="argument">$params</span>, integer  <span class="argument">$offset</span>) : array</pre>
+                <p><em>Return the Array of additional optional Parameters</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$params </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>integer</td>
+                                <td>$offset </td>
+                                <td><p>The Number of obligatory Parameters</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    </div>
+    </section>
+
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label">Script.php</h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/Script\Script.php.txt" class="language-php line-numbers"></pre>
+        </div>
+    </div>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                            <li><a href="../namespaces/FML.html">\FML</a></li>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../reports/errors.html">Errors</a></li>
+                                    <li><a href="../reports/markers.html">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on July 9th, 2017 at 14:20.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>
