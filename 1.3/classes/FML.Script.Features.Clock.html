@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>FancyManiaLinks v1.3 API Documentation</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="../css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="../js/html5.js"></script>
+    <![endif]-->
+    <script src="../js/jquery-1.11.0.min.js"></script>
+    <script src="../js/ui/1.10.4/jquery-ui.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+    <script type="text/javascript">
+    function loadExternalCodeSnippets() {
+        Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+            var src = pre.getAttribute('data-src');
+            var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+            var language = 'php';
+
+            var code = document.createElement('code');
+            code.className = 'language-' + language;
+
+            pre.textContent = '';
+
+            code.textContent = 'Loading…';
+
+            pre.appendChild(code);
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('GET', src, true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+
+                    if (xhr.status < 400 && xhr.responseText) {
+                        code.textContent = xhr.responseText;
+
+                        Prism.highlightElement(code);
+                    }
+                    else if (xhr.status >= 400) {
+                        code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                    }
+                    else {
+                        code.textContent = '✖ Error: File does not exist or is empty';
+                    }
+                }
+            };
+
+            xhr.send(null);
+        });
+    }
+
+    $(document).ready(function(){
+        loadExternalCodeSnippets();
+    });
+    $('#source-view').on('shown', function () {
+        loadExternalCodeSnippets();
+    })
+</script>
+
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">FancyManiaLinks v1.3 API Documentation</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                                        <li class="dropdown">
+                        <a href="../index.html" class="dropdown-toggle" data-toggle="dropdown">
+                            API Documentation <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                                                        <li><a href="../namespaces/FML.html">\FML</a></li>
+                                                    </ul>
+                    </li>
+                                        <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">643</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/deprecated.html">
+                                                                                                            <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+                                <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-704485622"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+            </div>
+            <div id="namespace-704485622" class="accordion-body collapse in">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1581198805"></a>
+                                <a href="../namespaces/FML.html" style="margin-left: 30px; padding-left: 0">FML</a>
+            </div>
+            <div id="namespace-1581198805" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-2003513659"></a>
+                                <a href="../namespaces/FML.Components.html" style="margin-left: 30px; padding-left: 0">Components</a>
+            </div>
+            <div id="namespace-2003513659" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/FML.Components.CheckBox.html">CheckBox</a></li>
+                                                    <li class="class"><a href="../classes/FML.Components.ValuePicker.html">ValuePicker</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1095252124"></a>
+                                <a href="../namespaces/FML.Controls.html" style="margin-left: 30px; padding-left: 0">Controls</a>
+            </div>
+            <div id="namespace-1095252124" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1159096669"></a>
+                                <a href="../namespaces/FML.Controls.Labels.html" style="margin-left: 30px; padding-left: 0">Labels</a>
+            </div>
+            <div id="namespace-1159096669" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/FML.Controls.Labels.Label_Button.html">Label_Button</a></li>
+                                                    <li class="class"><a href="../classes/FML.Controls.Labels.Label_Text.html">Label_Text</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1356247508"></a>
+                                <a href="../namespaces/FML.Controls.Quads.html" style="margin-left: 30px; padding-left: 0">Quads</a>
+            </div>
+            <div id="namespace-1356247508" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/FML.Controls.Quads.Quad_321Go.html">Quad_321Go</a></li>
+                                                    <li class="class"><a href="../classes/FML.Controls.Quads.Quad_BgRaceScore2.html">Quad_BgRaceScore2</a></li>
+                                                    <li class="class"><a href="../classes/FML.Controls.Quads.Quad_Bgs1.html">Quad_Bgs1</a></li>
+                                                    <li class="class"><a href="../classes/FML.Controls.Quads.Quad_Bgs1InRace.html">Quad_Bgs1InRace</a></li>
+                                                    <li class="class"><a href="../classes/FML.Controls.Quads.Quad_BgsChallengeMedals.html">Quad_BgsChallengeMedals</a></li>
+                                                    <li class="class"><a href="../classes/FML.Controls.Quads.Quad_BgsPlayerCard.html">Quad_BgsPlayerCard</a></li>
+                                                    <li class="class"><a href="../classes/FML.Controls.Quads.Quad_Copilot.html">Quad_Copilot</a></li>
+                                                    <li class="class"><a href="../classes/FML.Controls.Quads.Quad_Emblems.html">Quad_Emblems</a></li>
+                                                    <li class="class"><a href="../classes/FML.Controls.Quads.Quad_EnergyBar.html">Quad_EnergyBar</a></li>
+                                                    <li class="class"><a href="../classes/FML.Controls.Quads.Quad_Hud3dEchelons.html">Quad_Hud3dEchelons</a></li>
+                                                    <li class="class"><a href="../classes/FML.Controls.Quads.Quad_Hud3dIcons.html">Quad_Hud3dIcons</a></li>
+                                                    <li class="class"><a href="../classes/FML.Controls.Quads.Quad_Icons128x128_1.html">Quad_Icons128x128_1</a></li>
+                                                    <li class="class"><a href="../classes/FML.Controls.Quads.Quad_Icons128x128_Blink.html">Quad_Icons128x128_Blink</a></li>
+                                                    <li class="class"><a href="../classes/FML.Controls.Quads.Quad_Icons128x32_1.html">Quad_Icons128x32_1</a></li>
+                                                    <li class="class"><a href="../classes/FML.Controls.Quads.Quad_Icons64x64_1.html">Quad_Icons64x64_1</a></li>
+                                                    <li class="class"><a href="../classes/FML.Controls.Quads.Quad_Icons64x64_2.html">Quad_Icons64x64_2</a></li>
+                                                    <li class="class"><a href="../classes/FML.Controls.Quads.Quad_ManiaPlanetLogos.html">Quad_ManiaPlanetLogos</a></li>
+                                                    <li class="class"><a href="../classes/FML.Controls.Quads.Quad_ManiaPlanetMainMenu.html">Quad_ManiaPlanetMainMenu</a></li>
+                                                    <li class="class"><a href="../classes/FML.Controls.Quads.Quad_ManiaplanetSystem.html">Quad_ManiaplanetSystem</a></li>
+                                                    <li class="class"><a href="../classes/FML.Controls.Quads.Quad_MedalsBig.html">Quad_MedalsBig</a></li>
+                                                    <li class="class"><a href="../classes/FML.Controls.Quads.Quad_TitleLogos.html">Quad_TitleLogos</a></li>
+                                                    <li class="class"><a href="../classes/FML.Controls.Quads.Quad_UIConstruction_Buttons.html">Quad_UIConstruction_Buttons</a></li>
+                                                    <li class="class"><a href="../classes/FML.Controls.Quads.Quad_UIConstruction_Buttons2.html">Quad_UIConstruction_Buttons2</a></li>
+                                                    <li class="class"><a href="../classes/FML.Controls.Quads.Quad_UiSMSpectatorScoreBig.html">Quad_UiSMSpectatorScoreBig</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/FML.Controls.Audio.html">Audio</a></li>
+                                                    <li class="class"><a href="../classes/FML.Controls.Control.html">Control</a></li>
+                                                    <li class="class"><a href="../classes/FML.Controls.Entry.html">Entry</a></li>
+                                                    <li class="class"><a href="../classes/FML.Controls.FileEntry.html">FileEntry</a></li>
+                                                    <li class="class"><a href="../classes/FML.Controls.Frame.html">Frame</a></li>
+                                                    <li class="class"><a href="../classes/FML.Controls.Frame3d.html">Frame3d</a></li>
+                                                    <li class="class"><a href="../classes/FML.Controls.FrameInstance.html">FrameInstance</a></li>
+                                                    <li class="class"><a href="../classes/FML.Controls.Gauge.html">Gauge</a></li>
+                                                    <li class="class"><a href="../classes/FML.Controls.Label.html">Label</a></li>
+                                                    <li class="class"><a href="../classes/FML.Controls.Quad.html">Quad</a></li>
+                                                    <li class="class"><a href="../classes/FML.Controls.Video.html">Video</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1720178867"></a>
+                                <a href="../namespaces/FML.Elements.html" style="margin-left: 30px; padding-left: 0">Elements</a>
+            </div>
+            <div id="namespace-1720178867" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/FML.Elements.Dico.html">Dico</a></li>
+                                                    <li class="class"><a href="../classes/FML.Elements.Format.html">Format</a></li>
+                                                    <li class="class"><a href="../classes/FML.Elements.FrameModel.html">FrameModel</a></li>
+                                                    <li class="class"><a href="../classes/FML.Elements.Including.html">Including</a></li>
+                                                    <li class="class"><a href="../classes/FML.Elements.Music.html">Music</a></li>
+                                                    <li class="class"><a href="../classes/FML.Elements.SimpleScript.html">SimpleScript</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-2017259116"></a>
+                                <a href="../namespaces/FML.ManiaCode.html" style="margin-left: 30px; padding-left: 0">ManiaCode</a>
+            </div>
+            <div id="namespace-2017259116" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/FML.ManiaCode.Element.html">Element</a></li>
+                                                                                                    <li class="class"><a href="../classes/FML.ManiaCode.AddBuddy.html">AddBuddy</a></li>
+                                                    <li class="class"><a href="../classes/FML.ManiaCode.AddFavorite.html">AddFavorite</a></li>
+                                                    <li class="class"><a href="../classes/FML.ManiaCode.GetSkin.html">GetSkin</a></li>
+                                                    <li class="class"><a href="../classes/FML.ManiaCode.Go_To.html">Go_To</a></li>
+                                                    <li class="class"><a href="../classes/FML.ManiaCode.InstallMacroblock.html">InstallMacroblock</a></li>
+                                                    <li class="class"><a href="../classes/FML.ManiaCode.InstallMap.html">InstallMap</a></li>
+                                                    <li class="class"><a href="../classes/FML.ManiaCode.InstallPack.html">InstallPack</a></li>
+                                                    <li class="class"><a href="../classes/FML.ManiaCode.InstallReplay.html">InstallReplay</a></li>
+                                                    <li class="class"><a href="../classes/FML.ManiaCode.InstallScript.html">InstallScript</a></li>
+                                                    <li class="class"><a href="../classes/FML.ManiaCode.InstallSkin.html">InstallSkin</a></li>
+                                                    <li class="class"><a href="../classes/FML.ManiaCode.JoinServer.html">JoinServer</a></li>
+                                                    <li class="class"><a href="../classes/FML.ManiaCode.PlayMap.html">PlayMap</a></li>
+                                                    <li class="class"><a href="../classes/FML.ManiaCode.PlayReplay.html">PlayReplay</a></li>
+                                                    <li class="class"><a href="../classes/FML.ManiaCode.ShowMessage.html">ShowMessage</a></li>
+                                                    <li class="class"><a href="../classes/FML.ManiaCode.ViewReplay.html">ViewReplay</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-311668097"></a>
+                                <a href="../namespaces/FML.Models.html" style="margin-left: 30px; padding-left: 0">Models</a>
+            </div>
+            <div id="namespace-311668097" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/FML.Models.CheckBoxDesign.html">CheckBoxDesign</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1332447962"></a>
+                                <a href="../namespaces/FML.Script.html" style="margin-left: 30px; padding-left: 0">Script</a>
+            </div>
+            <div id="namespace-1332447962" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1082229376"></a>
+                                <a href="../namespaces/FML.Script.Features.html" style="margin-left: 30px; padding-left: 0">Features</a>
+            </div>
+            <div id="namespace-1082229376" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/FML.Script.Features.ActionTrigger.html">ActionTrigger</a></li>
+                                                    <li class="class"><a href="../classes/FML.Script.Features.CheckBoxFeature.html">CheckBoxFeature</a></li>
+                                                    <li class="class"><a href="../classes/FML.Script.Features.Clock.html">Clock</a></li>
+                                                    <li class="class"><a href="../classes/FML.Script.Features.ControlScript.html">ControlScript</a></li>
+                                                    <li class="class"><a href="../classes/FML.Script.Features.EntrySubmit.html">EntrySubmit</a></li>
+                                                    <li class="class"><a href="../classes/FML.Script.Features.KeyAction.html">KeyAction</a></li>
+                                                    <li class="class"><a href="../classes/FML.Script.Features.MapInfo.html">MapInfo</a></li>
+                                                    <li class="class"><a href="../classes/FML.Script.Features.Menu.html">Menu</a></li>
+                                                    <li class="class"><a href="../classes/FML.Script.Features.MenuElement.html">MenuElement</a></li>
+                                                    <li class="class"><a href="../classes/FML.Script.Features.Paging.html">Paging</a></li>
+                                                    <li class="class"><a href="../classes/FML.Script.Features.PagingButton.html">PagingButton</a></li>
+                                                    <li class="class"><a href="../classes/FML.Script.Features.PagingPage.html">PagingPage</a></li>
+                                                    <li class="class"><a href="../classes/FML.Script.Features.PlayerProfile.html">PlayerProfile</a></li>
+                                                    <li class="class"><a href="../classes/FML.Script.Features.ScriptFeature.html">ScriptFeature</a></li>
+                                                    <li class="class"><a href="../classes/FML.Script.Features.Toggle.html">Toggle</a></li>
+                                                    <li class="class"><a href="../classes/FML.Script.Features.Tooltip.html">Tooltip</a></li>
+                                                    <li class="class"><a href="../classes/FML.Script.Features.UISound.html">UISound</a></li>
+                                                    <li class="class"><a href="../classes/FML.Script.Features.ValuePickerFeature.html">ValuePickerFeature</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/FML.Script.Builder.html">Builder</a></li>
+                                                    <li class="class"><a href="../classes/FML.Script.Script.html">Script</a></li>
+                                                    <li class="class"><a href="../classes/FML.Script.ScriptConstant.html">ScriptConstant</a></li>
+                                                    <li class="class"><a href="../classes/FML.Script.ScriptFunction.html">ScriptFunction</a></li>
+                                                    <li class="class"><a href="../classes/FML.Script.ScriptInclude.html">ScriptInclude</a></li>
+                                                    <li class="class"><a href="../classes/FML.Script.ScriptLabel.html">ScriptLabel</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-859935363"></a>
+                                <a href="../namespaces/FML.Stylesheet.html" style="margin-left: 30px; padding-left: 0">Stylesheet</a>
+            </div>
+            <div id="namespace-859935363" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/FML.Stylesheet.Mood.html">Mood</a></li>
+                                                    <li class="class"><a href="../classes/FML.Stylesheet.Style3d.html">Style3d</a></li>
+                                                    <li class="class"><a href="../classes/FML.Stylesheet.Stylesheet.html">Stylesheet</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1399505186"></a>
+                                <a href="../namespaces/FML.Types.html" style="margin-left: 30px; padding-left: 0">Types</a>
+            </div>
+            <div id="namespace-1399505186" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/FML.Types.Actionable.html">Actionable</a></li>
+                                                    <li class="interface"><a href="../classes/FML.Types.BgColorable.html">BgColorable</a></li>
+                                                    <li class="interface"><a href="../classes/FML.Types.Container.html">Container</a></li>
+                                                    <li class="interface"><a href="../classes/FML.Types.Linkable.html">Linkable</a></li>
+                                                    <li class="interface"><a href="../classes/FML.Types.NewLineable.html">NewLineable</a></li>
+                                                    <li class="interface"><a href="../classes/FML.Types.Playable.html">Playable</a></li>
+                                                    <li class="interface"><a href="../classes/FML.Types.Renderable.html">Renderable</a></li>
+                                                    <li class="interface"><a href="../classes/FML.Types.Scriptable.html">Scriptable</a></li>
+                                                    <li class="interface"><a href="../classes/FML.Types.ScriptFeatureable.html">ScriptFeatureable</a></li>
+                                                    <li class="interface"><a href="../classes/FML.Types.Styleable.html">Styleable</a></li>
+                                                    <li class="interface"><a href="../classes/FML.Types.SubStyleable.html">SubStyleable</a></li>
+                                                    <li class="interface"><a href="../classes/FML.Types.TextFormatable.html">TextFormatable</a></li>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/FML.CustomUI.html">CustomUI</a></li>
+                                                    <li class="class"><a href="../classes/FML.ManiaCode.html">ManiaCode</a></li>
+                                                    <li class="class"><a href="../classes/FML.ManiaLink.html">ManiaLink</a></li>
+                                                    <li class="class"><a href="../classes/FML.ManiaLinks.html">ManiaLinks</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        </div>
+    </section>
+    <section class="row-fluid">
+        <div class="span10 offset2">
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <nav>
+                                                <a href="../namespaces/FML.Script.Features.html">\FML\Script\Features</a> <i class="icon-level-up"></i>
+                                            </nav>
+                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
+
+                    <h1><small>\FML\Script\Features</small>Clock</h1>
+                    <p><em>Script Feature showing the current Time on a Label</em></p>
+                    
+                    
+                                        
+                    <section id="summary">
+                        <h2>Summary</h2>
+                        <section class="row-fluid heading">
+                            <section class="span4">
+                                <a href="#methods">Methods</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#properties">Properties</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#constants">Constants</a>
+                            </section>
+                        </section>
+                        <section class="row-fluid public">
+                            <section class="span4">
+                                                                    <a href="../classes/FML.Script.Features.ScriptFeature.html#method_collect" class="">collect()</a><br />
+                                                                    <a href="../classes/FML.Script.Features.Clock.html#method_prepare" class="">prepare()</a><br />
+                                                                    <a href="../classes/FML.Script.Features.Clock.html#method___construct" class="">__construct()</a><br />
+                                                                    <a href="../classes/FML.Script.Features.Clock.html#method_setLabel" class="">setLabel()</a><br />
+                                                                    <a href="../classes/FML.Script.Features.Clock.html#method_setShowSeconds" class="">setShowSeconds()</a><br />
+                                                                    <a href="../classes/FML.Script.Features.Clock.html#method_setShowFullDate" class="">setShowFullDate()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No public properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No constants found</em>
+                                                            </section>
+                        </section>
+                        <section class="row-fluid protected">
+                            <section class="span4">
+                                                                    <a href="../classes/FML.Script.Features.Clock.html#method_getScriptText" class="">getScriptText()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/FML.Script.Features.Clock.html#property_label" class="">$label</a><br />
+                                                                    <a href="../classes/FML.Script.Features.Clock.html#property_showSeconds" class="">$showSeconds</a><br />
+                                                                    <a href="../classes/FML.Script.Features.Clock.html#property_showFullDate" class="">$showFullDate</a><br />
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                        <section class="row-fluid private">
+                            <section class="span4">
+                                                                    <em>No private methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No private properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                    </section>
+                </div>
+                <aside class="span4 detailsbar">
+                                        
+                    
+                    <dl>
+                        <dt>File</dt>
+                            <dd><a href="../files/Script.Features.Clock.html"><div class="path-wrapper">Script\Features\Clock.php</div></a></dd>
+                                                <dt>Package</dt>
+                            <dd><div class="namespace-wrapper">Default</div></dd>
+                                                <dt>Class hierarchy</dt>
+                            <dd class="hierarchy">
+                                                                                                                                                                                                                                                                                                
+                                        <div class="namespace-wrapper"><a href="../classes/FML.Script.Features.ScriptFeature.html">\FML\Script\Features\ScriptFeature</a></div>
+                                                                                                    <div class="namespace-wrapper">\FML\Script\Features\Clock</div>
+                            </dd>
+
+                        
+                        
+                        
+                        
+                                                                        </dl>
+                    <h2>Tags</h2>
+                    <table class="table table-condensed">
+                                            <tr>
+                            <th>
+                                author
+                            </th>
+                            <td>
+                                                                    <p>steeffeen</p>
+                                                            </td>
+                        </tr>
+                                            <tr>
+                            <th>
+                                copyright
+                            </th>
+                            <td>
+                                                                    <p>FancyManiaLinks Copyright © 2014 Steffen Schröder</p>
+                                                            </td>
+                        </tr>
+                                            <tr>
+                            <th>
+                                license
+                            </th>
+                            <td>
+                                                                    <p><a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a> GNU General Public License, Version 3</p>
+                                                            </td>
+                        </tr>
+                                        </table>
+                </aside>
+            </div>
+
+                        
+                                    <a id="properties" name="properties"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Properties</h2>
+                </div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_label" name="property_label" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$label</h3>
+                <pre class="signature">$label : \FML\Controls\Label</pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                <a href="../classes/FML.Controls.Label.html">\FML\Controls\Label</a>
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_showSeconds" name="property_showSeconds" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$showSeconds</h3>
+                <pre class="signature">$showSeconds : </pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_showFullDate" name="property_showFullDate" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$showFullDate</h3>
+                <pre class="signature">$showFullDate : </pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                            
+                                    <a id="methods" name="methods"></a>
+            <div class="row-fluid">
+                <div class="span8 content class"><h2>Methods</h2></div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_collect" name="method_collect" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">collect()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">collect(object  <span class="argument">$scriptFeatureable</span>, object  <span class="argument">$_ = null</span>) : array</pre>
+                <p><em>Collect the Script Features of the given Objects</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>object</td>
+                                <td>$scriptFeatureable </td>
+                                <td><p>ScriptFeatureable Object</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>object</td>
+                                <td>$_ </td>
+                                <td><p>(optional) Various Amount of additional Objects</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/FML.Script.Features.ScriptFeature.html"><div class="path-wrapper">\FML\Script\Features\ScriptFeature</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_prepare" name="method_prepare" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">prepare()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">prepare(\FML\Script\Script  <span class="argument">$script</span>) : \FML\Script\Features\ScriptFeature</pre>
+                <p><em>Prepare the given Script for Rendering by adding the needed Labels, etc.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/FML.Script.Script.html">\FML\Script\Script</a></td>
+                                <td>$script </td>
+                                <td><p>Script to prepare</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/FML.Script.Features.ScriptFeature.html">\FML\Script\Features\ScriptFeature</a>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href="../classes/FML.Script.Features.ScriptFeature.html#method_prepare"><span class="namespace-wrapper">\FML\Script\Features\ScriptFeature::prepare()</span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method___construct" name="method___construct" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">__construct()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">__construct(\FML\Controls\Label  <span class="argument">$label = null</span>, boolean  <span class="argument">$showSeconds = true</span>, boolean  <span class="argument">$showFullDate = false</span>) </pre>
+                <p><em>Construct a new Clock Feature</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/FML.Controls.Label.html">\FML\Controls\Label</a></td>
+                                <td>$label </td>
+                                <td><p>(optional) Clock Label</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>boolean</td>
+                                <td>$showSeconds </td>
+                                <td><p>(optional) Whether the Seconds should be shown</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>boolean</td>
+                                <td>$showFullDate </td>
+                                <td><p>(optional) Whether the Date should be shown</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setLabel" name="method_setLabel" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setLabel()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setLabel(\FML\Controls\Label  <span class="argument">$label</span>) : \FML\Script\Features\Clock</pre>
+                <p><em>Set the Label</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/FML.Controls.Label.html">\FML\Controls\Label</a></td>
+                                <td>$label </td>
+                                <td><p>Clock Label</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/FML.Script.Features.Clock.html">\FML\Script\Features\Clock</a>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setShowSeconds" name="method_setShowSeconds" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setShowSeconds()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setShowSeconds(boolean  <span class="argument">$showSeconds</span>) : \FML\Script\Features\Clock</pre>
+                <p><em>Set whether the Seconds should be shown</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>boolean</td>
+                                <td>$showSeconds </td>
+                                <td><p>Whether the Seconds should be shown</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/FML.Script.Features.Clock.html">\FML\Script\Features\Clock</a>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setShowFullDate" name="method_setShowFullDate" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setShowFullDate()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setShowFullDate(boolean  <span class="argument">$showFullDate</span>) : \FML\Script\Features\Clock</pre>
+                <p><em>Set whether the Full Date should be shown</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>boolean</td>
+                                <td>$showFullDate </td>
+                                <td><p>Whether the Full Date should be shown</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/FML.Script.Features.Clock.html">\FML\Script\Features\Clock</a>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getScriptText" name="method_getScriptText" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">getScriptText()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getScriptText() : string</pre>
+                <p><em>Get the Script Text</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                    </div>
+    </section>
+
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label">Clock.php</h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/Script\Features\Clock.php.txt" class="language-php line-numbers"></pre>
+        </div>
+    </div>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                            <li><a href="../namespaces/FML.html">\FML</a></li>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../reports/errors.html">Errors</a></li>
+                                    <li><a href="../reports/markers.html">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on July 9th, 2017 at 14:25.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>
