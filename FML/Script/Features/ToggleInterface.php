@@ -2,6 +2,7 @@
 
 namespace FML\Script\Features;
 
+use FML\Controls\Control;
 use FML\Script\Builder;
 use FML\Script\Script;
 use FML\Script\ScriptLabel;
@@ -22,6 +23,11 @@ class ToggleInterface extends ScriptFeature
     const VAR_STATE = "FML_ToggleInterface_State";
 
     /**
+     * @var Control $control Control
+     */
+    protected $control = null;
+
+    /**
      * @var string $keyName Key name
      */
     protected $keyName = null;
@@ -40,17 +46,51 @@ class ToggleInterface extends ScriptFeature
      * Construct a new ToggleInterface
      *
      * @api
+     * @param Control    $control       (optional) Control
      * @param string|int $keyNameOrCode (optional) Key name or code
      * @param bool       $rememberState (optional) Remember the current state
      */
-    public function __construct($keyNameOrCode = null, $rememberState = true)
+    public function __construct($control = null, $keyNameOrCode = null, $rememberState = true)
     {
+        if ($control && !$control instanceof Control) {
+            // backwards-compatibility - control parameter has been introduced later on
+            $rememberState = $keyNameOrCode;
+            $keyNameOrCode = $control;
+            $control       = null;
+        }
+        if ($control) {
+            $this->setControl($control);
+        }
         if (is_string($keyNameOrCode)) {
             $this->setKeyName($keyNameOrCode);
         } else if (is_int($keyNameOrCode)) {
             $this->setKeyCode($keyNameOrCode);
         }
         $this->setRememberState($rememberState);
+    }
+
+    /**
+     * Get the control
+     *
+     * @api
+     * @return Control
+     */
+    public function getControl()
+    {
+        return $this->control;
+    }
+
+    /**
+     * Get the control
+     *
+     * @api
+     * @param Control $control Control
+     * @return static
+     */
+    public function setControl(Control $control)
+    {
+        $this->control = $control;
+        return $this;
     }
 
     /**
@@ -132,9 +172,9 @@ class ToggleInterface extends ScriptFeature
      */
     public function prepare(Script $script)
     {
-        $script->appendGenericScriptLabel(ScriptLabel::KEYPRESS, $this->getKeyPressScriptText());
+        $script->appendGenericScriptLabel(ScriptLabel::KeyPress, $this->getKeyPressScriptText());
         if ($this->rememberState) {
-            $script->appendGenericScriptLabel(ScriptLabel::ONINIT, $this->getOnInitScriptText());
+            $script->appendGenericScriptLabel(ScriptLabel::OnInit, $this->getOnInitScriptText());
         }
         return $this;
     }
@@ -146,10 +186,17 @@ class ToggleInterface extends ScriptFeature
      */
     protected function getOnInitScriptText()
     {
+        $scriptText = null;
+        if ($this->control) {
+            $controlId  = Builder::escapeText($this->control->getId());
+            $scriptText = "declare ToggleInterfaceControl <=> Page.GetFirstChild({$controlId});";
+        } else {
+            $scriptText = "declare ToggleInterfaceControl <=> Page.MainFrame;";
+        }
         $stateVariableName = $this::VAR_STATE;
-        return "
+        return $scriptText . "
 declare persistent {$stateVariableName} as CurrentState for LocalUser = True;
-Page.MainFrame.Visible = CurrentState;
+ToggleInterfaceControl.Visible = CurrentState;
 ";
     }
 
@@ -160,6 +207,7 @@ Page.MainFrame.Visible = CurrentState;
      */
     protected function getKeyPressScriptText()
     {
+        $scriptText  = null;
         $keyProperty = null;
         $keyValue    = null;
         if ($this->keyName) {
@@ -171,13 +219,22 @@ Page.MainFrame.Visible = CurrentState;
         }
         $scriptText = "
 if (Event.{$keyProperty} == {$keyValue}) {
-    Page.MainFrame.Visible = !Page.MainFrame.Visible;
 ";
+        if ($this->control) {
+            $controlId  = Builder::escapeText($this->control->getId());
+            $scriptText .= "
+    declare ToggleInterfaceControl <=> Page.GetFirstChild({$controlId});";
+        } else {
+            $scriptText .= "
+    declare ToggleInterfaceControl <=> Page.MainFrame;";
+        }
+        $scriptText .= "
+    ToggleInterfaceControl.Visible = !ToggleInterfaceControl.Visible;";
         if ($this->rememberState) {
             $stateVariableName = static::VAR_STATE;
             $scriptText        .= "
     declare persistent {$stateVariableName} as CurrentState for LocalUser = True;
-    CurrentState = Page.MainFrame.Visible;
+    CurrentState = ToggleInterfaceControl.Visible;
 ";
         }
         return $scriptText . "
