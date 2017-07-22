@@ -21,6 +21,7 @@ class ToggleInterface extends ScriptFeature
      * Constants
      */
     const VAR_STATE = "FML_ToggleInterface_State";
+    const DEFAULT_KEY_NAME = "F9";
 
     /**
      * @var Control $control Control
@@ -28,9 +29,19 @@ class ToggleInterface extends ScriptFeature
     protected $control = null;
 
     /**
+     * @var string $defaultKeyName Default key name
+     */
+    protected static $defaultKeyName = self::DEFAULT_KEY_NAME;
+
+    /**
      * @var string $keyName Key name
      */
     protected $keyName = null;
+
+    /**
+     * @var int $defaultKeyCode Default key code
+     */
+    protected static $defaultKeyCode = null;
 
     /**
      * @var int $keyCode Key code
@@ -61,10 +72,14 @@ class ToggleInterface extends ScriptFeature
         if ($control) {
             $this->setControl($control);
         }
-        if (is_string($keyNameOrCode)) {
+        if ($keyNameOrCode && is_string($keyNameOrCode)) {
             $this->setKeyName($keyNameOrCode);
-        } else if (is_int($keyNameOrCode)) {
+        } else if ($keyNameOrCode && is_int($keyNameOrCode)) {
             $this->setKeyCode($keyNameOrCode);
+        } else if (static::$defaultKeyName && is_string(static::$defaultKeyName)) {
+            $this->setKeyName(static::$defaultKeyName);
+        } else if (static::$defaultKeyCode && is_int(static::$defaultKeyCode)) {
+            $this->setKeyCode(static::$defaultKeyCode);
         }
         $this->setRememberState($rememberState);
     }
@@ -94,6 +109,29 @@ class ToggleInterface extends ScriptFeature
     }
 
     /**
+     * Get default key name
+     *
+     * @api
+     * @return string
+     */
+    public static function getDefaultKeyName()
+    {
+        return static::$defaultKeyName;
+    }
+
+    /**
+     * Set default key name
+     *
+     * @api
+     * @param string $defaultKeyName Default key name
+     */
+    public static function setDefaultKeyName($defaultKeyName)
+    {
+        static::$defaultKeyName = (string)$defaultKeyName;
+        static::$defaultKeyCode = null;
+    }
+
+    /**
      * Get the key name
      *
      * @api
@@ -116,6 +154,29 @@ class ToggleInterface extends ScriptFeature
         $this->keyName = (string)$keyName;
         $this->keyCode = null;
         return $this;
+    }
+
+    /**
+     * Get default key code
+     *
+     * @api
+     * @return int
+     */
+    public static function getDefaultKeyCode()
+    {
+        return static::$defaultKeyCode;
+    }
+
+    /**
+     * Set default key code
+     *
+     * @api
+     * @param int $defaultKeyCode Default key code
+     */
+    public static function setDefaultKeyCode($defaultKeyCode)
+    {
+        static::$defaultKeyCode = (int)$defaultKeyCode;
+        static::$defaultKeyName = null;
     }
 
     /**

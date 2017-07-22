@@ -8,10 +8,23 @@ use FML\Script\ScriptLabel;
 class ToggleInterfaceTest extends \PHPUnit_Framework_TestCase
 {
 
+    public function testConstructWithDefaultKeyName()
+    {
+        ToggleInterface::setDefaultKeyName("SomeKey");
+        $control         = new Label();
+        $toggleInterface = new ToggleInterface($control);
+
+        $this->assertSame($control, $toggleInterface->getControl());
+        $this->assertEquals("SomeKey", $toggleInterface->getKeyName());
+        $this->assertNull($toggleInterface->getKeyCode());
+        $this->assertTrue($toggleInterface->getRememberState());
+
+        ToggleInterface::setDefaultKeyName(ToggleInterface::DEFAULT_KEY_NAME);
+    }
+
     public function testConstructWithKeyName()
     {
-        $control = new Label();
-
+        $control         = new Label();
         $toggleInterface = new ToggleInterface($control, "TestKey", false);
 
         $this->assertSame($control, $toggleInterface->getControl());
@@ -20,10 +33,23 @@ class ToggleInterfaceTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse($toggleInterface->getRememberState());
     }
 
+    public function testConstructWithDefaultKeyCode()
+    {
+        ToggleInterface::setDefaultKeyCode(42);
+        $control         = new Label();
+        $toggleInterface = new ToggleInterface($control);
+
+        $this->assertSame($control, $toggleInterface->getControl());
+        $this->assertNull($toggleInterface->getKeyName());
+        $this->assertEquals(42, $toggleInterface->getKeyCode());
+        $this->assertTrue($toggleInterface->getRememberState());
+
+        ToggleInterface::setDefaultKeyName(ToggleInterface::DEFAULT_KEY_NAME);
+    }
+
     public function testConstructWithKeyCode()
     {
-        $control = new Label();
-
+        $control         = new Label();
         $toggleInterface = new ToggleInterface($control, 1337, true);
 
         $this->assertSame($control, $toggleInterface->getControl());
@@ -62,6 +88,29 @@ class ToggleInterfaceTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($toggleInterface, $toggleInterface->setControl($control));
 
         $this->assertSame($control, $toggleInterface->getControl());
+    }
+
+    public function testDefaultKeyNameAndCode()
+    {
+        $this->assertEquals(ToggleInterface::DEFAULT_KEY_NAME, ToggleInterface::getDefaultKeyName());
+        $this->assertNull(ToggleInterface::getDefaultKeyCode());
+
+        ToggleInterface::setDefaultKeyName("test-key");
+
+        $this->assertEquals("test-key", ToggleInterface::getDefaultKeyName());
+        $this->assertNull(ToggleInterface::getDefaultKeyCode());
+
+        ToggleInterface::setDefaultKeyCode(13);
+
+        $this->assertNull(ToggleInterface::getDefaultKeyName());
+        $this->assertEquals(13, ToggleInterface::getDefaultKeyCode());
+
+        ToggleInterface::setDefaultKeyName("other-key");
+
+        $this->assertEquals("other-key", ToggleInterface::getDefaultKeyName());
+        $this->assertNull(ToggleInterface::getDefaultKeyCode());
+
+        ToggleInterface::setDefaultKeyName(null);
     }
 
     public function testKeyNameAndCode()
