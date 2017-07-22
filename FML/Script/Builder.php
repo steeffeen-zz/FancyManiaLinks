@@ -35,7 +35,9 @@ abstract class Builder
         }
         return "
 ***{$labelName}***
-***{$implementationCode}***
+***
+{$implementationCode}
+***
 ";
     }
 

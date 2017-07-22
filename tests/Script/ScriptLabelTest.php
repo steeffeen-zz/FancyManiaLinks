@@ -54,7 +54,9 @@ class ScriptLabelTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals("
 ***other-name***
-***if(True){other-text}***
+***
+if(True){other-text}
+***
 ", (string)$scriptLabel);
     }
 

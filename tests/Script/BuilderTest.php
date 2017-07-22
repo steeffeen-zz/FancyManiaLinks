@@ -10,12 +10,16 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertEquals("
 ***test-label***
-***if(True){test-code}***
+***
+if(True){test-code}
+***
 ", Builder::getLabelImplementationBlock("test-label", "test-code", true));
 
         $this->assertEquals("
 ***other-label***
-***other-code***
+***
+other-code
+***
 ", Builder::getLabelImplementationBlock("other-label", "other-code", false));
     }
 
