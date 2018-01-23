@@ -102,6 +102,35 @@ class TextEdit extends Control implements MultiLineable, Scriptable, Styleable, 
     protected $focusAreaColor = null;
 
     /**
+     * @var string $name Name for the control
+     */
+    protected $name = "";
+
+     /**
+     * Get the name of the control
+     *
+     * @api
+     * @return mixed
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set the name of the control
+     *
+     * @api
+     * @param string $name
+     * @return static
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+        return $this;
+    }
+    
+    /**
      * Get the default value
      *
      * @api
@@ -446,6 +475,10 @@ class TextEdit extends Control implements MultiLineable, Scriptable, Styleable, 
         if ($this->focusAreaColor) {
             $domElement->setAttribute("focusareacolor2", $this->focusAreaColor);
         }
+        if ($this->name) {
+            $domElement->setAttribute("name", $this->name);
+        }
+        
         return $domElement;
     }
 
