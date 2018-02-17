@@ -30,7 +30,12 @@ class ManiaLink
     const BACKGROUND_STARS    = "stars";
     const BACKGROUND_STATIONS = "stations";
     const BACKGROUND_TITLE    = "title";
-
+    const LAYER_NORMAL = "normal";
+    const LAYER_SCREEN3D = "ScreenIn3d";
+    const LAYER_SCORETABLE = "ScoreTable";
+    const LAYER_ALTMENU = "altmenu";
+    const LAYER_CUTSCENE = "cutscene";
+    
     /**
      * @var string $maniaLinkId ManiaLink ID
      */
@@ -85,7 +90,12 @@ class ManiaLink
      * @var Script $script Script
      */
     protected $script = null;
-
+    
+    /**
+     * @var null|string $layer layer to display contents with
+     */
+    protected $layer = null;
+    
     /**
      * Create a new ManiaLink
      *
@@ -231,6 +241,28 @@ class ManiaLink
         return $this;
     }
 
+     /**
+     * Sets the layer to show contents
+     *
+     * @param string $layer layer to show contents with
+     * @return $this
+     */
+    public function setLayer($layer)
+    {
+        $this->layer = $layer;
+
+        return $this;
+    }
+
+    /**
+     * Gets layer
+     * @return null|string
+     */
+    public function getLayer()
+    {
+        return $this->layer;
+    }
+    
     /**
      * Get the background
      *
@@ -553,7 +585,10 @@ class ManiaLink
             $dicoXml = $this->dico->render($domDocument);
             $maniaLink->appendChild($dicoXml);
         }
-
+        if ($this->layer) {
+            $maniaLink->setAttribute("layer", $this->layer);
+        }
+        
         $scriptFeatures = array();
         foreach ($this->children as $child) {
             $childXml = $child->render($domDocument);
