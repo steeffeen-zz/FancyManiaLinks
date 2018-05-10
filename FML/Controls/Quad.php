@@ -723,7 +723,7 @@ class Quad extends Control implements Actionable, BackgroundColorable, BgColorab
             $domElement->setAttribute("colorize", $this->colorize);
         }
         if ($this->modulizeColor) {
-            $domElement->setAttribute("modulizecolor", $this->modulizeColor);
+            $domElement->setAttribute("modulatecolor", $this->modulizeColor);
         }
         if (!$this->autoScale) {
             $domElement->setAttribute("autoscale", 0);
